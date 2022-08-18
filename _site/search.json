@@ -1,0 +1,331 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I hold a Ph.D. in Finance, and I am currently an Assistant Professor at FGV/EAESP (São Paulo, Brazil).\nI teach corporate finance, corporate governance and financial analysis at the undergraduate, MBA, Master, and Ph.D. levels. I am currently working on several projects on these topics.\nIf you have any questions about my research, or if you want to work with me, contact me at henrique.martins@fgv.br."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\n\nPhD in Finance | 2016 | UFRGS\nMasters in Finance | 2012 | UFRGS\nB.A in Management | 2010 | PUCRS"
+  },
+  {
+    "objectID": "about.html#interests",
+    "href": "about.html#interests",
+    "title": "About",
+    "section": "Interests",
+    "text": "Interests\n\nCorporate Finance\nCorporate Governance\nFinancial policies\nEmpirical methods in finance"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Extend Quarto with new capabilities\n\n\n\n\nExtensions\n\n\nFeatures\n\n\n\n\nQuarto Extensions are a powerful way to modify or extend the behavior of Quarto, and can be created and distributed by anyone. Extension types include filters, shortcodes, and custom formats.\n\n\n\n\n\n\nJul 25, 2022\n\n\nJ.J. Allaire\n\n\n\n\n\n\n  \n\n\n\n\n\nQuarto-related workshops and talks at rstudio::conf(2022)\n\n\n\n\nconf\n\n\nworkshop\n\n\ntalk\n\n\n\n\nrstudio::conf(2022) will feature a variety of workshops and talks on Quarto. Join us in Washington DC this July 25-28 to learn more about Quarto and hear from folks using Quarto to create, share, and collaborate.\n\n\n\n\n\n\nJun 21, 2022\n\n\nMine Çetinkaya-Rundel\n\n\n\n\n\n\n  \n\n\n\n\n\nCreate ‘Tufte’ style documents with sidenotes, margin tables and figures, and other margin content\n\n\n\n\nFeatures\n\n\nLayout\n\n\n\n\nThis post demonstrates a few of the capabilities for positioning content in the margin of the page. You can read more about the complete capabilities in the the Article Layout Guide.\n\n\n\n\n\n\nFeb 17, 2022\n\n\nCharles Teague\n\n\n\n\n\n\n  \n\n\n\n\n\nAuthor and customize markdown tables using Quarto\n\n\n\n\nFeatures\n\n\nAuthoring\n\n\nTables\n\n\n\n\nThis post provides an overview of these capabilities in Quarto. For more detail about all the features Quarto for authoring tables, see Tables.\n\n\n\n\n\n\nFeb 15, 2022\n\n\nJJ Allaire\n\n\n\n\n\n\n  \n\n\n\n\n\nUse callouts to draw attention to important complementary content without interupting the document flow\n\n\n\n\nFeatures\n\n\nAuthoring\n\n\n\n\nCallouts are an excellent way to draw extra attention to certain concepts, or to more clearly indicate that certain content is supplemental or applicable to only some scenarios.\n\n\n\n\n\n\nFeb 13, 2022\n\n\nCharles Teague\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/2022-02-13-feature-callouts/index.html",
+    "href": "blog/posts/2022-02-13-feature-callouts/index.html",
+    "title": "Using Callouts",
+    "section": "",
+    "text": "Callouts are an excellent way to draw extra attention to certain concepts, or to more clearly indicate that certain content is supplemental or applicable to only some scenarios."
+  },
+  {
+    "objectID": "blog/posts/2022-02-13-feature-callouts/index.html#callout-basics",
+    "href": "blog/posts/2022-02-13-feature-callouts/index.html#callout-basics",
+    "title": "Using Callouts",
+    "section": "Callout Basics",
+    "text": "Callout Basics\nThere are five different types of callouts available.\n\nnote\ntip\nimportant\ncaution\nwarning\n\nThe color and icon will be different depending upon the type that you select."
+  },
+  {
+    "objectID": "blog/posts/2022-02-13-feature-callouts/index.html#syntax",
+    "href": "blog/posts/2022-02-13-feature-callouts/index.html#syntax",
+    "title": "Using Callouts",
+    "section": "Syntax",
+    "text": "Syntax\nCreate callouts in markdown using the following syntax (note that the first markdown heading used within the callout is used as the callout heading):\n:::{.callout-note}\nNote that there are five types of callouts, including:\n`note`, `tip`, `warning`, `caution`, and `important`.\n:::\n\n:::{.callout-tip}\n## Tip With Caption\n\nThis is an example of a callout with a caption.\n:::\nSee our documentation on Callouts, to learn more, including more about how to customize the appearance and behavior of callouts."
+  },
+  {
+    "objectID": "blog/posts/2022-02-15-feature-tables/index.html",
+    "href": "blog/posts/2022-02-15-feature-tables/index.html",
+    "title": "Customizing Table Output",
+    "section": "",
+    "text": "Quarto includes a number of features aimed at making it easy to to author and customize markdown table output, including:\nThis post provides an overview of these capabilities in Quarto. For more detail about all the features Quarto for authoring tables, see Tables."
+  },
+  {
+    "objectID": "blog/posts/2022-02-15-feature-tables/index.html#markdown-tables",
+    "href": "blog/posts/2022-02-15-feature-tables/index.html#markdown-tables",
+    "title": "Customizing Table Output",
+    "section": "Markdown Tables",
+    "text": "Markdown Tables\nThe most commonly used markdown table is known as a pipe table. Pipe tables support specifying per column alignment as well as captions. For example:\n| Default | Left | Right | Center |\n|---------|:-----|------:|:------:|\n| 12      | 12   |    12 |   12   |\n| 123     | 123  |   123 |  123   |\n| 1       | 1    |     1 |   1    |\n\n: Demonstration of pipe table sytnax\nHere is the table rendered to HTML:\n\nDemonstration of pipe table syntax\n\n\nDefault\nLeft\nRight\nCenter\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1\n\n\n\n\nCaption Location\nBy default, table captions are positioned above tables. You can modify this behavior using the tbl-cap-location option. For example:\n---\ntbl-cap-location: top\n---"
+  },
+  {
+    "objectID": "blog/posts/2022-02-15-feature-tables/index.html#explicit-column-widths",
+    "href": "blog/posts/2022-02-15-feature-tables/index.html#explicit-column-widths",
+    "title": "Customizing Table Output",
+    "section": "Explicit Column Widths",
+    "text": "Explicit Column Widths\nBeyond standard pipe table syntax for expressing column width, you can also explicitly specify columns widths using the tbl-colwidths attribute or document-level option. For an individual markdown table, add the attribute after the caption. For example:\n| fruit  | price  |\n|--------|--------:\n| apple  | 2.05   |\n| pear   | 1.37   |\n| orange | 3.09   |\n\n: Fruit prices {tbl-colwidths=\"[75,25]\"}\nNote that this option is specified at the top level so that it can be shared by both PDF and HTML formats. If you are only targeting a single format you can place it alongside other format specific options.\nValid values for the caption location include:\n\n\n\nValue\nDescription\n\n\n\n\ntop\nPosition the caption above the table.\n\n\nbottom\nPosition the caption below the table.\n\n\nmargin\nPosition the caption in the margin."
+  },
+  {
+    "objectID": "blog/posts/2022-02-15-feature-tables/index.html#computations",
+    "href": "blog/posts/2022-02-15-feature-tables/index.html#computations",
+    "title": "Customizing Table Output",
+    "section": "Computations",
+    "text": "Computations\nAll of the options described above work for tables produced by executable code cells. For example, here we apply the tbl-cap, tbl-colwidths and tbl-caption-location options to a code cell:\n```{r}\n#| tbl-cap: \"Cars\"\n#| tbl-colwidths: [60,40]\n#| tbl-cap-location: margin\n\nlibrary(knitr)\nkable(head(cars))\n```\nIn addition to the above, which focused on some of the features of Quarto when writing pipe tables in markdown, you can also author tables using grid syntax. You review the documentation. for more detail."
+  },
+  {
+    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html",
+    "href": "blog/posts/2022-02-17-advanced-layout/index.html",
+    "title": "Positioning Content in the Margin",
+    "section": "",
+    "text": "Quarto supports a variety of page layout options that enable you to author content that\nThis post will demonstrate a few of the capabilities for positioning content in the margin of the page. You can read more about the complete capabilities in the the Article Layout Guide."
+  },
+  {
+    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-figures",
+    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-figures",
+    "title": "Positioning Content in the Margin",
+    "section": "Margin Figures",
+    "text": "Margin Figures\nFigures that you create using code cells can be placed in the margin by using the column: margin code cell option. If the code produces more than one figure, each of the figures will be placed in the margin.\n\n```{r}\n#| label: fig-mtcars\n#| fig-cap: \"MPG vs horsepower, colored by transmission.\"\n#| column: margin\n\nlibrary(ggplot2)\n```\n\nWarning: package 'ggplot2' was built under R version 4.2.1\n\n```{r}\n#| label: fig-mtcars\n#| fig-cap: \"MPG vs horsepower, colored by transmission.\"\n#| column: margin\n\nmtcars2 <- mtcars\nmtcars2$am <- factor(\n  mtcars$am, labels = c('automatic', 'manual')\n)\nggplot(mtcars2, aes(hp, mpg, color = am)) +\n  geom_point() +  geom_smooth(formula = y ~ x, method = \"loess\") +\n  theme(legend.position = 'bottom')\n```\n\n\n\n\n\nFigure 1: MPG vs horsepower, colored by transmission."
+  },
+  {
+    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-tables",
+    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-tables",
+    "title": "Positioning Content in the Margin",
+    "section": "Margin Tables",
+    "text": "Margin Tables\nYou an also place tables in the margin of your document by specifying column: margin.\n\n```{r}\n#| column: margin\n\nknitr::kable(\n  mtcars[1:3, 1:3]\n)\n```\n\n\n\n\n\n\nmpg\ncyl\ndisp\n\n\n\n\nMazda RX4\n21.0\n6\n160\n\n\nMazda RX4 Wag\n21.0\n6\n160\n\n\nDatsun 710\n22.8\n4\n108"
+  },
+  {
+    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#other-content",
+    "href": "blog/posts/2022-02-17-advanced-layout/index.html#other-content",
+    "title": "Positioning Content in the Margin",
+    "section": "Other Content",
+    "text": "Other Content\nYou can also place content in the margin by targeting the margin column using a div with the .column-margin class. For example:\n::: {.column-margin}\nWe know from *the first fundamental theorem of calculus* that for $x$ in $[a, b]$:\n\n\n\n$$\\frac{d}{dx}\\left( \\int_{a}^{x} f(u)\\,du\\right)=f(x).$$\n\n\n:::\n\n\nWe know from the first fundamental theorem of calculus that for \\(x\\) in \\([a, b]\\):\n\\[\\frac{d}{dx}\\left( \\int_{a}^{x} f(u)\\,du\\right)=f(x).\\]"
+  },
+  {
+    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-references",
+    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-references",
+    "title": "Positioning Content in the Margin",
+    "section": "Margin References",
+    "text": "Margin References\nFootnotes and the bibliography typically appear at the end of the document, but you can choose to have them placed in the margin by setting the following option[^1] in the document front matter:\n---\nreference-location: margin\ncitation-location: margin\n---\nWith these options set, footnotes and citations will (respectively) be automatically be placed in the margin of the document rather than the bottom of the page. As an example, when I cite @xie2018, the citation bibliography entry itself will now appear in the margin.\n\nAsides\nAsides allow you to place content aside from the content it is placed in. Asides look like footnotes, but do not include the footnote mark (the superscript number). This is a span that has the class aside which places it in the margin without a footnote number.\n[This is a span that has the class aside which places it in the margin without a footnote number.]{.aside}"
+  },
+  {
+    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-captions",
+    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-captions",
+    "title": "Positioning Content in the Margin",
+    "section": "Margin Captions",
+    "text": "Margin Captions\nFor figures and tables, you may leave the content in the body of the document while placing the caption in the margin of the document. Using cap-location: margin in a code cell or document front matter to control this. For example:\n\n```{r}\n#| label: fig-cap-margin\n#| fig-cap: \"MPG vs horsepower, colored by transmission.\"\n#| cap-location: margin\n\nlibrary(ggplot2)\nmtcars2 <- mtcars\nmtcars2$am <- factor(\n  mtcars$am, labels = c('automatic', 'manual')\n)\nggplot(mtcars2, aes(hp, mpg, color = am)) +\n  geom_point() +  geom_smooth(formula = y ~ x, method = \"loess\") +\n  theme(legend.position = 'bottom')\n```\n\n\n\n\nFigure 2: MPG vs horsepower, colored by transmission."
+  },
+  {
+    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html",
+    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html",
+    "title": "Quarto at rstudio::conf(2022)",
+    "section": "",
+    "text": "rstudio::conf(2022) will feature a variety of workshops and talks on Quarto. Join us in Washington DC this July 25-28 to learn more about Quarto and hear from folks using Quarto to create, share, and collaborate.\nHere is a list of Quarto-related talks and workshops (and scroll down for details on each):"
+  },
+  {
+    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#keynote",
+    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#keynote",
+    "title": "Quarto at rstudio::conf(2022)",
+    "section": "Keynote",
+    "text": "Keynote\nReimagine + Collaborate + Share with Quarto (Keynote):\n\nPresented by Julia Stewart Lowndes (Director, Openscapes) and Mine Çetinkaya-Rundel (Developer Educator at RStudio and Professor at Duke University).\nThursday July 28, 9:00am - 10:00am EDT.\nWhat is Quarto? In this talk, in four acts, we will discuss how Quarto unifies and extends the R Markdown ecosystem. Through our work with NASA Openscapes, Duke University, and RStudio, we will share our experiences authoring, teaching, and collaborating with Quarto. Full of demos with Quarto in RStudio and Jupyter and weaving together narrative, R, and Python code, we will showcase features of Quarto that have enabled us to reimagine our reproducible workflows. This talk will help you get the most out of Quarto regardless of your background with R Markdown, the computing language(s) you use, and your tool of choice for authoring."
+  },
+  {
+    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#workshops",
+    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#workshops",
+    "title": "Quarto at rstudio::conf(2022)",
+    "section": "Workshops",
+    "text": "Workshops\nWe will have two Quarto workshops at the conference, held on July 25-26, one for those who have no or little prior experience with R Markdown and the other for those who want to take their R Markdown skills and expertise and apply them in Quarto.\n\nGetting Started with Quarto: This workshop is designed for those who have no or little prior experience with R Markdown. In this 2 day workshop you will learn about the Quarto format for technical communication and computation. The workshop will teach you how to get started creating and fully customizing Quarto outputs (HTML, PDF, Presentations) and the use of RStudio’s Visual Editor which provides a user interface for editing all of Pandoc markdown. The workshop will also provide an overview of Quarto’s developer tooling support in alternative tools such as Jupyter, VS Code, and any text editors. The workshop will briefly cover how to add interactivity to Quarto with Shiny, Observable JS, htmlwidgets or Jupyter Widgets. Lastly, the workshop will cover Quarto Projects for aggregating many files such as complex web sites or entire books. Presented by Tom Mock, Customer Enablement Lead at RStudio, this workshop will be appropriate for attendees who answer yes to these questions:\n\nHave you programmed in R and want to better encapsulate your code, documentation, and outputs in a cohesive “data product”?\nDo you want to learn about the next generation of RMarkdown for data science?\nDo you want to have a better interactive experience when writing technical or scientific documents with literate programming?\n\nFind out more about this workshop and register at https://www.rstudio.com/conference/2022/workshops/get-started-quarto/.\nFrom R Markdown to Quarto: This workshop is designed for those who want to take their R Markdown skills and expertise and apply them in Quarto. In this workshop you will learn how to apply your reproducible authoring skills to the Quarto format and learn about new tools and workflows for authoring with Quarto in RStudio. You will learn to create static documents, to add interactivity to them with Shiny and htmlwidgets, and to create presentations in various formats such as reveal.js, beamer, and pptx. The workshop will also introduce you to Quarto projects which you can use to build websites and write blogs and books. Finally, you will learn various ways to deploy and publish your Quarto projects on the web. Independent modules will also highlight authoring in Quarto with Jupyter and VS Code as well as other text editors. Presented by Andrew Bray, Associate Teaching Professor in the Department of Statistics at UC Berkeley, this workshop will be appropriate for you if you answer yes to any of these questions:\n\nHave you authored R Markdown documents and are you interested in migrating your workflow to its successor format, Quarto?\nAre you interested in exploring the wide spectrum of documents that can be produced with Quarto, including static documents, websites, and slides?\n\nFind out more about this workshop and register at https://www.rstudio.com/conference/2022/workshops/rmd-to-quarto."
+  },
+  {
+    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#talks",
+    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#talks",
+    "title": "Quarto at rstudio::conf(2022)",
+    "section": "Talks",
+    "text": "Talks\n\nQuarto for R Markdown users:\n\nPresented by Tom Mock, Customer Enablement Lead at RStudio.\nWednesday July 27, 3:20pm - 3:40pm EDT.\nAre you curious about Quarto? Maybe you saw it on Twitter or the RStudio::conf agenda. Perhaps this raised questions like: What exactly is Quarto? What about RMarkdown? (don’t worry it’s not going away!) What features does Quarto add? What should I do with my existing Rmd/ipynb files? This talk will answer all of those questions and more! I’ll present Quarto as a next-gen version of RMarkdown, compare the similarities, and then discuss the new features in Quarto for publishing documents, presentations, blog posts, lab notebooks and more! Lastly, I’ll cover what this means for our customers using RStudio Team, and the exciting new world for Python users.\n\nThese are a few of my favorite things (about Quarto presentations):\n\nPresented by Tracy Teal, Open Source Program Director at RStudio.\nThursday July 28, 2022 3:20pm - 3:40pm EDT.\nQuarto is the next generation of RMarkdown, and comes with a new presentation format, revealjs. In this talk, I’ll show a few of my favorite things about making interactive HTML presentations with Quarto. Along the way you’ll learn about the visual editor, multiple columns, delivering an effective talk with speaker notes and mode, making your presentations pop with transitions, effective ways to incorporate code into your presentation, beautiful themes (and how to match your corporate style guide), and sharing it as pdf and HTML. I’ll finish off with a brief look at generating a PowerPoint presentation from a template.\n\nLiterate Programming With Jupyter Notebooks and Quarto:\n\nPresented by Hamel Husain, head of Data Science at Outerbounds (the developers of Metaflow) and core developer at fast.ai.\nThursday July 28, 3:40pm - 4:00pm EDT.\nJupyter Notebooks play a critical role in in the workflow of many users. Notebooks are used to document existing code, to quickly prototype and iterate on ideas, and as a medium of technical communication. However, package developers typically use an entirely separate set of more traditional development tools, and the context switching between these tools and notebooks can be frustrating. Not only do you lose the ability to iterate fast, but you lose the ability to document and test your code in-situ, requiring you to create documentation and tests separately from source code. Nbdev is a literate programming framework that allows you to develop Python libraries within Jupyter Notebooks. This talk will describe the integration between Nbdev and Quarto, which enables library developers to author their documentation right alongside their code, and automatically produce a Quarto website for their package. The result is a seamless workflow for developing, documenting, and testing software packages all within Jupyter Notebooks, with no context-switching required.\n\nWebsites & Books & Blogs, oh my! Creating Rich Content with Quarto:\n\nPresented by Devin Pastoor, Solutions Engineer at RStudio.\nThursday July 28, 4:00pm - 4:20pm EDT.\nA number of packages have emerged in the R ecosystem to help create websites (hugodown), books (bookdown), and blogs (blogdown). In this talk, I’ll show you how Quarto handles creating these types of content and more. Whether you’re a grad student considering your first blog post about R, or a python expert about to write a technical book, I’ll show you how Quarto enables you to focus on content while it takes care of the rest. In addition, I’ll show the RStudio team is making it as easy as possible to publish and share content within your organization and to the whole community.\n\n\nTo find out more about the conference and register, visit rstd.io/conf. Looking forward to seeing you in DC!\nCan’t make it to the conference in person, but don’t want to miss this content? You can follow along with the talks remotely via the live stream and we will share materials from the workshops in a post-conf roundup post."
+  },
+  {
+    "objectID": "blog/posts/2022-07-25-feature-extensions/index.html",
+    "href": "blog/posts/2022-07-25-feature-extensions/index.html",
+    "title": "Quarto Extensions",
+    "section": "",
+    "text": "Shortcodes are special markdown directives that generate various types of content. For example, you could create shortcodes to embed tweets or videos in a document.\nFilters are a flexible and powerful tool for introducing new global behaviors and/or new markdown rendering behaviors. For example, you could create filters to implement output folding, an image carousel, or just about anything you can imagine!\nFormats enable you to create new output formats by bundling together document options, templates, stylesheets, and other content.\n\nExtensions are a recently released Quarto feature so you should be sure to install the very latest version of Quarto (at least v1.0.36) if you want to try them out.\nHere are some examples of extensions developed and maintained by the core Quarto team:\n\n\n\n\n\n\n\nExtension\nDescription\n\n\n\n\nlightbox\nCreate lightbox treatments for images in your HTML documents.\n\n\ncode-filename\nAdd a filename header to code blocks.\n\n\nfancy-text\nOutput nicely formatted versions of fancy strings such as LaTeX and BibTeX in multiple formats.\n\n\nfontawesome\nUse Font Awesome icons in HTML and PDF documents.\n\n\ngrouped-tabsets\nAdd grouped tabsets, which remember the active tab across multiple HTML documents.\n\n\nlatex-environment\nQuarto extension to output custom LaTeX environments.\n\n\n\nTo learn more about using extensions, see the Extensions documentation on the Quarto website. If you want to dive in to creating your own extensions check out the articles on Creating Shortcodes, Creating Filters, and Creating Formats."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Work in Progress",
+    "section": "",
+    "text": "Tip With Caption\n\n\n\nThis website is under reform. Keep posted on the ongoing development."
+  },
+  {
+    "objectID": "research/index.html",
+    "href": "research/index.html",
+    "title": "Research",
+    "section": "",
+    "text": "Research\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nWe examine the role of country-level legal investor protection (i.e., shareholder and creditor protection) on firm investment–cash flow sensitivity\n\n\n\n\n\n\nAug 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nCan risk-taking and rule-taking explain zero-leverage firms?\n\n\n\n\n\n\nJun 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nCreating and Accounting Discretion Index (ADI).\n\n\n\n\n\n\nMay 7, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nProduct market competition is an important driver of firms’ ESG practices.\n\n\n\n\n\n\nMay 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen Science\n\n\n\nA framework of uncertainty taking.\n\n\n\n\n\n\nJan 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen Science\n\n\n\nA website containing codes.\n\n\n\n\n\n\nMay 7, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nAbout Open Science mechanisms.\n\n\n\n\n\n\nSep 9, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nWe investigate specific characteristics of the board of directors: the number of directors’ directorships and the number of committee positions\n\n\n\n\n\n\nSep 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nThis study examines the effects of the firm’s ownership concentration and its institutional environment on corporate debt maturity choices\n\n\n\n\n\n\nJun 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nWe investigate whether a bankruptcy reform, which increased creditors’ protection, affected the risk taking of Brazilian firms.\n\n\n\n\n\n\nJun 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nWe investigate whether investor protection is associated with how entrenched managers set corporate cash holdings\n\n\n\n\n\n\nFeb 1, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nThis study investigates the interplay between country-level governance quality and the capital structure choice\n\n\n\n\n\n\nJun 1, 2017\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nA Systematic Review about Investor Protection\n\n\n\n\n\n\nJan 11, 2016\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "research/research/accounting_discretion/index.html",
+    "href": "research/research/accounting_discretion/index.html",
+    "title": "Accounting Discretion",
+    "section": "",
+    "text": "Previous corporate governance literature suggests that investors and regulators fear possible opportunistic behaviors coming from managerial discretion; thus, mechanisms (such as governance mechanisms and legal rules) are placed to reduce their discretion. This literature usually defines managerial discretion as the latitude of action allowed to managers and uses firm-level configurations (such as low levels of leverage or ownership concentration) to proxy for it. In this manuscript, we propose a different form of discretion coming from accounting rules, which we name as accounting discretion. Specifically, we investigate systematic differences in accounting that are linked with or provide discretion to managers in 52 countries. We use local accounting rules to assess accounting discretion and to build an index measuring the level of accounting discretion allowed in each country. Our accounting discretion index suggests there is significant variability across the 52 countries in our sample. We argue that understanding country-level variability in accounting discretion is crucial to understand overall managerial discretion at the firm-level. We contribute to the literature by providing an objective measure of accounting discretion across different countries.\nCo-authored with Marcio Pimenta (PhD Candidate).\nThe first article of this project was accepted for presentation at the 6th annual International Corporate Governance Society (ICGS) conference to be held November 14 - 16, 2020.\nYou can check the slides here."
+  },
+  {
+    "objectID": "research/research/CGIR_2016/index.html",
+    "href": "research/research/CGIR_2016/index.html",
+    "title": "Cross-National Governance Research - A Systematic Review and Assessment",
+    "section": "",
+    "text": "Research Question/Issue:\nUsing a systematic literature review approach, we survey 192 cross-national comparative studies published in 23 scholarly journals in the fields of accounting, economics, finance, and management for the period 2003 to 2014. The purpose is to synthesize and appraise the extant empirical research on the interplay between country- and firm-level governance mechanisms and the effects on firm outcomes. Particular focus is placed on studies that examine firm economic performance.\n\n\nResearch Findings/Results:\nWe identify and distinguish between two groups of cross-national governance studies. The first type compares macro, country-level outcomes and the second compares three different firm-level outcomes: economic performance, governance mechanisms, and strategic decisions. We compare the theoretical frameworks used and further analyze the country-level factors and firm-level governance attributes that have been combined to investigate their interplay and the effects on firm outcomes. We find substantial variation in the use and measurement of country-level factors as well as a variety of causal forms used to explain the combined effects of country- and firm-level governance mechanisms. This wide variability precludes comparison, and consequently prevents identifying consistent patterns of influence between country-level governance factors and firm-level governance mechanisms and/or performance. We identify research gaps and provide fruitful directions for future research on this topic.\n\n\nTheoretical Implications:\nThe cross-national governance research has been guided mainly by an economic perspective focusing on international differences in the effectiveness of specific governance mechanisms. Few comparative studies have integrated an institutional perspective or examined the external forces that drive the diffusion and use of specific governance mechanisms. Such integrative framework would improve the understanding of cross-national differences in the salient dimensions of country-level governance factors and how they mediate the effectiveness of firm-level governance mechanisms.\n\n\nPractitioner Implications:\nOur results reveal that firm- and country-level governance mechanisms have been interacted and combined, either to address various agency problems or to compensate for a weak national environment. This calls for regulators and investors to consider national governance factors when assessing firm-level governance practices.\nCo-authored with Eduardo Schiehll."
+  },
+  {
+    "objectID": "research/research/CGIR_2017/index.html",
+    "href": "research/research/CGIR_2017/index.html",
+    "title": "Country-level governance quality, ownership concentration, and debt maturity - A comparative study of Brazil and Chile",
+    "section": "",
+    "text": "Research Question/Issue:\nThis study investigates the interplay between country-level governance quality and the capital structure choice at the firm level in Brazil and Chile. We examine the association between a firm’s ownership concentration and its debt maturity structure and whether country-level governance quality influences this association.\n\n\nResearch Findings/Results:\nUsing a large firm-level dataset from Brazil and Chile for the period 2008-2013, we find a positive association between low ownership concentration and debt maturity. However, this association becomes negative when the largest shareholder has high ownership concentration. This result suggests that long-term debt and ownership concentration act as substitute monitoring mechanisms. Moreover, debt maturity is inversely related to our aggregated index of country-level governance quality, suggesting that in countries with governance systems that effectively protect debt holders, firms with high benefits of control (high ownership concentration) will use debt with shorter repayment periods in order to benefit from frequent monitoring by debt holders. Overall, our results support the view that financial markets tend to pressure firms with high benefits of control or greater agency conflict to make a tradeoff between the benefits of control and the cost and maturity structure of debt financing.\n\n\nTheoretical Implications:\nThis study contributes to the research on comparative corporate governance and capital structure. We also respond to recent calls to bridge the gap between under- and over-socialized views of corporate governance by examining the interplay between firm- and country-level governance variables. Our findings suggest a substitution effect between monitoring by equity holders and by debt holders, and that country-level governance quality exerts a disciplinary influence over a firm’s choice of debt maturity structure.\n\n\nPractitioner Implications:\nInvestors seeking to enter emerging markets such as Brazil and Chile can benefit from considering national governance factors that enhance debt holders’ external monitoring effectiveness. Because our findings show the importance of considering and improving the quality of country-level governance, they are also useful for policy makers aiming to reform corporate governance practices in emerging markets.\nCo-authored with Eduardo Schiehll and Paulo Terra."
+  },
+  {
+    "objectID": "research/research/FRL_2022/index.html",
+    "href": "research/research/FRL_2022/index.html",
+    "title": "Competition and ESG practices in emerging markets - Evidence from a difference-in-differences model",
+    "section": "",
+    "text": "Abstract:\nThis paper investigates how competition affects firms’ environmental, social, and governance (ESG) practices in 22 emerging markets, using a sample of 6,906 firm-year observations from 2011 to 2019. Using a difference-in-differences technique and matched samples with a treated and a control group, I explore exogenous variation in the competitive environment of one country, Brazil, to assess the competition?s causal effect on ESG. The results suggest that firms adjust ESG practices negatively after a shock in competition, contrasting with previous results from developed economies."
+  },
+  {
+    "objectID": "research/research/IF_2019/index.html",
+    "href": "research/research/IF_2019/index.html",
+    "title": "Investor protection, managerial entrenchment, and cash holdings - Cross-country evidence",
+    "section": "",
+    "text": "Abstract:\nWe investigate whether investor protection (i.e. shareholder protection and creditor rights) is associated with how entrenched managers set corporate cash holdings. Our sample covers more than 6,000 firms from 29 countries (roughly 16,000 observations during 2010-2013). We find that the entrenchment-cash holdings association is sensitive to the level of shareholder protection but not to the level of creditor rights. Moreover, we find that the way shareholder protection shapes this association depends upon how managers become entrenched. When managers become entrenched through ownership, shareholders consent to their preferences to hold more cash, whereas, when managers become entrenched through CEO duality, shareholders force them to disgorge cash. We interpret our findings as evidence that shareholders agree to increase cash when managers are aligned with them by ownership but prefer to decrease cash when they are not aligned, whereas creditors do not influence entrenched managers’ cash holdings decisions."
+  },
+  {
+    "objectID": "research/research/JBFA_2020/index.html",
+    "href": "research/research/JBFA_2020/index.html",
+    "title": "Do shareholder protection and creditor rights have distinct effects on the association between debt maturity and ownership structure?",
+    "section": "",
+    "text": "Abstract:\nThis study examines the effects of the firm’s ownership concentration and its institutional environment on corporate debt maturity choices. As ownership concentration and debt maturity are alternative governance mechanisms, we theorize and investigate whether their association is influenced by country-level governance factors that enhance outside monitoring by minority shareholders and debtholders. Our investigation is based on a dataset of 50,599 firm-year observations from 38 countries. We use a propensity-score matching approach and find that the effect of ownership concentration on debt maturity is conditional to country-level governance attributes. Ownership concentration has a negative effect on debt maturity in countries where both shareholder protection and creditor rights are weak. Ownership concentration, however, tends to lengthen debt maturity as protection increases, and this positive effect on the length of debt maturity is stronger in countries enhancing protection towards debtholders (instead of shareholders). We also explore other characteristics of ownership structure, such as the identity and presence of controlling shareholders. These results corroborate the view that entrenched shareholders may use debt maturity opportunistically. Our study provides new insights into the interplay between firm- and country-level governance mechanisms and a deeper understanding of cross-country differences in the association between ownership structure and debt financing.\nCo-authored with Eduardo Schiehll and Paulo Terra."
+  },
+  {
+    "objectID": "research/research/JBFA_2022/index.html",
+    "href": "research/research/JBFA_2022/index.html",
+    "title": "Investment–cash flow sensitivity and investor protection",
+    "section": "",
+    "text": "We examine the role of country-level legal investor protection (i.e., shareholder and creditor protection) on firm investment–cash flow sensitivity. Using underexplored research data on investor protection across 21 countries and working with a conservative empirical design, we extend prior literature on the relation between investor protection and investment–cash flow sensitivity and provide new evidence on how these country-level attributes interact to explain a firm’s investment–cash flow sensitivity. We find that either the strong legal protection of minority shareholders or the strong legal protection of creditors reduces the sensitivity of investment to internal cash flow. However, in countries with strong levels of both minority shareholder and creditor protection, investment–cash flow sensitivity increases. Our results remain robust after controlling for several alternative explanations. The results support the argument that overregulation arises when policymakers increase investor protection at levels that lead firms to avoid external sources of finance, hampering firm investment. Our findings suggest that countries face a regulatory trade-off such that increasing investor protection (either shareholder or creditors protection) enhances financial markets efficiency, but excessive regulation can indeed lead to financial markets inefficiencies.\nCo-authored with Luiz Ricardo Kabbach de Castro, Eduardo Schiehll and Paulo Terra."
+  },
+  {
+    "objectID": "research/research/JMG_2020/index.html",
+    "href": "research/research/JMG_2020/index.html",
+    "title": "Does control concentration affect board busyness? International evidence",
+    "section": "",
+    "text": "Abstract:\nPrevious literature suggests that shareholders can concentrate control without cash flow rights, creating incentives to expropriate firm resources. However, previous research does not help identify the board structure of firms whose controlling shareholder has an inflated control concentration. We investigate whether and how firm control concentration affects the structure of the board of directors. Building upon the literature on busy boards, we investigate specific characteristics of the board of directors: the number of directors’ directorships and the number of committee positions. We study an initial sample of 8688 firms from 41 countries. After using propensity score matching to mitigate selection bias, we keep 3570 firms. We find that controlling shareholders with higher control concentration select board members with more directorships and fewer committee positions. We interpret this result as evidence supporting the signaling incentive hypothesis, which suggests that controlling shareholders prefer a more shareholder-friendly board structure, possibly to signal the market that they pursue decisions that maximize firm value. The results are robust to several alternative specifications and methods. Our study helps fill gaps in the literature on busy boards by showing the consequences of the incentives of shareholders with concentrated control on how firms allocate the time of their busy directors. Our study also sheds light on the theoretical aspects that affect the preferences of those shareholders who can most harm minority shareholders. Finally, our study has practical implications that could help regulatory institutions make recommendations for the compositions of boards of directors and/or committees.\nCo-authored with Cristiano Machado Costa."
+  },
+  {
+    "objectID": "research/research/MDE_2020/index.html",
+    "href": "research/research/MDE_2020/index.html",
+    "title": "The Brazilian bankruptcy law reform, corporate ownership concentration, and risk-taking",
+    "section": "",
+    "text": "Abstract:\nWe investigate whether a bankruptcy reform, which increased creditors’ protection, affected the risk taking of Brazilian firms. Collecting data from Brazilian (treatment group) and Argentinian, Chilean, Colombian, Mexican, and Peruvian firms (control group) and using a difference-in-difference technique, we show that Brazilian firms with concentrated ownership structure decreased risk taking after the reform. Our results suggest that these firms reduced risk in response to increasing creditors’ protection, possibly because controlling shareholder fear losing control. Moreover, our results indicate that the reform probably provoked a wealth transfer from minorities to controlling shareholders."
+  },
+  {
+    "objectID": "research/research/open_science/index.html",
+    "href": "research/research/open_science/index.html",
+    "title": "Open Code Community",
+    "section": "",
+    "text": "We are a group of programming and Open Science enthusiasts aiming to share codes for the entire community. Our goal is to help students and professionals with the development of their codes and analyses. If you are willing to contribute to this project, share your code.\nIf you are looking for research ideas and how to execute them, check the website."
+  },
+  {
+    "objectID": "research/research/RAC_2021/index.html",
+    "href": "research/research/RAC_2021/index.html",
+    "title": "Tutorial-Articles - The Importance of Data and Code Sharing",
+    "section": "",
+    "text": "Abstract:\nContext: this document is designed to be along with those that are in the first edition of the new section of the Journal of Contemporary Administration (RAC): the tutorial-articles section.\nObjective: the purpose is to present the new section and discuss relevant topics of tutorial-articles.\nMethod: I divide the document into three main parts. First, I provide a summary of the state of the art in open data and open code at the current date that, jointly, create the context for tutorial-articles. Second, I provide some guidance to the future of the section on tutorial-articles, providing a structure and some insights that can be developed in the future. Third, I offer a short R script to show examples of open data that, I believe, can be used in the future in tutorial-articles, but also in innovative empirical studies.\nConclusion: finally, I provide a short description of the first tutorial-articles accepted for publication in this current RAC’s edition."
+  },
+  {
+    "objectID": "research/research/risk_taking/index.html",
+    "href": "research/research/risk_taking/index.html",
+    "title": "Risk taking ang Corporate Governance",
+    "section": "",
+    "text": "Corporate governance research makes claims about the nature of ‘ideal’ arrangements using Agency Theory. However, traditional corporate governance mechanisms designed to curb agency problems may undermine firm growth because they are mostly backward-looking and inherently problematic when facing uncertainty. In fact, they may restrain or disincentivize managerial creativeness and alertness, which can be instrumental to maximize firm value. Our goal is to advance a conceptual framework that integrates into corporate governance elements literature factors that are key for creativity but which have been overlooked in corporate governance. Drawing on a combination of creativity and entrepreneurship literatures, we discuss two parameters—unlikelihood and opacity—which serve as the basis to propose four different types of entrepreneurial projects. Additionally, we provide an in-depth analysis of the optimal corporate governance configurations for each project types. Our framework can inform the design of better tailored governance mechanisms that are specific to a firm’s environment and its projects.\nArticle co-authored with Michael Araki."
+  },
+  {
+    "objectID": "research/research/RMS_2022/index.html",
+    "href": "research/research/RMS_2022/index.html",
+    "title": "Integrating uncertainty and governance into a capital structure puzzle: can risk-taking and rule-taking explain zero-leverage firms?",
+    "section": "",
+    "text": "Abstract:\nThis study uses a multidisciplinary lens to investigate new determinants of the puzzling phenomenon of zero leverage, where firms contain only equity in their capital structure. We draw on insights from entrepreneurship and creativity theories, alongside traditional corporate governance (CG) literature, to reframe the construct of risk-taking and develop the novel construct of rule-taking, which entails compliance with powerful outside parties and current best practices of CG. We hypothesize that risk-taking is associated with a wider wedge of information and costs regarding internal and external financing, leading to a greater likelihood of debt eschewing. Conversely, rule-taking is hypothesized to reduce the range of acceptable choices in the firm, which makes the adoption of the “aberrant” behavior of zero-leverage less likely. Using 9222 firm-observations from 37 countries, the results corroborate our hypotheses, showing a positive (negative) association between risk-taking (rule-taking) and zero leverage. The results are robust to several alternative specifications and matching samples. Our study offers insights to policymakers and investors to clarify the antecedents of zero-leverage behavior as a strategy to deal with the information gap between insiders and outsiders. Our perspective underscores the existence of an inherent communication penalty between an insider and an outsider when the former is performing actions that are non-typical under the oversight of the latter. Thus, by deepening understanding on risk-taking and rule-taking, we provide a more nuanced view of how firms can optimize capital and CG structures, with special implications for the adoption of well-tailored bundles of CG mechanisms under different circumstances.\nArticle co-authored with Michael Araki."
+  },
+  {
+    "objectID": "seminars/index.html",
+    "href": "seminars/index.html",
+    "title": "Seminars",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "seminars/seminars/cafe_com_adm/index.html",
+    "href": "seminars/seminars/cafe_com_adm/index.html",
+    "title": "Café com ADM",
+    "section": "",
+    "text": "We discussed some effects of the pandemic on financial decisions. I hope you like it."
+  },
+  {
+    "objectID": "seminars/seminars/esg_Conrad_Albrecht/index.html",
+    "href": "seminars/seminars/esg_Conrad_Albrecht/index.html",
+    "title": "ESG with Conrad Albrecht (MSCI)",
+    "section": "",
+    "text": "I hope you like it."
+  },
+  {
+    "objectID": "seminars/seminars/marcelo_perlin/index.html",
+    "href": "seminars/seminars/marcelo_perlin/index.html",
+    "title": "Talk With Marcelo Perlin",
+    "section": "",
+    "text": "I am happy to share this talk I had with Marcelo Perlin and Gerson Junior about Perlin’s new package to download financial data from Brazilian Companies using R (GetDFPdata2)."
+  },
+  {
+    "objectID": "seminars/seminars/open_science/index.html",
+    "href": "seminars/seminars/open_science/index.html",
+    "title": "Open Science Seminar",
+    "section": "",
+    "text": "You can download the slides clicking the button above. Thanks, Júlio for the invitation."
+  },
+  {
+    "objectID": "seminars/seminars/webinar_ri/index.html",
+    "href": "seminars/seminars/webinar_ri/index.html",
+    "title": "Webinar about Investors Relations",
+    "section": "",
+    "text": "They will be teaching in a 100% digital course about this same topic. For more information, check here."
+  },
+  {
+    "objectID": "slides/ESG/index.html",
+    "href": "slides/ESG/index.html",
+    "title": "ESG & Institutional Investment",
+    "section": "",
+    "text": "Slides\n\nPart 3"
+  },
+  {
+    "objectID": "slides/Financial_strategy/index.html",
+    "href": "slides/Financial_strategy/index.html",
+    "title": "Financial Strategy",
+    "section": "",
+    "text": "Class notes\nHere is the book of class notes used in this course: https://henriquecastror.quarto.pub/class-notes/.\n\n\n\nSlides\n\nPart 1\n\n#\n\n\nPart 2"
+  },
+  {
+    "objectID": "slides/index.html#section",
+    "href": "slides/index.html#section",
+    "title": "Slides & Presentations",
+    "section": "2022/02",
+    "text": "2022/02\n\nData & Empirical Finance: See here\n\n\nFinancial Strategy: See here\n\n\nESG & Institutional Investment: See here"
+  },
+  {
+    "objectID": "slides/index.html#past-presentations",
+    "href": "slides/index.html#past-presentations",
+    "title": "Slides & Presentations",
+    "section": "Past presentations",
+    "text": "Past presentations\n\nTalk about Research Productivity"
+  }
+]
