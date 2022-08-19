@@ -25,133 +25,28 @@
     "href": "blog/index.html",
     "title": "Posts",
     "section": "",
-    "text": "Extend Quarto with new capabilities\n\n\n\n\nExtensions\n\n\nFeatures\n\n\n\n\nQuarto Extensions are a powerful way to modify or extend the behavior of Quarto, and can be created and distributed by anyone. Extension types include filters, shortcodes, and custom formats.\n\n\n\n\n\n\nJul 25, 2022\n\n\nJ.J. Allaire\n\n\n\n\n\n\n  \n\n\n\n\n\nQuarto-related workshops and talks at rstudio::conf(2022)\n\n\n\n\nconf\n\n\nworkshop\n\n\ntalk\n\n\n\n\nrstudio::conf(2022) will feature a variety of workshops and talks on Quarto. Join us in Washington DC this July 25-28 to learn more about Quarto and hear from folks using Quarto to create, share, and collaborate.\n\n\n\n\n\n\nJun 21, 2022\n\n\nMine Çetinkaya-Rundel\n\n\n\n\n\n\n  \n\n\n\n\n\nCreate ‘Tufte’ style documents with sidenotes, margin tables and figures, and other margin content\n\n\n\n\nFeatures\n\n\nLayout\n\n\n\n\nThis post demonstrates a few of the capabilities for positioning content in the margin of the page. You can read more about the complete capabilities in the the Article Layout Guide.\n\n\n\n\n\n\nFeb 17, 2022\n\n\nCharles Teague\n\n\n\n\n\n\n  \n\n\n\n\n\nAuthor and customize markdown tables using Quarto\n\n\n\n\nFeatures\n\n\nAuthoring\n\n\nTables\n\n\n\n\nThis post provides an overview of these capabilities in Quarto. For more detail about all the features Quarto for authoring tables, see Tables.\n\n\n\n\n\n\nFeb 15, 2022\n\n\nJJ Allaire\n\n\n\n\n\n\n  \n\n\n\n\n\nUse callouts to draw attention to important complementary content without interupting the document flow\n\n\n\n\nFeatures\n\n\nAuthoring\n\n\n\n\nCallouts are an excellent way to draw extra attention to certain concepts, or to more clearly indicate that certain content is supplemental or applicable to only some scenarios.\n\n\n\n\n\n\nFeb 13, 2022\n\n\nCharles Teague\n\n\n\n\n\n\nNo matching items"
+    "text": "A note to remember in the future\n\n\n\n\nBlog\n\n\n\n\n\n\n\n\n\n\n\nAug 17, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "blog/posts/2022-02-13-feature-callouts/index.html",
-    "href": "blog/posts/2022-02-13-feature-callouts/index.html",
-    "title": "Using Callouts",
+    "objectID": "blog/posts/1-first/index.html",
+    "href": "blog/posts/1-first/index.html",
+    "title": "First post",
     "section": "",
-    "text": "Callouts are an excellent way to draw extra attention to certain concepts, or to more clearly indicate that certain content is supplemental or applicable to only some scenarios."
+    "text": "I started using Quarto very recently. This is a post to remember some things I want to remember in the future."
   },
   {
-    "objectID": "blog/posts/2022-02-13-feature-callouts/index.html#callout-basics",
-    "href": "blog/posts/2022-02-13-feature-callouts/index.html#callout-basics",
-    "title": "Using Callouts",
+    "objectID": "blog/posts/1-first/index.html#callout-basics",
+    "href": "blog/posts/1-first/index.html#callout-basics",
+    "title": "First post",
     "section": "Callout Basics",
-    "text": "Callout Basics\nThere are five different types of callouts available.\n\nnote\ntip\nimportant\ncaution\nwarning\n\nThe color and icon will be different depending upon the type that you select."
+    "text": "Callout Basics\n\nnote\ntip\nimportant\ncaution\nwarning\n\n:::{.callout-note}\nNote that there are five types of callouts, including:\n`note`, `tip`, `warning`, `caution`, and `important`.\n:::\n\n:::{.callout-tip}\n## Tip With Caption\n\nThis is an example of a callout with a caption.\n:::"
   },
   {
-    "objectID": "blog/posts/2022-02-13-feature-callouts/index.html#syntax",
-    "href": "blog/posts/2022-02-13-feature-callouts/index.html#syntax",
-    "title": "Using Callouts",
-    "section": "Syntax",
-    "text": "Syntax\nCreate callouts in markdown using the following syntax (note that the first markdown heading used within the callout is used as the callout heading):\n:::{.callout-note}\nNote that there are five types of callouts, including:\n`note`, `tip`, `warning`, `caution`, and `important`.\n:::\n\n:::{.callout-tip}\n## Tip With Caption\n\nThis is an example of a callout with a caption.\n:::\nSee our documentation on Callouts, to learn more, including more about how to customize the appearance and behavior of callouts."
-  },
-  {
-    "objectID": "blog/posts/2022-02-15-feature-tables/index.html",
-    "href": "blog/posts/2022-02-15-feature-tables/index.html",
-    "title": "Customizing Table Output",
-    "section": "",
-    "text": "Quarto includes a number of features aimed at making it easy to to author and customize markdown table output, including:\nThis post provides an overview of these capabilities in Quarto. For more detail about all the features Quarto for authoring tables, see Tables."
-  },
-  {
-    "objectID": "blog/posts/2022-02-15-feature-tables/index.html#markdown-tables",
-    "href": "blog/posts/2022-02-15-feature-tables/index.html#markdown-tables",
-    "title": "Customizing Table Output",
+    "objectID": "blog/posts/1-first/index.html#markdown-tables",
+    "href": "blog/posts/1-first/index.html#markdown-tables",
+    "title": "First post",
     "section": "Markdown Tables",
-    "text": "Markdown Tables\nThe most commonly used markdown table is known as a pipe table. Pipe tables support specifying per column alignment as well as captions. For example:\n| Default | Left | Right | Center |\n|---------|:-----|------:|:------:|\n| 12      | 12   |    12 |   12   |\n| 123     | 123  |   123 |  123   |\n| 1       | 1    |     1 |   1    |\n\n: Demonstration of pipe table sytnax\nHere is the table rendered to HTML:\n\nDemonstration of pipe table syntax\n\n\nDefault\nLeft\nRight\nCenter\n\n\n\n\n12\n12\n12\n12\n\n\n123\n123\n123\n123\n\n\n1\n1\n1\n1\n\n\n\n\nCaption Location\nBy default, table captions are positioned above tables. You can modify this behavior using the tbl-cap-location option. For example:\n---\ntbl-cap-location: top\n---"
-  },
-  {
-    "objectID": "blog/posts/2022-02-15-feature-tables/index.html#explicit-column-widths",
-    "href": "blog/posts/2022-02-15-feature-tables/index.html#explicit-column-widths",
-    "title": "Customizing Table Output",
-    "section": "Explicit Column Widths",
-    "text": "Explicit Column Widths\nBeyond standard pipe table syntax for expressing column width, you can also explicitly specify columns widths using the tbl-colwidths attribute or document-level option. For an individual markdown table, add the attribute after the caption. For example:\n| fruit  | price  |\n|--------|--------:\n| apple  | 2.05   |\n| pear   | 1.37   |\n| orange | 3.09   |\n\n: Fruit prices {tbl-colwidths=\"[75,25]\"}\nNote that this option is specified at the top level so that it can be shared by both PDF and HTML formats. If you are only targeting a single format you can place it alongside other format specific options.\nValid values for the caption location include:\n\n\n\nValue\nDescription\n\n\n\n\ntop\nPosition the caption above the table.\n\n\nbottom\nPosition the caption below the table.\n\n\nmargin\nPosition the caption in the margin."
-  },
-  {
-    "objectID": "blog/posts/2022-02-15-feature-tables/index.html#computations",
-    "href": "blog/posts/2022-02-15-feature-tables/index.html#computations",
-    "title": "Customizing Table Output",
-    "section": "Computations",
-    "text": "Computations\nAll of the options described above work for tables produced by executable code cells. For example, here we apply the tbl-cap, tbl-colwidths and tbl-caption-location options to a code cell:\n```{r}\n#| tbl-cap: \"Cars\"\n#| tbl-colwidths: [60,40]\n#| tbl-cap-location: margin\n\nlibrary(knitr)\nkable(head(cars))\n```\nIn addition to the above, which focused on some of the features of Quarto when writing pipe tables in markdown, you can also author tables using grid syntax. You review the documentation. for more detail."
-  },
-  {
-    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html",
-    "href": "blog/posts/2022-02-17-advanced-layout/index.html",
-    "title": "Positioning Content in the Margin",
-    "section": "",
-    "text": "Quarto supports a variety of page layout options that enable you to author content that\nThis post will demonstrate a few of the capabilities for positioning content in the margin of the page. You can read more about the complete capabilities in the the Article Layout Guide."
-  },
-  {
-    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-figures",
-    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-figures",
-    "title": "Positioning Content in the Margin",
-    "section": "Margin Figures",
-    "text": "Margin Figures\nFigures that you create using code cells can be placed in the margin by using the column: margin code cell option. If the code produces more than one figure, each of the figures will be placed in the margin.\n\n```{r}\n#| label: fig-mtcars\n#| fig-cap: \"MPG vs horsepower, colored by transmission.\"\n#| column: margin\n\nlibrary(ggplot2)\n```\n\nWarning: package 'ggplot2' was built under R version 4.2.1\n\n```{r}\n#| label: fig-mtcars\n#| fig-cap: \"MPG vs horsepower, colored by transmission.\"\n#| column: margin\n\nmtcars2 <- mtcars\nmtcars2$am <- factor(\n  mtcars$am, labels = c('automatic', 'manual')\n)\nggplot(mtcars2, aes(hp, mpg, color = am)) +\n  geom_point() +  geom_smooth(formula = y ~ x, method = \"loess\") +\n  theme(legend.position = 'bottom')\n```\n\n\n\n\n\nFigure 1: MPG vs horsepower, colored by transmission."
-  },
-  {
-    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-tables",
-    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-tables",
-    "title": "Positioning Content in the Margin",
-    "section": "Margin Tables",
-    "text": "Margin Tables\nYou an also place tables in the margin of your document by specifying column: margin.\n\n```{r}\n#| column: margin\n\nknitr::kable(\n  mtcars[1:3, 1:3]\n)\n```\n\n\n\n\n\n\nmpg\ncyl\ndisp\n\n\n\n\nMazda RX4\n21.0\n6\n160\n\n\nMazda RX4 Wag\n21.0\n6\n160\n\n\nDatsun 710\n22.8\n4\n108"
-  },
-  {
-    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#other-content",
-    "href": "blog/posts/2022-02-17-advanced-layout/index.html#other-content",
-    "title": "Positioning Content in the Margin",
-    "section": "Other Content",
-    "text": "Other Content\nYou can also place content in the margin by targeting the margin column using a div with the .column-margin class. For example:\n::: {.column-margin}\nWe know from *the first fundamental theorem of calculus* that for $x$ in $[a, b]$:\n\n\n\n$$\\frac{d}{dx}\\left( \\int_{a}^{x} f(u)\\,du\\right)=f(x).$$\n\n\n:::\n\n\nWe know from the first fundamental theorem of calculus that for \\(x\\) in \\([a, b]\\):\n\\[\\frac{d}{dx}\\left( \\int_{a}^{x} f(u)\\,du\\right)=f(x).\\]"
-  },
-  {
-    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-references",
-    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-references",
-    "title": "Positioning Content in the Margin",
-    "section": "Margin References",
-    "text": "Margin References\nFootnotes and the bibliography typically appear at the end of the document, but you can choose to have them placed in the margin by setting the following option[^1] in the document front matter:\n---\nreference-location: margin\ncitation-location: margin\n---\nWith these options set, footnotes and citations will (respectively) be automatically be placed in the margin of the document rather than the bottom of the page. As an example, when I cite @xie2018, the citation bibliography entry itself will now appear in the margin.\n\nAsides\nAsides allow you to place content aside from the content it is placed in. Asides look like footnotes, but do not include the footnote mark (the superscript number). This is a span that has the class aside which places it in the margin without a footnote number.\n[This is a span that has the class aside which places it in the margin without a footnote number.]{.aside}"
-  },
-  {
-    "objectID": "blog/posts/2022-02-17-advanced-layout/index.html#margin-captions",
-    "href": "blog/posts/2022-02-17-advanced-layout/index.html#margin-captions",
-    "title": "Positioning Content in the Margin",
-    "section": "Margin Captions",
-    "text": "Margin Captions\nFor figures and tables, you may leave the content in the body of the document while placing the caption in the margin of the document. Using cap-location: margin in a code cell or document front matter to control this. For example:\n\n```{r}\n#| label: fig-cap-margin\n#| fig-cap: \"MPG vs horsepower, colored by transmission.\"\n#| cap-location: margin\n\nlibrary(ggplot2)\nmtcars2 <- mtcars\nmtcars2$am <- factor(\n  mtcars$am, labels = c('automatic', 'manual')\n)\nggplot(mtcars2, aes(hp, mpg, color = am)) +\n  geom_point() +  geom_smooth(formula = y ~ x, method = \"loess\") +\n  theme(legend.position = 'bottom')\n```\n\n\n\n\nFigure 2: MPG vs horsepower, colored by transmission."
-  },
-  {
-    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html",
-    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html",
-    "title": "Quarto at rstudio::conf(2022)",
-    "section": "",
-    "text": "rstudio::conf(2022) will feature a variety of workshops and talks on Quarto. Join us in Washington DC this July 25-28 to learn more about Quarto and hear from folks using Quarto to create, share, and collaborate.\nHere is a list of Quarto-related talks and workshops (and scroll down for details on each):"
-  },
-  {
-    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#keynote",
-    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#keynote",
-    "title": "Quarto at rstudio::conf(2022)",
-    "section": "Keynote",
-    "text": "Keynote\nReimagine + Collaborate + Share with Quarto (Keynote):\n\nPresented by Julia Stewart Lowndes (Director, Openscapes) and Mine Çetinkaya-Rundel (Developer Educator at RStudio and Professor at Duke University).\nThursday July 28, 9:00am - 10:00am EDT.\nWhat is Quarto? In this talk, in four acts, we will discuss how Quarto unifies and extends the R Markdown ecosystem. Through our work with NASA Openscapes, Duke University, and RStudio, we will share our experiences authoring, teaching, and collaborating with Quarto. Full of demos with Quarto in RStudio and Jupyter and weaving together narrative, R, and Python code, we will showcase features of Quarto that have enabled us to reimagine our reproducible workflows. This talk will help you get the most out of Quarto regardless of your background with R Markdown, the computing language(s) you use, and your tool of choice for authoring."
-  },
-  {
-    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#workshops",
-    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#workshops",
-    "title": "Quarto at rstudio::conf(2022)",
-    "section": "Workshops",
-    "text": "Workshops\nWe will have two Quarto workshops at the conference, held on July 25-26, one for those who have no or little prior experience with R Markdown and the other for those who want to take their R Markdown skills and expertise and apply them in Quarto.\n\nGetting Started with Quarto: This workshop is designed for those who have no or little prior experience with R Markdown. In this 2 day workshop you will learn about the Quarto format for technical communication and computation. The workshop will teach you how to get started creating and fully customizing Quarto outputs (HTML, PDF, Presentations) and the use of RStudio’s Visual Editor which provides a user interface for editing all of Pandoc markdown. The workshop will also provide an overview of Quarto’s developer tooling support in alternative tools such as Jupyter, VS Code, and any text editors. The workshop will briefly cover how to add interactivity to Quarto with Shiny, Observable JS, htmlwidgets or Jupyter Widgets. Lastly, the workshop will cover Quarto Projects for aggregating many files such as complex web sites or entire books. Presented by Tom Mock, Customer Enablement Lead at RStudio, this workshop will be appropriate for attendees who answer yes to these questions:\n\nHave you programmed in R and want to better encapsulate your code, documentation, and outputs in a cohesive “data product”?\nDo you want to learn about the next generation of RMarkdown for data science?\nDo you want to have a better interactive experience when writing technical or scientific documents with literate programming?\n\nFind out more about this workshop and register at https://www.rstudio.com/conference/2022/workshops/get-started-quarto/.\nFrom R Markdown to Quarto: This workshop is designed for those who want to take their R Markdown skills and expertise and apply them in Quarto. In this workshop you will learn how to apply your reproducible authoring skills to the Quarto format and learn about new tools and workflows for authoring with Quarto in RStudio. You will learn to create static documents, to add interactivity to them with Shiny and htmlwidgets, and to create presentations in various formats such as reveal.js, beamer, and pptx. The workshop will also introduce you to Quarto projects which you can use to build websites and write blogs and books. Finally, you will learn various ways to deploy and publish your Quarto projects on the web. Independent modules will also highlight authoring in Quarto with Jupyter and VS Code as well as other text editors. Presented by Andrew Bray, Associate Teaching Professor in the Department of Statistics at UC Berkeley, this workshop will be appropriate for you if you answer yes to any of these questions:\n\nHave you authored R Markdown documents and are you interested in migrating your workflow to its successor format, Quarto?\nAre you interested in exploring the wide spectrum of documents that can be produced with Quarto, including static documents, websites, and slides?\n\nFind out more about this workshop and register at https://www.rstudio.com/conference/2022/workshops/rmd-to-quarto."
-  },
-  {
-    "objectID": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#talks",
-    "href": "blog/posts/2022-06-21-rstudio-conf-2022-quarto/index.html#talks",
-    "title": "Quarto at rstudio::conf(2022)",
-    "section": "Talks",
-    "text": "Talks\n\nQuarto for R Markdown users:\n\nPresented by Tom Mock, Customer Enablement Lead at RStudio.\nWednesday July 27, 3:20pm - 3:40pm EDT.\nAre you curious about Quarto? Maybe you saw it on Twitter or the RStudio::conf agenda. Perhaps this raised questions like: What exactly is Quarto? What about RMarkdown? (don’t worry it’s not going away!) What features does Quarto add? What should I do with my existing Rmd/ipynb files? This talk will answer all of those questions and more! I’ll present Quarto as a next-gen version of RMarkdown, compare the similarities, and then discuss the new features in Quarto for publishing documents, presentations, blog posts, lab notebooks and more! Lastly, I’ll cover what this means for our customers using RStudio Team, and the exciting new world for Python users.\n\nThese are a few of my favorite things (about Quarto presentations):\n\nPresented by Tracy Teal, Open Source Program Director at RStudio.\nThursday July 28, 2022 3:20pm - 3:40pm EDT.\nQuarto is the next generation of RMarkdown, and comes with a new presentation format, revealjs. In this talk, I’ll show a few of my favorite things about making interactive HTML presentations with Quarto. Along the way you’ll learn about the visual editor, multiple columns, delivering an effective talk with speaker notes and mode, making your presentations pop with transitions, effective ways to incorporate code into your presentation, beautiful themes (and how to match your corporate style guide), and sharing it as pdf and HTML. I’ll finish off with a brief look at generating a PowerPoint presentation from a template.\n\nLiterate Programming With Jupyter Notebooks and Quarto:\n\nPresented by Hamel Husain, head of Data Science at Outerbounds (the developers of Metaflow) and core developer at fast.ai.\nThursday July 28, 3:40pm - 4:00pm EDT.\nJupyter Notebooks play a critical role in in the workflow of many users. Notebooks are used to document existing code, to quickly prototype and iterate on ideas, and as a medium of technical communication. However, package developers typically use an entirely separate set of more traditional development tools, and the context switching between these tools and notebooks can be frustrating. Not only do you lose the ability to iterate fast, but you lose the ability to document and test your code in-situ, requiring you to create documentation and tests separately from source code. Nbdev is a literate programming framework that allows you to develop Python libraries within Jupyter Notebooks. This talk will describe the integration between Nbdev and Quarto, which enables library developers to author their documentation right alongside their code, and automatically produce a Quarto website for their package. The result is a seamless workflow for developing, documenting, and testing software packages all within Jupyter Notebooks, with no context-switching required.\n\nWebsites & Books & Blogs, oh my! Creating Rich Content with Quarto:\n\nPresented by Devin Pastoor, Solutions Engineer at RStudio.\nThursday July 28, 4:00pm - 4:20pm EDT.\nA number of packages have emerged in the R ecosystem to help create websites (hugodown), books (bookdown), and blogs (blogdown). In this talk, I’ll show you how Quarto handles creating these types of content and more. Whether you’re a grad student considering your first blog post about R, or a python expert about to write a technical book, I’ll show you how Quarto enables you to focus on content while it takes care of the rest. In addition, I’ll show the RStudio team is making it as easy as possible to publish and share content within your organization and to the whole community.\n\n\nTo find out more about the conference and register, visit rstd.io/conf. Looking forward to seeing you in DC!\nCan’t make it to the conference in person, but don’t want to miss this content? You can follow along with the talks remotely via the live stream and we will share materials from the workshops in a post-conf roundup post."
-  },
-  {
-    "objectID": "blog/posts/2022-07-25-feature-extensions/index.html",
-    "href": "blog/posts/2022-07-25-feature-extensions/index.html",
-    "title": "Quarto Extensions",
-    "section": "",
-    "text": "Shortcodes are special markdown directives that generate various types of content. For example, you could create shortcodes to embed tweets or videos in a document.\nFilters are a flexible and powerful tool for introducing new global behaviors and/or new markdown rendering behaviors. For example, you could create filters to implement output folding, an image carousel, or just about anything you can imagine!\nFormats enable you to create new output formats by bundling together document options, templates, stylesheets, and other content.\n\nExtensions are a recently released Quarto feature so you should be sure to install the very latest version of Quarto (at least v1.0.36) if you want to try them out.\nHere are some examples of extensions developed and maintained by the core Quarto team:\n\n\n\n\n\n\n\nExtension\nDescription\n\n\n\n\nlightbox\nCreate lightbox treatments for images in your HTML documents.\n\n\ncode-filename\nAdd a filename header to code blocks.\n\n\nfancy-text\nOutput nicely formatted versions of fancy strings such as LaTeX and BibTeX in multiple formats.\n\n\nfontawesome\nUse Font Awesome icons in HTML and PDF documents.\n\n\ngrouped-tabsets\nAdd grouped tabsets, which remember the active tab across multiple HTML documents.\n\n\nlatex-environment\nQuarto extension to output custom LaTeX environments.\n\n\n\nTo learn more about using extensions, see the Extensions documentation on the Quarto website. If you want to dive in to creating your own extensions check out the articles on Creating Shortcodes, Creating Filters, and Creating Formats."
+    "text": "Markdown Tables\n| Default | Left | Right | Center |\n|---------|:-----|------:|:------:|\n| 12      | 12   |    12 |   12   |\n| 123     | 123  |   123 |  123   |\n| 1       | 1    |     1 |   1    |\n\n: Demonstration of pipe table sytnax\nA second example\n| fruit  | price  |\n|--------|--------:\n| apple  | 2.05   |\n| pear   | 1.37   |\n| orange | 3.09   |\n\n: Fruit prices {tbl-colwidths=\"[75,25]\"}"
   },
   {
     "objectID": "index.html",
@@ -263,7 +158,7 @@
     "href": "seminars/index.html",
     "title": "Seminars",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJul 8, 2022\n\n\nEthics in Research (Unisinos)\n\n\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "seminars/seminars/cafe_com_adm/index.html",
@@ -319,7 +214,7 @@
     "href": "teaching/Financial_strategy/index.html",
     "title": "Financial Strategy",
     "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/class-notes/.\n\n\n\nSlides\n\nPart 0\nPart 1\nPart 2"
+    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\n\n\n\nSlides\n\nPart 0\nPart 1\nPart 2"
   },
   {
     "objectID": "teaching/index.html#section",
@@ -327,12 +222,5 @@
     "title": "Teaching & Presentations",
     "section": "2022/02",
     "text": "2022/02\n\nData & Empirical Finance: See here\n\n\nFinancial Strategy: See here\n\n\nESG & Institutional Investment: See here"
-  },
-  {
-    "objectID": "seminars/seminars/ethics_unisinos/index.html",
-    "href": "seminars/seminars/ethics_unisinos/index.html",
-    "title": "Ethics in Research (Unisinos)",
-    "section": "",
-    "text": "#"
   }
 ]
