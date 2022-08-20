@@ -19,7 +19,7 @@
 
 
 
-<p>Let’s see how to create a graph of the levels of Democracy in Brazil.</p>
+<p>Let’s see how to create a graph of the levels of Democracy in Brazil. The data come from the <a href="https://v-dem.net/">V-Dem project</a>, which is amazing.</p>
 <p>First, download the data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
@@ -43,6 +43,7 @@
 <span id="cb3-5">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(data, countries , <span class="at" style="color: #657422;">by=</span><span class="st" style="color: #20794D;">"country_name"</span>)</span></code></pre></div>
 </div>
 <p>Now let’s have fun visualizing data. More about the <em>clarifications</em> in : <a href="https://www.v-dem.net/static/website/img/refs/codebookv12.pdf">https://www.v-dem.net/static/website/img/refs/codebookv12.pdf</a></p>
+<hr>
 <section id="electoral-democracy-index-d-v2x_polyarchy" class="level4">
 <h4 class="anchored" data-anchor-id="electoral-democracy-index-d-v2x_polyarchy">Electoral democracy index (D) (v2x_polyarchy)</h4>
 <div class="cell">
@@ -58,6 +59,7 @@
 </div>
 </div>
 <p><em>Clarification: The electoral principle of democracy seeks to embody the core value of making rulers responsive to citizens, achieved through electoral competition for the electorate’s approval under circumstances when suffrage is extensive; political and civil society organizations can operate freely; elections are clean and not marred by fraud or systematic irregularities; and elections affect the composition of the chief executive of the country. In between elections, there is freedom of expression and an independent media capable of presenting alternative views on matters of political relevance. In the V-Dem conceptual scheme, electoral democracy is understood as an essential element of any other conception of representative democracy —liberal, participatory, deliberative, egalitarian, or some other.</em></p>
+<hr>
 </section>
 <section id="liberal-democracy-index-d-v2x_libdem" class="level4">
 <h4 class="anchored" data-anchor-id="liberal-democracy-index-d-v2x_libdem">Liberal democracy index (D) (v2x_libdem)</h4>
@@ -67,6 +69,7 @@
 </div>
 </div>
 <p><em>Clarification: The liberal principle of democracy emphasizes the importance of protecting individual and minority rights against the tyranny of the state and the tyranny of the majority. The liberal model takes a “negative” view of political power insofar as it judges the quality of democracy by the limits placed on government. This is achieved by constitutionally protected civil liberties, strong rule of law, an independent judiciary, and effective checks and balances that, together, limit the exercise of executive power. To make this a measure of liberal democracy, the index also takes the level of electoral democracy into account.</em></p>
+<hr>
 </section>
 <section id="participatory-democracy-index-d-v2x_partipdem" class="level4">
 <h4 class="anchored" data-anchor-id="participatory-democracy-index-d-v2x_partipdem">Participatory democracy index (D) (v2x_partipdem)</h4>
@@ -76,6 +79,7 @@
 </div>
 </div>
 <p><em>Clarification: The participatory principle of democracy emphasizes active participation by citizens in all political processes, electoral and non-electoral. It is motivated by uneasiness about a bedrock practice of electoral democracy: delegating authority to representatives. Thus, direct rule by citizens is preferred, wherever practicable. This model of democracy thus takes suffrage for granted, emphasizing engagement in civil society organizations, direct democracy, and subnational elected bodies. To make it a measure of participatory democracy, the index also takes the level of electoral democracy into account.</em></p>
+<hr>
 </section>
 <section id="deliberative-democracy-index-d-v2x_delibdem" class="level4">
 <h4 class="anchored" data-anchor-id="deliberative-democracy-index-d-v2x_delibdem">Deliberative democracy index (D) (v2x_delibdem)</h4>
@@ -85,6 +89,7 @@
 </div>
 </div>
 <p><em>Clarification: The deliberative principle of democracy focuses on the process by which decisions are reached in a polity. A deliberative process is one in which public reasoning focused on the common good motivates political decisions—as contrasted with emotional appeals, solidary attachments, parochial interests, or coercion. According to this principle, democracy requires more than an aggregation of existing preferences. There should also be respectful dialogue at all levels—from preference formation to final decision—among informed and competent participants who are open to persuasion. To make it a measure of not only the deliberative principle but also of democracy, the index also takes the level of electoral democracy into account.</em></p>
+<hr>
 </section>
 <section id="egalitarian-democracy-index-d-v2x_egaldem" class="level4">
 <h4 class="anchored" data-anchor-id="egalitarian-democracy-index-d-v2x_egaldem">Egalitarian democracy index (D) (v2x_egaldem)</h4>
@@ -102,9 +107,11 @@
  ]]></description>
   <category>Open Data</category>
   <category>Open Code</category>
+  <category>Brazil</category>
+  <category>Democracy</category>
   <guid>https://henriquemartins.net/blog/posts/2022_08_10_vdem/index.html</guid>
   <pubDate>Wed, 10 Aug 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://henriquemartins.net/blog/posts/2022_08_10_vdem/featured.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://henriquemartins.net/blog/posts/2022_08_10_vdem/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Ibovespa in USD</title>

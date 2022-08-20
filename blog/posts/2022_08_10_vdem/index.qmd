@@ -5,13 +5,16 @@ description: |
 categories:
   - Open Data
   - Open Code
+  - Brazil
+  - Democracy
 author: Henrique C. Martins
 date: 2022-08-10
-image: "featured.png"
+image: "featured.jpg"
+toc: true
 ---
 
 
-Let's see how to create a graph of the levels of Democracy in Brazil.
+Let's see how to create a graph of the levels of Democracy in Brazil. The data come from the [V-Dem project](https://v-dem.net/), which is amazing.
 
 First, download the data.
 
@@ -39,6 +42,7 @@ data <- merge(data, countries , by="country_name")
 
 Now let's have fun visualizing data. More about the *clarifications* in : [https://www.v-dem.net/static/website/img/refs/codebookv12.pdf](https://www.v-dem.net/static/website/img/refs/codebookv12.pdf)
 
+___
 
 #### Electoral democracy index (D) (v2x_polyarchy)
 
@@ -56,6 +60,7 @@ ggplot(data, aes(x = year, y=v2x_polyarchy) ) +   geom_line(aes(colour = Country
 
 
 
+___
 
 
 
@@ -74,6 +79,7 @@ ggplot(data, aes(x = year, y=v2x_libdem) ) +   geom_line(aes(group = Country, co
 *Clarification: The liberal principle of democracy emphasizes the importance of protecting individual and minority rights against the tyranny of the state and the tyranny of the majority. The liberal model takes a "negative" view of political power insofar as it judges the quality of democracy by the limits placed on government. This is achieved by constitutionally protected civil liberties, strong rule of law, an independent judiciary, and effective checks and balances that, together, limit the exercise of executive power. To make this a measure of liberal democracy, the index also takes the level of electoral democracy into account.*
 
 
+___
 
 
 
@@ -93,6 +99,7 @@ ggplot(data, aes(x = year, y=v2x_partipdem) ) +   geom_line(aes(group = Country,
 
 *Clarification: The participatory principle of democracy emphasizes active participation by citizens in all political processes, electoral and non-electoral. It is motivated by uneasiness about a bedrock practice of electoral democracy: delegating authority to representatives. Thus, direct rule by citizens is preferred, wherever practicable. This model of democracy thus takes suffrage for granted, emphasizing engagement in civil society organizations, direct democracy, and subnational elected bodies. To make it a measure of participatory democracy, the index also takes the level of electoral democracy into account.*
 
+___
 
 
 
@@ -111,6 +118,7 @@ ggplot(data, aes(x = year, y=v2x_delibdem) ) +   geom_line(aes(group = Country, 
 
 *Clarification: The deliberative principle of democracy focuses on the process by which decisions are reached in a polity. A deliberative process is one in which public reasoning focused on the common good motivates political decisions—as contrasted with emotional appeals, solidary attachments, parochial interests, or coercion. According to this principle, democracy requires more than an aggregation of existing preferences. There should also be respectful dialogue at all levels—from preference formation to final decision—among informed and competent participants who are open to persuasion. To make it a measure of not only the deliberative principle but also of democracy, the index also takes the level of electoral democracy into account.*
 
+___
 
 
 #### Egalitarian democracy index (D) (v2x_egaldem)
