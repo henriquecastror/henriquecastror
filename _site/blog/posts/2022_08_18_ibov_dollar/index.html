@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2022-08-08">
 <meta name="description" content="Graphing Ibovespa in dollar using ipeadatar.">
 
-<title>Henrique Castro Martins - Ibovespa vs.&nbsp;Ibovespa in dollar</title>
+<title>Henrique Castro Martins - Ibovespa in USD</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </script>
 
 
-<meta name="twitter:title" content="Henrique Castro Martins - Ibovespa vs.&nbsp;Ibovespa in dollar">
+<meta name="twitter:title" content="Henrique Castro Martins - Ibovespa in USD">
 <meta name="twitter:description" content="Graphing Ibovespa in dollar using ipeadatar.">
 <meta name="twitter:image" content="https://henriquemartins.net/blog\posts\2022_08_18_ibov_dollar\featured.jpg">
 <meta name="twitter:creator" content="@henriquecastror">
@@ -204,7 +204,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ibovespa vs.&nbsp;Ibovespa in dollar</h1>
+<h1 class="title">Ibovespa in USD</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Finance</div>
     <div class="quarto-category">Open Data</div>
@@ -271,7 +271,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>ibov_dolar) ) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">'#377E14'</span>) <span class="sc">+</span>  </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>ibov_dolar, <span class="at">colour=</span><span class="st">"Ibov in USD"</span>) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>value.x, <span class="at">colour=</span><span class="st">"Ibov"</span>) ) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Ibov in USD'</span>, </span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc">+</span> <span class="fu">theme_solarized</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -280,12 +280,21 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </div>
 </div>
 <p>This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibovespa in dollar is not as high as one may think.</p>
-<p>Below is a graph of Ibov in Euros.</p>
+<p>Below is a graph adding Ibov in Euros.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>euro <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="at">code =</span> <span class="st">"GM366_EUROC366"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>euro <span class="ot">&lt;-</span><span class="fu">subset</span>(euro, <span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(tcode,uname))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(ibov,euro, <span class="at">by =</span> <span class="st">"date"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>ibov_euro <span class="ot">&lt;-</span> (data2<span class="sc">$</span>value.x<span class="sc">/</span>data2<span class="sc">$</span>value.y)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>ibov_dolar, <span class="at">colour=</span><span class="st">"Ibov USD"</span>) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>value.x, <span class="at">colour=</span><span class="st">"Ibov"</span>) ) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data=</span> data2 , <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>ibov_euro, <span class="at">colour=</span><span class="st">"Ibov Euro"</span>) ) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Ibov in USD'</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc">+</span> <span class="fu">theme_solarized</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>```</p>
 <p>Thanks for passing by!</p>
 
 

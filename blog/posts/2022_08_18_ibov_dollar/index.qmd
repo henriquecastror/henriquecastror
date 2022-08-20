@@ -1,5 +1,5 @@
 ---
-title: Ibovespa vs. Ibovespa in dollar
+title: Ibovespa in USD
 description: |
   Graphing Ibovespa in dollar using ipeadatar.
 categories:
@@ -62,28 +62,28 @@ Lastly, you are good to go, and you can create a graph as follows.
 ```{r, warning=FALSE}
 library(ggplot2)
 library(ggthemes)
-ggplot(data, aes(x = date, y=ibov_dolar) ) + geom_line(color='#377E14') +  
+ggplot(data) +   geom_line(aes(x = date, y=ibov_dolar, colour="Ibov in USD") ) +   geom_line(aes(x = date, y=value.x, colour="Ibov") ) +
   labs(y='Ibov in USD', 
        title = "Graph of Ibov in USD (Period: since 1994)",
        caption = "Source: Ipeadata (R package: ipeadatar)") + theme_solarized()
-
 ```
 
 
 This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibovespa in dollar is not as high as one may think.
 
 
-Below is a graph of Ibov in Euros.
+Below is a graph adding  Ibov in Euros.
 
-```{r, echo=FALSE}
+```{r}
 euro <- ipeadata(code = "GM366_EUROC366")
 euro <-subset(euro, select=-c(tcode,uname))
 data2 <- merge(ibov,euro, by = "date")
 data2$ibov_euro <- (data2$value.x/data2$value.y)
-ggplot(data2, aes(x = date, y=ibov_euro) ) + geom_line(color='#142E7E') +  
+ggplot(data) +   geom_line(aes(x = date, y=ibov_dolar, colour="Ibov USD") ) +   geom_line(aes(x = date, y=value.x, colour="Ibov") ) + geom_line(data= data2 , aes(x = date, y=ibov_euro, colour="Ibov Euro") ) +
   labs(y='Ibov in USD', 
-       title = "Graph of Ibov in Euro (Period: since 1999)",
+       title = "Graph of Ibov in USD (Period: since 1994)",
        caption = "Source: Ipeadata (R package: ipeadatar)") + theme_solarized()
+```
 
 ```
 
