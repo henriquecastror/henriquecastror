@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Henrique Castro Martins</title>
+<link>https://henriquemartins.net/blog/index.html</link>
+<atom:link href="https://henriquemartins.net/blog/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.0.38</generator>
+<lastBuildDate>Mon, 08 Aug 2022 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Ibovespa vs. Ibovespa in dollar</title>
+  <dc:creator>Henrique C. Martins</dc:creator>
+  <link>https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Let’s see how to create a graph of Ibovespa in dollar using data from ipeadata. Start by installing and loading the following package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(ipeadatar)</span></code></pre></div>
+</div>
+<p>Then, download the data. You will need the variables’ codes. You can use the row below to see the codes of all variables available.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">all_series <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">available_series</span>()</span></code></pre></div>
+</div>
+<p>Then, after learning the codes for the variables we want (i.e., the codes ‘GM366_IBVSP366’ and ‘GM366_ERC366’ below), you download the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">ibov  <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ipeadata</span>(<span class="at" style="color: #657422;">code =</span> <span class="st" style="color: #20794D;">"GM366_IBVSP366"</span>)</span>
+<span id="cb3-2">dolar <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ipeadata</span>(<span class="at" style="color: #657422;">code =</span> <span class="st" style="color: #20794D;">"GM366_ERC366"</span>)</span></code></pre></div>
+</div>
+<p>See that the period available is different for the two variables.</p>
+<p>For convenience, let’s delete some columns in Ibov and integrate the dollar to Ibov.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">ibov <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(ibov, <span class="at" style="color: #657422;">select=</span><span class="sc" style="color: #5E5E5E;">-</span><span class="fu" style="color: #4758AB;">c</span>(tcode,uname))</span>
+<span id="cb4-2">dolar<span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(dolar, <span class="at" style="color: #657422;">select=</span><span class="sc" style="color: #5E5E5E;">-</span><span class="fu" style="color: #4758AB;">c</span>(tcode,uname))</span></code></pre></div>
+</div>
+<p>The next step is to join the data by date to avoid using different periods in each dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(ibov,dolar, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"date"</span>)</span></code></pre></div>
+</div>
+<p>Then, let’s calculate the ratio between Ibovespa and dollar each day.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">data<span class="sc" style="color: #5E5E5E;">$</span>ibov_dolar <span class="ot" style="color: #003B4F;">&lt;-</span> (data<span class="sc" style="color: #5E5E5E;">$</span>value.x<span class="sc" style="color: #5E5E5E;">/</span>data<span class="sc" style="color: #5E5E5E;">$</span>value.y)</span></code></pre></div>
+</div>
+<p>Lastly, you are good to go, and you can create a graph as follows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_dolar) ) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="at" style="color: #657422;">color=</span><span class="st" style="color: #20794D;">'#377E14'</span>) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Ibov in USD'</span>, </span>
+<span id="cb7-5">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
+<span id="cb7-6">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibovespa in dollar is not as high as one may think.</p>
+<p>Below is a graph of Ibov in Euros.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Thanks for passing by!</p>
+
+
+
+ ]]></description>
+  <category>Finance</category>
+  <category>Open Data</category>
+  <category>Open Code</category>
+  <guid>https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index.html</guid>
+  <pubDate>Mon, 08 Aug 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/featured.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>

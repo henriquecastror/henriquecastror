@@ -7,28 +7,28 @@ categories:
   - Open Data
   - Open Code
 author: Henrique C. Martins
-date: 20/08/2022
-
+date: 2022-08-08
+image: "featured.jpg"
 ---
 
 
 Let's see how to create a graph of Ibovespa in dollar using data from ipeadata. Start by installing and loading the following package. 
 
-```{r}
+```{r, warning=FALSE}
 library(ipeadatar)
 ```    
 
 
 Then, download the data. You will need the variables' codes. You can use the row below to see the codes of all variables available.
 
-```{r}
+```{r, warning=FALSE}
 all_series <- available_series()
 ```    
 
 
 Then, after learning the codes for the variables we want (i.e., the codes 'GM366_IBVSP366' and 'GM366_ERC366' below), you download the data.   
 
-```{r}
+```{r, warning=FALSE}
 ibov  <- ipeadata(code = "GM366_IBVSP366")
 dolar <- ipeadata(code = "GM366_ERC366")
 ```
@@ -59,7 +59,7 @@ data$ibov_dolar <- (data$value.x/data$value.y)
 Lastly, you are good to go, and you can create a graph as follows.
 
 
-```{r}
+```{r, warning=FALSE}
 library(ggplot2)
 library(ggthemes)
 ggplot(data, aes(x = date, y=ibov_dolar) ) + geom_line(color='#377E14') +  
@@ -75,7 +75,7 @@ This graph is simply a reminder of the value in dollar of our Stock market index
 
 Below is a graph of Ibov in Euros.
 
-```{r}
+```{r, echo=FALSE}
 euro <- ipeadata(code = "GM366_EUROC366")
 euro <-subset(euro, select=-c(tcode,uname))
 data2 <- merge(ibov,euro, by = "date")
