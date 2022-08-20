@@ -14,7 +14,7 @@
 <item>
   <title>Ibovespa in USD</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index.html</link>
   <description><![CDATA[ 
 
 
@@ -50,30 +50,29 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
 <span id="cb7-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
-<span id="cb7-3"><span class="fu" style="color: #4758AB;">ggplot</span>(data) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_dolar, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov in USD"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>value.x, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;">ggplot</span>(data) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_dolar, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov USD"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>value.x, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb7-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Ibov in USD'</span>, </span>
 <span id="cb7-5">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
 <span id="cb7-6">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibovespa in dollar is not as high as one may think.</p>
-<p>Below is a graph adding Ibov in Euros.</p>
+<p>This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibov in USD is not as high as one may think.</p>
+<p>Below is a graph adding Ibov in Euro.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">euro <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ipeadata</span>(<span class="at" style="color: #657422;">code =</span> <span class="st" style="color: #20794D;">"GM366_EUROC366"</span>)</span>
 <span id="cb8-2">euro <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(euro, <span class="at" style="color: #657422;">select=</span><span class="sc" style="color: #5E5E5E;">-</span><span class="fu" style="color: #4758AB;">c</span>(tcode,uname))</span>
 <span id="cb8-3">data2 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(ibov,euro, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"date"</span>)</span>
 <span id="cb8-4">data2<span class="sc" style="color: #5E5E5E;">$</span>ibov_euro <span class="ot" style="color: #003B4F;">&lt;-</span> (data2<span class="sc" style="color: #5E5E5E;">$</span>value.x<span class="sc" style="color: #5E5E5E;">/</span>data2<span class="sc" style="color: #5E5E5E;">$</span>value.y)</span>
 <span id="cb8-5"><span class="fu" style="color: #4758AB;">ggplot</span>(data) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_dolar, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov USD"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>value.x, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="at" style="color: #657422;">data=</span> data2 , <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_euro, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov Euro"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-6">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Ibov in USD'</span>, </span>
-<span id="cb8-7">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Ibov in USD &amp; Euro'</span>, </span>
+<span id="cb8-7">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD &amp; Euro (Period: since 1994)"</span>,</span>
 <span id="cb8-8">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>```</p>
 <p>Thanks for passing by!</p>
 
 
@@ -82,9 +81,9 @@
   <category>Finance</category>
   <category>Open Data</category>
   <category>Open Code</category>
-  <guid>https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index.html</guid>
   <pubDate>Mon, 08 Aug 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://henriquemartins.net/blog/posts/2022_08_18_ibov_dollar/featured.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

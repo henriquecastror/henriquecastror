@@ -25,7 +25,7 @@
     "href": "blog/index.html",
     "title": "Posts",
     "section": "",
-    "text": "Finance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nGraphing Ibovespa in dollar using ipeadatar.\n\n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
+    "text": "Finance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nGraphing Ibovespa in dollar using ipeadatar\n\n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/2022_08_18_ibov_dollar/index.html",
@@ -208,5 +208,12 @@
     "title": "Teaching & Presentations",
     "section": "2022/02",
     "text": "2022/02\n\nData & Empirical Finance: See here\n\n\nFinancial Strategy: See here\n\n\nESG & Institutional Investment: See here"
+  },
+  {
+    "objectID": "blog/posts/2022_08_08_ibov_USD/index.html",
+    "href": "blog/posts/2022_08_08_ibov_USD/index.html",
+    "title": "Ibovespa in USD",
+    "section": "",
+    "text": "library(ipeadatar)\n\nThen, download the data. You will need the variables’ codes. You can use the row below to see the codes of all variables available.\n\nall_series <- available_series()\n\nThen, after learning the codes for the variables we want (i.e., the codes ‘GM366_IBVSP366’ and ‘GM366_ERC366’ below), you download the data.\n\nibov  <- ipeadata(code = \"GM366_IBVSP366\")\ndolar <- ipeadata(code = \"GM366_ERC366\")\n\nSee that the period available is different for the two variables.\nFor convenience, let’s delete some columns in Ibov and integrate the dollar to Ibov.\n\nibov <-subset(ibov, select=-c(tcode,uname))\ndolar<-subset(dolar, select=-c(tcode,uname))\n\nThe next step is to join the data by date to avoid using different periods in each dataframe.\n\ndata <- merge(ibov,dolar, by = \"date\")\n\nThen, let’s calculate the ratio between Ibovespa and dollar each day.\n\ndata$ibov_dolar <- (data$value.x/data$value.y)\n\nLastly, you are good to go, and you can create a graph as follows.\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nggplot(data) +   geom_line(aes(x = date, y=ibov_dolar, colour=\"Ibov USD\") ) +   geom_line(aes(x = date, y=value.x, colour=\"Ibov\") ) +\n  labs(y='Ibov in USD', \n       title = \"Graph of Ibov in USD (Period: since 1994)\",\n       caption = \"Source: Ipeadata (R package: ipeadatar)\") + theme_solarized()\n\n\n\n\nThis graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibov in USD is not as high as one may think.\nBelow is a graph adding Ibov in Euro.\n\neuro <- ipeadata(code = \"GM366_EUROC366\")\neuro <-subset(euro, select=-c(tcode,uname))\ndata2 <- merge(ibov,euro, by = \"date\")\ndata2$ibov_euro <- (data2$value.x/data2$value.y)\nggplot(data) +   geom_line(aes(x = date, y=ibov_dolar, colour=\"Ibov USD\") ) +   geom_line(aes(x = date, y=value.x, colour=\"Ibov\") ) + geom_line(data= data2 , aes(x = date, y=ibov_euro, colour=\"Ibov Euro\") ) +\n  labs(y='Ibov in USD & Euro', \n       title = \"Graph of Ibov in USD & Euro (Period: since 1994)\",\n       caption = \"Source: Ipeadata (R package: ipeadatar)\") + theme_solarized()\n\n\n\n\nThanks for passing by!"
   }
 ]
