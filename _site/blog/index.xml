@@ -14,7 +14,7 @@
 <item>
   <title>Index of Democracy</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/2022_08_10_vdem/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/vdem/index.html</link>
   <description><![CDATA[ 
 
 
@@ -55,7 +55,7 @@
 <span id="cb4-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb4-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2021</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> country_name) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_10_vdem/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><em>Clarification: The electoral principle of democracy seeks to embody the core value of making rulers responsive to citizens, achieved through electoral competition for the electorate’s approval under circumstances when suffrage is extensive; political and civil society organizations can operate freely; elections are clean and not marred by fraud or systematic irregularities; and elections affect the composition of the chief executive of the country. In between elections, there is freedom of expression and an independent media capable of presenting alternative views on matters of political relevance. In the V-Dem conceptual scheme, electoral democracy is understood as an essential element of any other conception of representative democracy —liberal, participatory, deliberative, egalitarian, or some other.</em></p>
@@ -65,7 +65,7 @@
 <h4 class="anchored" data-anchor-id="liberal-democracy-index-d-v2x_libdem">Liberal democracy index (D) (v2x_libdem)</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_10_vdem/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><em>Clarification: The liberal principle of democracy emphasizes the importance of protecting individual and minority rights against the tyranny of the state and the tyranny of the majority. The liberal model takes a “negative” view of political power insofar as it judges the quality of democracy by the limits placed on government. This is achieved by constitutionally protected civil liberties, strong rule of law, an independent judiciary, and effective checks and balances that, together, limit the exercise of executive power. To make this a measure of liberal democracy, the index also takes the level of electoral democracy into account.</em></p>
@@ -75,7 +75,7 @@
 <h4 class="anchored" data-anchor-id="participatory-democracy-index-d-v2x_partipdem">Participatory democracy index (D) (v2x_partipdem)</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_10_vdem/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><em>Clarification: The participatory principle of democracy emphasizes active participation by citizens in all political processes, electoral and non-electoral. It is motivated by uneasiness about a bedrock practice of electoral democracy: delegating authority to representatives. Thus, direct rule by citizens is preferred, wherever practicable. This model of democracy thus takes suffrage for granted, emphasizing engagement in civil society organizations, direct democracy, and subnational elected bodies. To make it a measure of participatory democracy, the index also takes the level of electoral democracy into account.</em></p>
@@ -85,7 +85,7 @@
 <h4 class="anchored" data-anchor-id="deliberative-democracy-index-d-v2x_delibdem">Deliberative democracy index (D) (v2x_delibdem)</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_10_vdem/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><em>Clarification: The deliberative principle of democracy focuses on the process by which decisions are reached in a polity. A deliberative process is one in which public reasoning focused on the common good motivates political decisions—as contrasted with emotional appeals, solidary attachments, parochial interests, or coercion. According to this principle, democracy requires more than an aggregation of existing preferences. There should also be respectful dialogue at all levels—from preference formation to final decision—among informed and competent participants who are open to persuasion. To make it a measure of not only the deliberative principle but also of democracy, the index also takes the level of electoral democracy into account.</em></p>
@@ -95,7 +95,7 @@
 <h4 class="anchored" data-anchor-id="egalitarian-democracy-index-d-v2x_egaldem">Egalitarian democracy index (D) (v2x_egaldem)</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_10_vdem/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><em>Clarification: The egalitarian principle of democracy holds that material and immaterial inequalities inhibit the exercise of formal rights and liberties, and diminish the ability of citizens from all social groups to participate. Egalitarian democracy is achieved when 1 rights and freedoms of individuals are protected equally across all social groups; and 2 resources are distributed equally across all social groups; 3 groups and individuals enjoy equal access to power. To make it a measure of egalitarian democracy, the index also takes the level of electoral democracy into account.</em></p>
@@ -109,14 +109,14 @@
   <category>Open Code</category>
   <category>Brazil</category>
   <category>Democracy</category>
-  <guid>https://henriquemartins.net/blog/posts/2022_08_10_vdem/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/vdem/index.html</guid>
   <pubDate>Wed, 10 Aug 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://henriquemartins.net/blog/posts/2022_08_10_vdem/featured.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://henriquemartins.net/blog/posts/vdem/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Ibovespa in USD</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/ibov_USD/index.html</link>
   <description><![CDATA[ 
 
 
@@ -157,7 +157,7 @@
 <span id="cb7-5">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
 <span id="cb7-6">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/ibov_USD/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibov in USD is not as high as one may think.</p>
@@ -172,7 +172,7 @@
 <span id="cb8-7">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD &amp; Euro (Period: since 1994)"</span>,</span>
 <span id="cb8-8">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://henriquemartins.net/blog/posts/ibov_USD/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Thanks for passing by!</p>
@@ -183,9 +183,9 @@
   <category>Finance</category>
   <category>Open Data</category>
   <category>Open Code</category>
-  <guid>https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/ibov_USD/index.html</guid>
   <pubDate>Mon, 08 Aug 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://henriquemartins.net/blog/posts/2022_08_08_ibov_USD/featured.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://henriquemartins.net/blog/posts/ibov_USD/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
