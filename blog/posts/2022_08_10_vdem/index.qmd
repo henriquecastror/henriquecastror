@@ -86,7 +86,7 @@ ___
 
 #### Participatory democracy index (D) (v2x_partipdem)
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
 ggplot(data, aes(x = year, y=v2x_partipdem) ) +   geom_line(aes(group = Country, colour = Country)) +  
   labs(y='Participatory democracy index', 
        x='Year', 
