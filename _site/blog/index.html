@@ -67,9 +67,9 @@ ul.task-list{list-style: none;}
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-description","listing-categories"],
+      searchColumns: ["listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -113,6 +113,9 @@ ul.task-list{list-style: none;}
     <a class="nav-link" href="../about.html">About</a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../blog/">blog</a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../research/">Research</a>
   </li>  
   <li class="nav-item">
@@ -149,7 +152,7 @@ ul.task-list{list-style: none;}
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Blog">Blog <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -176,38 +179,7 @@ ul.task-list{list-style: none;}
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Blog" data-listing-date-sort="1660705200000" data-listing-file-modified-sort="1660910910949" data-listing-reading-time-sort="0.885">
-<div class="body">
-<a href="../blog/posts/1-first/index.html">
-<h3 class="no-anchor listing-title">
-First post
-</h3>
-<div class="listing-subtitle">
-A note to remember in the future
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Blog'); return false;">
-Blog
-</div>
-</div>
-<a href="../blog/posts/1-first/index.html">
-<div class="listing-description">
-I started using Quarto very recently. This is a post to remember some things I want to remember in the future.
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="../blog/posts/1-first/index.html">
-<div class="listing-date">
-Aug 17, 2022
-</div>
-<div class="listing-author">
-Henrique C. Martins
-</div>
-</a>
-</div>
-</div>
+
 </div>
 <div class="listing-no-matching d-none">
 No matching items

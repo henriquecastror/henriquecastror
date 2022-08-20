@@ -4,19 +4,18 @@ project:
 website:
   title: "Henrique Castro Martins"
 #  reader-mode: true
+  -oogle-analytics: "UA-172470817-1"
   navbar:
     right:
       - href: about.qmd
-#      - text: blog
-#        href: blog/
+      - text: blog
+        href: blog/
       - text: Research
         href: research/
       - text: Teaching
         href: teaching/
       - text: Seminars
         href: seminars/
-#      - text: books
-#        href: books/
       - text: CV
         href: cv/cv_Henrique_Castro_Martins.pdf
       - icon: github
