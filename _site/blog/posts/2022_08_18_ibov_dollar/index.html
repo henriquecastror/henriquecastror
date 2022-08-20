@@ -6,10 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2017-06-01">
-<meta name="description" content="This study investigates the interplay between country-level governance quality and the capital structure choice">
+<meta name="author" content="Henrique C. Martins">
+<meta name="dcterms.date" content="2023-08-08">
+<meta name="description" content="Graphing Ibovespa in dollar using ipeadatar.">
 
-<title>Henrique Castro Martins - Country-level governance quality, ownership concentration, and debt maturity - A comparative study of Brazil and Chile</title>
+<title>Henrique Castro Martins - Ibovespa vs.&nbsp;Ibovespa in dollar</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,6 +18,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -68,11 +132,10 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </script>
 
 
-<meta name="twitter:title" content="Henrique Castro Martins - Country-level governance quality, ownership concentration, and debt maturity - A comparative study of Brazil and Chile">
-<meta name="twitter:description" content="This study investigates the interplay between country-level governance quality and the capital structure choice">
-<meta name="twitter:image" content="featured.jpg">
+<meta name="twitter:title" content="Henrique Castro Martins - Ibovespa vs.&nbsp;Ibovespa in dollar">
+<meta name="twitter:description" content="Graphing Ibovespa in dollar using ipeadatar.">
 <meta name="twitter:creator" content="@henriquecastror">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="floating nav-fixed">
@@ -130,16 +193,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#research-questionissue" id="toc-research-questionissue" class="nav-link active" data-scroll-target="#research-questionissue"><em>Research Question/Issue:</em></a></li>
-  <li><a href="#research-findingsresults" id="toc-research-findingsresults" class="nav-link" data-scroll-target="#research-findingsresults"><em>Research Findings/Results:</em></a></li>
-  <li><a href="#theoretical-implications" id="toc-theoretical-implications" class="nav-link" data-scroll-target="#theoretical-implications"><em>Theoretical Implications:</em></a></li>
-  <li><a href="#practitioner-implications" id="toc-practitioner-implications" class="nav-link" data-scroll-target="#practitioner-implications"><em>Practitioner Implications:</em></a></li>
-  </ul>
-</nav>
+    
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -149,28 +203,34 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Country-level governance quality, ownership concentration, and debt maturity - A comparative study of Brazil and Chile</h1>
-<p class="subtitle lead">Corporate Governance An International Review, 25(4) 236-254, 2017, <a href="https://doi.org/10.1111/corg.12192">doi</a></p>
+<h1 class="title">Ibovespa vs.&nbsp;Ibovespa in dollar</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Research</div>
-    <div class="quarto-category">Corporate Governance</div>
+    <div class="quarto-category">Finance</div>
+    <div class="quarto-category">Open Data</div>
+    <div class="quarto-category">Open Code</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>This study investigates the interplay between country-level governance quality and the capital structure choice</p>
+    <p>Graphing Ibovespa in dollar using ipeadatar.</p>
   </div>
 </div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Henrique C. Martins </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 1, 2017</p>
+      <p class="date">August 8, 2023</p>
     </div>
   </div>
     
@@ -179,27 +239,72 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 </header>
 
-<p><a href="https://plu.mx/plum/a/?doi=10.1111%2Fcorg.12192" data-popup="right" data-size="large" class="plumx-plum-print-popup" data-site="plum" data-hide-when-empty="true">Country-level governance quality, ownership concentration, and debt maturity: A comparative study of Brazil and Chile</a></p>
-<script type="text/javascript" src="//cdn.plu.mx/widget-popup.js"></script>
-<section id="research-questionissue" class="level3">
-<h3 class="anchored" data-anchor-id="research-questionissue"><em>Research Question/Issue:</em></h3>
-<p>This study investigates the interplay between country-level governance quality and the capital structure choice at the firm level in Brazil and Chile. We examine the association between a firm’s ownership concentration and its debt maturity structure and whether country-level governance quality influences this association.</p>
-</section>
-<section id="research-findingsresults" class="level3">
-<h3 class="anchored" data-anchor-id="research-findingsresults"><em>Research Findings/Results:</em></h3>
-<p>Using a large firm-level dataset from Brazil and Chile for the period 2008-2013, we find a positive association between low ownership concentration and debt maturity. However, this association becomes negative when the largest shareholder has high ownership concentration. This result suggests that long-term debt and ownership concentration act as substitute monitoring mechanisms. Moreover, debt maturity is inversely related to our aggregated index of country-level governance quality, suggesting that in countries with governance systems that effectively protect debt holders, firms with high benefits of control (high ownership concentration) will use debt with shorter repayment periods in order to benefit from frequent monitoring by debt holders. Overall, our results support the view that financial markets tend to pressure firms with high benefits of control or greater agency conflict to make a tradeoff between the benefits of control and the cost and maturity structure of debt financing.</p>
-</section>
-<section id="theoretical-implications" class="level3">
-<h3 class="anchored" data-anchor-id="theoretical-implications"><em>Theoretical Implications:</em></h3>
-<p>This study contributes to the research on comparative corporate governance and capital structure. We also respond to recent calls to bridge the gap between under- and over-socialized views of corporate governance by examining the interplay between firm- and country-level governance variables. Our findings suggest a substitution effect between monitoring by equity holders and by debt holders, and that country-level governance quality exerts a disciplinary influence over a firm’s choice of debt maturity structure.</p>
-</section>
-<section id="practitioner-implications" class="level3">
-<h3 class="anchored" data-anchor-id="practitioner-implications"><em>Practitioner Implications:</em></h3>
-<p>Investors seeking to enter emerging markets such as Brazil and Chile can benefit from considering national governance factors that enhance debt holders’ external monitoring effectiveness. Because our findings show the importance of considering and improving the quality of country-level governance, they are also useful for policy makers aiming to reform corporate governance practices in emerging markets.</p>
-<p>Co-authored with <a href="https://www.hec.ca/en/profs/eduardo.schiehll.html">Eduardo Schiehll</a> and <a href="https://eaesp.fgv.br/en/people/paulo-renato-soares-terra">Paulo Terra</a>.</p>
+<p>Let’s see how to create a graph of Ibovespa in dollar using data from ipeadata. Start by installing and loading the following package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipeadatar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ipeadatar' was built under R version 4.2.1</code></pre>
+</div>
+</div>
+<p>Then, download the data. You will need the variables’ codes. You can use the row below to see the codes of all variables available.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>all_series <span class="ot">&lt;-</span> <span class="fu">available_series</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, after learning the codes for the variables we want (i.e., the codes ‘GM366_IBVSP366’ and ‘GM366_ERC366’ below), you download the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ibov  <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="at">code =</span> <span class="st">"GM366_IBVSP366"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dolar <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="at">code =</span> <span class="st">"GM366_ERC366"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>See that the period available is different for the two variables.</p>
+<p>For convenience, let’s delete some columns in Ibov and integrate the dollar to Ibov.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ibov <span class="ot">&lt;-</span><span class="fu">subset</span>(ibov, <span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(tcode,uname))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dolar<span class="ot">&lt;-</span><span class="fu">subset</span>(dolar, <span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(tcode,uname))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The next step is to join the data by date to avoid using different periods in each dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">merge</span>(ibov,dolar, <span class="at">by =</span> <span class="st">"date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, let’s calculate the ratio between Ibovespa and dollar each day.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>ibov_dolar <span class="ot">&lt;-</span> (data<span class="sc">$</span>value.x<span class="sc">/</span>data<span class="sc">$</span>value.y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lastly, you are good to go, and you can create a graph as follows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggthemes' was built under R version 4.2.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>ibov_dolar) ) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">'#377E14'</span>) <span class="sc">+</span>  </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Ibov in USD'</span>, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc">+</span> <span class="fu">theme_solarized</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibovespa in dollar is not as high as one may think.</p>
+<p>Below is a graph of Ibov in Euros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>euro <span class="ot">&lt;-</span> <span class="fu">ipeadata</span>(<span class="at">code =</span> <span class="st">"GM366_EUROC366"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>euro <span class="ot">&lt;-</span><span class="fu">subset</span>(euro, <span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(tcode,uname))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(ibov,euro, <span class="at">by =</span> <span class="st">"date"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>ibov_euro <span class="ot">&lt;-</span> (data2<span class="sc">$</span>value.x<span class="sc">/</span>data2<span class="sc">$</span>value.y)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data2, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y=</span>ibov_euro) ) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">'#142E7E'</span>) <span class="sc">+</span>  </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Ibov in USD'</span>, </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Graph of Ibov in Euro (Period: since 1999)"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc">+</span> <span class="fu">theme_solarized</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Thanks for passing by!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
