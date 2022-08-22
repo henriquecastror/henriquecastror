@@ -25,7 +25,14 @@
     "href": "blog/index.html",
     "title": "Posts",
     "section": "",
-    "text": "Open Data\n\n\nOpen Code\n\n\nBrazil\n\n\nDemocracy\n\n\n\n\nGraphing V-Dem\n\n\n\n\n\n\nAug 10, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nFinance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nGraphing Ibovespa in dollar using ipeadatar\n\n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
+    "text": "Open Data\n\n\nOpen Code\n\n\nBrazil\n\n\nEPU\n\n\n\n\nGraphing EPU\n\n\n\n\n\n\nAug 12, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nDemocracy\n\n\n\n\nGraphing V-Dem\n\n\n\n\n\n\nAug 10, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nFinance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nGraphing Ibovespa in dollar using ipeadatar\n\n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/br_epu/index.html",
+    "href": "blog/posts/br_epu/index.html",
+    "title": "Brazil Economic Policy Uncertainty (EPU)",
+    "section": "",
+    "text": "Let’s download the data and create a graph to see what happens.\n\nlibrary(readxl)\n\nWarning: package 'readxl' was built under R version 4.2.1\n\nlibrary(httr)\n\nWarning: package 'httr' was built under R version 4.2.1\n\nlibrary(zoo)\n\nWarning: package 'zoo' was built under R version 4.2.1\n\n\n\nAttaching package: 'zoo'\n\n\nThe following objects are masked from 'package:base':\n\n    as.Date, as.Date.numeric\n\nurl1<-'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'\nGET(url1, write_disk(tf <- tempfile(fileext = \".xlsx\")))\n\nResponse [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]\n  Date: 2022-08-22 22:48\n  Status: 200\n  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\n  Size: 11.1 kB\n<ON DISK>  C:\\Users\\hcmrt\\AppData\\Local\\Temp\\RtmpM3DVsK\\file31144f9c7e16.xlsx\n\ndata <- read_excel(tf)\ncolnames(data) <- c(\"Year\", \"Month\", \"EPU\")\ndata<- data[1:nrow(data)-1,]\ndata$date <- as.yearmon(paste(data$Year, data$Month), \"%Y %m\")\n\ndata <-subset(data, Year >= 2010)\n\nFinally, let’s create a graph:\n\nlibrary(ggplot2)\n\nWarning: package 'ggplot2' was built under R version 4.2.1\n\nlibrary(ggthemes)\n\nWarning: package 'ggthemes' was built under R version 4.2.1\n\nggplot(data= data, aes(x=date, y =EPU ) ) + geom_line() + theme_solarized() +\n  labs(title = \"Brazil Economic Policy Uncertainty (EPU) (since 2010)\",\n       caption = \"Source: https://www.policyuncertainty.com/\") \n\n\n\n\nWell, it seems that we do not have too much uncertainty at the moment. At least not the type of uncertainty that this index measures. Still, this is a nice index to learn more about.\nThanks for stopping by!"
   },
   {
     "objectID": "blog/posts/ibov_USD/index.html",
