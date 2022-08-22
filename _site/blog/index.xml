@@ -12,7 +12,7 @@
 <generator>quarto-1.0.38</generator>
 <lastBuildDate>Fri, 12 Aug 2022 03:00:00 GMT</lastBuildDate>
 <item>
-  <title>Brazil Economic Policy Uncertainty (EPU)</title>
+  <title>Brazil Economic Policy Uncertainty</title>
   <dc:creator>Henrique C. Martins</dc:creator>
   <link>https://henriquemartins.net/blog/posts/br_epu/index.html</link>
   <description><![CDATA[ 
@@ -47,11 +47,11 @@ Attaching package: 'zoo'</code></pre>
 <span id="cb9-2"><span class="fu" style="color: #4758AB;">GET</span>(url1, <span class="fu" style="color: #4758AB;">write_disk</span>(tf <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tempfile</span>(<span class="at" style="color: #657422;">fileext =</span> <span class="st" style="color: #20794D;">".xlsx"</span>)))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]
-  Date: 2022-08-22 22:48
+  Date: 2022-08-22 22:54
   Status: 200
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Size: 11.1 kB
-&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpM3DVsK\file31144f9c7e16.xlsx</code></pre>
+&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpOiX0R9\file4b4c21ba3efa.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_excel</span>(tf)</span>
 <span id="cb11-2"><span class="fu" style="color: #4758AB;">colnames</span>(data) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Year"</span>, <span class="st" style="color: #20794D;">"Month"</span>, <span class="st" style="color: #20794D;">"EPU"</span>)</span>
@@ -89,7 +89,7 @@ Attaching package: 'zoo'</code></pre>
   <category>EPU</category>
   <guid>https://henriquemartins.net/blog/posts/br_epu/index.html</guid>
   <pubDate>Fri, 12 Aug 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://henriquemartins.net/blog/posts/br_epu/featured.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://henriquemartins.net/blog/posts/br_epu/featured.png" medium="image" type="image/png" height="41" width="144"/>
 </item>
 <item>
   <title>Index of Democracy</title>

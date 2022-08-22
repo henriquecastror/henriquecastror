@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2022-08-12">
 <meta name="description" content="Graphing EPU">
 
-<title>Henrique Castro Martins - Brazil Economic Policy Uncertainty (EPU)</title>
+<title>Henrique Castro Martins - Brazil Economic Policy Uncertainty</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,10 +132,12 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </script>
 
 
-<meta name="twitter:title" content="Henrique Castro Martins - Brazil Economic Policy Uncertainty (EPU)">
+<meta name="twitter:title" content="Henrique Castro Martins - Brazil Economic Policy Uncertainty">
 <meta name="twitter:description" content="Graphing EPU">
-<meta name="twitter:image" content="https://henriquemartins.net/blog\posts\br_epu\featured.jpg">
+<meta name="twitter:image" content="https://henriquemartins.net/blog\posts\br_epu\featured.png">
 <meta name="twitter:creator" content="@henriquecastror">
+<meta name="twitter:image-height" content="180">
+<meta name="twitter:image-width" content="636">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -204,7 +206,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Brazil Economic Policy Uncertainty (EPU)</h1>
+<h1 class="title">Brazil Economic Policy Uncertainty</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Open Data</div>
     <div class="quarto-category">Open Code</div>
@@ -269,11 +271,11 @@ Attaching package: 'zoo'</code></pre>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url1, <span class="fu">write_disk</span>(tf <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xlsx"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]
-  Date: 2022-08-22 22:48
+  Date: 2022-08-22 22:54
   Status: 200
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Size: 11.1 kB
-&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpM3DVsK\file31144f9c7e16.xlsx</code></pre>
+&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpOiX0R9\file4b4c21ba3efa.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(tf)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Month"</span>, <span class="st">"EPU"</span>)</span>
