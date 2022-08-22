@@ -246,57 +246,33 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <p>In this post, I will show how to create a graph about the Brazilian Economic Policy Uncertainty index. For more information about this index, click <a href="https://www.policyuncertainty.com/">here</a>. Shortly, it is an index that calculates economic policy uncertainty by searching for specific words in Brazilian newspapers.</p>
 <p>Let’s download the data and create a graph to see what happens.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readxl' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'httr' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'zoo' was built under R version 4.2.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'zoo'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url1, <span class="fu">write_disk</span>(tf <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xlsx"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url1<span class="ot">&lt;-</span><span class="st">'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url1, <span class="fu">write_disk</span>(tf <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xlsx"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]
-  Date: 2022-08-22 22:54
+  Date: 2022-08-22 22:56
   Status: 200
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Size: 11.1 kB
-&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpOiX0R9\file4b4c21ba3efa.xlsx</code></pre>
+&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpuqlmYo\file17a0bd37b1b.xlsx</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(tf)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Month"</span>, <span class="st">"EPU"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span> data[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data)<span class="sc">-</span><span class="dv">1</span>,]</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.yearmon</span>(<span class="fu">paste</span>(data<span class="sc">$</span>Year, data<span class="sc">$</span>Month), <span class="st">"%Y %m"</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span><span class="fu">subset</span>(data, Year <span class="sc">&gt;=</span> <span class="dv">2010</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(tf)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Month"</span>, <span class="st">"EPU"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span> data[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data)<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.yearmon</span>(<span class="fu">paste</span>(data<span class="sc">$</span>Year, data<span class="sc">$</span>Month), <span class="st">"%Y %m"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span><span class="fu">subset</span>(data, Year <span class="sc">&gt;=</span> <span class="dv">2010</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, let’s create a graph:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggthemes' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> data, <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y =</span>EPU ) ) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">theme_solarized</span>() <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Brazil Economic Policy Uncertainty (EPU) (since 2010)"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: https://www.policyuncertainty.com/"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> data, <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y =</span>EPU ) ) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">theme_solarized</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Brazil Economic Policy Uncertainty (EPU) (since 2010)"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: https://www.policyuncertainty.com/"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>

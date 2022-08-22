@@ -22,57 +22,33 @@
 <p>In this post, I will show how to create a graph about the Brazilian Economic Policy Uncertainty index. For more information about this index, click <a href="https://www.policyuncertainty.com/">here</a>. Shortly, it is an index that calculates economic policy uncertainty by searching for specific words in Brazilian newspapers.</p>
 <p>Let’s download the data and create a graph to see what happens.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(readxl)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readxl' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">library</span>(httr)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'httr' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">library</span>(zoo)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'zoo' was built under R version 4.2.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'zoo'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">url1<span class="ot" style="color: #003B4F;">&lt;-</span><span class="st" style="color: #20794D;">'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'</span></span>
-<span id="cb9-2"><span class="fu" style="color: #4758AB;">GET</span>(url1, <span class="fu" style="color: #4758AB;">write_disk</span>(tf <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tempfile</span>(<span class="at" style="color: #657422;">fileext =</span> <span class="st" style="color: #20794D;">".xlsx"</span>)))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(readxl)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(httr)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(zoo)</span>
+<span id="cb1-4">url1<span class="ot" style="color: #003B4F;">&lt;-</span><span class="st" style="color: #20794D;">'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'</span></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;">GET</span>(url1, <span class="fu" style="color: #4758AB;">write_disk</span>(tf <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tempfile</span>(<span class="at" style="color: #657422;">fileext =</span> <span class="st" style="color: #20794D;">".xlsx"</span>)))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]
-  Date: 2022-08-22 22:54
+  Date: 2022-08-22 22:56
   Status: 200
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Size: 11.1 kB
-&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpOiX0R9\file4b4c21ba3efa.xlsx</code></pre>
+&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpuqlmYo\file17a0bd37b1b.xlsx</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_excel</span>(tf)</span>
-<span id="cb11-2"><span class="fu" style="color: #4758AB;">colnames</span>(data) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Year"</span>, <span class="st" style="color: #20794D;">"Month"</span>, <span class="st" style="color: #20794D;">"EPU"</span>)</span>
-<span id="cb11-3">data<span class="ot" style="color: #003B4F;">&lt;-</span> data[<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">nrow</span>(data)<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>,]</span>
-<span id="cb11-4">data<span class="sc" style="color: #5E5E5E;">$</span>date <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.yearmon</span>(<span class="fu" style="color: #4758AB;">paste</span>(data<span class="sc" style="color: #5E5E5E;">$</span>Year, data<span class="sc" style="color: #5E5E5E;">$</span>Month), <span class="st" style="color: #20794D;">"%Y %m"</span>)</span>
-<span id="cb11-5"></span>
-<span id="cb11-6">data <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(data, Year <span class="sc" style="color: #5E5E5E;">&gt;=</span> <span class="dv" style="color: #AD0000;">2010</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_excel</span>(tf)</span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;">colnames</span>(data) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Year"</span>, <span class="st" style="color: #20794D;">"Month"</span>, <span class="st" style="color: #20794D;">"EPU"</span>)</span>
+<span id="cb3-3">data<span class="ot" style="color: #003B4F;">&lt;-</span> data[<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">nrow</span>(data)<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>,]</span>
+<span id="cb3-4">data<span class="sc" style="color: #5E5E5E;">$</span>date <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.yearmon</span>(<span class="fu" style="color: #4758AB;">paste</span>(data<span class="sc" style="color: #5E5E5E;">$</span>Year, data<span class="sc" style="color: #5E5E5E;">$</span>Month), <span class="st" style="color: #20794D;">"%Y %m"</span>)</span>
+<span id="cb3-5"></span>
+<span id="cb3-6">data <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(data, Year <span class="sc" style="color: #5E5E5E;">&gt;=</span> <span class="dv" style="color: #AD0000;">2010</span>)</span></code></pre></div>
 </div>
 <p>Finally, let’s create a graph:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggthemes' was built under R version 4.2.1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;">ggplot</span>(<span class="at" style="color: #657422;">data=</span> data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>date, <span class="at" style="color: #657422;">y =</span>EPU ) ) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_line</span>() <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb16-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Brazil Economic Policy Uncertainty (EPU) (since 2010)"</span>,</span>
-<span id="cb16-3">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.policyuncertainty.com/"</span>) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
+<span id="cb4-3"><span class="fu" style="color: #4758AB;">ggplot</span>(<span class="at" style="color: #657422;">data=</span> data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>date, <span class="at" style="color: #657422;">y =</span>EPU ) ) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_line</span>() <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Brazil Economic Policy Uncertainty (EPU) (since 2010)"</span>,</span>
+<span id="cb4-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.policyuncertainty.com/"</span>) </span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://henriquemartins.net/blog/posts/br_epu/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
