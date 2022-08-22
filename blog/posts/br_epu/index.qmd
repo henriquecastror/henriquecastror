@@ -19,7 +19,7 @@ In this post, I will show how to create a graph about the Brazilian Economic Pol
 
 Let's download the data and create a graph to see what happens.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(readxl)
 library(httr)
 library(zoo)
@@ -39,7 +39,7 @@ data <-subset(data, Year >= 2010)
 
 Finally, let's create a graph:
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(ggthemes)
 ggplot(data= data, aes(x=date, y =EPU ) ) + geom_line() + theme_solarized() +
