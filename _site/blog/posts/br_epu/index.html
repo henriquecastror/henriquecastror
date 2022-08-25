@@ -253,11 +253,11 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url1, <span class="fu">write_disk</span>(tf <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xlsx"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]
-  Date: 2022-08-22 22:56
+  Date: 2022-08-25 14:15
   Status: 200
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Size: 11.1 kB
-&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpuqlmYo\file17a0bd37b1b.xlsx</code></pre>
+&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpkhT1pE\filedb875a5463f.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(tf)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Month"</span>, <span class="st">"EPU"</span>)</span>

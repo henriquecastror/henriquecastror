@@ -29,11 +29,11 @@
 <span id="cb1-5"><span class="fu" style="color: #4758AB;">GET</span>(url1, <span class="fu" style="color: #4758AB;">write_disk</span>(tf <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tempfile</span>(<span class="at" style="color: #657422;">fileext =</span> <span class="st" style="color: #20794D;">".xlsx"</span>)))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]
-  Date: 2022-08-22 22:56
+  Date: 2022-08-25 14:15
   Status: 200
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Size: 11.1 kB
-&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpuqlmYo\file17a0bd37b1b.xlsx</code></pre>
+&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpkhT1pE\filedb875a5463f.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_excel</span>(tf)</span>
 <span id="cb3-2"><span class="fu" style="color: #4758AB;">colnames</span>(data) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Year"</span>, <span class="st" style="color: #20794D;">"Month"</span>, <span class="st" style="color: #20794D;">"EPU"</span>)</span>
