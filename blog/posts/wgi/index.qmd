@@ -27,7 +27,6 @@ Before we continue, it is important to know what these variables are measuring: 
 
 Also, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the "better" or the more "optimistic" the society of that country is about that variable.
 
-### Data
 
 First, download the data.
 
@@ -73,6 +72,10 @@ ___
 
 #### Voice and Accountability (vae)
 
+
+*Description: Voice and accountability captures perceptions of the extent to which a country's citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.*
+
+
 ```{r}
 #| warning: false
 ggplot(data, aes(x = year, y=vae) ) +   geom_line(aes(colour = Country)) +  
@@ -83,10 +86,6 @@ ggplot(data, aes(x = year, y=vae) ) +   geom_line(aes(colour = Country)) +
   theme(legend.position = "none") +
   ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)
 ```
-
-*Description: Voice and accountability captures perceptions of the extent to which a country's citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.*
-
-
 
 
 
@@ -100,6 +99,9 @@ ___
 
 #### Political Stability and Absence of Violence/Terrorism (pve)
 
+
+*Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.*
+
 ```{r}
 #| warning: false
 ggplot(data, aes(x = year, y=pve) ) +   geom_line(aes(colour = Country)) +  
@@ -111,7 +113,6 @@ ggplot(data, aes(x = year, y=pve) ) +   geom_line(aes(colour = Country)) +
   ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)
 ```
 
-*Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.*
 
 
 
@@ -123,6 +124,9 @@ ggplot(data, aes(x = year, y=pve) ) +   geom_line(aes(colour = Country)) +
 ___
 
 #### Government Effectiveness (gee)
+
+*Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government's commitment to such policies..*
+
 
 ```{r}
 #| warning: false
@@ -136,12 +140,6 @@ ggplot(data, aes(x = year, y=gee) ) +   geom_line(aes(colour = Country)) +
 ```
 
 
-*Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government's commitment to such policies..*
-
-
-
-
-
 
 
 
@@ -149,6 +147,8 @@ ggplot(data, aes(x = year, y=gee) ) +   geom_line(aes(colour = Country)) +
 ___
 
 #### Regulatory Quality (rqe)
+
+*Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. *
 
 ```{r}
 #| warning: false
@@ -163,17 +163,15 @@ ggplot(data, aes(x = year, y=rqe) ) +   geom_line(aes(colour = Country)) +
 
 
 
-*Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. *
-
-
-
-
 
 
 
 ___
 
 #### Rule of Law (rle)
+
+
+*Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.*
 
 ```{r}
 #| warning: false
@@ -188,10 +186,6 @@ ggplot(data, aes(x = year, y=rle) ) +   geom_line(aes(colour = Country)) +
 
 
 
-*Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.*
-
-
-
 
 
 
@@ -199,6 +193,9 @@ ggplot(data, aes(x = year, y=rle) ) +   geom_line(aes(colour = Country)) +
 ___
 
 #### Control of Corruption (cce)
+
+
+*Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as "capture" of the state by elites and private interests.*
 
 ```{r}
 #| warning: false
@@ -211,9 +208,6 @@ ggplot(data, aes(x = year, y=cce) ) +   geom_line(aes(colour = Country)) +
   ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)
 ```
 
-
-
-*Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as "capture" of the state by elites and private interests.*
 
 
 
