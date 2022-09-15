@@ -18,7 +18,9 @@ Let's see how to create a graph of the levels of Democracy in Brazil. The data c
 
 First, download the data.
 
-```{r, warning=FALSE}
+```{r}
+#| warning: false
+#| message: false
 library(ggplot2)
 library(ggthemes)
 library(downloader)
@@ -27,11 +29,14 @@ download(url, dest="dataset.zip", mode="wb")
 unzip ("dataset.zip", exdir = "./")
 data <- readRDS("Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds")
 file.remove("dataset.zip")
+file.remove("Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds")
 ```
 
 For convenience, let's focus only on the years after 2000 and in some selected countries.
 
-```{r, warning=FALSE}
+```{r}
+#| warning: false
+#| message: false
 names(data)[names(data) == 'country_text_id'] <- 'Country'
 data <-subset(data, year >= 2000)
 countries <- as.data.frame(c("Brazil", "France", "Germany", "United States of America", "United Kingdom", "Italy", "Japan", "China", "India")) 
@@ -46,11 +51,13 @@ ___
 
 #### Electoral democracy index (D) (v2x_polyarchy)
 
-```{r, warning=FALSE}
+```{r}
+#| warning: false
+#| message: false
 ggplot(data, aes(x = year, y=v2x_polyarchy) ) +   geom_line(aes(colour = Country)) +  
   labs(y='Electoral democracy index', 
        x='Year', 
-       title = "Electoral democracy index selected countries (since 2000)",
+       title = "Electoral democracy index (selected countries since 2000)",
        caption = "Source: https://www.v-dem.net/") + theme_solarized() + 
   theme(legend.position = "none") +
   ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)
@@ -66,11 +73,13 @@ ___
 
 #### Liberal democracy index (D) (v2x_libdem)
 
-```{r, warning=FALSE, echo=FALSE}
+```{r}
+#| warning: false
+#| message: false
 ggplot(data, aes(x = year, y=v2x_libdem) ) +   geom_line(aes(group = Country, colour = Country)) +  
   labs(y='Liberal democracy index', 
        x='Year', 
-       title = "Liberal democracy index selected countries (since 2000)",
+       title = "Liberal democracy index (selected countries since 2000)",
        caption = "Source: https://www.v-dem.net/") + theme_solarized()+ 
   theme(legend.position = "none") +
   ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)
@@ -86,11 +95,13 @@ ___
 
 #### Participatory democracy index (D) (v2x_partipdem)
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r}
+#| warning: false
+#| message: false
 ggplot(data, aes(x = year, y=v2x_partipdem) ) +   geom_line(aes(group = Country, colour = Country)) +  
   labs(y='Participatory democracy index', 
        x='Year', 
-       title = "Participatory democracy index selected countries (since 2000)",
+       title = "Participatory democracy index (selected countries since 2000)",
        caption = "Source: https://www.v-dem.net/") + theme_solarized()+ 
   theme(legend.position = "none") +
   ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)
@@ -105,11 +116,13 @@ ___
 
 #### Deliberative democracy index (D) (v2x_delibdem)
 
-```{r, warning=FALSE, echo=FALSE}
+```{r}
+#| warning: false
+#| message: false
 ggplot(data, aes(x = year, y=v2x_delibdem) ) +   geom_line(aes(group = Country, colour = Country)) +  
   labs(y='Deliberative democracy index', 
        x='Year', 
-       title = "Deliberative democracy index selected countries (since 2000)",
+       title = "Deliberative democracy index (selected countries since 2000)",
        caption = "Source: https://www.v-dem.net/") + theme_solarized()+ 
   theme(legend.position = "none") +
   ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)
@@ -123,11 +136,13 @@ ___
 
 #### Egalitarian democracy index (D) (v2x_egaldem)
 
-```{r, warning=FALSE, echo=FALSE}
+```{r}
+#| warning: false
+#| message: false
 ggplot(data, aes(x = year, y=v2x_egaldem) ) +   geom_line(aes(group = Country, colour = Country)) +  
   labs(y='Egalitarian democracy index', 
        x='Year', 
-       title = "Egalitarian democracy index selected countries (since 2000)",
+       title = "Egalitarian democracy index (selected countries since 2000)",
        caption = "Source: https://www.v-dem.net/") + theme_solarized()+ 
   theme(legend.position = "none") +
   ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)

@@ -10,7 +10,167 @@
 <atom:link href="https://henriquemartins.net/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.0.38</generator>
-<lastBuildDate>Fri, 12 Aug 2022 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 14 Sep 2022 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Worldwide Governance Indicators</title>
+  <dc:creator>Henrique C. Martins</dc:creator>
+  <link>https://henriquemartins.net/blog/posts/wgi/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>There is one dataset that I like a lot: the <a href="https://info.worldbank.org/governance/wgi/">Worldwide Governance Indicators (WGI)</a> project. It contains data since 1996 about the governance of all countries. Governance here is measured by the six following variables:</p>
+<ol type="1">
+<li>Voice and Accountability</li>
+<li>Political Stability and Absence of Violence</li>
+<li>Government Effectiveness</li>
+<li>Regulatory Quality</li>
+<li>Rule of Law</li>
+<li>Control of Corruption</li>
+</ol>
+<p>Before we continue, it is important to know what these variables are measuring: they measure Brazilians’ <strong>perception</strong> about governance, they do not measure governance per se. Thus, the Government Effectiveness variable, for instance, represents how effective Brazilians believe their Government are, not whether the Government is really effective or not. <strong>Perception</strong> here is the crucial word, so let’s keep that in mind.</p>
+<p>Also, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the “better” or the more “optimistic” the society of that country is about that variable.</p>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>First, download the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(downloader)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(haven)</span>
+<span id="cb1-5">url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"https://info.worldbank.org/governance/wgi/Home/downLoadFile?fileName=wgidataset_stata.zip"</span></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;">download</span>(url, <span class="at" style="color: #657422;">dest=</span><span class="st" style="color: #20794D;">"file.zip"</span>, <span class="at" style="color: #657422;">mode=</span><span class="st" style="color: #20794D;">"wb"</span>) </span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;">unzip</span> (<span class="st" style="color: #20794D;">"file.zip"</span>, <span class="at" style="color: #657422;">exdir =</span> <span class="st" style="color: #20794D;">"./"</span>)</span>
+<span id="cb1-8">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_dta</span>(<span class="st" style="color: #20794D;">"wgidataset.dta"</span>)</span>
+<span id="cb1-9"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"file.zip"</span>)</span>
+<span id="cb1-10"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"PublicStataDatasetReadme.pdf"</span>)</span>
+<span id="cb1-11"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"wgidataset.dta"</span>)</span></code></pre></div>
+</div>
+<p>For convenience, let’s focus only on the years after 2000 and in some selected countries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">names</span>(data)[<span class="fu" style="color: #4758AB;">names</span>(data) <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">'countryname'</span>] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">'Country'</span></span>
+<span id="cb2-2">data <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(data, year <span class="sc" style="color: #5E5E5E;">&gt;=</span> <span class="dv" style="color: #AD0000;">2000</span>)</span>
+<span id="cb2-3">countries <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.data.frame</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Brazil"</span>, <span class="st" style="color: #20794D;">"France"</span>, <span class="st" style="color: #20794D;">"Germany"</span>, <span class="st" style="color: #20794D;">"United States of America"</span>, <span class="st" style="color: #20794D;">"United Kingdom"</span>, <span class="st" style="color: #20794D;">"Italy"</span>, <span class="st" style="color: #20794D;">"Japan"</span>, <span class="st" style="color: #20794D;">"China"</span>, <span class="st" style="color: #20794D;">"India"</span>)) </span>
+<span id="cb2-4"><span class="fu" style="color: #4758AB;">colnames</span>(countries) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"Country"</span>  </span>
+<span id="cb2-5">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(data, countries , <span class="at" style="color: #657422;">by=</span><span class="st" style="color: #20794D;">"Country"</span>)</span></code></pre></div>
+</div>
+<p>Now let’s have fun visualizing data. More about the <em>clarifications</em> in : <a href="https://info.worldbank.org/governance/wgi/Home/Documents">https://info.worldbank.org/governance/wgi/Home/Documents</a></p>
+<hr>
+<section id="voice-and-accountability-vae" class="level4">
+<h4 class="anchored" data-anchor-id="voice-and-accountability-vae">Voice and Accountability (vae)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>vae) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Voice and Accountability'</span>, </span>
+<span id="cb3-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
+<span id="cb3-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Voice and Accountability (selected countries since 2000)"</span>,</span>
+<span id="cb3-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb3-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb3-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Description: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.</em></p>
+<hr>
+</section>
+<section id="political-stability-and-absence-of-violenceterrorism-pve" class="level4">
+<h4 class="anchored" data-anchor-id="political-stability-and-absence-of-violenceterrorism-pve">Political Stability and Absence of Violence/Terrorism (pve)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>pve) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Pol. Stability and Absence of Viol./Terror.'</span>, </span>
+<span id="cb4-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
+<span id="cb4-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Pol. Stability and Absence of Viol./Terror. (selected countries since 2000)"</span>,</span>
+<span id="cb4-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb4-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.</em></p>
+<hr>
+</section>
+<section id="government-effectiveness-gee" class="level4">
+<h4 class="anchored" data-anchor-id="government-effectiveness-gee">Government Effectiveness (gee)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>gee) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Government Effectiveness'</span>, </span>
+<span id="cb5-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
+<span id="cb5-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Government Effectiveness (selected countries since 2000)"</span>,</span>
+<span id="cb5-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..</em></p>
+<hr>
+</section>
+<section id="regulatory-quality-rqe" class="level4">
+<h4 class="anchored" data-anchor-id="regulatory-quality-rqe">Regulatory Quality (rqe)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>rqe) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Regulatory Quality'</span>, </span>
+<span id="cb6-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
+<span id="cb6-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Regulatory Quality (selected countries since 2000)"</span>,</span>
+<span id="cb6-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb6-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb6-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. </em></p>
+<hr>
+</section>
+<section id="rule-of-law-rle" class="level4">
+<h4 class="anchored" data-anchor-id="rule-of-law-rle">Rule of Law (rle)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>rle) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Rule of Law'</span>, </span>
+<span id="cb7-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
+<span id="cb7-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Rule of Law (selected countries since 2000)"</span>,</span>
+<span id="cb7-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.</em></p>
+<hr>
+</section>
+<section id="control-of-corruption-cce" class="level4">
+<h4 class="anchored" data-anchor-id="control-of-corruption-cce">Control of Corruption (cce)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>cce) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Control of Corruption'</span>, </span>
+<span id="cb8-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
+<span id="cb8-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Control of Corruption (selected countries since 2000)"</span>,</span>
+<span id="cb8-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.</em></p>
+<p>Thanks for passing by!</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Open Data</category>
+  <category>Open Code</category>
+  <category>Brazil</category>
+  <category>Corruption</category>
+  <guid>https://henriquemartins.net/blog/posts/wgi/index.html</guid>
+  <pubDate>Wed, 14 Sep 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://henriquemartins.net/blog/posts/wgi/featured.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Brazil Economic Policy Uncertainty</title>
   <dc:creator>Henrique C. Martins</dc:creator>
