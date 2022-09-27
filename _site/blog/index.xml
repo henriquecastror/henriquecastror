@@ -30,8 +30,6 @@
 </ol>
 <p>Before we continue, it is important to know what these variables are measuring: they measure Brazilians’ <strong>perception</strong> about governance, they do not measure governance per se. Thus, the Government Effectiveness variable, for instance, represents how effective Brazilians believe their Government are, not whether the Government is really effective or not. <strong>Perception</strong> here is the crucial word, so let’s keep that in mind.</p>
 <p>Also, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the “better” or the more “optimistic” the society of that country is about that variable.</p>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
 <p>First, download the data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
@@ -58,6 +56,7 @@
 <hr>
 <section id="voice-and-accountability-vae" class="level4">
 <h4 class="anchored" data-anchor-id="voice-and-accountability-vae">Voice and Accountability (vae)</h4>
+<p><em>Description: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>vae) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
 <span id="cb3-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Voice and Accountability'</span>, </span>
@@ -70,11 +69,11 @@
 <p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.</em></p>
 <hr>
 </section>
 <section id="political-stability-and-absence-of-violenceterrorism-pve" class="level4">
 <h4 class="anchored" data-anchor-id="political-stability-and-absence-of-violenceterrorism-pve">Political Stability and Absence of Violence/Terrorism (pve)</h4>
+<p><em>Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>pve) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
 <span id="cb4-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Pol. Stability and Absence of Viol./Terror.'</span>, </span>
@@ -87,11 +86,11 @@
 <p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.</em></p>
 <hr>
 </section>
 <section id="government-effectiveness-gee" class="level4">
 <h4 class="anchored" data-anchor-id="government-effectiveness-gee">Government Effectiveness (gee)</h4>
+<p><em>Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>gee) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
 <span id="cb5-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Government Effectiveness'</span>, </span>
@@ -104,11 +103,11 @@
 <p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..</em></p>
 <hr>
 </section>
 <section id="regulatory-quality-rqe" class="level4">
 <h4 class="anchored" data-anchor-id="regulatory-quality-rqe">Regulatory Quality (rqe)</h4>
+<p><em>Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. </em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>rqe) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
 <span id="cb6-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Regulatory Quality'</span>, </span>
@@ -121,11 +120,11 @@
 <p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. </em></p>
 <hr>
 </section>
 <section id="rule-of-law-rle" class="level4">
 <h4 class="anchored" data-anchor-id="rule-of-law-rle">Rule of Law (rle)</h4>
+<p><em>Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>rle) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
 <span id="cb7-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Rule of Law'</span>, </span>
@@ -138,11 +137,11 @@
 <p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.</em></p>
 <hr>
 </section>
 <section id="control-of-corruption-cce" class="level4">
 <h4 class="anchored" data-anchor-id="control-of-corruption-cce">Control of Corruption (cce)</h4>
+<p><em>Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>cce) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
 <span id="cb8-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Control of Corruption'</span>, </span>
@@ -155,11 +154,9 @@
 <p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.</em></p>
 <p>Thanks for passing by!</p>
 
 
-</section>
 </section>
 
  ]]></description>
@@ -491,6 +488,20 @@
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dogbert.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<hr>
+<p><a href="https://dilbert.com/strip/2022-09-19">Source</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dt220919.gif" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<hr>
+<p><a href="https://dilbert.com/strip/2022-09-13">Source</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dt220913.gif" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <hr>

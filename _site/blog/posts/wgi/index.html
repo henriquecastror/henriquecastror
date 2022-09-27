@@ -194,13 +194,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
-  </ul>
-</nav>
+    
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -258,8 +252,6 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </ol>
 <p>Before we continue, it is important to know what these variables are measuring: they measure Brazilians’ <strong>perception</strong> about governance, they do not measure governance per se. Thus, the Government Effectiveness variable, for instance, represents how effective Brazilians believe their Government are, not whether the Government is really effective or not. <strong>Perception</strong> here is the crucial word, so let’s keep that in mind.</p>
 <p>Also, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the “better” or the more “optimistic” the society of that country is about that variable.</p>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
 <p>First, download the data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -286,6 +278,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <hr>
 <section id="voice-and-accountability-vae" class="level4">
 <h4 class="anchored" data-anchor-id="voice-and-accountability-vae">Voice and Accountability (vae)</h4>
+<p><em>Description: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span>vae) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Country)) <span class="sc">+</span>  </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Voice and Accountability'</span>, </span>
@@ -298,11 +291,11 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.</em></p>
 <hr>
 </section>
 <section id="political-stability-and-absence-of-violenceterrorism-pve" class="level4">
 <h4 class="anchored" data-anchor-id="political-stability-and-absence-of-violenceterrorism-pve">Political Stability and Absence of Violence/Terrorism (pve)</h4>
+<p><em>Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span>pve) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Country)) <span class="sc">+</span>  </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Pol. Stability and Absence of Viol./Terror.'</span>, </span>
@@ -315,11 +308,11 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.</em></p>
 <hr>
 </section>
 <section id="government-effectiveness-gee" class="level4">
 <h4 class="anchored" data-anchor-id="government-effectiveness-gee">Government Effectiveness (gee)</h4>
+<p><em>Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span>gee) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Country)) <span class="sc">+</span>  </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Government Effectiveness'</span>, </span>
@@ -332,11 +325,11 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..</em></p>
 <hr>
 </section>
 <section id="regulatory-quality-rqe" class="level4">
 <h4 class="anchored" data-anchor-id="regulatory-quality-rqe">Regulatory Quality (rqe)</h4>
+<p><em>Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. </em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span>rqe) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Country)) <span class="sc">+</span>  </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Regulatory Quality'</span>, </span>
@@ -349,11 +342,11 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. </em></p>
 <hr>
 </section>
 <section id="rule-of-law-rle" class="level4">
 <h4 class="anchored" data-anchor-id="rule-of-law-rle">Rule of Law (rle)</h4>
+<p><em>Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span>rle) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Country)) <span class="sc">+</span>  </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Rule of Law'</span>, </span>
@@ -366,11 +359,11 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.</em></p>
 <hr>
 </section>
 <section id="control-of-corruption-cce" class="level4">
 <h4 class="anchored" data-anchor-id="control-of-corruption-cce">Control of Corruption (cce)</h4>
+<p><em>Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span>cce) ) <span class="sc">+</span>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Country)) <span class="sc">+</span>  </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Control of Corruption'</span>, </span>
@@ -383,11 +376,9 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.</em></p>
 <p>Thanks for passing by!</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
