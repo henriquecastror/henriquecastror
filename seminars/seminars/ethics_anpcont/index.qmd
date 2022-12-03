@@ -1,0 +1,321 @@
+---
+title: 'Ethics & Open Data (Anpcont)'
+date: 2022-12-03
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: background2.png
+    css: styles.css
+    footer: <https://eaesp.fgv.br/>
+    multiplex: true
+    toc: false
+#resources:
+ # - demo.pdf
+---
+
+
+
+
+##  {background="#888686"}
+
+
+![](caution.jpg)
+
+
+
+**My opinions are my own, not those of the Institution  I work for.**
+
+
+
+
+
+
+
+## Open Science & Open Data {.smaller background="#f1f2c9"}
+
+" _Open science encompasses unhindered access to scientific articles, **access to data from public research**, and **collaborative research** enabled by ICT tools and incentives._ 
+
+_Broadening access to scientific publications and data is at the heart of open science, so that research outputs are in **the hands of as many as possible**, and potential benefits are **spread as widely as possible**_" ([OCDE](https://www.oecd.org/science/inno/open-science.htm)).
+
+
+. . . 
+
+
+
+**Open data** is the idea of sharing the data used in research. 
+
+**Open code** is the idea of sharing the codes used in research. 
+
+
+- Example: **COVID data** ([link](https://www.oecd.org/coronavirus/policy-responses/why-open-science-is-critical-to-combatting-covid-19-cd6ab2f9/)).
+- Example: **Békes & Kézdi's "Data Analysis for Business, Economics, and Policy" data** ([link](https://gabors-data-analysis.com/))
+
+
+
+
+
+
+
+
+
+
+
+##  What is **NOT** a problem anymore {.smaller background="#f1f2c9"}
+
+1) **Technology** to publish data and codes
+
+::: incremental
+
+- [Harvard Dataverse](https://dataverse.harvard.edu/)
+
+- [Mendeley data](https://data.mendeley.com/)
+
+- [Zenodo](https://zenodo.org/)
+
+- [OSF](https://osf.io/)
+
+- [Figshare](https://figshare.com/)
+
+- [Github](https://github.com/)
+
+:::
+
+
+. . .
+
+They are mostly **free**.
+
+
+
+
+
+
+
+##  What is **NOT** a problem anymore {.smaller background="#f1f2c9"}
+
+2) Your files **CAN** be cited
+
+. . .
+
+
+![](perlin.png)
+
+
+Very easy to create [PlumX metrics](https://plu.mx/plum/a/?doi=10.17632%2Fxxjvhwbz6x.1) for your files.
+  
+  
+
+
+
+
+
+  
+
+##  What is **NOT** a problem anymore {.smaller background="#f1f2c9"}
+
+3) General **Awareness** and **Incentives** [Source](https://onlinelibrary.wiley.com/doi/10.1111/1475-679X.12305).
+
+![](reproducibility1.png)
+
+
+
+
+
+
+
+
+
+##  What is **NOT** a problem anymore {.smaller background="#f1f2c9"}
+
+3) General **Awareness** and **Incentives** [Source](https://onlinelibrary.wiley.com/doi/10.1111/1475-679X.12305).
+
+![](reproducibility2.png)
+
+
+
+
+
+
+
+##  What is **NOT** a problem anymore {.smaller background="#f1f2c9"}
+
+3) General **Awareness** and **Incentives** [Source](https://onlinelibrary.wiley.com/doi/10.1111/jofi.13064).
+
+![](replication1.png)
+
+
+
+
+
+
+
+
+##  What is **NOT** a problem anymore {.smaller background="#f1f2c9"}
+
+3) General **Awareness** and **Incentives** [Source](https://onlinelibrary.wiley.com/doi/10.1111/jofi.13064).
+
+![](replication2.png)
+
+
+
+
+
+
+
+
+
+##  What is **NOT** a problem anymore {.smaller background="#f1f2c9"}
+
+
+
+3) General **Awareness** and **Incentives** [Source](https://onlinelibrary.wiley.com/doi/10.1111/jofi.12530).
+
+
+![](phacking.png)
+
+
+
+
+
+
+##  What **ARE** the problems (in my opinion) {.smaller background="#b7bfdb"}
+
+1) Scholars' **lack** of organization [Source](https://phdcomics.com/comics/archive.php?comicid=1323)
+
+![](files.png){width=75%}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+##  What **ARE** the problems (in my opinion) {.smaller background="#b7bfdb"}
+
+1) Scholars' **lack** of organization 
+
+::: incremental
+
+- **Never change the original excel** (you will *never remember the changes you have made*). Instead, make data changes inside your code (i.e., Stata do file).
+- Start using some solution for  **version control**. For example, Github (It is free!!).
+:::
+
+. . .
+
+![](commit.png){width=125%}
+
+
+
+
+
+
+
+
+
+
+##  What **ARE** the problems (in my opinion) {.smaller background="#b7bfdb"}
+
+2) General **lack** of ability to review data (not so much to review codes)
+
+- How to detect if the data has been manipulated or fabricated?
+
+  - It is a similar challenge to  detecting Fake News.
+  - But if **there are tools to detect plagiarism, why wouldn't exist tools to detect data fraud in the future?**
+
+. . .
+
+- **Who is in charge to detect data fraud? The journal? The reviewers?**
+
+  - How to train reviewers to detect it?
+
+
+
+
+
+
+
+
+
+##  What **ARE** the problems (in my opinion) {.smaller background="#b7bfdb"}
+
+Before you have the idea to fabricate data, beware that... [Source](https://www.tandfonline.com/doi/abs/10.1080/08989629508573866)
+
+![](fraud.png)
+
+
+
+
+
+
+
+
+
+##  What **ARE** the problems (in my opinion) {.smaller background="#b7bfdb"}
+
+3) There are still concerns that data providers will **backslash the data-sharing movement**.
+
+- This issue seems quied for now...
+- If you do not use secondary data, you can share without concerns. 
+
+
+
+
+
+
+
+##  What **ARE** the problems (in my opinion) {.smaller background="#b7bfdb"}
+
+
+4) Journals are still **learning how to create internal protocols** to share data.
+
+- "Code" is just a couple of files. You should share it.
+
+  - But sharing code only goes so far. Experienced researchers can evaluate the quality of your code and use it as a subjective proxy for the quality of your work.
+  - If you write good codes, you should share them. If you write bad codes, start writing good ones (simple, clear, etc.)
+  - Obviously, the journal needs to be able to publish your code.
+
+
+![](capes.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## THANK YOU!
+
+::: columns
+::: {.column width="30%"}
+![](fgv.png){fig-align="right"}
+:::
+
+::: {.column width="70%"}
+**Henrique Castro Martins**
+
+-   [henrique.martins\@fgv.br](henrique.martins@fgv.br)
+-   <https://eaesp.fgv.br/en/people/henrique-castro-martins>
+-   [henriquemartins.net](https://henriquemartins.net/)
+-   <https://www.linkedin.com/in/henriquecastror/>
+:::
+:::
+
+
