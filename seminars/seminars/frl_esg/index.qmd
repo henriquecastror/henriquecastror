@@ -1,17 +1,18 @@
 ---
-title: 'Competition and ESG practices in emerging markets: evidences from a diff-in-diff
-  model'
-author: "Henrique Castro Martins (IAG/PUC-Rio)"
-date: '2021-04-05'
-output:
-  xaringan::moon_reader: default
-  ioslides_presentation: default
-  beamer_presentation:
-    theme: AnnArbor
-    colortheme: dolphin
-    fonttheme: structurebold
-params:
-  name1: HCM
+title: "Competition and ESG practices in emerging markets"
+date: 2021-04-05
+author: "Henrique C. Martins"
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: background2.png
+    css: styles.css
+    footer: <https://eaesp.fgv.br/>
+    multiplex: true
+    toc: false
 ---
 
 
@@ -20,11 +21,12 @@ params:
 
 
 
-# Motivation
+
+## Motivation {.smaller}
 
 Over the last few years, there is a massive interest in **corporate ESG decisions (disclosure and performance)** from academia and practitioners.
 
---
+. . .
 
 To invest more in ESG practices, **corporations are facing pressure** from:
 
@@ -32,7 +34,7 @@ To invest more in ESG practices, **corporations are facing pressure** from:
 - Public opinion (Baldini, Dal Maso, Liberatore, Mazzi, & Terzani, 2018), 
 - And peers (Cao, Liang, & Zhan, 2019)
 
---
+. . .
 
 However, antecedents and consequences of ESG practices **are not well defined** in the literature.
 
@@ -51,13 +53,11 @@ However, antecedents and consequences of ESG practices **are not well defined** 
 
 
 
----
-
-# Motivation
+##  Motivation {.smaller}
 
 The literature has two main hypotheses to explain why managers invest in ESG practices
 
---
+. . .
 
 **1) The altruist/agency conflict argument**
 
@@ -67,7 +67,12 @@ The literature has two main hypotheses to explain why managers invest in ESG pra
 
     - I.e., they pursue some form of personal **reputation**.
 
---
+
+
+
+
+
+##  Motivation {.smaller}
 
 **2) The strategic argument**
 
@@ -75,7 +80,7 @@ The literature has two main hypotheses to explain why managers invest in ESG pra
 
 - The main reason managers invest in such practices is to **find value in 'non-traditional' ways**.
 
---
+. . .
 
 Literature shows **conflicting evidences**: Barnea and Rubin (2010), Borghesi et al. (2014); Fernández-Kranz and Santaló (2010), Flammer (2015a), and Vural-Yavaç (2020). 
 
@@ -89,9 +94,7 @@ Literature shows **conflicting evidences**: Barnea and Rubin (2010), Borghesi et
 
 
 
----
-
-# But in Emerging Markets
+## But in Emerging Markets {.smaller}
 
 The **'Escape from competition argument' is less likely to hold**, because:
 
@@ -101,11 +104,11 @@ The **'Escape from competition argument' is less likely to hold**, because:
 
 - Corporate practices are more opaque
 
---
+. . .
 
 Thus, **stakeholders are less likely to evaluate correctly the returns of strategies based on ESG practices**, even profitable ones. 
 
---
+. . .
 
 *Hypothesis 1: Competition is negatively associated with corporate ESG practices.*
 
@@ -120,9 +123,7 @@ Thus, **stakeholders are less likely to evaluate correctly the returns of strate
 
 
 
----
-
-# Shock in Competition: Brazil 2015
+## Shock in Competition: Brazil 2015 {.smaller}
 
 
 - Beginning of a **presidential impeachment**
@@ -135,9 +136,12 @@ Thus, **stakeholders are less likely to evaluate correctly the returns of strate
 
 
 
----
 
-# Shock in Competition: Brazil 2015
+
+
+
+
+## Shock in Competition: Brazil 2015
 
 <img src="Imagem1.png" width="85%" />
 
@@ -152,9 +156,7 @@ Thus, **stakeholders are less likely to evaluate correctly the returns of strate
 
 
 
----
-
-# Sample
+## Sample {.smaller}
 
 - Sample of **5.971 firm-year observations for 22 emerging economies** (Kearney, 2012)
 
@@ -179,9 +181,7 @@ Thus, **stakeholders are less likely to evaluate correctly the returns of strate
 
 
 
----
-
-# Countries
+## Countries {.smaller}
 
 <img src="Imagem5.png" width="90%" align="Center"/>
 
@@ -190,16 +190,14 @@ Thus, **stakeholders are less likely to evaluate correctly the returns of strate
 
 
 
----
-
-# Models
+## Models {.smaller}
 
 **Model 1:**
 
 $ESG_{i,t} = β_1 + β_2 × Competition_{i,t-1} + β_3 × Size_{i,t-1} + β_4 × MtB_{i,t-1} + \\ β_5 × Leverage_{i,t-1} + β_6 × Capex + RD_{i,t-1} + β_7 × ROA_{i,t-1} + \\ β_8 × Cash_{i,t-1} + ϕ_{time} + ϵ_{i,t}$
 
 
-$$\\[0.5cm]$$
+
 
 **Model 2:**
 
@@ -210,26 +208,25 @@ $ESG_{i,t} = β_1 + β_2 × Treated (Brazil) + β_3 × After (2015) + \\ β_4×T
 
 
 
----
-
-# Main Results (Model 1)
+## Main Results (Model 1) {.smaller}
 
 <img src="Imagem7.png" width="110%" />
 
 
 
----
 
-# Main Results (Model 2 - pre-matching)
+
+
+
+
+## Main Results (Model 2 - pre-matching) {.smaller}
 
 <img src="Imagem9.png" width="110%" />
 
 
 
 
----
-
-# Main Results (Model 2 - post-matching)
+## Main Results (Model 2 - post-matching) {.smaller}
 
 <img src="Imagem2.png" width="90%" />
 
@@ -237,10 +234,7 @@ $ESG_{i,t} = β_1 + β_2 × Treated (Brazil) + β_3 × After (2015) + \\ β_4×T
 
 
 
----
-
-
-# Main Results (Robustness and Falsification)
+## Main Results (Robustness and Falsification) {.smaller}
 
 **Robustness: Excluding China**
 
@@ -254,9 +248,7 @@ $ESG_{i,t} = β_1 + β_2 × Treated (Brazil) + β_3 × After (2015) + \\ β_4×T
 
 
 
----
-
-# Placebo tests (alternative Y's)
+## Placebo tests (alternative Y's) {.smaller}
 
 <img src="Imagem41.png" width="90%" />
 
@@ -268,29 +260,27 @@ $ESG_{i,t} = β_1 + β_2 × Treated (Brazil) + β_3 × After (2015) + \\ β_4×T
 
 
 
----
-# Conclusions
+## Conclusions {.smaller}
 
 - Product market competition leads to worse ESG practices in emerging markets.
 
---
+. . .
 
 - When competition increases, firms make trade-offs between alternative investment strategies.
 
---
+. . .
 
 - Which penalizes those assumed as less profitable in the short-term, such as ESG-related practices. 
 
     - Especially, E and S. Findings of G are more ambiguous.
 
---
+. . .
 
 - Results contradict US-based findings: Fernández-Kranz and Santaló (2010), Flammer (2015b), and Leong and Yang (2020).
 
     - This is the interesting part of this article.
 
-
---
+. . .
 
 - Managers from emerging markets **decrease ESG performance** to face **more challenging and uncertain times**, supporting the view that they invest in these practices for **altruistic** purposes.
 
@@ -298,22 +288,20 @@ $ESG_{i,t} = β_1 + β_2 × Treated (Brazil) + β_3 × After (2015) + \\ β_4×T
 
 
 
----
 
-class: right, middle
+## THANK YOU!
 
-.left[ __Hope you like it!__ ] 
+::: columns
+::: {.column width="30%"}
+![](fgv.png){fig-align="right"}
+:::
 
+::: {.column width="70%"}
+**Henrique Castro Martins**
 
-<img src="slides1-empiricalissues-me.jpg" width="15%" align="right" />
-
-$$\\[2.25cm]$$
-
-# *Find me at:*
-
-[henriquemartins.net](https://henriquemartins.net/)
-
-[hcm@iag.puc-rio.br](mailto:hcm@iag.puc-rio.br)
-
-
-
+-   [henrique.martins\@fgv.br](henrique.martins@fgv.br)
+-   <https://eaesp.fgv.br/en/people/henrique-castro-martins>
+-   [henriquemartins.net](https://henriquemartins.net/)
+-   <https://www.linkedin.com/in/henriquecastror/>
+:::
+:::
