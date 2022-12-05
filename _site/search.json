@@ -172,7 +172,7 @@
     "href": "seminars/index.html",
     "title": "Seminars",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 3, 2022\n\n\nEthics & Open Data (ANPCONT)\n\n\nHenrique C. Martins\n\n\n\n\nAug 8, 2022\n\n\nTalk about Research Productivity (Unisinos)\n\n\nHenrique C. Martins\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\nHenrique C. Martins\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\nHenrique C. Martins\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\nHenrique C. Martins\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\nHenrique C. Martins\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 3, 2022\n\n\nEthics & Open Data (ANPCONT)\n\n\nHenrique C. Martins\n\n\n\n\nAug 8, 2022\n\n\nTalk about Research Productivity (Unisinos)\n\n\nHenrique C. Martins\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\nHenrique C. Martins\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\nHenrique C. Martins\n\n\n\n\nNov 19, 2020\n\n\n9th Fórum EcoInovar: A experiência de Open Science na RAC\n\n\nHenrique C. Martins\n\n\n\n\nNov 16, 2020\n\n\nMy notes about the 2020 ICGS Editors’ tips\n\n\nHenrique C. Martins\n\n\n\n\nOct 27, 2020\n\n\nIssues in Empirical Finance Research\n\n\nHenrique C. Martins\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\nHenrique C. Martins\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\nHenrique C. Martins\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "seminars/seminars/anpcont_open_data/index.html",
@@ -978,5 +978,278 @@
     "title": "Blockholders and firm value: Evidence from Brazil",
     "section": "",
     "text": "Abstract:\nThis research analyzes the relationship between the presence of blockholders and the value of Brazilian firms. Our analysis comprises all non-financial listed firms in Brazil with data available in the period 2010-2019 (i.e., 1,091 firm-year observations). We estimate Ordinary Least Squares (OLS) models with firm fixed effects and use Propensity Score Matching (PSM) to pair sub-samples and mitigate selection bias concerns. Our results suggest a negative association between Tobin’s Q and the presence of blockholders. Our findings contradict previous studies using samples of international firms but corroborate previous studies using Brazilian firms. We also find that companies with blockholders of the family-type have Tobin’s Q lower than the other types.\nArticle co-authored with Bruno Brasil Lombello and Marcelo Cabús Klotzle."
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#the-challenge",
+    "href": "seminars/seminars/empirical_issues/index.html#the-challenge",
+    "title": "Issues in Empirical Finance Research",
+    "section": "The challenge",
+    "text": "The challenge\n\nI will discuss some issues in using plain OLS models in Corporate Finance & Governance Research\n\n\n\nI will avoid the word “endogeneity” as much as I can\n\n\n\n\nI will also avoid the word “identification” because identification does not guarantee causality and vice-versa (Kahn and Whited 2017)\n\n\n\n\nThe discussion is based on Atanasov and Black (2016)"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#the-challenge-1",
+    "href": "seminars/seminars/empirical_issues/index.html#the-challenge-1",
+    "title": "Issues in Empirical Finance Research",
+    "section": "The challenge",
+    "text": "The challenge\n\nImagine that you want to investigate the effect of Governance on Q\n\nYou may have more covariates explaining Q (omitted from slides)\n\n\n\\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\nAll the issues in the next slides will make it not possible to infer that changing Gov will CAUSE a change in Q\nThat is, cannot infer causality"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#reverse-causation",
+    "href": "seminars/seminars/empirical_issues/index.html#reverse-causation",
+    "title": "Issues in Empirical Finance Research",
+    "section": "1) Reverse causation",
+    "text": "1) Reverse causation\nOne source of bias is: reverse causation\n\nPerhaps it is Q that causes Gov\nOLS based methods do not tell the difference between these two betas:\n\n\\(𝑄_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\\(Gov_{i} = α + 𝜷_{i} × Q + Controls + error\\)\n\nIf one Beta is significant, the other will most likely be significant too\nYou need a sound theory!"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#omitted-variable-bias-ovb",
+    "href": "seminars/seminars/empirical_issues/index.html#omitted-variable-bias-ovb",
+    "title": "Issues in Empirical Finance Research",
+    "section": "2) Omitted variable bias (OVB)",
+    "text": "2) Omitted variable bias (OVB)\nThe second source of bias is: OVB\n\nImagine that you do not include an important “true” predictor of Q\nLet’s say, long is: \\(𝑸_{i} = 𝜶_{long} + 𝜷_{long}* gov_{i} + δ * omitted + error\\)\nBut you estimate short: \\(𝑸_{i} = 𝜶_{short} + 𝜷_{short}* gov_{i} + error\\)\n\\(𝜷_{short}\\) will be:\n\n\\(𝜷_{short} = 𝜷_{long}\\) + bias\n\\(𝜷_{short} = 𝜷_{long}\\) + relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)\n\nWhere: relationship between omitted (omitted) and included (Gov) is: \\(Omitted = 𝜶 + ϕ *gov_{i} + u\\)\n\n\nThus, OVB is: \\(𝜷_{short} – 𝜷_{long} = ϕ * δ\\)\nSee an example in r here"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#specification-error",
+    "href": "seminars/seminars/empirical_issues/index.html#specification-error",
+    "title": "Issues in Empirical Finance Research",
+    "section": "3) Specification error",
+    "text": "3) Specification error\nThe third source of bias is: Specification error\n\nEven if we could perfectly measure gov and all relevant covariates, we would not know for sure the functional form through which each influences q\n\nFunctional form: linear? Quadratic? Log-log? Semi-log?\n\nMisspecification of x’s is similar to OVB"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#signaling",
+    "href": "seminars/seminars/empirical_issues/index.html#signaling",
+    "title": "Issues in Empirical Finance Research",
+    "section": "4) Signaling",
+    "text": "4) Signaling\nThe fourth source of bias is: Signaling\n\nPerhaps, some individuals are signaling the existence of an X without truly having it:\n\nFor instance: firms signaling they have good governance without having it\n\nThis is similar to the OVB because you cannot observe the full story"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#simultaneity",
+    "href": "seminars/seminars/empirical_issues/index.html#simultaneity",
+    "title": "Issues in Empirical Finance Research",
+    "section": "5) Simultaneity",
+    "text": "5) Simultaneity\nThe fifth source of bias is: Simultaneity\n\nPerhaps gov and some other variable x are determined simultaneously\nPerhaps there is bidirectional causation, with q causing gov and gov also causing q\nIn both cases, OLS regression will provide a biased estimate of the effect\nAlso, the sign might be wrong"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#heterogeneous-effects",
+    "href": "seminars/seminars/empirical_issues/index.html#heterogeneous-effects",
+    "title": "Issues in Empirical Finance Research",
+    "section": "6) Heterogeneous effects",
+    "text": "6) Heterogeneous effects\nThe sixth source of bias is: Heterogeneous effects\n\nMaybe the causal effect of gov on q depends on observed and unobserved firm characteristics:\n\nLet’s assume that firms seek to maximize q\nDifferent firms have different optimal gov\nFirms know their optimal gov\nIf we observed all factors that affect q, each firm would be at its own optimum and OLS regression would give a non-significant coefficient\n\nIn such case, we may find a positive or negative relationship.\nNeither is the true causal relationship"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#construct-validity",
+    "href": "seminars/seminars/empirical_issues/index.html#construct-validity",
+    "title": "Issues in Empirical Finance Research",
+    "section": "7) Construct validity",
+    "text": "7) Construct validity\nThe seventh source of bias is: Construct validity\n\nSome constructs (e.g. Corporate governance) are complex, and sometimes have conflicting mechanisms\nWe usually don’t know for sure what “good” governance is, for instance\nIt is common that we use imperfect proxies\nThey may poorly fit the underlying concept"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#measurement-error",
+    "href": "seminars/seminars/empirical_issues/index.html#measurement-error",
+    "title": "Issues in Empirical Finance Research",
+    "section": "8) Measurement error",
+    "text": "8) Measurement error\nThe eighth source of bias is: Measurement error\n\n“Classical” random measurement error for the outcome will inflate standard errors but will not lead to biased coefficients.\n\n\\(y^{*} = y + \\sigma_{1}\\)\nIf you estimante \\(y^{*} = f(x)\\), you have \\(y + \\sigma_{1} = x + \\epsilon\\)\n\\(y = x + u\\)\n\nwhere \\(u = \\epsilon + \\sigma_{1}\\)\n\n\n“Classical” random measurement error in x’s will bias coefficient estimates toward zero\n\n\\(x^{*} = x + \\sigma_{2}\\)\nImagine that \\(x^{*}\\) is a bunch of noise\nIt would not explain anything\nThus, your results are biased toward zero"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#observation-bias",
+    "href": "seminars/seminars/empirical_issues/index.html#observation-bias",
+    "title": "Issues in Empirical Finance Research",
+    "section": "9) Observation bias",
+    "text": "9) Observation bias\nThe ninth source of bias is: Observation bias\n\nThis is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed\nFirms which change gov may behave differently because their managers or employees think the change in gov matters, when in fact it has no direct effect"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#interdependent-effects",
+    "href": "seminars/seminars/empirical_issues/index.html#interdependent-effects",
+    "title": "Issues in Empirical Finance Research",
+    "section": "10) Interdependent effects",
+    "text": "10) Interdependent effects\nThe tenth source of bias is: Interdependent effects\n\nImagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt\nConversely, a reform that improves efficiency for a single firm might not improve profitability if adopted widely because the gains will be competed away\n“One swallow doesn’t make a summer”"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#selection-bias",
+    "href": "seminars/seminars/empirical_issues/index.html#selection-bias",
+    "title": "Issues in Empirical Finance Research",
+    "section": "11) Selection bias",
+    "text": "11) Selection bias\nThe eleventh source of bias is: Selection bias\n\nIf you run a regression with two types of companies\n\nHigh gov (let’s say they are the treated group)\nLow gov (let’s say they are the control group)\n\nWithout any matching method, these companies are likely not comparable\nThus, the estimated beta will contain selection bias\nThe bias can be either be positive or negative\nIt is similar to OVB"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#self-selection",
+    "href": "seminars/seminars/empirical_issues/index.html#self-selection",
+    "title": "Issues in Empirical Finance Research",
+    "section": "12) Self-Selection",
+    "text": "12) Self-Selection\nThe twelfth source of bias is: Self-Selection\n\nSelf-selection is a type of selection bias\nUsually, firms decide which level of governance they adopt\nThere are reasons why firms adopt high governance\n\nIf observable, you need to control for\nIf unobservable, you have a problem\n\nIt is like they “self-select” into the treatment\n\nUnits decide whether they receive the treatment of not\n\nYour coefficients will be biased"
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html#thank-you",
+    "href": "seminars/seminars/empirical_issues/index.html#thank-you",
+    "title": "Issues in Empirical Finance Research",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#icgs-editors-tips",
+    "href": "seminars/seminars/icgs_tips/index.html#icgs-editors-tips",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "ICGS Editors’ Tips",
+    "text": "ICGS Editors’ Tips\nI will share in these slides the notes I took from the two panels with editors from A-Journals at the International Corporate Governance Society (ICGS) Annual Meeting.\nI hope you like it!"
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-1-learn-to-receive-feedback",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-1-learn-to-receive-feedback",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 1: Learn to receive feedback",
+    "text": "Tip 1: Learn to receive feedback\nThis is the most important tip.\nWhen we get a rejection, we usually get frustrated. Learning to receive negative feedback to work on your weakness is super important to succeed in your career."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-2-never-omit-references",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-2-never-omit-references",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 2: Never omit references",
+    "text": "Tip 2: Never omit references\nEditors know the literature so well. If you are omitting essential references, they will notice it."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-3-you-need-a-story",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-3-you-need-a-story",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 3: You need a story",
+    "text": "Tip 3: You need a story\nIt doesn’t matter if you have the perfect empirical design or the nicest dataset; if you do not have a story to tell, you are in trouble.\nLearn to create and to tell your story."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-4-introduction-is-the-main-part",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-4-introduction-is-the-main-part",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 4: Introduction is the main part",
+    "text": "Tip 4: Introduction is the main part\nThe introduction is where reviewers decide whether they like or not your article.\nThe introduction is about 10% of the paper’s length, but you should work 25% of your time on it."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-5-abstract-needs-to-be-crystal-clear",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-5-abstract-needs-to-be-crystal-clear",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 5: Abstract needs to be crystal-clear",
+    "text": "Tip 5: Abstract needs to be crystal-clear\nThe abstract is always the only part that reviewers and editors always thoroughly read.\nSo, it needs to be as clear as possible.\nAnd it needs to deliver the message right away."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-6-focus-on-the-contribution",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-6-focus-on-the-contribution",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 6: Focus on the contribution",
+    "text": "Tip 6: Focus on the contribution\nThe most critical factor in getting published is to have a contribution.\nThe definition of contribution is subjective, but editors and reviewers can always smell if you don’t have one."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-7-understand-the-journal",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-7-understand-the-journal",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 7: Understand the journal",
+    "text": "Tip 7: Understand the journal\nYou have to understand the journal, the scope, and the past articles in there.\nIf you are not familiar with the journal’s characteristics, you have less chance."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-8-dont-do-papers-do-projects",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-8-dont-do-papers-do-projects",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 8: Don’t do papers, Do projects",
+    "text": "Tip 8: Don’t do papers, Do projects\nIf you have an established and well-thought project where you get excited every day, your chances of success are high.\nIf you only do papers for the sake of doing it, you’ll get frustrated eventually."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-9-explore-the-context",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-9-explore-the-context",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 9: Explore the context",
+    "text": "Tip 9: Explore the context\nYou always have to explore the context of your sample and/or dataset.\nProviding new results of an established topic is ok…\n…but exploring your context to provide new insights is better."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-10-90-persistence-10-i.q.",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-10-90-persistence-10-i.q.",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 10: 90% persistence, 10% I.Q.",
+    "text": "Tip 10: 90% persistence, 10% I.Q.\nPublishing is about 90% persistence.\nThe remaining 10% is about being smart."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-11-letters-matter",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-11-letters-matter",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 11: Letters matter",
+    "text": "Tip 11: Letters matter\nAuthors sometimes do not pay attention to the cover letter or to response letters to reviewers.\nBut letters matter. And they matter a lot.\nLearn how to write good letters. And be honest in them. Don’t try to oversell your article; editors smell such things."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#tip-12-editors-want-to-publish",
+    "href": "seminars/seminars/icgs_tips/index.html#tip-12-editors-want-to-publish",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "Tip 12: Editors want to publish",
+    "text": "Tip 12: Editors want to publish\nFinally, remember that no editor is blocking you.\nThey want to publish articles. But they want to publish good articles.\nYou have to do your job of getting and submitting a good one."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html#thank-you",
+    "href": "seminars/seminars/icgs_tips/index.html#thank-you",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#section",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#section",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "",
+    "text": "Todos os comentários são opiniões minhas, não representam a opinião das instituições de que faço parte."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#open-science-os",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#open-science-os",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "Open Science (OS)",
+    "text": "Open Science (OS)\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n\n\nExemplo mais recente: Dados de COVID (link)."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#open-science-os-na-rac",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#open-science-os-na-rac",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "Open Science (OS) na RAC",
+    "text": "Open Science (OS) na RAC\n\nDados abertos\nCódigo e Materiais abertos\nRevisão pelos pares aberta\nArtigos-tutoriais (Open Education)\nCall for papers sobre Reuso de Dados\nArtigos depositados como preprints podem ser submetidos\n\nPolítica completa pode ser encontrada aqui.\nDeclaração de Ciência Aberta pode ser encontrada aqui."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "Dados Abertos - Como a RAC faz?",
+    "text": "Dados Abertos - Como a RAC faz?\n\nArtigos teóricos: não há compartilhamento:\n\nOs autores devem informar caráter teórico na Declaração de Ciência Aberta.\n\n\n\n\nDados primários: Compartilhamento obrigatório\n\nDados gerados pelos autores, questionários, entrevistas, etc.\nDados podem (e devem) estar desidentificados para compartilhamento\n\n\n\n\n\nDados secundários: Compartilhamento obrigatório\n\nBanco Mundial, Ipeadata, dados governamentais, etc.\n\n\n\n\n\nDados reutilizados: Compartilhamento obrigatório\n\nDados em repositórios públicos (Dataverse, Mendeley, etc.)\n\n\n\n\n\nDados de experimentos: Compartilhamento obrigatório\n\nExperimentos de laboratório, etc."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz-1",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz-1",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "Dados Abertos - Como a RAC faz?",
+    "text": "Dados Abertos - Como a RAC faz?\n\nDados de Simulação: Compartilhamento obrigatório\n\nDados gerados dentro de um código ou protocolo de pesquisa, . . .\n\nCódigos e protocolos de pesquisa: Compartilhamento obrigatório\n\nScripts, códigos, designs de entrevistas, coleta estruturada de dados, programas, etc."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz-2",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz-2",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "Dados Abertos - Como a RAC faz?",
+    "text": "Dados Abertos - Como a RAC faz?\n\nDados proprietários:\n\nDados coletados em bancos, como Economática, Compustat, etc.\nAutores devem compartilhar ou explicar razão de não compartilharem.\n\n\n\n- Se não tiverem direitos legais sobre os dados, **os autores deverão**:\n\n    - Apresentar **código** com comandos para baixar os dados da fonte original,\n    - Apresentar **tabela** com nome / título da variável / dados, conforme definido pela fonte original,\n    - Comprometer-se a **apoiar editores e revisores** que tentarem replicar resultados."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#materiais-abertos---como-a-rac-faz",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#materiais-abertos---como-a-rac-faz",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "Materiais Abertos - Como a RAC faz?",
+    "text": "Materiais Abertos - Como a RAC faz?\n\nApós o artigo ser aceito, autores são convidados a disponibilizar os dados e demais materiais de pesquisa em repositório público (estamos preferindo o Mendeley data).\n\n\n\nEm seguida, materiais são centralizados no Dataverse da RAC.\n\n\n\n\nMateriais geram um doi que pode ser posteriormente citado.\n\nExemplo: esse é o doi de um dos últimos artigos publicados na RAC: https://doi.org/10.7910/DVN/ZXBMHD em 10 de Novembro."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#revisão-pelos-pares-aberta---como-a-rac-faz",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#revisão-pelos-pares-aberta---como-a-rac-faz",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "Revisão pelos pares aberta - Como a RAC faz?",
+    "text": "Revisão pelos pares aberta - Como a RAC faz?\n\nApós o artigo ser aceito, revisores são convidados a permitir que sua identificação apareça na versão final do artigo.\n\n\n\nEm paralelo, revisores e autores são convidados a permitir a publicidade do conteúdo dos seus reports e suas cartas de resposta.\n\nVeja um exemplo aqui\n\n\n\n\n\nA RAC não altera o conteúdo dos pareceres em nenhuma situação (erros de digitação, por exemplo, são incluídos)\n\nSomente comentários que violem a ética (comentários depreciativos ou difamatórios) serão editados (omitidos) do relatório.\nNesses casos, será declarado que partes do relatório foram editadas."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#section-2",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#section-2",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "",
+    "text": "Exemplo aqui."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#thank-you",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#thank-you",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
   }
 ]

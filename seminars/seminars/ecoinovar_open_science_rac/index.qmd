@@ -1,0 +1,251 @@
+---
+title: " 9th Fórum EcoInovar: A experiência de Open Science na RAC"
+date: 2020-11-19
+author: "Henrique C. Martins"
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: background2.png
+    css: styles.css
+    footer: <https://eaesp.fgv.br/>
+    multiplex: true
+    toc: false
+---
+
+
+
+
+##
+
+![](caution.jpg)
+
+
+**Todos os comentários são opiniões minhas, não representam a opinião das instituições de que faço parte.**
+
+
+
+
+
+
+## Open Science (OS) {.smaller}
+
+" _Open science encompasses unhindered access to scientific articles, **access to data from public research**, and **collaborative research** enabled by ICT tools and incentives._ 
+
+_Broadening access to scientific publications and data is at the heart of open science, so that research outputs are in **the hands of as many as possible**, and potential benefits are **spread as widely as possible**_" ([OCDE](https://www.oecd.org/science/inno/open-science.htm)).
+
+. . . 
+
+**É um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.**
+
+
+. . .
+
+Exemplo mais recente: **Dados de COVID** ([link](https://www.oecd.org/coronavirus/policy-responses/why-open-science-is-critical-to-combatting-covid-19-cd6ab2f9/)).
+
+
+
+
+
+
+## Open Science (OS) na RAC {.smaller}
+
+- [Dados abertos](https://rac.anpad.org.br/index.php/rac/article/view/1384)
+
+- Código e Materiais abertos
+
+- Revisão pelos pares aberta
+
+- [Artigos-tutoriais](https://rac.anpad.org.br/index.php/rac/article/view/1391) (Open Education)
+
+- Call for papers sobre [Reuso de Dados](https://zenodo.org/record/3858031#.Xs5VoGhKjDd) 
+
+- Artigos depositados como preprints podem ser submetidos
+
+
+
+Política completa pode ser encontrada [aqui](https://rac.anpad.org.br/index.php/rac/openscience).
+
+
+Declaração de Ciência Aberta pode ser encontrada  [aqui](https://rac.anpad.org.br/index.php/rac/about/submissions).
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+## Dados Abertos - Como a RAC faz? {.smaller}
+
+
+- **Artigos teóricos: não há compartilhamento**:
+
+    - Os autores devem informar caráter teórico na Declaração de Ciência Aberta.
+
+. . .
+
+- **Dados primários: Compartilhamento obrigatório**
+
+    - Dados gerados pelos autores, questionários, entrevistas, etc.
+    - Dados podem (e devem) estar desidentificados para compartilhamento
+
+. . .
+
+- **Dados secundários: Compartilhamento obrigatório**
+
+    - Banco Mundial, Ipeadata, dados governamentais, etc.
+
+. . .
+
+
+- **Dados reutilizados: Compartilhamento obrigatório**
+
+    - Dados em repositórios públicos (Dataverse, Mendeley, etc.)
+
+. . .
+
+
+- **Dados de experimentos: Compartilhamento obrigatório**
+
+    - Experimentos de laboratório, etc.
+
+
+
+
+
+
+
+
+## Dados Abertos - Como a RAC faz?  {.smaller}
+
+
+- **Dados de Simulação: Compartilhamento obrigatório**
+
+    - Dados gerados dentro de um código ou protocolo de pesquisa,
+. . .
+
+
+- **Códigos e protocolos de pesquisa: Compartilhamento obrigatório**
+
+     - Scripts, códigos, designs de entrevistas, coleta estruturada de dados, programas, etc.
+
+
+
+
+## Dados Abertos - Como a RAC faz? {.smaller}
+
+- **Dados proprietários**: 
+
+    - Dados coletados em bancos, como Economática, Compustat, etc.
+    
+    - Autores devem **compartilhar** ou **explicar** razão de não compartilharem. 
+
+. . .
+
+    - Se não tiverem direitos legais sobre os dados, **os autores deverão**:
+
+        - Apresentar **código** com comandos para baixar os dados da fonte original,
+        - Apresentar **tabela** com nome / título da variável / dados, conforme definido pela fonte original,
+        - Comprometer-se a **apoiar editores e revisores** que tentarem replicar resultados.
+        
+
+
+
+
+
+## Materiais Abertos - Como a RAC faz?  {.smaller}
+
+- Após o artigo ser aceito, autores são convidados a disponibilizar os dados e demais materiais de pesquisa em **repositório público** (estamos preferindo o [Mendeley data](https://data.mendeley.com/)).
+
+. . .
+
+- Em seguida, materiais são centralizados no [Dataverse da RAC](https://dataverse.harvard.edu/dataverse/rac).
+
+. . .
+
+- Materiais geram um doi que pode ser posteriormente **citado**. 
+
+    - Exemplo: esse é o doi de um dos últimos artigos publicados na RAC: [https://doi.org/10.7910/DVN/ZXBMHD](https://doi.org/10.7910/DVN/ZXBMHD) em **10 de Novembro**.
+
+
+## 
+
+<img src="slides3-RAC-dataverse.png" width="100%" align="middle" />
+
+
+
+
+
+
+
+
+## Revisão pelos pares aberta - Como a RAC faz? {.smaller}
+
+- **Após o artigo ser aceito**, revisores são convidados a permitir que sua identificação apareça na versão final do artigo.
+
+. . .
+
+- Em paralelo, **revisores e autores são convidados** a permitir a publicidade do conteúdo dos seus reports e suas cartas de resposta.
+
+    - Veja um exemplo [aqui](https://rac.anpad.org.br/index.php/rac/issue/view/148)
+    
+. . .
+
+- **A RAC não altera o conteúdo** dos pareceres em nenhuma situação (erros de digitação, por exemplo, são incluídos)
+  
+    - Somente comentários que violem a ética (comentários depreciativos ou difamatórios) serão editados (omitidos) do relatório. 
+    - Nesses casos, será declarado que partes do relatório foram editadas. 
+
+
+
+
+
+
+
+
+## {.smaller}
+
+<img src="slides3-RAC-os.png" width="100%" align="middle" />
+
+
+Exemplo [aqui](https://zenodo.org/record/4002421).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## THANK YOU!
+
+::: columns
+::: {.column width="30%"}
+![](fgv.png){fig-align="right"}
+:::
+
+::: {.column width="70%"}
+**Henrique Castro Martins**
+
+-   [henrique.martins\@fgv.br](henrique.martins@fgv.br)
+-   <https://eaesp.fgv.br/en/people/henrique-castro-martins>
+-   [henriquemartins.net](https://henriquemartins.net/)
+-   <https://www.linkedin.com/in/henriquecastror/>
+:::
+:::
