@@ -21,39 +21,11 @@
     "text": "Interests\n\nCorporate Finance\nCorporate Governance\nFinancial policies\nEmpirical methods in finance"
   },
   {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "How to create an effective master’s presentation\n\n\n\n\n\n\n\nMaster\n\n\n\n\nA tutorial to present your dissertation\n\n\n\n\n\n\nNov 7, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nWorldwide Governance Indicators\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nCorruption\n\n\n\n\nGraphing WGI\n\n\n\n\n\n\nSep 14, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nBrazil Economic Policy Uncertainty\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nEPU\n\n\n\n\nGraphing EPU\n\n\n\n\n\n\nAug 12, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nIndex of Democracy\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nDemocracy\n\n\n\n\nGraphing V-Dem\n\n\n\n\n\n\nAug 10, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nIbovespa in USD\n\n\n\n\n\n\n\nFinance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nGraphing Ibovespa in dollar using ipeadatar\n\n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nFun Stuff\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nHere is a collection of pictures having fun about coding, statistics, and Finance.\n\n\n\n\n\n\nAug 1, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "blog/posts/wgi/index.html",
-    "href": "blog/posts/wgi/index.html",
-    "title": "Worldwide Governance Indicators",
-    "section": "",
-    "text": "Voice and Accountability\nPolitical Stability and Absence of Violence\nGovernment Effectiveness\nRegulatory Quality\nRule of Law\nControl of Corruption\n\nBefore we continue, it is important to know what these variables are measuring: they measure Brazilians’ perception about governance, they do not measure governance per se. Thus, the Government Effectiveness variable, for instance, represents how effective Brazilians believe their Government are, not whether the Government is really effective or not. Perception here is the crucial word, so let’s keep that in mind.\nAlso, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the “better” or the more “optimistic” the society of that country is about that variable.\nFirst, download the data.\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(downloader)\nlibrary(haven)\nurl <- \"https://info.worldbank.org/governance/wgi/Home/downLoadFile?fileName=wgidataset_stata.zip\"\ndownload(url, dest=\"file.zip\", mode=\"wb\") \nunzip (\"file.zip\", exdir = \"./\")\ndata <- read_dta(\"wgidataset.dta\")\nfile.remove(\"file.zip\")\nfile.remove(\"PublicStataDatasetReadme.pdf\")\nfile.remove(\"wgidataset.dta\")\n\nFor convenience, let’s focus only on the years after 2000 and in some selected countries.\n\nnames(data)[names(data) == 'countryname'] <- 'Country'\ndata <-subset(data, year >= 2000)\ncountries <- as.data.frame(c(\"Brazil\", \"France\", \"Germany\", \"United States of America\", \"United Kingdom\", \"Italy\", \"Japan\", \"China\", \"India\")) \ncolnames(countries) <- \"Country\"  \ndata <- merge(data, countries , by=\"Country\")\n\nNow let’s have fun visualizing data. More about the clarifications in : https://info.worldbank.org/governance/wgi/Home/Documents\n\n\nVoice and Accountability (vae)\nDescription: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.\n\nggplot(data, aes(x = year, y=vae) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Voice and Accountability', \n       x='Year', \n       title = \"Voice and Accountability (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nPolitical Stability and Absence of Violence/Terrorism (pve)\nDescription: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.\n\nggplot(data, aes(x = year, y=pve) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Pol. Stability and Absence of Viol./Terror.', \n       x='Year', \n       title = \"Pol. Stability and Absence of Viol./Terror. (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nGovernment Effectiveness (gee)\nDescription: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..\n\nggplot(data, aes(x = year, y=gee) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Government Effectiveness', \n       x='Year', \n       title = \"Government Effectiveness (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nRegulatory Quality (rqe)\nDescription: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. \n\nggplot(data, aes(x = year, y=rqe) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Regulatory Quality', \n       x='Year', \n       title = \"Regulatory Quality (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nRule of Law (rle)\nDescription: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.\n\nggplot(data, aes(x = year, y=rle) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Rule of Law', \n       x='Year', \n       title = \"Rule of Law (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nControl of Corruption (cce)\nDescription: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.\n\nggplot(data, aes(x = year, y=cce) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Control of Corruption', \n       x='Year', \n       title = \"Control of Corruption (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\nThanks for passing by!"
-  },
-  {
-    "objectID": "blog/posts/presentation/index.html",
-    "href": "blog/posts/presentation/index.html",
-    "title": "How to create an effective master’s presentation",
-    "section": "",
-    "text": "If you are presenting a Ph.D. thesis, the depth of each slide changes a bit (and the time you have also increases by some minutes, to 20-25 minutes), but the order and structure are the same.\nFirst, ask your supervisor how long is the meeting expected to last. Usually, it is about 1h, but it can vary from school to school.\nThen, ask how long you have to present. Usually, master students have about 15 to 20 minutes. When you find that out, assume this is your most important rule to follow. You have to stick with the expected time.\nAssuming you have 15 minutes, you should not create more than 7 to 8 slides (9 to 10 in total, see below). Assume 2 min per slide. Professors won’t pay attention to presentations with 20, 30 slides.\nRemember that professors in your committee are experts in the topic of your dissertation. So don’t bother them with unnecessary explanations. You have to show that you know what you are talking about and you are all over your work, but remember that you are the rockie in the room. So stick to the time that is allocated to you.\nIf you have 8 slides, you should use the first 2 to a) give the context of your work, b) motivate your research, c) justify why it is important, d) discuss the research question. This order can vary throughout the slides, but it is almost mandatory to present these four topics. You can use chapter 1 of your dissertation to create these slides.\nThen, slide #3 should contain the theory that you used in your work. Avoid long paragraphs (nobody will have the time to read them while listening to you) and prefer to cite articles using bullets. You must be prepared to discuss each of the articles you mention in this slide (and all articles you cite in the dissertation, for that matter). You can include one or two short sentences to aggregate somehow the articles you cite, but do not include full paragraphs in your slides to discuss a specific article (you can use the appendix for that, see below).\nYou use slides #4 and #5 to discuss your empirical design. Again, avoid entire paragraphs and discuss using bullets, equations, and perhaps figures. Also, discuss the sample, any instrumental variable, any adjustment you made, etc. Be prepared to talk for around 3 to 4 minutes about these 2 slides since professors will pay a lot of attention to this part of your presentation. This might be the most critical part of your talk.\nYou have 2 slides to present the results. Avoid tables, but you can use part of them with extreme caution. If you want to include something from a table, include only the part that matters (and draw professors’ attention to the pages of your dissertation where the table is). It is always a good idea to come out with a figure to present the results if you can have one.\nFinally, use the final slides for your concluding remarks. Again, avoid entire paragraphs, and prefer using bullets.\nThere you go! 8 slides to a 15-min presentation!\nThis is how I see a nice master presentation, but these are not rules. If you feel you need 1 or 2 more slides, you can have it. However, do not use more time than expected!\nIn total, you may have 10 slides because you can use the first slide to include the title of your dissertation and your name, and the latter to include the same information again with a “Thank you for your attention” message. You do not spend time with these slides; they are there only to “initiate” and “conclude” your presentation, respectively. They are usually the slides that you keep on the screen while the real discussion is happening.\n\nAppendix\nIf you feel necessary, you can include additional information (perhaps an entire paragraph or a table) that you did not have in the first 8 slides of content. Include any information you want after the “Thank you for your attention” slide. You will not use these slides in the original 15 minutes you have. You will only use them if professors ask something you do not have in the first 8 slides.\nThese are the slides to make you comfortable that you will not forget anything about your work and have the means to explain parts that you did not have time to explain in the original 15 minutes. The appendix is like your insurance to make sure you can answer all their questions.\n\n\nAdditional comments\n\nCome prepared to discuss all parts of your work. Professors will probably ask for clarifications about specific details that she or he did not understand. More specifically, after you use your 15 minutes, your supervisor will provide time to each member of the committee to ask you questions, make comments and say anything they want to say. Usually, each professor uses about 15 minutes, but your supervisor will not cut their time if they need more.\nThis experience is one of those moments in time when you learn a lot about your own work and academia in general. So take notes of all comments that professors make to you. Prefer taking notes by hand, since handwriting increases learning, boosts memory, and is more friendly than typing.\nAlmost always, professors see issues in your main text and make recommendations for dealing with these issues. Your notes will help you later to make such corrections. Your supervisor is not obliged to take notes for you.\nAlmost always, you will have to provide a second version of your dissertation correcting the issues professors see. So, if you do not take notes, you will have trouble making such corrections.\nAfter all professors state their comments, your supervisor will invite them to a closed room to decide the result of your presentation. They usually take 15 minutes to discuss your work to reach a conclusion. These days, when most presentations occur via Zoom, most likely, your supervisor and all professors go to a breakout room, while all other participants stay in the main room.\nWhen professors are done discussing, they come back to the main room to announce the result. The outcomes vary from school to school but are mainly one of these three: 1) you are not approved and receive 60 to 90 days to make all corrections asked and present your work again to the committee; 2) you are approved, but you have to provide a second version of your work with all corrections made, 3) you are approved without modifications asked. The most common outcome is #2, but it can be #1 or #3.\n\nThat is it! Good luck with your presentation!"
-  },
-  {
-    "objectID": "blog/posts/fun_stuff/index.html",
-    "href": "blog/posts/fun_stuff/index.html",
-    "title": "Fun Stuff",
-    "section": "",
-    "text": "Here are some images I often use in my lectures.\n\n\n\n\n\n\nSource\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource\n\n\n\n\n\n\nSource"
-  },
-  {
-    "objectID": "research/index.html",
-    "href": "research/index.html",
-    "title": "Research",
-    "section": "",
-    "text": "Research\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nWe examine the role of country-level legal investor protection (i.e., shareholder and creditor protection) on firm investment–cash flow sensitivity\n\n\n\n\n\n\nAug 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nCan risk-taking and rule-taking explain zero-leverage firms?\n\n\n\n\n\n\nJun 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nCreating and Accounting Discretion Index (ADI).\n\n\n\n\n\n\nMay 7, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nProduct market competition is an important driver of firms’ ESG practices.\n\n\n\n\n\n\nMay 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nThis research analyzes the relationship between the presence of blockholders and the value of Brazilian firms\n\n\n\n\n\n\nMay 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen Science\n\n\n\nA framework of uncertainty taking.\n\n\n\n\n\n\nJan 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen Science\n\n\n\nA website containing codes.\n\n\n\n\n\n\nMay 7, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nAbout Open Science mechanisms.\n\n\n\n\n\n\nSep 9, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nWe investigate specific characteristics of the board of directors: the number of directors’ directorships and the number of committee positions\n\n\n\n\n\n\nSep 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nThis study examines the effects of the firm’s ownership concentration and its institutional environment on corporate debt maturity choices\n\n\n\n\n\n\nJun 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nWe investigate whether a bankruptcy reform, which increased creditors’ protection, affected the risk taking of Brazilian firms.\n\n\n\n\n\n\nJun 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nWe investigate whether investor protection is associated with how entrenched managers set corporate cash holdings\n\n\n\n\n\n\nFeb 1, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nThis study investigates the interplay between country-level governance quality and the capital structure choice\n\n\n\n\n\n\nJun 1, 2017\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nA Systematic Review about Investor Protection\n\n\n\n\n\n\nJan 11, 2016\n\n\n\n\n\n\n\n\nNo matching items"
+    "objectID": "teaching/index.html#section",
+    "href": "teaching/index.html#section",
+    "title": "Teaching resources",
+    "section": "2023/01",
+    "text": "2023/01\n\nFinancial Strategy (Estratégia Financeira): See here\n\n\nESG & Institutional Investment: See here"
   },
   {
     "objectID": "teaching/index.html#summer-course",
@@ -63,20 +35,6 @@
     "text": "2023/01 Summer course\n\nFinancial Strategy (Estratégia Financeira): See here"
   },
   {
-    "objectID": "teaching/index.html#section",
-    "href": "teaching/index.html#section",
-    "title": "Teaching resources",
-    "section": "2023/01",
-    "text": "2023/01\n\nFinancial Strategy (Estratégia Financeira): See here\n\n\nESG & Institutional Investment: See here"
-  },
-  {
-    "objectID": "teaching/Estrategia_financeira/index.html",
-    "href": "teaching/Estrategia_financeira/index.html",
-    "title": "Estratégia Financeira",
-    "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\n\n\n\nSlides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\n\nPart 0\nPart 1 ch10\nPart 2 ch11\nPart 3 ch12\nPart 4 ch13\nPart 5 ch14"
-  },
-  {
     "objectID": "teaching/index.html#section-1",
     "href": "teaching/index.html#section-1",
     "title": "Teaching resources",
@@ -84,59 +42,157 @@
     "text": "2022/02\n\nData & Empirical Finance: See here\n\n\nFinancial Strategy: See here\n\n\nESG & Institutional Investment: See here"
   },
   {
-    "objectID": "teaching/202301_ESG/index.html",
-    "href": "teaching/202301_ESG/index.html",
-    "title": "ESG & Institutional Investment",
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Posts",
     "section": "",
-    "text": "Slides\n\nPart 0\nPart 1\nPart 2\nPart 3\nPart 4\nPart 5\nPart 6"
+    "text": "How to create an effective master’s presentation\n\n\n\n\n\n\n\nMaster\n\n\n\n\nA tutorial to present your dissertation\n\n\n\n\n\n\nNov 7, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nWorldwide Governance Indicators\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nCorruption\n\n\n\n\nGraphing WGI\n\n\n\n\n\n\nSep 14, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nBrazil Economic Policy Uncertainty\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nEPU\n\n\n\n\nGraphing EPU\n\n\n\n\n\n\nAug 12, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nIndex of Democracy\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nDemocracy\n\n\n\n\nGraphing V-Dem\n\n\n\n\n\n\nAug 10, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nIbovespa in USD\n\n\n\n\n\n\n\nFinance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nGraphing Ibovespa in dollar using ipeadatar\n\n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nFun Stuff\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nHere is a collection of pictures having fun about coding, statistics, and Finance.\n\n\n\n\n\n\nAug 1, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "teaching/202301_Estrategia_financeira/index.html",
-    "href": "teaching/202301_Estrategia_financeira/index.html",
-    "title": "Financial Strategy (Estratégia Financeira)",
+    "objectID": "blog/posts/br_epu/index.html",
+    "href": "blog/posts/br_epu/index.html",
+    "title": "Brazil Economic Policy Uncertainty",
     "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\n\n\n\nSlides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\n\nPart 0\nPart 1 ch10"
-  },
-  {
-    "objectID": "teaching/202301s_Estrategia_financeira/index.html",
-    "href": "teaching/202301s_Estrategia_financeira/index.html",
-    "title": "Estratégia Financeira",
-    "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\n\n\n\nSlides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\n\nPart 0\nPart 1 ch10\nPart 2 ch11\nPart 3 ch12\nPart 4 ch13\nPart 5 ch14"
-  },
-  {
-    "objectID": "teaching/202202_Financial_strategy/index.html",
-    "href": "teaching/202202_Financial_strategy/index.html",
-    "title": "Financial Strategy",
-    "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\nClass’ Excel: here\nPortfolio Challenge: https://hcm.quarto.pub/portfolio_challenge_2022/.\n\n\n\nSlides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\n\nPart 0\nPart 1\nPart 2\nPart 3\nPart 4\nPart 5\nPart 6\nPart 7\nPart 8\nPart 9\nPart 10"
-  },
-  {
-    "objectID": "teaching/202202_Empirical_finance/index.html",
-    "href": "teaching/202202_Empirical_finance/index.html",
-    "title": "Data & Empirical Finance",
-    "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/empirical-finance-notes/.\n\n\n\nSlides\n\nPart 1"
-  },
-  {
-    "objectID": "teaching/202202_ESG/index.html",
-    "href": "teaching/202202_ESG/index.html",
-    "title": "ESG & Institutional Investment",
-    "section": "",
-    "text": "Slides\n\nPart 0\nPart 1\nPart 2\nPart 3\nPart 4\nPart 5\nPart 6\nPart 7\nPart 8"
-  },
-  {
-    "objectID": "teaching/202301s_financial_strategy/index.html",
-    "href": "teaching/202301s_financial_strategy/index.html",
-    "title": "Financial Strategy (Estratégia Financeira)",
-    "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\n\n\n\nSlides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\n\nPart 0\nPart 1 ch10\nPart 2 ch11\nPart 3 ch12\nPart 4 ch13\nPart 5 ch14"
+    "text": "In this post, I will show how to create a graph about the Brazilian Economic Policy Uncertainty index. For more information about this index, click here. Shortly, it is an index that calculates economic policy uncertainty by searching for specific words in Brazilian newspapers.\nLet’s download the data and create a graph to see what happens.\n\nlibrary(readxl)\nlibrary(httr)\nlibrary(zoo)\nurl1<-'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'\nGET(url1, write_disk(tf <- tempfile(fileext = \".xlsx\")))\n\nResponse [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]\n  Date: 2023-03-16 19:44\n  Status: 200\n  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\n  Size: 11.9 kB\n<ON DISK>  C:\\Users\\hcmrt\\AppData\\Local\\Temp\\RtmpgZXO3A\\file28d4161e1c6.xlsx\n\ndata <- read_excel(tf)\ncolnames(data) <- c(\"Year\", \"Month\", \"EPU\")\ndata<- data[1:nrow(data)-1,]\ndata$date <- as.yearmon(paste(data$Year, data$Month), \"%Y %m\")\n\ndata <-subset(data, Year >= 2010)\n\nFinally, let’s create a graph:\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nggplot(data= data, aes(x=date, y =EPU ) ) + geom_line() + theme_solarized() +\n  labs(title = \"Brazil Economic Policy Uncertainty (EPU) (since 2010)\",\n       caption = \"Source: https://www.policyuncertainty.com/\") \n\n\n\n\nWell, it seems that we do not have too much uncertainty at the moment. At least not the type of uncertainty that this index measures. Still, this is a nice index to learn more about.\nThanks for stopping by!"
   },
   {
     "objectID": "teaching/202301_financial_strategy/index.html",
     "href": "teaching/202301_financial_strategy/index.html",
     "title": "Financial Strategy (Estratégia Financeira)",
     "section": "",
-    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\n\n\n\nSlides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\n\nPart 0\nPart 1 ch10\nPart 2 ch11\nPart 3 ch12\nPart 4 ch13"
+    "text": "Class notes\nHere are the class notes used in this course: https://hcm.quarto.pub/financial_strategy_notes/.\n\n\n\nSlides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\n\nPart 0\nPart 1 ch10\nPart 2 ch11\nPart 3 ch12\nPart 4 ch13\nPart 5 ch14"
+  },
+  {
+    "objectID": "seminars/index.html",
+    "href": "seminars/index.html",
+    "title": "Seminars",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 3, 2022\n\n\nEthics & Open Data (ANPCONT)\n\n\nHenrique C. Martins\n\n\n\n\nAug 8, 2022\n\n\nTalk about Research Productivity (Unisinos)\n\n\nHenrique C. Martins\n\n\n\n\nAug 18, 2021\n\n\nTalk Research Internationalization (UFSM)\n\n\nHenrique C. Martins\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\nHenrique C. Martins\n\n\n\n\nApr 5, 2021\n\n\nCompetition and ESG practices in emerging markets\n\n\nHenrique C. Martins\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\nHenrique C. Martins\n\n\n\n\nNov 19, 2020\n\n\n9th Fórum EcoInovar: A experiência de Open Science na RAC\n\n\nHenrique C. Martins\n\n\n\n\nNov 16, 2020\n\n\nMy notes about the 2020 ICGS Editors’ tips\n\n\nHenrique C. Martins\n\n\n\n\nOct 27, 2020\n\n\nIssues in Empirical Finance Research\n\n\nHenrique C. Martins\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\nHenrique C. Martins\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\nHenrique C. Martins\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#section",
+    "href": "seminars/seminars/ethics_unisinos/index.html#section",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "",
+    "text": "My opinions are my own."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#the-current-state-in-business-science",
+    "href": "seminars/seminars/ethics_unisinos/index.html#the-current-state-in-business-science",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "The current state in (business) science",
+    "text": "The current state in (business) science\nToo many articles…\n\n… in low-quality journals.\n\n\nScholars are doing their best\n\nTo get “tenure” (not a common concept in Brazil yet)\nTo increase reputation\nHighly competitive environment (mental health is a problem)\n\n\n\nJournals are doing their best to increase impact\n\nGame of metrics\nHighly competitive environment for journals"
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#too-many-articles",
+    "href": "seminars/seminars/ethics_unisinos/index.html#too-many-articles",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Too many articles",
+    "text": "Too many articles\nBrazil 60k scientific articles in 2018: https://data.worldbank.org/indicator/IP.JRN.ARTC.SC?locations=BR\nWorld 2.554K scientific articles in 2018: https://data.worldbank.org/indicator/IP.JRN.ARTC.SC\n\nProduction of academic research is not a problem anymore."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#section-1",
+    "href": "seminars/seminars/ethics_unisinos/index.html#section-1",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "",
+    "text": "Production of academic research is not a problem anymore. Source."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#section-2",
+    "href": "seminars/seminars/ethics_unisinos/index.html#section-2",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "",
+    "text": "Production of academic research is not a problem anymore. Source."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research",
+    "href": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Recent problems in academic research",
+    "text": "Recent problems in academic research\nP-Hacking\n\nArticle here."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-1",
+    "href": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-1",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Recent problems in academic research",
+    "text": "Recent problems in academic research\nPublication bias\n\nArticle here."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-2",
+    "href": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-2",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Recent problems in academic research",
+    "text": "Recent problems in academic research\nReplication crisis\n\nArticle here."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-3",
+    "href": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-3",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Recent problems in academic research",
+    "text": "Recent problems in academic research\n\nSource."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-4",
+    "href": "seminars/seminars/ethics_unisinos/index.html#recent-problems-in-academic-research-4",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Recent problems in academic research",
+    "text": "Recent problems in academic research\n\nSource."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#predatory-journals",
+    "href": "seminars/seminars/ethics_unisinos/index.html#predatory-journals",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Predatory journals",
+    "text": "Predatory journals\n\n\n\nSource."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#open-science-os",
+    "href": "seminars/seminars/ethics_unisinos/index.html#open-science-os",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Open Science (OS)",
+    "text": "Open Science (OS)\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n\\[\\\\[0.4cm]\\]\n\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n\\[\\\\[0.4cm]\\]\n\n\nExemplo relativamente recente: Dados de COVID (link)."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#open-science-os-1",
+    "href": "seminars/seminars/ethics_unisinos/index.html#open-science-os-1",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Open Science (OS)",
+    "text": "Open Science (OS)\n\nDados abertos (Open Data)\nCódigo e Materiais abertos (Open Materials)\nRevisão pelos pares aberta (Open peer review)\nArtigos-tutoriais\nReuso de Dados\nArtigos depositados como preprints podem ser submetidos\n\nExemplo de política pode ser encontrada (RAC) aqui."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#revisão-pelos-pares-aberta",
+    "href": "seminars/seminars/ethics_unisinos/index.html#revisão-pelos-pares-aberta",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Revisão pelos pares aberta",
+    "text": "Revisão pelos pares aberta\n\nApós o artigo ser aceito, revisores são convidados a permitir que sua identificação apareça na versão final do artigo.\n\n\n\nEm paralelo, revisores e autores são convidados a permitir a publicidade do conteúdo dos seus reports e suas cartas de resposta.\n\nVeja um exemplo aqui\n\n\n\n\n\nA revista não altera o conteúdo dos pareceres em nenhuma situação (erros de digitação, por exemplo, são incluídos)"
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics",
+    "href": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Tips For Students Ethics",
+    "text": "Tips For Students Ethics\n\nIf you are playing the quantity game, you are playing it wrong.\n\nFocus on quality, your whole 30-year career is a 10-20 ABS3 papers, not a 200+ papers.\n\n\n\n\nUnderstand the concept of a Job Market Paper (quality paper)\n\nDoesn’t need to be published by the end of your PhD, but senior enough to nice presentations\nIt is also nice for master’s students to have a strong paper in order to get into a PhD program."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics-1",
+    "href": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics-1",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "Tips For Students Ethics",
+    "text": "Tips For Students Ethics\n\nDo not send articles to predatory journals\n\nThose that are in the market can smell it.\nIf the project is not good, abandon it (instead of publishing in such journals)\n\n\n\n\nDo not cheat\n\nThe industry is getting better at finding wrongdoings.\nAt the end of the day, people talk about reputation."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html#thank-you",
+    "href": "seminars/seminars/ethics_unisinos/index.html#thank-you",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+  },
+  {
+    "objectID": "research/index.html",
+    "href": "research/index.html",
+    "title": "Research",
+    "section": "",
+    "text": "Investment–cash flow sensitivity and investor protection\n\n\n\nResearch\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nWe examine the role of country-level legal investor protection (i.e., shareholder and creditor protection) on firm investment–cash flow sensitivity\n\n\n\n\n\n\nAug 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntegrating uncertainty and governance into a capital structure puzzle: can risk-taking and rule-taking explain zero-leverage firms?\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nCan risk-taking and rule-taking explain zero-leverage firms?\n\n\n\n\n\n\nJun 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAccounting Discretion\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nCreating and Accounting Discretion Index (ADI).\n\n\n\n\n\n\nMay 7, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCompetition and ESG practices in emerging markets - Evidence from a difference-in-differences model\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nProduct market competition is an important driver of firms’ ESG practices.\n\n\n\n\n\n\nMay 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlockholders and firm value: Evidence from Brazil\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nThis research analyzes the relationship between the presence of blockholders and the value of Brazilian firms\n\n\n\n\n\n\nMay 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisk taking ang Corporate Governance\n\n\n\nOpen Science\n\n\n\nA framework of uncertainty taking.\n\n\n\n\n\n\nJan 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOpen Code Community\n\n\n\nOpen Science\n\n\n\nA website containing codes.\n\n\n\n\n\n\nMay 7, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTutorial-Articles - The Importance of Data and Code Sharing\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nAbout Open Science mechanisms.\n\n\n\n\n\n\nSep 9, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDoes control concentration affect board busyness? International evidence\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nWe investigate specific characteristics of the board of directors: the number of directors’ directorships and the number of committee positions\n\n\n\n\n\n\nSep 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDo shareholder protection and creditor rights have distinct effects on the association between debt maturity and ownership structure?\n\n\n\nResearch\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nThis study examines the effects of the firm’s ownership concentration and its institutional environment on corporate debt maturity choices\n\n\n\n\n\n\nJun 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Brazilian bankruptcy law reform, corporate ownership concentration, and risk-taking\n\n\n\nResearch\n\n\nCorporate Finance\n\n\n\nWe investigate whether a bankruptcy reform, which increased creditors’ protection, affected the risk taking of Brazilian firms.\n\n\n\n\n\n\nJun 1, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInvestor protection, managerial entrenchment, and cash holdings - Cross-country evidence\n\n\n\nResearch\n\n\nCorporate Governance\n\n\nCorporate Finance\n\n\n\nWe investigate whether investor protection is associated with how entrenched managers set corporate cash holdings\n\n\n\n\n\n\nFeb 1, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCountry-level governance quality, ownership concentration, and debt maturity - A comparative study of Brazil and Chile\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nThis study investigates the interplay between country-level governance quality and the capital structure choice\n\n\n\n\n\n\nJun 1, 2017\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCross-National Governance Research - A Systematic Review and Assessment\n\n\n\nResearch\n\n\nCorporate Governance\n\n\n\nA Systematic Review about Investor Protection\n\n\n\n\n\n\nJan 11, 2016\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
