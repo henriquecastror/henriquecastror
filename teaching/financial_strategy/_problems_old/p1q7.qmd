@@ -1,0 +1,18 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+---
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** A seasoned equity offering (SEO) is the sale of stock by a company that is already publicly traded."
+q1_choices <- c(answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```

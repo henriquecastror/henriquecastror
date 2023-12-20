@@ -1,0 +1,200 @@
+---
+title: 'Estratégia Financeira/Financial Strategy'
+subtitle: ' **Part 7 - ch.14 Capital Structure in a Perfect Market** '
+author:
+  - name: ' **Henrique C. Martins (henrique.martins@fgv.br)** '
+    affiliation: '**[FGV/EAESP](https://eaesp.fgv.br/en) **'
+  - name: ' **Rafael B. Palazzi (rafaelpalazzi@gmail.com)** '
+    affiliation: '**[FGV/EAESP](https://eaesp.fgv.br/en) **'
+date-modified: last-modified
+title-block-banner: true
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+---
+
+```{r, setup}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+```
+
+**In-class problems about *chapter 14 Capital Structure in a Perfect Market* by [Berk and Demarzo](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154).**
+
+**Solve these problems in class or soon after.**
+
+::: callout-important
+**Type your answers with "." instead of ","!**
+:::
+
+## True or False
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Competition among savvy investors who try to “beat the market” and earn a positive alpha should keep the market portfolio close to efficient much of the time."
+q1_choices <- c(answer= "True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Leverage can raise a firm’s expected earnings per share and its return on equity, but it also increases the volatility of earnings per share and the riskiness of its equity."
+q1_choices <- c(answer= "True",  "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** With perfect capital markets, financial transactions are a zero-NPV activity that neither add nor destroy value on their own."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** When equity is used without debt, the firm is said to be levered."
+q1_choices <- c(  "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Leverage increases the risk of equity and raises the equity cost of capital."
+q1_choices <- c( answer= "True","False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** A firm can change its capital structure at any time by issuing new securities and using the funds to pay its existing investors."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** According to MM Proposition I, with perfect capital markets the value of a firm is independent of its capital structure."
+q1_choices <- c(answer= "True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** A firm’s net debt is equal to its debt less its holdings of cash and other risk-free securities."
+q1_choices <- c(answer= "True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** The owner of a firm should choose the capital structure that maximizes the total value of the securities issued."
+q1_choices <- c(answer= "True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** In Modigliani and Miller's theorem, under the assumption of perfect capital markets, a firm's value is unaffected by its capital structure, and it can use any combination of debt and equity to finance its investments without changing the firm's overall value. "
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** The relative proportions of debt, equity, and other securities make up a firm's capital structure."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Debt financing is a less expensive source of capital for a firm compared to equity financing."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Mortgage-backed securities are typically backed by a pool of residential mortgage loans."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** According to Modigliani-Miller and the Law of One Price, in a world of perfect capital markets, two identical firms with the same cash flows should have the same market value, regardless of their capital structures."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Leverage refers to the practice of using debt or other financial instruments to magnify returns on equity investments, while unleverage equity means using only equity capital without debt."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** The premium that investors demand for holding the company's equity increases as the company's D/E ratio increases, which leads to an increase in the cost of capital of levered equity."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+
+::: callout-warning
+**Type your answers with "." instead of ","!**
+:::

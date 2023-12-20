@@ -1,0 +1,127 @@
+---
+title: 'Estratégia Financeira/Financial Strategy'
+subtitle: ' **Part 9 - Ch 16 Financial Distress, Managerial Incentives, and Information** '
+author:
+  - name: ' **Henrique C. Martins (henrique.martins@fgv.br)** '
+    affiliation: '**[FGV/EAESP](https://eaesp.fgv.br/en) **'
+  - name: ' **Rafael B. Palazzi (rafaelpalazzi@gmail.com)** '
+    affiliation: '**[FGV/EAESP](https://eaesp.fgv.br/en) **'
+date-modified: last-modified
+title-block-banner: true
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+---
+
+
+
+
+```{r, setup}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+```
+
+
+**In-class problems about *chapter 15 Debt and Taxes* by [Berk and Demarzo](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154). **
+
+
+**Solve these problems in class or soon after.**
+
+
+
+::: {.callout-important}
+**Type your answers with "." instead of ","!**
+:::
+
+
+## True or False
+
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Bankruptcy costs, including legal and administrative expenses, are typically lower for larger firms due to their financial strength."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** An increase in financial distress costs would increase the total value of a leveraged firm."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** In the context of optimal leverage with taxes and financial distress costs, the optimal debt level for a firm is solely determined by the tax benefits it can receive from interest deductions."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Adverse selection is a concern for firms when issuing new equity, and it refers to the potential presence of hidden information that can affect investor interest in newly issued shares."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** According to the Tradeoff Theory, agency costs play a minor role in a firm's capital structure decisions."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** According to the Modigliani and Miller theorem, market imperfections, such as taxes and bankruptcy costs, can lead to deviations from the theorem's conclusions in the real world."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+q1 <- " **Q:** Shareholders may have an incentive to increase leverage even if it decreases the value of the firm."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
+
+
+
+
+
+
+
+::: {.callout-warning}
+**Type your answers with "." instead of ","!**
+:::

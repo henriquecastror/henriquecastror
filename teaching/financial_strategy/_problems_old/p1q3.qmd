@@ -1,0 +1,19 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+---
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** Underwriters face no risk during an IPO, so that a greenshoe provision is usually not necessary."
+q1_choices <- c( "True", answer= "False")
+cat(q1,longmcq(q1_choices))
+```
+
