@@ -1,19 +1,44 @@
 ---
 title: 'Estratégia Financeira'
 subtitle: ' **Part 8 - Ch 15 Debt and Taxes** '
-author: 'Henrique C. Martins'
+author:
+  - name: ' **Henrique C. Martins** '
+    affiliation: '**[![](figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: true
 format:
   revealjs: 
     slide-number: true
     theme: simple
     chalkboard: true
     preview-links: auto
-    logo: figs/background2.png
-    css: styles.css
-    footer: <https://eaesp.fgv.br/>
+    logo: figs/background8.png
+    css: logo.css
+    footer: ' **[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_8.html#/comments)]** '
     multiplex: true
-#resources:
- # - demo.pdf
+    scrollable: true
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+      
 ---
 
 # Intro {visibility="hidden"}
@@ -863,12 +888,11 @@ To receive the full tax benefits of leverage, a firm need not use 100% debt fina
 ## Comments? {background="#a2bef5"}
 
 <script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/comments"
-        data-repo-id="R_kgDOHze3WQ"
-        data-category="Q&A"
-        data-category-id="DIC_kwDOHze3Wc4CQwHO"
+        data-repo="henriquecastror/efcomments-part-8"
+        data-repo-id="R_kgDOK8EAGg"
+        data-category-id="DIC_kwDOK8EAGs4Cb5GU"
         data-mapping="pathname"
-        data-strict="1"
+        data-strict="0"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
