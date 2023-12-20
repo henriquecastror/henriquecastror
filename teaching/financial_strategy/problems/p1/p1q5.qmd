@@ -1,0 +1,19 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+---
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** IPOs are underpriced on average."
+q1_choices <- c(answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
