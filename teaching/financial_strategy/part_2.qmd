@@ -1,0 +1,2573 @@
+---
+title: 'Estratégia Financeira'
+subtitle: ' **Part 2 - ch.10 Capital Markets and the Pricing of Risk** '
+author:
+  - name: ' **Henrique C. Martins** '
+    affiliation: '**[![](figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: true
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: ' **[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_2.html#/comments)]** '
+    multiplex: true
+    scrollable: true
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>   
+---
+
+
+```{r setup}
+#| include: false
+#| warning: false
+api_key <- "kfqxH5NsN8Nhe_U1NADB"
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+library(downloader)
+library(dplyr)
+library(GetQuandlData)
+library(ggplot2)
+library(ggthemes)
+library(PerformanceAnalytics)
+library(plotly)
+library(readxl)
+library(roll)
+library(tidyr)
+library(tidyquant)
+library(yfR)
+```
+
+
+
+
+# Intro {visibility="hidden"}
+
+## {background-image="figs/ch10.png" background-size="1300px"}
+
+
+
+
+
+
+## Chapter outline 
+
+10.1 Risk and Return: Insights from History
+
+10.2 Common Measures of Risk and Return
+
+10.3 Historical Returns of Stocks and Bonds
+
+10.4 The Historical Trade-Off Between Risk and Return
+
+10.6 Diversification in Stock Portfolios
+
+10.7 Measuring Systematic Risk
+
+10.8 Beta and the Cost of Capital
+
+
+
+
+
+
+
+
+
+
+# 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+![](figs/bm_10_1.png){width="105%"}
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+**Some Insights:**
+
+- Small stocks had the highest long-term return, while T-Bills had the lowest.
+
+- Small stocks had the largest fluctuations in price, while T-Bills had the lowest.
+  - **Higher risk requires a higher return.**
+
+. . .
+
+- **But, few people ever make an investment for so many years**.
+
+- More realistic **investment horizons** and different initial investment dates can greatly influence each investment's risk and return.
+
+. . .
+
+Notice the volatility next slide.
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+![](figs/bm_10_2.png){width="105%"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+Insights from Brazil.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: slide
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(downloader)
+library(dplyr)
+library(GetQuandlData)
+library(ggplot2)
+library(ggthemes)
+library(PerformanceAnalytics)
+library(plotly)
+library(readxl)
+library(roll)
+library(tidyr)
+library(tidyquant)
+library(yfR)
+#### QUANDL API
+# Step to create your key
+# 1. Go to https://www.quandl.com/
+# 2. Create an account
+# 3. Get your key
+# 4. Add your key below (I can't give you mine)
+api_KEY <- "Your QUANDL API KEY here"
+#Ibov
+stock<-'^BVSP' 
+start<-'1995-01-01' 
+end   <- Sys.Date() 
+ibov <- yf_get(tickers = stock,first_date = start,last_date = end)
+ibov<- ibov[order(as.numeric(ibov$ref_date)),]
+# Cumulative return Ibov
+ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
+#Selic
+selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
+                               api_key = api_key, 
+                               first_date = start,
+                               last_date = end)
+selic<- selic[order(as.numeric(selic$ref_date)),]
+selic$value <- selic$value / 100
+# Cumulative return Selic
+return_selic <- data.frame(nrow(selic):1)
+colnames(return_selic)<- "selic_return"
+for(i in (2:nrow(selic))) {
+return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
+}
+# CDI
+cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
+                         api_key = api_key , 
+                         first_date = start ,
+                         last_date = end)
+cdi<- cdi[order(as.numeric(cdi$ref_date)),]
+cdi$value <- cdi$value / 100
+# Cumulative return CDI
+return_CDI <- data.frame(nrow(cdi):1)
+colnames(return_CDI)<- "CDI_return"
+for(i in (2:nrow(cdi))) {
+return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
+}
+#Inflation Brazil
+inf <- get_Quandl_series(id_in =  c('Inflation' = 'BCB/433'),
+                         api_key = api_key, 
+                         first_date = start,
+                         last_date = end)
+inf<- inf[order(as.numeric(inf$ref_date)),]
+inf$value <- inf$value / 100
+# Cumulative return Inflation
+return_Inf <- data.frame(nrow(inf):1)
+colnames(return_Inf)<- "Inflation_return"
+
+for(i in (2:nrow(inf))) {
+return_Inf[i,1] <- Return.cumulative( inf$value[1:i] )
+}
+# Merging dataframes
+selic <- cbind(selic, return_selic)
+cdi <- cbind(cdi, return_CDI)
+inf <- cbind(inf, return_Inf)
+df <- merge(cdi ,selic, by=c("ref_date"))
+df <- merge(df ,ibov, by=c("ref_date"))
+df2 <- merge(df ,inf, by=c("ref_date"))
+df$selic_return[1] <- NA
+df$CDI_return[1] <- NA
+df$Ibov_return[1] <- NA
+df2$Inflation_return[1] <- NA
+# Graph cumulated return CDI and IBOV
+p <- ggplot(df, aes(ref_date)) +
+geom_line(aes(y = CDI_return, color = "CDI")) +
+geom_line(aes(y = Ibov_return, colour = "Ibov")) +
+geom_line(aes(y = selic_return, colour = "Selic")) +
+labs(y='Cumulative return (daily)') + theme_solarized() +
+  ggtitle("Cumulative Returns  CDI, Ibov, and Selic (1995-2023)")
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: false
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+import matplotlib.pyplot as plt
+import pandas as pd
+import yfinance as yf
+import quandl
+import numpy as np
+import seaborn as sns
+
+#api_key = "kfqxH5NsN8Nhe_U1NADB"
+quandl.ApiConfig.api_key = 'kfqxH5NsN8Nhe_U1NADB'
+```
+
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+# Define API key and other parameters
+api_KEY = "Your QUANDL API KEY here"
+stock = "^BVSP"
+start = "1995-01-01"
+end = pd.Timestamp.now()
+# Get data for IBOV
+ibov = yf.download(stock, start=start, end=end)
+ibov = ibov.reset_index()
+ibov = ibov.sort_values("Date")
+ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
+ibov["return"] = ibov["Adj Close"].pct_change()
+ibov['Ibov_return'] = (1 + ibov['return']).cumprod()
+ibov = ibov[['ref_date','Ibov_return']]
+# Get data for Selic
+selic = quandl.get('BCB/11', start_date=start, end_date=end)
+selic = selic.reset_index()
+selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
+selic['Selic'] = selic['Selic'] / 100
+selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
+# Get data for CDI
+cdi = quandl.get('BCB/12', start_date=start, end_date=end)
+cdi = cdi.reset_index()
+cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
+cdi['CDI'] = cdi['CDI'] / (100)
+cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
+# Get data for inflation
+inf = quandl.get('BCB/433', start_date=start, end_date=end)
+inf = inf.reset_index()
+inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
+inf['Inflation'] = inf['Inflation'] / 100
+inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
+# Merge dataframes
+df = pd.merge(cdi, selic, on="ref_date")
+df = pd.merge(df, ibov, on="ref_date")
+df = pd.merge(df, inf, on="ref_date")
+# Plot data
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
+ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
+ax.plot(df["ref_date"], df["selic_return"], label='Selic')
+plt.ylabel('Cumulative return (daily)', fontsize=13)
+plt.title('Cumulative Returns  CDI, Ibov, and Selic (1995-2023)', fontsize=15)
+plt.xlabel('Date', fontsize=13)
+plt.legend(loc='upper left')
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+With Inflation.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Graph cumulated return CDI, IBOV, and Inflation
+p <- ggplot(df2, aes(ref_date)) +
+geom_line(aes(y = CDI_return, color = "CDI")) +
+geom_line(aes(y = Ibov_return, colour = "Ibov")) +
+geom_line(aes(y = selic_return, colour = "Selic")) +
+geom_line(aes(y = Inflation_return, colour = "Inflation")) +
+labs(y='Cumulative return (daily)') + theme_solarized() +
+  ggtitle("Cumulative Returns CDI, Ibov, Selic, and Inflation (1995-2023)")
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+plt.close()
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
+ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
+ax.plot(df["ref_date"], df["selic_return"], label='Selic')
+ax.plot(df["ref_date"], df["inf_return"], label='Inflation')
+plt.ylabel('Cumulative return (daily)', fontsize=13)
+plt.title('Cumulative Returns  CDI, Ibov, Selic, and Inflation (1995-2023)', fontsize=15)
+plt.xlabel('Date', fontsize=13)
+plt.legend(loc='upper left')
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+Ibov vs CDI vs Selic in Brazil 2002-2007.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+#### QUANDL API
+# Step to create your key
+# 1. Go to https://www.quandl.com/
+# 2. Create an account
+# 3. Get your key
+# 4. Add your key below (I can't give you mine)
+api_KEY <- "Your QUANDL API KEY here"
+#Ibov
+stock<-'^BVSP' 
+start<-'2002-01-01' 
+end<-'2007-01-01' 
+ibov <- yf_get(tickers = stock, 
+                         first_date = start,
+                         last_date = end)
+ibov<- ibov[order(as.numeric(ibov$ref_date)),]
+# Cumulative return Ibov
+ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
+#Selic
+selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
+                               api_key = api_key, 
+                               first_date = start,
+                               last_date = end)
+selic<- selic[order(as.numeric(selic$ref_date)),]
+selic$value <- selic$value / 100
+# Cumulative return Selic
+return_selic <- data.frame(nrow(selic):1)
+colnames(return_selic)<- "selic_return"
+
+for(i in (2:nrow(selic))) {
+return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
+}
+# CDI
+cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
+                         api_key = api_key , 
+                         first_date = start ,
+                         last_date = end)
+cdi<- cdi[order(as.numeric(cdi$ref_date)),]
+cdi$value <- cdi$value / 100
+# Cumulative return CDI
+return_CDI <- data.frame(nrow(cdi):1)
+colnames(return_CDI)<- "CDI_return"
+for(i in (2:nrow(cdi))) {
+return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
+}
+# Merging dataframes
+selic <- cbind(selic, return_selic)
+cdi <- cbind(cdi, return_CDI)
+inf <- cbind(inf, return_Inf)
+df <- merge(cdi ,selic, by=c("ref_date"))
+df <- merge(df ,ibov, by=c("ref_date"))
+df2 <- merge(df ,inf, by=c("ref_date"))
+df$selic_return[1] <- NA
+df$CDI_return[1] <- NA
+df$Ibov_return[1] <- NA
+df2$Inflation_return[1] <- NA
+p<-ggplot(df, aes(ref_date)) + 
+  geom_line(aes(y = CDI_return, colour = "CDI")) + 
+  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
+  geom_line(aes(y = selic_return, colour = "Selic")) +
+  labs(y='Cumulative return (daily)') +   theme_solarized() +
+  ggtitle("Cumulative Returns CDI, Ibov, and Selic (2002-2007)")
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+Ibov vs CDI vs Selic in Brazil 2002-2007.
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+# Define API key and other parameters
+api_KEY = "Your QUANDL API KEY here"
+stock = "^BVSP"
+start = "2002-01-01"
+end =   "2007-01-01"
+# Get data for IBOV
+ibov = yf.download(stock, start=start, end=end)
+ibov = ibov.reset_index()
+ibov = ibov.sort_values("Date")
+ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
+ibov["return"] = ibov["Adj Close"].pct_change()
+ibov['Ibov_return'] = (1 + ibov['return']).cumprod() -1
+ibov = ibov[['ref_date','Ibov_return']]
+# Get data for Selic
+selic = quandl.get('BCB/11', start_date=start, end_date=end)
+selic = selic.reset_index()
+selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
+selic['Selic'] = selic['Selic'] / 100
+selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
+# Get data for CDI
+cdi = quandl.get('BCB/12', start_date=start, end_date=end)
+cdi = cdi.reset_index()
+cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
+cdi['CDI'] = cdi['CDI'] / (100)
+cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
+# Get data for inflation
+inf = quandl.get('BCB/433', start_date=start, end_date=end)
+inf = inf.reset_index()
+inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
+inf['Inflation'] = inf['Inflation'] / 100
+inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
+# Merge dataframes
+df = pd.merge(cdi, selic, on="ref_date")
+df = pd.merge(df, ibov, on="ref_date")
+df = pd.merge(df, inf, on="ref_date")
+# Plot data
+plt.close()
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
+ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
+ax.plot(df["ref_date"], df["selic_return"], label='Selic')
+plt.ylabel('Cumulative return (daily)', fontsize=13)
+plt.title('Cumulative Returns  CDI, Ibov, and Selic (2002-2007)', fontsize=15)
+plt.xlabel('Date', fontsize=13)
+plt.legend(loc='upper left')
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+Ibov vs CDI vs Selic in Brazil 2010-2019.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+#### QUANDL API
+# Step to create your key
+# 1. Go to https://www.quandl.com/
+# 2. Create an account
+# 3. Get your key
+# 4. Add your key below (I can't give you mine)
+api_KEY <- "Your QUANDL API KEY here"
+#Ibov
+stock<-'^BVSP' 
+start<-'2010-01-01' 
+end<-'2019-01-01' 
+ibov <- yf_get(tickers = stock, 
+                         first_date = start,
+                         last_date = end)
+ibov<- ibov[order(as.numeric(ibov$ref_date)),]
+# Cumulative return Ibov
+ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
+#Selic
+selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
+                               api_key = api_key, 
+                               first_date = start,
+                               last_date = end)
+selic<- selic[order(as.numeric(selic$ref_date)),]
+selic$value <- selic$value / 100
+# Cumulative return Selic
+return_selic <- data.frame(nrow(selic):1)
+colnames(return_selic)<- "selic_return"
+for(i in (2:nrow(selic))) {
+return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
+}
+# CDI
+cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
+                         api_key = api_key , 
+                         first_date = start ,
+                         last_date = end)
+cdi<- cdi[order(as.numeric(cdi$ref_date)),]
+cdi$value <- cdi$value / 100
+# Cumulative return CDI
+return_CDI <- data.frame(nrow(cdi):1)
+colnames(return_CDI)<- "CDI_return"
+for(i in (2:nrow(cdi))) {
+return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
+}
+#Inflation Brazil
+inf <- get_Quandl_series(id_in =  c('Inflation' = 'BCB/433'),
+                         api_key = api_key, 
+                         first_date = start,
+                         last_date = end)
+inf<- inf[order(as.numeric(inf$ref_date)),]
+inf$value <- inf$value / 100
+# Cumulative return Inflation
+return_Inf <- data.frame(nrow(inf):1)
+colnames(return_Inf)<- "Inflation_return"
+for(i in (2:nrow(inf))) {
+return_Inf[i,1] <- Return.cumulative( inf$value[1:i] )
+}
+# Merging dataframes
+selic <- cbind(selic, return_selic)
+cdi <- cbind(cdi, return_CDI)
+inf <- cbind(inf, return_Inf)
+df <- merge(cdi ,selic, by=c("ref_date"))
+df <- merge(df ,ibov, by=c("ref_date"))
+df2 <- merge(df ,inf, by=c("ref_date"))
+df$selic_return[1] <- NA
+df$CDI_return[1] <- NA
+df$Ibov_return[1] <- NA
+df2$Inflation_return[1] <- NA
+# Graph cumulated return CDI and IBOV
+p<-ggplot(df, aes(ref_date)) + 
+  geom_line(aes(y = CDI_return, colour = "CDI")) + 
+  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
+  geom_line(aes(y = selic_return, colour = "Selic")) +
+  labs(y='Cumulative return (daily)') +   theme_solarized() +
+  ggtitle("Cumulative Returns CDI, Ibov, and Selic (2010-2019)")
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+# Define API key and other parameters
+api_KEY = "Your QUANDL API KEY here"
+stock = "^BVSP"
+start = "2010-01-01"
+end =   "2019-01-01"
+# Get data for IBOV
+ibov = yf.download(stock, start=start, end=end)
+ibov = ibov.reset_index()
+ibov = ibov.sort_values("Date")
+ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
+ibov["return"] = ibov["Adj Close"].pct_change()
+ibov['Ibov_return'] = (1 + ibov['return']).cumprod() -1
+ibov = ibov[['ref_date','Ibov_return']]
+# Get data for Selic
+selic = quandl.get('BCB/11', start_date=start, end_date=end)
+selic = selic.reset_index()
+selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
+selic['Selic'] = selic['Selic'] / 100
+selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
+# Get data for CDI
+cdi = quandl.get('BCB/12', start_date=start, end_date=end)
+cdi = cdi.reset_index()
+cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
+cdi['CDI'] = cdi['CDI'] / (100)
+cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
+# Get data for inflation
+inf = quandl.get('BCB/433', start_date=start, end_date=end)
+inf = inf.reset_index()
+inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
+inf['Inflation'] = inf['Inflation'] / 100
+inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
+# Merge dataframes
+df = pd.merge(cdi, selic, on="ref_date")
+df = pd.merge(df, ibov, on="ref_date")
+df = pd.merge(df, inf, on="ref_date")
+# Plot data
+plt.close()
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
+ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
+ax.plot(df["ref_date"], df["selic_return"], label='Selic')
+plt.ylabel('Cumulative return (daily)', fontsize=13)
+plt.title('Cumulative Returns  CDI, Ibov, and Selic (2010-2019)', fontsize=15)
+plt.xlabel('Date', fontsize=13)
+plt.legend(loc='upper left')
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+And USD?
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+#### QUANDL API
+# Step to create your key
+# 1. Go to https://www.quandl.com/
+# 2. Create an account
+# 3. Get your key
+# 4. Add your key below (I can't give you mine)
+api_KEY <- "Your QUANDL API KEY here"
+#Ibov
+stock<-'^BVSP' 
+start<-'2010-01-01' 
+end   <- Sys.Date() 
+ibov <- yf_get(tickers = stock, 
+                         first_date = start,
+                         last_date = end)
+ibov<- ibov[order(as.numeric(ibov$ref_date)),]
+# Cumulative return Ibov
+ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
+#Selic
+selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
+                               api_key = api_key, 
+                               first_date = start,
+                               last_date = end)
+selic<- selic[order(as.numeric(selic$ref_date)),]
+selic$value <- selic$value / 100
+# Cumulative return Selic
+return_selic <- data.frame(nrow(selic):1)
+colnames(return_selic)<- "selic_return"
+
+for(i in (2:nrow(selic))) {
+return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
+}
+# CDI
+cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
+                         api_key = api_key , 
+                         first_date = start ,
+                         last_date = end)
+cdi<- cdi[order(as.numeric(cdi$ref_date)),]
+cdi$value <- cdi$value / 100
+# Cumulative return CDI
+return_CDI <- data.frame(nrow(cdi):1)
+colnames(return_CDI)<- "CDI_return"
+for(i in (2:nrow(cdi))) {
+return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
+}
+#Inflation Brazil
+inf <- get_Quandl_series(id_in =  c('Inflation' = 'BCB/433'),
+                         api_key = api_key, 
+                         first_date = start,
+                         last_date = end)
+inf<- inf[order(as.numeric(inf$ref_date)),]
+inf$value <- inf$value / 100
+# Cumulative return Inflation
+return_Inf <- data.frame(nrow(inf):1)
+colnames(return_Inf)<- "Inflation_return"
+
+for(i in (2:nrow(inf))) {
+return_Inf[i,1] <- Return.cumulative( inf$value[1:i] )
+}
+#USD/BRL
+library(GetBCBData)
+dolar <- gbcbd_get_series(id = 1, 
+                          first.date = start,
+                          last.date = end)
+require(quantmod)
+dolar$return <-Delt(dolar$value)
+return_dol <- data.frame(nrow(dolar):1)
+for(i in (2:nrow(dolar))) {
+return_dol[i,1] <- Return.cumulative( dolar$return[1:i] )
+}
+colnames(return_dol)<- "Dolar_return"
+# Merging dataframes
+selic <- cbind(selic, return_selic)
+cdi <- cbind(cdi, return_CDI)
+inf <- cbind(inf, return_Inf)
+dolar <- cbind(dolar, return_dol)
+df <- merge(cdi ,selic, by=c("ref_date"))
+df <- merge(df ,ibov, by=c("ref_date"))
+df2 <- merge(df ,inf, by=c("ref_date"))
+colnames(dolar)[1] <- 'ref_date'
+df2 <- merge(df ,dolar, by=c("ref_date"))
+df2$selic_return[1] <- NA
+df2$CDI_return[1] <- NA
+df2$Ibov_return[1] <- NA
+df2$Inflation_return[1] <- NA
+df2$Dolar_return[1] <- NA
+p<-ggplot(df2, aes(ref_date)) + 
+  geom_line(aes(y = CDI_return, colour = "CDI")) + 
+  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
+  geom_line(aes(y = selic_return, colour = "Selic")) +
+  geom_line(aes(y = Dolar_return, colour = "Dolar")) +
+  labs(y='Cumulative return (daily)') +   theme_solarized() +
+  ggtitle("Cumulative Returns CDI, Ibov, Selic, and USD (2010-2023)")
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+# Define API key and other parameters
+api_KEY = "Your QUANDL API KEY here"
+stock = "^BVSP"
+start = "2010-01-01"
+end = pd.Timestamp.now()
+# Get data for IBOV
+ibov = yf.download(stock, start=start, end=end)
+ibov = ibov.reset_index()
+ibov = ibov.sort_values("Date")
+ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
+ibov["return"] = ibov["Adj Close"].pct_change()
+ibov['Ibov_return'] = (1 + ibov['return']).cumprod() -1
+ibov = ibov[['ref_date','Ibov_return']]
+# Get data for Selic
+selic = quandl.get('BCB/11', start_date=start, end_date=end)
+selic = selic.reset_index()
+selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
+selic['Selic'] = selic['Selic'] / 100
+selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
+# Get data for CDI
+cdi = quandl.get('BCB/12', start_date=start, end_date=end)
+cdi = cdi.reset_index()
+cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
+cdi['CDI'] = cdi['CDI'] / (100)
+cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
+# Get data for inflation
+inf = quandl.get('BCB/433', start_date=start, end_date=end)
+inf = inf.reset_index()
+inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
+inf['Inflation'] = inf['Inflation'] / 100
+inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
+# Get data for USD/BRL exchange rate
+usd_brl = quandl.get('BCB/10813', start_date=start, end_date=end)
+usd_brl = usd_brl.reset_index()
+usd_brl = usd_brl.rename(columns={'Date': 'ref_date', 'Value': 'USD_BRL'})
+usd_brl['usd_brl_return'] = (1 + usd_brl['USD_BRL'].pct_change()).cumprod() - 1
+# Merge dataframes
+df = pd.merge(cdi, selic, on="ref_date")
+df = pd.merge(df, ibov, on="ref_date")
+df = pd.merge(df, inf, on="ref_date")
+df = pd.merge(df, usd_brl, on="ref_date")
+# Plot data
+plt.close()
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
+ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
+ax.plot(df["ref_date"], df["selic_return"], label='Selic')
+ax.plot(df["ref_date"], df["usd_brl_return"], label='USD',color='darkred')
+plt.ylabel('Cumulative return (daily)', fontsize=13)
+plt.title('Cumulative Returns  CDI, Ibov, and Selic (2010-2023)', fontsize=15)
+plt.xlabel('Date', fontsize=13)
+plt.legend(loc='upper left')
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+When an investment is risky, it may earn **different returns**. 
+
+Each possible return has some **likelihood of occurring**. 
+
+This information is summarized with a **probability distribution**, which assigns a probability, $P_r$ , that each possible return, $R$, will occur.
+
+. . .
+
+Assume BFI stock currently trades for 100 per share. In one year, there is a 25% chance the share price will be 140, a 50% chance it will be 110, and a 25% chance it will be 80. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+This insight will lead to this kind of graph.
+
+![](figs/bm_10_3.jpg){width="90%"}
+
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+**Let's see how to compute the expected return on this asset.**
+
+$$Expected\;return = E[R] = \sum_{R} P_R \times R$$
+
+$$E[R_{BFI}] = 25\%(−0.20) + 50\%(0.10) + 25\%(0.40) = 10\%$$
+
+. . .
+
+Very important: there is an **underlying assumption** that the **past is good enough to teach us about the future.**
+
+That is, we are computing the historical average return and **using this number as the best estimate of the expected return.**
+
+**Keep that assumption in mind.**
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+**Now risk: variance and standard deviation.**
+
+$$Var(R) = E[(R-E[R])^2]   = \sum_{R} P_R \times (R-E[R])^2 $$
+
+$$SD(R) = \sqrt{Var(R)}$$
+
+. . .
+
+$$V(R)  = 0.25 × (−0.2 − 0.1)^2  + 0.5 × (0.1 − 0.1)^2 + 0.25 × (0.4 − 0.1)^2  = 0.045$$
+
+
+$$SD(R_{BFI}) = \sqrt{0.045} = 21.2\%$$
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+Suppose AMC stock is equally likely to have a 45% return or a −25% return. What are the expected return and volatility?
+
+. . .
+
+$$E[R] = 50\%×0.45+50\%×(−0.25)=10.0\%$$
+
+. . .
+
+$$Var[R] = 50\%×(0.45−0.10)^2+50\%×(−0.25−0.10)^2=0.1225$$
+
+. . .
+
+$$SD[R] = (0.1225) ^{0.5} = 35\%$$
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+**It is clear that riskier assets have heavier tails.**
+
+![](figs/bm_10_4.png){width="110%"}
+
+
+
+. . .
+
+**Warning: Standard deviation and variance are correct measures of total risk _if the returns are normally distributed_**.
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+IBOV returns seem to follow a normal distribution.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+p<-ggplot(ibov,aes(ibov$ret_closing_prices))+
+        geom_histogram(color='#006600',
+                       bins = 100) + 
+        labs(x = "",
+             y='Daily return', 
+             title="IBOV") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+ibov = yf.download(stock, start=start, end=end)
+ibov = ibov.reset_index()
+ibov = ibov.sort_values("Date")
+ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
+ibov["return"] = ibov["Adj Close"].pct_change()
+plt.close()
+plt.hist(ibov['return'], bins=100, color='grey')
+plt.title('IBOV', fontsize=20)
+plt.ylabel('Daily return', fontsize=16 )
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+Standard deviation through time. It changes.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+ibov$sd <- roll_sd(ibov$ret_closing_prices,  
+                     width = 100,  
+                     min_obs = 100 ) * sqrt(250)
+p<-ggplot(ibov,aes(ref_date,sd))+
+        geom_line(color='#2986cc') + 
+        labs(x = "",
+             y='Standard deviation using 100 daily returns', 
+             title="IBOV (Daily returns since 2010)") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+Standard deviation through time. It changes.
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+ibov['sd'] = ibov['return'].rolling(window=100, min_periods=100).std() 
+ibov['sd'] = ibov['sd'] * np.sqrt(250)
+plt.close()
+fig, ax = plt.subplots(figsize=(20,10))
+ax.plot(ibov.index, ibov['sd'], color='#2986cc')
+ax.set_xlabel('')
+ax.set_ylabel('Standard deviation using 100 daily returns', fontsize=13)
+ax.set_title('IBOV (Daily returns since 2010)', fontsize=15)
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+Standard deviation through time. Riskier is riskier.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+stocks <-c('AMER3.SA' ) 
+amer <- yf_get(tickers = stocks, 
+                         first_date = start,
+                         last_date = end)
+amer<-amer[complete.cases(amer),]
+amer$sd <- roll_sd(amer$ret_closing_prices,  
+                     width = 100,  
+                     min_obs = 100 ) * sqrt(250)
+p<-ggplot() + 
+  geom_line(data=amer, aes(amer$ref_date, amer$sd), color='#801e00') +
+  geom_line(data=ibov, aes(ibov$ref_date, ibov$sd), color='#2986cc') +
+          labs(x = "",y='Standard deviation using 100 daily returns', 
+             title="IBOV vs AMER3 (Daily returns since 2010)") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+stock = "AMER3.SA"
+# Get data for IBOV
+amer = yf.download(stock, start=start, end=end)
+amer = amer.reset_index()
+amer = amer.sort_values("Date")
+amer = amer.rename(columns={'Date': 'ref_date', 'Value': 'Americanas'})
+amer["return"] = amer["Adj Close"].pct_change() 
+amer = amer.dropna()
+amer['sd'] = amer['return'].rolling(window=100, min_periods=100).std() 
+amer['sd'] = amer['sd'] * np.sqrt(250)
+
+plt.close()
+fig, ax = plt.subplots(figsize=(20,10))
+ax.plot(ibov.index, ibov['sd'], color='#2986cc')
+ax.plot(amer.index, amer['sd'], color='darkred')
+ax.set_xlabel('')
+ax.set_ylabel('Standard deviation using 100 daily returns', fontsize=15)
+ax.set_title('IBOV vs AMER3 (Daily returns since 2010)', fontsize=14)
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+Daily returns IBOV.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+p<-ggplot(ibov,aes(ibov$ref_date,ibov$ret_closing_prices))+
+        geom_line(color='#2986cc') + 
+        labs(x = "",
+             y='Daily returns', 
+             title="IBOV (Daily returns since 2010)")   +   theme_solarized()  
+ggplotly(p)
+```
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+plt.close()
+plt.plot(ibov['ref_date'], ibov['return'], color='#2986cc')
+plt.xlabel('')
+plt.ylabel('Daily returns', fontsize=14)
+plt.title('IBOV (Daily returns since 2010)', fontsize=15)
+plt.show()
+```
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+Daily returns Americanas.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+p<-ggplot() +
+  geom_line(data=amer, aes(amer$ref_date, amer$ret_closing_prices), color='#801e00') +
+  geom_line(data=ibov, aes(ibov$ref_date, ibov$ret_closing_prices), color='#2986cc') +
+  labs(x = "", y='Daily returns') +
+  ggtitle("IBOV vs AMER3 (Daily returns since 2010)") +
+  theme_solarized()
+ggplotly(p)      
+```
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+plt.close()
+plt.plot(amer['ref_date'], amer['return'], color='#801e00')
+plt.plot(ibov['ref_date'], ibov['return'], color='#2986cc')
+plt.xlabel('')
+plt.ylabel('Daily returns', fontsize=14)
+plt.title('IBOV (Daily returns since 2010)', fontsize=15)
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+**Americanas seems riskier than ITUB.** Some stocks have heavier tails than others. The stock with the heavier tail is riskier.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+stocks <-c('AMER3.SA', 'ITUB3.SA') 
+start <-'2012-01-01' 
+end   <- Sys.Date() 
+data <- yf_get(tickers = stocks, 
+                         first_date = start,
+                         last_date = end)
+data<-data[complete.cases(data),] 
+p<-ggplot(data, aes(ret_closing_prices,  fill = ticker)) + 
+        geom_histogram(bins = 100, alpha = 0.35, position='identity') + 
+        labs(x = "",
+             y='Daily returns', 
+             title="Daily returns (2012-2023)",
+             subtitle = start)+
+      xlim(-0.1,0.1) +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+start = '2012-01-01'
+end = pd.Timestamp.now()
+asset1 = yf.download('AMER3.SA', start=start, end=end)
+asset1 = asset1.dropna()
+asset1['return'] = asset1["Adj Close"].pct_change()
+asset2 = yf.download('ITUB3.SA', start=start, end=end)
+asset2 = asset2.dropna()
+asset2['return'] = asset2["Adj Close"].pct_change()
+df = pd.merge(asset1[['return']], asset2[['return']], on="Date")
+#plot
+plt.close()
+plt.figure(figsize=(20,10))
+plt.hist(df['return_x'], bins=400, alpha=0.5, label="AMER3.SA", density=True)
+plt.hist(df['return_y'], bins=400, alpha=0.5, label="ITUB3.SA", density=True)
+plt.title('Daily returns (2012-2023)', fontsize=25)
+plt.ylabel('Daily returns', fontsize=20)
+plt.legend(loc='upper left', fontsize=20)
+plt.xlim(-0.1, 0.1)
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+
+**Keep in mind:** There is variation (heterogeneity) in the level of **standard deviation** across countries.
+
+![](figs/bre13901_0707.jpg){width="85%"}
+
+Source: Brealey, Myers and Allen (13ed)
+
+
+
+
+
+
+
+
+
+
+
+
+# 10.3 Historical Returns {.smaller  background="#ced8f5"}
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5"}
+
+The previous problem was a simple one-time-ahead example (i.e., we computed the expected return one period ahead). 
+
+A more realistic one is to **compute historical returns**:
+
+$$R_{t+1} = \frac{Div_{t+1} + P_{t+1}}{P_t} - 1$$ 
+
+This is:
+
+**Dividend Yield + Capital Gain Rate**
+
+
+
+. . .
+
+[Question](https://hcm.quarto.pub/ef_p2q/#expected-return){preview-link="true"}
+
+
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5"}
+
+**Calculating realized annual returns**
+
+If a stock pays dividends at the end of each quarter (with realized returns RQ1, RQ2, RQ3, and RQ4 each quarter), then its annual realized return, $R_{annual}$, is computed as follows:
+
+$$(1 + 𝑅_{annual})   = (1+𝑅_{Q1})\times(1+𝑅_{Q2})\times(1+ 𝑅_{Q3})\times (1+𝑅_{Q4})$$
+
+- You can also compute using a daily time horizon (not manually, but by software).
+
+. . .
+
+**One important piece of information you need:**
+
+- You should know whether the return is calculated adjusted by dividends (they usually are, but always ask).
+
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5"}
+
+Compute the annual returns of this stock.
+
+![](figs/bm_10_ex1.png){width="100%"}
+
+. . .
+
+$$𝑅_{2012}=(1.0513)(1.0449)(0.7626)(1.1375)(0.9714)−1=−7.43\%$$
+
+$$𝑅_{2016}=(0.8499)(0.8409)(1.0811)(0.440)−1=−66.0\%$$
+
+**Notice that the first example is not quarterly.**
+
+
+
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5"}
+
+Compute the annual returns of this stock.
+
+![](figs/bm_10_ex1.png){width="100%"} 
+
+**Also notice that, since the firm did not pay dividends in 2016, you can compute:**
+
+$$\frac{2.29}{6.73}-1 = -66\%$$
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5" visibility="hidden"}
+
+![](figs/bm_10_5.jpg){width="80%"}
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5" }
+
+**Average annual return**
+
+The average annual return of an investment during some historical period is simply the average of the realized returns for each year.
+
+$$\tilde{R}  =  \frac{1}{T} (𝑅_1  + 𝑅_2  + ⋯ + 𝑅_𝑇)  =  \frac{1}{T} \sum_{t=1}^{T} R_t$$
+
+. . .
+
+**Variance estimate using realized returns**
+
+$$Var[R] =  \frac{1}{T-1} \sum_{t=1}^{T} (R_t- \tilde{R})^2 $$
+$$SD(R) = \sqrt{Var(R)}$$
+
+**Warning: because you are using a sample of historical returns (instead of the population) there is a T-1 in the variance formula**.
+
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5" }
+
+**Historical Returns: standard error** 
+
+We can use a security’s historical average return to estimate its actual expected return. However, the average return is just an estimate of the expected return.
+
+- **Standard Error**
+  - A statistical measure of the degree of estimation error of a statistical estimate
+
+_The average return is just an estimate of the true expected return, and is subject to estimation error._
+
+You can compute the standard error as
+
+$$SE = \frac{Standard\; deviation}{\sqrt{n\;of\; observations}}$$
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5" }
+
+**Historical Returns: standard error** 
+
+Using BM p.367 example. 
+
+**For example, from 1926 to 2017 the average return of the S&P 500 was 12.0% with a volatility of 19.8%.**
+
+$$E[R] \pm 2\times SE = 12\% \pm \frac{19.8\%}{\sqrt{92}}= 12\% \pm 4.1\%$$
+**This means that, with 95% confidence interval, the expected return of the S&P 500 during this period ranges from 7.9% and 16.1%.**
+
+The longer the period, the more accurate you are. But even with 92 years of data, you are not very accurate to predict the expected return of the SP500.
+
+
+
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5" }
+
+Some analysts prefer to use a geometric average instead of arithmetic average.
+
+Also called **Compound Annual Growth Rate (CAGR)**.
+
+$$CAGR = [(1+R_1)\times(1+R_2)\times ...\times (1+R_T)]^{\frac{1}{T}}-1$$
+
+$$CAGR = [\frac{Final\;value}{Initial\;value}]^\frac{1}{T}-1$$
+
+Using Figure 10.1 of BM: geometric return of SP500 from 1926-2017 is
+
+$$CAGR = [\frac{664,567}{100}]^\frac{1}{92}-1 = 10.04\%$$
+
+Remember the (arithmetic) average was 12% (in previous slide).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+
+## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+
+**Investors are assumed to be risk averse:**
+
+- To assume risk, they need extra return for that risk.
+
+- They demand excess return.
+
+**Excess returns**
+
+- The difference between: 
+
+  - 1) the average return for an investment with risk, and 
+  - 2) the average return for risk-free assets.
+
+
+
+
+
+
+
+
+
+
+## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+
+**That is why riskier assets are expected to have higher returns.**
+
+**In other words, risk and return have a positive correlation.**
+
+![](figs/bm_10_6.png){ width="95%"}
+
+
+
+
+
+
+
+
+
+## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+
+**But the association is not linear as one might expect. See stocks below.**
+
+![](figs/bm_10_7.png){ width="95%"}
+
+
+
+
+
+
+
+
+
+
+## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+
+**Risk vs return of selected Brazilian stocks.** There is a line, but not really...
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+start <-'2010-01-01' 
+end   <- Sys.Date() 
+asset <- yf_collection_get("IBOV", 
+                         first_date = start,
+                         last_date = end,
+                         thresh_bad_data = 0.5,
+                         freq_data ="yearly")
+asset<-asset[complete.cases(asset),] 
+stocks <-c('^BVSP' ) 
+ibov <- yf_get(tickers = stocks, 
+                         first_date = start,
+                         last_date = end,
+                         freq_data ="yearly")
+ibov<-ibov[complete.cases(ibov),]
+data<-rbind(asset,ibov)
+mean_sd  <- data %>%                          
+            group_by(ticker) %>%
+            summarise_at(vars(ret_adjusted_prices),
+                         list(mean = mean,
+                              sd = sd)) %>% 
+            as.data.frame()
+p<-ggplot(mean_sd, aes(x=sd, y=mean)) + 
+    ggrepel::geom_text_repel(data = mean_sd, aes(label = ticker) , size = 2.5 ,  max.overlaps = Inf)+
+      geom_point(size = 4)  +   xlim(0, 1) + ylim(0, 0.35) + 
+        labs(x = "Average standard deviation (annual returns)",
+             y='Average return (annual returns)', 
+             title="Historical return vs. Historical volatility (yearly returns since 2010)") +   theme_solarized() +
+  geom_point(data = mean_sd[mean_sd$ticker == '^BVSP',], color = "#2986cc", size = 5)
+p
+```       
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+
+start = '2010-01-01'
+end = pd.Timestamp.now()
+stocks = ["^BVSP","ABEV3.SA","ALPA4.SA","AMER3.SA","B3SA3.SA","BBAS3.SA","BBDC3.SA","BBDC4.SA","BEEF3.SA","BPAN4.SA","BRAP4.SA","BRFS3.SA","BRKM5.SA","BRML3.SA","CCRO3.SA","CIEL3.SA","CMIG4.SA","COGN3.SA","CPFE3.SA","CPLE6.SA","CSAN3.SA","CSNA3.SA","CYRE3.SA","DXCO3.SA","ECOR3.SA","EGIE3.SA","ELET3.SA","ELET6.SA","EMBR3.SA","ENBR3.SA","ENEV3.SA","ENGI11.SA","EQTL3.SA","EZTC3.SA","FLRY3.SA","GGBR4.SA","GOAU4.SA","GOLL4.SA","HYPE3.SA","ITSA4.SA","ITUB4.SA","JBSS3.SA","JHSF3.SA","LREN3.SA","MGLU3.SA","MRFG3.SA","MRVE3.SA","MULT3.SA","PCAR3.SA","PETR3.SA","PETR4.SA","PRIO3.SA","QUAL3.SA","RADL3.SA","RENT3.SA","SANB11.SA","SBSP3.SA","SULA11.SA","SUZB3.SA","TAEE11.SA","TIMS3.SA","TOTS3.SA","UGPA3.SA","USIM5.SA","VALE3.SA","VIIA3.SA","VIVT3.SA","WEGE3.SA","YDUQ3.SA"]
+results = []
+for ticker in stocks:
+    asset = yf.download(ticker, start=start, end=end)
+    asset['return'] = asset['Adj Close'].pct_change()
+    asset = asset.dropna()
+    mean_return = asset['return'].mean()
+    std_return = asset['return'].std()
+    data = pd.DataFrame({'ticker': [ticker], 'average_return': [mean_return], 'standard_deviation': [std_return]})
+    results.append(data)
+df = pd.concat(results).reset_index(drop=True)
+
+plt.close()
+fig, ax = plt.subplots(figsize=(20, 10))
+for i in range(len(df)):
+    if df.loc[i, 'ticker'] == '^BVSP':
+        color = 'darkblue'
+    else:
+        color = 'black'
+    ax.scatter(x=df.loc[i, 'standard_deviation'], y=df.loc[i, 'average_return'], s=50, color=color)
+plt.title("Historical return vs. Historical volatility (daily returns since 2010)", fontsize=20)
+plt.xlabel("Average standard deviation (daily returns)", fontsize=15)
+plt.ylabel("Average return (daily returns)", fontsize=15)
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 10.6 Diversification {.smaller background="#f7e1ba" }
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+**When you have a portfolio containing assets, the risk you incurred is less than the (weighted average) of the assets' risk.** Let's understand why.
+
+. . .
+
+First, we need to separate two types of risk:
+
+- **Firm-specific risk (or news):**
+  - good or bad news about the company itself. For example, a firm might announce that it has been successful in gaining market share within its industry.
+  - this type of risk is independent across firms.
+  - *also called firm-specific, idiosyncratic, unique, or diversifiable risk.*
+
+- **Market-wide risk (or news):** 
+  - news about the economy as a whole, affects all stocks. For instance, changes in the interest rates.
+  - this type of risk is common to all firms.
+  - *also called systematic, undiversifiable, or market risk.*
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+  
+**Firm-Specific Versus Systematic Risk**
+
+- When many stocks are combined in a large portfolio, the firm-specific risks for each stock will average out and be diversified. The systematic risk, however, will affect all firms and will not be diversified.
+
+. . .
+
+**Consider two types of firms:**
+
+**Type S firms are affected only by systematic risk**. There is a 50% chance the economy will be strong and they will earn a return of 40%. There is a 50% change the economy will be weak and their return will be −20%. Because all these firms face the same systematic risk, **holding a large portfolio of type S firms will not diversify the risk.** 
+
+  
+**Type I firms are affected only by firm-specific risks**. Their returns are equally likely to be 35% or  −25%, based on factors specific to each firm’s local market. Because these risks are firm specific, if we hold a portfolio of the stocks of many type I firms, **the risk is diversified**. 
+
+  
+. . .
+
+[Question](https://hcm.quarto.pub/ef_p2q/#question-8){preview-link="true"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+You must be aware that **actual firms are affected by both market-wide risks and firm-specific risks**. 
+
+When firms carry both types of risk, **only the unsystematic risk will be diversified when many firm’s stocks are combined into a portfolio**. 
+
+The volatility will therefore decline until only the systematic risk remains.
+
+![](figs/bm_10_8.png){width="90%"}
+
+
+
+
+
+
+
+
+
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+**That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it.** It is like free lunch.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+start <-'2010-01-01' 
+end   <- Sys.Date() 
+data <- yf_collection_get("IBOV", 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = "daily",)
+data<-data[complete.cases(data),] 
+data$month <- format(as.Date(data$ref_date, format="%y/%m/%d"),"%y/%m")
+sd  <-    data %>%                          
+            group_by(ticker,month) %>%
+            summarise_at(vars(ret_adjusted_prices),list(sd = sd)) %>% 
+            as.data.frame()
+vol  <-    data %>%                          
+            group_by(ticker,month) %>%
+            summarise_at(vars(volume),list(vol_sum = sum)) %>% 
+            as.data.frame()
+vol2  <-    data %>%                          
+            group_by(month) %>%
+            summarise_at(vars(volume),
+                         list(vol_tot = sum)) %>% 
+            as.data.frame()
+data2 <- merge(sd ,vol, by=c("ticker","month"))
+data2 <- merge(data2 ,vol2, by=c("month"))
+data2$w <- data2$vol_sum/data2$vol_tot
+data2$sdw <- data2$sd * data2$w
+data3  <-   data2 %>%                          
+            group_by(month) %>%
+            summarise_at(vars(sdw),list(total = sum)) %>% 
+            as.data.frame()
+data3<-data3[complete.cases(data3),] 
+data3$id <-"Weighted"
+# Index
+ibov <- yf_get(tickers = '^BVSP', 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = "daily",)
+ibov<-ibov[complete.cases(ibov),] 
+ibov$month <- format(as.Date(ibov$ref_date, format="%y/%m/%d"),"%y/%m")
+sd2  <-    ibov %>%                          
+            group_by(month, ticker) %>%
+            summarise_at(vars(ret_closing_prices) ,
+                         list(total = var ) ) %>% 
+            as.data.frame()
+sd2$total <- sd2$total^0.5
+sd2$id <-"ibov"
+sd2$ticker <- NULL
+data4 <- rbind(data3,sd2)
+p<-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +
+  geom_line() + 
+        labs(x = "",
+             y='Standard deviation',
+             title ="Diversification benefits - Ibov vs. Weighted sd of individual stocks") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+An additional comment about diversification:
+
+**1) it occurs only if the risk of the stocks are independent**
+
+  - we will define later what "independent" means to us. 
+  - intuitively, different firms have different risks.
+
+**2) if the risks are independent, more stocks means less risk... **
+
+  - ... until a certain point.
+
+
+
+
+
+
+
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+**Consider again type I firms, which are affected only by firm-specific risk. Because each individual type I firm is risky, should investors expect to earn a risk premium when investing in type I firms?**
+
+. . .
+
+**The risk premium for diversifiable risk is zero, so investors are not compensated for holding firm-specific risk.**
+
+- The reason is that they can mitigate this part of risk through  diversification.
+
+- Diversification eliminates this risk for free, implying that all investors should have a diversified portfolio. Otherwise, the investor is not rational.
+
+. . .
+
+**The takeaway is:**
+
+**The risk premium of a security is determined by its systematic risk and does not depend on its diversifiable risk.**
+
+
+
+
+
+
+
+
+
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+**In a world where diversification exists:**
+
+**Standard deviation is not a good measure for risk anymore.**
+
+- Standard deviation is a measure of **a stock's total risk**
+- But if you are diversified, you are not incurring the total risk, only the systematic risk.
+
+
+_We will need a measure of a stock's systematic risk._
+
+. . .
+
+**This measure is called: Beta**
+
+. . .
+
+**But make no mistake:**
+
+**The standard deviation of the returns of a portfolio is still a good measure for the portfolio's risk!**
+
+- But you will not use the average standard deviation of individual stocks contained in a portfolio.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 10.7 Measuring Systematic Risk {.smaller background="#f2f7ba" }
+
+## 10.7 Measuring Systematic Risk {.smaller background="#f2f7ba" }
+
+**Beta**
+
+**To measure the systematic risk of a stock, determine how much of the variability of its return is due to systematic risk versus unsystematic risk.**
+
+ - To determine how sensitive a stock is to systematic risk, look at the average change in the return for each 1% change in the return of a portfolio that fluctuates solely due to systematic risk.
+
+**This is the exact definition of a Beta in a regression or a linear relationship** (we studied that in statistics).
+
+. . .
+
+Saying the same thing in other words:
+
+**Beta measures the expected percent change in the excess return of a security for a 1% change in the excess return of the market portfolio.**
+
+  - Market portfolio contains all stocks: SP500 is a proxy, Ibov is another (for BR).   
+
+
+
+
+
+
+
+
+
+
+## 10.7 Measuring Systematic Risk {.smaller background="#f2f7ba" }
+
+Suppose the market portfolio tends to increase by 47% when the economy is strong and decline by 25% when the economy is weak. **What is the beta of a type S firm whose return is 40% on average when the economy is strong and −20% when the economy is weak?**
+
+**Firm S**
+
+- Market changes 47%, stock changes 40%: Beta is $\frac{40}{47}=0.85$
+- Market changes -25%, stock changes -20%: Beta is $\frac{20}{25}=0.8$
+- Market changes from -25% to 47% = 72%, stock changes from -20 to 40, Beta is $\frac{60}{72}=0.833$
+
+. . .
+
+It does not mean that the stock has three betas...
+
+... it means that we have three estimates for the stock's beta.
+
+
+
+
+
+
+
+
+
+
+
+## 10.7 Measuring Systematic Risk {.smaller background="#f2f7ba" }
+
+Suppose the market portfolio tends to increase by 47% when the economy is strong and decline by 25% when the economy is weak. What is the beta of a type S firm whose return is 40% on average when the economy is strong and −20% when the economy is weak? **What is the beta of a type I firm that bears only idiosyncratic, firm-specific risk?**
+
+**Firm I**
+
+- Does not change, Beta is $\frac{0}{72}=0$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##  Market Risk Premium {.smaller background="#f2f7ba" }
+
+We can define:
+
+**The market risk premium is the reward investors expect to earn for holding a portfolio with a beta of 1**
+
+$$Market\; risk\;premium = E[R_m] - R_{rf}$$
+
+. . .
+
+Inverting:
+
+$$E[R_m] =  R_{rf} + Market\; risk\;premium$$
+
+. . .
+
+The idea is that investors are risk-averse and dislike risk. Therefore, in order to invest in risky assets, investors demand an extra return.
+
+. . .
+
+Flipping the argument, **a risky asset will have to pay an extra return for its additional risk in order to attract investors.**
+
+. . .
+
+Therefore, there is a clear association between the risk and return of assets.
+
+. . .
+
+Again: in a diversified portfolio, investors are diversified so they only worry about beta (not standard deviation).
+
+
+
+
+
+
+
+
+
+
+##  Market Risk Premium {.smaller background="#f2f7ba" }
+
+There is some heterogeneity in the **risk premium** across countries.
+
+<img src="figs/bre13901_0703.jpg" width="80%" />
+
+Source: Brealey, Myers and Allen (13ed)
+
+
+
+
+
+
+
+
+
+
+## Equity Risk Premium (ERP) {.smaller background="#f2f7ba" }
+
+Let's plot the Equity Risk Premium. I am extracting the data from this [website](https://ceqef.fgv.br/node/594).
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+url <- "https://ceqef.fgv.br/sites/ceqef.fgv.br/files/serie_de_equity_risk_premium_3.xls"
+download(url, dest="files/epr.xls", mode="wb") 
+data <- read_excel("files/epr.xls", col_types = c("date","numeric") )
+data <- data[2:nrow(data),1:2]
+colnames(data) <- c("month", "erp")
+
+p<-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+
+  labs(y = "Equity Risk Premium (ERP)", 
+       x = "", 
+       title = "Equity Risk Premium (ERP) in Brazil" , 
+       caption = "Source: https://ceqef.fgv.br/node/594" )
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+## Equity Risk Premium (ERP) {.smaller background="#f2f7ba" }
+
+Let's plot the Equity Risk Premium. I am extracting the data from this [website](https://ceqef.fgv.br/node/594).
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+import pandas as pd
+import matplotlib.pyplot as plt
+url = "https://ceqef.fgv.br/sites/ceqef.fgv.br/files/serie_de_equity_risk_premium_3.xls"
+data = pd.read_excel(url, header=2)
+data = data.iloc[:, 0:2]
+data.columns = ["month", "erp"]
+fig, ax = plt.subplots(figsize=(20, 10))
+ax.plot(data["month"], data["erp"])
+ax.set_xlabel("Time", fontsize=20)
+ax.set_ylabel("Equity Risk Premium (ERP)", fontsize=20)
+ax.set_title("Equity Risk Premium (ERP) in Brazil", fontsize=25)
+ax.text(0.5, -0.1, "Source: https://ceqef.fgv.br/node/594", transform=ax.transAxes, ha="center")
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+# 10.8 Beta and cost of capital {.smaller background="#c9f7ba"}
+
+## 10.8 Beta and cost of capital {.smaller background="#c9f7ba"}
+
+Consider an investment with a beta = 1.5.
+
+This investment has 50% more risk than the market portfolio.
+
+Every 1% change in the market portfolio leads to a 1.5% percent change in the investment's price.
+
+. . .
+
+Based on these figures, we can compute the expected return for this investment **adjusted by the level or risk it provides**.
+
+$$E[R] = R_{rf} + \beta \times (E[R_m] - R_{rf})$$
+
+. . .
+
+We will discuss more about this equation later, when discussing the CAPM (Capital Asset Pricing Model).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 10.8 Beta and cost of capital {.smaller background="#c9f7ba"}
+
+Flipping the argument from the previous slides, **we can compute the cost of capital for this investment** using the same formula:
+
+$$E[R] = R_{rf} + \beta \times (E[R_m] - R_{rf})$$
+
+. . .
+
+Assume the economy has a 60% chance that the market return will be 15% next year and a 40% chance the market return will be 5% next year. Assume the risk-free rate is 6%. If a company's beta is 1.18, what is its expected return next year?
+
+. . .
+
+First, compute $E[R_m]$:
+
+$$E[R_m] = 60\% \times 15\% + 40\% \times 5\%  = 11\%$$
+
+. . .
+
+Second, compute $E[R]$:
+
+$$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
+
+
+
+
+
+
+
+
+
+
+#  Recap {.smaller}
+
+##  Recap {.smaller}
+
+**After this chapter, you should know:**
+
+- Understand what a probability distribution is, the mean, the variance, and the standard deviation.
+
+- Compute the realized or total return for an investment.
+
+- Use the empirical distribution of realized returns, estimate expected return, variance, and standard deviation (or volatility) of returns.
+
+- Use the standard error of the estimate to gauge the amount of estimation error in the estimate (i.e., the average).
+
+- Discuss the volatility and return characteristics of small stocks versus large stocks (and other assets).
+
+- Describe the relationship between volatility and return of individual stocks.
+
+
+
+
+
+
+
+
+##  Recap {.smaller}
+
+**After this chapter, you should know:**
+
+- Define and contrast idiosyncratic and systematic risks and the risk premium required.
+
+- Understand beta as a measure of the systematic risk of a security.
+
+- Use the Capital Asset Pricing Model to calculate the expected return for a risky security.
+
+- Use the Capital Asset Pricing Model to calculate the cost of capital for a particular project.
+
+
+
+
+
+
+
+
+
+
+## Comments? {background="#a2bef5"}
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/comments"
+        data-repo-id="R_kgDOHze3WQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOHze3Wc4CQwHO"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="pt"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+
+::: {.column width="60%"}
+
+**QUESTIONS?**
+
+![](figs/qa2.png){width=150% heigth=150%}
+:::
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
+:::
+:::
+
+::: footer
+:::
+
+
+
+
