@@ -1,0 +1,18 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+---
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** The beta of a security is the sensitivity of the security’s return to the return of the overall market."
+q1_choices <- c(answer= "True", "False")
+cat(q1,longmcq(q1_choices))
+```
+

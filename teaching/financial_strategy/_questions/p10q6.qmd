@@ -1,0 +1,17 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+---
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** According to the dividend signaling hypothesis, when a company increases its dividend payments, it generally signals that it expects lower future earnings."
+q1_choices <- c( "True", answer= "False")
+cat(q1,longmcq(q1_choices))
+```
