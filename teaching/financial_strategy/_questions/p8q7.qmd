@@ -1,0 +1,18 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** The Optimal Capital Structure with Taxes refers to the best mix of debt and equity financing that fully exploits the tax advantages of debt. "
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```

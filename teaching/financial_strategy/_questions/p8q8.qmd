@@ -1,0 +1,18 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** A firm can reduce its overall WACC by increasing the amount of debt financing, and it should take on as much debt as possible as long as the debt is not risky."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
