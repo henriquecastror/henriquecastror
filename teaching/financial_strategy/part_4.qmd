@@ -602,9 +602,9 @@ Another key ingredient of CAPM is **The Market Risk Premium**
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
-url <- "https://ceqef.fgv.br/sites/ceqef.fgv.br/files/serie_de_equity_risk_premium_3.xls"
-download(url, dest="files/epr.xls", mode="wb") 
-data <- read_excel("files/epr.xls", col_types = c("date","numeric") )
+url <- "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
+download(url, dest="files/epr.xlsx", mode="wb") 
+data <- read_excel("files/epr.xlsx", col_types = c("date","numeric") )
 data <- data[2:nrow(data),1:2]
 colnames(data) <- c("month", "erp")
 
@@ -642,7 +642,7 @@ ggplotly(p)
 #| eval: true
 import pandas as pd
 import matplotlib.pyplot as plt
-url = "https://ceqef.fgv.br/sites/ceqef.fgv.br/files/serie_de_equity_risk_premium_3.xls"
+url = "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
 data = pd.read_excel(url, header=2)
 data = data.iloc[:, 0:2]
 data.columns = ["month", "erp"]
@@ -1717,7 +1717,7 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
         data-emit-metadata="0"
         data-input-position="bottom"
         data-theme="light"
-        data-lang="pt"
+        data-lang="en"
         crossorigin="anonymous"
         async>
 </script>

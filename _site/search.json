@@ -3869,5 +3869,439 @@
     "title": "Estratégia Financeira",
     "section": "Comments?",
     "text": "Comments?"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#chapter-outline",
+    "href": "teaching/financial_strategy/part_4.html#chapter-outline",
+    "title": "Estratégia Financeira",
+    "section": "Chapter Outline",
+    "text": "Chapter Outline\n12.1 The Equity Cost of Capital\n12.2 The Market Portfolio\n12.3 Beta Estimation\n12.4 The Debt Cost of Capital\n12.5 A Project’s Cost of Capital\n12.6 Project Risk Characteristics and Financing\n12.7 Final Thoughts on Using the CAPM"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#chapter-outline-1",
+    "href": "teaching/financial_strategy/part_4.html#chapter-outline-1",
+    "title": "Estratégia Financeira",
+    "section": "Chapter Outline",
+    "text": "Chapter Outline\nIn this chapter, we discuss how the firm computes its cost of capital. We will:\n\n\nEstimate a company’s cost of capital using CAPM.\nDescribe the market portfolio and how it is constructed in practice.\nDiscuss the attributes of a value-weighted portfolio.\nDescribe proxies for the market return and the risk-free rate.\nDefine alpha and beta estimations.\nEstimate the cost of debt.\nIllustrate the use of comparable companies’ unlevered betas or unlevered cost of capital to estimate project cost of capital.\nDefine operating leverage and discuss its influence on project risk.\nCalculate the weighted average cost of capital"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-1",
+    "href": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-1",
+    "title": "Estratégia Financeira",
+    "section": "12.1 The Equity Cost of Capital",
+    "text": "12.1 The Equity Cost of Capital\nThe CAPM Equation for the Cost of Capital (using the Security Market Line).\nThe cost of capital of any investment opportunity equals the expected return of available investments with the same beta.\n\\[R_i = R_f + \\beta \\times (E[R_m] - R_f)\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-2",
+    "href": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-2",
+    "title": "Estratégia Financeira",
+    "section": "12.1 The Equity Cost of Capital",
+    "text": "12.1 The Equity Cost of Capital\nProblem\nSuppose you estimate that Disney’s stock (DIS) has a volatility of 20% and a beta of 1.29. A similar process for Chipotle (CMG) yields a volatility of 30% and a beta of 0.55.\nWhich stock carries more total risk? Which has more market risk?\n\nDisney has more Systematic risk.\nChipotle has more total risk."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-3",
+    "href": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-3",
+    "title": "Estratégia Financeira",
+    "section": "12.1 The Equity Cost of Capital",
+    "text": "12.1 The Equity Cost of Capital\nProblem\nSuppose you estimate that Disney’s stock (DIS) has a volatility of 20% and a beta of 1.29. A similar process for Chipotle (CMG) yields a volatility of 30% and a beta of 0.55.\nIf the risk-free interest rate is 3% and you estimate the market’s expected return to be 8%, calculate the equity cost of capital for DIS and CMG. Which company has a higher cost of equity capital?\n\n\\[R_{DIS}=3\\%+1.29 \\times (8\\%−3\\%) = 3\\% + 6.45\\% =9.45\\%\\]\n\\[R_{GMG}=3\\%+0.55 \\times(8\\%−3\\%)=3\\%+2.75\\%=5.75\\%\\]\n\n\nBecause market risk cannot be diversified, it is market risk that determines the cost of capital; thus DIS has a higher cost of equity capital than CMG, even though it is less volatile."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-4",
+    "href": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-4",
+    "title": "Estratégia Financeira",
+    "section": "12.1 The Equity Cost of Capital",
+    "text": "12.1 The Equity Cost of Capital\nSuppose you estimate that Walmart’s stock has a volatility of 16.1% and a beta of 0.20. A similar process for Johnson & Johnson yields a volatility of 13.7% and a beta of 0.54. Which stock carries more total risk? Which has more market risk?\n\nWalmart stock has more total risk.\nJohnson & Johnson has a higher beta, so it has more market risk"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-5",
+    "href": "teaching/financial_strategy/part_4.html#the-equity-cost-of-capital-5",
+    "title": "Estratégia Financeira",
+    "section": "12.1 The Equity Cost of Capital",
+    "text": "12.1 The Equity Cost of Capital\nSuppose you estimate that Walmart’s stock has a volatility of 16.1% and a beta of 0.20. A similar process for Johnson & Johnson yields a volatility of 13.7% and a beta of 0.54. Which stock carries more total risk? Which has more market risk?\nIf the risk-free interest rate is 4% and you estimate the market’s expected return to be 12%, calculate the equity cost of capital for Walmart and Johnson & Johnson. Which company has a higher cost of equity capital?\n\n\\[r_{JNJ}=4\\%+0.54×(12\\%−4\\%)=4\\%+4.32\\%=8.32\\%\\]\n\\[r_{WMT}=4\\%+0.20×(12\\%−4\\%)=4\\%+1.6\\%=5.6\\%\\]\n\n\nBecause market risk cannot be diversified, it is market risk that determines the cost of capital; thus, Johnson & Johnson has a higher cost of equity capital than Walmart, even though it is less volatile."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-1",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-1",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\nTo use the CAPM, we need to understand what the market portfolio is.\nBecause the market portfolio is the total supply of securities, the proportions of each security should correspond to the proportion of the total market that each security represents.\nThus, the market portfolio contains more of the largest stocks and less of the smallest stocks.\n\nMarket capitalization (of one firm):\n\nThe total market value of a firm’s outstanding shares\n\n\\[MV_i = (nr\\;of\\;shares\\;outstanding) \\times (price\\;per\\;share) = N_i \\times P_i\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-2",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-2",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\nWe then calculate the portfolio weights of each security: that is a Value-Weighted Portfolio\n\nA portfolio in which each security is held in proportion to its market capitalization\n\n\\[x_i = \\frac{MV_i}{Total\\; MV}= \\frac{MV_i}{\\sum{MV}}\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-3",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-3",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\nPassive portfolio\n\ntrade not often\n\nActive portfolio\n\ntrade often"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-4",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-4",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\nExamples of indexes:\n\nSP500\n\nA value-weighted portfolio of the 500 largest U.S. stocks\n\nDow Jones Industrial Average (DJIA)\n\nA price-weighted portfolio of 30 large industrial stocks (holds an equal number of shares of each stock).\n\nIbov\n\nAround 70 BR stocks. Follows an algorithm focusing on liquidity.\n\n\n\nETFs (Exchange-traded funds)\n\nA portfolio that follows an index, like the SP500.\n\n\n\nSP500 and Ibov are not considered as the market portfolio, they are proxies for the market portfolios. I.e., reasonable approximations."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-5",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-5",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\n\n\nR\nstocks &lt;-c('SPY', 'IVV','VOO', 'SPLG' , '^GSPC') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock3 &lt;- subset(data, ticker == stocks[3])\nstock4 &lt;- subset(data, ticker == stocks[4])\nstock5 &lt;- subset(data, ticker == stocks[5])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\nstock3$price_close2 &lt;- stock3$price_close  / stock3$price_close[1] * 100\nstock4$price_close2 &lt;- stock4$price_close  / stock4$price_close[1] * 100\nstock5$price_close2 &lt;- stock5$price_close  / stock5$price_close[1] * 100\ndata2 &lt;- rbind(stock1, stock2, stock3, stock4, stock5)\np&lt;-ggplot(data2, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"SP500 against 4 ETFs, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-6",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-6",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\n\n\nPython\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport yfinance as yf\nstocks = ['SPY', 'IVV', 'VOO', 'SPLG', '^GSPC']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\n## \n[                       0%                       ]\n[*******************   40%                       ]  2 of 5 completed\n[**********************60%****                   ]  3 of 5 completed\n[**********************80%*************          ]  4 of 5 completed\n[*********************100%***********************]  5 of 5 completed\ndata2 = (data / data.iloc[0]) * 100\nplt.close()\nplt.plot(data2)\nplt.xlabel('')\nplt.ylabel('Closing prices')\nplt.title('SP500 against 4 ETFs, Initial price = 100\\nBegin 01/01/2010')\nplt.legend(data2.columns)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-7",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-7",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\n\n\nR\nstocks &lt;-c('BOVA11.SA', '^BVSP') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\ndata2 &lt;- rbind(stock1, stock2)\np&lt;- ggplot(data2, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"IBOV against 2 ETFs, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-8",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-8",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\n\n\nPython\nstocks = ['BOVA11.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\n## \n[                       0%                       ]\n[*********************100%***********************]  2 of 2 completed\ndata2 = (data / data.iloc[0]) * 100\nplt.close()\nplt.plot(data2)\nplt.xlabel('')\nplt.ylabel('Closing prices')\nplt.title('Ibov against 2 ETFs, Initial price = 100')\nplt.legend(data2.columns)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-9",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-9",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\nAnother key ingredient of CAPM is The Market Risk Premium\n\nRisk-Free Rate\n\nThe yield on U.S. Treasury securities\nSurveys suggest most practitioners use 10- to 30-year treasuries\nHighest quality assets\nOften, we use a short-term risk-free rate to evaluate a short-term investment, and a long-term rate when evaluating a long-term investment.\nIn Brazil, Selic for the short-term. Or maybe a more suitable long-term fixed rate, like 20-30 years."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-10",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-10",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\n\nThe Historical Risk Premium\n\nEstimate the risk premium (\\(E[R_M] − R_f\\)) using the historical average excess return of the market over the risk-free interest rate\nNotice that, even with long periods, we often have large standard errors\nAlso, implicitly, you are assuming that the past is a good proxy for the future."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-11",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-11",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\n\n\nR\nurl &lt;- \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndownload(url, dest=\"files/epr.xlsx\", mode=\"wb\") \ndata &lt;- read_excel(\"files/epr.xlsx\", col_types = c(\"date\",\"numeric\") )\ndata &lt;- data[2:nrow(data),1:2]\ncolnames(data) &lt;- c(\"month\", \"erp\")\n\np&lt;-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+\n  labs(y = \"Equity Risk Premium (ERP)\", \n       x = \"\", \n       title = \"Equity Risk Premium (ERP) in Brazil\" , \n       caption = \"Source: https://ceqef.fgv.br/node/594\" )\nggplotly(p)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-12",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-12",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\n\n\nPython\nimport pandas as pd\nimport matplotlib.pyplot as plt\nurl = \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndata = pd.read_excel(url, header=2)\ndata = data.iloc[:, 0:2]\ndata.columns = [\"month\", \"erp\"]\nfig, ax = plt.subplots(figsize=(20, 10))\nax.plot(data[\"month\"], data[\"erp\"])\nax.set_xlabel(\"Time\", fontsize=20)\nax.set_ylabel(\"Equity Risk Premium (ERP)\", fontsize=20)\nax.set_title(\"Equity Risk Premium (ERP) in Brazil\", fontsize=25)\nax.text(0.5, -0.1, \"Source: https://ceqef.fgv.br/node/594\", transform=ax.transAxes, ha=\"center\")\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-13",
+    "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-13",
+    "title": "Estratégia Financeira",
+    "section": "12.2 The Market Portfolio",
+    "text": "12.2 The Market Portfolio\nUsing historical data has two problems:\n\nStandard errors of the estimates are often large\nThey are backward looking\n\n\nSo, one alternative is to use the discount rate that is consistent with the current level of the index.\n\\[ R_m = \\frac{Div_1}{P_o} + g = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate\\]\n\n\nLet’s say, Ibov’s current dividend yield is 2%. Also, both earnings and dividends per share are expected to grow 6% per year.\n\\[ R_m = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate = 2\\% + 6\\% = 8\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-1",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-1",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\nFinally, we need to estimate Beta\n\n\nRecall, beta is the expected percent change in the excess return of the security for a 1% change in the excess return of the market portfolio.\nAt the end of the day, Beta is the coefficient of a linear regression\n\n\n\nIn the following examples, Beta of Petr is around 1.1, while the Beta of Wege is around 0.45."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-2",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-2",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\n\n\nR\nfreq.data   &lt;- 'daily'\nstart &lt;-'2000-01-01' \nend   &lt;-Sys.Date()  \nibov &lt;- yf_get(tickers = \"^BVSP\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data)\nasset &lt;- yf_get(tickers = \"PETR4.SA\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nret_ibov &lt;- ibov  %&gt;% tq_transmute(select = price_adjusted,\n                                   mutate_fun = periodReturn,\n                                   period = 'daily',\n                                   col_rename = 'return',\n                                   type = 'log')\nret_asset &lt;- asset   %&gt;%tq_transmute(select = price_adjusted,\n                                     mutate_fun = periodReturn,\n                                     period = 'daily',\n                                     col_rename = 'return',\n                                     type = 'log')\nret &lt;- left_join(ret_ibov, ret_asset, by = c(\"ref_date\" = \"ref_date\"))\nwindow &lt;-252\nret$var &lt;- roll_cov(ret$return.x, ret$return.x, width = window)\nret$cov &lt;- roll_cov(ret$return.x, ret$return.y, width = window)\nret$beta &lt;- ret$cov / ret$var\nret &lt;- subset(ret, ret$beta != \"NA\" )\np&lt;-ggplot(ret, aes(x= return.x, y=return.y)) + \n  geom_point()+\n  geom_smooth(method=lm, se=FALSE)+\n  labs( y = \"Daily returns PETR4\", x=\"Daily returns IBOV\",title = \"Beta PETR4\")+\n  xlim(-0.2, 0.2) + ylim(-0.2, 0.2) +   theme_solarized()\nggplotly(p)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-3",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-3",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\n\n\nPython\nstocks = ['PETR4.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\nreturns = data.pct_change().dropna()\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nfig, ax = plt.subplots()\nax.scatter(returns[\"^BVSP\"], returns[\"PETR4.SA\"], alpha=0.5, color='black')\nm, b = np.polyfit(returns[\"^BVSP\"], returns[\"PETR4.SA\"], 1)\nax.plot(returns[\"^BVSP\"], m*returns[\"^BVSP\"] + b, color='darkblue')\nax.set_xlabel(\"Daily returns IBOV\")\nax.set_ylabel(\"Daily returns PETR4\")\nax.set_title(\"Beta PETR4\")\nax.set_xlim(-0.2, 0.2)\nax.set_ylim(-0.2, 0.2)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-4",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-4",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\n\n\nR\nibov &lt;- yf_get(tickers = \"^BVSP\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nasset &lt;- yf_get(tickers = \"WEGE3.SA\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nret_ibov &lt;- ibov  %&gt;%tq_transmute(select = price_adjusted,\n                                  mutate_fun = periodReturn,\n                                  period = 'daily',\n                                  col_rename = 'return',\n                                  type = 'log')\nret_asset &lt;- asset %&gt;%tq_transmute(select = price_adjusted,\n                                  mutate_fun = periodReturn,\n                                  period = 'daily',\n                                  col_rename = 'return',\n                                  type = 'log')\nret &lt;- left_join(ret_ibov, ret_asset, by = c(\"ref_date\" = \"ref_date\"))\nwindow &lt;-252\nret$var &lt;- roll_cov(ret$return.x, ret$return.x, width = window)\nret$cov &lt;- roll_cov(ret$return.x, ret$return.y, width = window)\nret$beta &lt;- ret$cov / ret$var\nret &lt;- subset(ret, ret$beta != \"NA\" )\np&lt;-ggplot(ret, aes(x= return.x, y=return.y)) + \n  geom_point()+\n  geom_smooth(method=lm, se=FALSE)+\n  labs( y = \"Daily returns WEGE3\", x=\"Daily returns IBOV\",title = \"Beta WEGE3\")+\n  xlim(-0.2, 0.2) + ylim(-0.2, 0.2) +   theme_solarized()\nggplotly(p)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-5",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-5",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\n\n\nPython\nstocks = ['WEGE3.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\nreturns = data.pct_change().dropna()\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nfig, ax = plt.subplots()\nax.scatter(returns[\"^BVSP\"], returns[\"WEGE3.SA\"], alpha=0.5, color='black')\nm, b = np.polyfit(returns[\"^BVSP\"], returns[\"WEGE3.SA\"], 1)\nax.plot(returns[\"^BVSP\"], m*returns[\"^BVSP\"] + b, color='darkblue')\nax.set_xlabel(\"Daily returns IBOV\")\nax.set_ylabel(\"Daily returns WEGE3\")\nax.set_title(\"Beta WEGE3.SA\")\nax.set_xlim(-0.2, 0.2)\nax.set_ylim(-0.2, 0.2)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-6",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-6",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\n\nNote that in any period, the asset’s returns can be higher or lower than the best-fitting line.\nSuch deviations from the best-fitting line result from risk that is not related to the market as a whole.\nThese deviations are zero on average in the graph, as the points above the line balance out the points below the line.\nThey represent firm-specific risk that is diversifiable and that averages out in a large portfolio."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-7",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-7",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\nWe can estimate Beta using the following regression:\n\\[(R_i - R_f) = \\alpha_i + \\beta_i \\times (R_m - R_f) + \\epsilon_i\\]\n\n\\(\\epsilon_i\\) is the error term or the residual. It represents the deviation from the best-fitting line and is zero on average (or else we could improve the fit). This error term corresponds to the diversifiable risk of the stock, which is the risk that is uncorrelated with the market."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-8",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-8",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\n\n\\(\\alpha_i\\) is the constant term. It measures the historical performance of the security relative to the expected return predicted by the security market line.\nIt is the distance that the stock’s average return is above or below the SML. Thus, we can say \\(\\alpha_i\\) is a risk-adjusted measure of the stock’s historical performance.\nAccording to the CAPM, \\(\\alpha_i\\) should not be significantly different from zero."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-9",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-9",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\nFinally, we can estimate Beta using the formula:\n\\[Beta_i =   \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} =  \\frac{Cov(R_i,R_m)}{Var(R_m)}\\]\n\n\n\n\n\n\n\n\n\n\nPortfolio\nWeight\nVolatility (Sd)\nCorrelation with M\n\n\n\n\nHEC Corp\n0.21\n13%\n0.42\n\n\nGreen Midget\n0.31\n20%\n0.68\n\n\nAlive And Well\n0.48\n12%\n0.54\n\n\n\nMarket Sd is 10%.\n\n\n\n\\(Beta_{H} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.13 \\times 0.42}{0.10} = 0.546\\)\n\\(Beta_{G} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.20 \\times 0.68}{0.10} = 1.36\\)\n\\(Beta_{A} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.12 \\times 0.54}{0.10} = 0.648\\)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-10",
+    "href": "teaching/financial_strategy/part_4.html#beta-estimation-10",
+    "title": "Estratégia Financeira",
+    "section": "12.3 Beta Estimation",
+    "text": "12.3 Beta Estimation\nProblem\nSuppose you have estimated Tikyberd’s beta to be 0.8 with a 95% confidence interval of 0.65 to 0.95.\nAssuming the risk-free rate is 2% and the market is expected to return 12%, what range would you estimate for Tikyberd’s equity cost of capital?\n\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) =2\\% + 0.65 (12\\% − 2\\%) = 8.5\\%\\]\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) = 2\\% + 0.95 (12\\% − 2\\%) = 11.5\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-1",
+    "href": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-1",
+    "title": "Estratégia Financeira",
+    "section": "12.4 The Debt Cost of Capital",
+    "text": "12.4 The Debt Cost of Capital\nLet’s discuss now how to calculate the cost of debt.\n\nDebt Yields Versus Returns\n\n\nYield to maturity is the IRR an investor will earn from holding the bond to maturity and receiving its promised payments.\nIf there is little risk the firm will default, yield to maturity is a reasonable estimate of investors’ expected rate of return.\n\nIf there is significant risk of default, yield to maturity will overstate investors’ expected return."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-2",
+    "href": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-2",
+    "title": "Estratégia Financeira",
+    "section": "12.4 The Debt Cost of Capital",
+    "text": "12.4 The Debt Cost of Capital\nTable 12.2 shows average annual default rates by debt rating, as well as the peak default rates experienced during recessionary periods."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-3",
+    "href": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-3",
+    "title": "Estratégia Financeira",
+    "section": "12.4 The Debt Cost of Capital",
+    "text": "12.4 The Debt Cost of Capital\nAssume that the average loss rate for unsecured debt is 60%.\nAccording to Table 12.2, during average times the annual default rate for B-rated bonds is 5.5%.\nSo the expected return to B-rated bondholders during average times is 0.055 × 0.60 = 3.3% below the bond’s quoted yield.\n\\[R_d = YTM - default \\;rate \\times average\\; loss\\; rate \\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-4",
+    "href": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-4",
+    "title": "Estratégia Financeira",
+    "section": "12.4 The Debt Cost of Capital",
+    "text": "12.4 The Debt Cost of Capital\nDebt Betas\n\nWe can also use the CAPM to estimate debt cost.\nBut we will need the debt beta.\nDebt betas are difficult to estimate because corporate bonds are traded infrequently.\nOne approximation is to use estimates of betas of bond indices by rating category."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-5",
+    "href": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-5",
+    "title": "Estratégia Financeira",
+    "section": "12.4 The Debt Cost of Capital",
+    "text": "12.4 The Debt Cost of Capital"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-6",
+    "href": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-6",
+    "title": "Estratégia Financeira",
+    "section": "12.4 The Debt Cost of Capital",
+    "text": "12.4 The Debt Cost of Capital\nProblem\nIn early 2013, auto parts retailer Autozone had outstanding 10-year bonds with a yield to maturity of 3% and a BBB rating. If corresponding risk-free rates were 1.5% and the market risk premium is 8%, estimate the expected return of Autozone’s debt.\n\nSolution I\nUsing the average estimates in Table 12.2 and an expected loss rate of 60%, from Eq. 12.7 we have\n\n\\[R_d = 3\\% - 0.5\\% \\times 0.6 = 2.7\\%\\]\n\n\n\nSolution II\nAlternatively, we can estimate the bond’s expected return using CAPM and an estimated beta of 0.10 from Table 12.3.\n\nIn that case, \\(R_d = 1.5\\% + 0.10(8\\%) = 2.3\\%\\)."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-7",
+    "href": "teaching/financial_strategy/part_4.html#the-debt-cost-of-capital-7",
+    "title": "Estratégia Financeira",
+    "section": "12.4 The Debt Cost of Capital",
+    "text": "12.4 The Debt Cost of Capital\nBoth estimates are rough approximations and they both suggest that the expected return of Autozone’s debt is below its yield-to-maturity of 3%."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-1",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-1",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nWe want now to estimate the cost of capital of a project.\nBecause a new project is not itself a publicly traded security, we cannot use historical risks of equity and debt to estimate beta and the cost of capital.\nAlso, the decision to invest in projects using the firm’s cost of capital might ignore the project’s risk."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-2",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-2",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-3",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-3",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nInstead, the most common method for estimating a project’s beta is to identify comparable firms in the same line of business as the project we are considering undertaking.\n\nAll-Equity Comparables\nThe simplest setting of a theoretical comparable firm is to find an all-equity financed firm (a firm with no debt) in a single line of business that is comparable to the project.\nThen, use the comparable firm’s equity beta and cost of capital as estimates.\n\n\nThe main idea here is that your project is an asset, so if you find an all-equity firm, the equity beta will also be the beta of its assets. Thus, you can use this estimate as the beta of your project.\nRemember that:\n\nAssets = Equity + Debt.\nWhen debt is zero: Assets = Equity."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-4",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-4",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nEquity beta: the one we measured before.\nAsset beta: it is the beta of all assets in a firm, which is the same beta of the combination of Equity + Debt.\nDebt beta: the changes in the expected return by 1% change in the market returns.\n\nIf your project is comparable to the assets of a firm, you can use its beta as your project’s beta.\nBut again, the firm might be all-equity or might have debt."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-5",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-5",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nEstimating the Beta of a Project from a Single-Product Firm \nProblem\nYou have just invented a new low-cost, long-lasting rechargeable battery for use in electric cars.\nYou are working on your business plan, and believe your firm will face similar market risk to Seguin Inc, which has a beta of 1.3.\nTo develop your financial plan, estimate the cost of capital of financing your firm assuming a risk-free rate of 2.5% and a market risk premium of 6.5%.\n\nUsing Seguin’s beta as the estimate of the project beta (i.e., assuming the market risk of your project is the same as this company’s):\n\\[R_{project} = 2.5\\% + 1.3 \\times 6.5\\% = 10.95\\%\\]\nThis will be the cost of capital of your project."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-6",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-6",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nThings get more complex in levered firms.\n\nFor levered firms, Assets = Equity + Debt.\nSo, the cash flows generated by the firm’s assets are used to pay both debt and equity holders.\nAs a result, the returns of the firm’s equity alone are not representative of the underlying assets.\nIn fact, because of debt, equity will often be much riskier.\nThus, the beta of a levered firm’s equity will not be a good estimate of the beta of its assets and of our project."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-7",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-7",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-8",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-8",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nIn order to compute the cost of capital of such a project and assuming the comparable firm has debt, you need to unlever the comparable firm’s beta.\n\nAsset cost of capital = unlevered cost of capital\nis the expected return required by the firm’s investors to hold the firm’s underlying assets\n\nAsset or unlevered cost of capital:\n\\[R_u = \\frac{E}{E+D}\\times R_e + \\frac{D}{E+D} \\times R_d\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-9",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-9",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nBecause the beta of a portfolio is the weighted-average of the betas:\n\\[\\beta_u = \\frac{E}{E+D}\\times \\beta_e + \\frac{D}{E+D} \\times \\beta_d\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-10",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-10",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nProblem\nYour firm is launching a new product and you identify Company X as a firm with comparable investments.\nX’s equity has a market capitalization of 77 billion and a beta of 0.75. X also has 57 billion of AA-rated debt outstanding, with an average yield of 4.1%.\nEstimate the cost of capital of your firm’s investment given a risk-free rate of 2.5% and a market risk-premium of 6%.\n\nCompany’s X equity cost of capital is:\n\\[ R_e = 2.5\\% + 0.75 \\times 6\\% = 7\\%\\]\n\n\nCompany’s X unlevered cost of capital is (using the yield as debt cost):\n\\[R_u =\\frac{77}{77+57} \\times  7\\% + \\frac{57}{77+57} \\times 4.1\\% = 5.76\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-11",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-11",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nProblem\nWe can also use X’s unlevered Beta and CAPM.\nAssuming debt beta = 0:\n\\[\\beta_u =\\frac{77}{77+57} \\times  0.75 + \\frac{57}{77+57} \\times 0 = 0.43\\]\n\\[ R_e = 2.5\\% + 0,43 \\times 6\\% = 5.08\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-12",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-12",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nCash and Net Debt\nHolding cash is a risk-free asset. It is a good idea to exclude cash holdings when computing the asset’s risk.\nWe can measure the Net debt:\n\\[Net \\;debt = Debt - cash\\; and \\; ST \\;investments\\]\n\nAlso, remember the idea of enterprise value\n\\[Enterprise\\; Value = Market \\;Value \\;of \\;Equity + Debt - Cash\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-13",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-13",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nExample\nApple’s market capitalization in mid-2016 was $484 billion, and its beta was 1.03. At that same time, the company had $25 billion in cash and $69 billion in debt. Based on this data, estimate the beta of Apple’s underlying business enterprise.\n\n\\[\\beta_u = \\frac{E}{E+D}\\times \\beta_e + \\frac{D}{E+D} \\times \\beta_d =  \\frac{484}{484+69-25}\\times 1.03 + \\frac{69-25}{484+69-25} \\times 0 = 0.944\\]\nNote that the firm is less risky than its equity portion due to its cash holdings."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-14",
+    "href": "teaching/financial_strategy/part_4.html#a-projects-cost-of-capital-14",
+    "title": "Estratégia Financeira",
+    "section": "12.5 A Project’s Cost of Capital",
+    "text": "12.5 A Project’s Cost of Capital\nIndustry Betas\nRemember that estimating the beta of a stock only contains estimation error.\nInstead, you can estimate the beta of a whole industry to reduce the estimate error."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#project-risk-and-financing-1",
+    "href": "teaching/financial_strategy/part_4.html#project-risk-and-financing-1",
+    "title": "Estratégia Financeira",
+    "section": "12.6 Project Risk and Financing",
+    "text": "12.6 Project Risk and Financing\nIn this final section, we want to account for risk differences between projects.\n\nIndividual projects may be more or less sensitive to market risk.\n\n\nOne important thing is that:\n\nfirm asset betas reflect the market risk of the average project in the firm.\nBut individually, projects can differ in risk.\nFor instance, think about a multi-divisional firm.\n\nEach division will likely have its own level of market risk."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#project-risk-and-financing-2",
+    "href": "teaching/financial_strategy/part_4.html#project-risk-and-financing-2",
+    "title": "Estratégia Financeira",
+    "section": "12.6 Project Risk and Financing",
+    "text": "12.6 Project Risk and Financing\nOperating leverage\nAdditionally, operating leverage can also affect the project’s risk.\n\nHigh operating leverage, high risk.\n\nOperating leverage is the proportion of fixed costs over total costs.\nA higher proportion of fixed costs increases the sensitivity of the project’s cash flows to market risk.\n\nThe project’s beta will be higher\nA higher cost of capital should be assigned"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#project-risk-and-financing-3",
+    "href": "teaching/financial_strategy/part_4.html#project-risk-and-financing-3",
+    "title": "Estratégia Financeira",
+    "section": "12.6 Project Risk and Financing",
+    "text": "12.6 Project Risk and Financing\nNow, we have all that is necessary to compute the Weighted Average Cost of Capital (WACC).\nAssuming the existence of Taxes:\n\\[R_{wacc} = \\frac{E}{D+E}\\times R_e + \\frac{D}{D+E} \\times R_d \\times (1-\\phi_c)\\] This is the after-tax WACC.\nBecause interest expense is tax deductible, the WACC is less than the expected return of the firm’s assets. Meaning, you do not pay taxes on debt interests, which makes the after-tax WACC decrease in comparison to the pre-tax WACC"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#project-risk-and-financing-4",
+    "href": "teaching/financial_strategy/part_4.html#project-risk-and-financing-4",
+    "title": "Estratégia Financeira",
+    "section": "12.6 Project Risk and Financing",
+    "text": "12.6 Project Risk and Financing\nPre-tax WACC\n\\[R_u = \\frac{E}{E+D}\\times R_e + \\frac{D}{E+D} \\times R_d\\]\n\nExpected return investors will earn by holding the firm’s assets\nIn a world with taxes, it can be used to evaluate an all-equity project with the same risk as the firm\n\nAfter-tax WACC\n\\[R_{wacc} = \\frac{E}{D+E}\\times R_e + \\frac{D}{D+E} \\times R_d \\times (1-\\phi_c)\\]\n\nWith taxes, WACC can be used to evaluate a project with the same risk and the same financing as the firm"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#project-risk-and-financing-5",
+    "href": "teaching/financial_strategy/part_4.html#project-risk-and-financing-5",
+    "title": "Estratégia Financeira",
+    "section": "12.6 Project Risk and Financing",
+    "text": "12.6 Project Risk and Financing\n\nCavo Corp’s equity cost of capital is 15%, and its debt cost of capital is 7%.\n\nThe corporate tax rate is 34%.\nThe firm has 100 million in debt outstanding and a market capitalization of 250 million.\nWhat is Cabo’s unlevered cost of capital?\nWhat is Cavo’s weighted average cost of capital?"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#project-risk-and-financing-6",
+    "href": "teaching/financial_strategy/part_4.html#project-risk-and-financing-6",
+    "title": "Estratégia Financeira",
+    "section": "12.6 Project Risk and Financing",
+    "text": "12.6 Project Risk and Financing\nUnlevered cost of capital is:\n\\[R_u =  \\frac{250}{250+100}\\times 15\\% + \\frac{100}{250+100} \\times 7\\%  = 12.71\\%\\]\nWACC is:\n\\[R_{wacc} =  \\frac{250}{250+100}\\times 15\\% + \\frac{100}{250+100} \\times 7\\% \\times (1-0,34) = 12,03\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#final-thoughts-on-using-capm-1",
+    "href": "teaching/financial_strategy/part_4.html#final-thoughts-on-using-capm-1",
+    "title": "Estratégia Financeira",
+    "section": "12.7 Final thoughts on using CAPM",
+    "text": "12.7 Final thoughts on using CAPM\n\nCAPM is very practical and straightforward to implement, the CAPM-based approach is very robust\nCAPM imposes a disciplined process on managers to identify the cost of capital.\nCAPM make the capital budgeting process less subject to managerial manipulation than if managers could set project costs of capital without clear justification.\nCAPM is often the model many investors use to evaluate risk.\nCAPM gets managers to think about risk in the correct way. That is, to think about market risk, instead of total risk."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#recap-1",
+    "href": "teaching/financial_strategy/part_4.html#recap-1",
+    "title": "Estratégia Financeira",
+    "section": "Recap",
+    "text": "Recap\nAfter this chapter, you should know:\n\nEstimate a company’s cost of capital using the CAPM equation for the Security Market Line.\nDescribe the market portfolio and how it is constructed in practice.\nDiscuss the attributes of a value-weighted portfolio.\nDescribe common proxies for the market return and the risk-free rate.\nDefine alpha and beta and explain how they are generally estimated.\nCompare the use of average return versus beta and the SML to estimate cost of equity capital.\nEstimate the cost of debt, given a company’s yield to maturity, probability of default, and expected loss rate."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#recap-2",
+    "href": "teaching/financial_strategy/part_4.html#recap-2",
+    "title": "Estratégia Financeira",
+    "section": "Recap",
+    "text": "Recap\nAfter this chapter, you should know:\n\nDiscuss the difference between the yield to maturity and the cost of debt when there is low versus high default risk.\nCalculate the cost of debt given a company’s debt beta, the risk free rate, and the market risk premium.\nIllustrate the use of comparable companies’ unlevered betas or unlevered cost of capital to estimate project cost of capital.\nDiscuss the advantages of using several companies’ betas to estimate a project beta.\nDefine operating leverage and discuss its influence on project risk.\nCalculate the weighted average cost of capital.\nDiscuss strengths and weaknesses of the CAPM."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#comments",
+    "href": "teaching/financial_strategy/part_4.html#comments",
+    "title": "Estratégia Financeira",
+    "section": "Comments?",
+    "text": "Comments?"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#thank-you",
+    "href": "teaching/financial_strategy/part_4.html#thank-you",
+    "title": "Estratégia Financeira",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br] [Teaching Resources] [Comments]"
   }
 ]
