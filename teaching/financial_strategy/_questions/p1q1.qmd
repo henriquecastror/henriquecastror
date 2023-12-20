@@ -3,9 +3,6 @@ format:
   html:
     css: webex.css
     include-after-body: webex.js
-comments:
-  giscus: 
-    repo: henriquecastror/comments
 ---
 
 ```{r}
@@ -18,19 +15,3 @@ q1 <- " **Q:** An initial public offering (IPO) is not necessarily the first tim
 q1_choices <- c( "True",answer= "False")
 cat(q1,longmcq(q1_choices))
 ```
-
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/comments"
-        data-repo-id="R_kgDOHze3WQ"
-        data-category="Q&A"
-        data-category-id="DIC_kwDOHze3Wc4CQwHO"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="pt"
-        crossorigin="anonymous"
-        async>
-</script>
