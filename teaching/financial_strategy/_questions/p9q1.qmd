@@ -1,0 +1,19 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** Bankruptcy costs, including legal and administrative expenses, are typically lower for larger firms due to their financial strength."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
+

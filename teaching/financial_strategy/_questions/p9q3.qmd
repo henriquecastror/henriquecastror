@@ -1,0 +1,18 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** In the context of optimal leverage with taxes and financial distress costs, the optimal debt level for a firm is solely determined by the tax benefits it can receive from interest deductions."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
