@@ -1,0 +1,18 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** According to Modigliani-Miller and the Law of One Price, in a world of perfect capital markets, two identical firms with the same cash flows should have the same market value, regardless of their capital structures."
+q1_choices <- c( answer="True", "False")
+cat(q1,longmcq(q1_choices))
+```

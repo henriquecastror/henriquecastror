@@ -2720,49 +2720,49 @@
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-1",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nWhen a firm uses debt, the interest tax shield provides a corporate tax benefit each year.\n\nIt is like the firm “receives” an extra cash flow each year.\n\nThis benefit is then computed as the present value of the stream of future interest tax shields the firm will receive.\n\\[CFs\\;to\\;investors\\;(leverage) =  CFs\\;to\\;investors\\;(no\\;leverage) + Interest\\;tax\\;shield\\]"
+    "text": "15.2 Valuing the Interest Tax Shield\nWhen a firm uses debt, the interest tax shield provides a corporate tax benefit each year.\n\nIt is like the firm “receives” an extra cash flow each year.\n\nThis benefit is then computed as the present value of the stream of future interest tax shields the firm will receive.\n\\[CFs\\;to\\;investors\\;(lev) =  CFs\\;to\\;investors\\;(no\\;lev) + Interest\\;tax\\;shield\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-2",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-2",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nMM Proposition I with Taxes\nThe total value of the levered firm exceeds the value of the firm without leverage due to the present value of the tax savings from debt:\n\\[V^L = V^U + PV(interests\\;tax\\;shield)\\]"
+    "text": "15.2 Valuing the Interest Tax Shield"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-3",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-3",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nProblem\n\nSuppose ALCO plans to pay 60 million in interest each year for the next eight years, and then repay the principal of 1 billion in year 8.\nThese payments are risk free, and ALCO’s marginal tax rate will remain 39% throughout this period.\nIf the risk-free interest rate is 6%, by how much does the interest tax shield increase the value of ALCO?\n\n\nSolution\nAnnual interest tax shield is:\n\\[1 \\;billion \\times 6\\% \\times 39\\% = 23.4 \\;million \\;(for\\;eigth\\;years)\\]\n\\[PV(Interest\\;tax\\;shield) = \\frac{23,4}{(1+0,06)^1} + . . . + \\frac{23,4}{(1+0,06)^8} = 145.31 \\;million\\]"
+    "text": "15.2 Valuing the Interest Tax Shield\nMM Proposition I with Taxes\nThe total value of the levered firm exceeds the value of the firm without leverage due to the present value of the tax savings from debt:\n\\[V^L = V^U + PV(interests\\;tax\\;shield)\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-4",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-4",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nThe Interest Tax Shield with Permanent Debt\nTypically, the level of future interest payments is uncertain due to:\n\n\nchanges in the marginal tax rate,\nthe amount of debt outstanding,\nthe interest rate on that debt,\nand the risk of the firm.\nothers\n\n\n\nFor simplicity, we will consider the special case in which the above variables are kept constant. This is reasonable because:\n\nmany corporations have policies for fixed amounts of debt\nas old bonds and loans mature, new borrowing takes place\ndebt can be assumed as permanent, because it is fixed through time"
+    "text": "15.2 Valuing the Interest Tax Shield\nProblem\n\nSuppose ALCO plans to pay 60 million in interest each year for the next eight years, and then repay the principal of 1 billion in year 8.\nThese payments are risk free, and ALCO’s marginal tax rate will remain 39% throughout this period.\nIf the risk-free interest rate is 6%, by how much does the interest tax shield increase the value of ALCO?\n\n\nSolution\nAnnual interest tax shield is:\n\\[1 \\;billion \\times 6\\% \\times 39\\% = 23.4 \\;million \\;(for\\;eigth\\;years)\\]\n\\[PV(Interest\\;tax\\;shield) = \\frac{23,4}{(1+0,06)^1} + . . . + \\frac{23,4}{(1+0,06)^8} = 145.31 \\;million\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-5",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-5",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nSuppose a firm borrows debt D and keeps the debt permanently.\nIf the firm’s marginal tax rate is \\(\\tau_c\\), and if the debt is riskless with a risk-free interest rate \\(r_f\\), then the interest tax shield each year is \\(\\tau_c \\times r_f \\times D\\), and the tax shield can be valued as a perpetuity:\n\\[PV(interest\\;tax\\;shield) = \\frac{\\tau_c \\times Interest}{r_f} = \\frac{\\tau_c \\times (R_f \\times D)}{r_f} = \\tau_c \\times D\\]\nGiven a 21% corporate tax rate, this equation implies that for every 1 in new permanent debt that the firm issues, the value of the firm increases by 0.21.\n\nMoreover, if the debt is fairly priced:\n\\[Market\\;value\\;debt = D = PV(future\\;interest\\;payments)\\]"
+    "text": "15.2 Valuing the Interest Tax Shield\nThe Interest Tax Shield with Permanent Debt: Typically, the level of future interest payments is uncertain due to:\n\n\nchanges in the marginal tax rate,\nthe amount of debt outstanding,\nthe interest rate on that debt,\nand the risk of the firm.\nothers\n\n\n\nFor simplicity, we will consider the special case in which the above variables are kept constant. This is reasonable because:\n\nmany corporations have policies for fixed amounts of debt\nas old bonds and loans mature, new borrowing takes place\ndebt can be assumed as permanent, because it is fixed through time"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-6",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-6",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nWACC with Taxes\nIt is easy to see that when a firm uses debt financing, the cost of the interest it must pay is offset to some extent by the tax savings from the interest tax shield.\nAssuming \\(\\tau_c = 21\\%\\), D = 100,000 at 10 percent interest per year:\n\n\n\nInterest expense\n10,000\n\n\nTax savings\n- 2,100\n\n\nAfter-tax cost of debt\n7,900\n\n\n\n\nAfter-tax cost of debt is:\n\\[r_d \\times (1-\\tau_c)\\]"
+    "text": "15.2 Valuing the Interest Tax Shield\nSuppose a firm borrows debt D and keeps the debt permanently.\nIf the firm’s marginal tax rate is \\(\\tau_c\\), and if the debt is riskless with a risk-free interest rate \\(r_f\\), then the interest tax shield each year is \\(\\tau_c \\times r_f \\times D\\), and the tax shield can be valued as a perpetuity:\n\\[PV(interest\\;tax\\;shield) = \\frac{\\tau_c \\times Interest}{r_f} = \\frac{\\tau_c \\times (R_f \\times D)}{r_f} = \\tau_c \\times D\\]\nGiven a 21% corporate tax rate, this equation implies that for every 1 in new permanent debt that the firm issues, the value of the firm increases by 0.21.\n\nMoreover, if the debt is fairly priced:\n\\[Market\\;value\\;debt = D = PV(future\\;interest\\;payments)\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-7",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-7",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nTherefore, we can write the After-tax WACC:\n\\[r_{wacc} = \\frac{E}{E+D} \\times r_e + \\frac{D}{E+D} \\times r_d \\times (1-\\tau_c)\\]\nOr\n\\[r_{wacc} = \\frac{E}{E+D} \\times r_e + \\frac{D}{E+D} \\times r_d  - \\frac{D}{E+D} \\times r_d \\times \\tau_c\\]"
+    "text": "15.2 Valuing the Interest Tax Shield\nWACC with Taxes\nIt is easy to see that when a firm uses debt financing, the cost of the interest it must pay is offset to some extent by the tax savings from the interest tax shield.\nAssuming \\(\\tau_c = 21\\%\\), D = 100,000 at 10 percent interest per year:\n\n\n\nInterest expense\n10,000\n\n\nTax savings\n- 2,100\n\n\nAfter-tax cost of debt\n7,900\n\n\n\n\nAfter-tax cost of debt is:\n\\[r_d \\times (1-\\tau_c)\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-3",
@@ -2776,28 +2776,28 @@
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-8",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nThe Interest Tax Shield with a Target Debt-Equity Ratio \n\nEarlier we calculated the value of the tax shield assuming the firm maintains a constant level of debt. We can also assume that a firm maintains a constant debt-equity ratio instead.\nWhen a firm adjusts its leverage to maintain a target debt-equity ratio, we can compute its value with leverage, VL, by discounting its free cash flow using the WACC.\nThe value of the interest tax shield can be found by comparing\n\nthe value of the levered firm, VL,\nto the unlevered value, VU."
+    "text": "15.2 Valuing the Interest Tax Shield\nTherefore, we can write the After-tax WACC:\n\\[r_{wacc} = \\frac{E}{E+D} \\times r_e + \\frac{D}{E+D} \\times r_d \\times (1-\\tau_c)\\]\nOr\n\\[r_{wacc} = \\frac{E}{E+D} \\times r_e + \\frac{D}{E+D} \\times r_d  - \\frac{D}{E+D} \\times r_d \\times \\tau_c\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-9",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-9",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nProblem\n\nHarris Solutions expects to have free cash flow in the coming year of 1.75 million, and its free cash flow is expected to grow at a rate of 3.5% per year thereafter.\nHarris Solutions has an equity cost of capital of 12% and a debt cost of capital of 7%, and it pays a corporate tax rate of 40%.\nIf Harris Solutions maintains a debt-equity ratio of 2.5, what is the value of its interest tax shield?"
+    "text": "15.2 Valuing the Interest Tax Shield\nNotice the decline in the WACC with Taxes. The factor (\\(1-\\tau_c\\)) decreases \\(r_d\\)."
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-10",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-10",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nSolution\nFirst, compute pre-tax WACC and \\(V^u\\).\n\\[=\\frac{E}{E+D} \\times r_e + \\frac{D}{E+D} \\times r_d  =  \\frac{1}{1+2.5} \\times 12\\% + \\frac{2.5}{1+2.5} \\times 7\\% = 8.43\\%  \\]\n\\(V^u\\) is:\n\\[V^u = \\frac{1.75\\;million}{8.43\\% - 3.5\\%} = 35.50 \\;million\\]"
+    "text": "15.2 Valuing the Interest Tax Shield\nThe Interest Tax Shield with a Target Debt-Equity Ratio \n\nEarlier we calculated the value of the tax shield assuming the firm maintains a constant level of debt. We can also assume that a firm maintains a constant debt-equity ratio instead.\nWhen a firm adjusts its leverage to maintain a target debt-equity ratio, we can compute its value with leverage, VL, by discounting its free cash flow using the WACC.\nThe value of the interest tax shield can be found by comparing\n\nthe value of the levered firm, VL,\nto the unlevered value, VU."
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-11",
     "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-11",
     "title": "Estratégia Financeira",
     "section": "15.2 Valuing the Interest Tax Shield",
-    "text": "15.2 Valuing the Interest Tax Shield\nSolution\nSecond, compute after-tax WACC and \\(V^L\\).\n\\[=  \\frac{1}{1+2.5} \\times 12\\% + \\frac{2.5}{1+2.5} \\times 7\\% \\times (1-0.4) = 6.43\\%  \\]\n\\(V^L\\) is:\n\\[V^L = \\frac{1.75\\;million}{6.43\\% - 3.5\\%} = 59.73 \\;million\\]\n\nThe value of the interest tax shield is:\n\\[V^L - V^U = 59.73 - 35.50 = 24.23\\;million\\]"
+    "text": "15.2 Valuing the Interest Tax Shield\nProblem\n\nHarris Solutions expects to have free cash flow in the coming year of 1.75 million, and its free cash flow is expected to grow at a rate of 3.5% per year thereafter.\nHarris Solutions has an equity cost of capital of 12% and a debt cost of capital of 7%, and it pays a corporate tax rate of 40%.\nIf Harris Solutions maintains a debt-equity ratio of 2.5, what is the value of its interest tax shield?"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#recap.-to-capture-the-tax-shield-1",
@@ -4435,49 +4435,49 @@
     "href": "teaching/financial_strategy/part_8.html#section-7",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 1"
+    "text": "Question 3"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-8",
     "href": "teaching/financial_strategy/part_8.html#section-8",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 2"
+    "text": "Question 4"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-9",
     "href": "teaching/financial_strategy/part_8.html#section-9",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 3"
+    "text": "Question 5"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-10",
     "href": "teaching/financial_strategy/part_8.html#section-10",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 4"
+    "text": "Question 6"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-11",
     "href": "teaching/financial_strategy/part_8.html#section-11",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 5"
+    "text": "Question 7"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-12",
     "href": "teaching/financial_strategy/part_8.html#section-12",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 6"
+    "text": "Question 8"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-13",
     "href": "teaching/financial_strategy/part_8.html#section-13",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 7"
+    "text": "Question 8"
   },
   {
     "objectID": "teaching/financial_strategy/part_8.html#section-14",
@@ -4485,5 +4485,152 @@
     "title": "Estratégia Financeira",
     "section": "",
     "text": "Question 8"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_8.html#section-2",
+    "href": "teaching/financial_strategy/part_8.html#section-2",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Notice the decline in the WACC with Taxes. The factor (\\(1-\\tau_c\\)) decreases \\(r_d\\)."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-12",
+    "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-12",
+    "title": "Estratégia Financeira",
+    "section": "15.2 Valuing the Interest Tax Shield",
+    "text": "15.2 Valuing the Interest Tax Shield\nSolution\nFirst, compute pre-tax WACC and \\(V^u\\).\n\\[=\\frac{E}{E+D} \\times r_e + \\frac{D}{E+D} \\times r_d  =  \\frac{1}{1+2.5} \\times 12\\% + \\frac{2.5}{1+2.5} \\times 7\\% = 8.43\\%  \\]\n\\(V^u\\) is:\n\\[V^u = \\frac{1.75\\;million}{8.43\\% - 3.5\\%} = 35.50 \\;million\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_8.html#section-6",
+    "href": "teaching/financial_strategy/part_8.html#section-6",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 2"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-13",
+    "href": "teaching/financial_strategy/part_8.html#valuing-the-interest-tax-shield-13",
+    "title": "Estratégia Financeira",
+    "section": "15.2 Valuing the Interest Tax Shield",
+    "text": "15.2 Valuing the Interest Tax Shield\nSolution\nSecond, compute after-tax WACC and \\(V^L\\).\n\\[=  \\frac{1}{1+2.5} \\times 12\\% + \\frac{2.5}{1+2.5} \\times 7\\% \\times (1-0.4) = 6.43\\%  \\]\n\\(V^L\\) is:\n\\[V^L = \\frac{1.75\\;million}{6.43\\% - 3.5\\%} = 59.73 \\;million\\]\n\nThe value of the interest tax shield is:\n\\[V^L - V^U = 59.73 - 35.50 = 24.23\\;million\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_8.html#section-5",
+    "href": "teaching/financial_strategy/part_8.html#section-5",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 1"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-2",
+    "href": "teaching/financial_strategy/part_7.html#section-2",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 1"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-3",
+    "href": "teaching/financial_strategy/part_7.html#section-3",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 2"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-4",
+    "href": "teaching/financial_strategy/part_7.html#section-4",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 3"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-5",
+    "href": "teaching/financial_strategy/part_7.html#section-5",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 4"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-6",
+    "href": "teaching/financial_strategy/part_7.html#section-6",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 5"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-7",
+    "href": "teaching/financial_strategy/part_7.html#section-7",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 6"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-8",
+    "href": "teaching/financial_strategy/part_7.html#section-8",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 7"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-9",
+    "href": "teaching/financial_strategy/part_7.html#section-9",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 8"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-10",
+    "href": "teaching/financial_strategy/part_7.html#section-10",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 9"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-11",
+    "href": "teaching/financial_strategy/part_7.html#section-11",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 10"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-12",
+    "href": "teaching/financial_strategy/part_7.html#section-12",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 11"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-13",
+    "href": "teaching/financial_strategy/part_7.html#section-13",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 12"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-14",
+    "href": "teaching/financial_strategy/part_7.html#section-14",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 13"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-15",
+    "href": "teaching/financial_strategy/part_7.html#section-15",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 14"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-16",
+    "href": "teaching/financial_strategy/part_7.html#section-16",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 15"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#section-17",
+    "href": "teaching/financial_strategy/part_7.html#section-17",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 16"
   }
 ]

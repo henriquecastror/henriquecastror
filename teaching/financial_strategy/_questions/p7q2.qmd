@@ -1,0 +1,18 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** Leverage can raise a firm’s expected earnings per share and its return on equity, but it also increases the volatility of earnings per share and the riskiness of its equity."
+q1_choices <- c(answer= "True",  "False")
+cat(q1,longmcq(q1_choices))
+```

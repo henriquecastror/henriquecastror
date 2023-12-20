@@ -167,9 +167,9 @@ When a firm uses debt, **the interest tax shield provides a corporate tax benefi
 
 This benefit is then computed as the **present value of the stream of future interest tax shields** the firm will receive.
 
-$$CFs\;to\;investors\;(leverage) =  CFs\;to\;investors\;(no\;leverage) + Interest\;tax\;shield$$
+$$CFs\;to\;investors\;(lev) =  CFs\;to\;investors\;(no\;lev) + Interest\;tax\;shield$$
 
-## {.smaller background="#292929"}
+## 15.2 Valuing the Interest Tax Shield {.smaller background="#feffee"}
 
 ![](figs/bm_15_1.png)
 
@@ -213,10 +213,7 @@ $$PV(Interest\;tax\;shield) = \frac{23,4}{(1+0,06)^1} + . . . + \frac{23,4}{(1+0
 
 ## 15.2 Valuing the Interest Tax Shield {.smaller background="#feffee"}
 
-**The Interest Tax Shield with Permanent Debt**
-
-
-Typically, the level of future interest payments is uncertain due to:
+**The Interest Tax Shield with Permanent Debt**: Typically, the level of future interest payments is uncertain due to:
 
 ::: {.incremental}
 - changes in the marginal tax rate, 
@@ -303,8 +300,7 @@ $$r_{wacc} = \frac{E}{E+D} \times r_e + \frac{D}{E+D} \times r_d  - \frac{D}{E+D
 
 
 
-
-## {.smaller background="#292929"}
+## 15.2 Valuing the Interest Tax Shield {.smaller background="#feffee"}
 
 **Notice the decline in the WACC with Taxes. The factor ($1-\tau_c$) decreases $r_d$.**
 
