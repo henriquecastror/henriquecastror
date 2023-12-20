@@ -3,6 +3,9 @@ format:
   html:
     css: webex.css
     include-after-body: webex.js
+comments:
+  giscus: 
+    repo: henriquecastror/comments
 ---
 
 ```{r}
