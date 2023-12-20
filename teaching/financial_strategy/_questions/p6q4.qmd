@@ -1,0 +1,19 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** Collateralized Debt Obligations (CDOs) are financial instruments that are typically backed by a diversified pool of assets, such as mortgages and loans."
+q1_choices <- c( answer= "True", "False")
+cat(q1,longmcq(q1_choices))
+```
+
