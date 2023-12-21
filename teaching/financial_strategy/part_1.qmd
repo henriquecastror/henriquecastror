@@ -15,7 +15,7 @@ format:
     preview-links: auto
     logo: figs/background8.png
     css: logo.css
-    footer: ' <div data-lyket-type="like" data-lyket-id="my-first-post" style="font-size: 14px" ></div> **[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_1.html#/comments)]**  '
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_1.html#/comments)]**  '
     multiplex: true
     scrollable: true
 title-slide-attributes:
@@ -266,13 +266,48 @@ Preferred stock that gives the owner an option to convert it into common stock o
 
 **Book's example.**
 
-- Real Networks, which was founded by Robert Glaser in 1993, with an investment of approximately 1 million by Glaser.
-- As of April 1995, Glaser’s 1 million initial investment represented 13,713,439 shares of Series A preferred stock, implying an initial  price of about $0.07 per share.
-- The company’s **first round of outside equity funding was Series B preferred stock**. Real Networks sold 2,686,567 shares of Series B preferred stock at 0.67 per share. 
-- At the price the new shares were sold for, Glaser’s shares were worth 9.2 million and represented 83.6% of the outstanding shares.
+  - Real Networks, which was founded by Robert Glaser in 1993, with an investment of approximately 1 million by Glaser.
+  - In April 1995, Glaser’s 1 million initial investment represented 13,713,439 shares of Series A preferred stock, implying an initial  price of about $0.07 per share.
+  - The company’s **first round of outside equity funding was Series B preferred stock**. Real Networks sold 2,686,567 shares of Series B preferred stock at 0.67 per share. 
+  - At the price the new shares were sold for, Glaser’s shares were worth 9.2 million and represented 83.6% of the outstanding shares.
 
+
+
+::: {.columns}
+
+::: {.column width="68%"}
 
 ![](figs/bm_23_ex.png)
+:::
+
+::: {.column width="20%" }
+
+<div data-lyket-type="like" 
+  data-lyket-id="part_1_like_1"  
+  data-lyket-color-background="#ead1dc"
+  data-lyket-color-icon="#070cfa"
+  data-lyket-color-highlight="#070cfa"
+  style="font-size: 30px"
+  
+  data-lyket-color-primary="#ffffff"
+  data-lyket-color-secondary="#ffffff"
+  data-lyket-color-text="black"
+  data-lyket-font-family="monospace"
+></div>
+
+:::
+:::
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -959,7 +994,8 @@ Although shares of IPOs generally perform very well immediately following the pu
 </script>
 
 
-
+::: footer
+:::
 
 
 
@@ -987,7 +1023,5 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 ::: footer
 :::
-
-
 
 
