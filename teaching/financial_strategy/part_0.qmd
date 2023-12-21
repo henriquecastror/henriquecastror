@@ -135,8 +135,7 @@ At the end of the semester, the student should be able to master the:
 
 **<span style="color:red;">Your mission (should you choose to accept it...)</span>**
 
-
-. . . 
+. . .
 
   - **Read the book** before class (preferably more than once). 
   
@@ -150,25 +149,32 @@ At the end of the semester, the student should be able to master the:
       - Research shows that taking notes boosts academic performance.
       - It is better to take a note and throw it away than to take a note on your computer.
       
-. . . 
+. . .
 
-<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_ca9c2dc33cb8ed14993600aeb1a3c1"></script>
 
 
 ::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="33%"}
 
-**I accept it:**  <div data-lyket-type="like" data-lyket-id="part1-like1"   data-lyket-namespace="EFPART1"></div>
+**I accept it:**  <div data-lyket-type="like" data-lyket-id="like1"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"></div>
 
+
+:::
+
+::: {.column width="33%" }
+
+**I love it:**  <div data-lyket-type="like" data-lyket-id="like2"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"   data-lyket-template="twitter"></div>
 
 :::
 
-::: {.column width="50%" }
+::: {.column width="33%" }
 
-**I love it:**  <div data-lyket-type="like" data-lyket-id="part1-like2"   data-lyket-namespace="EFPART1"   data-lyket-template="twitter"></div>
+**I am enthusiastic:**  <div data-lyket-type="clap" data-lyket-id="like3"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"   ></div>
 
 :::
+
+
 :::
 
 
@@ -495,10 +501,10 @@ BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, 
 
 <div
   data-lyket-type="rate"
-  data-lyket-id="part-0"
-  data-lyket-namespace="blog"
-	data-lyket-show-rating="user"
+  data-lyket-id="rate0"
+  data-lyket-show-rating="user"
   data-lyket-template="custom"
+  data-lyket-namespace="EFPART0" 
 ></div>
 
 
@@ -506,10 +512,10 @@ BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, 
 
 <div
   data-lyket-type="rate"
-  data-lyket-id="part-0"
-  data-lyket-namespace="blog"
-	data-lyket-show-rating="average"
+  data-lyket-id="rate0"
+ 	data-lyket-show-rating="average"
   data-lyket-template="custom"
+  data-lyket-namespace="EFPART0" 
 ></div>
 
 
