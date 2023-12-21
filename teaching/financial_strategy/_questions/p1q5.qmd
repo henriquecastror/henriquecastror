@@ -4,7 +4,7 @@ format:
     css: webex.css
     include-after-body: webex.js
     theme: themecustom.scss
-    fontsize: 1.4em
+    fontsize: 1.2em
 ---
 
 ```{r}
@@ -12,9 +12,77 @@ format:
 #| results: asis
 #| echo: false
 #| warning: false
+
 library(webexercises)
-q1 <- " **Q:** IPOs are underpriced on average."
-q1_choices <- c(answer="True", "False")
-cat(q1,longmcq(q1_choices))
+
+seriesapre <- round( runif(1, 1,5) ,3 )
+seriesapost <- round(seriesapre +  runif(1, 1,5),3 )
+
+seriesbpre <- round(seriesapost + runif(1, 10,50),3 )
+seriesbpost <- round(seriesbpre +  runif(1, 10,50),3 )
+
+seriescpre <- round(seriesbpost + runif(1, 50,70),3 )
+seriescpost <- round(seriescpre +  runif(1, 50,70),3 )
+
+
+
 ```
+
+
+
+**Q:** A company has raised capital as follows (in millions USD). 
+
+\item Series A Pre-Money: **`r  round( seriesapre ,3) `** & Series A Post-Money: **`r  round( seriesapost ,3) `**
+
+\item Series B Pre-Money: **`r  round( seriesbpre ,3) `** & Series B Post-Money: **`r  round( seriesbpost ,3) `**
+
+\item Series C Pre-Money: **`r  round( seriescpre ,3) `** & Series C Post-Money: **`r  round( seriescpost ,3) `**
+
+**How much did the company raised in each round, in millions?**
+
+Round A: `r fitb( round( (seriesapost - seriesapre )  ,3) , tol=0.001)`, Round B: `r fitb( round( (seriesbpost - seriesbpre ) ,3) , tol=0.001)`, Round C: `r fitb( round( (seriescpost - seriescpre )  ,3) , tol=0.001)`
+
+
+
+**Assuming no other securities were issued, what fraction of the firm’s shares were held by common shareholders (founders and employees) after each round, in percent?**
+
+Round A: `r fitb( round( 100*(seriesapre / seriesapost )  ,3) , tol=0.001)`, Round B: `r fitb( round( 100*(seriesbpre / seriesbpost * seriesapre / seriesapost ) ,3) , tol=0.001)` , Round C: `r fitb( round( 100*(seriescpre / seriescpost * seriesapre / seriesapost * seriesbpre / seriesbpost)  ,3) , tol=0.001)`
+
+
+
+
+
+
+
+
+
+::: {.callout-important}
+**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+:::
+
+
+
+___
+
+**Answers:**
+
+1) 
+
+Round A: `r round(seriesapost ,3)` -  `r round( seriesapre   ,3) `  = `r round( (seriesapost - seriesapre )  ,3) `
+
+Round B: `r round(seriesbpost ,3)` -  `r round( seriesbpre   ,3) `  = `r round( (seriesbpost - seriesbpre ) ,3) ` 
+
+Round C: `r round(seriescpost ,3)` -  `r round( seriescpre   ,3) `  =`r round( (seriescpost - seriescpre )  ,3) `
+
+2) 
+
+Round A: `r round(seriesapre ,3)` /  `r round( seriesapost   ,3) `  = `r round( 100*(seriesapre / seriesapost )  ,3) `
+
+Round B: `r round(seriesbpre ,3)` /  `r round( seriesbpost   ,3) ` *   `r round( seriesapre   ,3)` /  `r round( seriesapost   ,3)` = `r round( 100*(seriesbpre / seriesbpost * seriesapre / seriesapost ) ,3) ` 
+
+Round C: `r round(seriescpre ,3)` /  `r round( seriescpost   ,3) ` *   `r round( seriesapre   ,3)` /  `r round( seriesapost   ,3)` * `r round(seriesbpre ,3)` /  `r round( seriesbpost   ,3) ` = `r round( 100*(seriescpre / seriescpost * seriesapre / seriesapost * seriesbpre / seriesbpost)  ,3) `
+
+
+
+
 

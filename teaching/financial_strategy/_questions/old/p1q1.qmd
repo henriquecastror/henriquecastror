@@ -13,7 +13,7 @@ format:
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** A seasoned equity offering (SEO) is the sale of stock by a company that is already publicly traded."
-q1_choices <- c(answer="True", "False")
+q1 <- " **Q:** An initial public offering (IPO) is not necessarily the first time a company sells its stock to the public."
+q1_choices <- c( "True",answer= "False")
 cat(q1,longmcq(q1_choices))
 ```
