@@ -67,10 +67,20 @@ ___
 **Answers:**
 
 1) 
-Round A: `r round( (seriesapost - seriesapre )  ,3) `, Round B: `r round( (seriesbpost - seriesbpre ) ,3) `, Round C: `r round( (seriescpost - seriescpre )  ,3) `
+
+Round A: `r round(seriesapost ,3)` -  `r round( seriesapre   ,3) `  = `r round( (seriesapost - seriesapre )  ,3) `
+
+Round B: `r round(seriesbpost ,3)` -  `r round( seriesbpre   ,3) `  = `r round( (seriesbpost - seriesbpre ) ,3) ` 
+
+Round C: `r round(seriescpost ,3)` -  `r round( seriescpre   ,3) `  =`r round( (seriescpost - seriescpre )  ,3) `
 
 2) 
-Round A: `r round( 100*(seriesapre / seriesapost )  ,3) `, Round B: `r round( 100*(seriesbpre / seriesbpost * seriesapre / seriesapost ) ,3) ` , Round C: `r round( 100*(seriescpre / seriescpost * seriesapre / seriesapost * seriesbpre / seriesbpost)  ,3) `
+
+Round A: `r round(seriesapre ,3)` /  `r round( seriesapost   ,3) `  = `r round( 100*(seriesapre / seriesapost )  ,3) `
+
+Round B: `r round(seriesbpre ,3)` /  `r round( seriesbpost   ,3) ` *   `r round( seriesapre   ,3)` /  `r round( seriesapost   ,3)` = `r round( 100*(seriesbpre / seriesbpost * seriesapre / seriesapost ) ,3) ` 
+
+Round C: `r round(seriescpre ,3)` /  `r round( seriescpost   ,3) ` *   `r round( seriesapre   ,3)` /  `r round( seriesapost   ,3)` * `r round(seriesbpre ,3)` /  `r round( seriesbpost   ,3) ` = `r round( 100*(seriescpre / seriescpost * seriesapre / seriesapost * seriesbpre / seriesbpost)  ,3) `
 
 
 
