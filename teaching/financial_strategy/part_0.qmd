@@ -152,37 +152,21 @@ At the end of the semester, the student should be able to master the:
       
 . . . 
 
+<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_ca9c2dc33cb8ed14993600aeb1a3c1"></script>
+
+
 ::: {.columns}
 
 ::: {.column width="50%"}
 
-**I accept it:**  <div data-lyket-type="like" 
-  data-lyket-id="part_1_like_1"  
-  data-lyket-color-background="#ffffff"
-  data-lyket-color-icon="#070cfa"
-  data-lyket-color-highlight="#070cfa"
-  style="font-size: 30px"
-  
-  data-lyket-color-primary="#ffffff"
-  data-lyket-color-secondary="#ffffff"
-  data-lyket-color-text="black"
-  data-lyket-font-family="monospace"
-></div>
+**I accept it:**  <div data-lyket-type="like" data-lyket-id="part1-like1"   data-lyket-namespace="EFPART1"></div>
+
 
 :::
 
 ::: {.column width="50%" }
 
-**I love it:** <div data-lyket-type="like" 
-  data-lyket-id="part_1_like_2"  
-  data-lyket-color-background="#f70000"
-  data-lyket-color-icon="#f70000"
-  data-lyket-color-highlight="#f70000"
-  style="font-size: 30px"
-  data-lyket-template="twitter"
-  data-lyket-color-primary="#f70000"
-  data-lyket-color-secondary="#f70000"
-></div>
+**I love it:**  <div data-lyket-type="like" data-lyket-id="part1-like2"   data-lyket-namespace="EFPART1"   data-lyket-template="twitter"></div>
 
 :::
 :::
