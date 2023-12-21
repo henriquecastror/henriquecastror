@@ -3,6 +3,8 @@ format:
   html:
     css: webex.css
     include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.2em
 ---
 
 ```{r}
@@ -34,7 +36,7 @@ seriescpost <- round(seriescpre +  runif(1, 50,70),3 )
 
 \item Series B Pre-Money: **`r  round( seriesbpre ,3) `** & Series B Post-Money: **`r  round( seriesbpost ,3) `**
 
-\item Series C Pre-Money: **`r  round( seriescpre ,3) `** * Series C Post-Money: **`r  round( seriescpost ,3) `**
+\item Series C Pre-Money: **`r  round( seriescpre ,3) `** & Series C Post-Money: **`r  round( seriescpost ,3) `**
 
 **How much did the company raised in each round, in millions?**
 
@@ -57,4 +59,20 @@ Round A: `r fitb( round( 100*(seriesapre / seriesapost )  ,3) , tol=0.001)`, Rou
 ::: {.callout-important}
 **Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
 :::
+
+
+
+___
+
+**Answers:**
+
+1) 
+Round A: `r round( (seriesapost - seriesapre )  ,3) `, Round B: `r round( (seriesbpost - seriesbpre ) ,3) `, Round C: `r round( (seriescpost - seriescpre )  ,3) `
+
+2) 
+Round A: `r round( 100*(seriesapre / seriesapost )  ,3) `, Round B: `r round( 100*(seriesbpre / seriesbpost * seriesapre / seriesapost ) ,3) ` , Round C: `r round( 100*(seriescpre / seriescpost * seriesapre / seriesapost * seriesbpre / seriesbpost)  ,3) `
+
+
+
+
 

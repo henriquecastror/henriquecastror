@@ -3,8 +3,9 @@ format:
   html:
     css: webex.css
     include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.3em
 ---
-
 
 ```{r}
 #| eval: true
@@ -56,4 +57,18 @@ seriescpost <- round(seriescpre +  runif(1, 50,70),3 )
 ::: {.callout-important}
 **Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
 :::
+
+
+___
+
+**Answers**:
+
+
+1) `r  round( (ishares1 + ishares2 + ishares3 ) * share ,3) `
+
+2) `r round( ishares3 / (ishares1 + ishares2 + ishares3 ) * 100 , 3) `
+
+3) `r round( ishares1 / (ishares1 + ishares2 + ishares3 ) * 100 , 3) `
+
+4) `r  round( ishares1  * share ,3) `
 
