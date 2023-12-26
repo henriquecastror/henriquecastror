@@ -163,8 +163,7 @@ Notice the volatility next slide.
 
 ## {.smaller background="#f2f5ce"} 
 
-Insights from Brazil.
-
+**Insights from Brazil (1995-2023).**
 
 ::: panel-tabset
 
@@ -290,6 +289,157 @@ plt.title('Cumulative Returns Ibov and Selic (1995-2023)', fontsize=15)
 plt.xlabel('Date', fontsize=13)
 plt.legend(loc='upper left')
 plt.show()
+```
+
+:::
+
+
+
+
+
+
+
+
+
+
+## {.smaller background="#f2f5ce"} 
+
+**Insights from Brazil (2002-2007).**
+
+::: panel-tabset
+
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(downloader)
+library(dplyr)
+library(GetQuandlData)
+library(ggplot2)
+library(ggthemes)
+library(PerformanceAnalytics)
+library(plotly)
+library(readxl)
+library(roll)
+library(tidyr)
+library(tidyquant)
+library(yfR)
+
+# Ibov
+stock <- '^BVSP'
+start <- '2002-01-01'  # Adjusted start date
+end <- '2007-12-31'   # Adjusted end date
+ibov <- yf_get(tickers = stock, first_date = start, last_date = end)
+ibov <- ibov[order(as.numeric(ibov$ref_date)),]
+
+# Cumulative return Ibov
+ibov$Ibov_return <- ibov$cumret_adjusted_prices - 1
+
+# Selic - Download manually from ipeadata "Taxa de juros: Overnight / Selic"
+selic <- read_excel("files/selic.xls")
+names(selic) <- c("ref_date", "selic")
+selic$ref_date <- as.Date(selic$ref_date, format = "%d/%m/%Y")
+selic <- na.omit(selic)
+selic$selic <- selic$selic / (252 * 100)
+
+# Filter Selic data for the desired period (2010-2020)
+selic <- selic %>% filter(ref_date >= start & ref_date <= end)
+
+# Cumulative return Selic
+return_selic <- data.frame(nrow(selic):1)
+colnames(return_selic) <- "selic_return"
+for (i in (2:nrow(selic))) {
+  return_selic[i, 1] <- Return.cumulative(selic$selic[1:i])
+}
+
+# Merging dataframes
+selic <- cbind(selic, return_selic)
+df <- merge(ibov, selic, by = c("ref_date"))
+df$selic_return[1] <- NA
+df$Ibov_return[1] <- NA
+
+# Graph cumulated return CDI and IBOV
+p <- ggplot(df, aes(ref_date)) +
+  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
+  geom_line(aes(y = selic_return, colour = "Selic")) +
+  labs(y = 'Cumulative return (daily)') + theme_solarized() +
+  ggtitle("Cumulative Returns Ibov, and Selic (2002-2007)")
+ggplotly(p)
+
+```
+
+
+
+
+
+### Python
+
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+# Define API key and other parameters
+import matplotlib.pyplot as plt
+import pandas as pd
+import yfinance as yf
+
+stock = "^BVSP"
+start = "2002-01-01"
+end = "2007-12-31"
+
+# Get data for IBOV
+ibov = yf.download(stock, start=start, end=end)
+ibov = ibov.reset_index()
+ibov = ibov.sort_values("Date")
+ibov = ibov.rename(columns={'Date': 'ref_date', 'Adj Close': 'Ibovespa'})
+ibov["return"] = ibov["Ibovespa"].pct_change()
+ibov['Ibov_return'] = (1 + ibov['return']).cumprod()
+ibov = ibov[['ref_date', 'Ibov_return']]
+
+# Get data for Selic
+selic = pd.read_excel("files/selic.xls")
+selic.columns = ["ref_date", "selic"]
+selic['ref_date'] = pd.to_datetime(selic['ref_date'], format="%d/%m/%Y")
+selic = selic.dropna()
+selic['selic'] = selic['selic'] / (252 * 100)
+
+# Filter Selic data for the desired period
+selic = selic[(selic['ref_date'] >= start) & (selic['ref_date'] <= end)]
+
+# Calculate cumulative return for Selic
+selic['selic_return'] = (1 + selic['selic']).cumprod()
+
+# Merge dataframes
+df = pd.merge(ibov, selic, on="ref_date")
+
+# Plot data
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
+ax.plot(df["ref_date"], df["selic_return"], label='Selic')
+plt.ylabel('Cumulative return (daily)', fontsize=13)
+plt.title('Cumulative Returns Ibov and Selic (2002-2007)', fontsize=15)
+plt.xlabel('Date', fontsize=13)
+plt.legend(loc='upper left')
+plt.show()
+
 
 ```
 
@@ -306,6 +456,140 @@ plt.show()
 
 
 
+
+## {.smaller background="#f2f5ce"} 
+
+**Insights from Brazil (2010-2018).**
+
+::: panel-tabset
+
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(downloader)
+library(dplyr)
+library(GetQuandlData)
+library(ggplot2)
+library(ggthemes)
+library(PerformanceAnalytics)
+library(plotly)
+library(readxl)
+library(roll)
+library(tidyr)
+library(tidyquant)
+library(yfR)
+
+# Ibov
+stock <- '^BVSP'
+start <- '2010-01-01'  # Adjusted start date
+end <- '2018-12-31'   # Adjusted end date
+ibov <- yf_get(tickers = stock, first_date = start, last_date = end)
+ibov <- ibov[order(as.numeric(ibov$ref_date)),]
+
+# Cumulative return Ibov
+ibov$Ibov_return <- ibov$cumret_adjusted_prices - 1
+
+# Selic - Download manually from ipeadata "Taxa de juros: Overnight / Selic"
+selic <- read_excel("files/selic.xls")
+names(selic) <- c("ref_date", "selic")
+selic$ref_date <- as.Date(selic$ref_date, format = "%d/%m/%Y")
+selic <- na.omit(selic)
+selic$selic <- selic$selic / (252 * 100)
+
+# Filter Selic data for the desired period (2010-2020)
+selic <- selic %>% filter(ref_date >= start & ref_date <= end)
+
+# Cumulative return Selic
+return_selic <- data.frame(nrow(selic):1)
+colnames(return_selic) <- "selic_return"
+for (i in (2:nrow(selic))) {
+  return_selic[i, 1] <- Return.cumulative(selic$selic[1:i])
+}
+
+# Merging dataframes
+selic <- cbind(selic, return_selic)
+df <- merge(ibov, selic, by = c("ref_date"))
+df$selic_return[1] <- NA
+df$Ibov_return[1] <- NA
+
+# Graph cumulated return CDI and IBOV
+p <- ggplot(df, aes(ref_date)) +
+  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
+  geom_line(aes(y = selic_return, colour = "Selic")) +
+  labs(y = 'Cumulative return (daily)') + theme_solarized() +
+  ggtitle("Cumulative Returns Ibov, and Selic (2010-2018)")
+ggplotly(p)
+
+```
+
+
+
+
+
+### Python
+
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: true
+# Define API key and other parameters
+import matplotlib.pyplot as plt
+import pandas as pd
+import yfinance as yf
+stock = "^BVSP"
+start = "2010-01-01"
+end = "2018-12-31"
+# Get data for IBOV
+ibov = yf.download(stock, start=start, end=end)
+ibov = ibov.reset_index()
+ibov = ibov.sort_values("Date")
+ibov = ibov.rename(columns={'Date': 'ref_date', 'Adj Close': 'Ibovespa'})
+ibov["return"] = ibov["Ibovespa"].pct_change()
+ibov['Ibov_return'] = (1 + ibov['return']).cumprod()
+ibov = ibov[['ref_date', 'Ibov_return']]
+# Get data for Selic
+selic = pd.read_excel("files/selic.xls")
+selic.columns = ["ref_date", "selic"]
+selic['ref_date'] = pd.to_datetime(selic['ref_date'], format="%d/%m/%Y")
+selic = selic.dropna()
+selic['selic'] = selic['selic'] / (252 * 100)
+# Filter Selic data for the desired period
+selic = selic[(selic['ref_date'] >= start) & (selic['ref_date'] <= end)]
+# Calculate cumulative return for Selic
+selic['selic_return'] = (1 + selic['selic']).cumprod()
+# Merge dataframes
+df = pd.merge(ibov, selic, on="ref_date")
+# Plot data
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
+ax.plot(df["ref_date"], df["selic_return"], label='Selic')
+plt.ylabel('Cumulative return (daily)', fontsize=13)
+plt.title('Cumulative Returns Ibov and Selic (2010-2018)', fontsize=15)
+plt.xlabel('Date', fontsize=13)
+plt.legend(loc='upper left')
+plt.show()
+```
+
+:::
 
 
 
@@ -448,7 +732,7 @@ $$SD[R] = (0.1225) ^{0.5} = 35\%$$
 
 ## {.smaller  background="#cff5ce"}
 
-IBOV returns seem to follow a normal distribution.
+**IBOV returns seem to follow a normal distribution.**
 
 ::: panel-tabset
 
@@ -499,6 +783,7 @@ plt.hist(ibov['return'], bins=100, color='grey')
 plt.title('IBOV', fontsize=20)
 plt.ylabel('Daily return', fontsize=16 )
 plt.show()
+
 ```
 
 
@@ -520,7 +805,7 @@ plt.show()
 
 ##  {.smaller  background="#cff5ce"}
 
-Standard deviation through time. It changes.
+**Standard deviation through time. It changes.**
 
 ::: {.panel-tabset}
 
@@ -564,13 +849,19 @@ ggplotly(p)
 #| output-location: default
 #| code-summary: "Python"
 #| collapse: true
-#| eval: false
+#| eval: true
 import numpy as np
-ibov['sd'] = ibov['return'].rolling(window=100, min_periods=100).std() 
-ibov['sd'] = ibov['sd'] * np.sqrt(250)
+import matplotlib.pyplot as plt
+import yfinance as yf
+stock = "^BVSP"
+start = "2010-01-01"
+end = pd.Timestamp.now()
+ibov = yf.download(stock, start=start, end=end)
+ibov["return"] = ibov["Adj Close"].pct_change()
+ibov['rolling_sd'] = ibov['return'].rolling(window=100, min_periods=100).std() * (250 ** 0.5)
 plt.close()
 fig, ax = plt.subplots(figsize=(20,10))
-ax.plot(ibov.index, ibov['sd'], color='#2986cc')
+ax.plot(ibov.index, ibov['rolling_sd'], color='#2986cc')
 ax.set_xlabel('')
 ax.set_ylabel('Standard deviation using 100 daily returns', fontsize=13)
 ax.set_title('IBOV (Daily returns since 2010)', fontsize=15)
@@ -594,9 +885,9 @@ plt.show()
 
 
 
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+##  {.smaller  background="#cff5ce"}
 
-Standard deviation through time. Riskier is riskier.
+**Standard deviation through time. Riskier is riskier.**
 
 ::: {.panel-tabset}
 
@@ -611,7 +902,7 @@ Standard deviation through time. Riskier is riskier.
 #| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
-#| eval: false
+#| eval: true
 stocks <-c('AMER3.SA' ) 
 amer <- yf_get(tickers = stocks, 
                          first_date = start,
@@ -678,9 +969,9 @@ plt.show()
 
 
 
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+##  {.smaller  background="#cff5ce"}
 
-Daily returns IBOV.
+**Daily returns IBOV.**
 
 ::: {.panel-tabset}
 
@@ -720,7 +1011,7 @@ ggplotly(p)
 #| output-location: default
 #| code-summary: "Python"
 #| collapse: true
-#| eval: true
+#| eval: false
 plt.close()
 plt.plot(ibov['ref_date'], ibov['return'], color='#2986cc')
 plt.xlabel('')
@@ -739,9 +1030,9 @@ plt.show()
 
 
 
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+##  {.smaller  background="#cff5ce"}
 
-Daily returns Americanas.
+**Daily returns Americanas.**
 
 ::: {.panel-tabset}
 
@@ -757,7 +1048,7 @@ Daily returns Americanas.
 #| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
-#| eval: false
+#| eval: true
 p<-ggplot() +
   geom_line(data=amer, aes(amer$ref_date, amer$ret_closing_prices), color='#801e00') +
   geom_line(data=ibov, aes(ibov$ref_date, ibov$ret_closing_prices), color='#2986cc') +
@@ -809,7 +1100,7 @@ plt.show()
 
 
 
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+##  {.smaller  background="#cff5ce"}
 
 **Americanas seems riskier than ITUB.** Some stocks have heavier tails than others. The stock with the heavier tail is riskier.
 
@@ -1166,7 +1457,7 @@ Remember the (arithmetic) average was 12% (in previous slide).
 
 
 
-## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+##  {.smaller  background="#f5d5d5" }
 
 **Risk vs return of selected Brazilian stocks.** There is a line, but not really...
 
@@ -1660,7 +1951,7 @@ Source: Brealey, Myers and Allen (13ed)
 
 
 
-## Equity Risk Premium (ERP) [website](https://ceqef.fgv.br/node/594) {.smaller background="#f2f7ba" }
+## Equity Risk Premium ([ERP](https://ceqef.fgv.br/node/594)) {.smaller background="#f2f7ba" }
 
 ::: panel-tabset
 
@@ -1818,7 +2109,7 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 
 **Question 1**
 
-<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p1q1/"> </iframe>
+<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q1/"> </iframe>
 
 ::: columns
 ::: {.column width="50%"}
@@ -1830,7 +2121,7 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 data-lyket-type="like" 
 data-lyket-id="question1easy" 
 data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART1" 
+data-lyket-namespace="EFPART2" 
 data-lyket-color-background="#522f31" 
 data-lyket-color-icon="#605dfc" 
 data-lyket-color-highlight="#070cfa" 
@@ -1851,7 +2142,7 @@ data-lyket-color-text="#605dfc"
 data-lyket-type="like" 
 data-lyket-id="question1hard" 
 data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART1" 
+data-lyket-namespace="EFPART2" 
 data-lyket-color-background="#522f31" 
 data-lyket-color-icon="#605dfc" 
 data-lyket-color-highlight="#070cfa" 
@@ -1863,6 +2154,224 @@ data-lyket-color-text="#605dfc"
 </center>
 :::
 :::
+
+
+
+
+
+
+
+##  {.smaller background="#522f31"}
+
+**Question 2**
+
+<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q2/"> </iframe>
+
+::: columns
+::: {.column width="50%"}
+<center>
+
+**Easy:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question2easy" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+
+::: {.column width="50%"}
+<center>
+
+**Hard:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question2hard" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+:::
+
+
+
+
+##  {.smaller background="#522f31"}
+
+**Question 3**
+
+<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q3/"> </iframe>
+
+::: columns
+::: {.column width="50%"}
+<center>
+
+**Easy:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question3easy" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+
+::: {.column width="50%"}
+<center>
+
+**Hard:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question3hard" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+:::
+
+
+
+
+
+##  {.smaller background="#522f31"}
+
+**Question 4**
+
+<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q4/"> </iframe>
+
+::: columns
+::: {.column width="50%"}
+<center>
+
+**Easy:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question4easy" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+
+::: {.column width="50%"}
+<center>
+
+**Hard:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question4hard" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+:::
+
+
+
+
+
+##  {.smaller background="#522f31"}
+
+**Question 5**
+
+<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q5/"> </iframe>
+
+::: columns
+::: {.column width="50%"}
+<center>
+
+**Easy:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question5easy" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+
+::: {.column width="50%"}
+<center>
+
+**Hard:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question5hard" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART2" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+:::
+
 
 
 

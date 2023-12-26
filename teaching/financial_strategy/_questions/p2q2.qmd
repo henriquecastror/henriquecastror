@@ -3,7 +3,10 @@ format:
   html:
     css: webex.css
     include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.4em
 ---
+
 
 ```{r}
 #| eval: true
@@ -11,8 +14,9 @@ format:
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** The expected, or mean, return is the return we expect to earn on average."
-q1_choices <- c(answer= "True", "False")
+q1 <- " **Which of the following sentences is FALSE?**"
+q1_choices <- c("Because investors can eliminate idiosyncratic risk, they do not require a risk premium for taking it on.", answer="The market risk premium is the expected average return of the market portfolio." , "The beta of a security is the sensitivity of the security’s return to the return of the overall market.")
 cat(q1,longmcq(q1_choices))
+
 ```
 

@@ -3,7 +3,10 @@ format:
   html:
     css: webex.css
     include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.4em
 ---
+
 
 ```{r}
 #| eval: true
@@ -11,8 +14,9 @@ format:
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** Historically, over long horizons, investments in stocks have outperformed investments in bonds."
-q1_choices <- c(answer= "True", "False")
+q1 <- " **Which of the following sentences is FALSE?**"
+q1_choices <- c("Historically, over long horizons, investments in stocks is expected to outperform investments in bonds.", "The expected, or mean, return is the return we expect to earn on average.", "The realized or total return for an investment is the total return of the dividend yield and the capital gain rate.", answer= "The total risk of a security represents only its systematic risk.")
 cat(q1,longmcq(q1_choices))
+
 ```
 

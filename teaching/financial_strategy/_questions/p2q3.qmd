@@ -3,7 +3,10 @@ format:
   html:
     css: webex.css
     include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.4em
 ---
+
 
 ```{r}
 #| eval: true
@@ -11,7 +14,8 @@ format:
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** The realized or total return for an investment is the total of the dividend yield and the capital gain rate."
-q1_choices <- c(answer= "True", "False")
+q1 <- " **Q:** Which of the following risks of a stock are likely to be firm-specific, diversifiable risks, and which are likely to be systematic risks? Which risks will affect the risk premium that investors will demand? (**More than one alternative might be correct.**)"
+q1_choices <- c(answer= "The risk that the founder and CEO retires", "The risk that oil prices rise, increasing production costs", answer= "The risk that a product design is faulty and the product must be recalled", "The risk that the economy slows, reducing demand for the firm’s products.")
 cat(q1,longmcq(q1_choices))
 ```
+

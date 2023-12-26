@@ -1,0 +1,17 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+---
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** The realized or total return for an investment is the total of the dividend yield and the capital gain rate."
+q1_choices <- c(answer= "True", "False")
+cat(q1,longmcq(q1_choices))
+```
