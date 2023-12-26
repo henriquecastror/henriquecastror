@@ -3945,63 +3945,63 @@
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-4",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\nExamples of indexes:\n\nSP500\n\nA value-weighted portfolio of the 500 largest U.S. stocks\n\nDow Jones Industrial Average (DJIA)\n\nA price-weighted portfolio of 30 large industrial stocks (holds an equal number of shares of each stock).\n\nIbov\n\nAround 70 BR stocks. Follows an algorithm focusing on liquidity.\n\n\n\nETFs (Exchange-traded funds)\n\nA portfolio that follows an index, like the SP500.\n\n\n\nSP500 and Ibov are not considered as the market portfolio, they are proxies for the market portfolios. I.e., reasonable approximations."
+    "text": "12.2 The Market Portfolio\nExamples of indexes:\n\nSP500: A value-weighted portfolio of the 500 largest U.S. stocks\nDow Jones Industrial Average (DJIA): A price-weighted portfolio of 30 large industrial stocks (holds an equal number of shares of each stock).\nIbov : Around 90 BR stocks. Follows an algorithm focusing on liquidity.\n\nETFs (Exchange-traded funds): A portfolio that follows an index, like the SP500.\nSP500 and Ibov are not considered as the market portfolio, they are proxies for the market portfolios. I.e., reasonable approximations."
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-5",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-5",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\n\n\nR\nstocks &lt;-c('SPY', 'IVV','VOO', 'SPLG' , '^GSPC') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock3 &lt;- subset(data, ticker == stocks[3])\nstock4 &lt;- subset(data, ticker == stocks[4])\nstock5 &lt;- subset(data, ticker == stocks[5])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\nstock3$price_close2 &lt;- stock3$price_close  / stock3$price_close[1] * 100\nstock4$price_close2 &lt;- stock4$price_close  / stock4$price_close[1] * 100\nstock5$price_close2 &lt;- stock5$price_close  / stock5$price_close[1] * 100\ndata2 &lt;- rbind(stock1, stock2, stock3, stock4, stock5)\np&lt;-ggplot(data2, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"SP500 against 4 ETFs, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)"
+    "text": "12.2 The Market Portfolio\nAnother key ingredient of CAPM is The Market Risk Premium\n\nRisk-Free Rate\n\nThe yield on U.S. Treasury securities\nSurveys suggest most practitioners use 10- to 30-year treasuries\nHighest quality assets\nOften, we use a short-term risk-free rate to evaluate a short-term investment, and a long-term rate when evaluating a long-term investment.\nIn Brazil, Selic for the short-term. Or maybe a more suitable long-term fixed rate, like 20-30 years."
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-6",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-6",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\n\n\nPython\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport yfinance as yf\nstocks = ['SPY', 'IVV', 'VOO', 'SPLG', '^GSPC']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\n## \n[                       0%                       ]\n[*******************   40%                       ]  2 of 5 completed\n[**********************60%****                   ]  3 of 5 completed\n[**********************80%*************          ]  4 of 5 completed\n[*********************100%***********************]  5 of 5 completed\ndata2 = (data / data.iloc[0]) * 100\nplt.close()\nplt.plot(data2)\nplt.xlabel('')\nplt.ylabel('Closing prices')\nplt.title('SP500 against 4 ETFs, Initial price = 100\\nBegin 01/01/2010')\nplt.legend(data2.columns)\nplt.show()"
+    "text": "12.2 The Market Portfolio\n\nThe Historical Risk Premium\n\nEstimate the risk premium (\\(E[R_M] − R_f\\)) using the historical average excess return of the market over the risk-free interest rate\nNotice that, even with long periods, we often have large standard errors\nAlso, implicitly, you are assuming that the past is a good proxy for the future."
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-7",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-7",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\n\n\nR\nstocks &lt;-c('BOVA11.SA', '^BVSP') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\ndata2 &lt;- rbind(stock1, stock2)\np&lt;- ggplot(data2, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"IBOV against 2 ETFs, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)"
+    "text": "12.2 The Market Portfolio\nUsing historical data has two problems:\n\nStandard errors of the estimates are often large\nThey are backward looking\n\n\nSo, one alternative is to use the discount rate that is consistent with the current level of the index.\n\\[ R_m = \\frac{Div_1}{P_o} + g = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate\\]\n\n\nLet’s say, Ibov’s current dividend yield is 2%. Also, both earnings and dividends per share are expected to grow 6% per year.\n\\[ R_m = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate = 2\\% + 6\\% = 8\\%\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-8",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-8",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\n\n\nPython\nstocks = ['BOVA11.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\n## \n[                       0%                       ]\n[*********************100%***********************]  2 of 2 completed\ndata2 = (data / data.iloc[0]) * 100\nplt.close()\nplt.plot(data2)\nplt.xlabel('')\nplt.ylabel('Closing prices')\nplt.title('Ibov against 2 ETFs, Initial price = 100')\nplt.legend(data2.columns)\nplt.show()"
+    "text": "12.2 The Market Portfolio\n\nThe Historical Risk Premium\n\nEstimate the risk premium (\\(E[R_M] − R_f\\)) using the historical average excess return of the market over the risk-free interest rate\nNotice that, even with long periods, we often have large standard errors\nAlso, implicitly, you are assuming that the past is a good proxy for the future."
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-9",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-9",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\nAnother key ingredient of CAPM is The Market Risk Premium\n\nRisk-Free Rate\n\nThe yield on U.S. Treasury securities\nSurveys suggest most practitioners use 10- to 30-year treasuries\nHighest quality assets\nOften, we use a short-term risk-free rate to evaluate a short-term investment, and a long-term rate when evaluating a long-term investment.\nIn Brazil, Selic for the short-term. Or maybe a more suitable long-term fixed rate, like 20-30 years."
+    "text": "12.2 The Market Portfolio\n\nRPython\n\n\n\n\nR\nurl &lt;- \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndownload(url, dest=\"files/epr.xlsx\", mode=\"wb\") \ndata &lt;- read_excel(\"files/epr.xlsx\", col_types = c(\"date\",\"numeric\") )\ndata &lt;- data[2:nrow(data),1:2]\ncolnames(data) &lt;- c(\"month\", \"erp\")\n\np&lt;-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+\n  labs(y = \"Equity Risk Premium (ERP)\", \n       x = \"\", \n       title = \"Equity Risk Premium (ERP) in Brazil\" , \n       caption = \"Source: https://ceqef.fgv.br/node/594\" )\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport pandas as pd\nimport matplotlib.pyplot as plt\nurl = \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndata = pd.read_excel(url, header=2)\ndata = data.iloc[:, 0:2]\ndata.columns = [\"month\", \"erp\"]\nfig, ax = plt.subplots(figsize=(20, 10))\nax.plot(data[\"month\"], data[\"erp\"])\nax.set_xlabel(\"Time\", fontsize=20)\nax.set_ylabel(\"Equity Risk Premium (ERP)\", fontsize=20)\nax.set_title(\"Equity Risk Premium (ERP) in Brazil\", fontsize=25)\nax.text(0.5, -0.1, \"Source: https://ceqef.fgv.br/node/594\", transform=ax.transAxes, ha=\"center\")\nplt.show()"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-10",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-10",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\n\nThe Historical Risk Premium\n\nEstimate the risk premium (\\(E[R_M] − R_f\\)) using the historical average excess return of the market over the risk-free interest rate\nNotice that, even with long periods, we often have large standard errors\nAlso, implicitly, you are assuming that the past is a good proxy for the future."
+    "text": "12.2 The Market Portfolio\nUsing historical data has two problems:\n\nStandard errors of the estimates are often large\nThey are backward looking\n\n\nSo, one alternative is to use the discount rate that is consistent with the current level of the index.\n\\[ R_m = \\frac{Div_1}{P_o} + g = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate\\]\n\n\nLet’s say, Ibov’s current dividend yield is 2%. Also, both earnings and dividends per share are expected to grow 6% per year.\n\\[ R_m = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate = 2\\% + 6\\% = 8\\%\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-11",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-11",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\n\n\nR\nurl &lt;- \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndownload(url, dest=\"files/epr.xlsx\", mode=\"wb\") \ndata &lt;- read_excel(\"files/epr.xlsx\", col_types = c(\"date\",\"numeric\") )\ndata &lt;- data[2:nrow(data),1:2]\ncolnames(data) &lt;- c(\"month\", \"erp\")\n\np&lt;-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+\n  labs(y = \"Equity Risk Premium (ERP)\", \n       x = \"\", \n       title = \"Equity Risk Premium (ERP) in Brazil\" , \n       caption = \"Source: https://ceqef.fgv.br/node/594\" )\nggplotly(p)"
+    "text": "12.2 The Market Portfolio\n\nRPython\n\n\n\n\nR\nurl &lt;- \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndownload(url, dest=\"files/epr.xlsx\", mode=\"wb\") \ndata &lt;- read_excel(\"files/epr.xlsx\", col_types = c(\"date\",\"numeric\") )\ndata &lt;- data[2:nrow(data),1:2]\ncolnames(data) &lt;- c(\"month\", \"erp\")\n\np&lt;-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+\n  labs(y = \"Equity Risk Premium (ERP)\", \n       x = \"\", \n       title = \"Equity Risk Premium (ERP) in Brazil\" , \n       caption = \"Source: https://ceqef.fgv.br/node/594\" )\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport pandas as pd\nimport matplotlib.pyplot as plt\nurl = \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndata = pd.read_excel(url, header=2)\ndata = data.iloc[:, 0:2]\ndata.columns = [\"month\", \"erp\"]\nfig, ax = plt.subplots(figsize=(20, 10))\nax.plot(data[\"month\"], data[\"erp\"])\nax.set_xlabel(\"Time\", fontsize=20)\nax.set_ylabel(\"Equity Risk Premium (ERP)\", fontsize=20)\nax.set_title(\"Equity Risk Premium (ERP) in Brazil\", fontsize=25)\nax.text(0.5, -0.1, \"Source: https://ceqef.fgv.br/node/594\", transform=ax.transAxes, ha=\"center\")\nplt.show()"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-12",
     "href": "teaching/financial_strategy/part_4.html#the-market-portfolio-12",
     "title": "Estratégia Financeira",
     "section": "12.2 The Market Portfolio",
-    "text": "12.2 The Market Portfolio\n\n\nPython\nimport pandas as pd\nimport matplotlib.pyplot as plt\nurl = \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndata = pd.read_excel(url, header=2)\ndata = data.iloc[:, 0:2]\ndata.columns = [\"month\", \"erp\"]\nfig, ax = plt.subplots(figsize=(20, 10))\nax.plot(data[\"month\"], data[\"erp\"])\nax.set_xlabel(\"Time\", fontsize=20)\nax.set_ylabel(\"Equity Risk Premium (ERP)\", fontsize=20)\nax.set_title(\"Equity Risk Premium (ERP) in Brazil\", fontsize=25)\nax.text(0.5, -0.1, \"Source: https://ceqef.fgv.br/node/594\", transform=ax.transAxes, ha=\"center\")\nplt.show()"
+    "text": "12.2 The Market Portfolio\nUsing historical data has two problems:\n\nStandard errors of the estimates are often large\nThey are backward looking\n\n\nSo, one alternative is to use the discount rate that is consistent with the current level of the index.\n\\[ R_m = \\frac{Div_1}{P_o} + g = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate\\]\n\n\nLet’s say, Ibov’s current dividend yield is 2%. Also, both earnings and dividends per share are expected to grow 6% per year.\n\\[ R_m = Dividend\\; yield + Expected\\; dividend\\; growh\\; rate = 2\\% + 6\\% = 8\\%\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#the-market-portfolio-13",
@@ -4022,56 +4022,56 @@
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-2",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\n\n\nR\nfreq.data   &lt;- 'daily'\nstart &lt;-'2000-01-01' \nend   &lt;-Sys.Date()  \nibov &lt;- yf_get(tickers = \"^BVSP\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data)\nasset &lt;- yf_get(tickers = \"PETR4.SA\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nret_ibov &lt;- ibov  %&gt;% tq_transmute(select = price_adjusted,\n                                   mutate_fun = periodReturn,\n                                   period = 'daily',\n                                   col_rename = 'return',\n                                   type = 'log')\nret_asset &lt;- asset   %&gt;%tq_transmute(select = price_adjusted,\n                                     mutate_fun = periodReturn,\n                                     period = 'daily',\n                                     col_rename = 'return',\n                                     type = 'log')\nret &lt;- left_join(ret_ibov, ret_asset, by = c(\"ref_date\" = \"ref_date\"))\nwindow &lt;-252\nret$var &lt;- roll_cov(ret$return.x, ret$return.x, width = window)\nret$cov &lt;- roll_cov(ret$return.x, ret$return.y, width = window)\nret$beta &lt;- ret$cov / ret$var\nret &lt;- subset(ret, ret$beta != \"NA\" )\np&lt;-ggplot(ret, aes(x= return.x, y=return.y)) + \n  geom_point()+\n  geom_smooth(method=lm, se=FALSE)+\n  labs( y = \"Daily returns PETR4\", x=\"Daily returns IBOV\",title = \"Beta PETR4\")+\n  xlim(-0.2, 0.2) + ylim(-0.2, 0.2) +   theme_solarized()\nggplotly(p)"
+    "text": "12.3 Beta Estimation\n\nNote that in any period, the asset’s returns can be higher or lower than the best-fitting line.\nSuch deviations from the best-fitting line result from risk that is not related to the market as a whole.\nThese deviations are zero on average in the graph, as the points above the line balance out the points below the line.\nThey represent firm-specific risk that is diversifiable and that averages out in a large portfolio."
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-3",
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-3",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\n\n\nPython\nstocks = ['PETR4.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\nreturns = data.pct_change().dropna()\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nfig, ax = plt.subplots()\nax.scatter(returns[\"^BVSP\"], returns[\"PETR4.SA\"], alpha=0.5, color='black')\nm, b = np.polyfit(returns[\"^BVSP\"], returns[\"PETR4.SA\"], 1)\nax.plot(returns[\"^BVSP\"], m*returns[\"^BVSP\"] + b, color='darkblue')\nax.set_xlabel(\"Daily returns IBOV\")\nax.set_ylabel(\"Daily returns PETR4\")\nax.set_title(\"Beta PETR4\")\nax.set_xlim(-0.2, 0.2)\nax.set_ylim(-0.2, 0.2)\nplt.show()"
+    "text": "12.3 Beta Estimation\nWe can estimate Beta using the following regression:\n\\[(R_i - R_f) = \\alpha_i + \\beta_i \\times (R_m - R_f) + \\epsilon_i\\]\n\n\\(\\epsilon_i\\) is the error term or the residual. It represents the deviation from the best-fitting line and is zero on average (or else we could improve the fit). This error term corresponds to the diversifiable risk of the stock, which is the risk that is uncorrelated with the market."
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-4",
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-4",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\n\n\nR\nibov &lt;- yf_get(tickers = \"^BVSP\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nasset &lt;- yf_get(tickers = \"WEGE3.SA\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nret_ibov &lt;- ibov  %&gt;%tq_transmute(select = price_adjusted,\n                                  mutate_fun = periodReturn,\n                                  period = 'daily',\n                                  col_rename = 'return',\n                                  type = 'log')\nret_asset &lt;- asset %&gt;%tq_transmute(select = price_adjusted,\n                                  mutate_fun = periodReturn,\n                                  period = 'daily',\n                                  col_rename = 'return',\n                                  type = 'log')\nret &lt;- left_join(ret_ibov, ret_asset, by = c(\"ref_date\" = \"ref_date\"))\nwindow &lt;-252\nret$var &lt;- roll_cov(ret$return.x, ret$return.x, width = window)\nret$cov &lt;- roll_cov(ret$return.x, ret$return.y, width = window)\nret$beta &lt;- ret$cov / ret$var\nret &lt;- subset(ret, ret$beta != \"NA\" )\np&lt;-ggplot(ret, aes(x= return.x, y=return.y)) + \n  geom_point()+\n  geom_smooth(method=lm, se=FALSE)+\n  labs( y = \"Daily returns WEGE3\", x=\"Daily returns IBOV\",title = \"Beta WEGE3\")+\n  xlim(-0.2, 0.2) + ylim(-0.2, 0.2) +   theme_solarized()\nggplotly(p)"
+    "text": "12.3 Beta Estimation\n\n\\(\\alpha_i\\) is the constant term. It measures the historical performance of the security relative to the expected return predicted by the security market line.\nIt is the distance that the stock’s average return is above or below the SML. Thus, we can say \\(\\alpha_i\\) is a risk-adjusted measure of the stock’s historical performance.\nAccording to the CAPM, \\(\\alpha_i\\) should not be significantly different from zero."
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-5",
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-5",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\n\n\nPython\nstocks = ['WEGE3.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\nreturns = data.pct_change().dropna()\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nfig, ax = plt.subplots()\nax.scatter(returns[\"^BVSP\"], returns[\"WEGE3.SA\"], alpha=0.5, color='black')\nm, b = np.polyfit(returns[\"^BVSP\"], returns[\"WEGE3.SA\"], 1)\nax.plot(returns[\"^BVSP\"], m*returns[\"^BVSP\"] + b, color='darkblue')\nax.set_xlabel(\"Daily returns IBOV\")\nax.set_ylabel(\"Daily returns WEGE3\")\nax.set_title(\"Beta WEGE3.SA\")\nax.set_xlim(-0.2, 0.2)\nax.set_ylim(-0.2, 0.2)\nplt.show()"
+    "text": "12.3 Beta Estimation\nFinally, we can estimate Beta using the formula (use market s.d. = 10%):\n\\[Beta_i =   \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} =  \\frac{Cov(R_i,R_m)}{Var(R_m)}\\]\n\n\n\n\n\n\n\n\n\n\nPortfolio\nWeight\nVolatility (Sd)\nCorrelation with M\n\n\n\n\nHEC Corp\n0.21\n13%\n0.42\n\n\nGreen Midget\n0.31\n20%\n0.68\n\n\nAlive And Well\n0.48\n12%\n0.54\n\n\n\n\n\n\n\\(Beta_{H} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.13 \\times 0.42}{0.10} = 0.546\\) = _____\n\\(Beta_{G} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.20 \\times 0.68}{0.10} = 1.36\\)\n\\(Beta_{A} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.12 \\times 0.54}{0.10} = 0.648\\)"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-6",
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-6",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\n\nNote that in any period, the asset’s returns can be higher or lower than the best-fitting line.\nSuch deviations from the best-fitting line result from risk that is not related to the market as a whole.\nThese deviations are zero on average in the graph, as the points above the line balance out the points below the line.\nThey represent firm-specific risk that is diversifiable and that averages out in a large portfolio."
+    "text": "12.3 Beta Estimation\nProblem\nSuppose you have estimated Tikyberd’s beta to be 0.8 with a 95% confidence interval of 0.65 to 0.95.\nAssuming the risk-free rate is 2% and the market is expected to return 12%, what range would you estimate for Tikyberd’s equity cost of capital?\n\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) =2\\% + 0.65 (12\\% − 2\\%) = 8.5\\%\\]\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) = 2\\% + 0.95 (12\\% − 2\\%) = 11.5\\%\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-7",
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-7",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\nWe can estimate Beta using the following regression:\n\\[(R_i - R_f) = \\alpha_i + \\beta_i \\times (R_m - R_f) + \\epsilon_i\\]\n\n\\(\\epsilon_i\\) is the error term or the residual. It represents the deviation from the best-fitting line and is zero on average (or else we could improve the fit). This error term corresponds to the diversifiable risk of the stock, which is the risk that is uncorrelated with the market."
+    "text": "12.3 Beta Estimation\nFinally, we can estimate Beta using the formula:\n\\[Beta_i =   \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} =  \\frac{Cov(R_i,R_m)}{Var(R_m)}\\]\n\n\n\n\n\n\n\n\n\n\nPortfolio\nWeight\nVolatility (Sd)\nCorrelation with M\n\n\n\n\nHEC Corp\n0.21\n13%\n0.42\n\n\nGreen Midget\n0.31\n20%\n0.68\n\n\nAlive And Well\n0.48\n12%\n0.54\n\n\n\nMarket Sd is 10%.\n\n\n\n\\(Beta_{H} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.13 \\times 0.42}{0.10} = 0.546\\)\n\\(Beta_{G} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.20 \\times 0.68}{0.10} = 1.36\\)\n\\(Beta_{A} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.12 \\times 0.54}{0.10} = 0.648\\)"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-8",
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-8",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\n\n\\(\\alpha_i\\) is the constant term. It measures the historical performance of the security relative to the expected return predicted by the security market line.\nIt is the distance that the stock’s average return is above or below the SML. Thus, we can say \\(\\alpha_i\\) is a risk-adjusted measure of the stock’s historical performance.\nAccording to the CAPM, \\(\\alpha_i\\) should not be significantly different from zero."
+    "text": "12.3 Beta Estimation\nProblem\nSuppose you have estimated Tikyberd’s beta to be 0.8 with a 95% confidence interval of 0.65 to 0.95.\nAssuming the risk-free rate is 2% and the market is expected to return 12%, what range would you estimate for Tikyberd’s equity cost of capital?\n\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) =2\\% + 0.65 (12\\% − 2\\%) = 8.5\\%\\]\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) = 2\\% + 0.95 (12\\% − 2\\%) = 11.5\\%\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-9",
     "href": "teaching/financial_strategy/part_4.html#beta-estimation-9",
     "title": "Estratégia Financeira",
     "section": "12.3 Beta Estimation",
-    "text": "12.3 Beta Estimation\nFinally, we can estimate Beta using the formula:\n\\[Beta_i =   \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} =  \\frac{Cov(R_i,R_m)}{Var(R_m)}\\]\n\n\n\n\n\n\n\n\n\n\nPortfolio\nWeight\nVolatility (Sd)\nCorrelation with M\n\n\n\n\nHEC Corp\n0.21\n13%\n0.42\n\n\nGreen Midget\n0.31\n20%\n0.68\n\n\nAlive And Well\n0.48\n12%\n0.54\n\n\n\nMarket Sd is 10%.\n\n\n\n\\(Beta_{H} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.13 \\times 0.42}{0.10} = 0.546\\)\n\\(Beta_{G} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.20 \\times 0.68}{0.10} = 1.36\\)\n\\(Beta_{A} = \\frac{Sd(R_i) \\times Corr(R_i,R_m)}{Sd(R_m)} = \\frac{0.12 \\times 0.54}{0.10} = 0.648\\)"
+    "text": "12.3 Beta Estimation\nProblem\nSuppose you have estimated Tikyberd’s beta to be 0.8 with a 95% confidence interval of 0.65 to 0.95.\nAssuming the risk-free rate is 2% and the market is expected to return 12%, what range would you estimate for Tikyberd’s equity cost of capital?\n\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) =2\\% + 0.65 (12\\% − 2\\%) = 8.5\\%\\]\n\\[E[R_i]=r_f + β_i (E[R_M] −R_f) = 2\\% + 0.95 (12\\% − 2\\%) = 11.5\\%\\]"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#beta-estimation-10",
@@ -5059,5 +5059,446 @@
     "title": "Estratégia Financeira",
     "section": "Performance assessment",
     "text": "Performance assessment\n1 Midterm Exam: 30%\n\n2 Final Exam: 30%\n\n\n3 Class Participation and problems resolution: 40%\n\nParticipation: 10%\nList of problems (two): 15%\n\n“Monitored activity” (three): 15%"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#how-did-you-like-this-lecture",
+    "href": "teaching/financial_strategy/part_4.html#how-did-you-like-this-lecture",
+    "title": "Estratégia Financeira",
+    "section": "How did you like this lecture?",
+    "text": "How did you like this lecture?\nYour response:\n\n\n\nAverage response:"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#section-1",
+    "href": "teaching/financial_strategy/part_4.html#section-1",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "RPython\n\n\n\n\nR\nstocks &lt;-c('SPY', 'IVV','VOO', 'SPLG' , '^GSPC') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock3 &lt;- subset(data, ticker == stocks[3])\nstock4 &lt;- subset(data, ticker == stocks[4])\nstock5 &lt;- subset(data, ticker == stocks[5])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\nstock3$price_close2 &lt;- stock3$price_close  / stock3$price_close[1] * 100\nstock4$price_close2 &lt;- stock4$price_close  / stock4$price_close[1] * 100\nstock5$price_close2 &lt;- stock5$price_close  / stock5$price_close[1] * 100\ndata2 &lt;- rbind(stock1, stock2, stock3, stock4, stock5)\np&lt;-ggplot(data2, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"SP500 against 4 ETFs, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport yfinance as yf\nstocks = ['SPY', 'IVV', 'VOO', 'SPLG', '^GSPC']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\n## \n[                       0%                       ]\n[*******************   40%                       ]  2 of 5 completed\n[**********************60%****                   ]  3 of 5 completed\n[**********************80%*************          ]  4 of 5 completed\n[*********************100%***********************]  5 of 5 completed\ndata2 = (data / data.iloc[0]) * 100\nplt.close()\nplt.plot(data2)\nplt.xlabel('')\nplt.ylabel('Closing prices')\nplt.title('SP500 against 4 ETFs, Initial price = 100\\nBegin 01/01/2010')\nplt.legend(data2.columns)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#section-2",
+    "href": "teaching/financial_strategy/part_4.html#section-2",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "RPython\n\n\n\n\nR\nstocks &lt;-c('BOVA11.SA', '^BVSP') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\ndata2 &lt;- rbind(stock1, stock2)\np&lt;- ggplot(data2, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"IBOV against 2 ETFs, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized(base_size = 12) \nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nstocks = ['BOVA11.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\n## \n[                       0%                       ]\n[*********************100%***********************]  2 of 2 completed\ndata2 = (data / data.iloc[0]) * 100\nplt.close()\nplt.plot(data2)\nplt.xlabel('')\nplt.ylabel('Closing prices')\nplt.title('Ibov against 2 ETFs, Initial price = 100')\nplt.legend(data2.columns)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#section-3",
+    "href": "teaching/financial_strategy/part_4.html#section-3",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "RPython\n\n\n\n\nR\nurl &lt;- \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndownload(url, dest=\"files/epr.xlsx\", mode=\"wb\") \ndata &lt;- read_excel(\"files/epr.xlsx\", col_types = c(\"date\",\"numeric\") )\ndata &lt;- data[2:nrow(data),1:2]\ncolnames(data) &lt;- c(\"month\", \"erp\")\n\np&lt;-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+\n  labs(y = \"Equity Risk Premium (ERP)\", \n       x = \"\", \n       title = \"Equity Risk Premium (ERP) in Brazil\" , \n       caption = \"Source: https://ceqef.fgv.br/node/594\" )\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport pandas as pd\nimport matplotlib.pyplot as plt\nurl = \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndata = pd.read_excel(url, header=2)\ndata = data.iloc[:, 0:2]\ndata.columns = [\"month\", \"erp\"]\nfig, ax = plt.subplots(figsize=(20, 10))\nax.plot(data[\"month\"], data[\"erp\"])\nax.set_xlabel(\"Time\", fontsize=20)\nax.set_ylabel(\"Equity Risk Premium (ERP)\", fontsize=20)\nax.set_title(\"Equity Risk Premium (ERP) in Brazil\", fontsize=25)\nax.text(0.5, -0.1, \"Source: https://ceqef.fgv.br/node/594\", transform=ax.transAxes, ha=\"center\")\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#section-4",
+    "href": "teaching/financial_strategy/part_4.html#section-4",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "RPython\n\n\n\n\nR\nfreq.data   &lt;- 'daily'\nstart &lt;-'2000-01-01' \nend   &lt;-Sys.Date()  \nibov &lt;- yf_get(tickers = \"^BVSP\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data)\nasset &lt;- yf_get(tickers = \"PETR4.SA\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nret_ibov &lt;- ibov  %&gt;% tq_transmute(select = price_adjusted,\n                                   mutate_fun = periodReturn,\n                                   period = 'daily',\n                                   col_rename = 'return',\n                                   type = 'log')\nret_asset &lt;- asset   %&gt;%tq_transmute(select = price_adjusted,\n                                     mutate_fun = periodReturn,\n                                     period = 'daily',\n                                     col_rename = 'return',\n                                     type = 'log')\nret &lt;- left_join(ret_ibov, ret_asset, by = c(\"ref_date\" = \"ref_date\"))\nwindow &lt;-252\nret$var &lt;- roll_cov(ret$return.x, ret$return.x, width = window)\nret$cov &lt;- roll_cov(ret$return.x, ret$return.y, width = window)\nret$beta &lt;- ret$cov / ret$var\nret &lt;- subset(ret, ret$beta != \"NA\" )\np&lt;-ggplot(ret, aes(x= return.x, y=return.y)) + \n  geom_point()+\n  geom_smooth(method=lm, se=FALSE)+\n  labs( y = \"Daily returns PETR4\", x=\"Daily returns IBOV\",title = \"Beta PETR4\")+\n  xlim(-0.2, 0.2) + ylim(-0.2, 0.2) +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nstocks = ['PETR4.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\nreturns = data.pct_change().dropna()\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nax.scatter(returns[\"^BVSP\"], returns[\"PETR4.SA\"], alpha=0.5, color='black')\nm, b = np.polyfit(returns[\"^BVSP\"], returns[\"PETR4.SA\"], 1)\nax.plot(returns[\"^BVSP\"], m*returns[\"^BVSP\"] + b, color='darkblue')\nax.set_xlabel(\"Daily returns IBOV\")\nax.set_ylabel(\"Daily returns PETR4\")\nax.set_title(\"Beta PETR4\")\nax.set_xlim(-0.2, 0.2)\nax.set_ylim(-0.2, 0.2)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_4.html#section-5",
+    "href": "teaching/financial_strategy/part_4.html#section-5",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "RPython\n\n\n\n\nR\nibov &lt;- yf_get(tickers = \"^BVSP\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nasset &lt;- yf_get(tickers = \"WEGE3.SA\",\n                        first_date = start,\n                        last_date = end,\n                        thresh_bad_data = 0.5,\n                        freq_data = freq.data )\nret_ibov &lt;- ibov  %&gt;%tq_transmute(select = price_adjusted,\n                                  mutate_fun = periodReturn,\n                                  period = 'daily',\n                                  col_rename = 'return',\n                                  type = 'log')\nret_asset &lt;- asset %&gt;%tq_transmute(select = price_adjusted,\n                                  mutate_fun = periodReturn,\n                                  period = 'daily',\n                                  col_rename = 'return',\n                                  type = 'log')\nret &lt;- left_join(ret_ibov, ret_asset, by = c(\"ref_date\" = \"ref_date\"))\nwindow &lt;-252\nret$var &lt;- roll_cov(ret$return.x, ret$return.x, width = window)\nret$cov &lt;- roll_cov(ret$return.x, ret$return.y, width = window)\nret$beta &lt;- ret$cov / ret$var\nret &lt;- subset(ret, ret$beta != \"NA\" )\np&lt;-ggplot(ret, aes(x= return.x, y=return.y)) + \n  geom_point()+\n  geom_smooth(method=lm, se=FALSE)+\n  labs( y = \"Daily returns WEGE3\", x=\"Daily returns IBOV\",title = \"Beta WEGE3\")+\n  xlim(-0.2, 0.2) + ylim(-0.2, 0.2) +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nstocks = ['WEGE3.SA', '^BVSP']\nstart = '2010-01-01'\nend = pd.Timestamp.now()\ndata = yf.download(stocks, start=start, end=end)['Close']\nreturns = data.pct_change().dropna()\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nax.scatter(returns[\"^BVSP\"], returns[\"WEGE3.SA\"], alpha=0.5, color='black')\nm, b = np.polyfit(returns[\"^BVSP\"], returns[\"WEGE3.SA\"], 1)\nax.plot(returns[\"^BVSP\"], m*returns[\"^BVSP\"] + b, color='darkblue')\nax.set_xlabel(\"Daily returns IBOV\")\nax.set_ylabel(\"Daily returns WEGE3\")\nax.set_title(\"Beta WEGE3.SA\")\nax.set_xlim(-0.2, 0.2)\nax.set_ylim(-0.2, 0.2)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#chapter-outline",
+    "href": "teaching/financial_strategy/part_2.html#chapter-outline",
+    "title": "Estratégia Financeira",
+    "section": "Chapter outline",
+    "text": "Chapter outline\n10.1 Risk and Return: Insights from History\n10.2 Common Measures of Risk and Return\n10.3 Historical Returns of Stocks and Bonds\n10.4 The Historical Trade-Off Between Risk and Return\n10.6 Diversification in Stock Portfolios\n10.7 Measuring Systematic Risk\n10.8 Beta and the Cost of Capital"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-1",
+    "href": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-1",
+    "title": "Estratégia Financeira",
+    "section": "10.1 Risk & Return: Insights from History",
+    "text": "10.1 Risk & Return: Insights from History"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-2",
+    "href": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-2",
+    "title": "Estratégia Financeira",
+    "section": "10.1 Risk & Return: Insights from History",
+    "text": "10.1 Risk & Return: Insights from History\nSome Insights:\n\nSmall stocks had the highest long-term return, while T-Bills had the lowest.\nSmall stocks had the largest fluctuations in price, while T-Bills had the lowest.\n\nHigher risk requires a higher return.\n\n\n\n\nBut, few people ever make an investment for so many years.\nMore realistic investment horizons and different initial investment dates can greatly influence each investment’s risk and return.\n\n\n\nNotice the volatility next slide."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-3",
+    "href": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-3",
+    "title": "Estratégia Financeira",
+    "section": "10.1 Risk & Return: Insights from History",
+    "text": "10.1 Risk & Return: Insights from History"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-4",
+    "href": "teaching/financial_strategy/part_2.html#risk-return-insights-from-history-4",
+    "title": "Estratégia Financeira",
+    "section": "10.1 Risk & Return: Insights from History",
+    "text": "10.1 Risk & Return: Insights from History\nInsights from Brazil.\n\nRPython\n\n\n\n\nR\nlibrary(downloader)\nlibrary(dplyr)\nlibrary(GetQuandlData)\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(PerformanceAnalytics)\nlibrary(plotly)\nlibrary(readxl)\nlibrary(roll)\nlibrary(tidyr)\nlibrary(tidyquant)\nlibrary(yfR)\n\n#Ibov\nstock&lt;-'^BVSP' \nstart&lt;-'1995-01-01' \nend   &lt;- Sys.Date() \nibov &lt;- yf_get(tickers = stock,first_date = start,last_date = end)\nibov&lt;- ibov[order(as.numeric(ibov$ref_date)),]\n# Cumulative return Ibov\nibov$Ibov_return &lt;- ibov$cumret_adjusted_prices -1\n\n#Selic - Download manually from ipeadata \"Taxa de juros: Overnight / Selic\"\nselic &lt;- read_excel(\"files/selic.xls\")\nnames(selic) &lt;- c(\"ref_date\", \"selic\")\nselic$ref_date &lt;- as.Date(selic$ref_date , format = \"%d/%m/%Y\")\nselic &lt;- na.omit(selic)\nselic$selic &lt;- selic$selic / (252* 100)\n\n# Cumulative return Selic\nreturn_selic &lt;- data.frame(nrow(selic):1)\ncolnames(return_selic)&lt;- \"selic_return\"\nfor(i in (2:nrow(selic))) {\nreturn_selic[i,1] &lt;- Return.cumulative( selic$selic[1:i] )\n}\n\n# Merging dataframes\nselic &lt;- cbind(selic, return_selic)\ndf &lt;- merge(ibov ,selic, by=c(\"ref_date\"))\ndf$selic_return[1] &lt;- NA\ndf$Ibov_return[1] &lt;- NA\n# Graph cumulated return CDI and IBOV\np &lt;- ggplot(df, aes(ref_date)) +\ngeom_line(aes(y = Ibov_return, colour = \"Ibov\")) +\ngeom_line(aes(y = selic_return, colour = \"Selic\")) +\nlabs(y='Cumulative return (daily)') + theme_solarized() +\n  ggtitle(\"Cumulative Returns  Ibov, and Selic (1995-2023)\")\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\n# Define API key and other parameters\nimport matplotlib.pyplot as plt\nimport pandas as pd\nimport yfinance as yf\n\nstock = \"^BVSP\"\nstart = \"1995-01-01\"\nend = pd.Timestamp.now()\n\n# Get data for IBOV\nibov = yf.download(stock, start=start, end=end)\nibov = ibov.reset_index()\nibov = ibov.sort_values(\"Date\")\nibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})\nibov[\"return\"] = ibov[\"Adj Close\"].pct_change()\nibov['Ibov_return'] = (1 + ibov['return']).cumprod()\nibov = ibov[['ref_date', 'Ibov_return']]\n\n# Get data for Selic\nselic = pd.read_excel(\"files/selic.xls\")\nselic.columns = [\"ref_date\", \"selic\"]\nselic['ref_date'] = pd.to_datetime(selic['ref_date'], format=\"%d/%m/%Y\")\nselic = selic.dropna()\nselic['selic'] = selic['selic'] / (252 * 100)\n\n# Calculate cumulative return for Selic\nselic['selic_return'] = (1 + selic['selic']).cumprod()\n\n# Merge dataframes\ndf = pd.merge(ibov, selic, on=\"ref_date\")\n\n# Plot data\nfig, ax = plt.subplots(figsize=(10,5))\nax.plot(df[\"ref_date\"], df[\"Ibov_return\"], label='Ibov')\nax.plot(df[\"ref_date\"], df[\"selic_return\"], label='Selic')\nplt.ylabel('Cumulative return (daily)', fontsize=13)\nplt.title('Cumulative Returns Ibov and Selic (1995-2023)', fontsize=15)\nplt.xlabel('Date', fontsize=13)\nplt.legend(loc='upper left')\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-1",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-1",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nWhen an investment is risky, it may earn different returns.\nEach possible return has some likelihood of occurring.\nThis information is summarized with a probability distribution, which assigns a probability, \\(P_r\\) , that each possible return, \\(R\\), will occur.\n\nAssume BFI stock currently trades for 100 per share. In one year, there is a 25% chance the share price will be 140, a 50% chance it will be 110, and a 25% chance it will be 80."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-2",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-2",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nThis insight will lead to this kind of graph."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-3",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-3",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nLet’s see how to compute the expected return on this asset.\n\\[Expected\\;return = E[R] = \\sum_{R} P_R \\times R\\]\n\\[E[R_{BFI}] = 25\\%(−0.20) + 50\\%(0.10) + 25\\%(0.40) = 10\\%\\]\n\nVery important: there is an underlying assumption that the past is good enough to teach us about the future.\nThat is, we are computing the historical average return and using this number as the best estimate of the expected return.\nKeep that assumption in mind."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-4",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-4",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nNow risk: variance and standard deviation.\n\\[Var(R) = E[(R-E[R])^2]   = \\sum_{R} P_R \\times (R-E[R])^2 \\]\n\\[SD(R) = \\sqrt{Var(R)}\\]\n\n\\[V(R)  = 0.25 × (−0.2 − 0.1)^2  + 0.5 × (0.1 − 0.1)^2 + 0.25 × (0.4 − 0.1)^2  = 0.045\\]\n\\[SD(R_{BFI}) = \\sqrt{0.045} = 21.2\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-5",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-5",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nSuppose AMC stock is equally likely to have a 45% return or a −25% return. What are the expected return and volatility?\n\n\\[E[R] = 50\\%×0.45+50\\%×(−0.25)=10.0\\%\\]\n\n\n\\[Var[R] = 50\\%×(0.45−0.10)^2+50\\%×(−0.25−0.10)^2=0.1225\\]\n\n\n\\[SD[R] = (0.1225) ^{0.5} = 35\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-6",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-6",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nIt is clear that riskier assets have heavier tails.\n\n\nWarning: Standard deviation and variance are correct measures of total risk if the returns are normally distributed."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-7",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-7",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nStandard deviation through time. Riskier is riskier.\n\nRPython\n\n\n\n\nR\nstocks &lt;-c('AMER3.SA' ) \namer &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\namer&lt;-amer[complete.cases(amer),]\namer$sd &lt;- roll_sd(amer$ret_closing_prices,  \n                     width = 100,  \n                     min_obs = 100 ) * sqrt(250)\nibov &lt;- subset(ibov, ref_date &gt;= as.Date(\"2010-01-05\"))\n\np&lt;-ggplot() + \n  geom_line(data=amer, aes(ref_date, sd), color='#801e00') +\n  geom_line(data=ibov, aes(ref_date, sd), color='#2986cc') +\n          labs(x = \"\",y='Standard deviation using 100 daily returns', \n             title=\"IBOV vs AMER3 (Daily returns since 2010)\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\nPython\nstock = \"AMER3.SA\"\n# Get data for IBOV\namer = yf.download(stock, start=start, end=end)\namer = amer.reset_index()\namer = amer.sort_values(\"Date\")\namer = amer.rename(columns={'Date': 'ref_date', 'Value': 'Americanas'})\namer[\"return\"] = amer[\"Adj Close\"].pct_change() \namer = amer.dropna()\namer['sd'] = amer['return'].rolling(window=100, min_periods=100).std() \namer['sd'] = amer['sd'] * np.sqrt(250)\n\nplt.close()\nfig, ax = plt.subplots(figsize=(20,10))\nax.plot(ibov.index, ibov['sd'], color='#2986cc')\nax.plot(amer.index, amer['sd'], color='darkred')\nax.set_xlabel('')\nax.set_ylabel('Standard deviation using 100 daily returns', fontsize=15)\nax.set_title('IBOV vs AMER3 (Daily returns since 2010)', fontsize=14)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-8",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-8",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nDaily returns IBOV.\n\nRPython\n\n\n\n\nR\np&lt;-ggplot(ibov,aes(ibov$ref_date,ibov$ret_closing_prices))+\n        geom_line(color='#2986cc') + \n        labs(x = \"\",\n             y='Daily returns', \n             title=\"IBOV (Daily returns since 2010)\")   +   theme_solarized()  \nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nplt.close()\nplt.plot(ibov['ref_date'], ibov['return'], color='#2986cc')\nplt.xlabel('')\nplt.ylabel('Daily returns', fontsize=14)\nplt.title('IBOV (Daily returns since 2010)', fontsize=15)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-9",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-9",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nDaily returns Americanas.\n\nRPython\n\n\n\n\nR\np&lt;-ggplot() +\n  geom_line(data=amer, aes(amer$ref_date, amer$ret_closing_prices), color='#801e00') +\n  geom_line(data=ibov, aes(ibov$ref_date, ibov$ret_closing_prices), color='#2986cc') +\n  labs(x = \"\", y='Daily returns') +\n  ggtitle(\"IBOV vs AMER3 (Daily returns since 2010)\") +\n  theme_solarized()\nggplotly(p)      \n\n\n\n\n\n\nPython\nplt.close()\nplt.plot(amer['ref_date'], amer['return'], color='#801e00')\nplt.plot(ibov['ref_date'], ibov['return'], color='#2986cc')\nplt.xlabel('')\nplt.ylabel('Daily returns', fontsize=14)\nplt.title('IBOV (Daily returns since 2010)', fontsize=15)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-10",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-10",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nAmericanas seems riskier than ITUB. Some stocks have heavier tails than others. The stock with the heavier tail is riskier.\n\nRPython\n\n\n\n\nR\nstocks &lt;-c('AMER3.SA', 'ITUB3.SA') \nstart &lt;-'2012-01-01' \nend   &lt;- Sys.Date() \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \np&lt;-ggplot(data, aes(ret_closing_prices,  fill = ticker)) + \n        geom_histogram(bins = 100, alpha = 0.35, position='identity') + \n        labs(x = \"\",\n             y='Daily returns', \n             title=\"Daily returns (2012-2023)\",\n             subtitle = start)+\n      xlim(-0.1,0.1) +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nstart = '2012-01-01'\nend = pd.Timestamp.now()\nasset1 = yf.download('AMER3.SA', start=start, end=end)\nasset1 = asset1.dropna()\nasset1['return'] = asset1[\"Adj Close\"].pct_change()\nasset2 = yf.download('ITUB3.SA', start=start, end=end)\nasset2 = asset2.dropna()\nasset2['return'] = asset2[\"Adj Close\"].pct_change()\ndf = pd.merge(asset1[['return']], asset2[['return']], on=\"Date\")\n#plot\nplt.close()\nplt.figure(figsize=(20,10))\nplt.hist(df['return_x'], bins=400, alpha=0.5, label=\"AMER3.SA\", density=True)\nplt.hist(df['return_y'], bins=400, alpha=0.5, label=\"ITUB3.SA\", density=True)\nplt.title('Daily returns (2012-2023)', fontsize=25)\nplt.ylabel('Daily returns', fontsize=20)\nplt.legend(loc='upper left', fontsize=20)\nplt.xlim(-0.1, 0.1)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-11",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-11",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nKeep in mind: There is variation (heterogeneity) in the level of standard deviation across countries.\n\nSource: Brealey, Myers and Allen (13ed)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-12",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-12",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nKeep in mind: There is variation (heterogeneity) in the level of standard deviation across countries.\n\nSource: Brealey, Myers and Allen (13ed)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-13",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-13",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\n\n\nPython\nplt.close()\nplt.plot(amer['ref_date'], amer['return'], color='#801e00')\nplt.plot(ibov['ref_date'], ibov['return'], color='#2986cc')\nplt.xlabel('')\nplt.ylabel('Daily returns', fontsize=14)\nplt.title('IBOV (Daily returns since 2010)', fontsize=15)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-14",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-14",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nAmericanas seems riskier than ITUB. Some stocks have heavier tails than others. The stock with the heavier tail is riskier.\n\nR\n\n\nR\nstocks &lt;-c('AMER3.SA', 'ITUB3.SA') \nstart &lt;-'2012-01-01' \nend   &lt;- Sys.Date() \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \np&lt;-ggplot(data, aes(ret_closing_prices,  fill = ticker)) + \n        geom_histogram(bins = 100, alpha = 0.35, position='identity') + \n        labs(x = \"\",\n             y='Daily returns', \n             title=\"Daily returns (2012-2023)\",\n             subtitle = start)+\n      xlim(-0.1,0.1) +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\nPython\n\n\nPython\nstart = '2012-01-01'\nend = pd.Timestamp.now()\nasset1 = yf.download('AMER3.SA', start=start, end=end)\nasset1 = asset1.dropna()\nasset1['return'] = asset1[\"Adj Close\"].pct_change()\nasset2 = yf.download('ITUB3.SA', start=start, end=end)\nasset2 = asset2.dropna()\nasset2['return'] = asset2[\"Adj Close\"].pct_change()\ndf = pd.merge(asset1[['return']], asset2[['return']], on=\"Date\")\n#plot\nplt.close()\nplt.figure(figsize=(20,10))\nplt.hist(df['return_x'], bins=400, alpha=0.5, label=\"AMER3.SA\", density=True)\nplt.hist(df['return_y'], bins=400, alpha=0.5, label=\"ITUB3.SA\", density=True)\nplt.title('Daily returns (2012-2023)', fontsize=25)\nplt.ylabel('Daily returns', fontsize=20)\nplt.legend(loc='upper left', fontsize=20)\nplt.xlim(-0.1, 0.1)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-15",
+    "href": "teaching/financial_strategy/part_2.html#measures-of-risk-and-return-15",
+    "title": "Estratégia Financeira",
+    "section": "10.2 Measures of Risk and Return",
+    "text": "10.2 Measures of Risk and Return\nKeep in mind: There is variation (heterogeneity) in the level of standard deviation across countries.\n\nSource: Brealey, Myers and Allen (13ed)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-1",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-1",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nThe previous problem was a simple one-time-ahead example (i.e., we computed the expected return one period ahead).\nA more realistic one is to compute historical returns:\n\\[R_{t+1} = \\frac{Div_{t+1} + P_{t+1}}{P_t} - 1\\]\nThis is:\nDividend Yield + Capital Gain Rate"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-2",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-2",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nCalculating realized annual returns\nIf a stock pays dividends at the end of each quarter (with realized returns RQ1, RQ2, RQ3, and RQ4 each quarter), then its annual realized return, \\(R_{annual}\\), is computed as follows:\n\\[(1 + 𝑅_{annual})   = (1+𝑅_{Q1})\\times(1+𝑅_{Q2})\\times(1+ 𝑅_{Q3})\\times (1+𝑅_{Q4})\\]\n\nYou can also compute using a daily time horizon (not manually, but by software).\n\n\nOne important piece of information you need:\n\nYou should know whether the return is calculated adjusted by dividends (they usually are, but always ask)."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-3",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-3",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nCompute the annual returns of this stock.\n\n\n\\[𝑅_{2012}=(1.0513)(1.0449)(0.7626)(1.1375)(0.9714)−1=−7.43\\%\\]\n\\[𝑅_{2016}=(0.8499)(0.8409)(1.0811)(0.440)−1=−66.0\\%\\]\nNotice that the first example is not quarterly."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-4",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-4",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nCompute the annual returns of this stock.\n\nAlso notice that, since the firm did not pay dividends in 2016, you can compute:\n\\[\\frac{2.29}{6.73}-1 = -66\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-6",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-6",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nAverage annual return\nThe average annual return of an investment during some historical period is simply the average of the realized returns for each year.\n\\[\\tilde{R}  =  \\frac{1}{T} (𝑅_1  + 𝑅_2  + ⋯ + 𝑅_𝑇)  =  \\frac{1}{T} \\sum_{t=1}^{T} R_t\\]\n\nVariance estimate using realized returns\n\\[Var[R] =  \\frac{1}{T-1} \\sum_{t=1}^{T} (R_t- \\tilde{R})^2 \\] \\[SD(R) = \\sqrt{Var(R)}\\]\nWarning: because you are using a sample of historical returns (instead of the population) there is a T-1 in the variance formula."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-7",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-7",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nHistorical Returns: standard error\nWe can use a security’s historical average return to estimate its actual expected return. However, the average return is just an estimate of the expected return.\n\nStandard Error\n\nA statistical measure of the degree of estimation error of a statistical estimate\n\n\nThe average return is just an estimate of the true expected return, and is subject to estimation error.\nYou can compute the standard error as\n\\[SE = \\frac{Standard\\; deviation}{\\sqrt{n\\;of\\; observations}}\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-8",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-8",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nHistorical Returns: standard error\nUsing BM p.367 example.\nFor example, from 1926 to 2017 the average return of the S&P 500 was 12.0% with a volatility of 19.8%.\n\\[E[R] \\pm 2\\times SE = 12\\% \\pm \\frac{19.8\\%}{\\sqrt{92}}= 12\\% \\pm 4.1\\%\\] This means that, with 95% confidence interval, the expected return of the S&P 500 during this period ranges from 7.9% and 16.1%.\nThe longer the period, the more accurate you are. But even with 92 years of data, you are not very accurate to predict the expected return of the SP500."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#historical-returns-9",
+    "href": "teaching/financial_strategy/part_2.html#historical-returns-9",
+    "title": "Estratégia Financeira",
+    "section": "10.3 Historical Returns",
+    "text": "10.3 Historical Returns\nSome analysts prefer to use a geometric average instead of arithmetic average.\nAlso called Compound Annual Growth Rate (CAGR).\n\\[CAGR = [(1+R_1)\\times(1+R_2)\\times ...\\times (1+R_T)]^{\\frac{1}{T}}-1\\]\n\\[CAGR = [\\frac{Final\\;value}{Initial\\;value}]^\\frac{1}{T}-1\\]\nUsing Figure 10.1 of BM: geometric return of SP500 from 1926-2017 is\n\\[CAGR = [\\frac{664,567}{100}]^\\frac{1}{92}-1 = 10.04\\%\\]\nRemember the (arithmetic) average was 12% (in previous slide)."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-1",
+    "href": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-1",
+    "title": "Estratégia Financeira",
+    "section": "10.4 Tradeoff between risk and return",
+    "text": "10.4 Tradeoff between risk and return\nInvestors are assumed to be risk averse:\n\nTo assume risk, they need extra return for that risk.\nThey demand excess return.\n\nExcess returns\n\nThe difference between:\n\n\nthe average return for an investment with risk, and\n\n\nthe average return for risk-free assets."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-2",
+    "href": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-2",
+    "title": "Estratégia Financeira",
+    "section": "10.4 Tradeoff between risk and return",
+    "text": "10.4 Tradeoff between risk and return\nThat is why riskier assets are expected to have higher returns.\nIn other words, risk and return have a positive correlation."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-3",
+    "href": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-3",
+    "title": "Estratégia Financeira",
+    "section": "10.4 Tradeoff between risk and return",
+    "text": "10.4 Tradeoff between risk and return\nBut the association is not linear as one might expect. See stocks below."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-4",
+    "href": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-4",
+    "title": "Estratégia Financeira",
+    "section": "10.4 Tradeoff between risk and return",
+    "text": "10.4 Tradeoff between risk and return\nRisk vs return of selected Brazilian stocks. There is a line, but not really…\n\nRPython\n\n\n\n\nR\nstart &lt;-'2010-01-01' \nend   &lt;- Sys.Date() \nasset &lt;- yf_collection_get(\"IBOV\", \n                         first_date = start,\n                         last_date = end,\n                         thresh_bad_data = 0.5,\n                         freq_data =\"yearly\")\n\n\nError in df_ibov_comp[[1]] : índice fora de limites\n\n\nR\nasset&lt;-asset[complete.cases(asset),] \nstocks &lt;-c('^BVSP' ) \nibov &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end,\n                         freq_data =\"yearly\")\nibov&lt;-ibov[complete.cases(ibov),]\ndata&lt;-rbind(asset,ibov)\nmean_sd  &lt;- data %&gt;%                          \n            group_by(ticker) %&gt;%\n            summarise_at(vars(ret_adjusted_prices),\n                         list(mean = mean,\n                              sd = sd)) %&gt;% \n            as.data.frame()\np&lt;-ggplot(mean_sd, aes(x=sd, y=mean)) + \n    ggrepel::geom_text_repel(data = mean_sd, aes(label = ticker) , size = 2.5 ,  max.overlaps = Inf)+\n      geom_point(size = 4)  +   xlim(0, 1) + ylim(0, 0.35) + \n        labs(x = \"Average standard deviation (annual returns)\",\n             y='Average return (annual returns)', \n             title=\"Historical return vs. Historical volatility (yearly returns since 2010)\") +   theme_solarized() +\n  geom_point(data = mean_sd[mean_sd$ticker == '^BVSP',], color = \"#2986cc\", size = 5)\np\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython\nstart = '2010-01-01'\nend = pd.Timestamp.now()\nstocks = [\"^BVSP\",\"ABEV3.SA\",\"ALPA4.SA\",\"AMER3.SA\",\"B3SA3.SA\",\"BBAS3.SA\",\"BBDC3.SA\",\"BBDC4.SA\",\"BEEF3.SA\",\"BPAN4.SA\",\"BRAP4.SA\",\"BRFS3.SA\",\"BRKM5.SA\",\"BRML3.SA\",\"CCRO3.SA\",\"CIEL3.SA\",\"CMIG4.SA\",\"COGN3.SA\",\"CPFE3.SA\",\"CPLE6.SA\",\"CSAN3.SA\",\"CSNA3.SA\",\"CYRE3.SA\",\"DXCO3.SA\",\"ECOR3.SA\",\"EGIE3.SA\",\"ELET3.SA\",\"ELET6.SA\",\"EMBR3.SA\",\"ENBR3.SA\",\"ENEV3.SA\",\"ENGI11.SA\",\"EQTL3.SA\",\"EZTC3.SA\",\"FLRY3.SA\",\"GGBR4.SA\",\"GOAU4.SA\",\"GOLL4.SA\",\"HYPE3.SA\",\"ITSA4.SA\",\"ITUB4.SA\",\"JBSS3.SA\",\"JHSF3.SA\",\"LREN3.SA\",\"MGLU3.SA\",\"MRFG3.SA\",\"MRVE3.SA\",\"MULT3.SA\",\"PCAR3.SA\",\"PETR3.SA\",\"PETR4.SA\",\"PRIO3.SA\",\"QUAL3.SA\",\"RADL3.SA\",\"RENT3.SA\",\"SANB11.SA\",\"SBSP3.SA\",\"SULA11.SA\",\"SUZB3.SA\",\"TAEE11.SA\",\"TIMS3.SA\",\"TOTS3.SA\",\"UGPA3.SA\",\"USIM5.SA\",\"VALE3.SA\",\"VIIA3.SA\",\"VIVT3.SA\",\"WEGE3.SA\",\"YDUQ3.SA\"]\nresults = []\nfor ticker in stocks:\n    asset = yf.download(ticker, start=start, end=end)\n    asset['return'] = asset['Adj Close'].pct_change()\n    asset = asset.dropna()\n    mean_return = asset['return'].mean()\n    std_return = asset['return'].std()\n    data = pd.DataFrame({'ticker': [ticker], 'average_return': [mean_return], 'standard_deviation': [std_return]})\n    results.append(data)\ndf = pd.concat(results).reset_index(drop=True)\n\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nfor i in range(len(df)):\n    if df.loc[i, 'ticker'] == '^BVSP':\n        color = 'darkblue'\n    else:\n        color = 'black'\n    ax.scatter(x=df.loc[i, 'standard_deviation'], y=df.loc[i, 'average_return'], s=50, color=color)\nplt.title(\"Historical return vs. Historical volatility (daily returns since 2010)\", fontsize=20)\nplt.xlabel(\"Average standard deviation (daily returns)\", fontsize=15)\nplt.ylabel(\"Average return (daily returns)\", fontsize=15)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-5",
+    "href": "teaching/financial_strategy/part_2.html#tradeoff-between-risk-and-return-5",
+    "title": "Estratégia Financeira",
+    "section": "10.4 Tradeoff between risk and return",
+    "text": "10.4 Tradeoff between risk and return\n\n\nPython\nstart = '2010-01-01'\nend = pd.Timestamp.now()\nstocks = [\"^BVSP\",\"ABEV3.SA\",\"ALPA4.SA\",\"AMER3.SA\",\"B3SA3.SA\",\"BBAS3.SA\",\"BBDC3.SA\",\"BBDC4.SA\",\"BEEF3.SA\",\"BPAN4.SA\",\"BRAP4.SA\",\"BRFS3.SA\",\"BRKM5.SA\",\"BRML3.SA\",\"CCRO3.SA\",\"CIEL3.SA\",\"CMIG4.SA\",\"COGN3.SA\",\"CPFE3.SA\",\"CPLE6.SA\",\"CSAN3.SA\",\"CSNA3.SA\",\"CYRE3.SA\",\"DXCO3.SA\",\"ECOR3.SA\",\"EGIE3.SA\",\"ELET3.SA\",\"ELET6.SA\",\"EMBR3.SA\",\"ENBR3.SA\",\"ENEV3.SA\",\"ENGI11.SA\",\"EQTL3.SA\",\"EZTC3.SA\",\"FLRY3.SA\",\"GGBR4.SA\",\"GOAU4.SA\",\"GOLL4.SA\",\"HYPE3.SA\",\"ITSA4.SA\",\"ITUB4.SA\",\"JBSS3.SA\",\"JHSF3.SA\",\"LREN3.SA\",\"MGLU3.SA\",\"MRFG3.SA\",\"MRVE3.SA\",\"MULT3.SA\",\"PCAR3.SA\",\"PETR3.SA\",\"PETR4.SA\",\"PRIO3.SA\",\"QUAL3.SA\",\"RADL3.SA\",\"RENT3.SA\",\"SANB11.SA\",\"SBSP3.SA\",\"SULA11.SA\",\"SUZB3.SA\",\"TAEE11.SA\",\"TIMS3.SA\",\"TOTS3.SA\",\"UGPA3.SA\",\"USIM5.SA\",\"VALE3.SA\",\"VIIA3.SA\",\"VIVT3.SA\",\"WEGE3.SA\",\"YDUQ3.SA\"]\nresults = []\nfor ticker in stocks:\n    asset = yf.download(ticker, start=start, end=end)\n    asset['return'] = asset['Adj Close'].pct_change()\n    asset = asset.dropna()\n    mean_return = asset['return'].mean()\n    std_return = asset['return'].std()\n    data = pd.DataFrame({'ticker': [ticker], 'average_return': [mean_return], 'standard_deviation': [std_return]})\n    results.append(data)\ndf = pd.concat(results).reset_index(drop=True)\n\nplt.close()\nfig, ax = plt.subplots(figsize=(20, 10))\nfor i in range(len(df)):\n    if df.loc[i, 'ticker'] == '^BVSP':\n        color = 'darkblue'\n    else:\n        color = 'black'\n    ax.scatter(x=df.loc[i, 'standard_deviation'], y=df.loc[i, 'average_return'], s=50, color=color)\nplt.title(\"Historical return vs. Historical volatility (daily returns since 2010)\", fontsize=20)\nplt.xlabel(\"Average standard deviation (daily returns)\", fontsize=15)\nplt.ylabel(\"Average return (daily returns)\", fontsize=15)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#diversification-1",
+    "href": "teaching/financial_strategy/part_2.html#diversification-1",
+    "title": "Estratégia Financeira",
+    "section": "10.6 Diversification",
+    "text": "10.6 Diversification\nWhen you have a portfolio containing assets, the risk you incurred is less than the (weighted average) of the assets’ risk. Let’s understand why.\n\nFirst, we need to separate two types of risk:\n\nFirm-specific risk (or news):\n\ngood or bad news about the company itself. For example, a firm might announce that it has been successful in gaining market share within its industry.\nthis type of risk is independent across firms.\nalso called firm-specific, idiosyncratic, unique, or diversifiable risk.\n\nMarket-wide risk (or news):\n\nnews about the economy as a whole, affects all stocks. For instance, changes in the interest rates.\nthis type of risk is common to all firms.\nalso called systematic, undiversifiable, or market risk."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#diversification-2",
+    "href": "teaching/financial_strategy/part_2.html#diversification-2",
+    "title": "Estratégia Financeira",
+    "section": "10.6 Diversification",
+    "text": "10.6 Diversification\nFirm-Specific Versus Systematic Risk\n\nWhen many stocks are combined in a large portfolio, the firm-specific risks for each stock will average out and be diversified. The systematic risk, however, will affect all firms and will not be diversified.\n\n\nConsider two types of firms:\nType S firms are affected only by systematic risk. There is a 50% chance the economy will be strong and they will earn a return of 40%. There is a 50% change the economy will be weak and their return will be −20%. Because all these firms face the same systematic risk, holding a large portfolio of type S firms will not diversify the risk.\nType I firms are affected only by firm-specific risks. Their returns are equally likely to be 35% or −25%, based on factors specific to each firm’s local market. Because these risks are firm specific, if we hold a portfolio of the stocks of many type I firms, the risk is diversified."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#diversification-3",
+    "href": "teaching/financial_strategy/part_2.html#diversification-3",
+    "title": "Estratégia Financeira",
+    "section": "10.6 Diversification",
+    "text": "10.6 Diversification\nYou must be aware that actual firms are affected by both market-wide risks and firm-specific risks.\nWhen firms carry both types of risk, only the unsystematic risk will be diversified when many firm’s stocks are combined into a portfolio.\nThe volatility will therefore decline until only the systematic risk remains."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#diversification-4",
+    "href": "teaching/financial_strategy/part_2.html#diversification-4",
+    "title": "Estratégia Financeira",
+    "section": "10.6 Diversification",
+    "text": "10.6 Diversification\nAn additional comment about diversification:\n1) it occurs only if the risk of the stocks are independent\n\nwe will define later what “independent” means to us.\nintuitively, different firms have different risks.\n\n2) if the risks are independent, more stocks means less risk… \n\n… until a certain point."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#diversification-5",
+    "href": "teaching/financial_strategy/part_2.html#diversification-5",
+    "title": "Estratégia Financeira",
+    "section": "10.6 Diversification",
+    "text": "10.6 Diversification\nConsider again type I firms, which are affected only by firm-specific risk. Because each individual type I firm is risky, should investors expect to earn a risk premium when investing in type I firms?\n\nThe risk premium for diversifiable risk is zero, so investors are not compensated for holding firm-specific risk.\n\nThe reason is that they can mitigate this part of risk through diversification.\nDiversification eliminates this risk for free, implying that all investors should have a diversified portfolio. Otherwise, the investor is not rational.\n\n\n\nThe takeaway is:\nThe risk premium of a security is determined by its systematic risk and does not depend on its diversifiable risk."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#diversification-6",
+    "href": "teaching/financial_strategy/part_2.html#diversification-6",
+    "title": "Estratégia Financeira",
+    "section": "10.6 Diversification",
+    "text": "10.6 Diversification\nIn a world where diversification exists:\nStandard deviation is not a good measure for risk anymore.\n\nStandard deviation is a measure of a stock’s total risk\nBut if you are diversified, you are not incurring the total risk, only the systematic risk.\n\nWe will need a measure of a stock’s systematic risk.\n\nThis measure is called: Beta\n\n\nBut make no mistake:\nThe standard deviation of the returns of a portfolio is still a good measure for the portfolio’s risk!\n\nBut you will not use the average standard deviation of individual stocks contained in a portfolio."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#diversification-7",
+    "href": "teaching/financial_strategy/part_2.html#diversification-7",
+    "title": "Estratégia Financeira",
+    "section": "10.6 Diversification",
+    "text": "10.6 Diversification\nIn a world where diversification exists:\nStandard deviation is not a good measure for risk anymore.\n\nStandard deviation is a measure of a stock’s total risk\nBut if you are diversified, you are not incurring the total risk, only the systematic risk.\n\nWe will need a measure of a stock’s systematic risk.\n\nThis measure is called: Beta\n\n\nBut make no mistake:\nThe standard deviation of the returns of a portfolio is still a good measure for the portfolio’s risk!\n\nBut you will not use the average standard deviation of individual stocks contained in a portfolio."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measuring-systematic-risk-1",
+    "href": "teaching/financial_strategy/part_2.html#measuring-systematic-risk-1",
+    "title": "Estratégia Financeira",
+    "section": "10.7 Measuring Systematic Risk",
+    "text": "10.7 Measuring Systematic Risk\nBeta\nTo measure the systematic risk of a stock, determine how much of the variability of its return is due to systematic risk versus unsystematic risk.\n\nTo determine how sensitive a stock is to systematic risk, look at the average change in the return for each 1% change in the return of a portfolio that fluctuates solely due to systematic risk.\n\nThis is the exact definition of a Beta in a regression or a linear relationship (we studied that in statistics).\n\nSaying the same thing in other words:\nBeta measures the expected percent change in the excess return of a security for a 1% change in the excess return of the market portfolio.\n\nMarket portfolio contains all stocks: SP500 is a proxy, Ibov is another (for BR)."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measuring-systematic-risk-2",
+    "href": "teaching/financial_strategy/part_2.html#measuring-systematic-risk-2",
+    "title": "Estratégia Financeira",
+    "section": "10.7 Measuring Systematic Risk",
+    "text": "10.7 Measuring Systematic Risk\nSuppose the market portfolio tends to increase by 47% when the economy is strong and decline by 25% when the economy is weak. What is the beta of a type S firm whose return is 40% on average when the economy is strong and −20% when the economy is weak?\nFirm S\n\nMarket changes 47%, stock changes 40%: Beta is \\(\\frac{40}{47}=0.85\\)\nMarket changes -25%, stock changes -20%: Beta is \\(\\frac{20}{25}=0.8\\)\nMarket changes from -25% to 47% = 72%, stock changes from -20 to 40, Beta is \\(\\frac{60}{72}=0.833\\)\n\n\nIt does not mean that the stock has three betas…\n… it means that we have three estimates for the stock’s beta."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#measuring-systematic-risk-3",
+    "href": "teaching/financial_strategy/part_2.html#measuring-systematic-risk-3",
+    "title": "Estratégia Financeira",
+    "section": "10.7 Measuring Systematic Risk",
+    "text": "10.7 Measuring Systematic Risk\nSuppose the market portfolio tends to increase by 47% when the economy is strong and decline by 25% when the economy is weak. What is the beta of a type S firm whose return is 40% on average when the economy is strong and −20% when the economy is weak? What is the beta of a type I firm that bears only idiosyncratic, firm-specific risk?\nFirm I\n\nDoes not change, Beta is \\(\\frac{0}{72}=0\\)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#market-risk-premium",
+    "href": "teaching/financial_strategy/part_2.html#market-risk-premium",
+    "title": "Estratégia Financeira",
+    "section": "Market Risk Premium",
+    "text": "Market Risk Premium\nWe can define: The market risk premium is the reward investors expect to earn for holding a portfolio with a beta of 1.\n\\[Market\\; risk\\;premium = E[R_m] - R_{rf}\\]\n\nInverting:\n\\[E[R_m] =  R_{rf} + Market\\; risk\\;premium\\]\n\n\nThe idea is that investors are risk-averse and dislike risk. Therefore, in order to invest in risky assets, investors demand an extra return.\n\n\nFlipping the argument, a risky asset will have to pay an extra return for its additional risk in order to attract investors.\n\n\nTherefore, there is a clear association between the risk and return of assets.\n\n\nAgain: in a diversified portfolio, investors are diversified so they only worry about beta (not standard deviation)."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#market-risk-premium-1",
+    "href": "teaching/financial_strategy/part_2.html#market-risk-premium-1",
+    "title": "Estratégia Financeira",
+    "section": "Market Risk Premium",
+    "text": "Market Risk Premium\nThere is some heterogeneity in the risk premium across countries.\n\nSource: Brealey, Myers and Allen (13ed)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#equity-risk-premium-erp",
+    "href": "teaching/financial_strategy/part_2.html#equity-risk-premium-erp",
+    "title": "Estratégia Financeira",
+    "section": "Equity Risk Premium (ERP)",
+    "text": "Equity Risk Premium (ERP)\nLet’s plot the Equity Risk Premium. I am extracting the data from this website.\n\nRPython\n\n\n\n\nR\nurl &lt;- \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndownload(url, dest=\"files/epr.xlsx\", mode=\"wb\") \ndata &lt;- read_excel(\"files/epr.xlsx\", col_types = c(\"date\",\"numeric\") )\ndata &lt;- data[2:nrow(data),1:2]\ncolnames(data) &lt;- c(\"month\", \"erp\")\n\np&lt;-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+\n  labs(y = \"Equity Risk Premium (ERP)\", \n       x = \"\", \n       title = \"Equity Risk Premium (ERP) in Brazil\" , \n       caption = \"Source: https://ceqef.fgv.br/node/594\" )\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport pandas as pd\nimport matplotlib.pyplot as plt\nurl = \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndata = pd.read_excel(url, header=2)\ndata = data.iloc[:, 0:2]\ndata.columns = [\"month\", \"erp\"]\nfig, ax = plt.subplots(figsize=(20, 10))\nax.plot(data[\"month\"], data[\"erp\"])\nax.set_xlabel(\"Time\", fontsize=20)\nax.set_ylabel(\"Equity Risk Premium (ERP)\", fontsize=20)\nax.set_title(\"Equity Risk Premium (ERP) in Brazil\", fontsize=25)\nax.text(0.5, -0.1, \"Source: https://ceqef.fgv.br/node/594\", transform=ax.transAxes, ha=\"center\")\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#beta-and-cost-of-capital-1",
+    "href": "teaching/financial_strategy/part_2.html#beta-and-cost-of-capital-1",
+    "title": "Estratégia Financeira",
+    "section": "10.8 Beta and cost of capital",
+    "text": "10.8 Beta and cost of capital\nConsider an investment with a beta = 1.5.\nThis investment has 50% more risk than the market portfolio.\nEvery 1% change in the market portfolio leads to a 1.5% percent change in the investment’s price.\n\nBased on these figures, we can compute the expected return for this investment adjusted by the level or risk it provides.\n\\[E[R] = R_{rf} + \\beta \\times (E[R_m] - R_{rf})\\]\n\n\nWe will discuss more about this equation later, when discussing the CAPM (Capital Asset Pricing Model)."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#beta-and-cost-of-capital-2",
+    "href": "teaching/financial_strategy/part_2.html#beta-and-cost-of-capital-2",
+    "title": "Estratégia Financeira",
+    "section": "10.8 Beta and cost of capital",
+    "text": "10.8 Beta and cost of capital\nFlipping the argument from the previous slides, we can compute the cost of capital for this investment using the same formula:\n\\[E[R] = R_{rf} + \\beta \\times (E[R_m] - R_{rf})\\]\n\nAssume the economy has a 60% chance that the market return will be 15% next year and a 40% chance the market return will be 5% next year. Assume the risk-free rate is 6%. If a company’s beta is 1.18, what is its expected return next year?\n\n\nFirst, compute \\(E[R_m]\\):\n\\[E[R_m] = 60\\% \\times 15\\% + 40\\% \\times 5\\%  = 11\\%\\]\n\n\nSecond, compute \\(E[R]\\):\n\\[E[R] = 6\\% + 1.18 \\times (11\\% - 6\\%) = 11.9\\%\\]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#recap-1",
+    "href": "teaching/financial_strategy/part_2.html#recap-1",
+    "title": "Estratégia Financeira",
+    "section": "Recap",
+    "text": "Recap\nAfter this chapter, you should know:\n\nUnderstand what a probability distribution is, the mean, the variance, and the standard deviation.\nCompute the realized or total return for an investment.\nUse the empirical distribution of realized returns, estimate expected return, variance, and standard deviation (or volatility) of returns.\nUse the standard error of the estimate to gauge the amount of estimation error in the estimate (i.e., the average).\nDiscuss the volatility and return characteristics of small stocks versus large stocks (and other assets).\nDescribe the relationship between volatility and return of individual stocks."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#recap-2",
+    "href": "teaching/financial_strategy/part_2.html#recap-2",
+    "title": "Estratégia Financeira",
+    "section": "Recap",
+    "text": "Recap\nAfter this chapter, you should know:\n\nDefine and contrast idiosyncratic and systematic risks and the risk premium required.\nUnderstand beta as a measure of the systematic risk of a security.\nUse the Capital Asset Pricing Model to calculate the expected return for a risky security.\nUse the Capital Asset Pricing Model to calculate the cost of capital for a particular project."
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#comments",
+    "href": "teaching/financial_strategy/part_2.html#comments",
+    "title": "Estratégia Financeira",
+    "section": "Comments?",
+    "text": "Comments?"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#thank-you",
+    "href": "teaching/financial_strategy/part_2.html#thank-you",
+    "title": "Estratégia Financeira",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br] [Teaching Resources] [Comments]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#section-1",
+    "href": "teaching/financial_strategy/part_2.html#section-1",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Insights from Brazil.\n\nRPython\n\n\n\n\nR\nlibrary(downloader)\nlibrary(dplyr)\nlibrary(GetQuandlData)\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(PerformanceAnalytics)\nlibrary(plotly)\nlibrary(readxl)\nlibrary(roll)\nlibrary(tidyr)\nlibrary(tidyquant)\nlibrary(yfR)\n\n#Ibov\nstock&lt;-'^BVSP' \nstart&lt;-'1995-01-01' \nend   &lt;- Sys.Date() \nibov &lt;- yf_get(tickers = stock,first_date = start,last_date = end)\nibov&lt;- ibov[order(as.numeric(ibov$ref_date)),]\n# Cumulative return Ibov\nibov$Ibov_return &lt;- ibov$cumret_adjusted_prices -1\n\n#Selic - Download manually from ipeadata \"Taxa de juros: Overnight / Selic\"\nselic &lt;- read_excel(\"files/selic.xls\")\nnames(selic) &lt;- c(\"ref_date\", \"selic\")\nselic$ref_date &lt;- as.Date(selic$ref_date , format = \"%d/%m/%Y\")\nselic &lt;- na.omit(selic)\nselic$selic &lt;- selic$selic / (252* 100)\n\n# Cumulative return Selic\nreturn_selic &lt;- data.frame(nrow(selic):1)\ncolnames(return_selic)&lt;- \"selic_return\"\nfor(i in (2:nrow(selic))) {\nreturn_selic[i,1] &lt;- Return.cumulative( selic$selic[1:i] )\n}\n\n# Merging dataframes\nselic &lt;- cbind(selic, return_selic)\ndf &lt;- merge(ibov ,selic, by=c(\"ref_date\"))\ndf$selic_return[1] &lt;- NA\ndf$Ibov_return[1] &lt;- NA\n# Graph cumulated return CDI and IBOV\np &lt;- ggplot(df, aes(ref_date)) +\ngeom_line(aes(y = Ibov_return, colour = \"Ibov\")) +\ngeom_line(aes(y = selic_return, colour = \"Selic\")) +\nlabs(y='Cumulative return (daily)') + theme_solarized() +\n  ggtitle(\"Cumulative Returns  Ibov, and Selic (1995-2023)\")\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\n# Define API key and other parameters\nimport matplotlib.pyplot as plt\nimport pandas as pd\nimport yfinance as yf\n\nstock = \"^BVSP\"\nstart = \"1995-01-01\"\nend = pd.Timestamp.now()\n\n# Get data for IBOV\nibov = yf.download(stock, start=start, end=end)\nibov = ibov.reset_index()\nibov = ibov.sort_values(\"Date\")\nibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})\nibov[\"return\"] = ibov[\"Adj Close\"].pct_change()\nibov['Ibov_return'] = (1 + ibov['return']).cumprod()\nibov = ibov[['ref_date', 'Ibov_return']]\n\n# Get data for Selic\nselic = pd.read_excel(\"files/selic.xls\")\nselic.columns = [\"ref_date\", \"selic\"]\nselic['ref_date'] = pd.to_datetime(selic['ref_date'], format=\"%d/%m/%Y\")\nselic = selic.dropna()\nselic['selic'] = selic['selic'] / (252 * 100)\n\n# Calculate cumulative return for Selic\nselic['selic_return'] = (1 + selic['selic']).cumprod()\n\n# Merge dataframes\ndf = pd.merge(ibov, selic, on=\"ref_date\")\n\n# Plot data\nfig, ax = plt.subplots(figsize=(10,5))\nax.plot(df[\"ref_date\"], df[\"Ibov_return\"], label='Ibov')\nax.plot(df[\"ref_date\"], df[\"selic_return\"], label='Selic')\nplt.ylabel('Cumulative return (daily)', fontsize=13)\nplt.title('Cumulative Returns Ibov and Selic (1995-2023)', fontsize=15)\nplt.xlabel('Date', fontsize=13)\nplt.legend(loc='upper left')\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#section-2",
+    "href": "teaching/financial_strategy/part_2.html#section-2",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "IBOV returns seem to follow a normal distribution.\n\nRPython\n\n\n\n\nR\np&lt;-ggplot(ibov,aes(ibov$ret_closing_prices))+\n        geom_histogram(color='#006600',\n                       bins = 100) + \n        labs(x = \"\",\n             y='Daily return', \n             title=\"IBOV\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nibov = yf.download(stock, start=start, end=end)\nibov = ibov.reset_index()\nibov = ibov.sort_values(\"Date\")\nibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})\nibov[\"return\"] = ibov[\"Adj Close\"].pct_change()\nplt.close()\nplt.hist(ibov['return'], bins=100, color='grey')\nplt.title('IBOV', fontsize=20)\nplt.ylabel('Daily return', fontsize=16 )\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#section-3",
+    "href": "teaching/financial_strategy/part_2.html#section-3",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Standard deviation through time. It changes.\n\nRPython\n\n\n\n\nR\nibov$sd &lt;- roll_sd(ibov$ret_closing_prices,  \n                     width = 100,  \n                     min_obs = 100 ) * sqrt(250)\np&lt;-ggplot(ibov,aes(ref_date,sd))+\n        geom_line(color='#2986cc') + \n        labs(x = \"\",\n             y='Standard deviation using 100 daily returns', \n             title=\"IBOV (Daily returns since 2010)\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport numpy as np\nibov['sd'] = ibov['return'].rolling(window=100, min_periods=100).std() \nibov['sd'] = ibov['sd'] * np.sqrt(250)\nplt.close()\nfig, ax = plt.subplots(figsize=(20,10))\nax.plot(ibov.index, ibov['sd'], color='#2986cc')\nax.set_xlabel('')\nax.set_ylabel('Standard deviation using 100 daily returns', fontsize=13)\nax.set_title('IBOV (Daily returns since 2010)', fontsize=15)\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#section-4",
+    "href": "teaching/financial_strategy/part_2.html#section-4",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it. It is like free lunch.\n\n\nR\nstart &lt;-'2010-01-01' \nend   &lt;- Sys.Date() \ndata &lt;- yf_collection_get(\"IBOV\", \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\n\n\nError in df_ibov_comp[[1]] : índice fora de limites\n\n\nR\ndata&lt;-data[complete.cases(data),] \ndata$month &lt;- format(as.Date(data$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(ret_adjusted_prices),list(sd = sd)) %&gt;% \n            as.data.frame()\nvol  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(volume),list(vol_sum = sum)) %&gt;% \n            as.data.frame()\nvol2  &lt;-    data %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(volume),\n                         list(vol_tot = sum)) %&gt;% \n            as.data.frame()\ndata2 &lt;- merge(sd ,vol, by=c(\"ticker\",\"month\"))\ndata2 &lt;- merge(data2 ,vol2, by=c(\"month\"))\ndata2$w &lt;- data2$vol_sum/data2$vol_tot\ndata2$sdw &lt;- data2$sd * data2$w\ndata3  &lt;-   data2 %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(sdw),list(total = sum)) %&gt;% \n            as.data.frame()\ndata3&lt;-data3[complete.cases(data3),] \ndata3$id &lt;-\"Weighted\"\n# Index\nibov &lt;- yf_get(tickers = '^BVSP', \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\nibov&lt;-ibov[complete.cases(ibov),] \nibov$month &lt;- format(as.Date(ibov$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd2  &lt;-    ibov %&gt;%                          \n            group_by(month, ticker) %&gt;%\n            summarise_at(vars(ret_closing_prices) ,\n                         list(total = var ) ) %&gt;% \n            as.data.frame()\nsd2$total &lt;- sd2$total^0.5\nsd2$id &lt;-\"ibov\"\nsd2$ticker &lt;- NULL\ndata4 &lt;- rbind(data3,sd2)\np&lt;-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +\n  geom_line() + \n        labs(x = \"\",\n             y='Standard deviation',\n             title =\"Diversification benefits - Ibov vs. Weighted sd of individual stocks\") +   theme_solarized()\nggplotly(p)"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_2.html#equity-risk-premium-erp-website",
+    "href": "teaching/financial_strategy/part_2.html#equity-risk-premium-erp-website",
+    "title": "Estratégia Financeira",
+    "section": "Equity Risk Premium (ERP) website",
+    "text": "Equity Risk Premium (ERP) website\n\nRPython\n\n\n\n\nR\nurl &lt;- \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndownload(url, dest=\"files/epr.xlsx\", mode=\"wb\") \ndata &lt;- read_excel(\"files/epr.xlsx\", col_types = c(\"date\",\"numeric\") )\ndata &lt;- data[2:nrow(data),1:2]\ncolnames(data) &lt;- c(\"month\", \"erp\")\n\np&lt;-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+\n  labs(y = \"Equity Risk Premium (ERP)\", \n       x = \"\", \n       title = \"Equity Risk Premium (ERP) in Brazil\" , \n       caption = \"Source: https://ceqef.fgv.br/node/594\" )\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport pandas as pd\nimport matplotlib.pyplot as plt\nurl = \"https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx\"\ndata = pd.read_excel(url, header=2)\ndata = data.iloc[:, 0:2]\ndata.columns = [\"month\", \"erp\"]\nfig, ax = plt.subplots(figsize=(20, 10))\nax.plot(data[\"month\"], data[\"erp\"])\nax.set_xlabel(\"Time\", fontsize=20)\nax.set_ylabel(\"Equity Risk Premium (ERP)\", fontsize=20)\nax.set_title(\"Equity Risk Premium (ERP) in Brazil\", fontsize=25)\nax.text(0.5, -0.1, \"Source: https://ceqef.fgv.br/node/594\", transform=ax.transAxes, ha=\"center\")\nplt.show()"
   }
 ]

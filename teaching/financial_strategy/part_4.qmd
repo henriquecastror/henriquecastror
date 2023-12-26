@@ -47,11 +47,10 @@ include-after: |
 ```{r setup}
 #| include: false
 #| warning: false
-api_key <- "kfqxH5NsN8Nhe_U1NADB"
+
 # library(reticulate)
 # use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
 library(reticulate)
-
 library(downloader)
 library(dplyr)
 library(ggthemes)
@@ -110,7 +109,7 @@ library(yfR)
 
 
 
-## Chapter Outline {.smaller}
+## Chapter Outline {.smaller visibility="hidden"}
 
 In this chapter, we discuss how **the firm computes its cost of capital**. We will:
 
@@ -340,20 +339,11 @@ $$x_i = \frac{MV_i}{Total\; MV}= \frac{MV_i}{\sum{MV}}$$
 
 Examples of indexes:
 
-- SP500
-  - A value-weighted portfolio of the 500 largest U.S. stocks
-- Dow Jones Industrial Average (DJIA)
-  - A price-weighted portfolio of 30 large industrial stocks (holds an equal number of shares of each stock).
-- Ibov
-  - Around 70 BR stocks. Follows an algorithm focusing on liquidity.
+- **SP500**:  A value-weighted portfolio of the 500 largest U.S. stocks
+- **Dow Jones Industrial Average (DJIA)**: A price-weighted portfolio of 30 large industrial stocks (holds an equal number of shares of each stock).
+- **Ibov** : Around 90 BR stocks. Follows an algorithm focusing on liquidity.
 
-. . .
-
-ETFs (Exchange-traded funds)
-
-- A portfolio that follows an index, like the SP500. 
-
-. . .
+**ETFs (Exchange-traded funds)**: A portfolio that follows an index, like the SP500. 
 
 SP500 and Ibov are not considered as **the market portfolio**, they are **proxies for the market portfolios**. I.e., reasonable approximations.
 
@@ -361,7 +351,17 @@ SP500 and Ibov are not considered as **the market portfolio**, they are **proxie
 
 
 
-## 12.2 The Market Portfolio {.smaller  background="#cff5ce"}
+
+
+
+
+
+## {.smaller  background="#cff5ce"}
+
+::: panel-tabset
+
+### R
+
 
 ```{r}
 #| warning: false
@@ -401,18 +401,7 @@ ggplotly(p)
 ```
 
  
-
-
-
-
-
-
-
-
-
-
-
-## 12.2 The Market Portfolio {.smaller  background="#cff5ce"}
+### Python
 
 ```{python}
 #| warning: false
@@ -444,6 +433,7 @@ plt.legend(data2.columns)
 plt.show()
 ```
 
+:::
 
 
 
@@ -459,8 +449,12 @@ plt.show()
 
 
 
+## {.smaller  background="#cff5ce"}
 
-## 12.2 The Market Portfolio {.smaller  background="#cff5ce"}
+::: panel-tabset
+
+### R
+
 
 ```{r}
 #| warning: false
@@ -489,18 +483,11 @@ p<- ggplot(data2, aes(ref_date , price_close2, color=ticker))+
         labs(x = "",
              y='Closing prices', 
              title="IBOV against 2 ETFs, Initial price = 100", 
-             subtitle = "Begin 01/01/2010") +   theme_solarized()
+             subtitle = "Begin 01/01/2010") +   theme_solarized(base_size = 12) 
 ggplotly(p)
 ```
 
-
-
-
-
-
-
-
-## 12.2 The Market Portfolio {.smaller  background="#cff5ce"}
+### Python
 
 ```{python}
 #| warning: false
@@ -528,7 +515,7 @@ plt.legend(data2.columns)
 plt.show()
 ```
 
-
+:::
 
 
 
@@ -576,7 +563,9 @@ Another key ingredient of CAPM is **The Market Risk Premium**
 
 . . .
 
-![](figs/bm_12_1.png)
+<center>
+![](figs/bm_12_1.png){width=80%}
+</center>
 
 
 
@@ -589,8 +578,11 @@ Another key ingredient of CAPM is **The Market Risk Premium**
 
 
 
+## {.smaller  background="#cff5ce"}
 
-## 12.2 The Market Portfolio {.smaller  background="#cff5ce"}
+::: panel-tabset
+
+### R 
 
 ```{r}
 #| warning: false
@@ -625,7 +617,7 @@ ggplotly(p)
 
 
 
-## 12.2 The Market Portfolio {.smaller  background="#cff5ce"}
+### Python
 
 ```{python}
 #| warning: false
@@ -656,7 +648,7 @@ plt.show()
 ```
 
 
-
+:::
 
 
 
@@ -731,7 +723,12 @@ Finally, we need to estimate Beta
 
 
 
-## 12.3 Beta Estimation {.smaller  background="#ced8f5"}
+##  {.smaller  background="#ced8f5"}
+
+
+::: panel-tabset
+
+### R 
 
 ```{r}
 #| warning: false
@@ -781,15 +778,7 @@ ggplotly(p)
 ```
 
 
-
-
-
-
-
-
-
-
-## 12.3 Beta Estimation {.smaller  background="#ced8f5"}
+### Python
 
 ```{python}
 #| warning: false
@@ -811,7 +800,6 @@ data = yf.download(stocks, start=start, end=end)['Close']
 returns = data.pct_change().dropna()
 plt.close()
 fig, ax = plt.subplots(figsize=(20, 10))
-fig, ax = plt.subplots()
 ax.scatter(returns["^BVSP"], returns["PETR4.SA"], alpha=0.5, color='black')
 m, b = np.polyfit(returns["^BVSP"], returns["PETR4.SA"], 1)
 ax.plot(returns["^BVSP"], m*returns["^BVSP"] + b, color='darkblue')
@@ -823,6 +811,7 @@ ax.set_ylim(-0.2, 0.2)
 plt.show()
 ```
 
+:::
 
 
 
@@ -834,10 +823,12 @@ plt.show()
 
 
 
+##  {.smaller  background="#ced8f5"}
 
 
+::: panel-tabset
 
-## 12.3 Beta Estimation {.smaller  background="#ced8f5"}
+### R 
 
 ```{r}
 #| warning: false
@@ -886,7 +877,7 @@ ggplotly(p)
 
 
 
-## 12.3 Beta Estimation {.smaller  background="#ced8f5"}
+### Python
 
 ```{python}
 #| warning: false
@@ -908,7 +899,6 @@ data = yf.download(stocks, start=start, end=end)['Close']
 returns = data.pct_change().dropna()
 plt.close()
 fig, ax = plt.subplots(figsize=(20, 10))
-fig, ax = plt.subplots()
 ax.scatter(returns["^BVSP"], returns["WEGE3.SA"], alpha=0.5, color='black')
 m, b = np.polyfit(returns["^BVSP"], returns["WEGE3.SA"], 1)
 ax.plot(returns["^BVSP"], m*returns["^BVSP"] + b, color='darkblue')
@@ -921,7 +911,7 @@ plt.show()
 ```
 
 
-
+:::
 
 
 
@@ -994,10 +984,9 @@ $$(R_i - R_f) = \alpha_i + \beta_i \times (R_m - R_f) + \epsilon_i$$
 
 ## 12.3 Beta Estimation {.smaller  background="#ced8f5"}
 
-Finally, we can estimate Beta using the formula:
+Finally, we can estimate Beta using the formula (use market s.d. = 10%):
 
 $$Beta_i =   \frac{Sd(R_i) \times Corr(R_i,R_m)}{Sd(R_m)} =  \frac{Cov(R_i,R_m)}{Var(R_m)}$$
-
 
 . . .
 
@@ -1007,11 +996,12 @@ $$Beta_i =   \frac{Sd(R_i) \times Corr(R_i,R_m)}{Sd(R_m)} =  \frac{Cov(R_i,R_m)}
 |Green Midget	        | 0.31	  | 20%	            | 0.68               |
 |Alive And Well       | 0.48	  | 12%	            | 0.54               |
 
-Market Sd is 10%. 
-
 . . .
 
-  - $Beta_{H} = \frac{Sd(R_i) \times Corr(R_i,R_m)}{Sd(R_m)} = \frac{0.13 \times 0.42}{0.10} = 0.546$
+
+
+
+  - $Beta_{H} = \frac{Sd(R_i) \times Corr(R_i,R_m)}{Sd(R_m)} = \frac{0.13 \times 0.42}{0.10} = 0.546$ 
   - $Beta_{G} = \frac{Sd(R_i) \times Corr(R_i,R_m)}{Sd(R_m)} = \frac{0.20 \times 0.68}{0.10} = 1.36$
   - $Beta_{A} = \frac{Sd(R_i) \times Corr(R_i,R_m)}{Sd(R_m)} = \frac{0.12 \times 0.54}{0.10} = 0.648$
 
@@ -1655,9 +1645,9 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
 
 
 
-#  Recap {.smaller}
+#  Recap {.smaller visibility="hidden"}
 
-##  Recap {.smaller}
+##  Recap {.smaller visibility="hidden"}
 
 **After this chapter, you should know:**
 
@@ -1682,7 +1672,7 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
 
 
 
-##  Recap {.smaller}
+##  Recap {.smaller visibility="hidden"}
 
 **After this chapter, you should know:**
 
@@ -1728,6 +1718,7 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
 	data-lyket-show-rating="average"
   data-lyket-template="custom"
 ></div>
+
 
 
 

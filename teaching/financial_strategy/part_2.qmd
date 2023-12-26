@@ -161,17 +161,22 @@ Notice the volatility next slide.
 
 
 
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+## {.smaller background="#f2f5ce"} 
 
 Insights from Brazil.
+
+
+::: panel-tabset
+
+### R
 
 ```{r}
 #| warning: false
 #| message: false
 #| fig-align: center
 #| echo: true
-#| output-location: slide
-#| code-fold: false
+#| output-location: default
+#| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
@@ -187,13 +192,7 @@ library(roll)
 library(tidyr)
 library(tidyquant)
 library(yfR)
-#### QUANDL API
-# Step to create your key
-# 1. Go to https://www.quandl.com/
-# 2. Create an account
-# 3. Get your key
-# 4. Add your key below (I can't give you mine)
-api_KEY <- "Your QUANDL API KEY here"
+
 #Ibov
 stock<-'^BVSP' 
 start<-'1995-01-01' 
@@ -202,64 +201,32 @@ ibov <- yf_get(tickers = stock,first_date = start,last_date = end)
 ibov<- ibov[order(as.numeric(ibov$ref_date)),]
 # Cumulative return Ibov
 ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
-#Selic
-selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
-                               api_key = api_key, 
-                               first_date = start,
-                               last_date = end)
-selic<- selic[order(as.numeric(selic$ref_date)),]
-selic$value <- selic$value / 100
+
+#Selic - Download manually from ipeadata "Taxa de juros: Overnight / Selic"
+selic <- read_excel("files/selic.xls")
+names(selic) <- c("ref_date", "selic")
+selic$ref_date <- as.Date(selic$ref_date , format = "%d/%m/%Y")
+selic <- na.omit(selic)
+selic$selic <- selic$selic / (252* 100)
+
 # Cumulative return Selic
 return_selic <- data.frame(nrow(selic):1)
 colnames(return_selic)<- "selic_return"
 for(i in (2:nrow(selic))) {
-return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
+return_selic[i,1] <- Return.cumulative( selic$selic[1:i] )
 }
-# CDI
-cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
-                         api_key = api_key , 
-                         first_date = start ,
-                         last_date = end)
-cdi<- cdi[order(as.numeric(cdi$ref_date)),]
-cdi$value <- cdi$value / 100
-# Cumulative return CDI
-return_CDI <- data.frame(nrow(cdi):1)
-colnames(return_CDI)<- "CDI_return"
-for(i in (2:nrow(cdi))) {
-return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
-}
-#Inflation Brazil
-inf <- get_Quandl_series(id_in =  c('Inflation' = 'BCB/433'),
-                         api_key = api_key, 
-                         first_date = start,
-                         last_date = end)
-inf<- inf[order(as.numeric(inf$ref_date)),]
-inf$value <- inf$value / 100
-# Cumulative return Inflation
-return_Inf <- data.frame(nrow(inf):1)
-colnames(return_Inf)<- "Inflation_return"
 
-for(i in (2:nrow(inf))) {
-return_Inf[i,1] <- Return.cumulative( inf$value[1:i] )
-}
 # Merging dataframes
 selic <- cbind(selic, return_selic)
-cdi <- cbind(cdi, return_CDI)
-inf <- cbind(inf, return_Inf)
-df <- merge(cdi ,selic, by=c("ref_date"))
-df <- merge(df ,ibov, by=c("ref_date"))
-df2 <- merge(df ,inf, by=c("ref_date"))
+df <- merge(ibov ,selic, by=c("ref_date"))
 df$selic_return[1] <- NA
-df$CDI_return[1] <- NA
 df$Ibov_return[1] <- NA
-df2$Inflation_return[1] <- NA
 # Graph cumulated return CDI and IBOV
 p <- ggplot(df, aes(ref_date)) +
-geom_line(aes(y = CDI_return, color = "CDI")) +
 geom_line(aes(y = Ibov_return, colour = "Ibov")) +
 geom_line(aes(y = selic_return, colour = "Selic")) +
 labs(y='Cumulative return (daily)') + theme_solarized() +
-  ggtitle("Cumulative Returns  CDI, Ibov, and Selic (1995-2023)")
+  ggtitle("Cumulative Returns  Ibov, and Selic (1995-2023)")
 ggplotly(p)
 ```
 
@@ -267,35 +234,7 @@ ggplotly(p)
 
 
 
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: false
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-import matplotlib.pyplot as plt
-import pandas as pd
-import yfinance as yf
-import quandl
-import numpy as np
-import seaborn as sns
-
-#api_key = "kfqxH5NsN8Nhe_U1NADB"
-quandl.ApiConfig.api_key = 'kfqxH5NsN8Nhe_U1NADB'
-```
+### Python
 
 
 ```{python}
@@ -312,10 +251,14 @@ quandl.ApiConfig.api_key = 'kfqxH5NsN8Nhe_U1NADB'
 #| collapse: true
 #| eval: true
 # Define API key and other parameters
-api_KEY = "Your QUANDL API KEY here"
+import matplotlib.pyplot as plt
+import pandas as pd
+import yfinance as yf
+
 stock = "^BVSP"
 start = "1995-01-01"
 end = pd.Timestamp.now()
+
 # Get data for IBOV
 ibov = yf.download(stock, start=start, end=end)
 ibov = ibov.reset_index()
@@ -323,660 +266,40 @@ ibov = ibov.sort_values("Date")
 ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
 ibov["return"] = ibov["Adj Close"].pct_change()
 ibov['Ibov_return'] = (1 + ibov['return']).cumprod()
-ibov = ibov[['ref_date','Ibov_return']]
+ibov = ibov[['ref_date', 'Ibov_return']]
+
 # Get data for Selic
-selic = quandl.get('BCB/11', start_date=start, end_date=end)
-selic = selic.reset_index()
-selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
-selic['Selic'] = selic['Selic'] / 100
-selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
-# Get data for CDI
-cdi = quandl.get('BCB/12', start_date=start, end_date=end)
-cdi = cdi.reset_index()
-cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
-cdi['CDI'] = cdi['CDI'] / (100)
-cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
-# Get data for inflation
-inf = quandl.get('BCB/433', start_date=start, end_date=end)
-inf = inf.reset_index()
-inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
-inf['Inflation'] = inf['Inflation'] / 100
-inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
+selic = pd.read_excel("files/selic.xls")
+selic.columns = ["ref_date", "selic"]
+selic['ref_date'] = pd.to_datetime(selic['ref_date'], format="%d/%m/%Y")
+selic = selic.dropna()
+selic['selic'] = selic['selic'] / (252 * 100)
+
+# Calculate cumulative return for Selic
+selic['selic_return'] = (1 + selic['selic']).cumprod()
+
 # Merge dataframes
-df = pd.merge(cdi, selic, on="ref_date")
-df = pd.merge(df, ibov, on="ref_date")
-df = pd.merge(df, inf, on="ref_date")
+df = pd.merge(ibov, selic, on="ref_date")
+
 # Plot data
 fig, ax = plt.subplots(figsize=(10,5))
-ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
 ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
 ax.plot(df["ref_date"], df["selic_return"], label='Selic')
 plt.ylabel('Cumulative return (daily)', fontsize=13)
-plt.title('Cumulative Returns  CDI, Ibov, and Selic (1995-2023)', fontsize=15)
+plt.title('Cumulative Returns Ibov and Selic (1995-2023)', fontsize=15)
 plt.xlabel('Date', fontsize=13)
 plt.legend(loc='upper left')
 plt.show()
+
 ```
 
+:::
 
 
 
 
 
 
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-With Inflation.
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-# Graph cumulated return CDI, IBOV, and Inflation
-p <- ggplot(df2, aes(ref_date)) +
-geom_line(aes(y = CDI_return, color = "CDI")) +
-geom_line(aes(y = Ibov_return, colour = "Ibov")) +
-geom_line(aes(y = selic_return, colour = "Selic")) +
-geom_line(aes(y = Inflation_return, colour = "Inflation")) +
-labs(y='Cumulative return (daily)') + theme_solarized() +
-  ggtitle("Cumulative Returns CDI, Ibov, Selic, and Inflation (1995-2023)")
-ggplotly(p)
-```
-
-
-
-
-
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-plt.close()
-fig, ax = plt.subplots(figsize=(10,5))
-ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
-ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
-ax.plot(df["ref_date"], df["selic_return"], label='Selic')
-ax.plot(df["ref_date"], df["inf_return"], label='Inflation')
-plt.ylabel('Cumulative return (daily)', fontsize=13)
-plt.title('Cumulative Returns  CDI, Ibov, Selic, and Inflation (1995-2023)', fontsize=15)
-plt.xlabel('Date', fontsize=13)
-plt.legend(loc='upper left')
-plt.show()
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-Ibov vs CDI vs Selic in Brazil 2002-2007.
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-#### QUANDL API
-# Step to create your key
-# 1. Go to https://www.quandl.com/
-# 2. Create an account
-# 3. Get your key
-# 4. Add your key below (I can't give you mine)
-api_KEY <- "Your QUANDL API KEY here"
-#Ibov
-stock<-'^BVSP' 
-start<-'2002-01-01' 
-end<-'2007-01-01' 
-ibov <- yf_get(tickers = stock, 
-                         first_date = start,
-                         last_date = end)
-ibov<- ibov[order(as.numeric(ibov$ref_date)),]
-# Cumulative return Ibov
-ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
-#Selic
-selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
-                               api_key = api_key, 
-                               first_date = start,
-                               last_date = end)
-selic<- selic[order(as.numeric(selic$ref_date)),]
-selic$value <- selic$value / 100
-# Cumulative return Selic
-return_selic <- data.frame(nrow(selic):1)
-colnames(return_selic)<- "selic_return"
-
-for(i in (2:nrow(selic))) {
-return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
-}
-# CDI
-cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
-                         api_key = api_key , 
-                         first_date = start ,
-                         last_date = end)
-cdi<- cdi[order(as.numeric(cdi$ref_date)),]
-cdi$value <- cdi$value / 100
-# Cumulative return CDI
-return_CDI <- data.frame(nrow(cdi):1)
-colnames(return_CDI)<- "CDI_return"
-for(i in (2:nrow(cdi))) {
-return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
-}
-# Merging dataframes
-selic <- cbind(selic, return_selic)
-cdi <- cbind(cdi, return_CDI)
-inf <- cbind(inf, return_Inf)
-df <- merge(cdi ,selic, by=c("ref_date"))
-df <- merge(df ,ibov, by=c("ref_date"))
-df2 <- merge(df ,inf, by=c("ref_date"))
-df$selic_return[1] <- NA
-df$CDI_return[1] <- NA
-df$Ibov_return[1] <- NA
-df2$Inflation_return[1] <- NA
-p<-ggplot(df, aes(ref_date)) + 
-  geom_line(aes(y = CDI_return, colour = "CDI")) + 
-  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
-  geom_line(aes(y = selic_return, colour = "Selic")) +
-  labs(y='Cumulative return (daily)') +   theme_solarized() +
-  ggtitle("Cumulative Returns CDI, Ibov, and Selic (2002-2007)")
-ggplotly(p)
-```
-
-
-
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-Ibov vs CDI vs Selic in Brazil 2002-2007.
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-# Define API key and other parameters
-api_KEY = "Your QUANDL API KEY here"
-stock = "^BVSP"
-start = "2002-01-01"
-end =   "2007-01-01"
-# Get data for IBOV
-ibov = yf.download(stock, start=start, end=end)
-ibov = ibov.reset_index()
-ibov = ibov.sort_values("Date")
-ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
-ibov["return"] = ibov["Adj Close"].pct_change()
-ibov['Ibov_return'] = (1 + ibov['return']).cumprod() -1
-ibov = ibov[['ref_date','Ibov_return']]
-# Get data for Selic
-selic = quandl.get('BCB/11', start_date=start, end_date=end)
-selic = selic.reset_index()
-selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
-selic['Selic'] = selic['Selic'] / 100
-selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
-# Get data for CDI
-cdi = quandl.get('BCB/12', start_date=start, end_date=end)
-cdi = cdi.reset_index()
-cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
-cdi['CDI'] = cdi['CDI'] / (100)
-cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
-# Get data for inflation
-inf = quandl.get('BCB/433', start_date=start, end_date=end)
-inf = inf.reset_index()
-inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
-inf['Inflation'] = inf['Inflation'] / 100
-inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
-# Merge dataframes
-df = pd.merge(cdi, selic, on="ref_date")
-df = pd.merge(df, ibov, on="ref_date")
-df = pd.merge(df, inf, on="ref_date")
-# Plot data
-plt.close()
-fig, ax = plt.subplots(figsize=(10,5))
-ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
-ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
-ax.plot(df["ref_date"], df["selic_return"], label='Selic')
-plt.ylabel('Cumulative return (daily)', fontsize=13)
-plt.title('Cumulative Returns  CDI, Ibov, and Selic (2002-2007)', fontsize=15)
-plt.xlabel('Date', fontsize=13)
-plt.legend(loc='upper left')
-plt.show()
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-Ibov vs CDI vs Selic in Brazil 2010-2019.
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-#### QUANDL API
-# Step to create your key
-# 1. Go to https://www.quandl.com/
-# 2. Create an account
-# 3. Get your key
-# 4. Add your key below (I can't give you mine)
-api_KEY <- "Your QUANDL API KEY here"
-#Ibov
-stock<-'^BVSP' 
-start<-'2010-01-01' 
-end<-'2019-01-01' 
-ibov <- yf_get(tickers = stock, 
-                         first_date = start,
-                         last_date = end)
-ibov<- ibov[order(as.numeric(ibov$ref_date)),]
-# Cumulative return Ibov
-ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
-#Selic
-selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
-                               api_key = api_key, 
-                               first_date = start,
-                               last_date = end)
-selic<- selic[order(as.numeric(selic$ref_date)),]
-selic$value <- selic$value / 100
-# Cumulative return Selic
-return_selic <- data.frame(nrow(selic):1)
-colnames(return_selic)<- "selic_return"
-for(i in (2:nrow(selic))) {
-return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
-}
-# CDI
-cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
-                         api_key = api_key , 
-                         first_date = start ,
-                         last_date = end)
-cdi<- cdi[order(as.numeric(cdi$ref_date)),]
-cdi$value <- cdi$value / 100
-# Cumulative return CDI
-return_CDI <- data.frame(nrow(cdi):1)
-colnames(return_CDI)<- "CDI_return"
-for(i in (2:nrow(cdi))) {
-return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
-}
-#Inflation Brazil
-inf <- get_Quandl_series(id_in =  c('Inflation' = 'BCB/433'),
-                         api_key = api_key, 
-                         first_date = start,
-                         last_date = end)
-inf<- inf[order(as.numeric(inf$ref_date)),]
-inf$value <- inf$value / 100
-# Cumulative return Inflation
-return_Inf <- data.frame(nrow(inf):1)
-colnames(return_Inf)<- "Inflation_return"
-for(i in (2:nrow(inf))) {
-return_Inf[i,1] <- Return.cumulative( inf$value[1:i] )
-}
-# Merging dataframes
-selic <- cbind(selic, return_selic)
-cdi <- cbind(cdi, return_CDI)
-inf <- cbind(inf, return_Inf)
-df <- merge(cdi ,selic, by=c("ref_date"))
-df <- merge(df ,ibov, by=c("ref_date"))
-df2 <- merge(df ,inf, by=c("ref_date"))
-df$selic_return[1] <- NA
-df$CDI_return[1] <- NA
-df$Ibov_return[1] <- NA
-df2$Inflation_return[1] <- NA
-# Graph cumulated return CDI and IBOV
-p<-ggplot(df, aes(ref_date)) + 
-  geom_line(aes(y = CDI_return, colour = "CDI")) + 
-  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
-  geom_line(aes(y = selic_return, colour = "Selic")) +
-  labs(y='Cumulative return (daily)') +   theme_solarized() +
-  ggtitle("Cumulative Returns CDI, Ibov, and Selic (2010-2019)")
-ggplotly(p)
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-# Define API key and other parameters
-api_KEY = "Your QUANDL API KEY here"
-stock = "^BVSP"
-start = "2010-01-01"
-end =   "2019-01-01"
-# Get data for IBOV
-ibov = yf.download(stock, start=start, end=end)
-ibov = ibov.reset_index()
-ibov = ibov.sort_values("Date")
-ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
-ibov["return"] = ibov["Adj Close"].pct_change()
-ibov['Ibov_return'] = (1 + ibov['return']).cumprod() -1
-ibov = ibov[['ref_date','Ibov_return']]
-# Get data for Selic
-selic = quandl.get('BCB/11', start_date=start, end_date=end)
-selic = selic.reset_index()
-selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
-selic['Selic'] = selic['Selic'] / 100
-selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
-# Get data for CDI
-cdi = quandl.get('BCB/12', start_date=start, end_date=end)
-cdi = cdi.reset_index()
-cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
-cdi['CDI'] = cdi['CDI'] / (100)
-cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
-# Get data for inflation
-inf = quandl.get('BCB/433', start_date=start, end_date=end)
-inf = inf.reset_index()
-inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
-inf['Inflation'] = inf['Inflation'] / 100
-inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
-# Merge dataframes
-df = pd.merge(cdi, selic, on="ref_date")
-df = pd.merge(df, ibov, on="ref_date")
-df = pd.merge(df, inf, on="ref_date")
-# Plot data
-plt.close()
-fig, ax = plt.subplots(figsize=(10,5))
-ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
-ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
-ax.plot(df["ref_date"], df["selic_return"], label='Selic')
-plt.ylabel('Cumulative return (daily)', fontsize=13)
-plt.title('Cumulative Returns  CDI, Ibov, and Selic (2010-2019)', fontsize=15)
-plt.xlabel('Date', fontsize=13)
-plt.legend(loc='upper left')
-plt.show()
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-And USD?
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-#### QUANDL API
-# Step to create your key
-# 1. Go to https://www.quandl.com/
-# 2. Create an account
-# 3. Get your key
-# 4. Add your key below (I can't give you mine)
-api_KEY <- "Your QUANDL API KEY here"
-#Ibov
-stock<-'^BVSP' 
-start<-'2010-01-01' 
-end   <- Sys.Date() 
-ibov <- yf_get(tickers = stock, 
-                         first_date = start,
-                         last_date = end)
-ibov<- ibov[order(as.numeric(ibov$ref_date)),]
-# Cumulative return Ibov
-ibov$Ibov_return <- ibov$cumret_adjusted_prices -1
-#Selic
-selic <- get_Quandl_series(id_in = c('Selic' = 'BCB/11'),
-                               api_key = api_key, 
-                               first_date = start,
-                               last_date = end)
-selic<- selic[order(as.numeric(selic$ref_date)),]
-selic$value <- selic$value / 100
-# Cumulative return Selic
-return_selic <- data.frame(nrow(selic):1)
-colnames(return_selic)<- "selic_return"
-
-for(i in (2:nrow(selic))) {
-return_selic[i,1] <- Return.cumulative( selic$value[1:i] )
-}
-# CDI
-cdi <- get_Quandl_series(id_in =  c('CDI' = 'BCB/12'), 
-                         api_key = api_key , 
-                         first_date = start ,
-                         last_date = end)
-cdi<- cdi[order(as.numeric(cdi$ref_date)),]
-cdi$value <- cdi$value / 100
-# Cumulative return CDI
-return_CDI <- data.frame(nrow(cdi):1)
-colnames(return_CDI)<- "CDI_return"
-for(i in (2:nrow(cdi))) {
-return_CDI[i,1] <- Return.cumulative( cdi$value[1:i] )
-}
-#Inflation Brazil
-inf <- get_Quandl_series(id_in =  c('Inflation' = 'BCB/433'),
-                         api_key = api_key, 
-                         first_date = start,
-                         last_date = end)
-inf<- inf[order(as.numeric(inf$ref_date)),]
-inf$value <- inf$value / 100
-# Cumulative return Inflation
-return_Inf <- data.frame(nrow(inf):1)
-colnames(return_Inf)<- "Inflation_return"
-
-for(i in (2:nrow(inf))) {
-return_Inf[i,1] <- Return.cumulative( inf$value[1:i] )
-}
-#USD/BRL
-library(GetBCBData)
-dolar <- gbcbd_get_series(id = 1, 
-                          first.date = start,
-                          last.date = end)
-require(quantmod)
-dolar$return <-Delt(dolar$value)
-return_dol <- data.frame(nrow(dolar):1)
-for(i in (2:nrow(dolar))) {
-return_dol[i,1] <- Return.cumulative( dolar$return[1:i] )
-}
-colnames(return_dol)<- "Dolar_return"
-# Merging dataframes
-selic <- cbind(selic, return_selic)
-cdi <- cbind(cdi, return_CDI)
-inf <- cbind(inf, return_Inf)
-dolar <- cbind(dolar, return_dol)
-df <- merge(cdi ,selic, by=c("ref_date"))
-df <- merge(df ,ibov, by=c("ref_date"))
-df2 <- merge(df ,inf, by=c("ref_date"))
-colnames(dolar)[1] <- 'ref_date'
-df2 <- merge(df ,dolar, by=c("ref_date"))
-df2$selic_return[1] <- NA
-df2$CDI_return[1] <- NA
-df2$Ibov_return[1] <- NA
-df2$Inflation_return[1] <- NA
-df2$Dolar_return[1] <- NA
-p<-ggplot(df2, aes(ref_date)) + 
-  geom_line(aes(y = CDI_return, colour = "CDI")) + 
-  geom_line(aes(y = Ibov_return, colour = "Ibov")) +
-  geom_line(aes(y = selic_return, colour = "Selic")) +
-  geom_line(aes(y = Dolar_return, colour = "Dolar")) +
-  labs(y='Cumulative return (daily)') +   theme_solarized() +
-  ggtitle("Cumulative Returns CDI, Ibov, Selic, and USD (2010-2023)")
-ggplotly(p)
-```
-
-
-
-
-
-
-
-
-
-
-
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-# Define API key and other parameters
-api_KEY = "Your QUANDL API KEY here"
-stock = "^BVSP"
-start = "2010-01-01"
-end = pd.Timestamp.now()
-# Get data for IBOV
-ibov = yf.download(stock, start=start, end=end)
-ibov = ibov.reset_index()
-ibov = ibov.sort_values("Date")
-ibov = ibov.rename(columns={'Date': 'ref_date', 'Value': 'Ibovespa'})
-ibov["return"] = ibov["Adj Close"].pct_change()
-ibov['Ibov_return'] = (1 + ibov['return']).cumprod() -1
-ibov = ibov[['ref_date','Ibov_return']]
-# Get data for Selic
-selic = quandl.get('BCB/11', start_date=start, end_date=end)
-selic = selic.reset_index()
-selic = selic.rename(columns={'Date': 'ref_date', 'Value': 'Selic'})
-selic['Selic'] = selic['Selic'] / 100
-selic['selic_return'] = (1 + selic['Selic']).cumprod() - 1
-# Get data for CDI
-cdi = quandl.get('BCB/12', start_date=start, end_date=end)
-cdi = cdi.reset_index()
-cdi = cdi.rename(columns={'Date': 'ref_date', 'Value': 'CDI'})
-cdi['CDI'] = cdi['CDI'] / (100)
-cdi['cdi_return'] = (1 + cdi['CDI']).cumprod() - 1
-# Get data for inflation
-inf = quandl.get('BCB/433', start_date=start, end_date=end)
-inf = inf.reset_index()
-inf = inf.rename(columns={'Date': 'ref_date', 'Value': 'Inflation'})
-inf['Inflation'] = inf['Inflation'] / 100
-inf['inf_return'] = (1 + inf['Inflation']).cumprod() - 1
-# Get data for USD/BRL exchange rate
-usd_brl = quandl.get('BCB/10813', start_date=start, end_date=end)
-usd_brl = usd_brl.reset_index()
-usd_brl = usd_brl.rename(columns={'Date': 'ref_date', 'Value': 'USD_BRL'})
-usd_brl['usd_brl_return'] = (1 + usd_brl['USD_BRL'].pct_change()).cumprod() - 1
-# Merge dataframes
-df = pd.merge(cdi, selic, on="ref_date")
-df = pd.merge(df, ibov, on="ref_date")
-df = pd.merge(df, inf, on="ref_date")
-df = pd.merge(df, usd_brl, on="ref_date")
-# Plot data
-plt.close()
-fig, ax = plt.subplots(figsize=(10,5))
-ax.plot(df["ref_date"], df["cdi_return"], label='CDI')
-ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
-ax.plot(df["ref_date"], df["selic_return"], label='Selic')
-ax.plot(df["ref_date"], df["usd_brl_return"], label='USD',color='darkred')
-plt.ylabel('Cumulative return (daily)', fontsize=13)
-plt.title('Cumulative Returns  CDI, Ibov, and Selic (2010-2023)', fontsize=15)
-plt.xlabel('Date', fontsize=13)
-plt.legend(loc='upper left')
-plt.show()
-```
 
 
 
@@ -1123,9 +446,13 @@ $$SD[R] = (0.1225) ^{0.5} = 35\%$$
 
 
 
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+## {.smaller  background="#cff5ce"}
 
 IBOV returns seem to follow a normal distribution.
+
+::: panel-tabset
+
+### R
 
 ```{r}
 #| warning: false
@@ -1147,11 +474,7 @@ ggplotly(p)
 ```
 
 
-
-
-
-
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+### Python
 
 ```{python}
 #| warning: false
@@ -1180,6 +503,7 @@ plt.show()
 
 
 
+::: 
 
 
 
@@ -1194,10 +518,13 @@ plt.show()
 
 
 
-
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+##  {.smaller  background="#cff5ce"}
 
 Standard deviation through time. It changes.
+
+::: {.panel-tabset}
+
+### R 
 
 ```{r}
 #| warning: false
@@ -1223,14 +550,7 @@ ggplotly(p)
 
 
 
-
-
-
-
-
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
-
-Standard deviation through time. It changes.
+### Python
 
 ```{python}
 #| warning: false
@@ -1244,7 +564,8 @@ Standard deviation through time. It changes.
 #| output-location: default
 #| code-summary: "Python"
 #| collapse: true
-#| eval: true
+#| eval: false
+import numpy as np
 ibov['sd'] = ibov['return'].rolling(window=100, min_periods=100).std() 
 ibov['sd'] = ibov['sd'] * np.sqrt(250)
 plt.close()
@@ -1256,7 +577,7 @@ ax.set_title('IBOV (Daily returns since 2010)', fontsize=15)
 plt.show()
 ```
 
-
+::: 
 
 
 
@@ -1277,6 +598,10 @@ plt.show()
 
 Standard deviation through time. Riskier is riskier.
 
+::: {.panel-tabset}
+
+### R 
+
 ```{r}
 #| warning: false
 #| message: false
@@ -1286,7 +611,7 @@ Standard deviation through time. Riskier is riskier.
 #| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
-#| eval: true
+#| eval: false
 stocks <-c('AMER3.SA' ) 
 amer <- yf_get(tickers = stocks, 
                          first_date = start,
@@ -1295,21 +620,18 @@ amer<-amer[complete.cases(amer),]
 amer$sd <- roll_sd(amer$ret_closing_prices,  
                      width = 100,  
                      min_obs = 100 ) * sqrt(250)
+ibov <- subset(ibov, ref_date >= as.Date("2010-01-05"))
+
 p<-ggplot() + 
-  geom_line(data=amer, aes(amer$ref_date, amer$sd), color='#801e00') +
-  geom_line(data=ibov, aes(ibov$ref_date, ibov$sd), color='#2986cc') +
+  geom_line(data=amer, aes(ref_date, sd), color='#801e00') +
+  geom_line(data=ibov, aes(ref_date, sd), color='#2986cc') +
           labs(x = "",y='Standard deviation using 100 daily returns', 
              title="IBOV vs AMER3 (Daily returns since 2010)") +   theme_solarized()
 ggplotly(p)
 ```
 
 
-
-
-
-
-
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+###  Python
 
 ```{python}
 #| warning: false
@@ -1323,7 +645,7 @@ ggplotly(p)
 #| output-location: default
 #| code-summary: "Python"
 #| collapse: true
-#| eval: true
+#| eval: false
 stock = "AMER3.SA"
 # Get data for IBOV
 amer = yf.download(stock, start=start, end=end)
@@ -1347,7 +669,7 @@ plt.show()
 
 
 
-
+:::
 
 
 
@@ -1359,6 +681,10 @@ plt.show()
 ## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
 
 Daily returns IBOV.
+
+::: {.panel-tabset}
+
+### R 
 
 ```{r}
 #| warning: false
@@ -1379,11 +705,8 @@ ggplotly(p)
 ```
 
 
+### Python
 
-
-
-
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
 
 ```{python}
 #| warning: false
@@ -1406,6 +729,10 @@ plt.title('IBOV (Daily returns since 2010)', fontsize=15)
 plt.show()
 ```
 
+:::
+
+
+
 
 
 
@@ -1416,6 +743,11 @@ plt.show()
 
 Daily returns Americanas.
 
+::: {.panel-tabset}
+
+### R 
+
+
 ```{r}
 #| warning: false
 #| message: false
@@ -1425,7 +757,7 @@ Daily returns Americanas.
 #| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
-#| eval: true
+#| eval: false
 p<-ggplot() +
   geom_line(data=amer, aes(amer$ref_date, amer$ret_closing_prices), color='#801e00') +
   geom_line(data=ibov, aes(ibov$ref_date, ibov$ret_closing_prices), color='#2986cc') +
@@ -1439,8 +771,7 @@ ggplotly(p)
 
 
 
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
-
+### Python
 
 
 ```{python}
@@ -1455,7 +786,7 @@ ggplotly(p)
 #| output-location: default
 #| code-summary: "Python"
 #| collapse: true
-#| eval: true
+#| eval: false
 plt.close()
 plt.plot(amer['ref_date'], amer['return'], color='#801e00')
 plt.plot(ibov['ref_date'], ibov['return'], color='#2986cc')
@@ -1465,7 +796,7 @@ plt.title('IBOV (Daily returns since 2010)', fontsize=15)
 plt.show()
 ```
 
-
+:::
 
 
 
@@ -1481,6 +812,10 @@ plt.show()
 ## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
 
 **Americanas seems riskier than ITUB.** Some stocks have heavier tails than others. The stock with the heavier tail is riskier.
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -1511,9 +846,7 @@ ggplotly(p)
 
 
 
-
-
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+### Python
 
 ```{python}
 #| warning: false
@@ -1550,7 +883,7 @@ plt.show()
 ```
 
 
-
+:::
 
 
 
@@ -1593,10 +926,6 @@ This is:
 **Dividend Yield + Capital Gain Rate**
 
 
-
-. . .
-
-[Question](https://hcm.quarto.pub/ef_p2q/#expected-return){preview-link="true"}
 
 
 
@@ -1841,6 +1170,11 @@ Remember the (arithmetic) average was 12% (in previous slide).
 
 **Risk vs return of selected Brazilian stocks.** There is a line, but not really...
 
+
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -1893,7 +1227,7 @@ p
 
 
 
-## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+### Python
 
 ```{python}
 #| warning: false
@@ -1939,7 +1273,7 @@ plt.show()
 
 
 
-
+::: 
 
 
 
@@ -2001,10 +1335,6 @@ First, we need to separate two types of risk:
 **Type I firms are affected only by firm-specific risks**. Their returns are equally likely to be 35% or  −25%, based on factors specific to each firm’s local market. Because these risks are firm specific, if we hold a portfolio of the stocks of many type I firms, **the risk is diversified**. 
 
   
-. . .
-
-[Question](https://hcm.quarto.pub/ef_p2q/#question-8){preview-link="true"}
-
 
 
 
@@ -2036,7 +1366,7 @@ The volatility will therefore decline until only the systematic risk remains.
 
 
 
-## 10.6 Diversification {.smaller background="#f7e1ba" }
+##  {.smaller background="#f7e1ba" }
 
 **That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it.** It is like free lunch.
 
@@ -2278,9 +1608,7 @@ Suppose the market portfolio tends to increase by 47% when the economy is strong
 
 ##  Market Risk Premium {.smaller background="#f2f7ba" }
 
-We can define:
-
-**The market risk premium is the reward investors expect to earn for holding a portfolio with a beta of 1**
+We can define: **The market risk premium is the reward investors expect to earn for holding a portfolio with a beta of 1**.
 
 $$Market\; risk\;premium = E[R_m] - R_{rf}$$
 
@@ -2332,9 +1660,11 @@ Source: Brealey, Myers and Allen (13ed)
 
 
 
-## Equity Risk Premium (ERP) {.smaller background="#f2f7ba" }
+## Equity Risk Premium (ERP) [website](https://ceqef.fgv.br/node/594) {.smaller background="#f2f7ba" }
 
-Let's plot the Equity Risk Premium. I am extracting the data from this [website](https://ceqef.fgv.br/node/594).
+::: panel-tabset
+
+### R 
 
 ```{r}
 #| warning: false
@@ -2346,9 +1676,9 @@ Let's plot the Equity Risk Premium. I am extracting the data from this [website]
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
-url <- "https://ceqef.fgv.br/sites/ceqef.fgv.br/files/serie_de_equity_risk_premium_3.xls"
-download(url, dest="files/epr.xls", mode="wb") 
-data <- read_excel("files/epr.xls", col_types = c("date","numeric") )
+url <- "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
+download(url, dest="files/epr.xlsx", mode="wb") 
+data <- read_excel("files/epr.xlsx", col_types = c("date","numeric") )
 data <- data[2:nrow(data),1:2]
 colnames(data) <- c("month", "erp")
 
@@ -2361,15 +1691,7 @@ ggplotly(p)
 ```
 
 
-
-
-
-
-
-
-## Equity Risk Premium (ERP) {.smaller background="#f2f7ba" }
-
-Let's plot the Equity Risk Premium. I am extracting the data from this [website](https://ceqef.fgv.br/node/594).
+### Python
 
 ```{python}
 #| warning: false
@@ -2386,7 +1708,7 @@ Let's plot the Equity Risk Premium. I am extracting the data from this [website]
 #| eval: true
 import pandas as pd
 import matplotlib.pyplot as plt
-url = "https://ceqef.fgv.br/sites/ceqef.fgv.br/files/serie_de_equity_risk_premium_3.xls"
+url = "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
 data = pd.read_excel(url, header=2)
 data = data.iloc[:, 0:2]
 data.columns = ["month", "erp"]
@@ -2398,6 +1720,14 @@ ax.set_title("Equity Risk Premium (ERP) in Brazil", fontsize=25)
 ax.text(0.5, -0.1, "Source: https://ceqef.fgv.br/node/594", transform=ax.transAxes, ha="center")
 plt.show()
 ```
+
+
+:::
+
+
+
+
+
 
 
 
@@ -2474,9 +1804,77 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 
 
 
-#  Recap {.smaller}
 
-##  Recap {.smaller}
+
+
+
+
+
+
+
+# Problems {.smaller background="#522f31"}
+
+##  {.smaller background="#522f31"}
+
+**Question 1**
+
+<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p1q1/"> </iframe>
+
+::: columns
+::: {.column width="50%"}
+<center>
+
+**Easy:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question1easy" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART1" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+
+::: {.column width="50%"}
+<center>
+
+**Hard:**
+
+<div 
+data-lyket-type="like" 
+data-lyket-id="question1hard" 
+data-lyket-show-counter-from="1" 
+data-lyket-namespace="EFPART1" 
+data-lyket-color-background="#522f31" 
+data-lyket-color-icon="#605dfc" 
+data-lyket-color-highlight="#070cfa" 
+data-lyket-color-primary="#ffffff" 
+data-lyket-color-secondary="#522f31" 
+data-lyket-color-text="#605dfc" 
+></div>
+
+</center>
+:::
+:::
+
+
+
+
+
+
+
+
+
+# Recap {.smaller visibility="hidden"}
+
+##  Recap {.smaller visibility="hidden"}
 
 **After this chapter, you should know:**
 
@@ -2499,7 +1897,7 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 
 
 
-##  Recap {.smaller}
+##  Recap {.smaller visibility="hidden"}
 
 **After this chapter, you should know:**
 
