@@ -253,15 +253,9 @@ These assets have the same historical return and volatility, **but they 'move' v
 
 - **North Air is not positively correlated with  Text Oil.**
 
-. . .
-
 - Consider the portfolio which consists of equal investments in West Air and Tex Oil. The average return of the portfolio is equal to the average return of the two stocks...
 
 - ...**However, the volatility of 5.1% is much less than the volatility of the two individual stocks.**
-
-. . .
-
-This is the effect of diversification.
 
 **The amount of risk that is eliminated in a portfolio depends on the degree to which the stocks face common risks and their prices move together.**
 
@@ -275,13 +269,17 @@ This is the effect of diversification.
 
 ## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
 
+::: {.panel-tabset}
+
+### R 
+
 ```{r}
 #| warning: false
 #| message: false
 #| fig-align: center
 #| echo: true
-#| output-location: slide
-#| code-fold: false
+#| output-location: default
+#| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
@@ -312,8 +310,7 @@ ggplotly(p)
 ```
 
 
-
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+### Python
 
 ```{python}
 #| warning: false
@@ -355,12 +352,20 @@ plt.show()
 
 
 
+::: 
+
+
+
 
 
 
 ## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
 
 **Same graph using prices in day 1 = $100.**
+
+::: {.panel-tabset}
+
+### R 
 
 ```{r}
 #| warning: false
@@ -387,9 +392,7 @@ ggplotly(p)
 ```
 
 
-
-
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+### Python 
 
 ```{python}
 #| warning: false
@@ -419,6 +422,13 @@ plt.show()
 ```
 
 
+::: 
+
+
+
+
+
+
 
 
 
@@ -429,7 +439,11 @@ plt.show()
 
 ## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
 
-Now, let's compute the average return of a portfolio with 40% invested in A and the remaining 60% invested in B. **The portfolio return is the average return of the assets**.
+Let's compute the average return of a portfolio with 40% invested in A and 60% in B. **The portfolio return is the average return of the assets**.
+
+::: {.panel-tabset}
+
+### R 
 
 ```{r}
 #| warning: false
@@ -467,15 +481,7 @@ ggplotly(p)
 ```
 
 
-
-
-
-
-
-
-
-
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+### Python
 
 ```{python}
 #| warning: false
@@ -508,6 +514,10 @@ ax.set(title='Two assets and Portfolio returns, Initial price = 100', xlabel='',
 ax.legend()
 plt.show()
 ```
+
+:::
+
+
 
 
 
@@ -618,6 +628,10 @@ So, if you **increase the size of your portfolio, the risk decreases** (until to
 
 ## 11.3 Volatility of a large portfolio {.smaller background="#f5d5d5"}
 
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -627,7 +641,7 @@ So, if you **increase the size of your portfolio, the risk decreases** (until to
 #| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
-#| eval: true
+#| eval: false
 start <-'2015-01-01' 
 end   <-'2023-08-20'
 # Finding the tickers
@@ -679,16 +693,7 @@ p<- ggplot(sd, aes(y=`colMeans(final)` , x = N)) + geom_line() +
 ggplotly(p)
 ```
 
-
-
-
-
-
-
-
-
-
-## 11.3 Volatility of a large portfolio {.smaller background="#f5d5d5"}
+### Python
 
 ```{python}
 #| warning: false
@@ -739,6 +744,10 @@ plt.title('Standard deviation of equally weighted portfolios')
 plt.suptitle('01/01/2015-today (Brazilian stocks)')
 plt.show()
 ```
+
+
+:::
+
 
 
 
@@ -800,6 +809,10 @@ Each asset *i* contributes to the portfolio's volatility according to its Sd sca
 
 **More about correlation**. 
 
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -843,15 +856,7 @@ ggplotly(p)
 
 
 
-
-
-
-
-
-
-## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
-
-**More about correlation**. 
+### Python
 
 ```{python}
 #| warning: false
@@ -898,7 +903,7 @@ ax.text(sd2+0.005,ret2+0.005, 'Asset 2', color='black', ha='left', va='center', 
 plt.show()
 ```
 
-
+:::
 
 
 
@@ -1069,6 +1074,10 @@ The idea is that you think that a stock's price will go down so you sell it. Lat
 
 **Correlations usually positive**.
 
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -1112,9 +1121,8 @@ corrplot(cor,method = 'number' ,  tl.col = "black",   tl.cex = 0.9,  col = COL1(
 
 
 
-## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+### Python
 
-**Correlations are different. Sorry, I can't figure why! If you can, let me know.** 
 
 ```{python}
 #| warning: false
@@ -1143,7 +1151,7 @@ cor = df.corr(method="pearson")
 sns.heatmap(cor, annot=True, fmt=".2f", cmap="Reds", annot_kws={"fontsize":20})
 ```
 
-
+:::
 
 
 
@@ -1181,6 +1189,10 @@ Now, you can understand what an **efficient portfolio** is.
 
 
 ## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -1227,7 +1239,7 @@ ggplotly(p)
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+### Python
 
 ```{python}
 #| warning: false
@@ -1284,7 +1296,7 @@ plt.show()
 ```
 
 
-
+:::
 
 
 
@@ -1295,6 +1307,10 @@ plt.show()
 ## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
 
 **Example with real data**
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -1335,7 +1351,7 @@ kable(table,col.names = c("Ticker", "Expected Return", "Standard Deviation"),
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+### Python
 
 ```{r}
 #| warning: false
@@ -1360,6 +1376,8 @@ ggplotly(p)
 
 
 
+:::
+
 
 
 
@@ -1369,6 +1387,10 @@ ggplotly(p)
 
 
 ## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -1407,7 +1429,7 @@ ggplotly(p)
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+### Python
 
 ```{python}
 #| warning: false
@@ -1459,7 +1481,7 @@ plt.show()
 
 
 
-
+:::
 
 
 
@@ -1505,6 +1527,10 @@ When you combine several assets, you will have what is called **efficient fronti
 ## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
 
 **The frontier is not so clear here**
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -1574,13 +1600,7 @@ ggplotly(p)
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
-
-::: {.callout-important}
-
-**The following code uses monthly returns instead of annual.** 
-
-:::
+### Python
 
 ```{python}
 #| warning: false
@@ -1643,6 +1663,9 @@ plt.show()
 ```
 
 
+
+
+:::
 
 
 
@@ -1733,6 +1756,10 @@ That is, the volatility is only a fraction of the volatility of the portfolio, b
 
 **Combine an asset with the Rf rate**
 
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -1783,7 +1810,7 @@ ggplotly(p)
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+### Python
 
 ```{python}
 #| warning: false
@@ -1841,7 +1868,7 @@ plt.show()
 
 
 
-
+:::
 
 
 
@@ -1855,6 +1882,10 @@ plt.show()
 ## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
 
 Remember that **we have several potential combinations between Assets 1 and 2**. 
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -1907,7 +1938,7 @@ ggplotly(p)
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+### Python
 
 ```{python}
 #| warning: false
@@ -1965,7 +1996,7 @@ plt.show()
 ```
 
 
-
+:::
 
 
 
@@ -1980,6 +2011,10 @@ plt.show()
 ## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
 
 In this situation, we are better off investing in the **Tangent portfolio**, then "moving" to adjust the level of risk.
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -2057,7 +2092,7 @@ ggplotly(p)
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+### Python
 
 ```{python}
 #| warning: false
@@ -2139,6 +2174,8 @@ ax.text(sdp_t-0.07,retp_t, 'Tangent Port.', color='black', ha='left', va='center
 plt.show()
 ```
 
+
+:::
 
 
 
@@ -2235,6 +2272,10 @@ If you ignore the risk free asset, you have several efficient portfolios (**effi
 
 **What is a good Sharpe Ratio?**
 
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -2256,7 +2297,7 @@ ggplotly(p)
 ```
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+### Python
 
 ::: {.callout-important}
 
@@ -2287,6 +2328,8 @@ plt.ylabel('Number of portfolios',fontsize=15)
 plt.title(str(int_) + ' random portfolios - All Ibov (2010-2023, monthly returns)' , fontsize=25)
 plt.show()
 ```
+
+:::
 
 
 
@@ -2499,6 +2542,10 @@ All investors will have a combination of the Market Portfolio and the Rf rate.
 
 ## 11.7 The CAPM {.smaller background="#c9f7ba"}
 
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -2519,12 +2566,7 @@ ggplotly(p)
 ```
 
 
-
-
-
-
-
-## 11.7 The CAPM {.smaller background="#c9f7ba" visibility="hidden"}
+### Python
 
 ```{python}
 #| warning: false
@@ -2553,6 +2595,8 @@ plt.show()
 ```
 
 
+:::
+
 
 
 
@@ -2560,6 +2604,10 @@ plt.show()
 
 
 ## 11.7 The CAPM {.smaller background="#c9f7ba"}
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -2580,7 +2628,7 @@ p<-ggplot(port, aes(x=Sd, y=Return)) +
 ggplotly(p)
 ```
 
-
+:::
 
 
 
@@ -2622,6 +2670,10 @@ The beta of a security measures its volatility due to market risk relative to th
 ## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
 
 List of Betas of Brazilian Companies.
+
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -2680,9 +2732,7 @@ ggplotly(p)
 
 
 
-## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
-
-List of Betas of Brazilian Companies.
+### Python
 
 ```{python}
 #| warning: false
@@ -2748,6 +2798,8 @@ plt.show()
 ```
 
 
+:::
+
 
 
 
@@ -2792,6 +2844,10 @@ This linear relationship has a name: **Security Market Line (SML)**
 
 ## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
 
+::: {.panel-tabset}
+
+### R
+
 ```{r}
 #| warning: false
 #| message: false
@@ -2815,7 +2871,7 @@ p
 
 
 
-## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A" visibility="hidden"}
+### Python
 
 ```{python}
 #| warning: false
@@ -2839,6 +2895,8 @@ plt.title('SML Brazil, monthly data (2018-2023)', fontsize=20)
 plt.suptitle('Rf = 10% per year, Risk premium = 16%', fontsize=15)
 plt.show()
 ```
+
+:::
 
 
 
@@ -3085,9 +3143,9 @@ ggplotly(p)
 
 
 
-#  Recap {.smaller}
+#  Recap {.smaller visibility="hidden"}
 
-##  Recap {.smaller}
+##  Recap {.smaller visibility="hidden"}
 
 **After this chapter, you should know:**
 
@@ -3118,7 +3176,7 @@ ggplotly(p)
 
 
 
-##  Recap {.smaller}
+##  Recap {.smaller visibility="hidden"}
 
 **After this chapter, you should know:**
 
@@ -3142,7 +3200,7 @@ ggplotly(p)
 
 
 
-
+# Comments? {background="#a2bef5" visibility="hidden"}
 
 ## Comments? {background="#a2bef5"}
 
