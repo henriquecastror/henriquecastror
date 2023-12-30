@@ -319,9 +319,9 @@ ggplotly(p)
 #| echo: true
 #| results: false
 #| output: true
-#| code-fold: false
+#| code-fold: true
 #| code-line-numbers: true	
-#| output-location: slide
+#| output-location: default
 #| code-summary: "Python"
 #| collapse: true
 #| eval: true
@@ -359,7 +359,7 @@ plt.show()
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## {.smaller background="#f2f7ba"}
 
 **Same graph using prices in day 1 = $100.**
 
@@ -437,7 +437,7 @@ plt.show()
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## {.smaller background="#f2f7ba"}
 
 Let's compute the average return of a portfolio with 40% invested in A and 60% in B. **The portfolio return is the average return of the assets**.
 
@@ -2542,9 +2542,6 @@ All investors will have a combination of the Market Portfolio and the Rf rate.
 
 ## 11.7 The CAPM {.smaller background="#c9f7ba"}
 
-::: {.panel-tabset}
-
-### R
 
 ```{r}
 #| warning: false
@@ -2565,8 +2562,6 @@ p<-ggplot(port, aes(x=Sd, y=Return)) +
 ggplotly(p)
 ```
 
-
-### Python
 
 ```{python}
 #| warning: false
@@ -2595,7 +2590,7 @@ plt.show()
 ```
 
 
-:::
+
 
 
 
