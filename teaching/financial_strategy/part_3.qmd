@@ -634,6 +634,7 @@ So, if you **increase the size of your portfolio, the risk decreases** (until to
 
 ```{r}
 #| warning: false
+#| error: false
 #| message: false
 #| fig-align: center
 #| echo: true
@@ -643,9 +644,9 @@ So, if you **increase the size of your portfolio, the risk decreases** (until to
 #| code-line-numbers: true
 #| eval: false
 start <-'2015-01-01' 
-end   <-'2023-08-20'
+end   <-'2023-12-01'
 # Finding the tickers
-data_temp <- yf_collection_get("IBOV", first_date = start,last_date = end,freq_data = "monthly")
+data_temp <- yf_collection_get("IBOV", first_date = start, last_date = end, freq_data = "monthly")
 tickers<-unique(data_temp$ticker)
 df <- data_temp %>%  select(ref_date)  %>% distinct()
 # Now collecting data
@@ -692,6 +693,12 @@ p<- ggplot(sd, aes(y=`colMeans(final)` , x = N)) + geom_line() +
              subtitle = "01/01/2015-today (Brazilian stocks)") +   theme_solarized()
 ggplotly(p)
 ```
+
+
+
+
+
+
 
 ### Python
 
@@ -3214,6 +3221,9 @@ ggplotly(p)
         async>
 </script>
 
+
+::: footer
+:::
 
 
 
