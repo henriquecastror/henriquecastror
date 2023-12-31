@@ -4,15 +4,23 @@ format:
     css: webex.css
     include-after-body: webex.js
     theme: themecustom.scss
-    fontsize: 1.5em
+    fontsize: 1.4em
 ---
+
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** Leverage can raise a firm’s expected earnings per share and its return on equity, but it also increases the volatility of earnings per share and the riskiness of its equity."
-q1_choices <- c(answer= "True",  "False")
+q1 <- " **Which of the following sentences is FALSE?**"
+q1_choices <- c("A firm can change its capital structure at any time by issuing new securities and using the funds to pay its existing investors.",
+                "According to MM Proposition I, with perfect capital markets, the value of a firm is independent of its capital structure.",
+                answer="A firm’s net debt is equal to its debt plus its holdings of cash and other risk-free securities.", 
+                "The owner of a firm should choose the capital structure that maximizes the total value of the securities issued.") 
 cat(q1,longmcq(q1_choices))
+
 ```
+
+
+

@@ -4,15 +4,20 @@ format:
     css: webex.css
     include-after-body: webex.js
     theme: themecustom.scss
-    fontsize: 1.5em
+    fontsize: 1.4em
 ---
+
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** The interest tax shield with permanent debt implies that a company with a permanent level of debt will receive a consistent tax benefit due to the deductibility of interest expenses."
-q1_choices <- c( answer="True", "False")
+q1 <- " **Which of the following sentences is TRUE?**"
+q1_choices <- c("The Optimal Capital Structure with Taxes refers to the best mix of debt and equity financing that fully exploits the tax advantages of debt.",
+                answer="The Optimal Capital Structure with Taxes refers to the best mix of debt and equity financing that maximizes a company's market value while minimizing its cost of capital, taking into account the tax benefits of debt financing..",
+                "A firm can reduce its overall WACC by increasing the amount of debt financing, and it should take on as much debt as possible as long as the debt is not risky.") 
 cat(q1,longmcq(q1_choices))
+
 ```
+
