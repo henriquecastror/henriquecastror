@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -59,7 +59,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -101,6 +102,7 @@ gtag('js', new Date());
 gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="alternate" type="application/rss+xml" title="Henrique Castro Martins" href="index.xml"><meta name="twitter:title" content="Henrique Castro Martins - Seminars">
@@ -119,54 +121,54 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
     <span class="navbar-title">Henrique Castro Martins</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="../about.qmd">
+    <a class="nav-link" href="../about.qmd" rel="" target="">
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../research/">
+    <a class="nav-link" href="../research/" rel="" target="">
  <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../teaching/">
+    <a class="nav-link" href="../teaching/" rel="" target="">
  <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../seminars/">
+    <a class="nav-link" href="../seminars/" rel="" target="">
  <span class="menu-text">Seminars</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog/">
+    <a class="nav-link" href="../blog/" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://hcm.quarto.pub/abs_list/">
+    <a class="nav-link" href="https://hcm.quarto.pub/abs_list/" rel="" target="">
  <span class="menu-text">ABS List</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../cv/cv_Henrique_Castro_Martins.pdf">
+    <a class="nav-link" href="../cv/cv_Henrique_Castro_Martins.pdf" rel="" target="">
  <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/henriquecastror"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/henriquecastror" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/henriquecastror/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/henriquecastror/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -245,136 +247,136 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1670036400000" data-listing-file-modified-sort="1676652531645" data-listing-reading-time-sort="3.015" data-listing-title-sort="Ethics &amp; Open Data (ANPCONT)" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Dec 3, 2022
+<tr data-index="0" data-listing-date-sort="1670036400000" data-listing-file-modified-sort="1703040653094" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Ethics &amp; Open Data (ANPCONT)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Dec 3, 2022</span>
 </td>
-<td class="listing-title">
-<a href="../seminars/seminars/ethics_anpcont/index.html" class="title">Ethics &amp; Open Data (ANPCONT)</a>
+<td>
+<a href="../seminars/seminars/ethics_anpcont/index.html" class="title listing-title">Ethics &amp; Open Data (ANPCONT)</a>
 </td>
-<td class="listing-author">
-Henrique C. Martins
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1659927600000" data-listing-file-modified-sort="1678999068807" data-listing-reading-time-sort="3.045" data-listing-title-sort="Talk about Research Productivity (Unisinos)" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Aug 8, 2022
-</td>
-<td class="listing-title">
-<a href="../seminars/seminars/ethics_unisinos/index.html" class="title">Talk about Research Productivity (Unisinos)</a>
-</td>
-<td class="listing-author">
-Henrique C. Martins
+<td>
+<span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1629255600000" data-listing-file-modified-sort="1678999619404" data-listing-reading-time-sort="4.39" data-listing-title-sort="Talk Research Internationalization (UFSM)" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Aug 18, 2021
+<tr data-index="1" data-listing-date-sort="1659927600000" data-listing-file-modified-sort="1703040653209" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Talk about Research Productivity (Unisinos)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Aug 8, 2022</span>
 </td>
-<td class="listing-title">
-<a href="../seminars/seminars/research_intnl_ufsm/index.html" class="title">Talk Research Internationalization (UFSM)</a>
+<td>
+<a href="../seminars/seminars/ethics_unisinos/index.html" class="title listing-title">Talk about Research Productivity (Unisinos)</a>
 </td>
-<td class="listing-author">
-Henrique C. Martins
-</td>
-</tr>
-<tr data-index="3" data-categories="Português,Brazil,R" data-listing-date-sort="1618542000000" data-listing-file-modified-sort="1676652531977" data-listing-reading-time-sort="0.16" data-listing-title-sort="Talk With Marcelo Perlin" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Apr 16, 2021
-</td>
-<td class="listing-title">
-<a href="../seminars/seminars/marcelo_perlin/index.html" class="title">Talk With Marcelo Perlin</a>
-</td>
-<td class="listing-author">
-Henrique C. Martins
+<td>
+<span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="4" data-listing-date-sort="1617591600000" data-listing-file-modified-sort="1678995537835" data-listing-reading-time-sort="3.495" data-listing-title-sort="Competition and ESG practices in emerging markets" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Apr 5, 2021
+<tr data-index="2" data-listing-date-sort="1629255600000" data-listing-file-modified-sort="1703040653478" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="Talk Research Internationalization (UFSM)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Aug 18, 2021</span>
 </td>
-<td class="listing-title">
-<a href="../seminars/seminars/frl_esg/index.html" class="title">Competition and ESG practices in emerging markets</a>
+<td>
+<a href="../seminars/seminars/research_intnl_ufsm/index.html" class="title listing-title">Talk Research Internationalization (UFSM)</a>
 </td>
-<td class="listing-author">
-Henrique C. Martins
-</td>
-</tr>
-<tr data-index="5" data-categories="Português,Brazil,Investors Relations" data-listing-date-sort="1612839600000" data-listing-file-modified-sort="1676652532482" data-listing-reading-time-sort="0.205" data-listing-title-sort="Webinar about Investors Relations" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Feb 9, 2021
-</td>
-<td class="listing-title">
-<a href="../seminars/seminars/webinar_ri/index.html" class="title">Webinar about Investors Relations</a>
-</td>
-<td class="listing-author">
-Henrique C. Martins
+<td>
+<span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="6" data-listing-date-sort="1605754800000" data-listing-file-modified-sort="1678999435061" data-listing-reading-time-sort="3.37" data-listing-title-sort="9th Fórum EcoInovar: A experiência de Open Science na RAC" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Nov 19, 2020
+<tr data-index="3" data-categories="Português,Brazil,R" data-listing-date-sort="1618542000000" data-listing-file-modified-sort="1703040653277" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Talk With Marcelo Perlin" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Apr 16, 2021</span>
 </td>
-<td class="listing-title">
-<a href="../seminars/seminars/ecoinovar_open_science_rac/index.html" class="title">9th Fórum EcoInovar: A experiência de Open Science na RAC</a>
+<td>
+<a href="../seminars/seminars/marcelo_perlin/index.html" class="title listing-title">Talk With Marcelo Perlin</a>
 </td>
-<td class="listing-author">
-Henrique C. Martins
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1605495600000" data-listing-file-modified-sort="1678999528255" data-listing-reading-time-sort="2.41" data-listing-title-sort="My notes about the 2020 ICGS Editors' tips" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Nov 16, 2020
-</td>
-<td class="listing-title">
-<a href="../seminars/seminars/icgs_tips/index.html" class="title">My notes about the 2020 ICGS Editors’ tips</a>
-</td>
-<td class="listing-author">
-Henrique C. Martins
+<td>
+<span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="8" data-listing-date-sort="1603767600000" data-listing-file-modified-sort="1678999472694" data-listing-reading-time-sort="5.54" data-listing-title-sort="Issues in Empirical Finance Research" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Oct 27, 2020
+<tr data-index="4" data-listing-date-sort="1617591600000" data-listing-file-modified-sort="1703040653254" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Competition and ESG practices in emerging markets" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Apr 5, 2021</span>
 </td>
-<td class="listing-title">
-<a href="../seminars/seminars/empirical_issues/index.html" class="title">Issues in Empirical Finance Research</a>
+<td>
+<a href="../seminars/seminars/frl_esg/index.html" class="title listing-title">Competition and ESG practices in emerging markets</a>
 </td>
-<td class="listing-author">
-Henrique C. Martins
-</td>
-</tr>
-<tr data-index="9" data-categories="Português,Brazil,ESg" data-listing-date-sort="1601694000000" data-listing-file-modified-sort="1676652531504" data-listing-reading-time-sort="0.215" data-listing-title-sort="ESG with Conrad Albrecht (MSCI)" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Oct 3, 2020
-</td>
-<td class="listing-title">
-<a href="../seminars/seminars/esg_Conrad_Albrecht/index.html" class="title">ESG with Conrad Albrecht (MSCI)</a>
-</td>
-<td class="listing-author">
-Henrique C. Martins
+<td>
+<span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="10" data-categories="Português,Brazil" data-listing-date-sort="1596510000000" data-listing-file-modified-sort="1676652531977" data-listing-reading-time-sort="0.225" data-listing-title-sort="Open Science Seminar" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Aug 4, 2020
+<tr data-index="5" data-categories="Português,Brazil,Investors Relations" data-listing-date-sort="1612839600000" data-listing-file-modified-sort="1703040653496" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Webinar about Investors Relations" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Feb 9, 2021</span>
 </td>
-<td class="listing-title">
-<a href="../seminars/seminars/open_science/index.html" class="title">Open Science Seminar</a>
+<td>
+<a href="../seminars/seminars/webinar_ri/index.html" class="title listing-title">Webinar about Investors Relations</a>
 </td>
-<td class="listing-author">
-Henrique C. Martins
+<td>
+<span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="11" data-categories="Português,Corporate Finance,Brazil" data-listing-date-sort="1585278000000" data-listing-file-modified-sort="1676652530335" data-listing-reading-time-sort="0.155" data-listing-title-sort="Café com ADM" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Mar 27, 2020
+<tr data-index="6" data-listing-date-sort="1605754800000" data-listing-file-modified-sort="1703040652843" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="9th Fórum EcoInovar: A experiência de Open Science na RAC" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Nov 19, 2020</span>
 </td>
-<td class="listing-title">
-<a href="../seminars/seminars/cafe_com_adm/index.html" class="title">Café com ADM</a>
+<td>
+<a href="../seminars/seminars/ecoinovar_open_science_rac/index.html" class="title listing-title">9th Fórum EcoInovar: A experiência de Open Science na RAC</a>
 </td>
-<td class="listing-author">
-Henrique C. Martins
+<td>
+<span class="listing-author">Henrique C. Martins</span>
+</td>
+</tr>
+<tr data-index="7" data-listing-date-sort="1605495600000" data-listing-file-modified-sort="1703040653271" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="My notes about the 2020 ICGS Editors' tips" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Nov 16, 2020</span>
+</td>
+<td>
+<a href="../seminars/seminars/icgs_tips/index.html" class="title listing-title">My notes about the 2020 ICGS Editors’ tips</a>
+</td>
+<td>
+<span class="listing-author">Henrique C. Martins</span>
+</td>
+</tr>
+<tr data-index="8" data-listing-date-sort="1603767600000" data-listing-file-modified-sort="1703040653064" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-title-sort="Issues in Empirical Finance Research" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Oct 27, 2020</span>
+</td>
+<td>
+<a href="../seminars/seminars/empirical_issues/index.html" class="title listing-title">Issues in Empirical Finance Research</a>
+</td>
+<td>
+<span class="listing-author">Henrique C. Martins</span>
+</td>
+</tr>
+<tr data-index="9" data-categories="Português,Brazil,ESg" data-listing-date-sort="1601694000000" data-listing-file-modified-sort="1703040653069" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="ESG with Conrad Albrecht (MSCI)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Oct 3, 2020</span>
+</td>
+<td>
+<a href="../seminars/seminars/esg_Conrad_Albrecht/index.html" class="title listing-title">ESG with Conrad Albrecht (MSCI)</a>
+</td>
+<td>
+<span class="listing-author">Henrique C. Martins</span>
+</td>
+</tr>
+<tr data-index="10" data-categories="Português,Brazil" data-listing-date-sort="1596510000000" data-listing-file-modified-sort="1703040653279" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Open Science Seminar" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Aug 4, 2020</span>
+</td>
+<td>
+<a href="../seminars/seminars/open_science/index.html" class="title listing-title">Open Science Seminar</a>
+</td>
+<td>
+<span class="listing-author">Henrique C. Martins</span>
+</td>
+</tr>
+<tr data-index="11" data-categories="Português,Corporate Finance,Brazil" data-listing-date-sort="1585278000000" data-listing-file-modified-sort="1703040652833" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Café com ADM" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Mar 27, 2020</span>
+</td>
+<td>
+<a href="../seminars/seminars/cafe_com_adm/index.html" class="title listing-title">Café com ADM</a>
+</td>
+<td>
+<span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
 </tbody>
@@ -526,9 +528,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -593,6 +609,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -636,6 +738,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Website made with <a href="https://quarto.org/">Quarto</a>, by <a href="mailto:henrique.martins@fgv.br">Henrique C. Martins</a>. Feel free to use all content, but please cite the website if you use it. All errors are my own.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
 
