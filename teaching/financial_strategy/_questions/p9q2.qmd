@@ -4,16 +4,23 @@ format:
     css: webex.css
     include-after-body: webex.js
     theme: themecustom.scss
-    fontsize: 1.5em
+    fontsize: 1.4em
 ---
+
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** An increase in financial distress costs would increase the total value of a leveraged firm."
-q1_choices <- c( "True", answer="False")
+q1 <- " **Which of the following sentences is FALSE?**"
+q1_choices <- c("According to the Modigliani and Miller theorem, market imperfections, such as taxes and bankruptcy costs, can lead to deviations from the theorem's conclusions in the real world.",
+                "Shareholders may have an incentive to increase leverage even if it decreases the value of the firm.",
+                answer="According to the Tradeoff Theory, agency costs play a minor role in a firm's capital structure decisions.") 
 cat(q1,longmcq(q1_choices))
+
 ```
+
+
+
 

@@ -1469,6 +1469,7 @@ Remember the (arithmetic) average was 12% (in previous slide).
 ```{r}
 #| warning: false
 #| message: false
+#| error: false
 #| fig-align: center
 #| echo: true
 #| output-location: default
@@ -1664,6 +1665,7 @@ The volatility will therefore decline until only the systematic risk remains.
 ```{r}
 #| warning: false
 #| message: false
+#| error: false
 #| fig-align: center
 #| echo: true
 #| output-location: default
@@ -2111,53 +2113,6 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 
 <iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q1/"> </iframe>
 
-::: columns
-::: {.column width="50%"}
-<center>
-
-**Easy:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q1easy" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-
-::: {.column width="50%"}
-<center>
-
-**Hard:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q1hard" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-:::
-
-
-
-
 
 
 
@@ -2167,49 +2122,7 @@ data-lyket-color-text="#605dfc"
 
 <iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q2/"> </iframe>
 
-::: columns
-::: {.column width="50%"}
-<center>
 
-**Easy:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q2easy" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-
-::: {.column width="50%"}
-<center>
-
-**Hard:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q2hard" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-:::
 
 
 
@@ -2220,51 +2133,6 @@ data-lyket-color-text="#605dfc"
 
 <iframe height="70%" width="100%" src="https://hcm.quarto.pub/p2q3/"> </iframe>
 
-::: columns
-::: {.column width="50%"}
-<center>
-
-**Easy:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q3easy" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-
-::: {.column width="50%"}
-<center>
-
-**Hard:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q3hard" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-:::
-
-
 
 
 
@@ -2272,53 +2140,7 @@ data-lyket-color-text="#605dfc"
 
 **Question 4**
 
-<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q4/"> </iframe>
-
-::: columns
-::: {.column width="50%"}
-<center>
-
-**Easy:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q4easy" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-
-::: {.column width="50%"}
-<center>
-
-**Hard:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q4hard" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-:::
-
-
+<iframe height="85%" width="100%" src="https://hcm.quarto.pub/p2q4/"> </iframe>
 
 
 
@@ -2326,51 +2148,9 @@ data-lyket-color-text="#605dfc"
 
 **Question 5**
 
-<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p2q5/"> </iframe>
+<iframe height="85%" width="100%" src="https://hcm.quarto.pub/p2q5/"> </iframe>
 
-::: columns
-::: {.column width="50%"}
-<center>
 
-**Easy:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q5easy" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-
-::: {.column width="50%"}
-<center>
-
-**Hard:**
-
-<div 
-data-lyket-type="like" 
-data-lyket-id="p2q5hard" 
-data-lyket-show-counter-from="1" 
-data-lyket-namespace="EFPART2" 
-data-lyket-color-background="#522f31" 
-data-lyket-color-icon="#605dfc" 
-data-lyket-color-highlight="#070cfa" 
-data-lyket-color-primary="#ffffff" 
-data-lyket-color-secondary="#522f31" 
-data-lyket-color-text="#605dfc" 
-></div>
-
-</center>
-:::
-:::
 
 
 

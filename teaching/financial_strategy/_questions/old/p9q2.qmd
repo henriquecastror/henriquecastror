@@ -1,0 +1,19 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.5em
+---
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Q:** An increase in financial distress costs would increase the total value of a leveraged firm."
+q1_choices <- c( "True", answer="False")
+cat(q1,longmcq(q1_choices))
+```
+

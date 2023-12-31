@@ -4,16 +4,21 @@ format:
     css: webex.css
     include-after-body: webex.js
     theme: themecustom.scss
-    fontsize: 1.5em
+    fontsize: 1.4em
 ---
+
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** An open market repurchase allows a company to buy back its own shares directly from shareholders at a specific price."
-q1_choices <- c( answer="True", "False")
+q1 <- " **Which of the following sentences is FALSE?**"
+q1_choices <- c("An open market repurchase allows a company to buy back its own shares directly from shareholders at a specific price.",
+                "Modigliani-Miller theorem suggests that dividend policy is irrelevant in a world of perfect capital markets, as it doesn't affect the overall value of the firm.",
+                answer="According to financial theory, retaining earnings and not paying dividends is always the most value-maximizing approach for a company.",
+                "Holding excess cash in a firm can lead to inefficiencies and agency costs, which may be reduced by paying out dividends or engaging in share repurchases.") 
 cat(q1,longmcq(q1_choices))
+
 ```
 

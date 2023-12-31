@@ -1,0 +1,67 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.4em
+---
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+w1 <- rnorm(1, mean = 0.40, sd = 0.1)
+w2 <- 1 - w1
+
+r1 <- rnorm(1, mean = 0.08, sd = 0.1)
+r2 <- rnorm(1, mean = 0.06, sd = 0.1)
+
+sigma1 <- rnorm(1, mean = 0.25, sd = 0.03)
+sigma2 <- rnorm(1, mean = 0.15, sd = 0.02)
+
+correl <- rnorm(1, mean = 0.5, sd = 0.2)
+
+```
+
+**Q:** What is the **expected return** of a portfolio that invests `r round(w1,3)` percent in Asset 1 (expected return = `r round(r1,3)`)  and the remaining `r round(w2,3)` in Asset 2 (expected return = `r round(r2,3)`)? 
+
+`r fitb( round( (w1 * r1 + w2 * r2) ,3) , tol=0.01)`
+
+
+**Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **variance** of the portfolio above?
+
+`r fitb( round( w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2  ,3) , tol=0.01)`
+
+
+
+**Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **standard deviation** of the portfolio above?
+
+`r fitb( round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) ,3) , tol=0.01)`
+
+
+
+
+
+
+___
+
+
+::: {.callout-important}
+**Type your answers with "." instead of ","! For numerical answers in percent values, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+:::
+
+
+___
+
+
+**Answer**
+
+1) `r round( (w1 * r1 + w2 * r2) ,3) `
+
+2) `r round( w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2  ,3) `
+
+3) `r round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) ,3) `

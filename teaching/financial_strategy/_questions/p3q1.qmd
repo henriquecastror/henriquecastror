@@ -1,0 +1,25 @@
+---
+format:
+  html:
+    css: webex.css
+    include-after-body: webex.js
+    theme: themecustom.scss
+    fontsize: 1.4em
+---
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Which of the following sentences is TRUE?**"
+q1_choices <- c("Buying shares of security *i* improves the Sharpe ratio of a portfolio if its expected return does not exceed the required return.", 
+                "The expected variance of a portfolio is the weighted average of the expected variances of the investments within it, using the portfolio weights.", 
+                "Short selling extends the set of possible portfolios.", 
+                answer= "Diversification eliminates independent risks. The volatility of a large portfolio results from the common risk between the stocks in the portfolio.")
+cat(q1,longmcq(q1_choices))
+
+```
+

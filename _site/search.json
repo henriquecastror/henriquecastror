@@ -1726,7 +1726,7 @@
     "href": "teaching/financial_strategy/part_1.html#equity-financing-for-private-comp.-9",
     "title": "Estratégia Financeira",
     "section": "23.1 Equity Financing for Private Comp.",
-    "text": "23.1 Equity Financing for Private Comp.\nBook’s example.\n\nReal Networks, which was founded by Robert Glaser in 1993, with an investment of approximately 1 million by Glaser.\nIn April 1995, Glaser’s 1 million initial investment represented 13,713,439 shares of Series A preferred stock, implying an initial price of about $0.07 per share.\nThe company’s first round of outside equity funding was Series B preferred stock. Real Networks sold 2,686,567 shares of Series B preferred stock at 0.67 per share.\nAt the price the new shares were sold for, Glaser’s shares were worth 9.2 million and represented 83.6% of the outstanding shares.\n\n\n\n\n\n\nI understand"
+    "text": "23.1 Equity Financing for Private Comp.\nBook’s example.\n\nReal Networks, which was founded by Robert Glaser in 1993, with an investment of approximately 1 million by Glaser.\nIn April 1995, Glaser’s 1 million initial investment represented 13,713,439 shares of Series A preferred stock, implying an initial price of about $0.07 per share.\nThe company’s first round of outside equity funding was Series B preferred stock. Real Networks sold 2,686,567 shares of Series B preferred stock at 0.67 per share.\nAt the price the new shares were sold for, Glaser’s shares were worth 9.2 million and represented 83.6% of the outstanding shares."
   },
   {
     "objectID": "teaching/financial_strategy/part_1.html#equity-financing-for-private-comp.-10",
@@ -2055,28 +2055,28 @@
     "href": "teaching/financial_strategy/part_1.html#section-6",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 1"
+    "text": "Question 2"
   },
   {
     "objectID": "teaching/financial_strategy/part_1.html#section-7",
     "href": "teaching/financial_strategy/part_1.html#section-7",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 2\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 3"
   },
   {
     "objectID": "teaching/financial_strategy/part_1.html#section-8",
     "href": "teaching/financial_strategy/part_1.html#section-8",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 3\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 4"
   },
   {
     "objectID": "teaching/financial_strategy/part_1.html#section-9",
     "href": "teaching/financial_strategy/part_1.html#section-9",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 4\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 5"
   },
   {
     "objectID": "teaching/financial_strategy/part_1.html#section-10",
@@ -5548,42 +5548,42 @@
     "href": "teaching/financial_strategy/part_2.html#section-11",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it. It is like free lunch.\n\n\nR\nstart &lt;-'2010-01-01' \nend   &lt;- Sys.Date() \ndata &lt;- yf_collection_get(\"IBOV\", \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\n\n\nError in open.connection(x, \"rb\") : \n  Timeout was reached: [en.wikipedia.org] Failed to connect to en.wikipedia.org port 443 after 10003 ms: Timeout was reached\n\n\nR\ndata&lt;-data[complete.cases(data),] \ndata$month &lt;- format(as.Date(data$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(ret_adjusted_prices),list(sd = sd)) %&gt;% \n            as.data.frame()\nvol  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(volume),list(vol_sum = sum)) %&gt;% \n            as.data.frame()\nvol2  &lt;-    data %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(volume),\n                         list(vol_tot = sum)) %&gt;% \n            as.data.frame()\ndata2 &lt;- merge(sd ,vol, by=c(\"ticker\",\"month\"))\ndata2 &lt;- merge(data2 ,vol2, by=c(\"month\"))\ndata2$w &lt;- data2$vol_sum/data2$vol_tot\ndata2$sdw &lt;- data2$sd * data2$w\ndata3  &lt;-   data2 %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(sdw),list(total = sum)) %&gt;% \n            as.data.frame()\ndata3&lt;-data3[complete.cases(data3),] \ndata3$id &lt;-\"Weighted\"\n# Index\nibov &lt;- yf_get(tickers = '^BVSP', \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\nibov&lt;-ibov[complete.cases(ibov),] \nibov$month &lt;- format(as.Date(ibov$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd2  &lt;-    ibov %&gt;%                          \n            group_by(month, ticker) %&gt;%\n            summarise_at(vars(ret_closing_prices) ,\n                         list(total = var ) ) %&gt;% \n            as.data.frame()\nsd2$total &lt;- sd2$total^0.5\nsd2$id &lt;-\"ibov\"\nsd2$ticker &lt;- NULL\ndata4 &lt;- rbind(data3,sd2)\np&lt;-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +\n  geom_line() + \n        labs(x = \"\",\n             y='Standard deviation',\n             title =\"Diversification benefits - Ibov vs. Weighted sd of individual stocks\") +   theme_solarized()\nggplotly(p)"
+    "text": "That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it. It is like free lunch.\n\n\nR\nstart &lt;-'2010-01-01' \nend   &lt;- Sys.Date() \ndata &lt;- yf_collection_get(\"IBOV\", \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\n\n\nError in df_ibov_comp[[1]] : índice fora de limites\n\n\nR\ndata&lt;-data[complete.cases(data),] \ndata$month &lt;- format(as.Date(data$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(ret_adjusted_prices),list(sd = sd)) %&gt;% \n            as.data.frame()\nvol  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(volume),list(vol_sum = sum)) %&gt;% \n            as.data.frame()\nvol2  &lt;-    data %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(volume),\n                         list(vol_tot = sum)) %&gt;% \n            as.data.frame()\ndata2 &lt;- merge(sd ,vol, by=c(\"ticker\",\"month\"))\ndata2 &lt;- merge(data2 ,vol2, by=c(\"month\"))\ndata2$w &lt;- data2$vol_sum/data2$vol_tot\ndata2$sdw &lt;- data2$sd * data2$w\ndata3  &lt;-   data2 %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(sdw),list(total = sum)) %&gt;% \n            as.data.frame()\ndata3&lt;-data3[complete.cases(data3),] \ndata3$id &lt;-\"Weighted\"\n# Index\nibov &lt;- yf_get(tickers = '^BVSP', \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\nibov&lt;-ibov[complete.cases(ibov),] \nibov$month &lt;- format(as.Date(ibov$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd2  &lt;-    ibov %&gt;%                          \n            group_by(month, ticker) %&gt;%\n            summarise_at(vars(ret_closing_prices) ,\n                         list(total = var ) ) %&gt;% \n            as.data.frame()\nsd2$total &lt;- sd2$total^0.5\nsd2$id &lt;-\"ibov\"\nsd2$ticker &lt;- NULL\ndata4 &lt;- rbind(data3,sd2)\np&lt;-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +\n  geom_line() + \n        labs(x = \"\",\n             y='Standard deviation',\n             title =\"Diversification benefits - Ibov vs. Weighted sd of individual stocks\") +   theme_solarized()\nggplotly(p)"
   },
   {
     "objectID": "teaching/financial_strategy/part_2.html#section-12",
     "href": "teaching/financial_strategy/part_2.html#section-12",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 1\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 1"
   },
   {
     "objectID": "teaching/financial_strategy/part_2.html#section-13",
     "href": "teaching/financial_strategy/part_2.html#section-13",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 2\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 2"
   },
   {
     "objectID": "teaching/financial_strategy/part_2.html#section-14",
     "href": "teaching/financial_strategy/part_2.html#section-14",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 3\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 3"
   },
   {
     "objectID": "teaching/financial_strategy/part_2.html#section-15",
     "href": "teaching/financial_strategy/part_2.html#section-15",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 4\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 4"
   },
   {
     "objectID": "teaching/financial_strategy/part_2.html#section-16",
     "href": "teaching/financial_strategy/part_2.html#section-16",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 5\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 5"
   },
   {
     "objectID": "teaching/financial_strategy/part_2.html#how-did-you-like-this-lecture",
@@ -5660,7 +5660,7 @@
     "href": "teaching/financial_strategy/part_3.html#volatility-of-a-2-stock-portfolio-6",
     "title": "Estratégia Financeira",
     "section": "11.2 Volatility of a 2-stock portfolio",
-    "text": "11.2 Volatility of a 2-stock portfolio\n\nRPython\n\n\n\n\nR\nlibrary(PerformanceAnalytics)\nlibrary(yfR)\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggthemes)\nlibrary(tidyquant)\nlibrary(roll)\nlibrary(plotly)\nlibrary(ggthemes)\nstocks &lt;-c('BBDC3.SA', 'PETR3.SA') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \np&lt;-ggplot(data, aes(ref_date , price_close, group=ticker , color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"Two assets returns\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\nimport yfinance as yf\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\nfrom scipy.stats import norm\nstocks = ['BBDC3.SA', 'PETR3.SA']\nstart = '2010-01-01'\nend = pd.Timestamp.today().strftime('%Y-%m-%d')\ndata = yf.download(stocks, start=start, end=end)['Close']\ndata = data.dropna()\n# plot the data\nplt.close()\nplt.plot(data.index, data['BBDC3.SA'], label='BBDC3.SA')\nplt.plot(data.index, data['PETR3.SA'], label='PETR3.SA')\n# add title and axis labels\nplt.title('Two assets returns')\nplt.xlabel('Date')\nplt.ylabel('Closing prices')\n# add legend\nplt.legend()\n# display the plot\nplt.show()"
+    "text": "11.2 Volatility of a 2-stock portfolio\n\nRPython\n\n\n\n\nR\nlibrary(PerformanceAnalytics)\nlibrary(yfR)\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggthemes)\nlibrary(tidyquant)\nlibrary(roll)\nlibrary(plotly)\nlibrary(ggthemes)\nstocks &lt;-c('BBDC3.SA', 'PETR3.SA') \nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \ndata &lt;- yf_get(tickers = stocks, \n                         first_date = start,\n                         last_date = end)\ndata&lt;-data[complete.cases(data),] \np&lt;-ggplot(data, aes(ref_date , price_close, group=ticker , color=ticker))+\n        geom_line() +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"Two assets returns\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nimport yfinance as yf\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\nfrom scipy.stats import norm\nstocks = ['BBDC3.SA', 'PETR3.SA']\nstart = '2010-01-01'\nend = pd.Timestamp.today().strftime('%Y-%m-%d')\ndata = yf.download(stocks, start=start, end=end)['Close']\ndata = data.dropna()\n# plot the data\nplt.close()\nplt.plot(data.index, data['BBDC3.SA'], label='BBDC3.SA')\nplt.plot(data.index, data['PETR3.SA'], label='PETR3.SA')\n# add title and axis labels\nplt.title('Two assets returns')\nplt.xlabel('Date')\nplt.ylabel('Closing prices')\n# add legend\nplt.legend()\n# display the plot\nplt.show()"
   },
   {
     "objectID": "teaching/financial_strategy/part_3.html#volatility-of-a-2-stock-portfolio-6-output",
@@ -5674,7 +5674,7 @@
     "href": "teaching/financial_strategy/part_3.html#volatility-of-a-2-stock-portfolio-7",
     "title": "Estratégia Financeira",
     "section": "11.2 Volatility of a 2-stock portfolio",
-    "text": "11.2 Volatility of a 2-stock portfolio\nSame graph using prices in day 1 = $100.\n\nRPython\n\n\n\n\nR\nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\np&lt;-ggplot(stock1, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        geom_line(data=stock2) +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"Two assets returns, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nplt.close()\nstock1 = data[stocks[0]]\nstock2 = data[stocks[1]]\nstock1 = (stock1 / stock1.iloc[0]) * 100\nstock2 = (stock2 / stock2.iloc[0]) * 100\nfig, ax = plt.subplots()\nax.plot(stock1.index, stock1.values, label=stocks[0])\nax.plot(stock2.index, stock2.values, label=stocks[1])\nax.set_ylabel('Price')\nax.set_title('Two assets returns, Initial price = 100')\nax.legend()\nplt.show()"
+    "text": "11.2 Volatility of a 2-stock portfolio\nCovariance and Correlation\nIf you don’t remember how to calculate manually the correlation, please take a look at the notes of your statistics lectures."
   },
   {
     "objectID": "teaching/financial_strategy/part_3.html#volatility-of-a-2-stock-portfolio-7-output",
@@ -5751,7 +5751,7 @@
     "href": "teaching/financial_strategy/part_3.html#volatility-of-a-large-portfolio-5",
     "title": "Estratégia Financeira",
     "section": "11.3 Volatility of a large portfolio",
-    "text": "11.3 Volatility of a large portfolio\n\nRPython\n\n\n\n\nR\nstart &lt;-'2015-01-01' \nend   &lt;-'2023-08-20'\n# Finding the tickers\ndata_temp &lt;- yf_collection_get(\"IBOV\", first_date = start,last_date = end,freq_data = \"monthly\")\ntickers&lt;-unique(data_temp$ticker)\ndf &lt;- data_temp %&gt;%  select(ref_date)  %&gt;% distinct()\n# Now collecting data\nfor (i in 1:length(tickers)) {\ndata &lt;- yf_get(tickers[[i]],first_date = start,last_date = end,freq_data = \"monthly\")\ndata &lt;- data[complete.cases(data),] \ndata &lt;- data %&gt;%  select(ref_date, ret_closing_prices)\ncolnames(data) &lt;- c(\"ref_date\",  tickers[[i]]  )\ndf &lt;- merge(df,data,by=\"ref_date\")\n}\ndf$ref_date &lt;- NULL\n# Setup to randomly combine \"j\" stocks and compute the standard deviation of this combination\nrows &lt;- 1000\nfinal &lt;- data.frame(matrix(NA,nrow = rows, ncol = length(tickers)))\nfor (j in 1:length(tickers) ) {\nfor (i in 1:rows ) {\ndf_r &lt;- as.data.frame(df[, sample(  ncol(df) , j )])\ncov &lt;- cov(df_r)\n# Var mean\nvar &lt;- as.data.frame(diag(cov))\nvar_mean &lt;- mean(var$`diag(cov)`)\n  #Covariance mean\n  if (j == 1) {\n  covar_mean &lt;- var_mean\n  } else {\n  covar &lt;- cov\n  diag(covar)=NA \n  covar[upper.tri(covar)] &lt;- NA\n  covar&lt;-c(covar)\n  covar_mean&lt;- mean(covar,na.rm=TRUE)\n  }\n# Port Sd.\nvar_p &lt;- (  (1/ j  * var_mean )   + (1- (1/j ) ) * covar_mean    ) ^ 0.5\nfinal[i,j] &lt;- var_p\n}\n}\n# Computing the average of the \"i\" portfolios with \"j\" stocks \nsd   &lt;- as.data.frame(colMeans(final))\nsd$N  &lt;- seq_along(sd[,1])\np&lt;- ggplot(sd, aes(y=`colMeans(final)` , x = N)) + geom_line() +\n        labs(x = \"Number of stocks (equal weight)\",\n             y='Standard deviation (monthly)', \n             title=\"Standard deviation of equally weighted portfolios\", \n             subtitle = \"01/01/2015-today (Brazilian stocks)\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\nPython\nstart = '2015-01-01'\nend = pd.Timestamp.now()\nstocks = [\"ABEV3.SA\",\"ALPA4.SA\",\"AMER3.SA\",\"B3SA3.SA\",\"BBAS3.SA\",\"BBDC3.SA\",\"BBDC4.SA\",\"BEEF3.SA\",\"BPAN4.SA\",\"BRAP4.SA\",\"BRFS3.SA\",\"BRKM5.SA\",\"BRML3.SA\",\"CCRO3.SA\",\"CIEL3.SA\",\"CMIG4.SA\",\"COGN3.SA\",\"CPFE3.SA\",\"CPLE6.SA\",\"CSAN3.SA\",\"CSNA3.SA\",\"CYRE3.SA\",\"DXCO3.SA\",\"ECOR3.SA\",\"EGIE3.SA\",\"ELET3.SA\",\"ELET6.SA\",\"EMBR3.SA\",\"ENBR3.SA\",\"ENEV3.SA\",\"ENGI11.SA\",\"EQTL3.SA\",\"EZTC3.SA\",\"FLRY3.SA\",\"GGBR4.SA\",\"GOAU4.SA\",\"GOLL4.SA\",\"HYPE3.SA\",\"ITSA4.SA\",\"ITUB4.SA\",\"JBSS3.SA\",\"JHSF3.SA\",\"LREN3.SA\",\"MGLU3.SA\",\"MRFG3.SA\",\"MRVE3.SA\",\"MULT3.SA\",\"PCAR3.SA\",\"PETR3.SA\",\"PETR4.SA\",\"PRIO3.SA\",\"QUAL3.SA\",\"RADL3.SA\",\"RENT3.SA\",\"SANB11.SA\",\"SBSP3.SA\",\"SULA11.SA\",\"SUZB3.SA\",\"TAEE11.SA\",\"TIMS3.SA\",\"TOTS3.SA\",\"UGPA3.SA\",\"USIM5.SA\",\"VALE3.SA\",\"VIIA3.SA\",\"VIVT3.SA\",\"WEGE3.SA\",\"YDUQ3.SA\"]\ndata_temp = yf.download(stocks,start=start,end=end,interval='1mo', group_by='ticker')\ndf = data_temp.loc[:, (slice(None), 'Adj Close')].droplevel(level=1, axis=1)\ndf = df.pct_change()\nrows = 1000\nfinal = pd.DataFrame(np.empty((rows, len(data_temp))) * np.nan)\nfor j in range(len(stocks)):\n    for i in range(rows):\n        df_r = df.iloc[:, np.random.choice(df.shape[1], j+1, replace=False)]\n        cov = df_r.cov()\n        var = pd.DataFrame(np.diag(cov))\n        var_mean = var.mean().item()\n        if j == 0:\n            covar_mean = var_mean\n        else:\n            covar = cov.copy()\n            np.fill_diagonal(covar.values, np.nan)\n            covar = covar.where(np.triu(np.ones(covar.shape)).astype(np.bool_))\n            covar_mean = covar.stack().mean()\n        var_p = ((1/(j+1) * var_mean) + (1 - 1/(j+1)) * covar_mean) ** 0.5\n        final.iloc[i, j] = var_p\n# Computing the average of the \"i\" portfolios with \"j\" stocks \nsd = final.mean(axis=0).reset_index()\nsd = sd.rename(columns={'index': 'N', 0: 'colMeans(final)'})\nsd['N'] = sd['N'] + 1\n\nplt.close()\nplt.plot(sd['N'], sd['colMeans(final)'])\nplt.xlabel('Number of stocks (equal weight)')\nplt.ylabel('Standard deviation (monthly)')\nplt.title('Standard deviation of equally weighted portfolios')\nplt.suptitle('01/01/2015-today (Brazilian stocks)')\nplt.show()"
+    "text": "11.3 Volatility of a large portfolio\n\nRPython\n\n\n\n\nR\nstart &lt;-'2015-01-01' \nend   &lt;-'2023-12-01'\n# Finding the tickers\ndata_temp &lt;- yf_collection_get(\"IBOV\", first_date = start, last_date = end, freq_data = \"monthly\")\ntickers&lt;-unique(data_temp$ticker)\ndf &lt;- data_temp %&gt;%  select(ref_date)  %&gt;% distinct()\n# Now collecting data\nfor (i in 1:length(tickers)) {\ndata &lt;- yf_get(tickers[[i]],first_date = start,last_date = end,freq_data = \"monthly\")\ndata &lt;- data[complete.cases(data),] \ndata &lt;- data %&gt;%  select(ref_date, ret_closing_prices)\ncolnames(data) &lt;- c(\"ref_date\",  tickers[[i]]  )\ndf &lt;- merge(df,data,by=\"ref_date\")\n}\ndf$ref_date &lt;- NULL\n# Setup to randomly combine \"j\" stocks and compute the standard deviation of this combination\nrows &lt;- 1000\nfinal &lt;- data.frame(matrix(NA,nrow = rows, ncol = length(tickers)))\nfor (j in 1:length(tickers) ) {\nfor (i in 1:rows ) {\ndf_r &lt;- as.data.frame(df[, sample(  ncol(df) , j )])\ncov &lt;- cov(df_r)\n# Var mean\nvar &lt;- as.data.frame(diag(cov))\nvar_mean &lt;- mean(var$`diag(cov)`)\n  #Covariance mean\n  if (j == 1) {\n  covar_mean &lt;- var_mean\n  } else {\n  covar &lt;- cov\n  diag(covar)=NA \n  covar[upper.tri(covar)] &lt;- NA\n  covar&lt;-c(covar)\n  covar_mean&lt;- mean(covar,na.rm=TRUE)\n  }\n# Port Sd.\nvar_p &lt;- (  (1/ j  * var_mean )   + (1- (1/j ) ) * covar_mean    ) ^ 0.5\nfinal[i,j] &lt;- var_p\n}\n}\n# Computing the average of the \"i\" portfolios with \"j\" stocks \nsd   &lt;- as.data.frame(colMeans(final))\nsd$N  &lt;- seq_along(sd[,1])\np&lt;- ggplot(sd, aes(y=`colMeans(final)` , x = N)) + geom_line() +\n        labs(x = \"Number of stocks (equal weight)\",\n             y='Standard deviation (monthly)', \n             title=\"Standard deviation of equally weighted portfolios\", \n             subtitle = \"01/01/2015-today (Brazilian stocks)\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\nPython\nstart = '2015-01-01'\nend = pd.Timestamp.now()\nstocks = [\"ABEV3.SA\",\"ALPA4.SA\",\"AMER3.SA\",\"B3SA3.SA\",\"BBAS3.SA\",\"BBDC3.SA\",\"BBDC4.SA\",\"BEEF3.SA\",\"BPAN4.SA\",\"BRAP4.SA\",\"BRFS3.SA\",\"BRKM5.SA\",\"BRML3.SA\",\"CCRO3.SA\",\"CIEL3.SA\",\"CMIG4.SA\",\"COGN3.SA\",\"CPFE3.SA\",\"CPLE6.SA\",\"CSAN3.SA\",\"CSNA3.SA\",\"CYRE3.SA\",\"DXCO3.SA\",\"ECOR3.SA\",\"EGIE3.SA\",\"ELET3.SA\",\"ELET6.SA\",\"EMBR3.SA\",\"ENBR3.SA\",\"ENEV3.SA\",\"ENGI11.SA\",\"EQTL3.SA\",\"EZTC3.SA\",\"FLRY3.SA\",\"GGBR4.SA\",\"GOAU4.SA\",\"GOLL4.SA\",\"HYPE3.SA\",\"ITSA4.SA\",\"ITUB4.SA\",\"JBSS3.SA\",\"JHSF3.SA\",\"LREN3.SA\",\"MGLU3.SA\",\"MRFG3.SA\",\"MRVE3.SA\",\"MULT3.SA\",\"PCAR3.SA\",\"PETR3.SA\",\"PETR4.SA\",\"PRIO3.SA\",\"QUAL3.SA\",\"RADL3.SA\",\"RENT3.SA\",\"SANB11.SA\",\"SBSP3.SA\",\"SULA11.SA\",\"SUZB3.SA\",\"TAEE11.SA\",\"TIMS3.SA\",\"TOTS3.SA\",\"UGPA3.SA\",\"USIM5.SA\",\"VALE3.SA\",\"VIIA3.SA\",\"VIVT3.SA\",\"WEGE3.SA\",\"YDUQ3.SA\"]\ndata_temp = yf.download(stocks,start=start,end=end,interval='1mo', group_by='ticker')\ndf = data_temp.loc[:, (slice(None), 'Adj Close')].droplevel(level=1, axis=1)\ndf = df.pct_change()\nrows = 1000\nfinal = pd.DataFrame(np.empty((rows, len(data_temp))) * np.nan)\nfor j in range(len(stocks)):\n    for i in range(rows):\n        df_r = df.iloc[:, np.random.choice(df.shape[1], j+1, replace=False)]\n        cov = df_r.cov()\n        var = pd.DataFrame(np.diag(cov))\n        var_mean = var.mean().item()\n        if j == 0:\n            covar_mean = var_mean\n        else:\n            covar = cov.copy()\n            np.fill_diagonal(covar.values, np.nan)\n            covar = covar.where(np.triu(np.ones(covar.shape)).astype(np.bool_))\n            covar_mean = covar.stack().mean()\n        var_p = ((1/(j+1) * var_mean) + (1 - 1/(j+1)) * covar_mean) ** 0.5\n        final.iloc[i, j] = var_p\n# Computing the average of the \"i\" portfolios with \"j\" stocks \nsd = final.mean(axis=0).reset_index()\nsd = sd.rename(columns={'index': 'N', 0: 'colMeans(final)'})\nsd['N'] = sd['N'] + 1\n\nplt.close()\nplt.plot(sd['N'], sd['colMeans(final)'])\nplt.xlabel('Number of stocks (equal weight)')\nplt.ylabel('Standard deviation (monthly)')\nplt.title('Standard deviation of equally weighted portfolios')\nplt.suptitle('01/01/2015-today (Brazilian stocks)')\nplt.show()"
   },
   {
     "objectID": "teaching/financial_strategy/part_3.html#volatility-of-a-large-portfolio-6",
@@ -5842,7 +5842,7 @@
     "href": "teaching/financial_strategy/part_3.html#choosing-an-efficient-portfolio-3",
     "title": "Estratégia Financeira",
     "section": "11.4 Choosing an Efficient Portfolio",
-    "text": "11.4 Choosing an Efficient Portfolio\nExample with real data\n\nRPython\n\n\n\n\nR\nlibrary(yfR)\nlibrary(kableExtra)\nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \nfreq_data &lt;-  'monthly'\nticker1 &lt;- 'BBDC3.SA'\nticker2 &lt;- 'PETR3.SA'\nasset1 &lt;- yf_get(tickers = ticker1, first_date = start,last_date = end,freq_data = freq_data)\nasset2 &lt;- yf_get(tickers = ticker2, first_date = start,last_date = end,freq_data = freq_data)\nasset1&lt;-asset1[complete.cases(asset1),] \nasset2&lt;-asset2[complete.cases(asset2),] \ner_1 &lt;- mean(asset1$ret_adjusted_prices) \ner_2 &lt;- mean(asset2$ret_adjusted_prices)\nsd_1 &lt;- sd(asset1$ret_adjusted_prices) \nsd_2 &lt;- sd(asset2$ret_adjusted_prices) \ntable &lt;- data.frame(\"Ticker\" = c(ticker1 , ticker2), \n                 \"ER\" = c(er_1* 100 , er_2* 100), \n                 \"SD\" = c(sd_1* 100, sd_2* 100)) \nkable(table,col.names = c(\"Ticker\", \"Expected Return\", \"Standard Deviation\"), \n            align = c(\"l\", \"r\", \"r\"), \n            format.args = list(big.mark = \",\", decimal.mark = \".\", scientific = FALSE), \n            caption = \"Summary statistics (monthly returns since 2010)\") %&gt;%\n  kable_styling(bootstrap_options = \"striped\")\n\n\n\nSummary statistics (monthly returns since 2010)\n\n\nTicker\nExpected Return\nStandard Deviation\n\n\n\n\nBBDC3.SA\n1.101015\n8.838784\n\n\nPETR3.SA\n1.491750\n12.793361\n\n\n\n\n\n\n\n\n\n\n\nR\np&lt;-ggplot(table, aes(x = SD, y = ER, color = Ticker)) +\n      geom_point(size = 4) +\n      theme_bw() + \n      ggtitle(\"Risk-Return Tradeoff, 2010 to 2023.\") +\n      xlab(\"Standard deviation\") + ylab(\"Expected Return\") +\n      scale_y_continuous( limits = c(min(table$ER)*0.95, max(table$ER)*1.05)) +\n      scale_x_continuous( limits = c(min(table$SD)*0.95, max(table$SD)*1.05))+   theme_solarized()\nggplotly(p)"
+    "text": "11.4 Choosing an Efficient Portfolio\nExample with real data\n\nRPython\n\n\n\n\nR\nlibrary(yfR)\nlibrary(kableExtra)\nstart &lt;-'2010-01-01' \nend   &lt;-Sys.Date()  \nfreq_data &lt;-  'monthly'\nticker1 &lt;- 'BBDC3.SA'\nticker2 &lt;- 'PETR3.SA'\nasset1 &lt;- yf_get(tickers = ticker1, first_date = start,last_date = end,freq_data = freq_data)\nasset2 &lt;- yf_get(tickers = ticker2, first_date = start,last_date = end,freq_data = freq_data)\nasset1&lt;-asset1[complete.cases(asset1),] \nasset2&lt;-asset2[complete.cases(asset2),] \ner_1 &lt;- mean(asset1$ret_adjusted_prices) \ner_2 &lt;- mean(asset2$ret_adjusted_prices)\nsd_1 &lt;- sd(asset1$ret_adjusted_prices) \nsd_2 &lt;- sd(asset2$ret_adjusted_prices) \ntable &lt;- data.frame(\"Ticker\" = c(ticker1 , ticker2), \n                 \"ER\" = c(er_1* 100 , er_2* 100), \n                 \"SD\" = c(sd_1* 100, sd_2* 100)) \nkable(table,col.names = c(\"Ticker\", \"Expected Return\", \"Standard Deviation\"), \n            align = c(\"l\", \"r\", \"r\"), \n            format.args = list(big.mark = \",\", decimal.mark = \".\", scientific = FALSE), \n            caption = \"Summary statistics (monthly returns since 2010)\") %&gt;%\n  kable_styling(bootstrap_options = \"striped\")\n\n\n\nSummary statistics (monthly returns since 2010)\n\n\nTicker\nExpected Return\nStandard Deviation\n\n\n\n\nBBDC3.SA\n1.103609\n8.841441\n\n\nPETR3.SA\n1.489209\n12.792938\n\n\n\n\n\n\n\n\n\n\n\nR\np&lt;-ggplot(table, aes(x = SD, y = ER, color = Ticker)) +\n      geom_point(size = 4) +\n      theme_bw() + \n      ggtitle(\"Risk-Return Tradeoff, 2010 to 2023.\") +\n      xlab(\"Standard deviation\") + ylab(\"Expected Return\") +\n      scale_y_continuous( limits = c(min(table$ER)*0.95, max(table$ER)*1.05)) +\n      scale_x_continuous( limits = c(min(table$SD)*0.95, max(table$SD)*1.05))+   theme_solarized()\nggplotly(p)"
   },
   {
     "objectID": "teaching/financial_strategy/part_3.html#choosing-an-efficient-portfolio-4",
@@ -6059,7 +6059,7 @@
     "href": "teaching/financial_strategy/part_3.html#the-capm-3",
     "title": "Estratégia Financeira",
     "section": "11.7 The CAPM",
-    "text": "11.7 The CAPM\n\nRPython\n\n\n\n\nR\np&lt;-ggplot(port, aes(x=Sd, y=Return)) +\n        geom_point(alpha=0.2) +\n        xlab(\"Standard deviation\") + ylab(\"Expected Return\") + \n        labs(title = paste(int ,  \"random portfolios - All Ibov (2010-2023, yearly returns)\") ) + \n        geom_abline(intercept = 0.1, slope = max(port$sharpe), color=\"red\", size=1) +\n        xlim(0, 0.4) + ylim(0.075, 0.25) +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nplt.close()\nplt.figure(figsize=(20,10))\nplt.scatter(port['Sd'], port['Return'], alpha=0.5, color=\"darkblue\", s=50)\nplt.xlabel('Standard deviation', fontsize=25)\nplt.ylabel('Expected Return', fontsize=25)\nplt.title(str(int_) + ' random portfolios - All Ibov (2010-2023, monthly returns)' , fontsize=25)\nplt.xlim(0, 0.02+max(port['Sd']))\nplt.ylim(0, 0.02+max(port['Return']))\nax.tick_params(axis='both', which='major', labelsize=14)\nplt.plot([0, 0.75], [port['rf'].iloc[0], port['sharpe'].max()], color='red')\nplt.show()"
+    "text": "11.7 The CAPM\n\n\nR\np&lt;-ggplot(port, aes(x=Sd, y=Return)) +\n        geom_point(alpha=0.2) +\n        xlab(\"Standard deviation\") + ylab(\"Expected Return\") + \n        labs(title = paste(int ,  \"random portfolios - All Ibov (2010-2023, yearly returns)\") ) + \n        geom_abline(intercept = 0.1, slope = max(port$sharpe), color=\"red\", size=1) +\n        xlim(0, 0.4) + ylim(0.075, 0.25) +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\nPython\nplt.close()\nplt.figure(figsize=(20,10))\nplt.scatter(port['Sd'], port['Return'], alpha=0.5, color=\"darkblue\", s=50)\nplt.xlabel('Standard deviation', fontsize=25)\nplt.ylabel('Expected Return', fontsize=25)\nplt.title(str(int_) + ' random portfolios - All Ibov (2010-2023, monthly returns)' , fontsize=25)\nplt.xlim(0, 0.02+max(port['Sd']))\nplt.ylim(0, 0.02+max(port['Return']))\nax.tick_params(axis='both', which='major', labelsize=14)\nplt.plot([0, 0.75], [port['rf'].iloc[0], port['sharpe'].max()], color='red')\nplt.show()"
   },
   {
     "objectID": "teaching/financial_strategy/part_3.html#the-capm-5",
@@ -6192,28 +6192,28 @@
     "href": "teaching/financial_strategy/part_4.html#section-6",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 1\n\n\n\n\n\nEasy:\n\n\n\n\nHard:"
+    "text": "Question 1"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#section-7",
     "href": "teaching/financial_strategy/part_4.html#section-7",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 2\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 2"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#section-8",
     "href": "teaching/financial_strategy/part_4.html#section-8",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 3\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 3"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#section-9",
     "href": "teaching/financial_strategy/part_4.html#section-9",
     "title": "Estratégia Financeira",
     "section": "",
-    "text": "Question 4\n\n\n\n\n\nEasy:\n\n\n\n\n\n\nHard:"
+    "text": "Question 4"
   },
   {
     "objectID": "teaching/financial_strategy/part_4.html#how-did-you-like-this-lecture-1",
@@ -6260,6 +6260,69 @@
   {
     "objectID": "teaching/financial_strategy/part_8.html#how-did-you-like-this-lecture",
     "href": "teaching/financial_strategy/part_8.html#how-did-you-like-this-lecture",
+    "title": "Estratégia Financeira",
+    "section": "How did you like this lecture?",
+    "text": "How did you like this lecture?\nYour response:\n\n\n\nAverage response:"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_3.html#section-1",
+    "href": "teaching/financial_strategy/part_3.html#section-1",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Same graph using prices in day 1 = $100.\n\nRPython\n\n\n\n\nR\nstock1 &lt;- subset(data, ticker == stocks[1])\nstock2 &lt;- subset(data, ticker == stocks[2])\nstock1$price_close2 &lt;- stock1$price_close  / stock1$price_close[1] * 100\nstock2$price_close2 &lt;- stock2$price_close  / stock2$price_close[1] * 100\np&lt;-ggplot(stock1, aes(ref_date , price_close2, color=ticker))+\n        geom_line() +\n        geom_line(data=stock2) +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"Two assets returns, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nplt.close()\nstock1 = data[stocks[0]]\nstock2 = data[stocks[1]]\nstock1 = (stock1 / stock1.iloc[0]) * 100\nstock2 = (stock2 / stock2.iloc[0]) * 100\nfig, ax = plt.subplots()\nax.plot(stock1.index, stock1.values, label=stocks[0])\nax.plot(stock2.index, stock2.values, label=stocks[1])\nax.set_ylabel('Price')\nax.set_title('Two assets returns, Initial price = 100')\nax.legend()\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_3.html#section-2",
+    "href": "teaching/financial_strategy/part_3.html#section-2",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Let’s compute the average return of a portfolio with 40% invested in A and 60% in B. The portfolio return is the average return of the assets.\n\nRPython\n\n\n\n\nR\n# Defining weights and calculating portfolio return (daily)\nw &lt;- c(0.40, 0.60)\n# Creating a df with stocks and weights\nw_tbl &lt;- tibble(ticker = stocks,w = w)\n# Including the weights in the df prices (which contains the prices)\nprices  &lt;- left_join(data ,w_tbl, by = 'ticker')\n# calculating the product of return times the portfolio weights for all days (this is necessary to calculate average return)\nprices$w_ret &lt;- prices$ret_closing_prices * prices$w\n# Creating a dataframe with portfolio returns \nport_ret &lt;- prices %&gt;%\n  group_by(ref_date) %&gt;%\n  summarise(port_ret = sum(w_ret))\n# Creating prices from the vector of returns\nport_ret$price_close2 &lt;- cumprod(1+port_ret$port_ret) * 100\n# Graph with all returns\nport_ret$ticker &lt;- 'Portfolio'\np &lt;- ggplot(stock1, aes(ref_date , price_close2, color = ticker))+\n        geom_line() +geom_line(data=stock2) +geom_line(data=port_ret) +\n        labs(x = \"\",\n             y='Closing prices', \n             title=\"Two assets and Portfolio returns, Initial price = 100\", \n             subtitle = \"Begin 01/01/2010\") +   theme_solarized()\nggplotly(p)\n\n\n\n\n\n\n\n\n\n\nPython\nplt.close()\nw = [0.40, 0.60]\n# Calculate the weighted returns for each stock\nreturns = data.pct_change().dropna()\nweighted_returns = returns.mul(w, axis=1)\n# Calculate the portfolio returns by taking the sum of the weighted returns\nportfolio_returns = weighted_returns.sum(axis=1)\n# Calculate the cumulative returns for each series\nstock_returns_cum = (1 + returns).cumprod() * 100\nportfolio_returns_cum = (1 + portfolio_returns).cumprod() * 100\n# Plot the results\nfig, ax = plt.subplots(figsize=(12, 6))\nax.plot(stock_returns_cum)\nax.plot(portfolio_returns_cum, label='Portfolio')\nax.set(title='Two assets and Portfolio returns, Initial price = 100', xlabel='', ylabel='Closing prices')\nax.legend()\nplt.show()"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_3.html#section-3",
+    "href": "teaching/financial_strategy/part_3.html#section-3",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 1"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_3.html#section-4",
+    "href": "teaching/financial_strategy/part_3.html#section-4",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 2"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_3.html#section-5",
+    "href": "teaching/financial_strategy/part_3.html#section-5",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 3"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_3.html#section-6",
+    "href": "teaching/financial_strategy/part_3.html#section-6",
+    "title": "Estratégia Financeira",
+    "section": "",
+    "text": "Question 4"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_7.html#how-did-you-like-this-lecture",
+    "href": "teaching/financial_strategy/part_7.html#how-did-you-like-this-lecture",
+    "title": "Estratégia Financeira",
+    "section": "How did you like this lecture?",
+    "text": "How did you like this lecture?\nYour response:\n\n\n\nAverage response:"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_9.html#how-did-you-like-this-lecture",
+    "href": "teaching/financial_strategy/part_9.html#how-did-you-like-this-lecture",
+    "title": "Estratégia Financeira",
+    "section": "How did you like this lecture?",
+    "text": "How did you like this lecture?\nYour response:\n\n\n\nAverage response:"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_10.html#how-did-you-like-this-lecture",
+    "href": "teaching/financial_strategy/part_10.html#how-did-you-like-this-lecture",
     "title": "Estratégia Financeira",
     "section": "How did you like this lecture?",
     "text": "How did you like this lecture?\nYour response:\n\n\n\nAverage response:"

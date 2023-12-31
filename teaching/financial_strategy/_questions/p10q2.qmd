@@ -6,14 +6,18 @@ format:
     theme: themecustom.scss
     fontsize: 1.4em
 ---
+
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Q:** Modigliani-Miller theorem suggests that dividend policy is irrelevant in a world of perfect capital markets, as it doesn't affect the overall value of the firm."
-q1_choices <- c( answer="True", "False")
+q1 <- " **Which of the following sentences is TRUE?**"
+q1_choices <- c("According to the dividend signaling hypothesis, when a company increases its dividend payments, it generally signals that it expects lower future earnings.",
+                answer="In the presence of asymmetric information between managers and shareholders, payout decisions may serve as signals of the firm's future prospects. Managers with better information may strategically set a firm's payout to communicate their private knowledge to the market.",
+                "According to the Modigliani-Miller theorem, in the absence of taxes, dividend policy has a significant impact on a firm's overall value.") 
 cat(q1,longmcq(q1_choices))
+
 ```
 
