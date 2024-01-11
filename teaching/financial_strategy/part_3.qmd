@@ -921,6 +921,11 @@ plt.show()
 
 ## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
 
+
+::: panel-tabset
+
+### R 
+
 ```{r}
 #| warning: false
 #| message: false
@@ -979,7 +984,7 @@ ggarrange(plot_list[[1]], plot_list[[2]], plot_list[[3]],
 
 
 
-## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+### Python
 
 ```{python}
 #| warning: false
@@ -1032,7 +1037,7 @@ plt.show()
 ```
 
 
-
+:::
 
 
 
@@ -2549,6 +2554,9 @@ All investors will have a combination of the Market Portfolio and the Rf rate.
 
 ## 11.7 The CAPM {.smaller background="#c9f7ba"}
 
+::: {.panel-tabset}
+
+### R
 
 ```{r}
 #| warning: false
@@ -2568,6 +2576,8 @@ p<-ggplot(port, aes(x=Sd, y=Return)) +
         xlim(0, 0.4) + ylim(0.075, 0.25) +   theme_solarized()
 ggplotly(p)
 ```
+
+### Python
 
 
 ```{python}
@@ -2596,7 +2606,7 @@ plt.plot([0, 0.75], [port['rf'].iloc[0], port['sharpe'].max()], color='red')
 plt.show()
 ```
 
-
+:::
 
 
 
@@ -3145,7 +3155,6 @@ ggplotly(p)
 
 
 
-#  Recap {.smaller visibility="hidden"}
 
 ##  Recap {.smaller visibility="hidden"}
 
@@ -3164,17 +3173,6 @@ ggplotly(p)
 - Define the Sharpe ratio, and explain how it helps identify the portfolio with the highest possible expected return for any level of volatility, and how this information can be used to identify the tangency (efficient) portfolio.
 
 - Calculate the beta of an investment with a portfolio.
-
-
-
-
-
-
-
-
-
-
-
 
 
 
