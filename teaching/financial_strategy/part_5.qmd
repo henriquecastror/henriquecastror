@@ -715,10 +715,10 @@ However, it is not actually necessary to identify the efficient portfolio itself
 $$E[R_s] = R_f + \beta_s^m \times (E[R_m]− R_f)  + \beta_s^{SMB} \times E[R_{SMB}] + \beta_s^{HML} \times E[R_{HML}] + \beta_s^{Mon} \times E[R_{Mom}] $$
 
 - **SMB**: small-minus-big  portfolio
-  - A strategy that each year buys a portfolio of small stocks and sells a portfolio of big stocks.
+  - A strategy that buys a portfolio of small stocks and sells a portfolio of big stocks.
 
 - **HML**: high-minus-low
-  - A trading strategy that each year buys an equally weighted portfolio of stocks with a book-to-market ratio less than the 30th percentile of NYSE firms and finances this position by short selling an equally weighted portfolio of stocks with a book-to-market ratio greater than the 70th percentile of NYSE stocks.
+  - A trading strategy that buys an equally weighted portfolio of stocks with a book-to-market ratio less than the 30th percentile of NYSE firms and finances this position by short selling an equally weighted portfolio of stocks with a book-to-market ratio greater than the 70th percentile of NYSE stocks.
   
 
 - **Mom (PR1YR)**: Momentum
