@@ -121,7 +121,7 @@ A date, generally within a month after the record date, on which a firm mails di
 
 
 
-
+ 
 
 
 
@@ -256,6 +256,12 @@ Interest on equity used to be an important instrument when inflation rates were 
 
 - Genron has no debt, its equity cost of capital equals its unlevered cost of capital of 12%.
 
+- 10 million shares outstanding; future free cash flows of 48 million per year.
+
+
+
+**Assume perfect Capital Markets.**
+
 
 
 
@@ -321,7 +327,7 @@ Stock price: $\frac{5.04}{0.12}=42$
 
 **In perfect capital markets, an open market share repurchase has no effect on the stock price, and the stock price is the same as the cum-dividend price if a dividend were paid instead.**
 
-**Cum-dividend**: When a stock trades before the ex-dividend date, entitling anyone who buys the stock to the dividend.
+**Cum-dividend**: When a stock trades before the ex-dividend date, entitling anyone who buys the stock to the dividend ($42 in this example).
 
 . . .
 
@@ -573,15 +579,10 @@ A firm’s **free cash flow** determines the level of payouts that it can make t
 
 The preference for share repurchases rather than dividends depends on the difference between the dividend tax rate and the capital gains tax rate.
 
-**The Effective Dividend Tax Rate**
-
-Consider buying a stock just before it goes ex-dividend and selling the stock just after
-
-The equilibrium condition is: 
+**The Effective Dividend Tax Rate**: Consider buying a stock just before it goes ex-dividend and selling the stock just after. The equilibrium condition is: 
 
 $$(P_{cum}-P_{ex})\times(1-\tau_g) = Div(1-\tau_d)$$
 
-. . .
 
 which changes to:
 
@@ -589,12 +590,6 @@ $$P_{cum}-P_{ex} = Div\times\frac{1-\tau_d}{1-\tau_g} = Div \times [ 1 - \frac{\
 
 
 
-
-
-
-## 17.4 Dividend Capture and Tax Clienteles {.smaller  background="#FFF3A6"}
-
-Thus, **the Effective Dividend Tax Rate** is
 
 $$\tau^*_d = \frac{\tau_d - \tau_g}{1-\tau_g}  $$
 
@@ -934,7 +929,7 @@ If Altgreen repurchases shares, it will repurchase $\frac{300mil}{9.77}=30.71$ m
 
 - Share repurchases are a credible signal that the shares are underpriced, because if they are overpriced a share repurchase is costly for current shareholders.
 - If investors believe that managers have better information regarding the firm’s prospects and act on behalf of current shareholders, then investors will react favorably to share repurchase announcements.
-- But, announcing a share repurchase today does not necessarily represent a long-term commitment to repurchase shares. Dividends is a stronger signal in this regard.
+- But, announcing a share repurchase today does not necessarily represent a long-term commitment to repurchase shares. **Dividends is a stronger signal in this regard.**
 - Also, a firm may announce a share repurchase program but not repurchase any shares. It is not mandatory to buy back shares. But once the firm announces dividends payment, it has to pay.
 
 
