@@ -1,0 +1,1069 @@
+---
+title: "ABS list"
+slide-format: revealjs
+comments: false
+toc: true
+---
+
+
+# ABS List
+
+This is the list of journals listed as ABS4\*, ABS4, ABS3 or ABS2.
+
+**Updated in: "2024-01-30"**
+
+## ABS4
+
+
+::: {.cell}
+::: {.cell-output-display}
+
+
+|SSN       |Field           |Journal Title                                      |AJG 2021 |
+|:---------|:---------------|:--------------------------------------------------|:--------|
+|1558-7967 |ACCOUNT         |Accounting Review                                  |4*       |
+|1873-6289 |ACCOUNT         |Accounting, Organizations and Society              |4*       |
+|1879-1980 |ACCOUNT         |Journal of Accounting and Economics                |4*       |
+|1475-679X |ACCOUNT         |Journal of Accounting Research                     |4*       |
+|1944-7981 |ECON            |American Economic Review                           |4*       |
+|2168-8966 |ECON            |Annals of Statistics                               |4*       |
+|1468-0262 |ECON            |Econometrica                                       |4*       |
+|1537-534X |ECON            |Journal of Political Economy                       |4*       |
+|1531-4650 |ECON            |Quarterly Journal of Economics                     |4*       |
+|1467-937X |ECON            |Review of Economic Studies                         |4*       |
+|1941-6067 |ETHICS-CSR-MAN  |Academy of Management Annals                       |4*       |
+|1948-0989 |ETHICS-CSR-MAN  |Academy of Management Journal                      |4*       |
+|1930-3807 |ETHICS-CSR-MAN  |Academy of Management Review                       |4*       |
+|1930-3815 |ETHICS-CSR-MAN  |Administrative Science Quarterly                   |4*       |
+|1557-1211 |ETHICS-CSR-MAN  |Journal of Management                              |4*       |
+|1540-6261 |FINANCE         |Journal of Finance                                 |4*       |
+|0304-405X |FINANCE         |Journal of Financial Economics                     |4*       |
+|1465-7368 |FINANCE         |Review of Financial Studies                        |4*       |
+|1748-8583 |HRM&EMP         |Human Resource Management Journal (UK)             |4*       |
+|1478-6990 |IB&AREA         |Journal of International Business Studies          |4*       |
+|1526-5536 |INFO MAN        |Information Systems Research                       |4*       |
+|1558-3457 |INFO MAN        |Journal of the Association for Information Systems |4*       |
+|2162-9730 |INFO MAN        |MIS Quarterly: Management Information Systems      |4*       |
+|1873-7625 |INNOV           |Research Policy                                    |4*       |
+|1944-9585 |MDEV&EDU        |Academy of Management Learning and Education       |4*       |
+|1532-7663 |MKT             |Journal of Consumer Psychology                     |4*       |
+|1537-5277 |MKT             |Journal of Consumer Research                       |4*       |
+|1547-7185 |MKT             |Journal of Marketing                               |4*       |
+|1547-7193 |MKT             |Journal of Marketing Research                      |4*       |
+|1552-7824 |MKT             |Journal of the Academy of Marketing Science        |4*       |
+|1526-548X |MKT             |Marketing Science                                  |4*       |
+|1873-1317 |OPS&TECH        |Journal of Operations Management                   |4*       |
+|1526-5501 |OR&MANSCI       |Management Science                                 |4*       |
+|1526-5463 |OR&MANSCI       |Operations Research                                |4*       |
+|1526-5455 |ORG STUD        |Organization Science                               |4*       |
+|1467-9280 |PSYCH (GENERAL) |Psychological Science                              |4*       |
+|1939-1854 |PSYCH (WOP-OB)  |Journal of Applied Psychology                      |4*       |
+|1744-6570 |PSYCH (WOP-OB)  |Personnel Psychology                               |4*       |
+|1540-6210 |PUB SEC         |Public Administration Review                       |4*       |
+|1537-5390 |SOC SCI         |American Journal of Sociology                      |4*       |
+|1939-8271 |SOC SCI         |American Sociological Review                       |4*       |
+|1545-2115 |SOC SCI         |Annual Review of Sociology                         |4*       |
+|1097-0266 |STRAT           |Strategic Management Journal                       |4*       |
+
+
+:::
+:::
+
+
+## ABS4
+
+
+::: {.cell}
+::: {.cell-output-display}
+
+
+|SSN       |Field                                      |Journal Title                                                               | AJG 2021|
+|:---------|:------------------------------------------|:---------------------------------------------------------------------------|--------:|
+|1911-3846 |ACCOUNT                                    |Contemporary Accounting Research                                            |        4|
+|1573-7136 |ACCOUNT                                    |Review of Accounting Studies                                                |        4|
+|1743-7938 |BUS HIST & ECON HIST                       |Business History                                                            |        4|
+|2044-768X |BUS HIST & ECON HIST                       |Business History Review                                                     |        4|
+|1468-0289 |BUS HIST & ECON HIST                       |Economic History Review                                                     |        4|
+|1945-7790 |ECON                                       |American Economic Journal: Applied Economics                                |        4|
+|1945-7715 |ECON                                       |American Economic Journal: Macroeconomics                                   |        4|
+|1464-3510 |ECON                                       |Biometrika                                                                  |        4|
+|1469-4360 |ECON                                       |Econometric Theory                                                          |        4|
+|1468-0297 |ECON                                       |Economic Journal                                                            |        4|
+|1468-2354 |ECON                                       |International Economic Review                                               |        4|
+|1537-2707 |ECON                                       |Journal of Business and Economic Statistics                                 |        4|
+|1872-6895 |ECON                                       |Journal of Econometrics                                                     |        4|
+|2328-8175 |ECON                                       |Journal of Economic Literature                                              |        4|
+|1944-7965 |ECON                                       |Journal of Economic Perspectives                                            |        4|
+|1095-7235 |ECON                                       |Journal of Economic Theory                                                  |        4|
+|1873-0353 |ECON                                       |Journal of International Economics                                          |        4|
+|1537-5307 |ECON                                       |Journal of Labor Economics                                                  |        4|
+|1873-1295 |ECON                                       |Journal of Monetary Economics                                               |        4|
+|1537-274X |ECON                                       |Journal of the American Statistical Association                             |        4|
+|1542-4774 |ECON                                       |Journal of the European Economic Association                                |        4|
+|1467-9868 |ECON                                       |Journal of the Royal Statistical Society. Series B: Statistical Methodology |        4|
+|1759-7331 |ECON                                       |Quantitative Economics                                                      |        4|
+|1756-2171 |ECON                                       |RAND Journal of Economics                                                   |        4|
+|1530-9142 |ECON                                       |Review of Economics and Statistics                                          |        4|
+|1555-7561 |ECON                                       |Theoretical Economics                                                       |        4|
+|1540-6520 |ENT-SBM                                    |Entrepreneurship Theory and Practice                                        |        4|
+|1873-2003 |ENT-SBM                                    |Journal of Business Venturing                                               |        4|
+|1932-443X |ENT-SBM                                    |Strategic Entrepreneurship Journal                                          |        4|
+|1558-9080 |ETHICS-CSR-MAN                             |Academy of Management Perspectives                                          |        4|
+|1467-8551 |ETHICS-CSR-MAN                             |British Journal of Management                                               |        4|
+|2153-3326 |ETHICS-CSR-MAN                             |Business Ethics Quarterly                                                   |        4|
+|1467-6486 |ETHICS-CSR-MAN                             |Journal of Management Studies                                               |        4|
+|1872-6313 |FINANCE                                    |Journal of Corporate Finance                                                |        4|
+|1756-6916 |FINANCE                                    |Journal of Financial and Quantitative Analysis                              |        4|
+|1096-0473 |FINANCE                                    |Journal of Financial Intermediation                                         |        4|
+|1538-4616 |FINANCE                                    |Journal of Money, Credit and Banking                                        |        4|
+|1573-692X |FINANCE                                    |Review of Finance                                                           |        4|
+|1467-8543 |HRM&EMP                                    |British Journal of Industrial Relations                                     |        4|
+|1099-050X |HRM&EMP                                    |Human Resource Management (USA)                                             |        4|
+|1468-232X |HRM&EMP                                    |Industrial Relations                                                        |        4|
+|1469-8722 |HRM&EMP                                    |Work, Employment and Society                                                |        4|
+|1878-5573 |IB&AREA                                    |Journal of World Business                                                   |        4|
+|1476-9344 |INFO MAN                                   |European Journal of Information Systems                                     |        4|
+|1365-2575 |INFO MAN                                   |Information Systems Journal                                                 |        4|
+|1466-4437 |INFO MAN                                   |Journal of Information Technology                                           |        4|
+|1557-928X |INFO MAN                                   |Journal of Management Information Systems                                   |        4|
+|1873-1198 |INFO MAN                                   |Journal of Strategic Information Systems                                    |        4|
+|1540-5885 |INNOV                                      |Journal of Product Innovation Management                                    |        4|
+|1873-8001 |MKT                                        |International Journal of Research in Marketing                              |        4|
+|1873-3271 |MKT                                        |Journal of Retailing                                                        |        4|
+|1758-6593 |OPS&TECH                                   |International Journal of Operations and Production Management               |        4|
+|1745-493X |OPS&TECH                                   |Journal of Supply Chain Management                                          |        4|
+|1937-5956 |OPS&TECH                                   |Production and Operations Management                                        |        4|
+|1872-6860 |OR&MANSCI                                  |European Journal of Operational Research                                    |        4|
+|1941-0026 |OR&MANSCI                                  |IEEE Transactions on Evolutionary Computation                               |        4|
+|1436-4646 |OR&MANSCI                                  |Mathematical Programming                                                    |        4|
+|1741-282X |ORG STUD                                   |Human Relations                                                             |        4|
+|1873-3409 |ORG STUD                                   |Leadership Quarterly                                                        |        4|
+|1741-3044 |ORG STUD                                   |Organization Studies                                                        |        4|
+|1552-7425 |ORG STUD                                   |Organizational Research Methods                                             |        4|
+|1545-2085 |PSYCH (GENERAL)                            |Annual Review of Psychology                                                 |        4|
+|1469-1825 |PSYCH (GENERAL)                            |Behavioral and Brain Sciences                                               |        4|
+|1873-7838 |PSYCH (GENERAL)                            |Cognition                                                                   |        4|
+|1467-8721 |PSYCH (GENERAL)                            |Current Directions in Psychological Science                                 |        4|
+|1939-2192 |PSYCH (GENERAL)                            |Journal of Experimental Psychology: Applied                                 |        4|
+|1939-2222 |PSYCH (GENERAL)                            |Journal of Experimental Psychology: General                                 |        4|
+|1096-0465 |PSYCH (GENERAL)                            |Journal of Experimental Social Psychology                                   |        4|
+|1939-1315 |PSYCH (GENERAL)                            |Journal of Personality and Social Psychology                                |        4|
+|1552-7433 |PSYCH (GENERAL)                            |Personality and Social Psychology Bulletin                                  |        4|
+|1939-1455 |PSYCH (GENERAL)                            |Psychological Bulletin                                                      |        4|
+|1939-1471 |PSYCH (GENERAL)                            |Psychological Review                                                        |        4|
+|2044-8325 |PSYCH (WOP-OB)                             |Journal of Occupational and Organizational Psychology                       |        4|
+|1939-1307 |PSYCH (WOP-OB)                             |Journal of Occupational Health Psychology                                   |        4|
+|1099-1379 |PSYCH (WOP-OB)                             |Journal of Organizational Behavior                                          |        4|
+|1095-9084 |PSYCH (WOP-OB)                             |Journal of Vocational Behavior                                              |        4|
+|1095-9920 |PSYCH (WOP-OB)                             |Organizational Behavior and Human Decision Processes                        |        4|
+|1464-5335 |PSYCH (WOP-OB)                             |Work and Stress                                                             |        4|
+|1468-0491 |PUB SEC                                    |Governance                                                                  |        4|
+|1477-9803 |PUB SEC                                    |Journal of Public Administration Research and Theory                        |        4|
+|1467-9299 |PUB SEC                                    |Public Administration                                                       |        4|
+|1471-9045 |PUB SEC                                    |Public Management Review                                                    |        4|
+|1944-8287 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Economic Geography                                                          |        4|
+|1468-2710 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Journal of Economic Geography                                               |        4|
+|1360-0591 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Regional Studies                                                            |        4|
+|1873-7722 |SECTOR                                     |Annals of Tourism Research                                                  |        4|
+|1552-7379 |SECTOR                                     |Journal of Service Research                                                 |        4|
+|1552-6763 |SECTOR                                     |Journal of Travel Research                                                  |        4|
+|1879-3193 |SECTOR                                     |Tourism Management                                                          |        4|
+|1879-2367 |SECTOR                                     |Transportation Research, Series B: Methodological                           |        4|
+|1472-3433 |SOC SCI                                    |Environment and Planning D: Society and Space                               |        4|
+|1539-6924 |SOC SCI                                    |Risk Analysis                                                               |        4|
+|1873-5347 |SOC SCI                                    |Social Science and Medicine                                                 |        4|
+|1469-8684 |SOC SCI                                    |Sociology                                                                   |        4|
+|1467-9566 |SOC SCI                                    |Sociology of Health and Illness                                             |        4|
+|2042-5805 |STRAT                                      |Global Strategy Journal                                                     |        4|
+
+
+:::
+:::
+
+
+## ABS3
+
+
+::: {.cell}
+::: {.cell-output-display}
+
+
+|SSN       |Field                                      |Journal Title                                                              | AJG 2021|
+|:---------|:------------------------------------------|:--------------------------------------------------------------------------|--------:|
+|1467-6281 |ACCOUNT                                    |Abacus                                                                     |        3|
+|2159-4260 |ACCOUNT                                    |Accounting and Business Research                                           |        3|
+|1467-6303 |ACCOUNT                                    |Accounting Forum                                                           |        3|
+|1558-7975 |ACCOUNT                                    |Accounting Horizons                                                        |        3|
+|1758-4205 |ACCOUNT                                    |Accounting, Auditing and Accountability Journal                            |        3|
+|1558-7991 |ACCOUNT                                    |Auditing                                                                   |        3|
+|1558-8009 |ACCOUNT                                    |Behavioral Research in Accounting                                          |        3|
+|1095-8347 |ACCOUNT                                    |British Accounting Review                                                  |        3|
+|0007-1870 |ACCOUNT                                    |British Tax Review                                                         |        3|
+|1095-9955 |ACCOUNT                                    |Critical Perspectives on Accounting                                        |        3|
+|1468-4497 |ACCOUNT                                    |European Accounting Review                                                 |        3|
+|1468-0408 |ACCOUNT                                    |Financial Accountability and Management                                    |        3|
+|1554-0650 |ACCOUNT                                    |Foundations and Trends in Accounting                                       |        3|
+|1094-4060 |ACCOUNT                                    |International Journal of Accounting                                        |        3|
+|1873-2070 |ACCOUNT                                    |Journal of Accounting and Public Policy                                    |        3|
+|0737-4607 |ACCOUNT                                    |Journal of Accounting Literature                                           |        3|
+|0148-558X |ACCOUNT                                    |Journal of Accounting, Auditing and Finance                                |        3|
+|1468-5957 |ACCOUNT                                    |Journal of Business Finance and Accounting                                 |        3|
+|1061-9518 |ACCOUNT                                    |Journal of International Accounting, Auditing and Taxation                 |        3|
+|1558-8017 |ACCOUNT                                    |Journal of the American Taxation Association                               |        3|
+|1096-1224 |ACCOUNT                                    |Management Accounting Research                                             |        3|
+|1467-2235 |BUS HIST & ECON HIST                       |Enterprise and Society                                                     |        3|
+|1474-0044 |BUS HIST & ECON HIST                       |European Review of Economic History                                        |        3|
+|1090-2457 |BUS HIST & ECON HIST                       |Explorations in Economic History                                           |        3|
+|1471-6372 |BUS HIST & ECON HIST                       |Journal of Economic History                                                |        3|
+|1945-774X |ECON                                       |American Economic Journal: Economic Policy                                 |        3|
+|1945-7685 |ECON                                       |American Economic Journal: Microeconomics                                  |        3|
+|2640-2068 |ECON                                       |American Economic Review: Insights                                         |        3|
+|1467-8276 |ECON                                       |American Journal of Agricultural Economics                                 |        3|
+|1941-1391 |ECON                                       |Annual Review of Economics                                                 |        3|
+|1533-4465 |ECON                                       |Brookings Papers on Economic Activity                                      |        3|
+|1464-3545 |ECON                                       |Cambridge Journal of Economics                                             |        3|
+|1540-5982 |ECON                                       |Canadian Journal of Economics                                              |        3|
+|1872-7352 |ECON                                       |Computational Statistics and Data Analysis                                 |        3|
+|1873-6106 |ECON                                       |Ecological Economics                                                       |        3|
+|1532-4168 |ECON                                       |Econometric Reviews                                                        |        3|
+|1368-423X |ECON                                       |Econometrics Journal                                                       |        3|
+|1539-2988 |ECON                                       |Economic Development and Cultural Change                                   |        3|
+|1465-7295 |ECON                                       |Economic Inquiry                                                           |        3|
+|1468-0327 |ECON                                       |Economic Policy                                                            |        3|
+|1432-0479 |ECON                                       |Economic Theory                                                            |        3|
+|1468-0335 |ECON                                       |Economica                                                                  |        3|
+|1873-7374 |ECON                                       |Economics Letters                                                          |        3|
+|1873-6181 |ECON                                       |Energy Economics                                                           |        3|
+|1573-1502 |ECON                                       |Environmental and Resource Economics                                       |        3|
+|1873-572X |ECON                                       |European Economic Review                                                   |        3|
+|1464-3618 |ECON                                       |European Review of Agricultural Economics                                  |        3|
+|1573-6938 |ECON                                       |Experimental Economics                                                     |        3|
+|1090-2473 |ECON                                       |Games and Economic Behavior                                                |        3|
+|1099-1050 |ECON                                       |Health Economics (United Kingdom)                                          |        3|
+|2041-417X |ECON                                       |IMF Economic Review                                                        |        3|
+|1873-7986 |ECON                                       |International Journal of Industrial Organization                           |        3|
+|1751-5823 |ECON                                       |International Statistical Review                                           |        3|
+|1477-9552 |ECON                                       |Journal of Agricultural Economics                                          |        3|
+|1099-1255 |ECON                                       |Journal of Applied Econometrics                                            |        3|
+|1095-7227 |ECON                                       |Journal of Comparative Economics                                           |        3|
+|1537-2715 |ECON                                       |Journal of Computational and Graphical Statistics                          |        3|
+|1872-6089 |ECON                                       |Journal of Development Economics                                           |        3|
+|1879-1751 |ECON                                       |Journal of Economic Behavior and Organization                              |        3|
+|1879-1743 |ECON                                       |Journal of Economic Dynamics and Control                                   |        3|
+|1573-7020 |ECON                                       |Journal of Economic Growth                                                 |        3|
+|1096-0449 |ECON                                       |Journal of Environmental Economics and Management                          |        3|
+|1879-1646 |ECON                                       |Journal of Health Economics                                                |        3|
+|1932-8664 |ECON                                       |Journal of Human Capital                                                   |        3|
+|1548-8004 |ECON                                       |Journal of Human Resources                                                 |        3|
+|1467-6451 |ECON                                       |Journal of Industrial Economics                                            |        3|
+|1744-1382 |ECON                                       |Journal of Institutional Economics                                         |        3|
+|1537-5285 |ECON                                       |Journal of Law and Economics                                               |        3|
+|1465-7341 |ECON                                       |Journal of Law, Economics, and Organization                                |        3|
+|1537-5366 |ECON                                       |Journal of Legal Studies                                                   |        3|
+|1873-1538 |ECON                                       |Journal of Mathematical Economics                                          |        3|
+|1095-7243 |ECON                                       |Journal of Multivariate Analysis                                           |        3|
+|1432-1475 |ECON                                       |Journal of Population Economics                                            |        3|
+|0047-2727 |ECON                                       |Journal of Public Economics                                                |        3|
+|1573-0476 |ECON                                       |Journal of Risk and Uncertainty                                            |        3|
+|2333-5963 |ECON                                       |Journal of the Association of Environmental and Resource Economists        |        3|
+|1467-985X |ECON                                       |Journal of the Royal Statistical Society. Series A: Statistics in Society  |        3|
+|1467-9876 |ECON                                       |Journal of the Royal Statistical Society. Series C: Applied Statistics     |        3|
+|1467-9892 |ECON                                       |Journal of Time Series Analysis                                            |        3|
+|1095-9068 |ECON                                       |Journal of Urban Economics                                                 |        3|
+|1879-1034 |ECON                                       |Labour Economics                                                           |        3|
+|1543-8325 |ECON                                       |Land Economics                                                             |        3|
+|1468-0084 |ECON                                       |Oxford Bulletin of Economics and Statistics                                |        3|
+|1464-3812 |ECON                                       |Oxford Economic Papers                                                     |        3|
+|1573-7101 |ECON                                       |Public Choice                                                              |        3|
+|1540-6229 |ECON                                       |Real Estate Economics                                                      |        3|
+|1096-6099 |ECON                                       |Review of Economic Dynamics                                                |        3|
+|1475-4991 |ECON                                       |Review of Income and Wealth                                                |        3|
+|1467-9442 |ECON                                       |Scandinavian Journal of Economics                                          |        3|
+|1467-9469 |ECON                                       |Scandinavian Journal of Statistics                                         |        3|
+|1432-217X |ECON                                       |Social Choice and Welfare                                                  |        3|
+|1564-698X |ECON                                       |World Bank Economic Review                                                 |        3|
+|1464-5114 |ENT-SBM                                    |Entrepreneurship and Regional Development                                  |        3|
+|1741-6248 |ENT-SBM                                    |Family Business Review                                                     |        3|
+|1758-6534 |ENT-SBM                                    |International Journal of Entrepreneurial Behaviour and Research            |        3|
+|1741-2870 |ENT-SBM                                    |International Small Business Journal                                       |        3|
+|1540-627X |ENT-SBM                                    |Journal of Small Business Management                                       |        3|
+|1573-0913 |ENT-SBM                                    |Small Business Economics                                                   |        3|
+|2168-1007 |ETHICS-CSR-MAN                             |Academy of Management Discoveries                                          |        3|
+|1552-4205 |ETHICS-CSR-MAN                             |Business and Society                                                       |        3|
+|2162-8564 |ETHICS-CSR-MAN                             |California Management Review                                               |        3|
+|1740-4762 |ETHICS-CSR-MAN                             |European Management Review                                                 |        3|
+|1552-3977 |ETHICS-CSR-MAN                             |Gender and Society                                                         |        3|
+|1468-0432 |ETHICS-CSR-MAN                             |Gender, Work and Organization                                              |        3|
+|0017-8012 |ETHICS-CSR-MAN                             |Harvard Business Review                                                    |        3|
+|1468-2370 |ETHICS-CSR-MAN                             |International Journal of Management Reviews                                |        3|
+|1573-0697 |ETHICS-CSR-MAN                             |Journal of Business Ethics                                                 |        3|
+|1873-7978 |ETHICS-CSR-MAN                             |Journal of Business Research                                               |        3|
+|1552-6542 |ETHICS-CSR-MAN                             |Journal of Management Inquiry                                              |        3|
+|1532-9194 |ETHICS-CSR-MAN                             |MIT Sloan Management Review                                                |        3|
+|1941-1375 |FINANCE                                    |Annual Review of Financial Economics                                       |        3|
+|1467-8683 |FINANCE                                    |Corporate Governance: An International Review                              |        3|
+|1468-036X |FINANCE                                    |European Financial Management                                              |        3|
+|1466-4364 |FINANCE                                    |European Journal of Finance                                                |        3|
+|1432-1122 |FINANCE                                    |Finance and Stochastics                                                    |        3|
+|1938-3312 |FINANCE                                    |Financial Analysts Journal                                                 |        3|
+|1755-053X |FINANCE                                    |Financial Management                                                       |        3|
+|1468-0416 |FINANCE                                    |Financial Markets, Institutions and Instruments                            |        3|
+|1540-6288 |FINANCE                                    |Financial Review                                                           |        3|
+|1873-5959 |FINANCE                                    |Insurance: Mathematics and Economics                                       |        3|
+|1815-7556 |FINANCE                                    |International Journal of Central Banking                                   |        3|
+|1099-1158 |FINANCE                                    |International Journal of Finance and Economics                             |        3|
+|1873-8079 |FINANCE                                    |International Review of Financial Analysis                                 |        3|
+|1872-6372 |FINANCE                                    |Journal of Banking and Finance                                             |        3|
+|2405-8505 |FINANCE                                    |Journal of Commodity Markets                                               |        3|
+|1879-1727 |FINANCE                                    |Journal of Empirical Finance                                               |        3|
+|1479-8417 |FINANCE                                    |Journal of Financial Econometrics                                          |        3|
+|1878-576X |FINANCE                                    |Journal of Financial Markets                                               |        3|
+|1475-6803 |FINANCE                                    |Journal of Financial Research                                              |        3|
+|1573-0735 |FINANCE                                    |Journal of Financial Services Research                                     |        3|
+|1878-0962 |FINANCE                                    |Journal of Financial Stability                                             |        3|
+|1096-9934 |FINANCE                                    |Journal of Futures Markets                                                 |        3|
+|1873-0612 |FINANCE                                    |Journal of International Financial Markets, Institutions and Money         |        3|
+|1873-0639 |FINANCE                                    |Journal of International Money and Finance                                 |        3|
+|2168-8656 |FINANCE                                    |Journal of Portfolio Management                                            |        3|
+|1573-045X |FINANCE                                    |Journal of Real Estate Finance and Economics                               |        3|
+|1539-6975 |FINANCE                                    |Journal of Risk and Insurance                                              |        3|
+|1467-9965 |FINANCE                                    |Mathematical Finance                                                       |        3|
+|1469-7696 |FINANCE                                    |Quantitative Finance                                                       |        3|
+|2045-9939 |FINANCE                                    |Review of Asset Pricing Studies                                            |        3|
+|2046-9136 |FINANCE                                    |Review of Corporate Finance Studies                                        |        3|
+|1573-7179 |FINANCE                                    |Review of Quantitative Finance and Accounting                              |        3|
+|1461-7099 |HRM&EMP                                    |Economic and Industrial Democracy                                          |        3|
+|1461-7129 |HRM&EMP                                    |European Journal of Industrial Relations                                   |        3|
+|1873-7889 |HRM&EMP                                    |Human Resource Management Review                                           |        3|
+|2162-271X |HRM&EMP                                    |ILR Review                                                                 |        3|
+|1464-3669 |HRM&EMP                                    |Industrial Law Journal                                                     |        3|
+|1468-2338 |HRM&EMP                                    |Industrial Relations Journal                                               |        3|
+|1466-4399 |HRM&EMP                                    |International Journal of Human Resource Management                         |        3|
+|1468-005X |HRM&EMP                                    |New Technology, Work and Employment                                        |        3|
+|1552-8464 |HRM&EMP                                    |Work and Occupations                                                       |        3|
+|1468-2621 |IB&AREA                                    |African Affairs                                                            |        3|
+|1572-9958 |IB&AREA                                    |Asia Pacific Journal of Management                                         |        3|
+|1873-6149 |IB&AREA                                    |International Business Review                                              |        3|
+|1468-5965 |IB&AREA                                    |Journal of Common Market Studies                                           |        3|
+|1873-0620 |IB&AREA                                    |Journal of International Management                                        |        3|
+|1740-8784 |IB&AREA                                    |Management and Organization Review                                         |        3|
+|1861-8901 |IB&AREA                                    |Management International Review                                            |        3|
+|1873-5797 |INFO MAN                                   |Decision Support Systems                                                   |        3|
+|1872-9517 |INFO MAN                                   |Government Information Quarterly                                           |        3|
+|1872-7530 |INFO MAN                                   |Information and Management                                                 |        3|
+|1873-7919 |INFO MAN                                   |Information and Organization                                               |        3|
+|1087-6537 |INFO MAN                                   |Information Society                                                        |        3|
+|1572-9419 |INFO MAN                                   |Information Systems Frontiers                                              |        3|
+|1758-5813 |INFO MAN                                   |Information Technology and People                                          |        3|
+|1557-9301 |INFO MAN                                   |International Journal of Electronic Commerce                               |        3|
+|1066-2243 |INFO MAN                                   |Internet Research                                                          |        3|
+|1083-6101 |INFO MAN                                   |Journal of Computer-Mediated Communication                                 |        3|
+|2330-1643 |INFO MAN                                   |Journal of the Association for Information Science and Technology (JASIST) |        3|
+|1469-8390 |INNOV                                      |Industry and Innovation                                                    |        3|
+|1573-7047 |INNOV                                      |Journal of Technology Transfer                                             |        3|
+|1467-9310 |INNOV                                      |R and D Management                                                         |        3|
+|1873-5509 |INNOV                                      |Technological Forecasting and Social Change                                |        3|
+|1879-2383 |INNOV                                      |Technovation                                                               |        3|
+|1469-3518 |MDEV&EDU                                   |British Educational Research Journal                                       |        3|
+|1461-7307 |MDEV&EDU                                   |Management Learning                                                        |        3|
+|1470-174X |MDEV&EDU                                   |Studies in Higher Education                                                |        3|
+|1758-7123 |MKT                                        |European Journal of Marketing                                              |        3|
+|1873-2062 |MKT                                        |Industrial Marketing Management                                            |        3|
+|1758-6763 |MKT                                        |International Marketing Review                                             |        3|
+|1557-7805 |MKT                                        |Journal of Advertising                                                     |        3|
+|1740-1909 |MKT                                        |Journal of Advertising Research                                            |        3|
+|1520-6653 |MKT                                        |Journal of Interactive Marketing                                           |        3|
+|1547-7215 |MKT                                        |Journal of International Marketing                                         |        3|
+|1547-7207 |MKT                                        |Journal of Public Policy and Marketing                                     |        3|
+|1573-059X |MKT                                        |Marketing Letters                                                          |        3|
+|1741-301X |MKT                                        |Marketing Theory                                                           |        3|
+|1520-6793 |MKT                                        |Psychology and Marketing                                                   |        3|
+|1573-711X |MKT                                        |Quantitative Marketing and Economics                                       |        3|
+|1872-6194 |OPS&TECH                                   |Computers in Industry                                                      |        3|
+|1558-0040 |OPS&TECH                                   |IEEE Transactions on Engineering Management                                |        3|
+|1873-7579 |OPS&TECH                                   |International Journal of Production Economics                              |        3|
+|1366-588X |OPS&TECH                                   |International Journal of Production Research                               |        3|
+|2158-1592 |OPS&TECH                                   |Journal of Business Logistics                                              |        3|
+|1873-6505 |OPS&TECH                                   |Journal of Purchasing and Supply Management                                |        3|
+|1526-5498 |OPS&TECH                                   |Manufacturing and Service Operations Management                            |        3|
+|1366-5871 |OPS&TECH                                   |Production Planning and Control                                            |        3|
+|1758-6852 |OPS&TECH                                   |Supply Chain Management                                                    |        3|
+|1558-1195 |OR&MANSCI                                  |ACM Transactions on Modeling and Computer Simulation                       |        3|
+|1572-9338 |OR&MANSCI                                  |Annals of Operations Research                                              |        3|
+|1573-2894 |OR&MANSCI                                  |Computational Optimization and Applications                                |        3|
+|1873-765X |OR&MANSCI                                  |Computers and Operations Research                                          |        3|
+|1540-5915 |OR&MANSCI                                  |Decision Sciences                                                          |        3|
+|1530-9304 |OR&MANSCI                                  |Evolutionary Computation                                                   |        3|
+|1573-2908 |OR&MANSCI                                  |Fuzzy Optimization and Decision Making                                     |        3|
+|2168-2275 |OR&MANSCI                                  |IEEE Transactions on Cybernetics                                           |        3|
+|2168-2232 |OR&MANSCI                                  |IEEE Transactions on Systems, Man, and Cybernetics: Systems                |        3|
+|1545-8830 |OR&MANSCI                                  |IIE Transactions                                                           |        3|
+|1526-5528 |OR&MANSCI                                  |INFORMS Journal on Computing                                               |        3|
+|1872-8200 |OR&MANSCI                                  |International Journal of Forecasting                                       |        3|
+|1572-9397 |OR&MANSCI                                  |Journal of Heuristics                                                      |        3|
+|1573-2878 |OR&MANSCI                                  |Journal of Optimization Theory and Applications                            |        3|
+|1476-9360 |OR&MANSCI                                  |Journal of the Operational Research Society                                |        3|
+|1526-5471 |OR&MANSCI                                  |Mathematics of Operations Research                                         |        3|
+|1520-6750 |OR&MANSCI                                  |Naval Research Logistics                                                   |        3|
+|1873-5274 |OR&MANSCI                                  |Omega                                                                      |        3|
+|1436-6304 |OR&MANSCI                                  |OR Spectrum                                                                |        3|
+|1879-0836 |OR&MANSCI                                  |Reliability Engineering and System Safety                                  |        3|
+|1095-7189 |OR&MANSCI                                  |SIAM Journal on Optimization                                               |        3|
+|1526-5447 |OR&MANSCI                                  |Transportation Science                                                     |        3|
+|1552-3993 |ORG STUD                                   |Group and Organization Management                                          |        3|
+|1461-7323 |ORG STUD                                   |Organization                                                               |        3|
+|1552-7417 |ORG STUD                                   |Organization and Environment                                               |        3|
+|1873-3530 |ORG STUD                                   |Organizational Dynamics                                                    |        3|
+|0191-3085 |ORG STUD                                   |Research in Organizational Behavior                                        |        3|
+|0733-558X |ORG STUD                                   |Research in the Sociology of Organizations                                 |        3|
+|2044-8295 |PSYCH (GENERAL)                            |British Journal of Psychology                                              |        3|
+|2044-8309 |PSYCH (GENERAL)                            |British Journal of Social Psychology                                       |        3|
+|1551-6709 |PSYCH (GENERAL)                            |Cognitive Science                                                          |        3|
+|1099-0992 |PSYCH (GENERAL)                            |European Journal of Social Psychology                                      |        3|
+|1099-0771 |PSYCH (GENERAL)                            |Journal of Behavioral Decision Making                                      |        3|
+|1552-8766 |PSYCH (GENERAL)                            |Journal of Conflict Resolution                                             |        3|
+|1552-5422 |PSYCH (GENERAL)                            |Journal of Cross-Cultural Psychology                                       |        3|
+|1939-1285 |PSYCH (GENERAL)                            |Journal of Experimental Psychology: Learning Memory and Cognition          |        3|
+|1930-2975 |PSYCH (GENERAL)                            |Judgment and Decision Making                                               |        3|
+|1873-3549 |PSYCH (GENERAL)                            |Personality and Individual Differences                                     |        3|
+|1430-2772 |PSYCH (GENERAL)                            |Psychological Research                                                     |        3|
+|1471-6402 |PSYCH (GENERAL)                            |Psychology of Women Quarterly                                              |        3|
+|1860-0980 |PSYCH (GENERAL)                            |Psychometrika                                                              |        3|
+|1747-0226 |PSYCH (GENERAL)                            |Quarterly Journal of Experimental Psychology                               |        3|
+|1948-5514 |PSYCH (GENERAL)                            |Social Psychological and Personality Science                               |        3|
+|1879-2057 |PSYCH (WOP-OB)                             |Accident Analysis and Prevention                                           |        3|
+|1872-9126 |PSYCH (WOP-OB)                             |Applied Ergonomics                                                         |        3|
+|1464-0597 |PSYCH (WOP-OB)                             |Applied Psychology                                                         |        3|
+|1366-5847 |PSYCH (WOP-OB)                             |Ergonomics                                                                 |        3|
+|1464-0643 |PSYCH (WOP-OB)                             |European Journal of Work and Organizational Psychology                     |        3|
+|1547-8181 |PSYCH (WOP-OB)                             |Human Factors                                                              |        3|
+|1532-7043 |PSYCH (WOP-OB)                             |Human Performance                                                          |        3|
+|1473-5660 |PSYCH (WOP-OB)                             |International Journal of Rehabilitation Research                           |        3|
+|0886-1528 |PSYCH (WOP-OB)                             |International Review of Industrial and Organizational Psychology           |        3|
+|1573-353X |PSYCH (WOP-OB)                             |Journal of Business and Psychology                                         |        3|
+|1758-7778 |PSYCH (WOP-OB)                             |Journal of Managerial Psychology                                           |        3|
+|1873-3506 |PSYCH (WOP-OB)                             |Journal of School Psychology                                               |        3|
+|1470-7926 |PSYCH (WOP-OB)                             |Occupational and Environmental Medicine                                    |        3|
+|1795-990X |PSYCH (WOP-OB)                             |Scandinavian Journal of Work, Environment and Health                       |        3|
+|1552-3357 |PUB SEC                                    |American Review of Public Administration                                   |        3|
+|1472-3425 |PUB SEC                                    |Environment and Planning C: Government and Policy                          |        3|
+|1475-6773 |PUB SEC                                    |Health Services Research                                                   |        3|
+|1559-3169 |PUB SEC                                    |International Public Management Journal                                    |        3|
+|1461-7226 |PUB SEC                                    |International Review of Administrative Sciences                            |        3|
+|1466-4429 |PUB SEC                                    |Journal of European Public Policy                                          |        3|
+|1520-6688 |PUB SEC                                    |Journal of Policy Analysis and Management                                  |        3|
+|1468-0009 |PUB SEC                                    |Milbank Quarterly                                                          |        3|
+|1470-8442 |PUB SEC                                    |Policy and Politics                                                        |        3|
+|1748-5991 |PUB SEC                                    |Regulation and Governance                                                  |        3|
+|1752-1386 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Cambridge Journal of Regions, Economy and Society                          |        3|
+|1472-3409 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Environment and Planning A                                                 |        3|
+|1461-7145 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |European Urban and Regional Studies                                        |        3|
+|1872-9495 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Global Environmental Change                                                |        3|
+|1467-9787 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Journal of Regional Science                                                |        3|
+|1873-1392 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Journal of Rural Studies                                                   |        3|
+|1435-5957 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Papers in Regional Science                                                 |        3|
+|1879-2308 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Regional Science and Urban Economics                                       |        3|
+|1360-063X |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Urban Studies                                                              |        3|
+|1944-9089 |SECTOR                                     |Energy Journal                                                             |        3|
+|1746-031X |SECTOR                                     |European Sport Management Quarterly                                        |        3|
+|1873-5657 |SECTOR                                     |Food Policy                                                                |        3|
+|1757-1049 |SECTOR                                     |International Journal of Contemporary Hospitality Management               |        3|
+|1873-4693 |SECTOR                                     |International Journal of Hospitality Management                            |        3|
+|1747-7646 |SECTOR                                     |Journal of Sustainable Tourism                                             |        3|
+|1552-7395 |SECTOR                                     |Nonprofit and Voluntary Sector Quarterly                                   |        3|
+|1879-2375 |SECTOR                                     |Transportation Research, Part A: Policy and Practice                       |        3|
+|1879-2340 |SECTOR                                     |Transportation Research, Part D: Transport and Environment                 |        3|
+|1878-5794 |SECTOR                                     |Transportation Research, Part E: Logistics and Transportation Review       |        3|
+|1467-8330 |SOC SCI                                    |Antipode                                                                   |        3|
+|1468-4446 |SOC SCI                                    |British Journal of Sociology                                               |        3|
+|1099-0836 |SOC SCI                                    |Business Strategy and the Environment                                      |        3|
+|1467-7660 |SOC SCI                                    |Development and Change                                                     |        3|
+|1469-5766 |SOC SCI                                    |Economy and Society                                                        |        3|
+|1873-6890 |SOC SCI                                    |Electoral Studies                                                          |        3|
+|1520-5851 |SOC SCI                                    |Environmental Science & Technology                                         |        3|
+|1873-6416 |SOC SCI                                    |Environmental Science and Policy                                           |        3|
+|1468-2672 |SOC SCI                                    |European Sociological Review                                               |        3|
+|1471-0374 |SOC SCI                                    |Global Networks                                                            |        3|
+|1464-3650 |SOC SCI                                    |Industrial and Corporate Change                                            |        3|
+|1743-9140 |SOC SCI                                    |Journal of Development Studies                                             |        3|
+|1095-8630 |SOC SCI                                    |Journal of Environmental Management                                        |        3|
+|1461-7269 |SOC SCI                                    |Journal of European Social Policy                                          |        3|
+|1469-7823 |SOC SCI                                    |Journal of Social Policy                                                   |        3|
+|1467-6435 |SOC SCI                                    |Kyklos                                                                     |        3|
+|1469-9923 |SOC SCI                                    |New Political Economy                                                      |        3|
+|1552-7514 |SOC SCI                                    |Politics and Society                                                       |        3|
+|1477-0288 |SOC SCI                                    |Progress in Human Geography                                                |        3|
+|1537-5331 |SOC SCI                                    |Public Opinion Quarterly                                                   |        3|
+|1554-0634 |SOC SCI                                    |Quarterly Journal of Political Science                                     |        3|
+|1466-4526 |SOC SCI                                    |Review of International Political Economy                                  |        3|
+|1534-7605 |SOC SCI                                    |Social Forces                                                              |        3|
+|1475-147X |SOC SCI                                    |Socio-Economic Review                                                      |        3|
+|1467-9531 |SOC SCI                                    |Sociological Methodology                                                   |        3|
+|1467-954X |SOC SCI                                    |Sociological Review                                                        |        3|
+|1460-3616 |SOC SCI                                    |Theory, Culture and Society                                                |        3|
+|1743-9655 |SOC SCI                                    |West European Politics                                                     |        3|
+|0305-750X |SOC SCI                                    |World Development                                                          |        3|
+|1873-1872 |STRAT                                      |Long Range Planning                                                        |        3|
+|1741-315X |STRAT                                      |Strategic Organization                                                     |        3|
+
+
+:::
+:::
+
+
+## ABS2
+
+
+::: {.cell}
+::: {.cell-output-display}
+
+
+|SSN       |Field                                      |Journal Title                                                                               | AJG 2021|
+|:---------|:------------------------------------------|:-------------------------------------------------------------------------------------------|--------:|
+|1467-629X |ACCOUNT                                    |Accounting and Finance                                                                      |        2|
+|1530-9320 |ACCOUNT                                    |Accounting and the Public Interest                                                          |        2|
+|1744-9499 |ACCOUNT                                    |Accounting in Europe                                                                        |        2|
+|1030-9616 |ACCOUNT                                    |Accounting Research Journal                                                                 |        2|
+|2152-2820 |ACCOUNT                                    |Accounting, Economics and Law: A Convivium                                                  |        2|
+|1046-5715 |ACCOUNT                                    |Advances in Accounting                                                                      |        2|
+|1475-1488 |ACCOUNT                                    |Advances in Accounting Behavioral Research                                                  |        2|
+|1474-7871 |ACCOUNT                                    |Advances in Management Accounting                                                           |        2|
+|1058-7497 |ACCOUNT                                    |Advances in Taxation                                                                        |        2|
+|2164-2257 |ACCOUNT                                    |Asia-Pacific Journal of Accounting and Economics                                            |        2|
+|1758-8863 |ACCOUNT                                    |Asian Review of Accounting                                                                  |        2|
+|1835-2561 |ACCOUNT                                    |Australian Accounting Review                                                                |        2|
+|1755-3091 |ACCOUNT                                    |China Journal of Accounting Research                                                        |        2|
+|1936-1270 |ACCOUNT                                    |Current Issues in Auditing                                                                  |        2|
+|1758-9037 |ACCOUNT                                    |International Journal of Accounting and Information Management                              |        2|
+|1873-4723 |ACCOUNT                                    |International Journal of Accounting Information Systems                                     |        2|
+|1740-8016 |ACCOUNT                                    |International Journal of Accounting, Auditing and Performance Evaluation                    |        2|
+|1099-1123 |ACCOUNT                                    |International Journal of Auditing                                                           |        2|
+|1746-6539 |ACCOUNT                                    |International Journal of Disclosure and Governance                                          |        2|
+|1753-6723 |ACCOUNT                                    |International Journal of Managerial and Financial Accounting                                |        2|
+|1832-5912 |ACCOUNT                                    |Journal of Accounting and Organizational Change                                             |        2|
+|2042-1176 |ACCOUNT                                    |Journal of Accounting in Emerging Economies                                                 |        2|
+|0967-5426 |ACCOUNT                                    |Journal of Applied Accounting Research                                                      |        2|
+|1815-5669 |ACCOUNT                                    |Journal of Contemporary Accounting and Economics                                            |        2|
+|1558-8025 |ACCOUNT                                    |Journal of International Accounting Research                                                |        2|
+|1467-646X |ACCOUNT                                    |Journal of International Financial Management and Accounting                                |        2|
+|1558-8033 |ACCOUNT                                    |Journal of Management Accounting Research                                                   |        2|
+|2191-477X |ACCOUNT                                    |Journal of Management Control                                                               |        2|
+|1945-1814 |ACCOUNT                                    |Journal of Public Budgeting, Accounting and Financial Management                            |        2|
+|2059-190X |ACCOUNT                                    |Journal of Tax Administration                                                               |        2|
+|1758-7735 |ACCOUNT                                    |Managerial Auditing Journal                                                                 |        2|
+|1758-7654 |ACCOUNT                                    |Qualitative Research in Accounting and Management                                           |        2|
+|1052-0457 |ACCOUNT                                    |Research in Accounting Regulation                                                           |        2|
+|2040-803X |ACCOUNT                                    |Sustainability Accounting, Management and Policy Journal                                    |        2|
+|2327-4468 |BUS HIST & ECON HIST                       |Accounting Historians Journal                                                               |        2|
+|1749-3374 |BUS HIST & ECON HIST                       |Accounting History                                                                          |        2|
+|2155-286X |BUS HIST & ECON HIST                       |Accounting History Review                                                                   |        2|
+|1467-8446 |BUS HIST & ECON HIST                       |Australian Economic History Review                                                          |        2|
+|1863-2513 |BUS HIST & ECON HIST                       |Cliometrica                                                                                 |        2|
+|1161-2770 |BUS HIST & ECON HIST                       |Entreprises et Histoire                                                                     |        2|
+|0896-226X |BUS HIST & ECON HIST                       |Essays in Economic and Business History                                                     |        2|
+|1469-5936 |BUS HIST & ECON HIST                       |European Journal of the History of Economic Thought                                         |        2|
+|1474-0052 |BUS HIST & ECON HIST                       |Financial History Review                                                                    |        2|
+|1469-9656 |BUS HIST & ECON HIST                       |Journal of the History of Economic Thought                                                  |        2|
+|1759-3999 |BUS HIST & ECON HIST                       |Journal of Transport History                                                                |        2|
+|1469-9702 |BUS HIST & ECON HIST                       |Labor History                                                                               |        2|
+|1744-9367 |BUS HIST & ECON HIST                       |Management and Organizational History                                                       |        2|
+|0731-9053 |ECON                                       |Advances in Econometrics                                                                    |        2|
+|1574-0862 |ECON                                       |Agricultural Economics (United Kingdom)                                                     |        2|
+|1465-7260 |ECON                                       |American Law and Economics Review                                                           |        2|
+|1941-7330 |ECON                                       |Annals of Applied Statistics                                                                |        2|
+|1529-7373 |ECON                                       |Annals of Economics and Finance                                                             |        2|
+|1467-8292 |ECON                                       |Annals of Public and Cooperative Economics                                                  |        2|
+|1941-1359 |ECON                                       |Annual Review of Resource Economics                                                         |        2|
+|2040-5804 |ECON                                       |Applied Economic Perspectives and Policy                                                    |        2|
+|1466-4283 |ECON                                       |Applied Economics                                                                           |        2|
+|1467-8489 |ECON                                       |Australian Journal of Agricultural and Resource Economics                                   |        2|
+|1935-1682 |ECON                                       |B.E. Journal of Economic Analysis and Policy                                                |        2|
+|1935-1690 |ECON                                       |B.E. Journal of Macroeconomics                                                              |        2|
+|1935-1704 |ECON                                       |B.E. Journal of Theoretical Economics                                                       |        2|
+|1467-8586 |ECON                                       |Bulletin of Economic Research                                                               |        2|
+|1744-7976 |ECON                                       |Canadian Journal of Agricultural Economics                                                  |        2|
+|1612-7501 |ECON                                       |CESifo Economic Studies                                                                     |        2|
+|1873-7781 |ECON                                       |China Economic Review                                                                       |        2|
+|1613-9658 |ECON                                       |Computational Statistics                                                                    |        2|
+|1465-7287 |ECON                                       |Contemporary Economic Policy                                                                |        2|
+|1464-3588 |ECON                                       |Contributions to Political Economy                                                          |        2|
+|1476-8267 |ECON                                       |Defence and Peace Economics                                                                 |        2|
+|1933-527X |ECON                                       |Econ Journal Watch                                                                          |        2|
+|1873-6122 |ECON                                       |Economic Modelling                                                                          |        2|
+|1475-4932 |ECON                                       |Economic Record                                                                             |        2|
+|1878-5433 |ECON                                       |Economic Systems                                                                            |        2|
+|1469-5758 |ECON                                       |Economic Systems Research                                                                   |        2|
+|2196-1093 |ECON                                       |Economic Theory Bulletin                                                                    |        2|
+|1873-6130 |ECON                                       |Economics and Human Biology                                                                 |        2|
+|1474-0028 |ECON                                       |Economics and Philosophy                                                                    |        2|
+|1468-0343 |ECON                                       |Economics and Politics                                                                      |        2|
+|1873-7382 |ECON                                       |Economics of Education Review                                                               |        2|
+|1476-8364 |ECON                                       |Economics of Innovation and New Technology                                                  |        2|
+|1468-0351 |ECON                                       |Economics of Transition, The                                                                |        2|
+|1435-8921 |ECON                                       |Empirical Economics                                                                         |        2|
+|1469-4395 |ECON                                       |Environment and Development Economics                                                       |        2|
+|1439-6637 |ECON                                       |European Journal of Health Economics                                                        |        2|
+|1873-5703 |ECON                                       |European Journal of Political Economy                                                       |        2|
+|1475-5890 |ECON                                       |Fiscal Studies                                                                              |        2|
+|1554-9658 |ECON                                       |GENEVA Risk and Insurance Review                                                            |        2|
+|1468-0475 |ECON                                       |German Economic Review                                                                      |        2|
+|1527-1919 |ECON                                       |History of Political Economy                                                                |        2|
+|1873-5975 |ECON                                       |Information Economics and Policy                                                            |        2|
+|1742-7363 |ECON                                       |International Journal of Economic Theory                                                    |        2|
+|1432-1270 |ECON                                       |International Journal of Game Theory                                                        |        2|
+|2199-9031 |ECON                                       |International Journal of Health Economics and Management                                    |        2|
+|1466-1829 |ECON                                       |International Journal of the Economics of Business                                          |        2|
+|1873-8036 |ECON                                       |International Review of Economics and Finance                                               |        2|
+|1932-1473 |ECON                                       |International Review of Environmental and Resource Economics                                |        2|
+|1873-6394 |ECON                                       |International Review of Law and Economics                                                   |        2|
+|1464-3723 |ECON                                       |Journal of African Economies                                                                |        2|
+|1471-0366 |ECON                                       |Journal of Agrarian Change                                                                  |        2|
+|2327-8285 |ECON                                       |Journal of Agricultural and Resource Economics                                              |        2|
+|1475-6072 |ECON                                       |Journal of Applied Probability                                                              |        2|
+|1360-0532 |ECON                                       |Journal of Applied Statistics                                                               |        2|
+|2214-8051 |ECON                                       |Journal of Behavioral and Experimental Economics                                            |        2|
+|0044-2372 |ECON                                       |Journal of Business Economics                                                               |        2|
+|1573-6997 |ECON                                       |Journal of Cultural Economics                                                               |        2|
+|1573-8701 |ECON                                       |Journal of Economic Inequality                                                              |        2|
+|1946-326X |ECON                                       |Journal of Economic Issues                                                                  |        2|
+|1469-9427 |ECON                                       |Journal of Economic Methodology                                                             |        2|
+|0144-3585 |ECON                                       |Journal of Economic Studies                                                                 |        2|
+|1467-6419 |ECON                                       |Journal of Economic Surveys                                                                 |        2|
+|1617-7134 |ECON                                       |Journal of Economics/ Zeitschrift fur Nationalokonomie                                      |        2|
+|1432-1386 |ECON                                       |Journal of Evolutionary Economics                                                           |        2|
+|1573-3475 |ECON                                       |Journal of Family and Economic Issues                                                       |        2|
+|1618-1530 |ECON                                       |Journal of Forest Economics                                                                 |        2|
+|1096-0791 |ECON                                       |Journal of Housing Economics                                                                |        2|
+|1566-1679 |ECON                                       |Journal of Industry, Competition and Trade                                                  |        2|
+|1614-0559 |ECON                                       |Journal of Institutional and Theoretical Economics                                          |        2|
+|1099-1328 |ECON                                       |Journal of International Development                                                        |        2|
+|1873-152X |ECON                                       |Journal of Macroeconomics                                                                   |        2|
+|1029-0311 |ECON                                       |Journal of Nonparametric Statistics                                                         |        2|
+|1873-8060 |ECON                                       |Journal of Policy Modeling                                                                  |        2|
+|1557-7821 |ECON                                       |Journal of Post Keynesian Economics                                                         |        2|
+|1573-0441 |ECON                                       |Journal of Productivity Analysis                                                            |        2|
+|1097-3923 |ECON                                       |Journal of Public Economic Theory                                                           |        2|
+|1573-0468 |ECON                                       |Journal of Regulatory Economics                                                             |        2|
+|1873-1171 |ECON                                       |Journal of Statistical Planning and Inference                                               |        2|
+|2212-8298 |ECON                                       |Journal of the Economics of Ageing                                                          |        2|
+|1095-8681 |ECON                                       |Journal of the Japanese and International Economies                                         |        2|
+|1941-1928 |ECON                                       |Journal of Time Series Econometrics                                                         |        2|
+|1469-8056 |ECON                                       |Macroeconomic Dynamics                                                                      |        2|
+|1099-1468 |ECON                                       |Managerial and Decision Economics                                                           |        2|
+|1467-9957 |ECON                                       |Manchester School                                                                           |        2|
+|1879-3118 |ECON                                       |Mathematical Social Sciences                                                                |        2|
+|1944-7477 |ECON                                       |National Tax Journal                                                                        |        2|
+|1572-9427 |ECON                                       |Networks and Spatial Economics                                                              |        2|
+|1879-0860 |ECON                                       |North American Journal of Economics and Finance                                             |        2|
+|1573-708X |ECON                                       |Open Economies Review                                                                       |        2|
+|1469-9966 |ECON                                       |Oxford Development Studies                                                                  |        2|
+|1460-2121 |ECON                                       |Oxford Review of Economic Policy                                                            |        2|
+|1468-0106 |ECON                                       |Pacific Economic Review                                                                     |        2|
+|1179-2027 |ECON                                       |PharmacoEconomics                                                                           |        2|
+|1062-9769 |ECON                                       |Quarterly Review of Economics and Finance                                                   |        2|
+|1461-7358 |ECON                                       |Rationality and Society                                                                     |        2|
+|1873-0221 |ECON                                       |Resources and Energy Economics                                                              |        2|
+|1873-7641 |ECON                                       |Resources Policy                                                                            |        2|
+|2326-6201 |ECON                                       |Review of Behavioral Economics                                                              |        2|
+|1467-9361 |ECON                                       |Review of Development Economics                                                             |        2|
+|1434-4750 |ECON                                       |Review of Economic Design                                                                   |        2|
+|1573-7152 |ECON                                       |Review of Economics of the Household                                                        |        2|
+|1750-6824 |ECON                                       |Review of Environmental Economics and Policy                                                |        2|
+|1573-7160 |ECON                                       |Review of Industrial Organization                                                           |        2|
+|1467-9396 |ECON                                       |Review of International Economics                                                           |        2|
+|1555-5879 |ECON                                       |Review of Law and Economics                                                                 |        2|
+|1446-9022 |ECON                                       |Review of Network Economics                                                                 |        2|
+|1465-3982 |ECON                                       |Review of Political Economy                                                                 |        2|
+|1610-2886 |ECON                                       |Review of World Economics                                                                   |        2|
+|1467-9485 |ECON                                       |Scottish Journal of Political Economy                                                       |        2|
+|2325-8012 |ECON                                       |Southern Economic Journal                                                                   |        2|
+|1742-1780 |ECON                                       |Spatial Economic Analysis                                                                   |        2|
+|1536-8734 |ECON                                       |Stata Journal                                                                               |        2|
+|1879-2103 |ECON                                       |Statistics and Probability Letters                                                          |        2|
+|1558-3708 |ECON                                       |Studies in Nonlinear Dynamics and Econometrics                                              |        2|
+|1564-6971 |ECON                                       |World Bank Research Observer                                                                |        2|
+|1467-9701 |ECON                                       |World Economy                                                                               |        2|
+|2157-5665 |ENT-SBM                                    |Entrepreneurship Research Journal                                                           |        2|
+|2043-6882 |ENT-SBM                                    |International Journal of Entrepreneurship and Innovation                                    |        2|
+|1741-8054 |ENT-SBM                                    |International Journal of Entrepreneurship and Small Business                                |        2|
+|2162-157X |ENT-SBM                                    |INTERNATIONAL JOURNAL OF MANAGEMENT ENTREPRENEURSHIP & TECHNOLOGY                           |        2|
+|1649-2269 |ENT-SBM                                    |International Review of Entrepreneurship                                                    |        2|
+|2352-6734 |ENT-SBM                                    |Journal of Business Venturing Insights                                                      |        2|
+|1877-8585 |ENT-SBM                                    |Journal of Family Business Strategy                                                         |        2|
+|1462-6004 |ENT-SBM                                    |Journal of Small Business and Enterprise Development                                        |        2|
+|1942-0684 |ENT-SBM                                    |Journal of Social Entrepreneurship                                                          |        2|
+|1464-5343 |ENT-SBM                                    |Venture Capital                                                                             |        2|
+|2332-2373 |ETHICS-CSR-MAN                             |Africa Journal of Management                                                                |        2|
+|1327-2020 |ETHICS-CSR-MAN                             |Australian Journal of Management                                                            |        2|
+|2340-9444 |ETHICS-CSR-MAN                             |BRQ Business Research Quarterly                                                             |        2|
+|1369-5258 |ETHICS-CSR-MAN                             |Business and Politics                                                                       |        2|
+|0962-8770 |ETHICS-CSR-MAN                             |Business Ethics                                                                             |        2|
+|1873-6068 |ETHICS-CSR-MAN                             |Business Horizons                                                                           |        2|
+|1936-4490 |ETHICS-CSR-MAN                             |Canadian Journal of Administrative Sciences                                                 |        2|
+|1477-2221 |ETHICS-CSR-MAN                             |Competition and Change                                                                      |        2|
+|2040-7149 |ETHICS-CSR-MAN                             |Equality, Diversity and Inclusion: an International Journal                                 |        2|
+|2147-4281 |ETHICS-CSR-MAN                             |Eurasian Business Review                                                                    |        2|
+|0955-534X |ETHICS-CSR-MAN                             |European Business Review                                                                    |        2|
+|1461-7420 |ETHICS-CSR-MAN                             |European Journal of Women's Studies                                                         |        2|
+|1873-5681 |ETHICS-CSR-MAN                             |European Management Journal                                                                 |        2|
+|1466-4372 |ETHICS-CSR-MAN                             |Feminist Economics                                                                          |        2|
+|1466-4380 |ETHICS-CSR-MAN                             |Feminist Review                                                                             |        2|
+|0972-2696 |ETHICS-CSR-MAN                             |Global Journal of Flexible Systems Management                                               |        2|
+|2321-029X |ETHICS-CSR-MAN                             |IIM Kozhikode Society & Management Review                                                   |        2|
+|1741-802X |ETHICS-CSR-MAN                             |International Journal of Business Governance and Ethics                                     |        2|
+|1758-8545 |ETHICS-CSR-MAN                             |International Journal of Conflict Management                                                |        2|
+|1756-6274 |ETHICS-CSR-MAN                             |International Journal of Gender and Entrepreneurship                                        |        2|
+|1558-0911 |ETHICS-CSR-MAN                             |International Studies of Management and Organization                                        |        2|
+|1758-7468 |ETHICS-CSR-MAN                             |Journal of Intellectual Capital                                                             |        2|
+|1839-3527 |ETHICS-CSR-MAN                             |Journal of Management and Organization                                                      |        2|
+|1758-6070 |ETHICS-CSR-MAN                             |Management Decision                                                                         |        2|
+|1861-9908 |ETHICS-CSR-MAN                             |Management Revue                                                                            |        2|
+|1863-6691 |ETHICS-CSR-MAN                             |Review of Managerial Science                                                                |        2|
+|1873-3387 |ETHICS-CSR-MAN                             |Scandinavian Journal of Management                                                          |        2|
+|2194-072X |ETHICS-CSR-MAN                             |Schmalenbach Business Review                                                                |        2|
+|1573-2762 |ETHICS-CSR-MAN                             |Sex Roles                                                                                   |        2|
+|1545-6943 |ETHICS-CSR-MAN                             |Signs                                                                                       |        2|
+|1614-2454 |FINANCE                                    |Annals of Finance                                                                           |        2|
+|1466-4305 |FINANCE                                    |Applied Financial Economics                                                                 |        2|
+|1466-4313 |FINANCE                                    |Applied Mathematical Finance                                                                |        2|
+|1573-6946 |FINANCE                                    |Asia-Pacific Financial Markets                                                              |        2|
+|1783-1350 |FINANCE                                    |ASTIN Bulletin                                                                              |        2|
+|1472-0701 |FINANCE                                    |Corporate Governance (Bingley)                                                              |        2|
+|1558-0938 |FINANCE                                    |Emerging Markets Finance and Trade                                                          |        2|
+|1544-6131 |FINANCE                                    |Finance Research Letters                                                                    |        2|
+|2373-8529 |FINANCE                                    |Financial Markets and Portfolio Management                                                  |        2|
+|1567-2409 |FINANCE                                    |Foundations and Trends in Finance                                                           |        2|
+|1468-0440 |FINANCE                                    |Geneva Papers on Risk and Insurance: Issues and Practice                                    |        2|
+|1044-0283 |FINANCE                                    |Global Finance Journal                                                                      |        2|
+|1755-3849 |FINANCE                                    |International Journal of Banking, Accounting and Finance                                    |        2|
+|1743-9132 |FINANCE                                    |International Journal of Managerial Finance                                                 |        2|
+|0219-0249 |FINANCE                                    |International Journal of Theoretical and Applied Finance                                    |        2|
+|1573-6970 |FINANCE                                    |International Tax and Public Finance                                                        |        2|
+|1520-3255 |FINANCE                                    |Journal of Alternative Investments                                                          |        2|
+|1479-179X |FINANCE                                    |Journal of Asset Management                                                                 |        2|
+|1750-2071 |FINANCE                                    |Journal of Banking Regulation                                                               |        2|
+|1542-7579 |FINANCE                                    |Journal of Behavioral Finance                                                               |        2|
+|2168-8524 |FINANCE                                    |Journal of Derivatives                                                                      |        2|
+|0148-6195 |FINANCE                                    |Journal of Economics and Business                                                           |        2|
+|0973-0710 |FINANCE                                    |Journal of Emerging Market Finance                                                          |        2|
+|1059-8596 |FINANCE                                    |Journal of Fixed Income                                                                     |        2|
+|1873-1309 |FINANCE                                    |Journal of Multinational Financial Management                                               |        2|
+|1755-2710 |FINANCE                                    |Journal of Operational Risk                                                                 |        2|
+|1475-3022 |FINANCE                                    |Journal of Pension Economics and Finance                                                    |        2|
+|1755-2842 |FINANCE                                    |Journal of Risk                                                                             |        2|
+|1092-0277 |FINANCE                                    |North American Actuarial Journal                                                            |        2|
+|1879-0585 |FINANCE                                    |Pacific Basin Finance Journal                                                               |        2|
+|1878-3384 |FINANCE                                    |Research in International Business and Finance                                              |        2|
+|1758-7700 |FINANCE                                    |Review of Accounting and Finance                                                            |        2|
+|1573-7144 |FINANCE                                    |Review of Derivatives Research                                                              |        2|
+|1879-9337 |FINANCE                                    |Review of Development Finance                                                               |        2|
+|1945-497X |FINANCE                                    |SIAM Journal on Financial Mathematics                                                       |        2|
+|1744-7941 |HRM&EMP                                    |Asia Pacific Journal of Human Resources                                                     |        2|
+|1758-6003 |HRM&EMP                                    |Career Development International                                                            |        2|
+|2161-0045 |HRM&EMP                                    |Career Development Quarterly                                                                |        2|
+|1758-7069 |HRM&EMP                                    |Employee Relations                                                                          |        2|
+|1469-8374 |HRM&EMP                                    |Human Resource Development International                                                    |        2|
+|1532-1096 |HRM&EMP                                    |Human Resource Development Quarterly                                                        |        2|
+|1552-6712 |HRM&EMP                                    |Human Resource Development Review                                                           |        2|
+|1862-0035 |HRM&EMP                                    |Industrielle Beziehungen                                                                    |        2|
+|1758-6577 |HRM&EMP                                    |International Journal of Manpower                                                           |        2|
+|1468-2419 |HRM&EMP                                    |International Journal of Training and Development                                           |        2|
+|1564-913X |HRM&EMP                                    |International Labour Review                                                                 |        2|
+|2049-8802 |HRM&EMP                                    |Journal of Global Mobility                                                                  |        2|
+|1472-9296 |HRM&EMP                                    |Journal of Industrial Relations                                                             |        2|
+|1936-4768 |HRM&EMP                                    |Journal of Labor Research                                                                   |        2|
+|2051-6614 |HRM&EMP                                    |Journal of Organizational Effectiveness                                                     |        2|
+|0160-449X |HRM&EMP                                    |Labor Studies Journal                                                                       |        2|
+|2325-5676 |HRM&EMP                                    |Labour and Industry: a journal of social and economic relations of work                     |        2|
+|1758-6933 |HRM&EMP                                    |Personnel Review                                                                            |        2|
+|1703-8138 |HRM&EMP                                    |Relations Industrielles/Industrial Relations                                                |        2|
+|1777-5701 |HRM&EMP                                    |Sociologie du Travail                                                                       |        2|
+|1996-7284 |HRM&EMP                                    |Transfer                                                                                    |        2|
+|2054-4650 |HRM&EMP                                    |Work, Aging and Retirement                                                                  |        2|
+|2397-0030 |HRM&EMP                                    |Zeitschrift für Personalforschung (German Journal of Research in Human Resource Management) |        2|
+|1743-792X |IB&AREA                                    |Asia Pacific Business Review                                                                |        2|
+|1476-9328 |IB&AREA                                    |Asian Business and Management                                                               |        2|
+|1468-2648 |IB&AREA                                    |China Quarterly                                                                             |        2|
+|1742-2043 |IB&AREA                                    |Critical Perspectives on International Business                                             |        2|
+|2059-5794 |IB&AREA                                    |Cross Cultural and Strategic Management                                                     |        2|
+|1873-6173 |IB&AREA                                    |Emerging Markets Review                                                                     |        2|
+|1938-2863 |IB&AREA                                    |Eurasian Geography and Economics                                                            |        2|
+|1465-3427 |IB&AREA                                    |Europe-Asia Studies                                                                         |        2|
+|1751-6765 |IB&AREA                                    |European Journal of International Management                                                |        2|
+|2029-4433 |IB&AREA                                    |Journal of Business Economics and Management                                                |        2|
+|1469-767X |IB&AREA                                    |Journal of Latin American Studies                                                           |        2|
+|1469-7777 |IB&AREA                                    |Journal of Modern African Studies                                                           |        2|
+|2210-2795 |IB&AREA                                    |Journal of World Trade                                                                      |        2|
+|2054-1686 |IB&AREA                                    |Multinational Business Review                                                               |        2|
+|1740-1720 |IB&AREA                                    |Review of African Political Economy                                                         |        2|
+|1360-2241 |IB&AREA                                    |Third World Quarterly                                                                       |        2|
+|1096-4762 |IB&AREA                                    |Thunderbird International Business Review                                                   |        2|
+|1014-9562 |IB&AREA                                    |Transnational Corporations                                                                  |        2|
+|1944-3900 |INFO MAN                                   |AIS Transactions on Human-Computer Interaction                                              |        2|
+|1550-8382 |INFO MAN                                   |Annual Review of Information Science and Technology                                         |        2|
+|1362-3001 |INFO MAN                                   |Behaviour and Information Technology                                                        |        2|
+|1467-8535 |INFO MAN                                   |British Journal of Educational Technology                                                   |        2|
+|1867-0202 |INFO MAN                                   |Business & Information Systems Engineering (BISE, includes WIRTSCHAFTSINFORMATIK)           |        2|
+|1557-7317 |INFO MAN                                   |Communications of the ACM                                                                   |        2|
+|1529-3181 |INFO MAN                                   |Communications of the Association for Information Systems                                   |        2|
+|1460-2067 |INFO MAN                                   |Computer Journal                                                                            |        2|
+|1573-7551 |INFO MAN                                   |Computer Supported Cooperative Work                                                         |        2|
+|1873-7692 |INFO MAN                                   |Computers in Human Behavior                                                                 |        2|
+|1572-9362 |INFO MAN                                   |Electronic Commerce Research                                                                |        2|
+|1873-7846 |INFO MAN                                   |Electronic Commerce Research and Applications                                               |        2|
+|1751-7583 |INFO MAN                                   |Enterprise Information Systems                                                              |        2|
+|1468-0394 |INFO MAN                                   |Expert Systems                                                                              |        2|
+|1471-1842 |INFO MAN                                   |Health Information and Libraries Journal                                                    |        2|
+|2047-6973 |INFO MAN                                   |Health Systems                                                                              |        2|
+|1758-5783 |INFO MAN                                   |Industrial Management and Data Systems                                                      |        2|
+|1873-5371 |INFO MAN                                   |Information Processing and Management                                                       |        2|
+|1617-9854 |INFO MAN                                   |Information Systems and e-Business Management                                               |        2|
+|1934-8703 |INFO MAN                                   |Information Systems Management                                                              |        2|
+|1554-0170 |INFO MAN                                   |Information Technology for Development                                                      |        2|
+|1873-7951 |INFO MAN                                   |Interacting with Computers                                                                  |        2|
+|1095-9300 |INFO MAN                                   |International Journal of Human Computer Studies                                             |        2|
+|1873-4707 |INFO MAN                                   |International Journal of Information Management                                             |        2|
+|2380-2057 |INFO MAN                                   |Journal of Computer Information Systems                                                     |        2|
+|1758-7379 |INFO MAN                                   |Journal of Documentation                                                                    |        2|
+|1758-7409 |INFO MAN                                   |Journal of Enterprise Information Management                                                |        2|
+|1533-7995 |INFO MAN                                   |Journal of Global Information Management                                                    |        2|
+|2333-6846 |INFO MAN                                   |Journal of Global Information Technology Management                                         |        2|
+|1741-6485 |INFO MAN                                   |Journal of Information Science                                                              |        2|
+|1873-1228 |INFO MAN                                   |Journal of Systems and Software                                                             |        2|
+|1540-1979 |INFO MAN                                   |MIS Quarterly Executive                                                                     |        2|
+|1943-7544 |INFO MAN                                   |Pacific Asia Journal of the Association for Information Systems                             |        2|
+|1432-010X |INFO MAN                                   |Requirements Engineering                                                                    |        2|
+|1901-0990 |INFO MAN                                   |Scandinavian Journal of Information Systems                                                 |        2|
+|1532-0936 |INFO MAN                                   |The Data Base for Advances in Information Systems                                           |        2|
+|1467-8691 |INNOV                                      |Creativity and Innovation Management                                                        |        2|
+|2204-0226 |INNOV                                      |Innovation: Organization & Management                                                       |        2|
+|1363-9196 |INNOV                                      |International Journal of Innovation Management                                              |        2|
+|1608-4799 |INNOV                                      |Journal of Engineering and Technology Management - JET-M                                    |        2|
+|1047-8310 |INNOV                                      |Journal of High Technology Management Research                                              |        2|
+|1470-1030 |INNOV                                      |Prometheus                                                                                  |        2|
+|1930-0166 |INNOV                                      |Research Technology Management                                                              |        2|
+|2243-4690 |INNOV                                      |Science and Technology Studies                                                              |        2|
+|1552-8251 |INNOV                                      |Science Technology and Human Values                                                         |        2|
+|1588-2861 |INNOV                                      |Scientometrics                                                                              |        2|
+|1460-3659 |INNOV                                      |Social Studies of Science                                                                   |        2|
+|0954-349X |INNOV                                      |Structural Change and Economic Dynamics                                                     |        2|
+|1468-4489 |MDEV&EDU                                   |Accounting Education                                                                        |        2|
+|1552-3055 |MDEV&EDU                                   |Advances in Developing Human Resources                                                      |        2|
+|1469-3534 |MDEV&EDU                                   |British Journal of Guidance and Counselling                                                 |        2|
+|1573-174X |MDEV&EDU                                   |Higher Education                                                                            |        2|
+|1740-3863 |MDEV&EDU                                   |Higher Education Policy                                                                     |        2|
+|0263-9769 |MDEV&EDU                                   |Higher Education Quarterly                                                                  |        2|
+|1532-0545 |MDEV&EDU                                   |INFORMS Transactions on Education                                                           |        2|
+|1470-3300 |MDEV&EDU                                   |Innovations in Education and Teaching International                                         |        2|
+|1558-7983 |MDEV&EDU                                   |Issues in Accounting Education                                                              |        2|
+|0748-5751 |MDEV&EDU                                   |Journal of Accounting Education                                                             |        2|
+|1469-9435 |MDEV&EDU                                   |Journal of Education and Work                                                               |        2|
+|1464-5106 |MDEV&EDU                                   |Journal of Education Policy                                                                 |        2|
+|1538-4640 |MDEV&EDU                                   |Journal of Higher Education                                                                 |        2|
+|2044-4575 |MDEV&EDU                                   |Journal of International Business Education                                                 |        2|
+|1552-6658 |MDEV&EDU                                   |Journal of Management Education                                                             |        2|
+|1552-6550 |MDEV&EDU                                   |Journal of Marketing Education                                                              |        2|
+|1470-1294 |MDEV&EDU                                   |Teaching in Higher Education                                                                |        2|
+|1869-8182 |MKT                                        |Academy of Marketing Science Review                                                         |        2|
+|0098-9258 |MKT                                        |Advances in Consumer Research                                                               |        2|
+|1477-223X |MKT                                        |Consumption Markets and Culture                                                             |        2|
+|1422-8890 |MKT                                        |Electronic Markets                                                                          |        2|
+|1759-3948 |MKT                                        |International Journal of Advertising                                                        |        2|
+|1470-6431 |MKT                                        |International Journal of Consumer Studies                                                   |        2|
+|2515-2173 |MKT                                        |International Journal of Market Research                                                    |        2|
+|1758-6690 |MKT                                        |International Journal of Retail and Distribution Management                                 |        2|
+|1479-1803 |MKT                                        |Journal of Brand Management                                                                 |        2|
+|2052-1189 |MKT                                        |Journal of Business and Industrial Marketing                                                |        2|
+|1547-0628 |MKT                                        |Journal of Business-to-Business Marketing                                                   |        2|
+|1745-6606 |MKT                                        |Journal of Consumer Affairs                                                                 |        2|
+|1479-1838 |MKT                                        |Journal of Consumer Behaviour                                                               |        2|
+|1552-6534 |MKT                                        |Journal of Macromarketing                                                                   |        2|
+|1472-1376 |MKT                                        |Journal of Marketing Management                                                             |        2|
+|1069-6679 |MKT                                        |Journal of Marketing Theory and Practice                                                    |        2|
+|1557-7813 |MKT                                        |Journal of Personal Selling and Sales Management                                            |        2|
+|1873-1384 |MKT                                        |Journal of Retailing and Consumer Services                                                  |        2|
+|0887-6045 |MKT                                        |Journal of Services Marketing                                                               |        2|
+|1466-4488 |MKT                                        |Journal of Strategic Marketing                                                              |        2|
+|1352-2752 |MKT                                        |Qualitative Market Research                                                                 |        2|
+|1758-4116 |OPS&TECH                                   |Business Process Management Journal                                                         |        2|
+|1879-0550 |OPS&TECH                                   |Computers and Industrial Engineering                                                        |        2|
+|1362-3052 |OPS&TECH                                   |International Journal of Computer Integrated Manufacturing                                  |        2|
+|1758-664X |OPS&TECH                                   |International Journal of Physical Distribution and Logistics Management                     |        2|
+|1873-4634 |OPS&TECH                                   |International Journal of Project Management                                                 |        2|
+|0265-671X |OPS&TECH                                   |International Journal of Quality and Reliability Management                                 |        2|
+|1741-5276 |OPS&TECH                                   |International Journal of Technology Management                                              |        2|
+|1943-7862 |OPS&TECH                                   |Journal of Construction Engineering and Management - ASCE                                   |        2|
+|1099-1425 |OPS&TECH                                   |Journal of Scheduling                                                                       |        2|
+|1478-3371 |OPS&TECH                                   |Total Quality Management and Business Excellence                                            |        2|
+|1614-2411 |OR&MANSCI                                  |4OR                                                                                         |        2|
+|1872-6771 |OR&MANSCI                                  |Discrete Applied Mathematics                                                                |        2|
+|1873-636X |OR&MANSCI                                  |Discrete Optimization                                                                       |        2|
+|1029-0273 |OR&MANSCI                                  |Engineering Optimization                                                                    |        2|
+|1751-5262 |OR&MANSCI                                  |European Journal of Industrial Engineering                                                  |        2|
+|1572-9907 |OR&MANSCI                                  |Group Decision and Negotiation                                                              |        2|
+|1471-6798 |OR&MANSCI                                  |IMA Journal of Management Mathematics                                                       |        2|
+|1526-551X |OR&MANSCI                                  |Interfaces                                                                                  |        2|
+|1573-2886 |OR&MANSCI                                  |Journal of Combinatorial Optimization                                                       |        2|
+|1099-131X |OR&MANSCI                                  |Journal of Forecasting                                                                      |        2|
+|1573-2916 |OR&MANSCI                                  |Journal of Global Optimization                                                              |        2|
+|1872-7468 |OR&MANSCI                                  |Operations Research Letters                                                                 |        2|
+|1572-9443 |OR&MANSCI                                  |Queueing Systems                                                                            |        2|
+|1878-1462 |OR&MANSCI                                  |Simulation Modelling Practice and Theory                                                    |        2|
+|0038-0121 |OR&MANSCI                                  |Socio-Economic Planning Sciences                                                            |        2|
+|1099-1727 |OR&MANSCI                                  |System Dynamics Review                                                                      |        2|
+|1099-1743 |OR&MANSCI                                  |Systems Research and Behavioral Science                                                     |        2|
+|1573-7187 |OR&MANSCI                                  |Theory and Decision                                                                         |        2|
+|1477-2760 |ORG STUD                                   |Culture and Organization                                                                    |        2|
+|1461-7188 |ORG STUD                                   |Group Processes and Intergroup Relations                                                    |        2|
+|1758-7484 |ORG STUD                                   |Journal of Knowledge Management                                                             |        2|
+|1540-8604 |ORG STUD                                   |Journal of Organizational Behavior Management                                               |        2|
+|1758-7816 |ORG STUD                                   |Journal of Organizational Change Management                                                 |        2|
+|2051-8811 |ORG STUD                                   |Journal of Professions and Organization                                                     |        2|
+|1742-7169 |ORG STUD                                   |Leadership                                                                                  |        2|
+|1552-6798 |ORG STUD                                   |Management Communication Quarterly                                                          |        2|
+|1571-9979 |ORG STUD                                   |Negotiation Journal                                                                         |        2|
+|1533-8665 |ORG STUD                                   |Symbolic Interaction                                                                        |        2|
+|1573-9295 |ORG STUD                                   |Systemic Practice and Action Research                                                       |        2|
+|1552-6879 |ORG STUD                                   |The Journal of Applied Behavioral Science                                                   |        2|
+|1099-0720 |PSYCH (GENERAL)                            |Applied Cognitive Psychology                                                                |        2|
+|2365-7464 |PSYCH (GENERAL)                            |Cognitive Research: Principles and Implications                                             |        2|
+|1532-6934 |PSYCH (GENERAL)                            |Creativity Research Journal                                                                 |        2|
+|2325-9973 |PSYCH (GENERAL)                            |Decision                                                                                    |        2|
+|2169-5032 |PSYCH (GENERAL)                            |Journal of Cognitive Engineering and Decision Making                                        |        2|
+|1520-6629 |PSYCH (GENERAL)                            |Journal of Community Psychology                                                             |        2|
+|1872-7719 |PSYCH (GENERAL)                            |Journal of Economic Psychology                                                              |        2|
+|1552-6526 |PSYCH (GENERAL)                            |Journal of Language and Social Psychology                                                   |        2|
+|1096-0880 |PSYCH (GENERAL)                            |Journal of Mathematical Psychology                                                          |        2|
+|1573-3653 |PSYCH (GENERAL)                            |Journal of Nonverbal Behavior                                                               |        2|
+|1467-9450 |PSYCH (GENERAL)                            |Scandinavian Journal of Psychology                                                          |        2|
+|1532-2998 |PSYCH (GENERAL)                            |Stress and Health                                                                           |        2|
+|2151-2604 |PSYCH (GENERAL)                            |Zeitschrift fur Psychologie / Journal of Psychology                                         |        2|
+|1552-3497 |PSYCH (WOP-OB)                             |Applied Psychological Measurement                                                           |        2|
+|1758-0854 |PSYCH (WOP-OB)                             |Applied Psychology: Health and Well-Being                                                   |        2|
+|1435-5566 |PSYCH (WOP-OB)                             |Cognition, Technology and Work                                                              |        2|
+|1464-5165 |PSYCH (WOP-OB)                             |Disability and Rehabilitation                                                               |        2|
+|1930-7802 |PSYCH (WOP-OB)                             |Group Dynamics                                                                              |        2|
+|1432-1246 |PSYCH (WOP-OB)                             |International Archives of Occupational and Environmental Health                             |        2|
+|1872-8219 |PSYCH (WOP-OB)                             |International Journal of Industrial Ergonomics                                              |        2|
+|1468-2389 |PSYCH (WOP-OB)                             |International Journal of Selection and Assessment                                           |        2|
+|1573-3424 |PSYCH (WOP-OB)                             |International Journal of Stress Management                                                  |        2|
+|1559-1816 |PSYCH (WOP-OB)                             |Journal of Applied Social Psychology                                                        |        2|
+|1552-4590 |PSYCH (WOP-OB)                             |Journal of Career Assessment                                                                |        2|
+|1536-5948 |PSYCH (WOP-OB)                             |Journal of Occupational and Environmental Medicine                                          |        2|
+|1573-3688 |PSYCH (WOP-OB)                             |Journal of Occupational Rehabilitation                                                      |        2|
+|2190-5150 |PSYCH (WOP-OB)                             |Journal of Personnel Psychology                                                             |        2|
+|1879-1247 |PSYCH (WOP-OB)                             |Journal of Safety Research                                                                  |        2|
+|2041-3874 |PSYCH (WOP-OB)                             |Organizational Psychology Review                                                            |        2|
+|1939-1544 |PSYCH (WOP-OB)                             |Rehabilitation Psychology                                                                   |        2|
+|1552-8278 |PSYCH (WOP-OB)                             |Small Group Research                                                                        |        2|
+|1552-3039 |PUB SEC                                    |Administration and Society                                                                  |        2|
+|1467-8500 |PUB SEC                                    |Australian Journal of Public Administration                                                 |        2|
+|1741-1440 |PUB SEC                                    |Educational Management Administration and Leadership                                        |        2|
+|1744-2656 |PUB SEC                                    |Evidence and Policy                                                                         |        2|
+|1365-2524 |PUB SEC                                    |Health and Social Care in the Community                                                     |        2|
+|1550-5030 |PUB SEC                                    |Health Care Management Review                                                               |        2|
+|1572-9389 |PUB SEC                                    |Health Care Management Science                                                              |        2|
+|1872-6054 |PUB SEC                                    |Health Policy                                                                               |        2|
+|2047-0908 |PUB SEC                                    |International Journal of Emergency Services                                                 |        2|
+|1532-4265 |PUB SEC                                    |International Journal of Public Administration                                              |        2|
+|1758-1060 |PUB SEC                                    |Journal of Health Services Research and Policy                                              |        2|
+|1743-9388 |PUB SEC                                    |Local Government Studies                                                                    |        2|
+|2398-4929 |PUB SEC                                    |Perspectives on Public Management & Governance                                              |        2|
+|1758-695X |PUB SEC                                    |Policing                                                                                    |        2|
+|1470-1006 |PUB SEC                                    |Policy Studies                                                                              |        2|
+|1099-162X |PUB SEC                                    |Public Administration and Development                                                       |        2|
+|1558-0989 |PUB SEC                                    |Public Integrity                                                                            |        2|
+|1467-9302 |PUB SEC                                    |Public Money and Management                                                                 |        2|
+|1573-7098 |PUB SEC                                    |Public Organization Review                                                                  |        2|
+|1557-9271 |PUB SEC                                    |Public Performance & Management Review                                                      |        2|
+|1945-7421 |PUB SEC                                    |Public Personnel Management                                                                 |        2|
+|1749-4192 |PUB SEC                                    |Public Policy and Administration                                                            |        2|
+|1552-759X |PUB SEC                                    |Review of Public Personnel Administration                                                   |        2|
+|1467-9515 |PUB SEC                                    |Social Policy and Administration                                                            |        2|
+|1750-6166 |PUB SEC                                    |Transforming Government: People, Process and Policy                                         |        2|
+|1432-0592 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Annals of Regional Science                                                                  |        2|
+|1873-6084 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Cities                                                                                      |        2|
+|1466-433X |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Construction Management and Economics                                                       |        2|
+|1469-5944 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |European Planning Studies                                                                   |        2|
+|1468-2257 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Growth and Change                                                                           |        2|
+|1468-2427 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |International Journal of Urban and Regional Research                                        |        2|
+|1753-8343 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Journal of Place Management and Development                                                 |        2|
+|1470-9325 |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Local Economy                                                                               |        2|
+|1478-341X |REGIONAL STUDIES, PLANNING AND ENVIRONMENT |Town Planning Review                                                                        |        2|
+|2159-6816 |SECTOR                                     |Annals of Leisure Research                                                                  |        2|
+|1466-4321 |SECTOR                                     |Building Research and Information                                                           |        2|
+|1938-9663 |SECTOR                                     |Cornell Hospitality Quarterly                                                               |        2|
+|1747-7603 |SECTOR                                     |Current Issues in Tourism                                                                   |        2|
+|1873-6777 |SECTOR                                     |Energy Policy                                                                               |        2|
+|1432-1009 |SECTOR                                     |Environmental Management                                                                    |        2|
+|1525-9951 |SECTOR                                     |Event Management                                                                            |        2|
+|2042-7921 |SECTOR                                     |Hospitality and Society                                                                     |        2|
+|1648-9179 |SECTOR                                     |International Journal of Strategic Property Management                                      |        2|
+|1522-1970 |SECTOR                                     |International Journal of Tourism Research                                                   |        2|
+|1879-1786 |SECTOR                                     |Journal of Cleaner Production                                                               |        2|
+|1557-7554 |SECTOR                                     |Journal of Hospitality and Tourism Research                                                 |        2|
+|1943-5479 |SECTOR                                     |Journal of Management in Engineering - ASCE                                                 |        2|
+|1757-5826 |SECTOR                                     |Journal of Service Management                                                               |        2|
+|1543-270X |SECTOR                                     |Journal of Sport Management                                                                 |        2|
+|1552-7794 |SECTOR                                     |Journal of Sports Economics                                                                 |        2|
+|1754-5951 |SECTOR                                     |Journal of Transport Economics and Policy                                                   |        2|
+|1873-1236 |SECTOR                                     |Journal of Transport Geography                                                              |        2|
+|1540-7306 |SECTOR                                     |Journal of Travel and Tourism Marketing                                                     |        2|
+|1521-0588 |SECTOR                                     |Leisure Sciences                                                                            |        2|
+|1466-4496 |SECTOR                                     |Leisure Studies                                                                             |        2|
+|1872-9460 |SECTOR                                     |Marine Policy                                                                               |        2|
+|1464-5254 |SECTOR                                     |Maritime Policy and Management                                                              |        2|
+|1872-9185 |SECTOR                                     |Museum Management and Curatorship                                                           |        2|
+|1502-2269 |SECTOR                                     |Scandinavian Journal of Hospitality and Tourism                                             |        2|
+|1743-9507 |SECTOR                                     |Service Industries Journal                                                                  |        2|
+|1839-2083 |SECTOR                                     |Sport Management Review                                                                     |        2|
+|1943-3999 |SECTOR                                     |Tourism Analysis                                                                            |        2|
+|2044-0375 |SECTOR                                     |Tourism Economics                                                                           |        2|
+|1470-1340 |SECTOR                                     |Tourism Geographies                                                                         |        2|
+|2211-9744 |SECTOR                                     |Tourism Management Perspectives                                                             |        2|
+|2156-8324 |SECTOR                                     |Tourism Planning and Development                                                            |        2|
+|2320-0308 |SECTOR                                     |Tourism Recreation Research                                                                 |        2|
+|1741-3206 |SECTOR                                     |Tourist Studies                                                                             |        2|
+|1879-310X |SECTOR                                     |Transport Policy                                                                            |        2|
+|1464-5327 |SECTOR                                     |Transport Reviews                                                                           |        2|
+|1572-9435 |SECTOR                                     |Transportation                                                                              |        2|
+|1573-7888 |SECTOR                                     |Voluntas                                                                                    |        2|
+|1536-7150 |SOC SCI                                    |American Journal of Economics and Sociology                                                 |        2|
+|0309-8168 |SOC SCI                                    |Capital and Class                                                                           |        2|
+|1461-703X |SOC SCI                                    |Critical Social Policy                                                                      |        2|
+|1461-7064 |SOC SCI                                    |Current Sociology                                                                           |        2|
+|1461-7153 |SOC SCI                                    |Evaluation                                                                                  |        2|
+|1873-6378 |SOC SCI                                    |Futures                                                                                     |        2|
+|1872-9398 |SOC SCI                                    |Geoforum                                                                                    |        2|
+|1938-3525 |SOC SCI                                    |Human Organization                                                                          |        2|
+|1468-4462 |SOC SCI                                    |Information Communication and Society                                                       |        2|
+|1758-8553 |SOC SCI                                    |International Journal of Development Issues                                                 |        2|
+|1543-5083 |SOC SCI                                    |International Journal of Green Energy                                                       |        2|
+|1461-7242 |SOC SCI                                    |International Sociology                                                                     |        2|
+|0021-9460 |SOC SCI                                    |Journal of Business Law                                                                     |        2|
+|1573-0700 |SOC SCI                                    |Journal of Consumer Policy                                                                  |        2|
+|1753-0369 |SOC SCI                                    |Journal of Cultural Economy                                                                 |        2|
+|1530-9290 |SOC SCI                                    |Journal of Industrial Ecology                                                               |        2|
+|1467-6478 |SOC SCI                                    |Journal of Law and Society                                                                  |        2|
+|1466-4461 |SOC SCI                                    |Journal of Risk Research                                                                    |        2|
+|1460-2482 |SOC SCI                                    |Parliamentary Affairs                                                                       |        2|
+|1467-923X |SOC SCI                                    |Political Quarterly                                                                         |        2|
+|1467-9248 |SOC SCI                                    |Political Studies                                                                           |        2|
+|1471-5449 |SOC SCI                                    |Research Evaluation                                                                         |        2|
+|1470-1162 |SOC SCI                                    |Review of Social Economy                                                                    |        2|
+|1471-5430 |SOC SCI                                    |Science and Public Policy                                                                   |        2|
+|1943-2801 |SOC SCI                                    |Science and Society                                                                         |        2|
+|0973-0796 |SOC SCI                                    |Science, Technology and Society                                                             |        2|
+|1879-2111 |SOC SCI                                    |Social Networks                                                                             |        2|
+|1746-5699 |SOC SCI                                    |Society and Business Review                                                                 |        2|
+|1461-7463 |SOC SCI                                    |Time and Society                                                                            |        2|
+|0742-3322 |STRAT                                      |Advances in Strategic Management                                                            |        2|
+|1530-9134 |STRAT                                      |Journal of Economics and Management Strategy                                                |        2|
+|2245-408X |STRAT                                      |Journal of Organization Design                                                              |        2|
+|1099-1697 |STRAT                                      |Strategic Change                                                                            |        2|
+|1465-3990 |STRAT                                      |Technology Analysis and Strategic Management                                                |        2|
+
+
+:::
+:::
+

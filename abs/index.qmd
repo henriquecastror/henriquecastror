@@ -1,0 +1,47 @@
+---
+title: "ABS list"
+slide-format: revealjs
+comments: false
+toc: true
+---
+
+# ABS List
+
+This is the list of journals listed as ABS4\*, ABS4, ABS3 or ABS2.
+
+**Updated in: "`r Sys.Date()`"**
+
+## ABS4
+
+```{r, echo=FALSE, warning= FALSE}
+library(readxl)
+smart <- read_excel("files/smartacademy/Smart_Academy_2021_4star.xlsx")
+knitr::kable(head(smart[, 1:4],1000))
+```
+
+## ABS4
+
+```{r, echo=FALSE, warning= FALSE}
+library(readxl)
+smart <- read_excel("files/smartacademy/Smart_Academy_2021_4.xlsx")
+knitr::kable(head(smart[, 1:4],1000))
+```
+
+## ABS3
+
+```{r, echo=FALSE, warning= FALSE}
+library(readxl)
+smart <- read_excel("files/smartacademy/Smart_Academy_2021_3.xlsx")
+knitr::kable(head(smart[, 1:4],1000))
+```
+
+## ABS2
+
+```{r, echo=FALSE, warning= FALSE}
+library(readxl)
+smart <- read_excel("files/smartacademy/Smart_Academy_2021_2.xlsx")
+knitr::kable(head(smart[, 1:4],1000))
+```
+
+
+
