@@ -3,6 +3,7 @@ title: "ABS list"
 slide-format: revealjs
 comments: false
 toc: true
+page-width: 20
 ---
 
 # ABS List
@@ -16,7 +17,7 @@ This is the list of journals listed as ABS4\*, ABS4, ABS3 or ABS2.
 ```{r, echo=FALSE, warning= FALSE}
 library(readxl)
 smart <- read_excel("files/smartacademy/Smart_Academy_2021_4star.xlsx")
-knitr::kable(head(smart[, 1:4],1000))
+knitr::kable(head(smart[, 2:4],1000))
 ```
 
 ## ABS4
@@ -24,7 +25,7 @@ knitr::kable(head(smart[, 1:4],1000))
 ```{r, echo=FALSE, warning= FALSE}
 library(readxl)
 smart <- read_excel("files/smartacademy/Smart_Academy_2021_4.xlsx")
-knitr::kable(head(smart[, 1:4],1000))
+knitr::kable(head(smart[, 2:4],1000))
 ```
 
 ## ABS3
@@ -32,7 +33,7 @@ knitr::kable(head(smart[, 1:4],1000))
 ```{r, echo=FALSE, warning= FALSE}
 library(readxl)
 smart <- read_excel("files/smartacademy/Smart_Academy_2021_3.xlsx")
-knitr::kable(head(smart[, 1:4],1000))
+knitr::kable(head(smart[, 2:4],1000))
 ```
 
 ## ABS2
@@ -40,7 +41,7 @@ knitr::kable(head(smart[, 1:4],1000))
 ```{r, echo=FALSE, warning= FALSE}
 library(readxl)
 smart <- read_excel("files/smartacademy/Smart_Academy_2021_2.xlsx")
-knitr::kable(head(smart[, 1:4],1000))
+knitr::kable(head(smart[, 2:4],1000))
 ```
 
 
