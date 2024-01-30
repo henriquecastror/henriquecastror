@@ -6,16 +6,17 @@
       version="2.0">
 <channel>
 <title>Henrique Castro Martins</title>
-<link>https://henriquemartins.net/blog/index.html</link>
+<link>https://henriquemartins.net/blog/</link>
 <atom:link href="https://henriquemartins.net/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.2.335</generator>
+<generator>quarto-1.4.549</generator>
 <lastBuildDate>Mon, 07 Nov 2022 03:00:00 GMT</lastBuildDate>
 <item>
   <title>How to create an effective master’s presentation</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/presentation/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/presentation/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -55,15 +56,16 @@
 
  ]]></description>
   <category>Master</category>
-  <guid>https://henriquemartins.net/blog/posts/presentation/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/presentation/</guid>
   <pubDate>Mon, 07 Nov 2022 03:00:00 GMT</pubDate>
   <media:content url="https://henriquemartins.net/blog/posts/presentation/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Worldwide Governance Indicators</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/wgi/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/wgi/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -80,25 +82,131 @@
 <p>Also, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the “better” or the more “optimistic” the society of that country is about that variable.</p>
 <p>First, download the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(downloader)</span>
-<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(haven)</span>
-<span id="cb1-5">url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"https://info.worldbank.org/governance/wgi/Home/downLoadFile?fileName=wgidataset_stata.zip"</span></span>
-<span id="cb1-6"><span class="fu" style="color: #4758AB;">download</span>(url, <span class="at" style="color: #657422;">dest=</span><span class="st" style="color: #20794D;">"file.zip"</span>, <span class="at" style="color: #657422;">mode=</span><span class="st" style="color: #20794D;">"wb"</span>) </span>
-<span id="cb1-7"><span class="fu" style="color: #4758AB;">unzip</span> (<span class="st" style="color: #20794D;">"file.zip"</span>, <span class="at" style="color: #657422;">exdir =</span> <span class="st" style="color: #20794D;">"./"</span>)</span>
-<span id="cb1-8">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_dta</span>(<span class="st" style="color: #20794D;">"wgidataset.dta"</span>)</span>
-<span id="cb1-9"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"file.zip"</span>)</span>
-<span id="cb1-10"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"PublicStataDatasetReadme.pdf"</span>)</span>
-<span id="cb1-11"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"wgidataset.dta"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggthemes)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(downloader)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(haven)</span>
+<span id="cb1-5">url <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://info.worldbank.org/governance/wgi/Home/downLoadFile?fileName=wgidataset_stata.zip"</span></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">download</span>(url, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dest=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"file.zip"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mode=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"wb"</span>) </span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unzip</span> (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"file.zip"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">exdir =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./"</span>)</span>
+<span id="cb1-8">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_dta</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"wgidataset.dta"</span>)</span>
+<span id="cb1-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.remove</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"file.zip"</span>)</span>
+<span id="cb1-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.remove</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PublicStataDatasetReadme.pdf"</span>)</span>
+<span id="cb1-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.remove</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"wgidataset.dta"</span>)</span></code></pre></div>
 </div>
 <p>For convenience, let’s focus only on the years after 2000 and in some selected countries.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">names</span>(data)[<span class="fu" style="color: #4758AB;">names</span>(data) <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">'countryname'</span>] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">'Country'</span></span>
-<span id="cb2-2">data <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(data, year <span class="sc" style="color: #5E5E5E;">&gt;=</span> <span class="dv" style="color: #AD0000;">2000</span>)</span>
-<span id="cb2-3">countries <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.data.frame</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Brazil"</span>, <span class="st" style="color: #20794D;">"France"</span>, <span class="st" style="color: #20794D;">"Germany"</span>, <span class="st" style="color: #20794D;">"United States of America"</span>, <span class="st" style="color: #20794D;">"United Kingdom"</span>, <span class="st" style="color: #20794D;">"Italy"</span>, <span class="st" style="color: #20794D;">"Japan"</span>, <span class="st" style="color: #20794D;">"China"</span>, <span class="st" style="color: #20794D;">"India"</span>)) </span>
-<span id="cb2-4"><span class="fu" style="color: #4758AB;">colnames</span>(countries) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"Country"</span>  </span>
-<span id="cb2-5">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(data, countries , <span class="at" style="color: #657422;">by=</span><span class="st" style="color: #20794D;">"Country"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(data)[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'countryname'</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Country'</span></span>
+<span id="cb2-2">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(data, year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span>)</span>
+<span id="cb2-3">countries <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Brazil"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"France"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Germany"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"United States of America"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"United Kingdom"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Italy"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Japan"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"China"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"India"</span>)) </span>
+<span id="cb2-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(countries) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Country"</span>  </span>
+<span id="cb2-5">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">merge</span>(data, countries , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Country"</span>)</span></code></pre></div>
 </div>
 <p>Now let’s have fun visualizing data. More about the <em>clarifications</em> in : <a href="https://info.worldbank.org/governance/wgi/Home/Documents">https://info.worldbank.org/governance/wgi/Home/Documents</a></p>
 <hr>
@@ -106,15 +214,95 @@
 <h4 class="anchored" data-anchor-id="voice-and-accountability-vae">Voice and Accountability (vae)</h4>
 <p><em>Description: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>vae) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb3-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Voice and Accountability'</span>, </span>
-<span id="cb3-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb3-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Voice and Accountability (selected countries since 2000)"</span>,</span>
-<span id="cb3-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb3-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb3-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>vae) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Voice and Accountability'</span>, </span>
+<span id="cb3-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb3-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Voice and Accountability (selected countries since 2000)"</span>,</span>
+<span id="cb3-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb3-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Country) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -123,15 +311,95 @@
 <h4 class="anchored" data-anchor-id="political-stability-and-absence-of-violenceterrorism-pve">Political Stability and Absence of Violence/Terrorism (pve)</h4>
 <p><em>Description: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>pve) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb4-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Pol. Stability and Absence of Viol./Terror.'</span>, </span>
-<span id="cb4-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb4-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Pol. Stability and Absence of Viol./Terror. (selected countries since 2000)"</span>,</span>
-<span id="cb4-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb4-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb4-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>pve) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Pol. Stability and Absence of Viol./Terror.'</span>, </span>
+<span id="cb4-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb4-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pol. Stability and Absence of Viol./Terror. (selected countries since 2000)"</span>,</span>
+<span id="cb4-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb4-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Country) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -140,15 +408,95 @@
 <h4 class="anchored" data-anchor-id="government-effectiveness-gee">Government Effectiveness (gee)</h4>
 <p><em>Description: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>gee) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb5-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Government Effectiveness'</span>, </span>
-<span id="cb5-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb5-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Government Effectiveness (selected countries since 2000)"</span>,</span>
-<span id="cb5-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb5-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>gee) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Government Effectiveness'</span>, </span>
+<span id="cb5-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb5-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Government Effectiveness (selected countries since 2000)"</span>,</span>
+<span id="cb5-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Country) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -157,15 +505,95 @@
 <h4 class="anchored" data-anchor-id="regulatory-quality-rqe">Regulatory Quality (rqe)</h4>
 <p><em>Description: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. </em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>rqe) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb6-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Regulatory Quality'</span>, </span>
-<span id="cb6-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb6-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Regulatory Quality (selected countries since 2000)"</span>,</span>
-<span id="cb6-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb6-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>rqe) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Regulatory Quality'</span>, </span>
+<span id="cb6-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb6-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Regulatory Quality (selected countries since 2000)"</span>,</span>
+<span id="cb6-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb6-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Country) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -174,15 +602,95 @@
 <h4 class="anchored" data-anchor-id="rule-of-law-rle">Rule of Law (rle)</h4>
 <p><em>Description: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>rle) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb7-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Rule of Law'</span>, </span>
-<span id="cb7-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb7-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Rule of Law (selected countries since 2000)"</span>,</span>
-<span id="cb7-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb7-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>rle) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Rule of Law'</span>, </span>
+<span id="cb7-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb7-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Rule of Law (selected countries since 2000)"</span>,</span>
+<span id="cb7-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Country) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -191,15 +699,95 @@
 <h4 class="anchored" data-anchor-id="control-of-corruption-cce">Control of Corruption (cce)</h4>
 <p><em>Description: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>cce) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb8-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Control of Corruption'</span>, </span>
-<span id="cb8-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb8-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Control of Corruption (selected countries since 2000)"</span>,</span>
-<span id="cb8-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb8-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2020</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> Country) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>cce) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Control of Corruption'</span>, </span>
+<span id="cb8-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb8-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Control of Corruption (selected countries since 2000)"</span>,</span>
+<span id="cb8-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://info.worldbank.org/governance/wgi/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2020</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Country) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/wgi/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Thanks for passing by!</p>
@@ -212,50 +800,161 @@
   <category>Open Code</category>
   <category>Brazil</category>
   <category>Corruption</category>
-  <guid>https://henriquemartins.net/blog/posts/wgi/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/wgi/</guid>
   <pubDate>Wed, 14 Sep 2022 03:00:00 GMT</pubDate>
   <media:content url="https://henriquemartins.net/blog/posts/wgi/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Brazil Economic Policy Uncertainty</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/br_epu/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/br_epu/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>In this post, I will show how to create a graph about the Brazilian Economic Policy Uncertainty index. For more information about this index, click <a href="https://www.policyuncertainty.com/">here</a>. Shortly, it is an index that calculates economic policy uncertainty by searching for specific words in Brazilian newspapers.</p>
 <p>Let’s download the data and create a graph to see what happens.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(readxl)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(httr)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(zoo)</span>
-<span id="cb1-4">url1<span class="ot" style="color: #003B4F;">&lt;-</span><span class="st" style="color: #20794D;">'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'</span></span>
-<span id="cb1-5"><span class="fu" style="color: #4758AB;">GET</span>(url1, <span class="fu" style="color: #4758AB;">write_disk</span>(tf <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tempfile</span>(<span class="at" style="color: #657422;">fileext =</span> <span class="st" style="color: #20794D;">".xlsx"</span>)))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(readxl)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(httr)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(zoo)</span>
+<span id="cb1-4">url1<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'</span></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">GET</span>(url1, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">write_disk</span>(tf <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tempfile</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fileext =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".xlsx"</span>)))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]
-  Date: 2023-03-16 19:44
+  Date: 2023-03-16 20:58
   Status: 200
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   Size: 11.9 kB
-&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpgZXO3A\file28d4161e1c6.xlsx</code></pre>
+&lt;ON DISK&gt;  C:\Users\hcmrt\AppData\Local\Temp\RtmpuWiLrJ\file24dc1dc71136.xlsx</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_excel</span>(tf)</span>
-<span id="cb3-2"><span class="fu" style="color: #4758AB;">colnames</span>(data) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Year"</span>, <span class="st" style="color: #20794D;">"Month"</span>, <span class="st" style="color: #20794D;">"EPU"</span>)</span>
-<span id="cb3-3">data<span class="ot" style="color: #003B4F;">&lt;-</span> data[<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">nrow</span>(data)<span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>,]</span>
-<span id="cb3-4">data<span class="sc" style="color: #5E5E5E;">$</span>date <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.yearmon</span>(<span class="fu" style="color: #4758AB;">paste</span>(data<span class="sc" style="color: #5E5E5E;">$</span>Year, data<span class="sc" style="color: #5E5E5E;">$</span>Month), <span class="st" style="color: #20794D;">"%Y %m"</span>)</span>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_excel</span>(tf)</span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(data) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Year"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Month"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"EPU"</span>)</span>
+<span id="cb3-3">data<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> data[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(data)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,]</span>
+<span id="cb3-4">data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>date <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.yearmon</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Year, data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Month), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%Y %m"</span>)</span>
 <span id="cb3-5"></span>
-<span id="cb3-6">data <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(data, Year <span class="sc" style="color: #5E5E5E;">&gt;=</span> <span class="dv" style="color: #AD0000;">2010</span>)</span></code></pre></div>
+<span id="cb3-6">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(data, Year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2010</span>)</span></code></pre></div>
 </div>
 <p>Finally, let’s create a graph:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
-<span id="cb4-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
-<span id="cb4-3"><span class="fu" style="color: #4758AB;">ggplot</span>(<span class="at" style="color: #657422;">data=</span> data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>date, <span class="at" style="color: #657422;">y =</span>EPU ) ) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_line</span>() <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb4-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Brazil Economic Policy Uncertainty (EPU) (since 2010)"</span>,</span>
-<span id="cb4-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.policyuncertainty.com/"</span>) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggthemes)</span>
+<span id="cb4-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span> data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>date, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span>EPU ) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Brazil Economic Policy Uncertainty (EPU) (since 2010)"</span>,</span>
+<span id="cb4-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://www.policyuncertainty.com/"</span>) </span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/br_epu/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/br_epu/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Well, it seems that we do not have too much uncertainty at the moment. At least not the type of uncertainty that this index measures. Still, this is a nice index to learn more about.</p>
@@ -268,38 +967,139 @@
   <category>Open Code</category>
   <category>Brazil</category>
   <category>EPU</category>
-  <guid>https://henriquemartins.net/blog/posts/br_epu/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/br_epu/</guid>
   <pubDate>Fri, 12 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://henriquemartins.net/blog/posts/br_epu/featured.png" medium="image" type="image/png" height="41" width="144"/>
 </item>
 <item>
   <title>Index of Democracy</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/vdem/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/vdem/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>Let’s see how to create a graph of the levels of Democracy in Brazil. The data come from the <a href="https://v-dem.net/">V-Dem project</a>, which is amazing.</p>
 <p>First, download the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(downloader)</span>
-<span id="cb1-4">url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"https://v-dem.net/media/datasets/Country_Year_V-Dem_Core_R_v12.zip"</span></span>
-<span id="cb1-5"><span class="fu" style="color: #4758AB;">download</span>(url, <span class="at" style="color: #657422;">dest=</span><span class="st" style="color: #20794D;">"dataset.zip"</span>, <span class="at" style="color: #657422;">mode=</span><span class="st" style="color: #20794D;">"wb"</span>) </span>
-<span id="cb1-6"><span class="fu" style="color: #4758AB;">unzip</span> (<span class="st" style="color: #20794D;">"dataset.zip"</span>, <span class="at" style="color: #657422;">exdir =</span> <span class="st" style="color: #20794D;">"./"</span>)</span>
-<span id="cb1-7">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">readRDS</span>(<span class="st" style="color: #20794D;">"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds"</span>)</span>
-<span id="cb1-8"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"dataset.zip"</span>)</span>
-<span id="cb1-9"><span class="fu" style="color: #4758AB;">file.remove</span>(<span class="st" style="color: #20794D;">"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggthemes)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(downloader)</span>
+<span id="cb1-4">url <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://v-dem.net/media/datasets/Country_Year_V-Dem_Core_R_v12.zip"</span></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">download</span>(url, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dest=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dataset.zip"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mode=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"wb"</span>) </span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unzip</span> (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dataset.zip"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">exdir =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./"</span>)</span>
+<span id="cb1-7">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">readRDS</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds"</span>)</span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.remove</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dataset.zip"</span>)</span>
+<span id="cb1-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.remove</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds"</span>)</span></code></pre></div>
 </div>
 <p>For convenience, let’s focus only on the years after 2000 and in some selected countries.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">names</span>(data)[<span class="fu" style="color: #4758AB;">names</span>(data) <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">'country_text_id'</span>] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">'Country'</span></span>
-<span id="cb2-2">data <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(data, year <span class="sc" style="color: #5E5E5E;">&gt;=</span> <span class="dv" style="color: #AD0000;">2000</span>)</span>
-<span id="cb2-3">countries <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.data.frame</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Brazil"</span>, <span class="st" style="color: #20794D;">"France"</span>, <span class="st" style="color: #20794D;">"Germany"</span>, <span class="st" style="color: #20794D;">"United States of America"</span>, <span class="st" style="color: #20794D;">"United Kingdom"</span>, <span class="st" style="color: #20794D;">"Italy"</span>, <span class="st" style="color: #20794D;">"Japan"</span>, <span class="st" style="color: #20794D;">"China"</span>, <span class="st" style="color: #20794D;">"India"</span>)) </span>
-<span id="cb2-4"><span class="fu" style="color: #4758AB;">colnames</span>(countries) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"country_name"</span>                  </span>
-<span id="cb2-5">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(data, countries , <span class="at" style="color: #657422;">by=</span><span class="st" style="color: #20794D;">"country_name"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(data)[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'country_text_id'</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Country'</span></span>
+<span id="cb2-2">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(data, year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span>)</span>
+<span id="cb2-3">countries <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Brazil"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"France"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Germany"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"United States of America"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"United Kingdom"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Italy"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Japan"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"China"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"India"</span>)) </span>
+<span id="cb2-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(countries) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"country_name"</span>                  </span>
+<span id="cb2-5">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">merge</span>(data, countries , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"country_name"</span>)</span></code></pre></div>
 </div>
 <p>Now let’s have fun visualizing data. More about the <em>clarifications</em> in : <a href="https://www.v-dem.net/static/website/img/refs/codebookv12.pdf">https://www.v-dem.net/static/website/img/refs/codebookv12.pdf</a></p>
 <hr>
@@ -307,15 +1107,95 @@
 <h4 class="anchored" data-anchor-id="electoral-democracy-index-d-v2x_polyarchy">Electoral democracy index (D) (v2x_polyarchy)</h4>
 <p><em>Clarification: The electoral principle of democracy seeks to embody the core value of making rulers responsive to citizens, achieved through electoral competition for the electorate’s approval under circumstances when suffrage is extensive; political and civil society organizations can operate freely; elections are clean and not marred by fraud or systematic irregularities; and elections affect the composition of the chief executive of the country. In between elections, there is freedom of expression and an independent media capable of presenting alternative views on matters of political relevance. In the V-Dem conceptual scheme, electoral democracy is understood as an essential element of any other conception of representative democracy —liberal, participatory, deliberative, egalitarian, or some other.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>v2x_polyarchy) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb3-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Electoral democracy index'</span>, </span>
-<span id="cb3-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb3-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Electoral democracy index (selected countries since 2000)"</span>,</span>
-<span id="cb3-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb3-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb3-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2021</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> country_name) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>v2x_polyarchy) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Electoral democracy index'</span>, </span>
+<span id="cb3-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb3-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electoral democracy index (selected countries since 2000)"</span>,</span>
+<span id="cb3-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb3-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2021</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> country_name) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -324,15 +1204,97 @@
 <h4 class="anchored" data-anchor-id="liberal-democracy-index-d-v2x_libdem">Liberal democracy index (D) (v2x_libdem)</h4>
 <p><em>Clarification: The liberal principle of democracy emphasizes the importance of protecting individual and minority rights against the tyranny of the state and the tyranny of the majority. The liberal model takes a “negative” view of political power insofar as it judges the quality of democracy by the limits placed on government. This is achieved by constitutionally protected civil liberties, strong rule of law, an independent judiciary, and effective checks and balances that, together, limit the exercise of executive power. To make this a measure of liberal democracy, the index also takes the level of electoral democracy into account.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>v2x_libdem) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">group =</span> Country, <span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb4-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Liberal democracy index'</span>, </span>
-<span id="cb4-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb4-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Liberal democracy index (selected countries since 2000)"</span>,</span>
-<span id="cb4-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb4-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb4-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2021</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> country_name) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>v2x_libdem) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> Country, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Liberal democracy index'</span>, </span>
+<span id="cb4-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb4-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Liberal democracy index (selected countries since 2000)"</span>,</span>
+<span id="cb4-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb4-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2021</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> country_name) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -341,15 +1303,97 @@
 <h4 class="anchored" data-anchor-id="participatory-democracy-index-d-v2x_partipdem">Participatory democracy index (D) (v2x_partipdem)</h4>
 <p><em>Clarification: The participatory principle of democracy emphasizes active participation by citizens in all political processes, electoral and non-electoral. It is motivated by uneasiness about a bedrock practice of electoral democracy: delegating authority to representatives. Thus, direct rule by citizens is preferred, wherever practicable. This model of democracy thus takes suffrage for granted, emphasizing engagement in civil society organizations, direct democracy, and subnational elected bodies. To make it a measure of participatory democracy, the index also takes the level of electoral democracy into account.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>v2x_partipdem) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">group =</span> Country, <span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb5-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Participatory democracy index'</span>, </span>
-<span id="cb5-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb5-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Participatory democracy index (selected countries since 2000)"</span>,</span>
-<span id="cb5-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb5-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2021</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> country_name) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>v2x_partipdem) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> Country, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Participatory democracy index'</span>, </span>
+<span id="cb5-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb5-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Participatory democracy index (selected countries since 2000)"</span>,</span>
+<span id="cb5-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2021</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> country_name) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -358,15 +1402,97 @@
 <h4 class="anchored" data-anchor-id="deliberative-democracy-index-d-v2x_delibdem">Deliberative democracy index (D) (v2x_delibdem)</h4>
 <p><em>Clarification: The deliberative principle of democracy focuses on the process by which decisions are reached in a polity. A deliberative process is one in which public reasoning focused on the common good motivates political decisions—as contrasted with emotional appeals, solidary attachments, parochial interests, or coercion. According to this principle, democracy requires more than an aggregation of existing preferences. There should also be respectful dialogue at all levels—from preference formation to final decision—among informed and competent participants who are open to persuasion. To make it a measure of not only the deliberative principle but also of democracy, the index also takes the level of electoral democracy into account.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>v2x_delibdem) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">group =</span> Country, <span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb6-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Deliberative democracy index'</span>, </span>
-<span id="cb6-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb6-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Deliberative democracy index (selected countries since 2000)"</span>,</span>
-<span id="cb6-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb6-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2021</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> country_name) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>v2x_delibdem) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> Country, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Deliberative democracy index'</span>, </span>
+<span id="cb6-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb6-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Deliberative democracy index (selected countries since 2000)"</span>,</span>
+<span id="cb6-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb6-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2021</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> country_name) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -375,15 +1501,97 @@
 <h4 class="anchored" data-anchor-id="egalitarian-democracy-index-d-v2x_egaldem">Egalitarian democracy index (D) (v2x_egaldem)</h4>
 <p><em>Clarification: The egalitarian principle of democracy holds that material and immaterial inequalities inhibit the exercise of formal rights and liberties, and diminish the ability of citizens from all social groups to participate. Egalitarian democracy is achieved when 1 rights and freedoms of individuals are protected equally across all social groups; and 2 resources are distributed equally across all social groups; 3 groups and individuals enjoy equal access to power. To make it a measure of egalitarian democracy, the index also takes the level of electoral democracy into account.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">ggplot</span>(data, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> year, <span class="at" style="color: #657422;">y=</span>v2x_egaldem) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">group =</span> Country, <span class="at" style="color: #657422;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;">+</span>  </span>
-<span id="cb7-2">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Egalitarian democracy index'</span>, </span>
-<span id="cb7-3">       <span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">'Year'</span>, </span>
-<span id="cb7-4">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Egalitarian democracy index (selected countries since 2000)"</span>,</span>
-<span id="cb7-5">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;">+</span> </span>
-<span id="cb7-6">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="st" style="color: #20794D;">"none"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-7">  ggrepel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">geom_text_repel</span>(<span class="at" style="color: #657422;">data =</span> data[<span class="fu" style="color: #4758AB;">which</span>(data<span class="sc" style="color: #5E5E5E;">$</span>year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2021</span>),], <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> country_name) , <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.5</span> ,  <span class="at" style="color: #657422;">max.overlaps =</span> <span class="cn" style="color: #8f5902;">Inf</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>v2x_egaldem) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> Country, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> Country)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>  </span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Egalitarian democracy index'</span>, </span>
+<span id="cb7-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year'</span>, </span>
+<span id="cb7-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Egalitarian democracy index (selected countries since 2000)"</span>,</span>
+<span id="cb7-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: https://www.v-dem.net/"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-7">  ggrepel<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> data[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2021</span>),], <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> country_name) , <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span> ,  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/vdem/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Thanks for passing by!</p>
@@ -396,70 +1604,295 @@
   <category>Open Code</category>
   <category>Brazil</category>
   <category>Democracy</category>
-  <guid>https://henriquemartins.net/blog/posts/vdem/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/vdem/</guid>
   <pubDate>Wed, 10 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://henriquemartins.net/blog/posts/vdem/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Ibovespa in USD</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/ibov_USD/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/ibov_USD/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>Let’s see how to create a graph of Ibovespa in dollar using data from ipeadata. Start by installing and loading the following package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(ipeadatar)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ipeadatar)</span></code></pre></div>
 </div>
 <p>Then, download the data. You will need the variables’ codes. You can use the row below to see the codes of all variables available.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">all_series <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">available_series</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">all_series <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">available_series</span>()</span></code></pre></div>
 </div>
 <p>Then, after learning the codes for the variables we want (i.e., the codes ‘GM366_IBVSP366’ and ‘GM366_ERC366’ below), you download the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">ibov  <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ipeadata</span>(<span class="at" style="color: #657422;">code =</span> <span class="st" style="color: #20794D;">"GM366_IBVSP366"</span>)</span>
-<span id="cb3-2">dolar <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ipeadata</span>(<span class="at" style="color: #657422;">code =</span> <span class="st" style="color: #20794D;">"GM366_ERC366"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">ibov  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ipeadata</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">code =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GM366_IBVSP366"</span>)</span>
+<span id="cb3-2">dolar <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ipeadata</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">code =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GM366_ERC366"</span>)</span></code></pre></div>
 </div>
 <p>See that the period available is different for the two variables.</p>
 <p>For convenience, let’s delete some columns in Ibov and integrate the dollar to Ibov.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">ibov <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(ibov, <span class="at" style="color: #657422;">select=</span><span class="sc" style="color: #5E5E5E;">-</span><span class="fu" style="color: #4758AB;">c</span>(tcode,uname))</span>
-<span id="cb4-2">dolar<span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(dolar, <span class="at" style="color: #657422;">select=</span><span class="sc" style="color: #5E5E5E;">-</span><span class="fu" style="color: #4758AB;">c</span>(tcode,uname))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">ibov <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(ibov, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">select=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(tcode,uname))</span>
+<span id="cb4-2">dolar<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(dolar, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">select=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(tcode,uname))</span></code></pre></div>
 </div>
 <p>The next step is to join the data by date to avoid using different periods in each dataframe.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(ibov,dolar, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"date"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">merge</span>(ibov,dolar, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"date"</span>)</span></code></pre></div>
 </div>
 <p>Then, let’s calculate the ratio between Ibovespa and dollar each day.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">data<span class="sc" style="color: #5E5E5E;">$</span>ibov_dolar <span class="ot" style="color: #003B4F;">&lt;-</span> (data<span class="sc" style="color: #5E5E5E;">$</span>value.x<span class="sc" style="color: #5E5E5E;">/</span>data<span class="sc" style="color: #5E5E5E;">$</span>value.y)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>ibov_dolar <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>value.x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>value.y)</span></code></pre></div>
 </div>
 <p>Lastly, you are good to go, and you can create a graph as follows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
-<span id="cb7-2"><span class="fu" style="color: #4758AB;">library</span>(ggthemes)</span>
-<span id="cb7-3"><span class="fu" style="color: #4758AB;">ggplot</span>(data) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_dolar, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov USD"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>value.x, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Ibov in USD'</span>, </span>
-<span id="cb7-5">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
-<span id="cb7-6">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggthemes)</span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> date, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>ibov_dolar, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ibov USD"</span>) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> date, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>value.x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ibov"</span>) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Ibov in USD'</span>, </span>
+<span id="cb7-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Graph of Ibov in USD (Period: since 1994)"</span>,</span>
+<span id="cb7-6">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/ibov_USD/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/ibov_USD/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibov in USD is not as high as one may think.</p>
 <p>Below is a graph adding Ibov in Euro.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">euro <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ipeadata</span>(<span class="at" style="color: #657422;">code =</span> <span class="st" style="color: #20794D;">"GM366_EUROC366"</span>)</span>
-<span id="cb8-2">euro <span class="ot" style="color: #003B4F;">&lt;-</span><span class="fu" style="color: #4758AB;">subset</span>(euro, <span class="at" style="color: #657422;">select=</span><span class="sc" style="color: #5E5E5E;">-</span><span class="fu" style="color: #4758AB;">c</span>(tcode,uname))</span>
-<span id="cb8-3">data2 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">merge</span>(ibov,euro, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"date"</span>)</span>
-<span id="cb8-4">data2<span class="sc" style="color: #5E5E5E;">$</span>ibov_euro <span class="ot" style="color: #003B4F;">&lt;-</span> (data2<span class="sc" style="color: #5E5E5E;">$</span>value.x<span class="sc" style="color: #5E5E5E;">/</span>data2<span class="sc" style="color: #5E5E5E;">$</span>value.y)</span>
-<span id="cb8-5"><span class="fu" style="color: #4758AB;">ggplot</span>(data) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_dolar, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov USD"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span>   <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>value.x, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="at" style="color: #657422;">data=</span> data2 , <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> date, <span class="at" style="color: #657422;">y=</span>ibov_euro, <span class="at" style="color: #657422;">colour=</span><span class="st" style="color: #20794D;">"Ibov Euro"</span>) ) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-6">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">'Ibov in USD &amp; Euro'</span>, </span>
-<span id="cb8-7">       <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Graph of Ibov in USD &amp; Euro (Period: since 1994)"</span>,</span>
-<span id="cb8-8">       <span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">theme_solarized</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">euro <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ipeadata</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">code =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GM366_EUROC366"</span>)</span>
+<span id="cb8-2">euro <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">subset</span>(euro, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">select=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(tcode,uname))</span>
+<span id="cb8-3">data2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">merge</span>(ibov,euro, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"date"</span>)</span>
+<span id="cb8-4">data2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>ibov_euro <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (data2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>value.x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>data2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>value.y)</span>
+<span id="cb8-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> date, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>ibov_dolar, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ibov USD"</span>) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> date, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>value.x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ibov"</span>) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span> data2 , <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> date, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>ibov_euro, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ibov Euro"</span>) ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Ibov in USD &amp; Euro'</span>, </span>
+<span id="cb8-7">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Graph of Ibov in USD &amp; Euro (Period: since 1994)"</span>,</span>
+<span id="cb8-8">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: Ipeadata (R package: ipeadatar)"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_solarized</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://henriquemartins.net/blog/posts/ibov_USD/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://henriquemartins.net/blog/posts/ibov_USD/index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Thanks for passing by!</p>
@@ -470,98 +1903,99 @@
   <category>Finance</category>
   <category>Open Data</category>
   <category>Open Code</category>
-  <guid>https://henriquemartins.net/blog/posts/ibov_USD/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/ibov_USD/</guid>
   <pubDate>Mon, 08 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://henriquemartins.net/blog/posts/ibov_USD/featured.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Fun Stuff</title>
   <dc:creator>Henrique C. Martins</dc:creator>
-  <link>https://henriquemartins.net/blog/posts/fun_stuff/index.html</link>
+  <link>https://henriquemartins.net/blog/posts/fun_stuff/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>Here are some images I often use in my lectures.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/causality.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/causality.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <hr>
 <p><a href="https://xkcd.com/552/">Source</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/correlation.png" style="width:90.0%;height:90.0%" class="figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/correlation.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:90.0%"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/coding.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/coding.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/selection_bias.png" style="width:50.0%;height:50.0%" class="figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/selection_bias.png" class="quarto-figure quarto-figure-center figure-img" style="width:50.0%;height:50.0%"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/quant_challenge.png" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/quant_challenge.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <hr>
 <p><a href="https://xkcd.com/2283/">Source</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/exa_exabyte.png" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/exa_exabyte.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/control_group.jpeg" style="width:70.0%;height:70.0%" class="figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/control_group.jpeg" class="quarto-figure quarto-figure-center figure-img" style="width:70.0%;height:70.0%"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/selection.jpg" style="width:70.0%;height:70.0%" class="figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/selection.jpg" class="quarto-figure quarto-figure-center figure-img" style="width:70.0%;height:70.0%"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/buysell.jpg" style="width:90.0%;height:90.0%" class="figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/buysell.jpg" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:90.0%"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dogbert.png" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dogbert.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <hr>
 <p><a href="https://dilbert.com/strip/2022-09-19">Source</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dt220919.gif" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dt220919.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <hr>
 <p><a href="https://dilbert.com/strip/2022-09-13">Source</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dt220913.gif" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/dt220913.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/risk.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://henriquemartins.net/blog/posts/fun_stuff/risk.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 
@@ -570,9 +2004,13 @@
  ]]></description>
   <category>Open Data</category>
   <category>Open Code</category>
-  <guid>https://henriquemartins.net/blog/posts/fun_stuff/index.html</guid>
+  <guid>https://henriquemartins.net/blog/posts/fun_stuff/</guid>
   <pubDate>Mon, 01 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://henriquemartins.net/blog/posts/fun_stuff/featured.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+</channel>
+</rss>
+rtins.net/blog/posts/fun_stuff/featured.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 </channel>
 </rss>

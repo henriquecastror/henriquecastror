@@ -24,8 +24,8 @@
     "objectID": "teaching/index.html#section",
     "href": "teaching/index.html#section",
     "title": "Teaching resources",
-    "section": "2023/02",
-    "text": "2023/02\n\nEmpirical Finance (Econometrics for Finance): See here\n\n\nFinancial Strategy (Estratégia Financeira): See here"
+    "section": "2024/01",
+    "text": "2024/01\n\nFinancial Strategy (Estratégia Financeira): See here"
   },
   {
     "objectID": "teaching/index.html#summer-course",
@@ -38,22 +38,22 @@
     "objectID": "teaching/index.html#section-1",
     "href": "teaching/index.html#section-1",
     "title": "Teaching resources",
-    "section": "2023/01",
-    "text": "2023/01\n\nFinancial Strategy (Estratégia Financeira): See here\n\n\nESG & Institutional Investment: See here"
+    "section": "2023/02",
+    "text": "2023/02\n\nEmpirical Finance (Econometrics for Finance): See here\n\n\nFinancial Strategy (Estratégia Financeira): See here"
   },
   {
     "objectID": "blog/index.html",
     "href": "blog/index.html",
     "title": "Posts",
     "section": "",
-    "text": "How to create an effective master’s presentation\n\n\n\n\n\n\n\nMaster\n\n\n\n\nA tutorial to present your dissertation\n\n\n\n\n\n\nNov 7, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nWorldwide Governance Indicators\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nCorruption\n\n\n\n\nGraphing WGI\n\n\n\n\n\n\nSep 14, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nBrazil Economic Policy Uncertainty\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nEPU\n\n\n\n\nGraphing EPU\n\n\n\n\n\n\nAug 12, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nIndex of Democracy\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nDemocracy\n\n\n\n\nGraphing V-Dem\n\n\n\n\n\n\nAug 10, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nIbovespa in USD\n\n\n\n\n\n\n\nFinance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nGraphing Ibovespa in dollar using ipeadatar\n\n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n  \n\n\n\n\nFun Stuff\n\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\n\n\nHere is a collection of pictures having fun about coding, statistics, and Finance.\n\n\n\n\n\n\nAug 1, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
+    "text": "How to create an effective master’s presentation\n\n\n\n\n\n\nMaster\n\n\n\nA tutorial to present your dissertation \n\n\n\n\n\nNov 7, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n\n\n\n\n\n\nWorldwide Governance Indicators\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nCorruption\n\n\n\nGraphing WGI \n\n\n\n\n\nSep 14, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n\n\n\n\n\n\nBrazil Economic Policy Uncertainty\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nEPU\n\n\n\nGraphing EPU \n\n\n\n\n\nAug 12, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n\n\n\n\n\n\nIndex of Democracy\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\nBrazil\n\n\nDemocracy\n\n\n\nGraphing V-Dem \n\n\n\n\n\nAug 10, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n\n\n\n\n\n\nIbovespa in USD\n\n\n\n\n\n\nFinance\n\n\nOpen Data\n\n\nOpen Code\n\n\n\nGraphing Ibovespa in dollar using ipeadatar \n\n\n\n\n\nAug 8, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\n\n\n\n\n\n\nFun Stuff\n\n\n\n\n\n\nOpen Data\n\n\nOpen Code\n\n\n\nHere is a collection of pictures having fun about coding, statistics, and Finance. \n\n\n\n\n\nAug 1, 2022\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/br_epu/index.html",
     "href": "blog/posts/br_epu/index.html",
     "title": "Brazil Economic Policy Uncertainty",
     "section": "",
-    "text": "In this post, I will show how to create a graph about the Brazilian Economic Policy Uncertainty index. For more information about this index, click here. Shortly, it is an index that calculates economic policy uncertainty by searching for specific words in Brazilian newspapers.\nLet’s download the data and create a graph to see what happens.\n\nlibrary(readxl)\nlibrary(httr)\nlibrary(zoo)\nurl1<-'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'\nGET(url1, write_disk(tf <- tempfile(fileext = \".xlsx\")))\n\nResponse [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]\n  Date: 2023-03-16 19:44\n  Status: 200\n  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\n  Size: 11.9 kB\n<ON DISK>  C:\\Users\\hcmrt\\AppData\\Local\\Temp\\RtmpgZXO3A\\file28d4161e1c6.xlsx\n\ndata <- read_excel(tf)\ncolnames(data) <- c(\"Year\", \"Month\", \"EPU\")\ndata<- data[1:nrow(data)-1,]\ndata$date <- as.yearmon(paste(data$Year, data$Month), \"%Y %m\")\n\ndata <-subset(data, Year >= 2010)\n\nFinally, let’s create a graph:\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nggplot(data= data, aes(x=date, y =EPU ) ) + geom_line() + theme_solarized() +\n  labs(title = \"Brazil Economic Policy Uncertainty (EPU) (since 2010)\",\n       caption = \"Source: https://www.policyuncertainty.com/\") \n\n\n\n\nWell, it seems that we do not have too much uncertainty at the moment. At least not the type of uncertainty that this index measures. Still, this is a nice index to learn more about.\nThanks for stopping by!"
+    "text": "In this post, I will show how to create a graph about the Brazilian Economic Policy Uncertainty index. For more information about this index, click here. Shortly, it is an index that calculates economic policy uncertainty by searching for specific words in Brazilian newspapers.\nLet’s download the data and create a graph to see what happens.\n\nlibrary(readxl)\nlibrary(httr)\nlibrary(zoo)\nurl1&lt;-'https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx'\nGET(url1, write_disk(tf &lt;- tempfile(fileext = \".xlsx\")))\n\nResponse [https://www.policyuncertainty.com/media/Brazil_Policy_Uncertainty_Data.xlsx]\n  Date: 2023-03-16 20:58\n  Status: 200\n  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\n  Size: 11.9 kB\n&lt;ON DISK&gt;  C:\\Users\\hcmrt\\AppData\\Local\\Temp\\RtmpuWiLrJ\\file24dc1dc71136.xlsx\n\ndata &lt;- read_excel(tf)\ncolnames(data) &lt;- c(\"Year\", \"Month\", \"EPU\")\ndata&lt;- data[1:nrow(data)-1,]\ndata$date &lt;- as.yearmon(paste(data$Year, data$Month), \"%Y %m\")\n\ndata &lt;-subset(data, Year &gt;= 2010)\n\nFinally, let’s create a graph:\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nggplot(data= data, aes(x=date, y =EPU ) ) + geom_line() + theme_solarized() +\n  labs(title = \"Brazil Economic Policy Uncertainty (EPU) (since 2010)\",\n       caption = \"Source: https://www.policyuncertainty.com/\") \n\n\n\n\n\n\n\n\nWell, it seems that we do not have too much uncertainty at the moment. At least not the type of uncertainty that this index measures. Still, this is a nice index to learn more about.\nThanks for stopping by!"
   },
   {
     "objectID": "teaching/202301_financial_strategy/index.html",
@@ -67,7 +67,7 @@
     "href": "seminars/index.html",
     "title": "Seminars",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 3, 2022\n\n\nEthics & Open Data (ANPCONT)\n\n\nHenrique C. Martins\n\n\n\n\nAug 8, 2022\n\n\nTalk about Research Productivity (Unisinos)\n\n\nHenrique C. Martins\n\n\n\n\nAug 18, 2021\n\n\nTalk Research Internationalization (UFSM)\n\n\nHenrique C. Martins\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\nHenrique C. Martins\n\n\n\n\nApr 5, 2021\n\n\nCompetition and ESG practices in emerging markets\n\n\nHenrique C. Martins\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\nHenrique C. Martins\n\n\n\n\nNov 19, 2020\n\n\n9th Fórum EcoInovar: A experiência de Open Science na RAC\n\n\nHenrique C. Martins\n\n\n\n\nNov 16, 2020\n\n\nMy notes about the 2020 ICGS Editors’ tips\n\n\nHenrique C. Martins\n\n\n\n\nOct 27, 2020\n\n\nIssues in Empirical Finance Research\n\n\nHenrique C. Martins\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\nHenrique C. Martins\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\nHenrique C. Martins\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\nHenrique C. Martins\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 3, 2022\n\n\nEthics & Open Data (ANPCONT)\n\n\nHenrique C. Martins\n\n\n\n\nAug 8, 2022\n\n\nTalk about Research Productivity (Unisinos)\n\n\nHenrique C. Martins\n\n\n\n\nAug 18, 2021\n\n\nTalk Research Internationalization (UFSM)\n\n\nHenrique C. Martins\n\n\n\n\nApr 16, 2021\n\n\nTalk With Marcelo Perlin\n\n\nHenrique C. Martins\n\n\n\n\nApr 5, 2021\n\n\nCompetition and ESG practices in emerging markets\n\n\nHenrique C. Martins\n\n\n\n\nFeb 9, 2021\n\n\nWebinar about Investors Relations\n\n\nHenrique C. Martins\n\n\n\n\nNov 19, 2020\n\n\n9th Fórum EcoInovar: A experiência de Open Science na RAC\n\n\nHenrique C. Martins\n\n\n\n\nNov 16, 2020\n\n\nMy notes about the 2020 ICGS Editors’ tips\n\n\nHenrique C. Martins\n\n\n\n\nOct 27, 2020\n\n\nIssues in Empirical Finance Research\n\n\nHenrique C. Martins\n\n\n\n\nOct 3, 2020\n\n\nESG with Conrad Albrecht (MSCI)\n\n\nHenrique C. Martins\n\n\n\n\nAug 4, 2020\n\n\nOpen Science Seminar\n\n\nHenrique C. Martins\n\n\n\n\nMar 27, 2020\n\n\nCafé com ADM\n\n\nHenrique C. Martins\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#section",
@@ -81,14 +81,14 @@
     "href": "seminars/seminars/ethics_unisinos/index.html#the-current-state-in-business-science",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "The current state in (business) science",
-    "text": "The current state in (business) science\nToo many articles…\n\n… in low-quality journals.\n\n\nScholars are doing their best\n\nTo get “tenure” (not a common concept in Brazil yet)\nTo increase reputation\nHighly competitive environment (mental health is a problem)\n\n\n\nJournals are doing their best to increase impact\n\nGame of metrics\nHighly competitive environment for journals"
+    "text": "The current state in (business) science\nToo many articles…\n. . .\n… in low-quality journals.\n. . .\nScholars are doing their best\n\nTo get “tenure” (not a common concept in Brazil yet)\nTo increase reputation\nHighly competitive environment (mental health is a problem)\n\n. . .\nJournals are doing their best to increase impact\n\nGame of metrics\nHighly competitive environment for journals"
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#too-many-articles",
     "href": "seminars/seminars/ethics_unisinos/index.html#too-many-articles",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "Too many articles",
-    "text": "Too many articles\nBrazil 60k scientific articles in 2018: https://data.worldbank.org/indicator/IP.JRN.ARTC.SC?locations=BR\nWorld 2.554K scientific articles in 2018: https://data.worldbank.org/indicator/IP.JRN.ARTC.SC\n\nProduction of academic research is not a problem anymore."
+    "text": "Too many articles\nBrazil 60k scientific articles in 2018: https://data.worldbank.org/indicator/IP.JRN.ARTC.SC?locations=BR\nWorld 2.554K scientific articles in 2018: https://data.worldbank.org/indicator/IP.JRN.ARTC.SC\n. . .\nProduction of academic research is not a problem anymore."
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#section-1",
@@ -144,14 +144,14 @@
     "href": "seminars/seminars/ethics_unisinos/index.html#predatory-journals",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "Predatory journals",
-    "text": "Predatory journals\n\n\n\nSource."
+    "text": "Predatory journals\n\n. . .\n\nSource."
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#open-science-os",
     "href": "seminars/seminars/ethics_unisinos/index.html#open-science-os",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "Open Science (OS)",
-    "text": "Open Science (OS)\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n\\[\\\\[0.4cm]\\]\n\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n\\[\\\\[0.4cm]\\]\n\n\nExemplo relativamente recente: Dados de COVID (link)."
+    "text": "Open Science (OS)\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n\\[\\\\[0.4cm]\\]\n. . .\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n\\[\\\\[0.4cm]\\]\n. . .\nExemplo relativamente recente: Dados de COVID (link)."
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#open-science-os-1",
@@ -165,28 +165,28 @@
     "href": "seminars/seminars/ethics_unisinos/index.html#revisão-pelos-pares-aberta",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "Revisão pelos pares aberta",
-    "text": "Revisão pelos pares aberta\n\nApós o artigo ser aceito, revisores são convidados a permitir que sua identificação apareça na versão final do artigo.\n\n\n\nEm paralelo, revisores e autores são convidados a permitir a publicidade do conteúdo dos seus reports e suas cartas de resposta.\n\nVeja um exemplo aqui\n\n\n\n\n\nA revista não altera o conteúdo dos pareceres em nenhuma situação (erros de digitação, por exemplo, são incluídos)"
+    "text": "Revisão pelos pares aberta\n\nApós o artigo ser aceito, revisores são convidados a permitir que sua identificação apareça na versão final do artigo.\n\n. . .\n\nEm paralelo, revisores e autores são convidados a permitir a publicidade do conteúdo dos seus reports e suas cartas de resposta.\n\nVeja um exemplo aqui\n\n\n. . .\n\nA revista não altera o conteúdo dos pareceres em nenhuma situação (erros de digitação, por exemplo, são incluídos)"
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics",
     "href": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "Tips For Students Ethics",
-    "text": "Tips For Students Ethics\n\nIf you are playing the quantity game, you are playing it wrong.\n\nFocus on quality, your whole 30-year career is a 10-20 ABS3 papers, not a 200+ papers.\n\n\n\n\nUnderstand the concept of a Job Market Paper (quality paper)\n\nDoesn’t need to be published by the end of your PhD, but senior enough to nice presentations\nIt is also nice for master’s students to have a strong paper in order to get into a PhD program."
+    "text": "Tips For Students Ethics\n\nIf you are playing the quantity game, you are playing it wrong.\n\nFocus on quality, your whole 30-year career is a 10-20 ABS3 papers, not a 200+ papers.\n\n\n. . .\n\nUnderstand the concept of a Job Market Paper (quality paper)\n\nDoesn’t need to be published by the end of your PhD, but senior enough to nice presentations\nIt is also nice for master’s students to have a strong paper in order to get into a PhD program."
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics-1",
     "href": "seminars/seminars/ethics_unisinos/index.html#tips-for-students-ethics-1",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "Tips For Students Ethics",
-    "text": "Tips For Students Ethics\n\nDo not send articles to predatory journals\n\nThose that are in the market can smell it.\nIf the project is not good, abandon it (instead of publishing in such journals)\n\n\n\n\nDo not cheat\n\nThe industry is getting better at finding wrongdoings.\nAt the end of the day, people talk about reputation."
+    "text": "Tips For Students Ethics\n\nDo not send articles to predatory journals\n\nThose that are in the market can smell it.\nIf the project is not good, abandon it (instead of publishing in such journals)\n\n\n. . .\n\nDo not cheat\n\nThe industry is getting better at finding wrongdoings.\nAt the end of the day, people talk about reputation."
   },
   {
     "objectID": "seminars/seminars/ethics_unisinos/index.html#thank-you",
     "href": "seminars/seminars/ethics_unisinos/index.html#thank-you",
     "title": "Talk about Research Productivity (Unisinos)",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/"
   },
   {
     "objectID": "research/index.html",
@@ -214,7 +214,7 @@
     "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#open-science-os",
     "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
     "section": "Open Science (OS)",
-    "text": "Open Science (OS)\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n\n\nExemplo mais recente: Dados de COVID (link)."
+    "text": "Open Science (OS)\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n. . .\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n. . .\nExemplo mais recente: Dados de COVID (link)."
   },
   {
     "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#open-science-os-na-rac",
@@ -228,7 +228,7 @@
     "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz",
     "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
     "section": "Dados Abertos - Como a RAC faz?",
-    "text": "Dados Abertos - Como a RAC faz?\n\nArtigos teóricos: não há compartilhamento:\n\nOs autores devem informar caráter teórico na Declaração de Ciência Aberta.\n\n\n\n\nDados primários: Compartilhamento obrigatório\n\nDados gerados pelos autores, questionários, entrevistas, etc.\nDados podem (e devem) estar desidentificados para compartilhamento\n\n\n\n\n\nDados secundários: Compartilhamento obrigatório\n\nBanco Mundial, Ipeadata, dados governamentais, etc.\n\n\n\n\n\nDados reutilizados: Compartilhamento obrigatório\n\nDados em repositórios públicos (Dataverse, Mendeley, etc.)\n\n\n\n\n\nDados de experimentos: Compartilhamento obrigatório\n\nExperimentos de laboratório, etc."
+    "text": "Dados Abertos - Como a RAC faz?\n\nArtigos teóricos: não há compartilhamento:\n\nOs autores devem informar caráter teórico na Declaração de Ciência Aberta.\n\n\n. . .\n\nDados primários: Compartilhamento obrigatório\n\nDados gerados pelos autores, questionários, entrevistas, etc.\nDados podem (e devem) estar desidentificados para compartilhamento\n\n\n. . .\n\nDados secundários: Compartilhamento obrigatório\n\nBanco Mundial, Ipeadata, dados governamentais, etc.\n\n\n. . .\n\nDados reutilizados: Compartilhamento obrigatório\n\nDados em repositórios públicos (Dataverse, Mendeley, etc.)\n\n\n. . .\n\nDados de experimentos: Compartilhamento obrigatório\n\nExperimentos de laboratório, etc."
   },
   {
     "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz-1",
@@ -242,21 +242,21 @@
     "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#dados-abertos---como-a-rac-faz-2",
     "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
     "section": "Dados Abertos - Como a RAC faz?",
-    "text": "Dados Abertos - Como a RAC faz?\n\nDados proprietários:\n\nDados coletados em bancos, como Economática, Compustat, etc.\nAutores devem compartilhar ou explicar razão de não compartilharem.\n\n\n\n- Se não tiverem direitos legais sobre os dados, **os autores deverão**:\n\n    - Apresentar **código** com comandos para baixar os dados da fonte original,\n    - Apresentar **tabela** com nome / título da variável / dados, conforme definido pela fonte original,\n    - Comprometer-se a **apoiar editores e revisores** que tentarem replicar resultados."
+    "text": "Dados Abertos - Como a RAC faz?\n\nDados proprietários:\n\nDados coletados em bancos, como Economática, Compustat, etc.\nAutores devem compartilhar ou explicar razão de não compartilharem.\n\n\n. . .\n- Se não tiverem direitos legais sobre os dados, **os autores deverão**:\n\n    - Apresentar **código** com comandos para baixar os dados da fonte original,\n    - Apresentar **tabela** com nome / título da variável / dados, conforme definido pela fonte original,\n    - Comprometer-se a **apoiar editores e revisores** que tentarem replicar resultados."
   },
   {
     "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#materiais-abertos---como-a-rac-faz",
     "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#materiais-abertos---como-a-rac-faz",
     "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
     "section": "Materiais Abertos - Como a RAC faz?",
-    "text": "Materiais Abertos - Como a RAC faz?\n\nApós o artigo ser aceito, autores são convidados a disponibilizar os dados e demais materiais de pesquisa em repositório público (estamos preferindo o Mendeley data).\n\n\n\nEm seguida, materiais são centralizados no Dataverse da RAC.\n\n\n\n\nMateriais geram um doi que pode ser posteriormente citado.\n\nExemplo: esse é o doi de um dos últimos artigos publicados na RAC: https://doi.org/10.7910/DVN/ZXBMHD em 10 de Novembro."
+    "text": "Materiais Abertos - Como a RAC faz?\n\nApós o artigo ser aceito, autores são convidados a disponibilizar os dados e demais materiais de pesquisa em repositório público (estamos preferindo o Mendeley data).\n\n. . .\n\nEm seguida, materiais são centralizados no Dataverse da RAC.\n\n. . .\n\nMateriais geram um doi que pode ser posteriormente citado.\n\nExemplo: esse é o doi de um dos últimos artigos publicados na RAC: https://doi.org/10.7910/DVN/ZXBMHD em 10 de Novembro."
   },
   {
     "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#revisão-pelos-pares-aberta---como-a-rac-faz",
     "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#revisão-pelos-pares-aberta---como-a-rac-faz",
     "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
     "section": "Revisão pelos pares aberta - Como a RAC faz?",
-    "text": "Revisão pelos pares aberta - Como a RAC faz?\n\nApós o artigo ser aceito, revisores são convidados a permitir que sua identificação apareça na versão final do artigo.\n\n\n\nEm paralelo, revisores e autores são convidados a permitir a publicidade do conteúdo dos seus reports e suas cartas de resposta.\n\nVeja um exemplo aqui\n\n\n\n\n\nA RAC não altera o conteúdo dos pareceres em nenhuma situação (erros de digitação, por exemplo, são incluídos)\n\nSomente comentários que violem a ética (comentários depreciativos ou difamatórios) serão editados (omitidos) do relatório.\nNesses casos, será declarado que partes do relatório foram editadas."
+    "text": "Revisão pelos pares aberta - Como a RAC faz?\n\nApós o artigo ser aceito, revisores são convidados a permitir que sua identificação apareça na versão final do artigo.\n\n. . .\n\nEm paralelo, revisores e autores são convidados a permitir a publicidade do conteúdo dos seus reports e suas cartas de resposta.\n\nVeja um exemplo aqui\n\n\n. . .\n\nA RAC não altera o conteúdo dos pareceres em nenhuma situação (erros de digitação, por exemplo, são incluídos)\n\nSomente comentários que violem a ética (comentários depreciativos ou difamatórios) serão editados (omitidos) do relatório.\nNesses casos, será declarado que partes do relatório foram editadas."
   },
   {
     "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html#section-2",
@@ -270,21 +270,21 @@
     "href": "seminars/seminars/ecoinovar_open_science_rac/index.html#thank-you",
     "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/"
   },
   {
     "objectID": "seminars/seminars/empirical_issues/index.html#the-challenge",
     "href": "seminars/seminars/empirical_issues/index.html#the-challenge",
     "title": "Issues in Empirical Finance Research",
-    "section": "The challenge",
-    "text": "The challenge\n\nI will discuss some issues in using plain OLS models in Corporate Finance & Governance Research\n\n\n\nI will avoid the word “endogeneity” as much as I can\n\n\n\n\nI will also avoid the word “identification” because identification does not guarantee causality and vice-versa (Kahn and Whited 2017)\n\n\n\n\nThe discussion is based on Atanasov and Black (2016)"
+    "section": "",
+    "text": "I will discuss some issues in using plain OLS models in Corporate Finance & Governance Research\n\n. . .\n\nI will avoid the word “endogeneity” as much as I can\n\n. . .\n\nI will also avoid the word “identification” because identification does not guarantee causality and vice-versa (Kahn and Whited 2017)\n\n. . .\n\nThe discussion is based on Atanasov and Black (2016)"
   },
   {
     "objectID": "seminars/seminars/empirical_issues/index.html#the-challenge-1",
     "href": "seminars/seminars/empirical_issues/index.html#the-challenge-1",
     "title": "Issues in Empirical Finance Research",
     "section": "The challenge",
-    "text": "The challenge\n\nImagine that you want to investigate the effect of Governance on Q\n\nYou may have more covariates explaining Q (omitted from slides)\n\n\n\\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\nAll the issues in the next slides will make it not possible to infer that changing Gov will CAUSE a change in Q\nThat is, cannot infer causality"
+    "text": "The challenge\n\nImagine that you want to investigate the effect of Governance on Q\n\nYou may have more covariates explaining Q (omitted from slides)\n\n\n\\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n. . .\nAll the issues in the next slides will make it not possible to infer that changing Gov will CAUSE a change in Q\nThat is, cannot infer causality"
   },
   {
     "objectID": "seminars/seminars/empirical_issues/index.html#reverse-causation",
@@ -375,7 +375,7 @@
     "href": "seminars/seminars/empirical_issues/index.html#thank-you",
     "title": "Issues in Empirical Finance Research",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/"
   },
   {
     "objectID": "seminars/seminars/esg_Conrad_Albrecht/index.html",
@@ -396,21 +396,21 @@
     "href": "seminars/seminars/ethics_anpcont/index.html#open-science-open-data",
     "title": "Ethics & Open Data (ANPCONT)",
     "section": "Open Science & Open Data",
-    "text": "Open Science & Open Data\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n\nOpen data is the idea of sharing the data used in research.\nOpen code is the idea of sharing the codes used in research.\n\nExample: COVID data (link).\nExample: Békes & Kézdi’s “Data Analysis for Business, Economics, and Policy” data (link)"
+    "text": "Open Science & Open Data\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n. . .\nOpen data is the idea of sharing the data used in research.\nOpen code is the idea of sharing the codes used in research.\n\nExample: COVID data (link).\nExample: Békes & Kézdi’s “Data Analysis for Business, Economics, and Policy” data (link)"
   },
   {
     "objectID": "seminars/seminars/ethics_anpcont/index.html#what-is-not-a-problem-anymore",
     "href": "seminars/seminars/ethics_anpcont/index.html#what-is-not-a-problem-anymore",
     "title": "Ethics & Open Data (ANPCONT)",
     "section": "What is NOT a problem anymore",
-    "text": "What is NOT a problem anymore\n\nTechnology to publish data and codes\n\n\n\nHarvard Dataverse\nMendeley data\nZenodo\nOSF\nFigshare\nGithub\n\n\n\nThey are mostly free."
+    "text": "What is NOT a problem anymore\n\nTechnology to publish data and codes\n\n\n\nHarvard Dataverse\nMendeley data\nZenodo\nOSF\nFigshare\nGithub\n\n\n. . .\nThey are mostly free."
   },
   {
     "objectID": "seminars/seminars/ethics_anpcont/index.html#what-is-not-a-problem-anymore-1",
     "href": "seminars/seminars/ethics_anpcont/index.html#what-is-not-a-problem-anymore-1",
     "title": "Ethics & Open Data (ANPCONT)",
     "section": "What is NOT a problem anymore",
-    "text": "What is NOT a problem anymore\n\nYour files CAN be cited\n\n\n\nVery easy to create PlumX metrics for your files."
+    "text": "What is NOT a problem anymore\n\nYour files CAN be cited\n\n. . .\n\nVery easy to create PlumX metrics for your files."
   },
   {
     "objectID": "seminars/seminars/ethics_anpcont/index.html#what-is-not-a-problem-anymore-2",
@@ -459,14 +459,14 @@
     "href": "seminars/seminars/ethics_anpcont/index.html#what-are-the-problems-in-my-opinion-1",
     "title": "Ethics & Open Data (ANPCONT)",
     "section": "What ARE the problems (in my opinion)",
-    "text": "What ARE the problems (in my opinion)\n\nScholars’ lack of organization\n\n\n\nNever change the original excel (you will never remember the changes you have made). Instead, make data changes inside your code (i.e., Stata do file).\nStart using some solution for version control. For example, Github (It is free!!)."
+    "text": "What ARE the problems (in my opinion)\n\nScholars’ lack of organization\n\n\n\nNever change the original excel (you will never remember the changes you have made). Instead, make data changes inside your code (i.e., Stata do file).\nStart using some solution for version control. For example, Github (It is free!!).\n\n\n. . ."
   },
   {
     "objectID": "seminars/seminars/ethics_anpcont/index.html#what-are-the-problems-in-my-opinion-2",
     "href": "seminars/seminars/ethics_anpcont/index.html#what-are-the-problems-in-my-opinion-2",
     "title": "Ethics & Open Data (ANPCONT)",
     "section": "What ARE the problems (in my opinion)",
-    "text": "What ARE the problems (in my opinion)\n\nGeneral lack of ability to review data (not so much to review codes)\n\n\nHow to detect if the data has been manipulated or fabricated?\n\nIt is a similar challenge to detecting Fake News.\nBut if there are tools to detect plagiarism, why wouldn’t exist tools to detect data fraud in the future?\n\n\n\n\nWho is in charge to detect data fraud? The journal? The reviewers?\n\nHow to train reviewers to detect it?"
+    "text": "What ARE the problems (in my opinion)\n\nGeneral lack of ability to review data (not so much to review codes)\n\n\nHow to detect if the data has been manipulated or fabricated?\n\nIt is a similar challenge to detecting Fake News.\nBut if there are tools to detect plagiarism, why wouldn’t exist tools to detect data fraud in the future?\n\n\n. . .\n\nWho is in charge to detect data fraud? The journal? The reviewers?\n\nHow to train reviewers to detect it?"
   },
   {
     "objectID": "seminars/seminars/ethics_anpcont/index.html#what-are-the-problems-in-my-opinion-3",
@@ -494,35 +494,35 @@
     "href": "seminars/seminars/ethics_anpcont/index.html#thank-you",
     "title": "Ethics & Open Data (ANPCONT)",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/"
   },
   {
     "objectID": "seminars/seminars/frl_esg/index.html#motivation",
     "href": "seminars/seminars/frl_esg/index.html#motivation",
     "title": "Competition and ESG practices in emerging markets",
-    "section": "Motivation",
-    "text": "Motivation\nOver the last few years, there is a massive interest in corporate ESG decisions (disclosure and performance) from academia and practitioners.\n\nTo invest more in ESG practices, corporations are facing pressure from:\n\nInvestors (Matos, 2020),\nPublic opinion (Baldini, Dal Maso, Liberatore, Mazzi, & Terzani, 2018),\nAnd peers (Cao, Liang, & Zhan, 2019)\n\n\n\nHowever, antecedents and consequences of ESG practices are not well defined in the literature.\n\nThere is still a debate whether such practices increase or decrease firm value, for instance."
+    "section": "",
+    "text": "Over the last few years, there is a massive interest in corporate ESG decisions (disclosure and performance) from academia and practitioners.\n. . .\nTo invest more in ESG practices, corporations are facing pressure from:\n\nInvestors (Matos, 2020),\nPublic opinion (Baldini, Dal Maso, Liberatore, Mazzi, & Terzani, 2018),\nAnd peers (Cao, Liang, & Zhan, 2019)\n\n. . .\nHowever, antecedents and consequences of ESG practices are not well defined in the literature.\n\nThere is still a debate whether such practices increase or decrease firm value, for instance."
   },
   {
     "objectID": "seminars/seminars/frl_esg/index.html#motivation-1",
     "href": "seminars/seminars/frl_esg/index.html#motivation-1",
     "title": "Competition and ESG practices in emerging markets",
     "section": "Motivation",
-    "text": "Motivation\nThe literature has two main hypotheses to explain why managers invest in ESG practices\n\n1) The altruist/agency conflict argument\n\nIt says that ESG practices are value-decreasing decisions and, thus, a form of agency conflict.\nThe main reason managers invest in such practices is altruism.\n\nI.e., they pursue some form of personal reputation."
+    "text": "Motivation\nThe literature has two main hypotheses to explain why managers invest in ESG practices\n. . .\n1) The altruist/agency conflict argument\n\nIt says that ESG practices are value-decreasing decisions and, thus, a form of agency conflict.\nThe main reason managers invest in such practices is altruism.\n\nI.e., they pursue some form of personal reputation."
   },
   {
     "objectID": "seminars/seminars/frl_esg/index.html#motivation-2",
     "href": "seminars/seminars/frl_esg/index.html#motivation-2",
     "title": "Competition and ESG practices in emerging markets",
     "section": "Motivation",
-    "text": "Motivation\n2) The strategic argument\n\nIt says that ESG practices are value-increasing decisions and, thus, a way to differentiate from competitors. “Escape from competition” effect.\nThe main reason managers invest in such practices is to find value in ‘non-traditional’ ways.\n\n\nLiterature shows conflicting evidences: Barnea and Rubin (2010), Borghesi et al. (2014); Fernández-Kranz and Santaló (2010), Flammer (2015a), and Vural-Yavaç (2020)."
+    "text": "Motivation\n2) The strategic argument\n\nIt says that ESG practices are value-increasing decisions and, thus, a way to differentiate from competitors. “Escape from competition” effect.\nThe main reason managers invest in such practices is to find value in ‘non-traditional’ ways.\n\n. . .\nLiterature shows conflicting evidences: Barnea and Rubin (2010), Borghesi et al. (2014); Fernández-Kranz and Santaló (2010), Flammer (2015a), and Vural-Yavaç (2020)."
   },
   {
     "objectID": "seminars/seminars/frl_esg/index.html#but-in-emerging-markets",
     "href": "seminars/seminars/frl_esg/index.html#but-in-emerging-markets",
     "title": "Competition and ESG practices in emerging markets",
     "section": "But in Emerging Markets",
-    "text": "But in Emerging Markets\nThe ‘Escape from competition argument’ is less likely to hold, because:\n\nWorse Investor protection, higher agency problems\nPoor institutions, high corruption\nCorporate practices are more opaque\n\n\nThus, stakeholders are less likely to evaluate correctly the returns of strategies based on ESG practices, even profitable ones.\n\n\nHypothesis 1: Competition is negatively associated with corporate ESG practices.\nHypothesis 2: An increase in competition decreases corporate investment in ESG practices."
+    "text": "But in Emerging Markets\nThe ‘Escape from competition argument’ is less likely to hold, because:\n\nWorse Investor protection, higher agency problems\nPoor institutions, high corruption\nCorporate practices are more opaque\n\n. . .\nThus, stakeholders are less likely to evaluate correctly the returns of strategies based on ESG practices, even profitable ones.\n. . .\nHypothesis 1: Competition is negatively associated with corporate ESG practices.\nHypothesis 2: An increase in competition decreases corporate investment in ESG practices."
   },
   {
     "objectID": "seminars/seminars/frl_esg/index.html#shock-in-competition-brazil-2015",
@@ -599,21 +599,21 @@
     "href": "seminars/seminars/frl_esg/index.html#conclusions",
     "title": "Competition and ESG practices in emerging markets",
     "section": "Conclusions",
-    "text": "Conclusions\n\nProduct market competition leads to worse ESG practices in emerging markets.\n\n\n\nWhen competition increases, firms make trade-offs between alternative investment strategies.\n\n\n\n\nWhich penalizes those assumed as less profitable in the short-term, such as ESG-related practices.\n\nEspecially, E and S. Findings of G are more ambiguous.\n\n\n\n\n\nResults contradict US-based findings: Fernández-Kranz and Santaló (2010), Flammer (2015b), and Leong and Yang (2020).\n\nThis is the interesting part of this article.\n\n\n\n\n\nManagers from emerging markets decrease ESG performance to face more challenging and uncertain times, supporting the view that they invest in these practices for altruistic purposes."
+    "text": "Conclusions\n\nProduct market competition leads to worse ESG practices in emerging markets.\n\n. . .\n\nWhen competition increases, firms make trade-offs between alternative investment strategies.\n\n. . .\n\nWhich penalizes those assumed as less profitable in the short-term, such as ESG-related practices.\n\nEspecially, E and S. Findings of G are more ambiguous.\n\n\n. . .\n\nResults contradict US-based findings: Fernández-Kranz and Santaló (2010), Flammer (2015b), and Leong and Yang (2020).\n\nThis is the interesting part of this article.\n\n\n. . .\n\nManagers from emerging markets decrease ESG performance to face more challenging and uncertain times, supporting the view that they invest in these practices for altruistic purposes."
   },
   {
     "objectID": "seminars/seminars/frl_esg/index.html#thank-you",
     "href": "seminars/seminars/frl_esg/index.html#thank-you",
     "title": "Competition and ESG practices in emerging markets",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/"
   },
   {
     "objectID": "seminars/seminars/icgs_tips/index.html#icgs-editors-tips",
     "href": "seminars/seminars/icgs_tips/index.html#icgs-editors-tips",
     "title": "My notes about the 2020 ICGS Editors’ tips",
-    "section": "ICGS Editors’ Tips",
-    "text": "ICGS Editors’ Tips\nI will share in these slides the notes I took from the two panels with editors from A-Journals at the International Corporate Governance Society (ICGS) Annual Meeting.\nI hope you like it!"
+    "section": "",
+    "text": "I will share in these slides the notes I took from the two panels with editors from A-Journals at the International Corporate Governance Society (ICGS) Annual Meeting.\nI hope you like it!"
   },
   {
     "objectID": "seminars/seminars/icgs_tips/index.html#tip-1-learn-to-receive-feedback",
@@ -704,28 +704,28 @@
     "href": "seminars/seminars/icgs_tips/index.html#thank-you",
     "title": "My notes about the 2020 ICGS Editors’ tips",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/"
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#section",
     "href": "seminars/seminars/research_intnl_ufsm/index.html#section",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "",
-    "text": "My opinions do not represent those of the institution I work for.\n\nI am a young scholar. What the H do I know?"
+    "text": "My opinions do not represent those of the institution I work for.\n. . .\nI am a young scholar. What the H do I know?"
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#the-current-state",
     "href": "seminars/seminars/research_intnl_ufsm/index.html#the-current-state",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "The current state",
-    "text": "The current state\nToo many articles…\n\n… in low-quality journals.\n\n\nScholars are doing their best\n\nTo get “tenure” (not a common concept in Brazil yet)\nTo increase reputation\nHigh competitive environment (mental health is a problem)\n\n\n\nJournals are doing their best to increase impact\n\nGame of metrics\nHigh competitive environment for journals"
+    "text": "The current state\nToo many articles…\n. . .\n… in low-quality journals.\n. . .\nScholars are doing their best\n\nTo get “tenure” (not a common concept in Brazil yet)\nTo increase reputation\nHigh competitive environment (mental health is a problem)\n\n. . .\nJournals are doing their best to increase impact\n\nGame of metrics\nHigh competitive environment for journals"
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#too-many-articles",
     "href": "seminars/seminars/research_intnl_ufsm/index.html#too-many-articles",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "Too many articles",
-    "text": "Too many articles\nBrazil 60k scientific articles in 2018: data.worldbank\nWorld 2.554K scientific articles in 2018: data.worldbank\n\nProduction of academic research is not a problem anymore."
+    "text": "Too many articles\nBrazil 60k scientific articles in 2018: data.worldbank\nWorld 2.554K scientific articles in 2018: data.worldbank\n. . .\nProduction of academic research is not a problem anymore."
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#section-1",
@@ -760,28 +760,28 @@
     "href": "seminars/seminars/research_intnl_ufsm/index.html#international-standards-2",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "International Standards",
-    "text": "International Standards\nABS List (Site)\n\nA short (messy!) list.\n\n\nFocus is on:\n\nABS 4*  (too competitive)\nABS 4 (highly competitive)\nABS 3 (competitive)\nABS 2 (there are good journals here)\nABS 1 (there might be a few good journals here)\n\n\n\nAn international ranking list has several advantages over a national one."
+    "text": "International Standards\nABS List (Site)\n\nA short (messy!) list.\n\n. . .\nFocus is on:\n\nABS 4*  (too competitive)\nABS 4 (highly competitive)\nABS 3 (competitive)\nABS 2 (there are good journals here)\nABS 1 (there might be a few good journals here)\n\n. . .\nAn international ranking list has several advantages over a national one."
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#international-movements",
     "href": "seminars/seminars/research_intnl_ufsm/index.html#international-movements",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "International movements",
-    "text": "International movements\nOpen science\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n\n\nExemplo mais recente: Dados de COVID (link)."
+    "text": "International movements\nOpen science\n” Open science encompasses unhindered access to scientific articles, access to data from public research, and collaborative research enabled by ICT tools and incentives.\nBroadening access to scientific publications and data is at the heart of open science, so that research outputs are in the hands of as many as possible, and potential benefits are spread as widely as possible” (OCDE).\n. . .\nÉ um movimento internacional, já presente em vários campos de pesquisa, com o objetivo de tornar a pesquisa acadêmica mais transparente, acessível e relevante.\n. . .\nExemplo mais recente: Dados de COVID (link)."
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#international-movements-1",
     "href": "seminars/seminars/research_intnl_ufsm/index.html#international-movements-1",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "International movements",
-    "text": "International movements\nOpen science\n\nOpen code\nOpen data\nOpen peer review\nData repositories\n\nNeed data? Mendeley data, Dataverse, Data in Brief, …\n\n\n\nCheck this project:\nOpen Code Com"
+    "text": "International movements\nOpen science\n\nOpen code\nOpen data\nOpen peer review\nData repositories\n\nNeed data? Mendeley data, Dataverse, Data in Brief, …\n\n\n. . .\nCheck this project:\nOpen Code Com"
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#networks-conferences",
     "href": "seminars/seminars/research_intnl_ufsm/index.html#networks-conferences",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "Networks & Conferences",
-    "text": "Networks & Conferences\nI could not stress more the importance of network, international contacts, and international co-authors…\n\nMany relationships are established during a conference\n\nPay attention to how many accents are there in a conference\n\n\n\n\nBest way to understand what is the current game\n\nFor instance, Finance: Causal Inference Methods\n\n\n\n\n\nEvery section gives, at least, one good idea (and many bad ones)\n\n\n\n\nPay attention to the questions that senior scholars make\n\nThey know better than you, if they don’t know the answer, it is always nice to provide one (if possible)\nPlus, your article will likely have an international audience"
+    "text": "Networks & Conferences\nI could not stress more the importance of network, international contacts, and international co-authors…\n\nMany relationships are established during a conference\n\nPay attention to how many accents are there in a conference\n\n\n. . .\n\nBest way to understand what is the current game\n\nFor instance, Finance: Causal Inference Methods\n\n\n. . .\n\nEvery section gives, at least, one good idea (and many bad ones)\n\n. . .\n\nPay attention to the questions that senior scholars make\n\nThey know better than you, if they don’t know the answer, it is always nice to provide one (if possible)\nPlus, your article will likely have an international audience"
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#papers-about-writing-papers",
@@ -795,14 +795,14 @@
     "href": "seminars/seminars/research_intnl_ufsm/index.html#for-students",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "For Students",
-    "text": "For Students\nIf you are playing the quantity game, you are playing it wrong, in my opinion.\n\n\nFocus on quality, your whole 40-year career is a 20-ABS3 papers, not a 200+ papers\n\n\n\n\nUnderstand the concept of a Job Market Paper\n\nDoesn’t need to be published by the end of your PhD, but senior enough to nice presentations\nWithout one, your chances are lower."
+    "text": "For Students\nIf you are playing the quantity game, you are playing it wrong, in my opinion.\n. . .\n\nFocus on quality, your whole 40-year career is a 20-ABS3 papers, not a 200+ papers\n\n. . .\n\nUnderstand the concept of a Job Market Paper\n\nDoesn’t need to be published by the end of your PhD, but senior enough to nice presentations\nWithout one, your chances are lower."
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#for-students-1",
     "href": "seminars/seminars/research_intnl_ufsm/index.html#for-students-1",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "For Students",
-    "text": "For Students\n\nCreate a single project\n\nYou, yourself, and you alone\nIt shows that you execute all parts of a project\nAlso, helps to understand how to be a better tutor in the future\nYour supervisor, better than anyone, will understand\n\n\n\n\nSpend time on the letter\n\nsometimes, the response letter has more pages than the article"
+    "text": "For Students\n\nCreate a single project\n\nYou, yourself, and you alone\nIt shows that you execute all parts of a project\nAlso, helps to understand how to be a better tutor in the future\nYour supervisor, better than anyone, will understand\n\n\n. . .\n\nSpend time on the letter\n\nsometimes, the response letter has more pages than the article"
   },
   {
     "objectID": "seminars/seminars/research_intnl_ufsm/index.html#for-faculty",
@@ -816,7 +816,7 @@
     "href": "seminars/seminars/research_intnl_ufsm/index.html#thank-you",
     "title": "Talk Research Internationalization (UFSM)",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/"
   },
   {
     "objectID": "seminars/seminars/webinar_ri/index.html",
@@ -844,14 +844,14 @@
     "href": "blog/posts/vdem/index.html",
     "title": "Index of Democracy",
     "section": "",
-    "text": "Let’s see how to create a graph of the levels of Democracy in Brazil. The data come from the V-Dem project, which is amazing.\nFirst, download the data.\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(downloader)\nurl <- \"https://v-dem.net/media/datasets/Country_Year_V-Dem_Core_R_v12.zip\"\ndownload(url, dest=\"dataset.zip\", mode=\"wb\") \nunzip (\"dataset.zip\", exdir = \"./\")\ndata <- readRDS(\"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds\")\nfile.remove(\"dataset.zip\")\nfile.remove(\"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds\")\n\nFor convenience, let’s focus only on the years after 2000 and in some selected countries.\n\nnames(data)[names(data) == 'country_text_id'] <- 'Country'\ndata <-subset(data, year >= 2000)\ncountries <- as.data.frame(c(\"Brazil\", \"France\", \"Germany\", \"United States of America\", \"United Kingdom\", \"Italy\", \"Japan\", \"China\", \"India\")) \ncolnames(countries) <- \"country_name\"                  \ndata <- merge(data, countries , by=\"country_name\")\n\nNow let’s have fun visualizing data. More about the clarifications in : https://www.v-dem.net/static/website/img/refs/codebookv12.pdf\n\n\nElectoral democracy index (D) (v2x_polyarchy)\nClarification: The electoral principle of democracy seeks to embody the core value of making rulers responsive to citizens, achieved through electoral competition for the electorate’s approval under circumstances when suffrage is extensive; political and civil society organizations can operate freely; elections are clean and not marred by fraud or systematic irregularities; and elections affect the composition of the chief executive of the country. In between elections, there is freedom of expression and an independent media capable of presenting alternative views on matters of political relevance. In the V-Dem conceptual scheme, electoral democracy is understood as an essential element of any other conception of representative democracy —liberal, participatory, deliberative, egalitarian, or some other.\n\nggplot(data, aes(x = year, y=v2x_polyarchy) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Electoral democracy index', \n       x='Year', \n       title = \"Electoral democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nLiberal democracy index (D) (v2x_libdem)\nClarification: The liberal principle of democracy emphasizes the importance of protecting individual and minority rights against the tyranny of the state and the tyranny of the majority. The liberal model takes a “negative” view of political power insofar as it judges the quality of democracy by the limits placed on government. This is achieved by constitutionally protected civil liberties, strong rule of law, an independent judiciary, and effective checks and balances that, together, limit the exercise of executive power. To make this a measure of liberal democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_libdem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Liberal democracy index', \n       x='Year', \n       title = \"Liberal democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nParticipatory democracy index (D) (v2x_partipdem)\nClarification: The participatory principle of democracy emphasizes active participation by citizens in all political processes, electoral and non-electoral. It is motivated by uneasiness about a bedrock practice of electoral democracy: delegating authority to representatives. Thus, direct rule by citizens is preferred, wherever practicable. This model of democracy thus takes suffrage for granted, emphasizing engagement in civil society organizations, direct democracy, and subnational elected bodies. To make it a measure of participatory democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_partipdem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Participatory democracy index', \n       x='Year', \n       title = \"Participatory democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nDeliberative democracy index (D) (v2x_delibdem)\nClarification: The deliberative principle of democracy focuses on the process by which decisions are reached in a polity. A deliberative process is one in which public reasoning focused on the common good motivates political decisions—as contrasted with emotional appeals, solidary attachments, parochial interests, or coercion. According to this principle, democracy requires more than an aggregation of existing preferences. There should also be respectful dialogue at all levels—from preference formation to final decision—among informed and competent participants who are open to persuasion. To make it a measure of not only the deliberative principle but also of democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_delibdem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Deliberative democracy index', \n       x='Year', \n       title = \"Deliberative democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nEgalitarian democracy index (D) (v2x_egaldem)\nClarification: The egalitarian principle of democracy holds that material and immaterial inequalities inhibit the exercise of formal rights and liberties, and diminish the ability of citizens from all social groups to participate. Egalitarian democracy is achieved when 1 rights and freedoms of individuals are protected equally across all social groups; and 2 resources are distributed equally across all social groups; 3 groups and individuals enjoy equal access to power. To make it a measure of egalitarian democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_egaldem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Egalitarian democracy index', \n       x='Year', \n       title = \"Egalitarian democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\nThanks for passing by!"
+    "text": "Let’s see how to create a graph of the levels of Democracy in Brazil. The data come from the V-Dem project, which is amazing.\nFirst, download the data.\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(downloader)\nurl &lt;- \"https://v-dem.net/media/datasets/Country_Year_V-Dem_Core_R_v12.zip\"\ndownload(url, dest=\"dataset.zip\", mode=\"wb\") \nunzip (\"dataset.zip\", exdir = \"./\")\ndata &lt;- readRDS(\"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds\")\nfile.remove(\"dataset.zip\")\nfile.remove(\"Country_Year_V-Dem_Core_R_v12/V-Dem-CY-Core-v12.rds\")\n\nFor convenience, let’s focus only on the years after 2000 and in some selected countries.\n\nnames(data)[names(data) == 'country_text_id'] &lt;- 'Country'\ndata &lt;-subset(data, year &gt;= 2000)\ncountries &lt;- as.data.frame(c(\"Brazil\", \"France\", \"Germany\", \"United States of America\", \"United Kingdom\", \"Italy\", \"Japan\", \"China\", \"India\")) \ncolnames(countries) &lt;- \"country_name\"                  \ndata &lt;- merge(data, countries , by=\"country_name\")\n\nNow let’s have fun visualizing data. More about the clarifications in : https://www.v-dem.net/static/website/img/refs/codebookv12.pdf\n\n\nElectoral democracy index (D) (v2x_polyarchy)\nClarification: The electoral principle of democracy seeks to embody the core value of making rulers responsive to citizens, achieved through electoral competition for the electorate’s approval under circumstances when suffrage is extensive; political and civil society organizations can operate freely; elections are clean and not marred by fraud or systematic irregularities; and elections affect the composition of the chief executive of the country. In between elections, there is freedom of expression and an independent media capable of presenting alternative views on matters of political relevance. In the V-Dem conceptual scheme, electoral democracy is understood as an essential element of any other conception of representative democracy —liberal, participatory, deliberative, egalitarian, or some other.\n\nggplot(data, aes(x = year, y=v2x_polyarchy) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Electoral democracy index', \n       x='Year', \n       title = \"Electoral democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nLiberal democracy index (D) (v2x_libdem)\nClarification: The liberal principle of democracy emphasizes the importance of protecting individual and minority rights against the tyranny of the state and the tyranny of the majority. The liberal model takes a “negative” view of political power insofar as it judges the quality of democracy by the limits placed on government. This is achieved by constitutionally protected civil liberties, strong rule of law, an independent judiciary, and effective checks and balances that, together, limit the exercise of executive power. To make this a measure of liberal democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_libdem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Liberal democracy index', \n       x='Year', \n       title = \"Liberal democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nParticipatory democracy index (D) (v2x_partipdem)\nClarification: The participatory principle of democracy emphasizes active participation by citizens in all political processes, electoral and non-electoral. It is motivated by uneasiness about a bedrock practice of electoral democracy: delegating authority to representatives. Thus, direct rule by citizens is preferred, wherever practicable. This model of democracy thus takes suffrage for granted, emphasizing engagement in civil society organizations, direct democracy, and subnational elected bodies. To make it a measure of participatory democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_partipdem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Participatory democracy index', \n       x='Year', \n       title = \"Participatory democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nDeliberative democracy index (D) (v2x_delibdem)\nClarification: The deliberative principle of democracy focuses on the process by which decisions are reached in a polity. A deliberative process is one in which public reasoning focused on the common good motivates political decisions—as contrasted with emotional appeals, solidary attachments, parochial interests, or coercion. According to this principle, democracy requires more than an aggregation of existing preferences. There should also be respectful dialogue at all levels—from preference formation to final decision—among informed and competent participants who are open to persuasion. To make it a measure of not only the deliberative principle but also of democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_delibdem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Deliberative democracy index', \n       x='Year', \n       title = \"Deliberative democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nEgalitarian democracy index (D) (v2x_egaldem)\nClarification: The egalitarian principle of democracy holds that material and immaterial inequalities inhibit the exercise of formal rights and liberties, and diminish the ability of citizens from all social groups to participate. Egalitarian democracy is achieved when 1 rights and freedoms of individuals are protected equally across all social groups; and 2 resources are distributed equally across all social groups; 3 groups and individuals enjoy equal access to power. To make it a measure of egalitarian democracy, the index also takes the level of electoral democracy into account.\n\nggplot(data, aes(x = year, y=v2x_egaldem) ) +   geom_line(aes(group = Country, colour = Country)) +  \n  labs(y='Egalitarian democracy index', \n       x='Year', \n       title = \"Egalitarian democracy index (selected countries since 2000)\",\n       caption = \"Source: https://www.v-dem.net/\") + theme_solarized()+ \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2021),], aes(label = country_name) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\nThanks for passing by!"
   },
   {
     "objectID": "blog/posts/wgi/index.html",
     "href": "blog/posts/wgi/index.html",
     "title": "Worldwide Governance Indicators",
     "section": "",
-    "text": "There is one dataset that I like a lot: the Worldwide Governance Indicators (WGI) project. It contains data since 1996 about the governance of all countries. Governance here is measured by the six following variables:\n\nVoice and Accountability\nPolitical Stability and Absence of Violence\nGovernment Effectiveness\nRegulatory Quality\nRule of Law\nControl of Corruption\n\nBefore we continue, it is important to know what these variables are measuring: they measure Brazilians’ perception about governance, they do not measure governance per se. Thus, the Government Effectiveness variable, for instance, represents how effective Brazilians believe their Government are, not whether the Government is really effective or not. Perception here is the crucial word, so let’s keep that in mind.\nAlso, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the “better” or the more “optimistic” the society of that country is about that variable.\nFirst, download the data.\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(downloader)\nlibrary(haven)\nurl <- \"https://info.worldbank.org/governance/wgi/Home/downLoadFile?fileName=wgidataset_stata.zip\"\ndownload(url, dest=\"file.zip\", mode=\"wb\") \nunzip (\"file.zip\", exdir = \"./\")\ndata <- read_dta(\"wgidataset.dta\")\nfile.remove(\"file.zip\")\nfile.remove(\"PublicStataDatasetReadme.pdf\")\nfile.remove(\"wgidataset.dta\")\n\nFor convenience, let’s focus only on the years after 2000 and in some selected countries.\n\nnames(data)[names(data) == 'countryname'] <- 'Country'\ndata <-subset(data, year >= 2000)\ncountries <- as.data.frame(c(\"Brazil\", \"France\", \"Germany\", \"United States of America\", \"United Kingdom\", \"Italy\", \"Japan\", \"China\", \"India\")) \ncolnames(countries) <- \"Country\"  \ndata <- merge(data, countries , by=\"Country\")\n\nNow let’s have fun visualizing data. More about the clarifications in : https://info.worldbank.org/governance/wgi/Home/Documents\n\n\nVoice and Accountability (vae)\nDescription: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.\n\nggplot(data, aes(x = year, y=vae) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Voice and Accountability', \n       x='Year', \n       title = \"Voice and Accountability (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nPolitical Stability and Absence of Violence/Terrorism (pve)\nDescription: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.\n\nggplot(data, aes(x = year, y=pve) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Pol. Stability and Absence of Viol./Terror.', \n       x='Year', \n       title = \"Pol. Stability and Absence of Viol./Terror. (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nGovernment Effectiveness (gee)\nDescription: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..\n\nggplot(data, aes(x = year, y=gee) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Government Effectiveness', \n       x='Year', \n       title = \"Government Effectiveness (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nRegulatory Quality (rqe)\nDescription: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. \n\nggplot(data, aes(x = year, y=rqe) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Regulatory Quality', \n       x='Year', \n       title = \"Regulatory Quality (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nRule of Law (rle)\nDescription: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.\n\nggplot(data, aes(x = year, y=rle) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Rule of Law', \n       x='Year', \n       title = \"Rule of Law (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\nControl of Corruption (cce)\nDescription: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.\n\nggplot(data, aes(x = year, y=cce) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Control of Corruption', \n       x='Year', \n       title = \"Control of Corruption (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\nThanks for passing by!"
+    "text": "There is one dataset that I like a lot: the Worldwide Governance Indicators (WGI) project. It contains data since 1996 about the governance of all countries. Governance here is measured by the six following variables:\n\nVoice and Accountability\nPolitical Stability and Absence of Violence\nGovernment Effectiveness\nRegulatory Quality\nRule of Law\nControl of Corruption\n\nBefore we continue, it is important to know what these variables are measuring: they measure Brazilians’ perception about governance, they do not measure governance per se. Thus, the Government Effectiveness variable, for instance, represents how effective Brazilians believe their Government are, not whether the Government is really effective or not. Perception here is the crucial word, so let’s keep that in mind.\nAlso, the six variables are measured on a scale from -2.5 to 2.5. The higher the number, the “better” or the more “optimistic” the society of that country is about that variable.\nFirst, download the data.\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(downloader)\nlibrary(haven)\nurl &lt;- \"https://info.worldbank.org/governance/wgi/Home/downLoadFile?fileName=wgidataset_stata.zip\"\ndownload(url, dest=\"file.zip\", mode=\"wb\") \nunzip (\"file.zip\", exdir = \"./\")\ndata &lt;- read_dta(\"wgidataset.dta\")\nfile.remove(\"file.zip\")\nfile.remove(\"PublicStataDatasetReadme.pdf\")\nfile.remove(\"wgidataset.dta\")\n\nFor convenience, let’s focus only on the years after 2000 and in some selected countries.\n\nnames(data)[names(data) == 'countryname'] &lt;- 'Country'\ndata &lt;-subset(data, year &gt;= 2000)\ncountries &lt;- as.data.frame(c(\"Brazil\", \"France\", \"Germany\", \"United States of America\", \"United Kingdom\", \"Italy\", \"Japan\", \"China\", \"India\")) \ncolnames(countries) &lt;- \"Country\"  \ndata &lt;- merge(data, countries , by=\"Country\")\n\nNow let’s have fun visualizing data. More about the clarifications in : https://info.worldbank.org/governance/wgi/Home/Documents\n\n\nVoice and Accountability (vae)\nDescription: Voice and accountability captures perceptions of the extent to which a country’s citizens are able to participate in selecting their government, as well as freedom of expression, freedom of association, and a free media.\n\nggplot(data, aes(x = year, y=vae) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Voice and Accountability', \n       x='Year', \n       title = \"Voice and Accountability (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nPolitical Stability and Absence of Violence/Terrorism (pve)\nDescription: Political Stability and Absence of Violence/Terrorism measures perceptions of the likelihood of political instability and/or politicallymotivated violence, including terrorism.\n\nggplot(data, aes(x = year, y=pve) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Pol. Stability and Absence of Viol./Terror.', \n       x='Year', \n       title = \"Pol. Stability and Absence of Viol./Terror. (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nGovernment Effectiveness (gee)\nDescription: Government effectiveness captures perceptions of the quality of public services, the quality of the civil service and the degree of its independence from political pressures, the quality of policy formulation and implementation, and the credibility of the government’s commitment to such policies..\n\nggplot(data, aes(x = year, y=gee) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Government Effectiveness', \n       x='Year', \n       title = \"Government Effectiveness (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nRegulatory Quality (rqe)\nDescription: Regulatory quality captures perceptions of the ability of the government to formulate and implement sound policies and regulations that permit and promote private sector development. \n\nggplot(data, aes(x = year, y=rqe) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Regulatory Quality', \n       x='Year', \n       title = \"Regulatory Quality (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nRule of Law (rle)\nDescription: Rule of law captures perceptions of the extent to which agents have confidence in and abide by the rules of society, and in particular the quality of contract enforcement, property rights, the police, and the courts, as well as the likelihood of crime and violence.\n\nggplot(data, aes(x = year, y=rle) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Rule of Law', \n       x='Year', \n       title = \"Rule of Law (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\n\n\n\nControl of Corruption (cce)\nDescription: Control of corruption captures perceptions of the extent to which public power is exercised for private gain, including both petty and grand forms of corruption, as well as “capture” of the state by elites and private interests.\n\nggplot(data, aes(x = year, y=cce) ) +   geom_line(aes(colour = Country)) +  \n  labs(y='Control of Corruption', \n       x='Year', \n       title = \"Control of Corruption (selected countries since 2000)\",\n       caption = \"Source: https://info.worldbank.org/governance/wgi/\") + theme_solarized() + \n  theme(legend.position = \"none\") +\n  ggrepel::geom_text_repel(data = data[which(data$year == 2020),], aes(label = Country) , size = 2.5 ,  max.overlaps = Inf)\n\n\n\n\n\n\n\n\nThanks for passing by!"
   },
   {
     "objectID": "research/research/accounting_discretion/index.html",
@@ -997,15 +997,15 @@
     "objectID": "teaching/index.html#section-2",
     "href": "teaching/index.html#section-2",
     "title": "Teaching resources",
-    "section": "2022/02",
-    "text": "2022/02\n\nData & Empirical Finance: See here\n\n\nFinancial Strategy: See here\n\n\nESG & Institutional Investment: See here"
+    "section": "2023/01",
+    "text": "2023/01\n\nFinancial Strategy (Estratégia Financeira): See here\n\n\nESG & Institutional Investment: See here"
   },
   {
     "objectID": "teaching/financial_strategy/index.html",
     "href": "teaching/financial_strategy/index.html",
-    "title": "Financial Strategy (Estratégia Financeira) - 2024/01 - Summer Course",
+    "title": "Financial Strategy (Estratégia Financeira) - 2024/01",
     "section": "",
-    "text": "Slides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\nIntroduction\n\nPart 0\n\n\nPart 1 (until Midterm)\n\nPart 1 ch23\nPart 2 ch10\nPart 3 ch11\nPart 4 ch12\nPart 5 ch13\n\n\nPart 2 (Midterm to Final)\n\nPart 6 ch24\nPart 7 ch14\nPart 8 ch15\nPart 9 ch16\nPart 10 ch17"
+    "text": "Slides\nThe slides are based on Berk & DeMarzo, Corporate Finance, 5th ed 2020.\nIntroduction\n\nPart 0\n\n\nPart 1 (until Midterm)\n\nPart 1 ch23 Slides\nPart 2 ch10 Slides\nPart 3 ch11 Slides\nPart 4 ch12 Slides\nPart 5 ch13 Slides\n\n\nPart 2 (Midterm to Final)\n\nPart 6 ch24 Slides\nPart 7 ch14 Slides\nPart 8 ch15 Slides\nPart 9 ch16 Slides\nPart 10 ch17 Slides"
   },
   {
     "objectID": "teaching/index.html#a-permanent-course-both-semesters-since-2022",
@@ -4967,14 +4967,14 @@
     "href": "teaching/financial_strategy/part_0.html#thank-you",
     "title": "Estratégia Financeira",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br] [Teaching Resources] [Comments]"
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br] [Teaching Resources] [Comments]"
   },
   {
     "objectID": "teaching/financial_strategy/part_0.html#comments-1",
     "href": "teaching/financial_strategy/part_0.html#comments-1",
     "title": "Estratégia Financeira",
-    "section": "Comments?",
-    "text": "Comments?"
+    "section": "Comments? 1",
+    "text": "Comments? 1\n\nTest."
   },
   {
     "objectID": "teaching/financial_strategy/part_0.html#how-did-you-like-this-lecture",
@@ -6368,5 +6368,117 @@
     "title": "Estratégia Financeira",
     "section": "THANK YOU!",
     "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br] [Teaching Resources] [Comments]"
+  },
+  {
+    "objectID": "teaching/financial_strategy/part_0.html#comments-2",
+    "href": "teaching/financial_strategy/part_0.html#comments-2",
+    "title": "Estratégia Financeira",
+    "section": "Comments? 2",
+    "text": "Comments? 2"
+  },
+  {
+    "objectID": "seminars/seminars/research_intnl_ufsm/index.html",
+    "href": "seminars/seminars/research_intnl_ufsm/index.html",
+    "title": "Talk Research Internationalization (UFSM)",
+    "section": "",
+    "text": "My opinions do not represent those of the institution I work for.\n. . .\nI am a young scholar. What the H do I know?"
+  },
+  {
+    "objectID": "seminars/seminars/marcelo_perlin/index.html",
+    "href": "seminars/seminars/marcelo_perlin/index.html",
+    "title": "Talk With Marcelo Perlin",
+    "section": "",
+    "text": "I am happy to share this talk I had with Marcelo Perlin and Gerson Junior about Perlin’s new package to download financial data from Brazilian Companies using R (GetDFPdata2)."
+  },
+  {
+    "objectID": "seminars/seminars/frl_esg/index.html",
+    "href": "seminars/seminars/frl_esg/index.html",
+    "title": "Competition and ESG practices in emerging markets",
+    "section": "",
+    "text": "Over the last few years, there is a massive interest in corporate ESG decisions (disclosure and performance) from academia and practitioners.\n. . .\nTo invest more in ESG practices, corporations are facing pressure from:\n\nInvestors (Matos, 2020),\nPublic opinion (Baldini, Dal Maso, Liberatore, Mazzi, & Terzani, 2018),\nAnd peers (Cao, Liang, & Zhan, 2019)\n\n. . .\nHowever, antecedents and consequences of ESG practices are not well defined in the literature.\n\nThere is still a debate whether such practices increase or decrease firm value, for instance."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_anpcont/index.html",
+    "href": "seminars/seminars/ethics_anpcont/index.html",
+    "title": "Ethics & Open Data (ANPCONT)",
+    "section": "",
+    "text": "My opinions are my own, not those of the Institution I work for."
+  },
+  {
+    "objectID": "seminars/seminars/empirical_issues/index.html",
+    "href": "seminars/seminars/empirical_issues/index.html",
+    "title": "Issues in Empirical Finance Research",
+    "section": "",
+    "text": "I will discuss some issues in using plain OLS models in Corporate Finance & Governance Research\n\n. . .\n\nI will avoid the word “endogeneity” as much as I can\n\n. . .\n\nI will also avoid the word “identification” because identification does not guarantee causality and vice-versa (Kahn and Whited 2017)\n\n. . .\n\nThe discussion is based on Atanasov and Black (2016)"
+  },
+  {
+    "objectID": "blog/posts/ibov_USD/index.html",
+    "href": "blog/posts/ibov_USD/index.html",
+    "title": "Ibovespa in USD",
+    "section": "",
+    "text": "Let’s see how to create a graph of Ibovespa in dollar using data from ipeadata. Start by installing and loading the following package.\n\nlibrary(ipeadatar)\n\nThen, download the data. You will need the variables’ codes. You can use the row below to see the codes of all variables available.\n\nall_series &lt;- available_series()\n\nThen, after learning the codes for the variables we want (i.e., the codes ‘GM366_IBVSP366’ and ‘GM366_ERC366’ below), you download the data.\n\nibov  &lt;- ipeadata(code = \"GM366_IBVSP366\")\ndolar &lt;- ipeadata(code = \"GM366_ERC366\")\n\nSee that the period available is different for the two variables.\nFor convenience, let’s delete some columns in Ibov and integrate the dollar to Ibov.\n\nibov &lt;-subset(ibov, select=-c(tcode,uname))\ndolar&lt;-subset(dolar, select=-c(tcode,uname))\n\nThe next step is to join the data by date to avoid using different periods in each dataframe.\n\ndata &lt;- merge(ibov,dolar, by = \"date\")\n\nThen, let’s calculate the ratio between Ibovespa and dollar each day.\n\ndata$ibov_dolar &lt;- (data$value.x/data$value.y)\n\nLastly, you are good to go, and you can create a graph as follows.\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nggplot(data) +   geom_line(aes(x = date, y=ibov_dolar, colour=\"Ibov USD\") ) +   geom_line(aes(x = date, y=value.x, colour=\"Ibov\") ) +\n  labs(y='Ibov in USD', \n       title = \"Graph of Ibov in USD (Period: since 1994)\",\n       caption = \"Source: Ipeadata (R package: ipeadatar)\") + theme_solarized()\n\n\n\n\n\n\n\n\nThis graph is simply a reminder of the value in dollar of our Stock market index. It shows that, at the moment, Ibov in USD is not as high as one may think.\nBelow is a graph adding Ibov in Euro.\n\neuro &lt;- ipeadata(code = \"GM366_EUROC366\")\neuro &lt;-subset(euro, select=-c(tcode,uname))\ndata2 &lt;- merge(ibov,euro, by = \"date\")\ndata2$ibov_euro &lt;- (data2$value.x/data2$value.y)\nggplot(data) +   geom_line(aes(x = date, y=ibov_dolar, colour=\"Ibov USD\") ) +   geom_line(aes(x = date, y=value.x, colour=\"Ibov\") ) + geom_line(data= data2 , aes(x = date, y=ibov_euro, colour=\"Ibov Euro\") ) +\n  labs(y='Ibov in USD & Euro', \n       title = \"Graph of Ibov in USD & Euro (Period: since 1994)\",\n       caption = \"Source: Ipeadata (R package: ipeadatar)\") + theme_solarized()\n\n\n\n\n\n\n\n\nThanks for passing by!"
+  },
+  {
+    "objectID": "research/research/JBFA_2020/index.html",
+    "href": "research/research/JBFA_2020/index.html",
+    "title": "Do shareholder protection and creditor rights have distinct effects on the association between debt maturity and ownership structure?",
+    "section": "",
+    "text": "Do shareholder protection and creditor rights have distinct effects on the association between debt maturity and ownership structure?\n\nAbstract:\nThis study examines the effects of the firm’s ownership concentration and its institutional environment on corporate debt maturity choices. As ownership concentration and debt maturity are alternative governance mechanisms, we theorize and investigate whether their association is influenced by country-level governance factors that enhance outside monitoring by minority shareholders and debtholders. Our investigation is based on a dataset of 50,599 firm-year observations from 38 countries. We use a propensity-score matching approach and find that the effect of ownership concentration on debt maturity is conditional to country-level governance attributes. Ownership concentration has a negative effect on debt maturity in countries where both shareholder protection and creditor rights are weak. Ownership concentration, however, tends to lengthen debt maturity as protection increases, and this positive effect on the length of debt maturity is stronger in countries enhancing protection towards debtholders (instead of shareholders). We also explore other characteristics of ownership structure, such as the identity and presence of controlling shareholders. These results corroborate the view that entrenched shareholders may use debt maturity opportunistically. Our study provides new insights into the interplay between firm- and country-level governance mechanisms and a deeper understanding of cross-country differences in the association between ownership structure and debt financing.\nCo-authored with Eduardo Schiehll and Paulo Terra."
+  },
+  {
+    "objectID": "research/research/open_science/index.html",
+    "href": "research/research/open_science/index.html",
+    "title": "Open Code Community",
+    "section": "",
+    "text": "Open Code Community\nWe are a group of programming and Open Science enthusiasts aiming to share codes for the entire community. Our goal is to help students and professionals with the development of their codes and analyses. If you are willing to contribute to this project, share your code.\nIf you are looking for research ideas and how to execute them, check the website."
+  },
+  {
+    "objectID": "seminars/seminars/ecoinovar_open_science_rac/index.html",
+    "href": "seminars/seminars/ecoinovar_open_science_rac/index.html",
+    "title": "9th Fórum EcoInovar: A experiência de Open Science na RAC",
+    "section": "",
+    "text": "Todos os comentários são opiniões minhas, não representam a opinião das instituições de que faço parte."
+  },
+  {
+    "objectID": "seminars/seminars/ethics_unisinos/index.html",
+    "href": "seminars/seminars/ethics_unisinos/index.html",
+    "title": "Talk about Research Productivity (Unisinos)",
+    "section": "",
+    "text": "My opinions are my own."
+  },
+  {
+    "objectID": "seminars/seminars/icgs_tips/index.html",
+    "href": "seminars/seminars/icgs_tips/index.html",
+    "title": "My notes about the 2020 ICGS Editors’ tips",
+    "section": "",
+    "text": "I will share in these slides the notes I took from the two panels with editors from A-Journals at the International Corporate Governance Society (ICGS) Annual Meeting.\nI hope you like it!"
+  },
+  {
+    "objectID": "seminars/seminars/open_science/index.html",
+    "href": "seminars/seminars/open_science/index.html",
+    "title": "Open Science Seminar",
+    "section": "",
+    "text": "Hey, I had the opportunity to talk about Open Science in Management, Economics and Accounting Research. This is a seminar presented to the UFV Master students of economics.\nYou can download the slides clicking the button above. Thanks, Júlio for the invitation."
+  },
+  {
+    "objectID": "teaching/index.html#section-3",
+    "href": "teaching/index.html#section-3",
+    "title": "Teaching resources",
+    "section": "2022/02",
+    "text": "2022/02\n\nData & Empirical Finance: See here\n\n\nFinancial Strategy: See here\n\n\nESG & Institutional Investment: See here"
+  },
+  {
+    "objectID": "teaching/202401s_financial_strategy/index.html",
+    "href": "teaching/202401s_financial_strategy/index.html",
+    "title": "Financial Strategy (Estratégia Financeira) - 2024/01 - Summer Course",
+    "section": "",
+    "text": "Slides\nSee the newest version of the slides here."
+  },
+  {
+    "objectID": "teaching/financial_strategy/discussions/202401_summer_part0.html",
+    "href": "teaching/financial_strategy/discussions/202401_summer_part0.html",
+    "title": "Henrique Castro Martins",
+    "section": "",
+    "text": "Here are the discussion we had during the Summer course of 2024."
   }
 ]
