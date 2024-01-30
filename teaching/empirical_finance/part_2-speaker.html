@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="part_2_files/libs/clipboard/clipboard.min.js"></script>
-<script src="part_2_files/libs/quarto-html/tabby.min.js"></script>
-<script src="part_2_files/libs/quarto-html/popper.min.js"></script>
-<script src="part_2_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="part_2_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="part_2_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="part_2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="part_2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="Henrique C. Martins">
-  <title>Inferência Causal</title>
+  <title>Henrique Castro Martins - Inferência Causal</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="part_2_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="part_2_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -95,14 +95,23 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="part_2_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="styles.css">
-  <link href="part_2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="part_2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="part_2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="part_2_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="part_2_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="part_2_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-771J5563G0"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
+  </script>
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -224,7 +233,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -387,6 +397,9 @@
       margin-right: 0; 
     }
   </style>
+<meta name="twitter:title" content="Henrique Castro Martins - Inferência Causal">
+<meta name="twitter:description" content="Part 2">
+<meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -460,7 +473,7 @@ Henrique C. Martins
 <h2>Selection Bias</h2>
 <p>Rearranging the terms:</p>
 <p><span class="math display">\[(Y_{1,john} - Y_{0,Mary})   + (Y_{1,Mary}  - Y_{0,john})  = (4 - 5) + (5 - 3)  = 0.5\]</span> <span class="math display">\[We\;see   + We\;do\;not\;see  = (4 - 5) + (5 - 3)  = 0.5\]</span></p>
-<p>The term <span class="math inline">\((Y_{1,Mary} - Y_{0,john}) = (5 - 3) = 2\)</span> is the <strong>selection bias</strong>.</p>
+<p>The term <span class="math inline">\((Y_{1,Mary}  - Y_{0,john}) =  (5 - 3) = 2\)</span> is the <strong>selection bias</strong>.</p>
 <p>It exists because we are comparing two people that should not be compared.</p>
 </section>
 <section id="selection-bias-3" class="slide level2 smaller" data-background="#f7e8dc">
@@ -572,30 +585,30 @@ Henrique C. Martins
 <div id="tabset-1-1">
 <p>Average ages are very different. The salary of a 24 yrs old person is quite different than the salary of a 32 yrs person.</p>
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(haven)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
-<span id="cb1-8"><a href="#cb1-8"></a>{</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb1-10"><a href="#cb1-10"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb1-12"><a href="#cb1-12"></a>}</span>
-<span id="cb1-13"><a href="#cb1-13"></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">summary</span>(training_example<span class="sc">$</span>age_treat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Load necessary packages</span></span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-4"><a></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-5"><a></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
+<span id="cb1-8"><a></a>{</span>
+<span id="cb1-9"><a></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb1-10"><a></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
+<span id="cb1-11"><a></a>  <span class="fu">return</span>(df)</span>
+<span id="cb1-12"><a></a>}</span>
+<span id="cb1-13"><a></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb1-14"><a></a><span class="fu">summary</span>(training_example<span class="sc">$</span>age_treat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
   18.00   20.25   23.00   24.30   28.50   33.00      10 </code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">summary</span>(training_example<span class="sc">$</span>age_control)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">summary</span>(training_example<span class="sc">$</span>age_control)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -605,30 +618,30 @@ Henrique C. Martins
 </div>
 <div id="tabset-1-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(haven)</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
-<span id="cb5-8"><a href="#cb5-8"></a>{</span>
-<span id="cb5-9"><a href="#cb5-9"></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb5-10"><a href="#cb5-10"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb5-12"><a href="#cb5-12"></a>}</span>
-<span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
-<span id="cb5-15"><a href="#cb5-15"></a></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="fu">ggplot</span>(training_example, <span class="fu">aes</span>(<span class="at">x=</span>age_treat)) <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>  <span class="fu">stat_bin</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Load necessary packages</span></span>
+<span id="cb5-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-3"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb5-4"><a></a><span class="fu">library</span>(knitr)</span>
+<span id="cb5-5"><a></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb5-6"><a></a></span>
+<span id="cb5-7"><a></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
+<span id="cb5-8"><a></a>{</span>
+<span id="cb5-9"><a></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb5-10"><a></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
+<span id="cb5-11"><a></a>  <span class="fu">return</span>(df)</span>
+<span id="cb5-12"><a></a>}</span>
+<span id="cb5-13"><a></a></span>
+<span id="cb5-14"><a></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb5-15"><a></a></span>
+<span id="cb5-16"><a></a><span class="fu">ggplot</span>(training_example, <span class="fu">aes</span>(<span class="at">x=</span>age_treat)) <span class="sc">+</span></span>
+<span id="cb5-17"><a></a>  <span class="fu">stat_bin</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -636,30 +649,30 @@ Henrique C. Martins
 </div>
 <div id="tabset-1-3">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">library</span>(haven)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
-<span id="cb6-8"><a href="#cb6-8"></a>{</span>
-<span id="cb6-9"><a href="#cb6-9"></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb6-10"><a href="#cb6-10"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
-<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb6-12"><a href="#cb6-12"></a>}</span>
-<span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="fu">ggplot</span>(training_example, <span class="fu">aes</span>(<span class="at">x=</span>age_control)) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">stat_bin</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Load necessary packages</span></span>
+<span id="cb6-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-3"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb6-4"><a></a><span class="fu">library</span>(knitr)</span>
+<span id="cb6-5"><a></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb6-6"><a></a></span>
+<span id="cb6-7"><a></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
+<span id="cb6-8"><a></a>{</span>
+<span id="cb6-9"><a></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb6-10"><a></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
+<span id="cb6-11"><a></a>  <span class="fu">return</span>(df)</span>
+<span id="cb6-12"><a></a>}</span>
+<span id="cb6-13"><a></a></span>
+<span id="cb6-14"><a></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb6-15"><a></a></span>
+<span id="cb6-16"><a></a><span class="fu">ggplot</span>(training_example, <span class="fu">aes</span>(<span class="at">x=</span>age_control)) <span class="sc">+</span></span>
+<span id="cb6-17"><a></a>  <span class="fu">stat_bin</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -667,30 +680,30 @@ Henrique C. Martins
 </div>
 <div id="tabset-1-4">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">library</span>(haven)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
-<span id="cb7-8"><a href="#cb7-8"></a>{</span>
-<span id="cb7-9"><a href="#cb7-9"></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb7-10"><a href="#cb7-10"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
-<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb7-12"><a href="#cb7-12"></a>}</span>
-<span id="cb7-13"><a href="#cb7-13"></a></span>
-<span id="cb7-14"><a href="#cb7-14"></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
-<span id="cb7-15"><a href="#cb7-15"></a></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="fu">ggplot</span>(training_example, <span class="fu">aes</span>(<span class="at">x=</span>age_matched)) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="fu">stat_bin</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Load necessary packages</span></span>
+<span id="cb7-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-3"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb7-4"><a></a><span class="fu">library</span>(knitr)</span>
+<span id="cb7-5"><a></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb7-6"><a></a></span>
+<span id="cb7-7"><a></a>read_data <span class="ot">&lt;-</span> <span class="cf">function</span>(df)</span>
+<span id="cb7-8"><a></a>{</span>
+<span id="cb7-9"><a></a>  full_path <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"https://github.com/scunning1975/mixtape/raw/master/"</span>,df, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb7-10"><a></a>  df <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(full_path)</span>
+<span id="cb7-11"><a></a>  <span class="fu">return</span>(df)</span>
+<span id="cb7-12"><a></a>}</span>
+<span id="cb7-13"><a></a></span>
+<span id="cb7-14"><a></a>training_example <span class="ot">&lt;-</span> <span class="fu">read_data</span>(<span class="st">"training_example.dta"</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb7-15"><a></a></span>
+<span id="cb7-16"><a></a><span class="fu">ggplot</span>(training_example, <span class="fu">aes</span>(<span class="at">x=</span>age_matched)) <span class="sc">+</span></span>
+<span id="cb7-17"><a></a>  <span class="fu">stat_bin</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -874,24 +887,24 @@ Henrique C. Martins
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># Load necessary libraries</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">library</span>(haven)</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="fu">library</span>(psych)</span>
-<span id="cb8-5"><a href="#cb8-5"></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6"></a>summary_stats <span class="ot">&lt;-</span> <span class="fu">by</span>(data, data<span class="sc">$</span>treat, <span class="at">FUN =</span> <span class="cf">function</span>(group) {</span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">c</span>(</span>
-<span id="cb8-8"><a href="#cb8-8"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(group<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="at">variance =</span> <span class="fu">var</span>(group<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="at">skewness =</span> <span class="fu">skew</span>(group<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">count =</span> <span class="fu">length</span>(group<span class="sc">$</span>age)</span>
-<span id="cb8-12"><a href="#cb8-12"></a>  )</span>
-<span id="cb8-13"><a href="#cb8-13"></a>})</span>
-<span id="cb8-14"><a href="#cb8-14"></a>summary_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">do.call</span>(rbind, summary_stats))</span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="fu">colnames</span>(summary_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"variance"</span>, <span class="st">"skewness"</span>, <span class="st">"count"</span>)</span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="fu">print</span>(summary_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Load necessary packages</span></span>
+<span id="cb8-2"><a></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb8-3"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb8-4"><a></a><span class="fu">library</span>(psych)</span>
+<span id="cb8-5"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
+<span id="cb8-6"><a></a>summary_stats <span class="ot">&lt;-</span> <span class="fu">by</span>(data, data<span class="sc">$</span>treat, <span class="at">FUN =</span> <span class="cf">function</span>(group) {</span>
+<span id="cb8-7"><a></a>  <span class="fu">c</span>(</span>
+<span id="cb8-8"><a></a>    <span class="at">mean =</span> <span class="fu">mean</span>(group<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-9"><a></a>    <span class="at">variance =</span> <span class="fu">var</span>(group<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-10"><a></a>    <span class="at">skewness =</span> <span class="fu">skew</span>(group<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-11"><a></a>    <span class="at">count =</span> <span class="fu">length</span>(group<span class="sc">$</span>age)</span>
+<span id="cb8-12"><a></a>  )</span>
+<span id="cb8-13"><a></a>})</span>
+<span id="cb8-14"><a></a>summary_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">do.call</span>(rbind, summary_stats))</span>
+<span id="cb8-15"><a></a><span class="fu">colnames</span>(summary_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"variance"</span>, <span class="st">"skewness"</span>, <span class="st">"count"</span>)</span>
+<span id="cb8-16"><a></a><span class="fu">print</span>(summary_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mean variance  skewness count
@@ -902,15 +915,15 @@ Henrique C. Martins
 </div>
 <div id="tabset-2-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Python</summary>
-<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="true"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> skew</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb10-4"><a href="#cb10-4"></a>data <span class="op">=</span> pd.read_stata(<span class="st">"files/cps1re74.dta"</span>)</span>
-<span id="cb10-5"><a href="#cb10-5"></a>grouped_data <span class="op">=</span> data.groupby(<span class="st">'treat'</span>)[<span class="st">'age'</span>].agg([<span class="st">'mean'</span>, <span class="st">'var'</span>, <span class="kw">lambda</span> x: skew(x, nan_policy<span class="op">=</span><span class="st">'omit'</span>), <span class="st">'count'</span>]).reset_index()</span>
-<span id="cb10-6"><a href="#cb10-6"></a>grouped_data.columns <span class="op">=</span> [<span class="st">'treat'</span>, <span class="st">'mean'</span>, <span class="st">'variance'</span>, <span class="st">'skewness'</span>, <span class="st">'count'</span>]</span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="bu">print</span>(grouped_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-2"><a></a><span class="im">from</span> scipy.stats <span class="im">import</span> skew</span>
+<span id="cb10-3"><a></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb10-4"><a></a>data <span class="op">=</span> pd.read_stata(<span class="st">"files/cps1re74.dta"</span>)</span>
+<span id="cb10-5"><a></a>grouped_data <span class="op">=</span> data.groupby(<span class="st">'treat'</span>)[<span class="st">'age'</span>].agg([<span class="st">'mean'</span>, <span class="st">'var'</span>, <span class="kw">lambda</span> x: skew(x, nan_policy<span class="op">=</span><span class="st">'omit'</span>), <span class="st">'count'</span>]).reset_index()</span>
+<span id="cb10-6"><a></a>grouped_data.columns <span class="op">=</span> [<span class="st">'treat'</span>, <span class="st">'mean'</span>, <span class="st">'variance'</span>, <span class="st">'skewness'</span>, <span class="st">'count'</span>]</span>
+<span id="cb10-7"><a></a><span class="bu">print</span>(grouped_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   treat       mean    variance  skewness  count
@@ -921,11 +934,11 @@ Henrique C. Martins
 </div>
 <div id="tabset-2-3">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">qui</span> estpost <span class="kw">tabstat</span> age <span class="bn">black</span> educ , <span class="kw">by</span>(treat) c(<span class="fu">s</span>) <span class="fu">s</span>(me v sk n) <span class="kw">nototal</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>esttab .    ,varwidth(20) cells(<span class="st">"mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))"</span>) <span class="kw">noobs</span> nonumber <span class="kw">compress</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
+<span id="cb12-2"><a></a><span class="kw">qui</span> estpost <span class="kw">tabstat</span> age <span class="bn">black</span> educ , <span class="kw">by</span>(treat) c(<span class="fu">s</span>) <span class="fu">s</span>(me v sk n) <span class="kw">nototal</span></span>
+<span id="cb12-3"><a></a>esttab .    ,varwidth(20) cells(<span class="st">"mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))"</span>) <span class="kw">noobs</span> nonumber <span class="kw">compress</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(DW Subset of LaLonde Data)
@@ -968,15 +981,15 @@ educ                    10.346     4.043    -0.721       185
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># install.packages("MatchIt")</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">library</span>(haven)</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">library</span>(psych)</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="fu">library</span>(MatchIt)</span>
-<span id="cb14-5"><a href="#cb14-5"></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a>model <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> black <span class="sc">+</span> educ, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">"nearest"</span>)</span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># install.packages("MatchIt")</span></span>
+<span id="cb14-2"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb14-3"><a></a><span class="fu">library</span>(psych)</span>
+<span id="cb14-4"><a></a><span class="fu">library</span>(MatchIt)</span>
+<span id="cb14-5"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
+<span id="cb14-6"><a></a>model <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> black <span class="sc">+</span> educ, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">"nearest"</span>)</span>
+<span id="cb14-7"><a></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1018,11 +1031,11 @@ Discarded       0       0</code></pre>
 </div>
 <div id="tabset-3-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>psmatch2 treat age <span class="bn">black</span> educ , n(1) noreplacement</span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="kw">sum</span> _weight , <span class="kw">d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
+<span id="cb16-2"><a></a>psmatch2 treat age <span class="bn">black</span> educ , n(1) noreplacement</span>
+<span id="cb16-3"><a></a><span class="kw">sum</span> _weight , <span class="kw">d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(DW Subset of LaLonde Data)
@@ -1070,14 +1083,14 @@ Log likelihood = -634.83401                             Pseudo R2     = 0.3721
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># install.packages("MatchIt")</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">library</span>(haven)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">library</span>(MatchIt)</span>
-<span id="cb18-4"><a href="#cb18-4"></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
-<span id="cb18-5"><a href="#cb18-5"></a>model <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> black <span class="sc">+</span> educ, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">"exact"</span>)</span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="fu">summary</span>(model<span class="sc">$</span>weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># install.packages("MatchIt")</span></span>
+<span id="cb18-2"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb18-3"><a></a><span class="fu">library</span>(MatchIt)</span>
+<span id="cb18-4"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
+<span id="cb18-5"><a></a>model <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> black <span class="sc">+</span> educ, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">"exact"</span>)</span>
+<span id="cb18-6"><a></a><span class="fu">summary</span>(model<span class="sc">$</span>weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -1087,11 +1100,11 @@ Log likelihood = -634.83401                             Pseudo R2     = 0.3721
 </div>
 <div id="tabset-4-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="kw">qui</span> psmatch2 treat age <span class="bn">black</span> educ , kernel</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">sum</span> _weight , <span class="kw">d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
+<span id="cb20-2"><a></a><span class="kw">qui</span> psmatch2 treat age <span class="bn">black</span> educ , kernel</span>
+<span id="cb20-3"><a></a><span class="kw">sum</span> _weight , <span class="kw">d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(DW Subset of LaLonde Data)
@@ -1124,27 +1137,27 @@ Log likelihood = -634.83401                             Pseudo R2     = 0.3721
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">library</span>(MatchIt)</span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="co">#install.packages("e1071")</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="fu">library</span>(e1071)</span>
-<span id="cb22-5"><a href="#cb22-5"></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
-<span id="cb22-6"><a href="#cb22-6"></a>model <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> black <span class="sc">+</span> educ, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">"exact"</span>)</span>
-<span id="cb22-7"><a href="#cb22-7"></a>matched_data <span class="ot">&lt;-</span> <span class="fu">match.data</span>(model)</span>
-<span id="cb22-8"><a href="#cb22-8"></a>summary_stats <span class="ot">&lt;-</span> <span class="fu">by</span>(matched_data, matched_data<span class="sc">$</span>treat, <span class="cf">function</span>(x) {</span>
-<span id="cb22-9"><a href="#cb22-9"></a>  <span class="fu">c</span>(<span class="fu">mean</span>(x<span class="sc">$</span>age), <span class="fu">var</span>(x<span class="sc">$</span>age), <span class="fu">skewness</span>(x<span class="sc">$</span>age), <span class="fu">length</span>(x<span class="sc">$</span>age))</span>
-<span id="cb22-10"><a href="#cb22-10"></a>})</span>
-<span id="cb22-11"><a href="#cb22-11"></a></span>
-<span id="cb22-12"><a href="#cb22-12"></a>result_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb22-13"><a href="#cb22-13"></a>  <span class="at">Treatment =</span> <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"Treated"</span>),</span>
-<span id="cb22-14"><a href="#cb22-14"></a>  <span class="at">Mean_Age =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">1</span>]),</span>
-<span id="cb22-15"><a href="#cb22-15"></a>  <span class="at">Variance_Age =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">2</span>]),</span>
-<span id="cb22-16"><a href="#cb22-16"></a>  <span class="at">Skewness_Age =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">3</span>]),</span>
-<span id="cb22-17"><a href="#cb22-17"></a>  <span class="at">Count =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">4</span>])</span>
-<span id="cb22-18"><a href="#cb22-18"></a>)</span>
-<span id="cb22-19"><a href="#cb22-19"></a><span class="fu">print</span>(result_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb22-2"><a></a><span class="fu">library</span>(MatchIt)</span>
+<span id="cb22-3"><a></a><span class="co">#install.packages("e1071")</span></span>
+<span id="cb22-4"><a></a><span class="fu">library</span>(e1071)</span>
+<span id="cb22-5"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
+<span id="cb22-6"><a></a>model <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> black <span class="sc">+</span> educ, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">"exact"</span>)</span>
+<span id="cb22-7"><a></a>matched_data <span class="ot">&lt;-</span> <span class="fu">match.data</span>(model)</span>
+<span id="cb22-8"><a></a>summary_stats <span class="ot">&lt;-</span> <span class="fu">by</span>(matched_data, matched_data<span class="sc">$</span>treat, <span class="cf">function</span>(x) {</span>
+<span id="cb22-9"><a></a>  <span class="fu">c</span>(<span class="fu">mean</span>(x<span class="sc">$</span>age), <span class="fu">var</span>(x<span class="sc">$</span>age), <span class="fu">skewness</span>(x<span class="sc">$</span>age), <span class="fu">length</span>(x<span class="sc">$</span>age))</span>
+<span id="cb22-10"><a></a>})</span>
+<span id="cb22-11"><a></a></span>
+<span id="cb22-12"><a></a>result_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-13"><a></a>  <span class="at">Treatment =</span> <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"Treated"</span>),</span>
+<span id="cb22-14"><a></a>  <span class="at">Mean_Age =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">1</span>]),</span>
+<span id="cb22-15"><a></a>  <span class="at">Variance_Age =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">2</span>]),</span>
+<span id="cb22-16"><a></a>  <span class="at">Skewness_Age =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">3</span>]),</span>
+<span id="cb22-17"><a></a>  <span class="at">Count =</span> <span class="fu">sapply</span>(summary_stats, <span class="cf">function</span>(x) x[<span class="dv">4</span>])</span>
+<span id="cb22-18"><a></a>)</span>
+<span id="cb22-19"><a></a><span class="fu">print</span>(result_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Treatment Mean_Age Variance_Age Skewness_Age Count
@@ -1155,12 +1168,12 @@ Log likelihood = -634.83401                             Pseudo R2     = 0.3721
 </div>
 <div id="tabset-5-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="kw">qui</span> psmatch2 treat age <span class="bn">black</span> educ , kernel</span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="kw">qui</span> estpost <span class="kw">tabstat</span> age <span class="bn">black</span> educ [<span class="kw">aweight</span> = _weight], <span class="kw">by</span>(treat) c(<span class="fu">s</span>) <span class="fu">s</span>(me v sk n) <span class="kw">nototal</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>esttab .    ,varwidth(20) cells(<span class="st">"mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))"</span>) <span class="kw">noobs</span>  nonumber <span class="kw">compress</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
+<span id="cb24-2"><a></a><span class="kw">qui</span> psmatch2 treat age <span class="bn">black</span> educ , kernel</span>
+<span id="cb24-3"><a></a><span class="kw">qui</span> estpost <span class="kw">tabstat</span> age <span class="bn">black</span> educ [<span class="kw">aweight</span> = _weight], <span class="kw">by</span>(treat) c(<span class="fu">s</span>) <span class="fu">s</span>(me v sk n) <span class="kw">nototal</span></span>
+<span id="cb24-4"><a></a>esttab .    ,varwidth(20) cells(<span class="st">"mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))"</span>) <span class="kw">noobs</span>  nonumber <span class="kw">compress</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(DW Subset of LaLonde Data)
@@ -1210,39 +1223,39 @@ educ                    10.346     4.043    -0.721       185
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="co">#install.packages("ebal")</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="fu">library</span>(ebal)</span>
-<span id="cb26-4"><a href="#cb26-4"></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
-<span id="cb26-5"><a href="#cb26-5"></a>treatment <span class="ot">&lt;-</span><span class="fu">cbind</span>(data<span class="sc">$</span>treat)</span>
-<span id="cb26-6"><a href="#cb26-6"></a>vars <span class="ot">&lt;-</span><span class="fu">cbind</span>(data<span class="sc">$</span>age, data<span class="sc">$</span>educ, data<span class="sc">$</span>black)</span>
-<span id="cb26-7"><a href="#cb26-7"></a>eb <span class="ot">&lt;-</span> <span class="fu">ebalance</span>(treatment, vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(haven)</span>
+<span id="cb26-2"><a></a><span class="co">#install.packages("ebal")</span></span>
+<span id="cb26-3"><a></a><span class="fu">library</span>(ebal)</span>
+<span id="cb26-4"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/cps1re74.dta"</span>)</span>
+<span id="cb26-5"><a></a>treatment <span class="ot">&lt;-</span><span class="fu">cbind</span>(data<span class="sc">$</span>treat)</span>
+<span id="cb26-6"><a></a>vars <span class="ot">&lt;-</span><span class="fu">cbind</span>(data<span class="sc">$</span>age, data<span class="sc">$</span>educ, data<span class="sc">$</span>black)</span>
+<span id="cb26-7"><a></a>eb <span class="ot">&lt;-</span> <span class="fu">ebalance</span>(treatment, vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Converged within tolerance </code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># means in treatment group data</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">apply</span>(vars[treatment<span class="sc">==</span><span class="dv">1</span>,],<span class="dv">2</span>,mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># means in treatment group data</span></span>
+<span id="cb28-2"><a></a><span class="fu">apply</span>(vars[treatment<span class="sc">==</span><span class="dv">1</span>,],<span class="dv">2</span>,mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 25.8162162 10.3459459  0.8432432</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># means in reweighted control group data</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">apply</span>(vars[treatment<span class="sc">==</span><span class="dv">0</span>,],<span class="dv">2</span>,weighted.mean,<span class="at">w=</span>eb<span class="sc">$</span>w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># means in reweighted control group data</span></span>
+<span id="cb30-2"><a></a><span class="fu">apply</span>(vars[treatment<span class="sc">==</span><span class="dv">0</span>,],<span class="dv">2</span>,weighted.mean,<span class="at">w=</span>eb<span class="sc">$</span>w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 25.8163688 10.3460391  0.8431526</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># means in raw data control group data</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">apply</span>(vars[treatment<span class="sc">==</span><span class="dv">0</span>,],<span class="dv">2</span>,mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># means in raw data control group data</span></span>
+<span id="cb32-2"><a></a><span class="fu">apply</span>(vars[treatment<span class="sc">==</span><span class="dv">0</span>,],<span class="dv">2</span>,mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 33.22523762 12.02751376  0.07353677</code></pre>
@@ -1251,10 +1264,10 @@ educ                    10.346     4.043    -0.721       185
 </div>
 <div id="tabset-6-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>ebalance treat age <span class="bn">black</span> educ, targets(3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb34-1"><a></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
+<span id="cb34-2"><a></a>ebalance treat age <span class="bn">black</span> educ, targets(3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(DW Subset of LaLonde Data)
@@ -1337,12 +1350,12 @@ After:  _webal as the weighting variable
 <div class="tab-content">
 <div id="tabset-7-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="kw">qui</span> ebalance treat age <span class="bn">black</span> educ, targets(3)</span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="kw">qui</span> estpost <span class="kw">tabstat</span> age <span class="bn">black</span> educ [<span class="kw">aweight</span> = _webal], <span class="kw">by</span>(treat) c(<span class="fu">s</span>) <span class="fu">s</span>(me v sk n) <span class="kw">nototal</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a>esttab .    ,varwidth(20) cells(<span class="st">"mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))"</span>) <span class="kw">noobs</span>  nonumber <span class="kw">compress</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a></a><span class="kw">use</span> files/cps1re74.dta, <span class="kw">clear</span></span>
+<span id="cb36-2"><a></a><span class="kw">qui</span> ebalance treat age <span class="bn">black</span> educ, targets(3)</span>
+<span id="cb36-3"><a></a><span class="kw">qui</span> estpost <span class="kw">tabstat</span> age <span class="bn">black</span> educ [<span class="kw">aweight</span> = _webal], <span class="kw">by</span>(treat) c(<span class="fu">s</span>) <span class="fu">s</span>(me v sk n) <span class="kw">nototal</span></span>
+<span id="cb36-4"><a></a>esttab .    ,varwidth(20) cells(<span class="st">"mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))"</span>) <span class="kw">noobs</span>  nonumber <span class="kw">compress</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(DW Subset of LaLonde Data)
@@ -1821,16 +1834,16 @@ educ                    10.346     4.043    -0.721       185
 <div class="tab-content">
 <div id="tabset-8-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Load the necessary library</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb38-3"><a href="#cb38-3"></a>data <span class="ot">&lt;-</span> <span class="fu">read.dta</span>(<span class="st">"files/kielmc.dta"</span>)</span>
-<span id="cb38-4"><a href="#cb38-4"></a>data<span class="sc">$</span>y81_nearinc <span class="ot">&lt;-</span> data<span class="sc">$</span>y81 <span class="sc">*</span> data<span class="sc">$</span>nearinc</span>
-<span id="cb38-5"><a href="#cb38-5"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice <span class="sc">~</span> y81 <span class="sc">+</span> nearinc <span class="sc">+</span> y81_nearinc, <span class="at">data =</span> data)</span>
-<span id="cb38-6"><a href="#cb38-6"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice <span class="sc">~</span> y81 <span class="sc">+</span> nearinc <span class="sc">+</span> y81_nearinc <span class="sc">+</span> age <span class="sc">+</span> agesq, <span class="at">data =</span> data)</span>
-<span id="cb38-7"><a href="#cb38-7"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice <span class="sc">~</span> y81 <span class="sc">+</span> nearinc <span class="sc">+</span> y81_nearinc <span class="sc">+</span> age <span class="sc">+</span> agesq <span class="sc">+</span> intst <span class="sc">+</span> land <span class="sc">+</span> area <span class="sc">+</span> rooms <span class="sc">+</span> baths, <span class="at">data =</span> data)</span>
-<span id="cb38-8"><a href="#cb38-8"></a><span class="fu">summary</span>(model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="co"># Load the necessary library</span></span>
+<span id="cb38-2"><a></a><span class="fu">library</span>(foreign)</span>
+<span id="cb38-3"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read.dta</span>(<span class="st">"files/kielmc.dta"</span>)</span>
+<span id="cb38-4"><a></a>data<span class="sc">$</span>y81_nearinc <span class="ot">&lt;-</span> data<span class="sc">$</span>y81 <span class="sc">*</span> data<span class="sc">$</span>nearinc</span>
+<span id="cb38-5"><a></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice <span class="sc">~</span> y81 <span class="sc">+</span> nearinc <span class="sc">+</span> y81_nearinc, <span class="at">data =</span> data)</span>
+<span id="cb38-6"><a></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice <span class="sc">~</span> y81 <span class="sc">+</span> nearinc <span class="sc">+</span> y81_nearinc <span class="sc">+</span> age <span class="sc">+</span> agesq, <span class="at">data =</span> data)</span>
+<span id="cb38-7"><a></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(rprice <span class="sc">~</span> y81 <span class="sc">+</span> nearinc <span class="sc">+</span> y81_nearinc <span class="sc">+</span> age <span class="sc">+</span> agesq <span class="sc">+</span> intst <span class="sc">+</span> land <span class="sc">+</span> area <span class="sc">+</span> rooms <span class="sc">+</span> baths, <span class="at">data =</span> data)</span>
+<span id="cb38-8"><a></a><span class="fu">summary</span>(model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1866,14 +1879,14 @@ F-statistic: 60.19 on 10 and 310 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="tabset-8-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb40" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">use</span> <span class="st">"files/kielmc.dta"</span>, <span class="kw">clear</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="kw">gen</span> y81_nearinc = y81 * nearinc</span>
-<span id="cb40-3"><a href="#cb40-3"></a>eststo:<span class="kw">qui</span> <span class="kw">reg</span> rprice y81 nearinc y81_nearinc </span>
-<span id="cb40-4"><a href="#cb40-4"></a>eststo:<span class="kw">qui</span> <span class="kw">reg</span> rprice y81 nearinc y81_nearinc age agesq </span>
-<span id="cb40-5"><a href="#cb40-5"></a>eststo:<span class="kw">qui</span> <span class="kw">reg</span> rprice y81 nearinc y81_nearinc age agesq intst land area rooms baths</span>
-<span id="cb40-6"><a href="#cb40-6"></a>esttab , <span class="kw">compress</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb40-1"><a></a><span class="kw">use</span> <span class="st">"files/kielmc.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb40-2"><a></a><span class="kw">gen</span> y81_nearinc = y81 * nearinc</span>
+<span id="cb40-3"><a></a>eststo:<span class="kw">qui</span> <span class="kw">reg</span> rprice y81 nearinc y81_nearinc </span>
+<span id="cb40-4"><a></a>eststo:<span class="kw">qui</span> <span class="kw">reg</span> rprice y81 nearinc y81_nearinc age agesq </span>
+<span id="cb40-5"><a></a>eststo:<span class="kw">qui</span> <span class="kw">reg</span> rprice y81 nearinc y81_nearinc age agesq intst land area rooms baths</span>
+<span id="cb40-6"><a></a>esttab , <span class="kw">compress</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(est1 stored)
@@ -2171,26 +2184,26 @@ t statistics in parentheses
 <div class="tab-content">
 <div id="tabset-9-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb42-3"><a href="#cb42-3"></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb42-4"><a href="#cb42-4"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y))  <span class="sc">+</span> </span>
-<span id="cb42-5"><a href="#cb42-5"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">1.2</span>) <span class="sc">+</span> </span>
-<span id="cb42-6"><a href="#cb42-6"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"Evolution of Y"</span>) <span class="sc">+</span></span>
-<span id="cb42-7"><a href="#cb42-7"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">20</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
-<span id="cb42-8"><a href="#cb42-8"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
-<span id="cb42-9"><a href="#cb42-9"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb42-10"><a href="#cb42-10"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb42-11"><a href="#cb42-11"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb42-12"><a href="#cb42-12"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb42-13"><a href="#cb42-13"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb42-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb42-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb42-4"><a></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y))  <span class="sc">+</span> </span>
+<span id="cb42-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">1.2</span>) <span class="sc">+</span> </span>
+<span id="cb42-6"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"Evolution of Y"</span>) <span class="sc">+</span></span>
+<span id="cb42-7"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">20</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb42-8"><a></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
+<span id="cb42-9"><a></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb42-10"><a></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb42-11"><a></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb42-12"><a></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb42-13"><a></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -2198,28 +2211,28 @@ t statistics in parentheses
 </div>
 <div id="tabset-9-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Python</summary>
-<div class="sourceCode cell-code" id="cb43" data-code-line-numbers="true"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb43-3"><a href="#cb43-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="co"># Read Excel file</span></span>
-<span id="cb43-5"><a href="#cb43-5"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb43-6"><a href="#cb43-6"></a><span class="co"># Generate line graph - Including all observations together</span></span>
-<span id="cb43-7"><a href="#cb43-7"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb43-8"><a href="#cb43-8"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb43-9"><a href="#cb43-9"></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb43-10"><a href="#cb43-10"></a>scatter_plot.set_title(<span class="st">"Evolution of Y"</span>, fontsize<span class="op">=</span><span class="dv">20</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb43-11"><a href="#cb43-11"></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb43-12"><a href="#cb43-12"></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb43-13"><a href="#cb43-13"></a><span class="co"># Add regression line</span></span>
-<span id="cb43-14"><a href="#cb43-14"></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data, scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
-<span id="cb43-15"><a href="#cb43-15"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb43-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb43-3"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb43-4"><a></a><span class="co"># Read Excel file</span></span>
+<span id="cb43-5"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb43-6"><a></a><span class="co"># Generate line graph - Including all observations together</span></span>
+<span id="cb43-7"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb43-8"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb43-9"><a></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb43-10"><a></a>scatter_plot.set_title(<span class="st">"Evolution of Y"</span>, fontsize<span class="op">=</span><span class="dv">20</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb43-11"><a></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb43-12"><a></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb43-13"><a></a><span class="co"># Add regression line</span></span>
+<span id="cb43-14"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data, scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
+<span id="cb43-15"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -2241,30 +2254,30 @@ t statistics in parentheses
 <div class="tab-content">
 <div id="tabset-10-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb44" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb44-3"><a href="#cb44-3"></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb44-4"><a href="#cb44-4"></a><span class="co"># Creating  groups</span></span>
-<span id="cb44-5"><a href="#cb44-5"></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb44-6"><a href="#cb44-6"></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
-<span id="cb44-7"><a href="#cb44-7"></a><span class="co"># Generate a line graph - two groups</span></span>
-<span id="cb44-8"><a href="#cb44-8"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y, <span class="at">group=</span>treated, <span class="at">color =</span> <span class="fu">factor</span>(treated)))  <span class="sc">+</span> </span>
-<span id="cb44-9"><a href="#cb44-9"></a>    <span class="fu">geom_point</span>( <span class="at">size=</span><span class="fl">1.25</span>) <span class="sc">+</span> </span>
-<span id="cb44-10"><a href="#cb44-10"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"RDD exemplo"</span>)<span class="sc">+</span></span>
-<span id="cb44-11"><a href="#cb44-11"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">25</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
-<span id="cb44-12"><a href="#cb44-12"></a>          <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
-<span id="cb44-13"><a href="#cb44-13"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb44-14"><a href="#cb44-14"></a>          <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb44-15"><a href="#cb44-15"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb44-16"><a href="#cb44-16"></a>          <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb44-17"><a href="#cb44-17"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb44-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb44-4"><a></a><span class="co"># Creating  groups</span></span>
+<span id="cb44-5"><a></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb44-6"><a></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
+<span id="cb44-7"><a></a><span class="co"># Generate a line graph - two groups</span></span>
+<span id="cb44-8"><a></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y, <span class="at">group=</span>treated, <span class="at">color =</span> <span class="fu">factor</span>(treated)))  <span class="sc">+</span> </span>
+<span id="cb44-9"><a></a>    <span class="fu">geom_point</span>( <span class="at">size=</span><span class="fl">1.25</span>) <span class="sc">+</span> </span>
+<span id="cb44-10"><a></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"RDD exemplo"</span>)<span class="sc">+</span></span>
+<span id="cb44-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">25</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb44-12"><a></a>          <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
+<span id="cb44-13"><a></a>          <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb44-14"><a></a>          <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb44-15"><a></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-16"><a></a>          <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb44-17"><a></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-22-3.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-22-3.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -2272,34 +2285,34 @@ t statistics in parentheses
 </div>
 <div id="tabset-10-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Python</summary>
-<div class="sourceCode cell-code" id="cb45" data-code-line-numbers="true"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb45-2"><a href="#cb45-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb45-3"><a href="#cb45-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb45-4"><a href="#cb45-4"></a><span class="co"># Read Excel file</span></span>
-<span id="cb45-5"><a href="#cb45-5"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb45-6"><a href="#cb45-6"></a><span class="co"># Create treated variable</span></span>
-<span id="cb45-7"><a href="#cb45-7"></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb45-8"><a href="#cb45-8"></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb45-9"><a href="#cb45-9"></a><span class="co"># Generate line graph with two groups</span></span>
-<span id="cb45-10"><a href="#cb45-10"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb45-11"><a href="#cb45-11"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb45-12"><a href="#cb45-12"></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, hue<span class="op">=</span><span class="st">'treated'</span>, style<span class="op">=</span><span class="st">'treated'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb45-13"><a href="#cb45-13"></a>scatter_plot.set_title(<span class="st">"RDD exemplo"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb45-14"><a href="#cb45-14"></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb45-15"><a href="#cb45-15"></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb45-16"><a href="#cb45-16"></a>scatter_plot.legend().set_title(<span class="st">''</span>)</span>
-<span id="cb45-17"><a href="#cb45-17"></a>scatter_plot.legend(title<span class="op">=</span><span class="st">''</span>, loc<span class="op">=</span><span class="st">'upper left'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>)</span>
-<span id="cb45-18"><a href="#cb45-18"></a><span class="co"># Add regression lines</span></span>
-<span id="cb45-19"><a href="#cb45-19"></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">0</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
-<span id="cb45-20"><a href="#cb45-20"></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">1</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'orange'</span>})</span>
-<span id="cb45-21"><a href="#cb45-21"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb45-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb45-3"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb45-4"><a></a><span class="co"># Read Excel file</span></span>
+<span id="cb45-5"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb45-6"><a></a><span class="co"># Create treated variable</span></span>
+<span id="cb45-7"><a></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb45-8"><a></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb45-9"><a></a><span class="co"># Generate line graph with two groups</span></span>
+<span id="cb45-10"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb45-11"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb45-12"><a></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, hue<span class="op">=</span><span class="st">'treated'</span>, style<span class="op">=</span><span class="st">'treated'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb45-13"><a></a>scatter_plot.set_title(<span class="st">"RDD exemplo"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb45-14"><a></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb45-15"><a></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb45-16"><a></a>scatter_plot.legend().set_title(<span class="st">''</span>)</span>
+<span id="cb45-17"><a></a>scatter_plot.legend(title<span class="op">=</span><span class="st">''</span>, loc<span class="op">=</span><span class="st">'upper left'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>)</span>
+<span id="cb45-18"><a></a><span class="co"># Add regression lines</span></span>
+<span id="cb45-19"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">0</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
+<span id="cb45-20"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">1</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'orange'</span>})</span>
+<span id="cb45-21"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -2321,37 +2334,37 @@ t statistics in parentheses
 <div class="tab-content">
 <div id="tabset-11-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb46" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb46-2"><a href="#cb46-2"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb46-3"><a href="#cb46-3"></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb46-4"><a href="#cb46-4"></a><span class="co"># Creating  groups</span></span>
-<span id="cb46-5"><a href="#cb46-5"></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb46-6"><a href="#cb46-6"></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
-<span id="cb46-7"><a href="#cb46-7"></a><span class="co"># define cut</span></span>
-<span id="cb46-8"><a href="#cb46-8"></a>cut <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb46-9"><a href="#cb46-9"></a>band <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb46-10"><a href="#cb46-10"></a>xlow <span class="ot">=</span> cut <span class="sc">-</span> band</span>
-<span id="cb46-11"><a href="#cb46-11"></a>xhigh <span class="ot">=</span> cut <span class="sc">+</span> band</span>
-<span id="cb46-12"><a href="#cb46-12"></a><span class="co"># subset the data for the bandwidth</span></span>
-<span id="cb46-13"><a href="#cb46-13"></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, x <span class="sc">&gt;</span> xlow <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> xhigh, <span class="at">select=</span><span class="fu">c</span>(x, y,  treated))</span>
-<span id="cb46-14"><a href="#cb46-14"></a><span class="co"># Generate a line graph - two groups</span></span>
-<span id="cb46-15"><a href="#cb46-15"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y, <span class="at">group=</span>treated, <span class="at">color =</span> <span class="fu">factor</span>(treated)))  <span class="sc">+</span> </span>
-<span id="cb46-16"><a href="#cb46-16"></a>  <span class="fu">geom_point</span>( <span class="at">size=</span><span class="fl">1.25</span>) <span class="sc">+</span> </span>
-<span id="cb46-17"><a href="#cb46-17"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"RDD example"</span>)<span class="sc">+</span></span>
-<span id="cb46-18"><a href="#cb46-18"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">25</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
-<span id="cb46-19"><a href="#cb46-19"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
-<span id="cb46-20"><a href="#cb46-20"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb46-21"><a href="#cb46-21"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb46-22"><a href="#cb46-22"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb46-23"><a href="#cb46-23"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb46-24"><a href="#cb46-24"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb46-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb46-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb46-4"><a></a><span class="co"># Creating  groups</span></span>
+<span id="cb46-5"><a></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb46-6"><a></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
+<span id="cb46-7"><a></a><span class="co"># define cut</span></span>
+<span id="cb46-8"><a></a>cut <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb46-9"><a></a>band <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb46-10"><a></a>xlow <span class="ot">=</span> cut <span class="sc">-</span> band</span>
+<span id="cb46-11"><a></a>xhigh <span class="ot">=</span> cut <span class="sc">+</span> band</span>
+<span id="cb46-12"><a></a><span class="co"># subset the data for the bandwidth</span></span>
+<span id="cb46-13"><a></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, x <span class="sc">&gt;</span> xlow <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> xhigh, <span class="at">select=</span><span class="fu">c</span>(x, y,  treated))</span>
+<span id="cb46-14"><a></a><span class="co"># Generate a line graph - two groups</span></span>
+<span id="cb46-15"><a></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y, <span class="at">group=</span>treated, <span class="at">color =</span> <span class="fu">factor</span>(treated)))  <span class="sc">+</span> </span>
+<span id="cb46-16"><a></a>  <span class="fu">geom_point</span>( <span class="at">size=</span><span class="fl">1.25</span>) <span class="sc">+</span> </span>
+<span id="cb46-17"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"RDD example"</span>)<span class="sc">+</span></span>
+<span id="cb46-18"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">25</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb46-19"><a></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
+<span id="cb46-20"><a></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb46-21"><a></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb46-22"><a></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb46-23"><a></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb46-24"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-25-3.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-25-3.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -2359,40 +2372,40 @@ t statistics in parentheses
 </div>
 <div id="tabset-11-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Python</summary>
-<div class="sourceCode cell-code" id="cb47" data-code-line-numbers="true"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb47-2"><a href="#cb47-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb47-3"><a href="#cb47-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb47-4"><a href="#cb47-4"></a><span class="co"># Read Excel file</span></span>
-<span id="cb47-5"><a href="#cb47-5"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb47-6"><a href="#cb47-6"></a><span class="co"># Create treated variable</span></span>
-<span id="cb47-7"><a href="#cb47-7"></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb47-8"><a href="#cb47-8"></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb47-9"><a href="#cb47-9"></a><span class="co"># Define cut, band, and subset data</span></span>
-<span id="cb47-10"><a href="#cb47-10"></a>cut <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb47-11"><a href="#cb47-11"></a>band <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb47-12"><a href="#cb47-12"></a>xlow <span class="op">=</span> cut <span class="op">-</span> band</span>
-<span id="cb47-13"><a href="#cb47-13"></a>xhigh <span class="op">=</span> cut <span class="op">+</span> band</span>
-<span id="cb47-14"><a href="#cb47-14"></a>data <span class="op">=</span> data[(data[<span class="st">'x'</span>] <span class="op">&gt;</span> xlow) <span class="op">&amp;</span> (data[<span class="st">'x'</span>] <span class="op">&lt;=</span> xhigh)][[<span class="st">'x'</span>, <span class="st">'y'</span>, <span class="st">'treated'</span>]]</span>
-<span id="cb47-15"><a href="#cb47-15"></a><span class="co"># Generate line graph with two groups</span></span>
-<span id="cb47-16"><a href="#cb47-16"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb47-17"><a href="#cb47-17"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb47-18"><a href="#cb47-18"></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, hue<span class="op">=</span><span class="st">'treated'</span>, style<span class="op">=</span><span class="st">'treated'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb47-19"><a href="#cb47-19"></a>scatter_plot.set_title(<span class="st">"RDD example"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb47-20"><a href="#cb47-20"></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb47-21"><a href="#cb47-21"></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb47-22"><a href="#cb47-22"></a>scatter_plot.legend().set_title(<span class="st">''</span>)</span>
-<span id="cb47-23"><a href="#cb47-23"></a>scatter_plot.legend(title<span class="op">=</span><span class="st">''</span>, loc<span class="op">=</span><span class="st">'upper left'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>)</span>
-<span id="cb47-24"><a href="#cb47-24"></a><span class="co"># Add regression lines</span></span>
-<span id="cb47-25"><a href="#cb47-25"></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">0</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
-<span id="cb47-26"><a href="#cb47-26"></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">1</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'orange'</span>})</span>
-<span id="cb47-27"><a href="#cb47-27"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb47-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb47-3"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb47-4"><a></a><span class="co"># Read Excel file</span></span>
+<span id="cb47-5"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb47-6"><a></a><span class="co"># Create treated variable</span></span>
+<span id="cb47-7"><a></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb47-8"><a></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb47-9"><a></a><span class="co"># Define cut, band, and subset data</span></span>
+<span id="cb47-10"><a></a>cut <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb47-11"><a></a>band <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb47-12"><a></a>xlow <span class="op">=</span> cut <span class="op">-</span> band</span>
+<span id="cb47-13"><a></a>xhigh <span class="op">=</span> cut <span class="op">+</span> band</span>
+<span id="cb47-14"><a></a>data <span class="op">=</span> data[(data[<span class="st">'x'</span>] <span class="op">&gt;</span> xlow) <span class="op">&amp;</span> (data[<span class="st">'x'</span>] <span class="op">&lt;=</span> xhigh)][[<span class="st">'x'</span>, <span class="st">'y'</span>, <span class="st">'treated'</span>]]</span>
+<span id="cb47-15"><a></a><span class="co"># Generate line graph with two groups</span></span>
+<span id="cb47-16"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb47-17"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb47-18"><a></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, hue<span class="op">=</span><span class="st">'treated'</span>, style<span class="op">=</span><span class="st">'treated'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb47-19"><a></a>scatter_plot.set_title(<span class="st">"RDD example"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb47-20"><a></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb47-21"><a></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb47-22"><a></a>scatter_plot.legend().set_title(<span class="st">''</span>)</span>
+<span id="cb47-23"><a></a>scatter_plot.legend(title<span class="op">=</span><span class="st">''</span>, loc<span class="op">=</span><span class="st">'upper left'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>)</span>
+<span id="cb47-24"><a></a><span class="co"># Add regression lines</span></span>
+<span id="cb47-25"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">0</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
+<span id="cb47-26"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">1</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'orange'</span>})</span>
+<span id="cb47-27"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+<p><img data-src="part_2_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -2414,25 +2427,25 @@ t statistics in parentheses
 <div class="tab-content">
 <div id="tabset-12-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>R</summary>
-<div class="sourceCode cell-code" id="cb48" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb48-3"><a href="#cb48-3"></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb48-4"><a href="#cb48-4"></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb48-5"><a href="#cb48-5"></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
-<span id="cb48-6"><a href="#cb48-6"></a>cut <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb48-7"><a href="#cb48-7"></a>band <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb48-8"><a href="#cb48-8"></a>xlow <span class="ot">=</span> cut <span class="sc">-</span> band</span>
-<span id="cb48-9"><a href="#cb48-9"></a>xhigh <span class="ot">=</span> cut <span class="sc">+</span> band</span>
-<span id="cb48-10"><a href="#cb48-10"></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, x <span class="sc">&gt;</span> xlow <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> xhigh, <span class="at">select=</span><span class="fu">c</span>(x, y,  treated))</span>
-<span id="cb48-11"><a href="#cb48-11"></a><span class="co"># Generating xhat - Now we are going to the RDD</span></span>
-<span id="cb48-12"><a href="#cb48-12"></a>data<span class="sc">$</span>xhat <span class="ot">&lt;-</span> data<span class="sc">$</span>x <span class="sc">-</span> cut</span>
-<span id="cb48-13"><a href="#cb48-13"></a><span class="co"># Generating xhat * treated to allow different inclinations (we will use the findings of the last graph, i.e. that each group has a different trend.)</span></span>
-<span id="cb48-14"><a href="#cb48-14"></a>data<span class="sc">$</span>xhat_treated <span class="ot">&lt;-</span> data<span class="sc">$</span>xhat <span class="sc">*</span> data<span class="sc">$</span>treated</span>
-<span id="cb48-15"><a href="#cb48-15"></a><span class="co"># RDD Assuming different trends</span></span>
-<span id="cb48-16"><a href="#cb48-16"></a>rdd <span class="ot">&lt;-</span> <span class="fu">lm</span>(y  <span class="sc">~</span> xhat <span class="sc">+</span> treated  <span class="sc">+</span> xhat_treated, <span class="at">data =</span> data)</span>
-<span id="cb48-17"><a href="#cb48-17"></a><span class="fu">summary</span>(rdd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb48-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb48-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb48-4"><a></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb48-5"><a></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
+<span id="cb48-6"><a></a>cut <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb48-7"><a></a>band <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb48-8"><a></a>xlow <span class="ot">=</span> cut <span class="sc">-</span> band</span>
+<span id="cb48-9"><a></a>xhigh <span class="ot">=</span> cut <span class="sc">+</span> band</span>
+<span id="cb48-10"><a></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, x <span class="sc">&gt;</span> xlow <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> xhigh, <span class="at">select=</span><span class="fu">c</span>(x, y,  treated))</span>
+<span id="cb48-11"><a></a><span class="co"># Generating xhat - Now we are going to the RDD</span></span>
+<span id="cb48-12"><a></a>data<span class="sc">$</span>xhat <span class="ot">&lt;-</span> data<span class="sc">$</span>x <span class="sc">-</span> cut</span>
+<span id="cb48-13"><a></a><span class="co"># Generating xhat * treated to allow different inclinations (we will use the findings of the last graph, i.e. that each group has a different trend.)</span></span>
+<span id="cb48-14"><a></a>data<span class="sc">$</span>xhat_treated <span class="ot">&lt;-</span> data<span class="sc">$</span>xhat <span class="sc">*</span> data<span class="sc">$</span>treated</span>
+<span id="cb48-15"><a></a><span class="co"># RDD Assuming different trends</span></span>
+<span id="cb48-16"><a></a>rdd <span class="ot">&lt;-</span> <span class="fu">lm</span>(y  <span class="sc">~</span> xhat <span class="sc">+</span> treated  <span class="sc">+</span> xhat_treated, <span class="at">data =</span> data)</span>
+<span id="cb48-17"><a></a><span class="fu">summary</span>(rdd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2460,30 +2473,30 @@ F-statistic: 270.3 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="tabset-12-2">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Python</summary>
-<div class="sourceCode cell-code" id="cb50" data-code-line-numbers="true"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb50-3"><a href="#cb50-3"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
-<span id="cb50-4"><a href="#cb50-4"></a><span class="co"># Generate treated variable</span></span>
-<span id="cb50-5"><a href="#cb50-5"></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb50-6"><a href="#cb50-6"></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb50-7"><a href="#cb50-7"></a><span class="co"># Define cut and band</span></span>
-<span id="cb50-8"><a href="#cb50-8"></a>cut <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb50-9"><a href="#cb50-9"></a>band <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb50-10"><a href="#cb50-10"></a>xlow <span class="op">=</span> cut <span class="op">-</span> band</span>
-<span id="cb50-11"><a href="#cb50-11"></a>xhigh <span class="op">=</span> cut <span class="op">+</span> band</span>
-<span id="cb50-12"><a href="#cb50-12"></a><span class="co"># Subset data</span></span>
-<span id="cb50-13"><a href="#cb50-13"></a>data <span class="op">=</span> data[(data[<span class="st">'x'</span>] <span class="op">&gt;</span> xlow) <span class="op">&amp;</span> (data[<span class="st">'x'</span>] <span class="op">&lt;=</span> xhigh)]</span>
-<span id="cb50-14"><a href="#cb50-14"></a><span class="co"># Generate xhat and xhat_treated</span></span>
-<span id="cb50-15"><a href="#cb50-15"></a>data[<span class="st">'xhat'</span>] <span class="op">=</span> data[<span class="st">'x'</span>] <span class="op">-</span> cut</span>
-<span id="cb50-16"><a href="#cb50-16"></a>data[<span class="st">'xhat_treated'</span>] <span class="op">=</span> data[<span class="st">'xhat'</span>] <span class="op">*</span> data[<span class="st">'treated'</span>]</span>
-<span id="cb50-17"><a href="#cb50-17"></a><span class="co"># Regression</span></span>
-<span id="cb50-18"><a href="#cb50-18"></a>X <span class="op">=</span> data[[<span class="st">'xhat'</span>, <span class="st">'treated'</span>, <span class="st">'xhat_treated'</span>]]</span>
-<span id="cb50-19"><a href="#cb50-19"></a>X <span class="op">=</span> sm.add_constant(X)  <span class="co"># Add a constant term</span></span>
-<span id="cb50-20"><a href="#cb50-20"></a>y <span class="op">=</span> data[<span class="st">'y'</span>]</span>
-<span id="cb50-21"><a href="#cb50-21"></a>model <span class="op">=</span> sm.OLS(y, X).fit()</span>
-<span id="cb50-22"><a href="#cb50-22"></a><span class="bu">print</span>(model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb50-2"><a></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb50-3"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb50-4"><a></a><span class="co"># Generate treated variable</span></span>
+<span id="cb50-5"><a></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb50-6"><a></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb50-7"><a></a><span class="co"># Define cut and band</span></span>
+<span id="cb50-8"><a></a>cut <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb50-9"><a></a>band <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb50-10"><a></a>xlow <span class="op">=</span> cut <span class="op">-</span> band</span>
+<span id="cb50-11"><a></a>xhigh <span class="op">=</span> cut <span class="op">+</span> band</span>
+<span id="cb50-12"><a></a><span class="co"># Subset data</span></span>
+<span id="cb50-13"><a></a>data <span class="op">=</span> data[(data[<span class="st">'x'</span>] <span class="op">&gt;</span> xlow) <span class="op">&amp;</span> (data[<span class="st">'x'</span>] <span class="op">&lt;=</span> xhigh)]</span>
+<span id="cb50-14"><a></a><span class="co"># Generate xhat and xhat_treated</span></span>
+<span id="cb50-15"><a></a>data[<span class="st">'xhat'</span>] <span class="op">=</span> data[<span class="st">'x'</span>] <span class="op">-</span> cut</span>
+<span id="cb50-16"><a></a>data[<span class="st">'xhat_treated'</span>] <span class="op">=</span> data[<span class="st">'xhat'</span>] <span class="op">*</span> data[<span class="st">'treated'</span>]</span>
+<span id="cb50-17"><a></a><span class="co"># Regression</span></span>
+<span id="cb50-18"><a></a>X <span class="op">=</span> data[[<span class="st">'xhat'</span>, <span class="st">'treated'</span>, <span class="st">'xhat_treated'</span>]]</span>
+<span id="cb50-19"><a></a>X <span class="op">=</span> sm.add_constant(X)  <span class="co"># Add a constant term</span></span>
+<span id="cb50-20"><a></a>y <span class="op">=</span> data[<span class="st">'y'</span>]</span>
+<span id="cb50-21"><a></a>model <span class="op">=</span> sm.OLS(y, X).fit()</span>
+<span id="cb50-22"><a></a><span class="bu">print</span>(model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            OLS Regression Results                            
@@ -2491,8 +2504,8 @@ F-statistic: 270.3 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
 Dep. Variable:                      y   R-squared:                       0.894
 Model:                            OLS   Adj. R-squared:                  0.891
 Method:                 Least Squares   F-statistic:                     270.3
-Date:                ter, 12 dez 2023   Prob (F-statistic):           1.14e-46
-Time:                        13:16:00   Log-Likelihood:                -310.60
+Date:                ter, 30 jan 2024   Prob (F-statistic):           1.14e-46
+Time:                        15:36:45   Log-Likelihood:                -310.60
 No. Observations:                 100   AIC:                             629.2
 Df Residuals:                      96   BIC:                             639.6
 Df Model:                           3                                         
@@ -2518,19 +2531,19 @@ Notes:
 </div>
 <div id="tabset-12-3">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb52" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb52-1"><a href="#cb52-1"></a>import excel <span class="st">"files/RDD.xlsx"</span>, firstrow <span class="kw">clear</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="kw">gen</span> treated = 0</span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="kw">replace</span> treated = 1 <span class="kw">if</span> x &gt;= 101</span>
-<span id="cb52-4"><a href="#cb52-4"></a><span class="kw">gen</span> <span class="fu">cut</span> = 100</span>
-<span id="cb52-5"><a href="#cb52-5"></a><span class="kw">gen</span> band = 50</span>
-<span id="cb52-6"><a href="#cb52-6"></a><span class="kw">gen</span> xlow = <span class="fu">cut</span> - band</span>
-<span id="cb52-7"><a href="#cb52-7"></a><span class="kw">gen</span> xhigh = <span class="fu">cut</span> + band</span>
-<span id="cb52-8"><a href="#cb52-8"></a><span class="kw">keep</span> <span class="kw">if</span> x &gt; xlow &amp; x &lt;= xhigh</span>
-<span id="cb52-9"><a href="#cb52-9"></a><span class="kw">gen</span> xhat = x - <span class="fu">cut</span></span>
-<span id="cb52-10"><a href="#cb52-10"></a><span class="kw">gen</span> xhat_treated = xhat * treated</span>
-<span id="cb52-11"><a href="#cb52-11"></a><span class="kw">regress</span> <span class="fu">y</span> xhat treated xhat_treated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb52-1"><a></a>import excel <span class="st">"files/RDD.xlsx"</span>, firstrow <span class="kw">clear</span></span>
+<span id="cb52-2"><a></a><span class="kw">gen</span> treated = 0</span>
+<span id="cb52-3"><a></a><span class="kw">replace</span> treated = 1 <span class="kw">if</span> x &gt;= 101</span>
+<span id="cb52-4"><a></a><span class="kw">gen</span> <span class="fu">cut</span> = 100</span>
+<span id="cb52-5"><a></a><span class="kw">gen</span> band = 50</span>
+<span id="cb52-6"><a></a><span class="kw">gen</span> xlow = <span class="fu">cut</span> - band</span>
+<span id="cb52-7"><a></a><span class="kw">gen</span> xhigh = <span class="fu">cut</span> + band</span>
+<span id="cb52-8"><a></a><span class="kw">keep</span> <span class="kw">if</span> x &gt; xlow &amp; x &lt;= xhigh</span>
+<span id="cb52-9"><a></a><span class="kw">gen</span> xhat = x - <span class="fu">cut</span></span>
+<span id="cb52-10"><a></a><span class="kw">gen</span> xhat_treated = xhat * treated</span>
+<span id="cb52-11"><a></a><span class="kw">regress</span> <span class="fu">y</span> xhat treated xhat_treated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(2 vars, 200 obs)
@@ -2702,11 +2715,11 @@ xhat_treated |  -.5158703   .0764353    -6.75   0.000    -.6675932   -.3641475
 <div class="tab-content">
 <div id="tabset-13-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb54" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb54-1"><a href="#cb54-1"></a><span class="kw">use</span> files/synth_smoking.dta , <span class="kw">clear</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a><span class="kw">tsset</span> state <span class="fu">year</span></span>
-<span id="cb54-3"><a href="#cb54-3"></a>synth cigsale beer(1984(1)1988) lnincome retprice age15to24 cigsale(1988) cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb54-1"><a></a><span class="kw">use</span> files/synth_smoking.dta , <span class="kw">clear</span></span>
+<span id="cb54-2"><a></a><span class="kw">tsset</span> state <span class="fu">year</span></span>
+<span id="cb54-3"><a></a>synth cigsale beer(1984(1)1988) lnincome retprice age15to24 cigsale(1988) cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Tobacco Sales in 39 US States)
@@ -2865,11 +2878,11 @@ optimization converged</code></pre>
 <div class="tab-content">
 <div id="tabset-14-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb56" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb56-1"><a href="#cb56-1"></a><span class="kw">use</span> files/synth_smoking.dta , <span class="kw">clear</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a>synth cigsale beer lnincome(1980&amp;1985) retprice cigsale(1988) cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) fig</span>
-<span id="cb56-3"><a href="#cb56-3"></a><span class="kw">quietly</span> <span class="kw">graph</span> <span class="kw">export</span> figs/synth1.svg, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb56-1"><a></a><span class="kw">use</span> files/synth_smoking.dta , <span class="kw">clear</span></span>
+<span id="cb56-2"><a></a>synth cigsale beer lnincome(1980&amp;1985) retprice cigsale(1988) cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) fig</span>
+<span id="cb56-3"><a></a><span class="kw">quietly</span> <span class="kw">graph</span> <span class="kw">export</span> figs/synth1.svg, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><img data-src="figs/synth1.svg"></p>
@@ -3157,10 +3170,10 @@ optimization converged</code></pre>
 <div class="tab-content">
 <div id="tabset-15-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb57" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb57-1"><a href="#cb57-1"></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
-<span id="cb57-2"><a href="#cb57-2"></a><span class="kw">reg</span> lwage educ </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb57-1"><a></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
+<span id="cb57-2"><a></a><span class="kw">reg</span> lwage educ </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Source |       SS           df       MS      Number of obs   =       428
@@ -3190,10 +3203,10 @@ optimization converged</code></pre>
 <div class="tab-content">
 <div id="tabset-16-1">
 <div class="cell" data-layout-align="center">
-<details>
+<details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb59" data-code-line-numbers="true"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb59-1"><a href="#cb59-1"></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a><span class="kw">ivreg</span> lwage (educ =fatheduc ) , first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb59-1"><a></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
+<span id="cb59-2"><a></a><span class="kw">ivreg</span> lwage (educ =fatheduc ) , first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>First-stage regressions
@@ -3297,7 +3310,7 @@ Instrumented: educ
 <div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-right">
 <figure>
-<p><img data-src="figs/fgv.png"></p>
+<p><img data-src="figs/fgv.png" class="quarto-figure quarto-figure-right"></p>
 </figure>
 </div>
 </div><div class="column" style="width:70%;">
@@ -3310,31 +3323,34 @@ Instrumented: educ
 </ul>
 </div>
 </div>
+
+<div class="quarto-auto-generated-content">
 <p><img src="figs/background2.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://eaesp.fgv.br/" class="uri">https://eaesp.fgv.br/</a></p>
+</div>
 </div>
 </section></section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="part_2_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="part_2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="../../site_libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="part_2_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="part_2_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -3344,7 +3360,6 @@ Instrumented: educ
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': true,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -3645,10 +3660,9 @@ Instrumented: educ
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -3658,8 +3672,17 @@ Instrumented: educ
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
