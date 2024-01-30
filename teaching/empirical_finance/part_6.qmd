@@ -1,0 +1,1782 @@
+---
+title: 'Econometria Aplicada a Finanças'
+subtitle: 'Part 6'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background2.png
+    css: styles.css
+    footer: <https://eaesp.fgv.br/>
+    multiplex: true
+---
+
+```{r setup}
+#| include: false
+#| warning: false
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+#reticulate::py_install("linearmodels")
+```
+
+
+
+
+
+
+
+
+
+
+# Multivariable models {.smaller background="#bdc7c9"}
+
+
+
+## Multivariable models {.smaller background="#bdc7c9"}
+
+It is quite uncommon that you will have a model with only one independent variable.
+
+The most frequent type of model in research is multivariate.
+
+
+$$y_i = \alpha + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + . . . + \beta_k x_k+ \mu$$
+
+. . . 
+
+The estimation of $\alpha$ refers to the predicted value of Y when all X's are zero (it might not make much sense if the variables cannot assume the value of zero). 
+
+
+
+
+
+## Multivariable models {.smaller background="#bdc7c9"}
+
+Usually, we think of $\beta_k$ as having partial effects interpretations.
+
+- Meaning that we think $\beta$ as the change in Y ($\Delta y$) given a change in x ($\Delta x_1$), ceteribus paribus 
+
+    - i.e., holding all other changes as zero ($\Delta x_2 = \Delta x_3 = . . . = \Delta x_k = 0$)
+
+- Thus, the "effect" or the "association" is $\beta_1$, holding all else constant.
+
+
+
+
+. . . 
+
+We can predict the value of $y$ just like before.
+
+$$\hat{y_i} = \hat{\alpha} + \hat{\beta_1} x_1 + \hat{\beta_2} x_2 + \hat{\beta_3} x_3 + . . . + \hat{\beta_k} x_k $$
+
+
+
+
+
+
+
+
+
+
+## Multivariable models {.smaller background="#bdc7c9"}
+
+Like before, we will need some assumptions.
+
+$$E(\mu | x_1,x_2, ... , x_k) = 0$$
+
+Implying no correlation between $\mu$ and the X's.
+
+
+
+
+
+
+
+
+
+
+## Multivariable models {.smaller background="#bdc7c9"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(sandwich)
+library(foreign) 
+library(stargazer)
+data <- read.dta("files/CEOSAL1.DTA")
+model1 <- lm(salary ~ roe , data = data)
+model2 <- lm(salary ~ roe + lsales, data = data)
+stargazer(model1, model2 ,title = "Regression Results", type = "text")
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.iolib.summary2 import summary_col
+
+data = pd.read_stata("files/CEOSAL1.DTA")
+model1 = sm.OLS.from_formula("salary ~ roe", data=data).fit()
+model2 = sm.OLS.from_formula("salary ~ roe + lsales", data=data).fit()
+summary = summary_col([model1, model2], stars=True)
+print(summary)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+eststo: qui reg salary roe 
+eststo: qui reg salary roe lsales
+esttab
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Multivariable models {.smaller background="#bdc7c9"}
+
+**Goodness-of-fit**
+
+As defined before
+
+$$R^2 = \frac{SSE}{SST} = 1-\frac{SSR}{SST}$$
+
+One consequence of measuring $R^2$ this way is that it never goes down when you include more variables. 
+
+- It is intuitive, if you are including more variables, you are taking stuff from the residual, increasing $R^2$.
+
+. . .
+
+If you have multivariate models, that could be a problem, especially if you want to compare the $R^2$ of different models.
+
+We often use:
+
+$$Adj\;R^2 = 1-(1-R^2)\frac{(n-1)}{n-k-1}$$
+
+Where n is the number of observations and k is the number of independent variables, excluding the constant.
+
+Adj-R^2 can go up, but it can actually go down as well. 
+
+
+
+
+# Multicollinearity {.smaller background="#7e96d6"}
+
+## Multicollinearity {.smaller background="#7e96d6"}
+
+When control variables show high correlation, the model may present **Multicollinearity**.
+
+- Highly collinear variables can inflate SEs
+
+- But, multicollinearity does not create a bias.
+
+. . .
+
+Consider a model such as:
+
+$$y_i= \alpha + \beta_1x1+\beta_2x2+\beta_3x3+ \mu$$
+
+$x_2$ and $x3$ might be highly collinear. 
+
+- This makes $var(\beta_2)$ and  $var(\beta_3)$ increase. 
+
+- But that changes nothing on  $var(\beta_1)$
+
+
+
+## Multicollinearity {.smaller background="#7e96d6"}
+
+At the end of the day, **multicollinearity is a non-problem**. It is very rare that I need to test it in my own research!
+
+
+- The tip is to not include controls that are too collinear with the variable of interest (i.e., the treatment).
+
+- Of course, if you need them for stablish causality, you need to include them, ignoring multicollinearity
+
+
+
+
+# Scaling {.smaller background="#f0e299" }
+
+
+## Scaling {.smaller background="#f0e299"}
+
+**Multiplying or dividing by a constant does not change your inference.**
+
+Let's say you multiply the Y by 1.000. What will change?
+
+. . . 
+
+In the example from before:
+
+- $\alpha=963.19$
+- $\beta=18.50$
+
+If you multiply the Y (earnings) by 1.000, the new coefficients will be:
+
+- $\alpha=963,190$
+- $\beta=18,500$
+
+
+
+## Scaling {.smaller background="#f0e299"}
+
+Scaling y by a constant c just causes all the estimates to be scaled by the same constant
+
+
+$$y=\alpha + \beta x + \mu$$
+
+$$c.y = c.\alpha + c.\beta x + c.\mu$$
+
+- new alpha: $c.\alpha$
+- new beta: $c.\beta$
+
+
+
+
+
+
+
+
+## Scaling {.smaller background="#f0e299"}
+
+**The scaling has no effect on the relationship between X and Y.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(sandwich)
+library(foreign) 
+library(lmtest)
+
+data <- read.dta("files/CEOSAL1.DTA")
+data$salary = data$salary * 1000
+model <- lm(salary ~ roe, data = data)
+summary(model)
+
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import numpy as np
+
+mydata = pd.read_stata("files/CEOSAL1.DTA")
+array1 = np.array([1000])
+mydata['salary'] = np.multiply(mydata['salary'], array1)
+X = sm.add_constant(mydata['roe'])  # Adding a constant (intercept) term
+y = mydata['salary'] 
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+replace salary = salary * 1000
+qui reg salary roe 
+esttab
+```  
+
+:::
+
+
+
+
+
+
+## Scaling {.smaller background="#f0e299"}
+
+What if, instead, we multiply the x (ROE) by a constant 1000.
+
+$$y=\alpha + \beta x + \mu$$
+
+$$y = \alpha + \frac{\beta}{1.000} (1.000 x)+ \mu$$
+
+
+
+
+
+
+## Scaling {.smaller background="#f0e299"}
+
+**Only $\beta$ changes.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(sandwich)
+library(foreign) 
+library(lmtest)
+
+data <- read.dta("files/CEOSAL1.DTA")
+data$roe = data$roe * 1000
+model <- lm(salary ~ roe, data = data)
+summary(model)
+
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import numpy as np
+
+mydata = pd.read_stata("files/CEOSAL1.DTA")
+array1 = np.array([1000])
+mydata['roe'] = np.multiply(mydata['roe'], array1)
+X = sm.add_constant(mydata['roe'])  # Adding a constant (intercept) term
+y = mydata['salary'] 
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+replace roe = roe * 1000
+qui reg salary roe 
+esttab
+```  
+
+:::
+
+
+
+## Scaling {.smaller background="#f0e299"}
+
+Scaling is useful when we estimate very large or very small coefficients.
+
+- 0.000000185
+- 185000000.00
+
+Such coefficients are hard to read.
+
+**Scaling affect the $\beta$ and S.E. but do not affect the t-stat.**
+
+
+
+
+
+
+## Scaling {.smaller background="#f0e299"}
+
+To write a better story in your article in terms of  magnitudes, it could be helpful to scale the variables by their sample standard deviation.
+
+- Let's say that $\sigma_x$ and  $\sigma_y$ are the s.d. of x and y, respectively. 
+
+- Let's say that you divide X by $\sigma_x$ ($k=\frac{1}{\sigma_x}$) and y by $\sigma_y$ ($c=\frac{1}{\sigma_y}$).
+
+- Now, **units of x and y are standard deviations.**
+
+
+
+
+## Scaling {.smaller background="#f0e299"}
+
+You would have:
+
+- $\alpha$ scaled by ($c=\frac{1}{\sigma_x}$)
+
+- $\beta$ scaled by ($\frac{c=\frac{1}{\sigma_x}}{k=\frac{1}{\sigma_y}}$)
+
+$$c  y = c \alpha + \frac{c \beta}{k} (k x)+ c \mu$$
+
+
+$$\frac{1}{\sigma_y}  y = \frac{1}{\sigma_y} \alpha + \frac{\sigma_x}{\sigma_y} \beta (\frac{x}{\sigma_x} )+ \frac{1}{\sigma_y} \mu$$
+
+. . .
+
+
+So, if you estimate a $\beta$ of 0.2, it means that a 1 s.d. increase in x leads to a 0.2 s.d. increase in y.
+
+
+
+
+
+
+
+
+
+## Functional form of relationships {.smaller background="#abc8f7"}
+
+In many cases, you want to use the logarithm of a variable. This changes the interpretation of the coefficients you estimate.
+
+. . . 
+
+
+- **log-log regression**: both Y and X are in log values $ln(Y) = \alpha + \beta \times ln(X) + \epsilon$. The interpretation of $\beta$ in this case is: **one percent increase of $x$** leads to **$\beta$ percent increase in $y$**.   
+
+. . . 
+
+- **log-level regression**: both Y and X are in log values $ln(Y) = \alpha + \beta \times X + \epsilon$. The interpretation of $\beta$ in this case is: **one unit  increase of $x$** leads to **$\beta$ percent increase in $y$**.   
+
+
+. . . 
+
+- **level-log regression**: both Y and X are in log values $Y = \alpha + \beta \times ln(X) + \epsilon$. The interpretation of $\beta$ in this case is: **one percent increase of $x$** leads to **$\frac{\beta}{100}$ units increase in $y$**.   
+
+
+**Important note:** the misspecification of x’s is similar to the omitted variable bias (OVB).
+
+
+
+
+
+
+
+
+
+# Winsorization {.smaller background="#89faa7"}
+
+
+## Winsorization {.smaller background="#89faa7"}
+
+In real research, one very common problem is when you have outliers.
+
+Outliers are observations very far from the mean. For instance, companies that have 800% of leverage ($\frac{Debt}{TA}$). Clearly, situations like this are typing errors in the original dataset. And this is more common that one should expect.
+
+Researchers avoid excluding such variables. We only exclude when it is totally necessary.
+
+To avoid using these weird values, we winsorize.
+
+Usually, 1% at both tails.
+
+
+
+
+
+## Winsorization {.smaller background="#89faa7"}
+
+**Look at the following dispersion graphs.** Something weird?
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(ggplot2)
+library(foreign) 
+mydata <- read.dta("files/CEOSAL1.DTA")
+options(repr.plot.width=6, repr.plot.height=4) 
+ggplot(mydata, aes(x = roe, y = salary)) +
+  geom_point() +
+  labs(title = "Salary vs. ROE", x = "ROE", y = "Salary") +
+  theme_minimal()
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+mydata = pd.read_stata("files/CEOSAL1.DTA")
+plt.figure(figsize=(6, 4))  
+sns.scatterplot(x = "roe", y = "salary", data=mydata)
+sns.despine(trim=True)
+plt.title("Salary vs. ROE")
+plt.xlabel("ROE")
+plt.ylabel("Salary")
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+twoway scatter salary roe
+qui graph export "files/graph6_1.svg", replace
+```  
+
+![](files/graph6_1.svg) 
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Winsorization {.smaller background="#89faa7"}
+
+**Take a look on the extreme values now.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(ggplot2)
+library(foreign) 
+library(DescTools)
+
+data <- read.dta("files/CEOSAL1.DTA")
+data$w_salary     <- Winsorize(data$salary   , probs = c(0.05, 0.95) , na.rm = TRUE) 
+data$w_roe     <- Winsorize(data$roe   , probs = c(0.05, 0.95) , na.rm = TRUE) 
+options(repr.plot.width=6, repr.plot.height=4) 
+ggplot(data, aes(y = w_salary, x = w_roe)) +
+  geom_point() +
+  theme_minimal()
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import numpy as np
+import pandas as pd
+
+mydata = pd.read_stata("files/CEOSAL1.DTA")
+quantiles = [0.05, 0.95]
+mydata['w_salary'] = mydata['salary'].clip(np.percentile(mydata['salary'], quantiles[0]), np.percentile(mydata['salary'], quantiles[1]))
+mydata['w_roe'] = mydata['roe'].clip(np.percentile(mydata['roe'], quantiles[0]), np.percentile(mydata['roe'], quantiles[1]))
+plt.figure(figsize=(6, 4))  
+plt.scatter(mydata['w_roe'], mydata['w_salary'])
+plt.xlabel('Winsorized ROE')
+plt.ylabel('Winsorized Salary')
+plt.title('Scatter Plot of Winsorized Salary vs. Winsorized ROE')
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+winsor salary , gen(w_salary) p(0.05)
+winsor roe , gen(w_roe) p(0.05)
+twoway scatter w_salary w_roe
+qui graph export "files/graph6_2.svg", replace
+```  
+
+![](files/graph6_2.svg) 
+
+:::
+
+
+
+
+
+## Winsorization {.smaller background="#89faa7"}
+
+**Finally, take a look at the statistics.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(ggplot2)
+library(foreign) 
+library(DescTools)
+library(haven)
+
+data <- read.dta("files/CEOSAL1.DTA")
+data$w_salary     <- Winsorize(data$salary   , probs = c(0.05, 0.95) , na.rm = TRUE) 
+data$w_roe     <- Winsorize(data$roe   , probs = c(0.05, 0.95) , na.rm = TRUE) 
+summary_stats <- summary(data[c("salary", "w_salary", "roe", "w_roe")])
+print(summary_stats)
+```
+
+### Python
+
+**Python for some reason is no good.**
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+
+data = pd.read_stata("files/CEOSAL1.DTA")
+quantiles = [0.005, 0.095]
+data['w_salary'] = data['salary'].clip(np.percentile(data['salary'], quantiles[0]), np.percentile(data['salary'], quantiles[1]))
+data['w_roe'] = data['roe'].clip(np.percentile(data['roe'], quantiles[0]), np.percentile(data['roe'], quantiles[1]))
+summary_stats = data[["salary", "w_salary", "roe", "w_roe"]].describe()
+print(summary_stats)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+winsor salary , gen(w_salary) p(0.05)
+winsor roe , gen(w_roe) p(0.05)
+estpost tabstat salary w_salary roe w_roe , s(min, mean, max, sd, count) c(s)
+```  
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+# Models with binary variables {.smaller background="#ed95d5" }
+
+
+## Models with binary variables {.smaller background="#ed95d5" }
+
+A binary variable is quite simple to understand: it takes the value of 0 for one group, and 1 for the other.
+
+- 0 for men
+- 1 for women
+
+We can explore many interesting types of binary variables in most cases of corporate finance. 
+
+For instance, whether the firm is included in "Novo Mercado", if the firm has high levels of ESG, etc. 
+
+
+
+
+
+
+
+## Models with binary variables {.smaller background="#ed95d5" }
+
+The interpretation is a bit trickier. 
+
+Let's think about the example 7.1 of Wooldridge. He estimates the following equation:
+
+$$wage = \beta_0 + \delta_1 female + \beta_1 educ + \mu$$
+
+- In model (7.1), only two observed factors affect wage: gender and education. 
+
+- Because $female = 1$ when the person is female, and $female = 0 $ when the person is male, the parameter $\delta_1$ has the following interpretation: 
+
+
+
+
+
+## Models with binary variables {.smaller background="#ed95d5" }
+
+- $\delta_1$  is the difference in hourly wage between females and males, given the same amount of education (and the same error term u). 
+
+Thus, the coefficient $\delta_1$  determines whether there is discrimination against women: 
+
+- if $\delta_1<0$, then, for the same level of other factors, women earn less than men on average.
+
+. . .
+
+In terms of expectations, if we assume the zero conditional mean assumption E($\mu$ | female,educ) = 0, then 
+
+- $\delta_1 = E(wage | female = 1, educ) - E(wage | female = 0, educ)$, or
+
+- $\delta_1 = E(wage | female, educ) - E(wage | male, educ)$ 
+
+- The key here is that the level of education is the same in both expectations; the difference, $\delta_1$ , is due to gender only.
+
+
+
+
+
+
+
+## Models with binary variables {.smaller background="#ed95d5" }
+
+The visual interpretation is as follows. The situation can be depicted graphically as an intercept shift between males and females. The interpretation relies on $\delta_1$. We can observe that $delta_1 < 0$; this is an argument for existence of a gender gap in wage.
+ 
+
+![](figs/wooldridge_7_1B.png)
+
+
+
+## Models with binary variables {.smaller background="#ed95d5" }
+
+
+![](figs/wooldridge_7_1.png)
+
+
+
+
+
+## Models with binary variables {.smaller background="#ed95d5" }
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(stargazer)
+library(haven)
+
+data <- read_dta("files/wage1.dta")
+model <- lm(wage ~ female +  educ + exper + tenure , data)
+stargazer(model,title = "Regression Results", type = "text")
+```
+
+
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+data = pd.read_stata("files/wage1.dta")
+X = data[['female', 'educ', 'exper', 'tenure']]
+y = data['wage']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/wage1.dta" , replace
+eststo: qui reg wage female  educ exper  tenure
+esttab
+```  
+
+:::
+
+
+
+
+
+
+
+
+# Models with quadratic terms {.smaller background="#32a89d"  }
+
+## Models with quadratic terms {.smaller background="#32a89d"}
+
+
+Let’s say you have a variable that should not show a clear linear relationship with another variable.
+
+For instance, consider **ownership concentration and firm value**.There is a case to be made the relationship between these variable is not linear. 
+
+. . .
+
+- In low levels of ownership concentration (let’s say 5% of shares), a small increase in it might lead to an increase in firm value. The argument is that, in such levels, an increase in ownership concentration will lead the shareholder to monitor more the management maximizing the likelihood of value increasing decisions.
+
+. . . 
+
+- But consider now the case where the shareholder has 60% or more of the firm’s outstanding shares. If you increase further the concentration it might signals the market that this shareholder is too powerful that might start using the firm to personal benefits (which will not be shared with minorities).
+
+. . .
+
+**If this story is true, the relationship is (inverse) u-shaped**. That is, at first the relationship is positive, then becomes negative.
+
+
+
+
+
+
+## Models with quadratic terms {.smaller background="#32a89d"}
+
+Theoretically, I could make an argument for a non-linear relationship between several variables of interest in finance. Let’s say size and leverage. Small firms might not be able to issue too much debt as middle size firms. At the same time, huge firms might not need debt. The empirical relationship might be non-linear.
+
+. . . 
+
+As noted before, misspecifying the functional form of a model can create biases. 
+
+But, in this specific case, the problem seems minor since we have the data to fix it.
+
+
+. . . 
+
+The model is:
+
+$$y_i = \alpha + \beta_1 x_i + \beta_2 x_i^2 + \epsilon$$
+
+
+
+
+
+## Models with quadratic terms {.smaller background="#32a89d"}
+
+**How to include quadratic terms?** Create the variable and include as control. 
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(stargazer)
+
+data <- read.dta("files/CEOSAL1.dta")
+
+data$roe_sq = data$roe * data$roe
+model1 <- lm(salary ~ roe, data=data)
+model2 <- lm(salary ~ roe + roe_sq, data=data)
+
+stargazer(model1, model2, title = "Regression Results", type = "text")
+```
+
+
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.iolib.summary2 import summary_col
+data = pd.read_stata("files/CEOSAL1.dta")
+data['roe_sq'] = data['roe'] ** 2
+# OLS model
+model1 = sm.OLS(data['salary'], sm.add_constant(data['roe'])).fit()
+model2 = sm.OLS(data['salary'], sm.add_constant(data[['roe', 'roe_sq']])).fit()
+summary = summary_col([model1, model2], stars=True)
+print(summary)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+gen roe_sq = roe * roe
+eststo: qui reg salary roe 
+eststo: qui reg salary roe roe_sq
+esttab
+```  
+
+:::
+
+
+
+
+## Models with quadratic terms {.smaller background="#32a89d"}
+
+In the previous example, the quadratic term is not significant, suggesting the relationship is not quadratic.
+
+Also, notice that the linear term is also not significant anymore.
+
+
+
+
+
+## Models with quadratic terms {.smaller background="#32a89d"}
+
+**Here, the association is non-linear? What does it mean?**
+
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(stargazer)
+library(haven)
+
+data <- read_dta("files/wage1.dta")
+model <- lm(lwage ~ female +  educ + exper + expersq + tenure + tenursq, data)
+stargazer(model,title = "Regression Results", type = "text")
+```
+
+
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+data = pd.read_stata("files/wage1.dta")
+X = data[['female', 'educ', 'exper', 'expersq', 'tenure', 'tenursq']]
+y = data['lwage']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/wage1.dta" , replace
+eststo: qui reg lwage female  educ exper expersq tenure tenursq
+esttab
+```  
+
+:::
+
+
+
+
+
+
+
+
+# Models with Interactions {.smaller background="#e3b174"}
+
+## Models with Interactions {.smaller background="#e3b174"}
+
+In some specific cases, you want to interact variables to test if the interacted effect is significant. 
+
+For instance, you might believe that, using Wooldridge very traditional example 7.4., women that are married are yet more discriminated in the job market than single women. 
+
+So, you may prefer to estimate the following equation to follow your intuition.
+
+$$wage = \beta_0 + \beta_1 female + \beta_2 married + \beta_3 female.married + \mu$$
+
+Where $maried$ is a binary variable marking all married people with 1, and 0 otherwise. $female$ marks 1 to women and 0 otherwise. 
+
+
+
+
+
+
+
+## Models with Interactions {.smaller background="#e3b174"}
+
+In this setting
+
+- The group of single men is the base case and is represented by $\beta_0$. That is, both female and married are 0.
+
+- The group of single women is represented by $\beta_0 + \beta_1$. That is, female is 1 but married is 0.
+
+- The group of married men is represented by $\beta_0 + \beta_2$. That is, female is 0 but married is 1.
+
+- Finally, the group of married women is represented by $\beta_0 + \beta_1 + \beta_2 + \beta_3$. That is, female and married are 1.
+
+
+
+
+
+
+## Models with Interactions {.smaller background="#e3b174"}
+
+Using a random sample taken from the U.S. Current Population Survey for the year 1976, Wooldridge estimates that 
+
+- $female<0$ 
+
+- $married>0$
+
+- $female.married<0$
+
+This result makes sense for the 70s. 
+
+
+## Models with Interactions {.smaller background="#e3b174"}
+
+![](figs/wooldridge_7_4.png)
+
+
+
+
+## Models with Interactions {.smaller background="#e3b174"}
+
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(stargazer)
+library(haven)
+
+data <- read_dta("files/wage1.dta")
+data$fem_mar <- data$female * data$married
+model <- lm(lwage ~ female + married + fem_mar + educ + exper + expersq + tenure + tenursq, data)
+stargazer(model,title = "Regression Results", type = "text")
+```
+
+
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+data = pd.read_stata("files/wage1.dta")
+data['fem_mar'] = data['female'] * data['married']
+X = data[['female', 'married', 'fem_mar', 'educ', 'exper', 'expersq', 'tenure', 'tenursq']]
+y = data['lwage']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/wage1.dta" , replace
+gen fem_mar = female * married
+eststo: qui reg lwage female married fem_mar educ exper expersq tenure tenursq
+esttab
+```  
+
+:::
+
+
+
+
+
+
+# Linear probability model {.smaller background="#7ae7eb"}
+
+## Linear probability model {.smaller background="#7ae7eb"}
+
+When the dependent variable is binary we cannot rely on linear models as those discussed so far. 
+
+We need a **linear probability model**. 
+
+In such models, we are interested in how the probability of the occurrence of an event depends on the values of x. That is, we want to know $P[y=1|x]$.
+
+
+. . .
+
+
+Imagine that $y$ is employment status, 0 for unemployed, 1 for employed. 
+
+Imagine that we are interested in estimating the probability that a person start working after a training program. 
+
+For these types of problem, we need a linear probability model.
+
+$$P[y=1|x] = \beta_0+\beta_1x_1+\beta_2x_2+...+\beta_kx_k + \epsilon$$
+
+
+## Linear probability model {.smaller background="#7ae7eb"}
+
+The mechanics of estimating these model is similar to before, except that $Y$ is binary.
+
+The interpretation of coefficients change. That is, **a unit change in $x$ changes the probability of y = 1**. 
+
+So, let's say that $\beta_1$ is 0.05. It means that changing $x_1$ by one unit will change the probability of $y = 1$ (i.e., getting a job) in 5%, ceteris paribus. 
+
+
+
+## Linear probability model {.smaller background="#7ae7eb"}
+
+
+Using Wooldridge's example 7.29:
+
+
+![](figs/wooldridge_7_29.png)
+
+
+where:
+
+- $inlf$   =1 if in labor force, 1975
+
+
+
+
+
+## Linear probability model {.smaller background="#7ae7eb"}
+
+The relationship between the probability of labor force participation and $educ$ is plotted in the figure below. 
+
+Fixing the other independent variables at 50, 5, 30, 1 and 6, respectively, the predicted probability is negative until education equals 3.84 years. This is odd, since the model is predicting negative probability of employment given a set of specific values. 
+
+
+![](figs/wooldridge_7_3.png)
+
+
+
+
+
+## Linear probability model {.smaller background="#7ae7eb"}
+
+**Another example**
+
+The model is predicting that *going from 0 to 4 kids less than 6 years old* reduces the probability of working by $4\times 0.262 = 1.048$, which is impossible since it is higher than 1.
+
+. . .
+
+**The takeaway**
+
+That is, one important caveat of a linear probability model is that probabilities might falls off of expected empirical values. 
+
+If this is problematic to us, we might need a different solution.
+
+
+
+
+
+
+
+## Linear probability model {.smaller background="#7ae7eb"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(stargazer)
+library(haven)
+
+data <- read_dta("files/mroz.dta")
+lpm <- lm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = data)
+stargazer(lpm,title = "Regression Results", type = "text")
+```
+
+
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+data = pd.read_stata("files/mroz.dta")
+formula = "inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6"
+model = smf.ols(formula, data=data).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/mroz.dta" , replace
+
+eststo: qui reg inlf nwifeinc educ exper expersq age kidslt6 kidsge6
+esttab
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+# Logit and Probit {.smaller background="#ebe0ae" }
+
+## Logit and Probit {.smaller background="#ebe0ae"}
+
+Although the linear probability model is simple to estimate and use, it has some limitations as discussed.
+
+If that problem is important to us, we need a solution that addresses the problem of  negative or higher than 1 probability. 
+
+That is, **we need a binary response model**.
+
+. . .
+
+In a binary response model, interest relies on the response probability.
+
+$$P(y =1 | x) = P(y=1| x_1,x_2,x_3,...)$$
+
+That is, we have a group of X variables explaining Y, which is binary. In a LPM, we assume that the response probability is linear in the parameters $\beta$. 
+
+- This is the assumption that created the problem discussed above.
+
+
+
+
+
+## Logit and Probit {.smaller background="#ebe0ae"}
+
+We can change that assumption to a different function. 
+
+- A **logit** model assumes a logistic function ($G(Z)=\frac{exp(z)}{[1+exp(z)]}$)
+- A **probit** model assumes a standard normal cumulative distribution function ($\int_{-inf}^{+z}\phi(v)dv$)
+
+. . . 
+
+The adjustment is something as follows.
+
+$$P(y =1 | x) = G(\beta_0 + \beta_1 x_1+ \beta_2 x_2 + \beta_3 x_3)$$
+
+Where G is either the logistic (logit) or the normal (probit) function. 
+
+
+We don't need to memorize the functions, but we need to understand the adjustment that assuming a different function makes. 
+
+Basically, we will not have predicted negative values anymore because the function adjusts at very low and very high values. 
+
+
+
+
+## Logit and Probit {.smaller background="#ebe0ae"}
+
+![](figs/wooldridge_17_1.png)
+
+
+
+## Logit and Probit {.smaller background="#ebe0ae"}
+
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(stargazer)
+library(haven)
+data <- read_dta("files/mroz.dta")
+lpm <- lm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data )
+logit <- glm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data ,family = binomial)
+probit <- glm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data , family = binomial(link = probit))
+stargazer(lpm , logit, probit,title = "Regression Results", type = "text")
+```
+
+
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.iolib.summary2 import summary_col
+
+data = pd.read_stata("files/mroz.dta")
+lpm_model = smf.ols("inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6", data=data).fit(disp=False)
+logit_model = smf.logit("inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6", data=data).fit(disp=False)
+probit_model = smf.probit("inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6", data=data).fit(disp=False)
+summary = summary_col([lpm_model, logit_model,probit_model], stars=True)
+print(summary)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/mroz.dta" , replace
+eststo: qui regress inlf nwifeinc educ exper expersq age kidslt6 kidsge6
+eststo: qui logit inlf nwifeinc educ exper expersq age kidslt6 kidsge6
+eststo: qui probit inlf nwifeinc educ exper expersq age kidslt6 kidsge6
+esttab
+```  
+
+:::
+
+
+
+
+
+
+## Logit and Probit {.smaller background="#ebe0ae"}
+
+Importantly, in a LPM model, the coefficients have similar interpretations as usual. 
+
+But logit and probit models lead to harder to interpret coefficients. 
+
+In fact, often we do not make any interpretation of these coefficients. 
+
+Instead, we usually transform them to arrive at an interpretation that is similar to what we have in LPM. 
+
+To make the magnitudes of probit and logit roughly comparable, we can multiply the probit coefficients by 1.6, or we can multiply the logit estimates by .625. 
+
+Also, the probit slope estimates can be divided by 2.5 to make them comparable to the LPM estimates.
+
+After these adjustments, the interpretation of the logit and probit outputs are similar to LPM's.  
+
+
+
+
+
+
+# Tobit {.smaller background="#ae83f2" }
+
+
+
+## Tobit {.smaller background="#ae83f2"}
+
+Another problem in the dependent variable occurs when we have a **limited dependent variable** with a corner solution. 
+
+That is, a variable that ranges from zero to all positive values. 
+
+For instance, hours working. 
+
+- Nobody works less than zero hours, but individuals in the population can work many number of positive hours. 
+
+When we have such type of dependent variable, we need to estimate a **tobit** model.
+
+
+
+
+## Tobit {.smaller background="#ae83f2"}
+
+**Tobit can make a huge difference to the LPM model.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(stargazer)
+library(haven)
+library(AER)
+data <- read_dta("files/mroz.dta")
+lpm <- lm(hours ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = data)
+tobit <- tobit(hours ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = data)
+stargazer(lpm , tobit ,title = "Regression Results", type = "text")
+```
+
+
+
+### Python
+
+
+### Stata
+
+
+
+:::
+
+
+
+
+
+
+
+# Economic vs statistical significance {.smaller background="#a1f7e3"}
+
+
+## Economic vs statistical significance {.smaller background="#a1f7e3" }
+
+**Economic is not the same as statistical significance!**
+
+- coefficients may be significantly different from 0 from a statistical perspective. 
+
+- but their economic significance may be very small. 
+
+- Conversely, coefficients might be economically large but with no statistical significance. 
+
+
+
+
+
+## Economic vs statistical significance {.smaller background="#a1f7e3" }
+
+There is considerable variation in this regard in empirical research.
+
+**But we should always try to show economic significance alongside the statistical significance.** 
+
+- How large is the variation in $y$ given a unit variation in $x$? 
+
+- Try to put that on economic figures. A thousand? A million?
+
+- Perhaps more importantly, are these figures realistic? 
+
+  - e.g., How realistic is a predicted increase in salary of 1 Million?
+
+
+
+
+## THANK YOU!
+
+::: columns
+::: {.column width="30%"}
+![](figs/fgv.png){fig-align="right"}
+:::
+
+::: {.column width="70%"}
+**Henrique Castro Martins**
+
+-   [henrique.martins\@fgv.br](henrique.martins@fgv.br)
+-   <https://eaesp.fgv.br/en/people/henrique-castro-martins>
+-   [henriquemartins.net](https://henriquemartins.net/)
+-   <https://www.linkedin.com/in/henriquecastror/>
+:::
+:::

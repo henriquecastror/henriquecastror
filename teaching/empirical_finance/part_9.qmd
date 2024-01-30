@@ -1,0 +1,298 @@
+---
+title: 'Econometria Aplicada a Finanças'
+subtitle: 'Part 1'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background2.png
+    css: styles.css
+    footer: <https://eaesp.fgv.br/>
+    multiplex: true
+#resources:
+ # - demo.pdf
+   
+---
+
+
+
+
+## O que **conseguimos** fazer?
+
+**Pareamento**
+
+
+![](figs/slides4-matching2.png) 
+
+Source: [Angrist](https://www.youtube.com/watch?v=6YrIDhaUQOE)
+
+
+
+
+
+
+
+
+
+## O que **conseguimos** fazer? {.smaller}
+
+. . .
+
+**Propensity-score matching**
+
+- Fazemos **pareamento** entre amostras
+
+. . .
+
+- Para cada **individuo** que recebe o **tratamento**, **buscamos um indivíduo do grupo de controle**...
+
+. . .
+
+- ... que é o mais semelhante possível..
+
+- Esses indivíduos formam um par.
+
+. . .
+
+- No agregado, teremos duas sub-amostras que são semelhantes entre si (indivíduos pareados).
+
+. . .
+
+- A seguir, fazemos inferências estatísticas **apenas** com essa sub-amostras.
+
+. . .
+
+- O resto da amostra, os indivíduos a que não se encontrou pares, **não é utilizada**.
+
+
+
+
+
+
+
+
+
+## Exemplo de pareamento
+
+![](figs/slides4-tableJMG1.png) 
+
+
+
+
+
+
+
+
+
+
+
+## Exemplo de pareamento
+
+![](figs/slides4-tableJMG2.png) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+## O que **conseguimos** fazer?
+
+**Differences-in-Differences**
+
+![](figs/slides4-did.png)
+
+
+**Aqui, você precisa de um choque exógeno.**
+
+
+
+
+
+
+
+## O que **conseguimos** fazer?
+
+**Research Discontinuity Design (RDD)**
+
+![](figs/slides4-rdd2.png)
+
+
+
+
+
+
+
+## O que **conseguimos** fazer?
+
+**Research Discontinuity Design (RDD)**
+
+![](figs/slides4-rdd.png)
+
+
+Artigo original [aqui](https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2014.2038?casa_token=bxWTVtI6zLgAAAAA:lSAYRxrQiyJ9VzHVsQRBpt0IpYc7duGMdU6jPx0KIE1cQgxtZlpf4uzMN5SlKkDAN3MDsHmb8S0).
+
+
+
+
+
+## O que **conseguimos** fazer?
+
+**Research Discontinuity Design (RDD)**
+
+[See here](https://opencodecom.net/post/2021-04-21-exemplo-rdd-basico/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## O que **conseguimos** fazer?
+
+**Controle sintético**
+
+![](figs/slides4-synt.png)
+
+
+Artigo original [aqui](https://www.jstor.org/stable/pdf/24363579.pdf?refreqid=excelsior%3A4a9d49f1f99ebd90f77fee919aa901fb).
+
+
+
+
+
+
+
+
+## O que **conseguimos** fazer?
+
+**Controle sintético**
+
+![](figs/slides4-synt2.png)
+
+Artigo original [aqui](https://www.sciencedirect.com/science/article/pii/S0929119916303650?casa_token=fLFH1dexyCIAAAAA:q32Jb2txUKWI6jtxl3qUAauRxnbMGpK_jil3QG4tIXQrRm35Sxjrv3t1HV5kK2d1GCa1Oczo5Q).
+
+
+
+
+
+
+
+
+
+
+
+
+## Conclusão
+
+**Pesquisa quantitativa tem a parte _quanti (métodos, modelos, etc.)_...**
+
+**... Mas talvez a parte mais importante seja o desenho da pesquisa (design empírico)!**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Preocupações recentes em pesquisa 
+
+**P-Hacking**
+
+![](figs/slides4-phacking.png) 
+
+Artigo original [aqui](https://doi.org/10.1111/jofi.12530).
+
+
+
+
+
+
+
+## Preocupações recentes em pesquisa
+
+**Publication bias**
+
+![](figs/slides4-Harvey-2017.png) 
+
+
+Artigo original [aqui](https://doi.org/10.1111/jofi.12530).
+
+
+
+
+
+
+
+ 
+
+## Preocupações recentes em pesquisa 
+
+**Crise de replicação**
+
+
+![](figs/slides4-aguinis.png) 
+
+
+Artigo original [aqui](https://link.springer.com/article/10.1057/s41267-017-0081-0).
+
+
+
+
+
+
+
+
+
+
+
+
+## THANK YOU!
+
+::: columns
+::: {.column width="30%"}
+![](figs/fgv.png){fig-align="right"}
+:::
+
+::: {.column width="70%"}
+**Henrique Castro Martins**
+
+-   [henrique.martins\@fgv.br](henrique.martins@fgv.br)
+-   <https://eaesp.fgv.br/en/people/henrique-castro-martins>
+-   [henriquemartins.net](https://henriquemartins.net/)
+-   <https://www.linkedin.com/in/henriquecastror/>
+:::
+:::
+
