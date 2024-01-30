@@ -18,6 +18,5 @@ q1_choices <- c(answer= "An underwriter is an investment bank that manages the I
                 "An initial public offering (IPO) is not necessarily the first time a company sells its stock to the public.", 
                 "Underwriters face no risk during an IPO, so that a greenshoe provision is usually not necessary.")
 cat(q1,longmcq(q1_choices))
-
 ```
 
