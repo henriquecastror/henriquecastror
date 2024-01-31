@@ -36,9 +36,15 @@ format:
    theme:
     light: litera
     dark: darkly
+
+    
 #    css: styles.css
 #    toc: true
+html:
+  css: webex.css
+  include-after-body: webex.js
 
+    
 editor: visual
 
 #comments:
