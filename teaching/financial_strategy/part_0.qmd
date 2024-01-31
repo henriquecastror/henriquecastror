@@ -521,38 +521,37 @@ BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, 
 
 # Final {background="#a2bef5" visibility="hidden"}
 
-## How did you like this lecture? {background="#a2bef5" }
 
-**Your response:**
-
-<div
-  data-lyket-type="rate"
-  data-lyket-id="rate0"
-  data-lyket-show-rating="user"
-  data-lyket-template="custom"
-  data-lyket-namespace="EFPART0" 
-></div>
-
-
-**Average response:**
-
-<div
-  data-lyket-type="rate"
-  data-lyket-id="rate0"
- 	data-lyket-show-rating="average"
-  data-lyket-template="custom"
-  data-lyket-namespace="EFPART0" 
-></div>
 
 
 
 ## How did you like this lecture? {background="#a2bef5"}
 
-
 <!-- LikeBtn.com BEGIN -->
 <span class="likebtn-wrapper" data-theme="custom" data-white_label="true" data-identifier="item_1"></span>
 <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
 <!-- LikeBtn.com END -->
+
+
+<div class="like-dislike-container">
+  <button id="like-button">
+    <span class="like-text">Like</span>
+    <span class="like-count">0</span>
+  </button>
+  <button id="dislike-button">
+    <span class="dislike-text">Dislike</span>
+    <span class="dislike-count">0</span>
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
 
 
 
