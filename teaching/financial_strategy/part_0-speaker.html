@@ -587,6 +587,10 @@
 <div class="like-dislike-container">
 <p><button id="like-button"> <span class="like-text">Like</span> <span class="like-count">0</span> </button> <button id="dislike-button"> <span class="dislike-text">Dislike</span> <span class="dislike-count">0</span> </button></p>
 </div>
+<button id="like-btn" onclick="toggleLike()">
+Like
+</button>
+<p><span id="like-count"></span></p>
 </section>
 <section id="comments" class="slide level2" data-background="#a2bef5">
 <h2>Comments?</h2>
@@ -652,7 +656,7 @@
       // Full list of configuration options available at:
       // https://revealjs.com/config/
       Reveal.initialize({
-'controlsAuto': true,
+'controlsAuto': false,
 'previewLinksAuto': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
@@ -664,7 +668,7 @@
 'smaller': false,
  
         // Display controls in the bottom right corner
-        controls: false,
+        controls: true,
 
         // Help the user learn the controls by providing hints, for example by
         // bouncing the down arrow when they first encounter a vertical slide

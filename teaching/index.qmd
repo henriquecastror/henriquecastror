@@ -5,63 +5,37 @@ comments: false
 ---
 
 
-
-___
-
-## 2024/01 
-
-#### Financial Strategy: [Here](financial_strategy/index.qmd)
-
-
-___
-
-## 2024/01 Summer  
-
-#### Financial Strategy: [Here](202401s_financial_strategy/index.qmd)
-
-___
-
-## 2023/02 
-
-#### Econometrics for Finance (DPA): [Here](202302_empirical_finance/index.qmd)
-
-#### Financial Strategy: [Here](202302_financial_strategy/index.qmd)
-
-#### Causal Inference: [Here](empirical_finance/index.qmd)
-
-
-___
-
-## 2023/02 Winter
-
-#### Financial Strategy: [Here](202302w_financial_strategy/index.qmd)
-
-
-___
-
-## 2023/01
-
-#### Financial Strategy: [Here](202301_financial_strategy/index.qmd)
-
-#### ESG & Institutional Investment: [Here](202301_ESG/index.qmd)
+| Period            | Course                                                               |
+|-------------------|----------------------------------------------------------------------|
+| **2024/01**       | [Financial Strategy](financial_strategy/index.qmd)                   |
+| **2024/01 Summer**| [Financial Strategy](202401s_financial_strategy/index.qmd)           |
+| **2023/02**       | [Econometrics for Finance (DPA)](202302_empirical_finance/index.qmd) |
+|                   | [Financial Strategy](202302_financial_strategy/index.qmd)            |
+|                   | [Causal Inference](empirical_finance/index.qmd)                      |
+| **2023/02 Winter**| [Financial Strategy](202302w_financial_strategy/index.qmd)           |
+| **2023/01**       | [Financial Strategy](202301_financial_strategy/index.qmd)            |
+|                   | [ESG & Institutional Investment](202301_ESG/index.qmd)               |
+| **2023/01 Summer**| [Financial Strategy](202301s_financial_strategy/index.qmd)           |
+| **2022/02**       | [Data & Empirical Finance](202202_empirical_finance/index.qmd)       |
+|                   | [Financial Strategy](202202_financial_strategy/index.qmd)            |
+|                   | [ESG & Institutional Investment](202202_ESG/index.qmd)               |
 
 
 
-___
+<style>
+table {
+  border-collapse: collapse;
+}
 
-## 2023/01 Summer
+table th, table td {
+  border-bottom: 1px solid black;
+  padding: 10px;
+  text-align: left;
+}
 
-#### Financial Strategy: [Here](202301s_financial_strategy/index.qmd)
-
-___
-
-## 2022/02
-
-#### Data & Empirical Finance: [Here](202202_empirical_finance/index.qmd)
-
-#### Financial Strategy: [Here](202202_financial_strategy/index.qmd)
-
-#### ESG & Institutional Investment: [Here](202202_ESG/index.qmd)
-
-___
+table th:first-child,
+table td:first-child {
+  border-right: 1px solid black;
+}
+</style>
 

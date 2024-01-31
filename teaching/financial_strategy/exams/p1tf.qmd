@@ -1,0 +1,37 @@
+---
+format:
+  html:
+#    css: [webex.css]
+#    include-after-body: [webex.js]
+#    theme: themecustom.scss
+    fontsize: 1.4em
+---
+
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "An initial public offering (IPO) is not necessarily the first time a company sells its stock to the public.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "Underwriters face no risk during an IPO, so that a greenshoe provision is usually not necessary.", "\n\n")
+
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "New issues are highly cyclical.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "The transaction costs of an IPO are usually low.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "IPOs are underpriced on average.", "\n\n")
+
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "A seasoned equity offering (SEO) is the sale of stock by a company that is already publicly traded.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "A cash offer occurs when new shares are offered only to existing shareholders.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "A rights offer occurs when new shares are sold to investors at large.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "The stock price reaction to an SEO is positive on average.", "\n\n")
+
+```
+
+:::
