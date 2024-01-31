@@ -1,5 +1,5 @@
 ---
-title: "Teste"
+title: "Exams Part 1 (ch24)"
 ---
 
 
@@ -26,6 +26,22 @@ cat(fitb("T", num = FALSE, ignore_case = TRUE), "A seasoned equity offering (SEO
 cat(fitb("F", num = FALSE, ignore_case = TRUE), "A cash offer occurs when new shares are offered only to existing shareholders.", "\n\n")
 cat(fitb("F", num = FALSE, ignore_case = TRUE), "A rights offer occurs when new shares are sold to investors at large.", "\n\n")
 cat(fitb("F", num = FALSE, ignore_case = TRUE), "The stock price reaction to an SEO is positive on average.", "\n\n")
+
+
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "Bookbuilding is a common method used by underwriters to determine the IPO price.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "Investors in an IPO are guaranteed to receive shares at the offering price.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "Lock-up periods restrict company insiders from selling their shares immediately after an IPO.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "A roadshow is a series of presentations made by company executives to potential investors.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "In a greenshoe option, underwriters buy shares back from the market to stabilize the stock price.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "IPO allocation refers to the process of distributing shares to various investors.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "Quiet period is a term used to describe the period after an IPO when company executives cannot communicate with the public.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "The secondary market involves the trading of existing shares among investors.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "Market capitalization is a measure of a company's value, calculated by multiplying its stock price by the number of outstanding shares.", "\n\n")
+
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "The lock-up period for insiders typically lasts for a short duration, usually a week.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "Dilution occurs when a company issues additional shares, reducing the ownership percentage of existing shareholders.", "\n\n")
+cat(fitb("F", num = FALSE, ignore_case = TRUE), "The primary market involves the buying and selling of existing shares among investors.", "\n\n")
+cat(fitb("T", num = FALSE, ignore_case = TRUE), "Underwriters in an IPO often form a syndicate to share the responsibility of selling the new issue.", "\n\n")
 
 ```
 

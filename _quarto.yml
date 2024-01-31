@@ -1,53 +1,39 @@
 project:
   type: website
-
 website:
-  title: "Henrique Castro Martins"
-#  reader-mode: true
-  site-url: "https://henriquemartins.net/"
-  google-analytics: "G-771J5563G0"
+  title: Henrique Castro Martins
+  site-url: https://henriquemartins.net/
+  google-analytics: G-771J5563G0
   navbar:
     right:
-      - href: about.qmd
-      - text: Teaching
-        href: teaching/
-      - text: Research
-        href: research/
-      - text: Seminars
-        href: seminars/
- #     - text: Blog
- #       href: blog/
-      - text: ABS List
-        href: abs/
-      - text: CV
-        href: cv/cv_Henrique_Castro_Martins.pdf
-      - icon: github
-        href: https://github.com/henriquecastror
-      - icon: linkedin
-        href: https://www.linkedin.com/in/henriquecastror/
+    - href: about.qmd
+    - text: Teaching
+      href: teaching/
+    - text: Research
+      href: research/
+    - text: Seminars
+      href: seminars/
+    - text: ABS List
+      href: abs/
+    - text: CV
+      href: cv/cv_Henrique_Castro_Martins.pdf
+    - icon: github
+      href: https://github.com/henriquecastror
+    - icon: linkedin
+      href: https://www.linkedin.com/in/henriquecastror/
   page-footer:
-    left: "Made using [Quarto](https://quarto.org/). Please, cite the website if you use the content."    
+    left: Made using [Quarto](https://quarto.org/). Please, cite the website if you
+      use the content.
   twitter-card: true
-
-freeze: false  
-
+freeze: false
 format:
   html:
-   theme:
-    light: litera
-    dark: darkly
-
-    
-#    css: styles.css
-#    toc: true
+    theme:
+      light: litera
+      dark: darkly
+    css: include/webex.css
+    include-after-body: include/webex.js
 html:
   css: webex.css
   include-after-body: webex.js
-
-    
 editor: visual
-
-#comments:
-#  giscus:
-#    repo: henriquecastror/comments
-
