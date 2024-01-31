@@ -17,8 +17,8 @@ format:
     preview-links: auto
     logo: figs/background8.png
     css: logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_1.html#/comments)][[Exams](https://henriquemartins.net/teaching/financial_strategy/exams/p1tf.html)]**  '
-    multiplex: true
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Practice [T/F](https://henriquemartins.net/teaching/financial_strategy/exams/p1tf.html) & [Numeric](https://henriquemartins.net/teaching/financial_strategy/exams/p1num.html)] [[Interact](https://henriquemartins.net/teaching/financial_strategy/part_1.html#/interact)][Do not use without permission]**  '
+    multiplex: false
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
@@ -711,112 +711,34 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 
 
-# Problems {.smaller background="#522f31"}
+# Now it is your turn... {.smaller background="#191f36"}
 
-##  {.smaller }
-
-<iframe height="80%" width="100%" src="https://henriquemartins.net/teaching/financial_strategy/exams/p1tf.html#part-1-ch24"> </iframe>
-
-
-
-
-
-
-
-
-
-
-
-
-##  {.smaller background="#522f31"}
-
-**Question 2**
-
-<iframe height="50%" width="100%" src="https://hcm.quarto.pub/p1q2/"></iframe>
-
-
-
-
-
-
-
-
-
-##  {.smaller background="#522f31"}
-
-**Question 3**
-
-<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p1q3/"> </iframe>
-
- 
-
-
-
-
-##  {.smaller background="#522f31"}
-
-**Question 4**
-
-<iframe height="500%" width="100%" src="https://hcm.quarto.pub/p1q4/"> </iframe>
-
-
-
-
-
-
-
-##  {.smaller background="#522f31"}
-
-**Question 5**
-
-<iframe height="200%" width="100%" src="https://hcm.quarto.pub/p1q5/"> </iframe>
-
-
-
-
-
-# Final {.smaller visibility="hidden"}
-
-## How did you like this lecture? {background="#a2bef5" visibility="hidden"}
-
-
-**Your response:**
-
-<div 
-data-lyket-type="rate" 
-data-lyket-id="part-1" 
-data-lyket-namespace="EFPART1" 
-data-lyket-show-rating="user" 
-data-lyket-template="custom" 
-></div>
-
-
-**Average response:**
-<div 
-data-lyket-type="rate" 
-data-lyket-id="part-1" 
-data-lyket-namespace="EFPART1" 
-data-lyket-show-rating="average" 
-data-lyket-template="custom" 
-></div>
-
-
-
-
-
-
-
-
-
-
-## Practice {.smaller background="#a2bef5"}
-
-
-::: {.callout-important}
-Remember to solve the [problems](https://henriquemartins.net/teaching/financial_strategy/exams/p1tf.html){preview-link="true"}. If you have any questions, ask next slide  
+::: footer
 :::
 
-## Comments? {.smaller background="#a2bef5"}
+
+
+## Practice {.smaller background="#465280"}
+
+
+::: {.callout}
+Remember to solve:
+
+- [Questions T/F](https://henriquemartins.net/teaching/financial_strategy/p1tf.html){preview-link="true"} 
+- [Questions Numeric](https://henriquemartins.net/teaching/financial_strategy/p1num.html){preview-link="true"} 
+
+
+If you have any questions, ask next slide  
+:::
+
+::: footer
+:::
+
+
+
+
+
+## Interact {.smaller background="#8091d1"}
 
 <script src="https://giscus.app/client.js"
         data-repo="henriquecastror/EF202401"
