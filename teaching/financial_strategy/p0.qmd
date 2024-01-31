@@ -1,0 +1,619 @@
+---
+title: 'Estratégia Financeira'
+subtitle: 'Part 0'
+author:
+  - name: ' **Henrique C. Martins** '
+    affiliation: '**[![](figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: true
+format:
+  revealjs: 
+    touch: true
+    controls: true
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_0.html#/comments)]**  '
+    multiplex: true
+    scrollable: true
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+      
+---
+
+
+
+
+# Introduction  {.smaller visibility="hidden"}
+
+
+## Setting expectations {.smaller}
+
+- This is a two-weeks summer course, things will go **very fast**
+
+- For many of you, this is not the first time in this course. 
+
+  - So, you already know your areas of improvement. **Take advantage of that and focus on the areas you can improve more**.
+
+- You need hours to revise the material. 
+
+  - Not easy, if you are doing other activities. 
+
+
+
+
+
+## Introduction
+
+<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_ca9c2dc33cb8ed14993600aeb1a3c1"></script>
+
+
+<center>
+![](figs/changemymind.jpg)
+</center>
+
+
+
+
+## Introduction
+
+- **Today:**
+
+    - **Introduction to the course** 
+    - Discussion about the **Syllabus**
+    - **Performance assessment**
+    - Initial discussion about finance
+    - First Chapter
+    
+
+
+
+
+## Description {.smaller}
+
+The purpose of the course is to familiarize students with the concepts and techniques related to the analysis and strategic decisions in the areas of investment and financing in a risky environment, always with the purpose of maximizing the company's value. 
+
+At the end of the semester, the student should be able to master the:
+
+- concepts of analysis, measurement, and applications of cost and capital structure, 
+  - including strategies regarding portfolios 
+- earnings distribution policy,
+- finding firm value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##  {.smaller}
+
+**To Midterm:**
+
+- Ch 23: **Raising Equity Capital**
+
+- Ch 10: **Capital Markets and the Pricing of Risk**
+
+- Ch 11: **Optimal Portfolio Choice and the Capital Asset Pricing Model**
+
+- Ch 12: **Estimating the Cost of Capital**
+
+- Ch 13: **Investor Behavior and Capital Market Efficiency**
+
+**To final:**
+
+- Ch 24: **Debt Financing**
+
+- Ch 14: **Capital Structure in a Perfect Market**
+
+- Ch 15: **Debt and Taxes**
+
+- Ch 16: **Financial Distress, Managerial Incentives, and Information**
+
+- Ch 17: **Payout Policy**
+
+
+
+
+
+
+
+
+
+## {.smaller}
+
+**<span style="color:red;">Your mission (should you choose to accept it...)</span>**
+
+. . .
+
+  - **Read the book** before class (preferably more than once). 
+  
+  - Solve **all** the problems.
+    
+  - **Ask questions**. 
+      - This is the best way to learn. I will ask questions all the time during class. I expect that you answer them.
+      
+    
+  - **Make notes** (with your hand, not your computer)    
+      - Research shows that taking notes boosts academic performance.
+      - It is better to take a note and throw it away than to take a note on your computer.
+      
+. . .
+
+
+
+::: {.columns}
+
+::: {.column width="33%"}
+<center>
+**I accept it:**  <div data-lyket-type="like" data-lyket-id="like1"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"></div>
+</center>
+:::
+
+::: {.column width="33%" }
+<center>
+**I love it:**  <div data-lyket-type="like" data-lyket-id="like2"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"   data-lyket-template="twitter"></div>
+</center>
+:::
+
+::: {.column width="33%" }
+<center>
+**I am enthusiastic:**  <div data-lyket-type="clap" data-lyket-id="like3"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"   ></div>
+</center>
+:::
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+## Resources {.smaller}
+
+
+![](figs/share_slides.png)
+
+
+Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide course PowerPoint slides? The impact of instructor-provided slides upon student attendance and performance. Computers & Education, 85, 14-22.
+
+
+
+
+
+
+
+## {.smaller}
+
+BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, Boston, MA: Pearson, 2019. [https://amzn.to/3jl9YPl](https://amzn.to/3jl9YPl) 
+
+![](figs/berkdemarzo.jpg)
+
+
+
+
+
+
+
+## Performance assessment {.smaller}
+
+1 Midterm Exam: **30%** 
+
+. . .
+
+
+2 Final Exam: **30%** 
+
+. . .
+
+3 Class Participation and problems resolution: **40%**
+
+  - Participation: **10%** 
+  - List of problems (two): **15%**  
+  - "Monitored activity" (three): **15%** 
+    
+
+
+
+
+
+
+
+
+## Read the Syllabus
+
+<center>
+![](figs/syllabus.gif)
+</center>
+
+
+
+
+
+
+# How to study?  {visibility="hidden"}
+
+
+
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+
+![](figs/howtostudy1.png) 
+
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+
+![](figs/howtostudy2.png)
+
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+
+![](figs/howtostudy3.png)
+
+
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+
+![](figs/howtostudy4.png)
+
+
+
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+
+![](figs/howtostudy5.png)
+
+
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+
+![](figs/howtostudy6.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Warming up...
+
+::: collumns
+
+::: {.column width="30.5%" }
+![](figs/movie1.jpg)
+
+::: 
+::: {.column width="31.5%" }
+
+![](figs/movie2.jpg)
+
+
+
+:::
+
+::: {.column width="30%" }
+
+![](figs/movie3.jpg)
+
+
+:::
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+## Warming up...
+
+::: collumns
+
+::: {.column width="34%" }
+![](figs/movie6.jpg)
+
+
+::: 
+::: {.column width="30%" }
+
+![](figs/movie7.jpg)
+
+
+
+:::
+
+::: {.column width="30%" }
+
+![](figs/movie5.jpg)
+
+
+:::
+
+:::
+
+
+
+
+
+
+
+
+
+## Warming up... {visibility="hidden"}
+
+::: collumns
+
+::: {.column width="30.5%" }
+![](figs/movie4.jpg)
+
+::: 
+::: {.column width="31.5%" }
+
+![](figs/movie8.jpg)
+:::
+
+::: {.column width="30%" }
+
+:::
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# **What is Finance?** {visibility="hidden"}
+
+
+
+
+
+
+
+## **What is Finance?** 
+
+
+![](figs/whatisfinance1.png) 
+
+**What is missing?**
+
+
+
+
+
+
+## **What is Finance?** 
+
+
+![](figs/whatisfinance2.png) 
+
+**Which of these answers is better?**
+
+
+
+
+
+
+
+
+## Finance is a time machine {.smaller}
+
+*Finance is an applied science that deals with the allocation of scarce resources over time under conditions of uncertainty.* ([Source](https://www.annualreviews.org/doi/pdf/10.1146/annurev-financial-011019-040506))
+
+![](figs/time_machine.jpg)
+
+
+
+
+
+
+
+
+
+
+
+## Warming up... {.smaller visibility="hidden"}
+
+**Which topics from previous courses are important to remember?**
+
+- What is a corporation's goal?
+
+. . . 
+
+- *Financial products'* stuff:
+
+  - Compound interest, NPV, etc. 
+  - Time value of money
+
+. . .
+
+- Basic statistics (Beta, standard deviation, etc.)
+
+**If you don't remember these topics, spend some hours on them.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Final {background="#a2bef5" visibility="hidden"}
+
+
+
+
+
+## How did you like this lecture? {background="#a2bef5"}
+
+<!-- LikeBtn.com BEGIN -->
+<span class="likebtn-wrapper" data-theme="custom" data-white_label="true" data-identifier="item_1"></span>
+<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+<!-- LikeBtn.com END -->
+
+
+<div class="like-dislike-container">
+  <button id="like-button">
+    <span class="like-text">Like</span>
+    <span class="like-count">0</span>
+  </button>
+  <button id="dislike-button">
+    <span class="dislike-text">Dislike</span>
+    <span class="dislike-count">0</span>
+  </button>
+</div>
+
+
+
+<button id="like-btn" onclick="toggleLike()">Like</button>
+<span id="like-count"></span>
+
+
+
+
+
+
+
+
+
+
+## Comments?   {background="#a2bef5"}
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF202401"
+        data-repo-id="R_kgDOLJQ8yQ"
+        data-mapping="number"
+        data-term="6"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+::: footer
+:::
+
+
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+
+::: {.column width="60%"}
+
+
+
+
+
+
+**QUESTIONS?**
+
+![](figs/qa2.png){width=150% heigth=150%}
+:::
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
+:::
+:::
+
+::: footer
+:::
+
+

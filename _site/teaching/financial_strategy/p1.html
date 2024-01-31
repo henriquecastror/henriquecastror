@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Henrique C. Martins">
+
+<title>Henrique Castro Martins - Estratégia Financeira</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-771J5563G0"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../include/webex.css">
+<meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
+<meta name="twitter:description" content="Part 1 - ch.23 Raising Equity Capital">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Henrique Castro Martins</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../about.qmd"> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching/"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../research/"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../seminars/"> 
+<span class="menu-text">Seminars</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../abs/"> 
+<span class="menu-text">ABS List</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/cv_Henrique_Castro_Martins.pdf"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/henriquecastror"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/henriquecastror/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Estratégia Financeira</h1>
+            <p class="subtitle lead"><strong>Part 1 - ch.23 Raising Equity Capital</strong></p>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><strong>Henrique C. Martins</strong> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <strong><a href="https://eaesp.fgv.br/en"><img src="figs/background6.png" class="img-fluid" width="300"></a></strong>
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">31-01-2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="p1.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="intro" class="level1" data-visibility="hidden">
+<h1 data-visibility="hidden">Intro</h1>
+<section id="section" class="level2" data-background-image="figs/cha23.png" data-background-size="1300px">
+<h2 data-background-image="figs/cha23.png" data-background-size="1300px" class="anchored" data-anchor-id="section"></h2>
+<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_ca9c2dc33cb8ed14993600aeb1a3c1"></script>
+</section>
+<section id="chapter-outline" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-outline">Chapter Outline</h2>
+<p>23.1 Equity Financing for Private Companies</p>
+<p>23.2 The Initial Public Offering</p>
+<p>23.3 IPO Puzzles</p>
+<p>23.4 The Seasoned Equity Offering</p>
+</section>
+</section>
+<section id="equity-financing-for-private-comp." class="level1 smaller" data-background="#ead1dc">
+<h1 class="smaller" data-background="#ead1dc">23.1 Equity Financing for Private Comp.</h1>
+<section id="equity-financing-for-private-comp.-1" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-1">23.1 Equity Financing for Private Comp.</h2>
+<ul>
+<li><p>The initial capital that is required to start a business is usually provided by the entrepreneur.</p></li>
+<li><p>Often, a private company must seek outside sources that can provide additional capital for growth.</p></li>
+<li><p>It is important to understand how the infusion of outside capital will affect the control of the company.</p></li>
+</ul>
+</section>
+<section id="equity-financing-for-private-comp.-2" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-2">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Sources of funding: Angel Investors</strong></p>
+<ul>
+<li>Individual Investors who buy equity in small private firms. Angel investors are often rich, successful entrepreneurs themselves who are willing to help new companies get started in exchange for a share of the business.</li>
+<li>The angel investment is usually necessary to kick off the business and the angel market is more well organized these days.</li>
+<li>Angel financing often occurs at such an early stage in the business that it is difficult to assess a value for the firm. Angel investors often circumvent this problem by holding either a convertible note or a SAFE (simple agreement for future equity) rather than equity.
+<ul>
+<li>Usually, angel investors have a share price discount over new investors.</li>
+<li>Structuring the deal in this way allows <strong>angels and entrepreneurs to agree on terms without agreeing on a value for the firm</strong>, instead postponing the valuation decision until the firm is more mature and attractive to venture capitalists.</li>
+</ul></li>
+</ul>
+</section>
+<section id="equity-financing-for-private-comp.-3" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-3">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Venture Capital Firm</strong></p>
+<p>A limited partnership that specializes in raising money to invest in the private equity of young firms.</p>
+<p><strong>Venture Capitalists</strong></p>
+<p>One of the general partners who work for and run a venture capital firm.</p>
+<p>. . .</p>
+<p>VC firms offer limited partners advantages over investing directly in start-ups themselves as angel investors.</p>
+<ul>
+<li><p>Limited partners are more diversified.</p></li>
+<li><p>They also benefit from the expertise of the general partners.</p></li>
+<li><p>General partners usually charge substantial fees: over the return they make (carried interest) plus a an annual management fee of about 2% of the fund’s committed capital.</p></li>
+<li><p>Usually, they demand great control (e.g., board seats).</p></li>
+</ul>
+</section>
+<section id="section-1" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="section-1"></h2>
+<p><img src="figs/bm_23_1.jpg" class="img-fluid"></p>
+</section>
+<section id="equity-financing-for-private-comp.-4" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-4">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Private Equity Firms</strong></p>
+<ul>
+<li>Organized very much like a venture capital firm, but it <strong>invests in the equity of existing privately held firms</strong> rather than start-up companies.</li>
+<li>Private equity firms also might initiate their investment by finding a publicly traded firm and purchasing the outstanding equity, thereby taking the company private in a transaction called a leveraged buyout (LBO).</li>
+<li>In most cases, the private equity firms use debt as well as equity to finance the purchase.</li>
+<li>Private equity firms also charge fees.</li>
+<li>Market value of PE firms greater than VC.</li>
+</ul>
+</section>
+<section id="section-2" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="section-2"></h2>
+<p><img src="figs/bm_23_2.jpg" class="img-fluid"></p>
+</section>
+<section id="equity-financing-for-private-comp.-5" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-5">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Institutional Investors</strong></p>
+<ul>
+<li>Institutional investors, such as pension funds, insurance companies, endowments, and foundations, are <strong>active investors in private companies</strong>.</li>
+<li>Institutional investors <strong>may invest directly</strong> in private firms or they <strong>may invest indirectly by becoming limited partners in venture capital firms</strong>.</li>
+</ul>
+<p>Ex. Blackrock funds, Vanguard funds.</p>
+</section>
+<section id="equity-financing-for-private-comp.-6" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-6">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Corporate Investors</strong></p>
+<ul>
+<li>A corporation that invests in private companies.</li>
+<li>Also known as corporate partner, strategic partner, and strategic investor.</li>
+<li>Although most other types of investors in private firms are primarily interested in the financial returns of their investments, <strong>corporate investors might invest for corporate strategic objectives</strong>, in addition to the financial returns.</li>
+</ul>
+<p>Ex. Google.</p>
+</section>
+<section id="equity-financing-for-private-comp.-7" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-7">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Venture capital investing</strong></p>
+<p>When a company founder decides to sell equity to outside investors for the first time, <strong>it is common practice for private companies to issue preferred stock rather than common stock to raise capital</strong>.</p>
+<p><strong>Preferred Stock</strong></p>
+<ul>
+<li>Preferred stock issued by mature companies usually has a preferential dividend and seniority in any liquidation and sometimes special voting rights.</li>
+<li>Preferred stock issued by young companies has seniority in any liquidation but typically <strong>does not pay regular cash dividends and often contains a right to convert to common stock</strong>.</li>
+</ul>
+<p>. . .</p>
+<p><strong>Convertible Preferred Stock</strong></p>
+<p>Preferred stock that gives the owner an option to convert it into common stock on some future date.</p>
+</section>
+<section id="equity-financing-for-private-comp.-8" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-8">23.1 Equity Financing for Private Comp.</h2>
+<ul>
+<li><p>Each time the firm raises money is referred to as a funding round, and each round will have its own set of securities with special terms and provisions.</p></li>
+<li><p>After a potential initial “seed round,” it is common to name the securities alphabetically, starting with Series A, Series B, etc</p></li>
+<li><p>Only then, the company has a market value.</p></li>
+</ul>
+</section>
+<section id="equity-financing-for-private-comp.-9" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-9">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Book’s example.</strong></p>
+<ul>
+<li>Real Networks, which was founded by Robert Glaser in 1993, with an investment of approximately 1 million by Glaser.</li>
+<li>In April 1995, Glaser’s 1 million initial investment represented 13,713,439 shares of Series A preferred stock, implying an initial price of about $0.07 per share.</li>
+<li>The company’s <strong>first round of outside equity funding was Series B preferred stock</strong>. Real Networks sold 2,686,567 shares of Series B preferred stock at 0.67 per share.</li>
+<li>At the price the new shares were sold for, Glaser’s shares were worth 9.2 million and represented 83.6% of the outstanding shares.</li>
+</ul>
+<center>
+<p><img src="figs/bm_23_ex.png" class="img-fluid"></p>
+</center>
+</section>
+<section id="equity-financing-for-private-comp.-10" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-10">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Pre-Money Valuation</strong></p>
+<ul>
+<li>At the issuance of new equity, the value of the firm’s prior shares outstanding at the price in the funding round
+<ul>
+<li>9.2 million in the RealNetworks example</li>
+</ul></li>
+</ul>
+<p><strong>Post-Money Valuation</strong></p>
+<ul>
+<li>At the issue of new equity, the value of the whole firm (old plus new shares) at the price at which the new equity sold
+<ul>
+<li>11.0 million in the RealNetworks example</li>
+</ul></li>
+</ul>
+</section>
+<section id="equity-financing-for-private-comp.-11" class="level2 smaller" data-background="#ead1dc">
+<h2 class="smaller anchored" data-background="#ead1dc" data-anchor-id="equity-financing-for-private-comp.-11">23.1 Equity Financing for Private Comp.</h2>
+<p>Over the next few years, Real Networks raised three more rounds of outside equity in addition to the Series B funding round</p>
+<p><img src="figs/bm_23_ex2.png" class="img-fluid"></p>
+</section>
+<section id="equity-financing-for-private-comp.-12" class="level2 smaller" data-background="#ead1dc" data-visibility="hidden">
+<h2 class="smaller anchored" data-background="#ead1dc" data-visibility="hidden" data-anchor-id="equity-financing-for-private-comp.-12">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Problem</strong></p>
+<p>You founded your own firm two years ago. Initially, you contributed 100,000 of your money and, in return, received 1,500,000 shares of stock.</p>
+<p>Since then, you have sold an additional 500,000 shares to angel investors.</p>
+<p>You are now considering raising even more capital from a venture capitalist. The venture capitalist has agreed to invest 6 million with a post-money valuation of $10 million for the firm.</p>
+<p>Assuming that this is the venture capitalist’s first investment in your company, <strong>what percentage of the firm will she end up owning? What percentage will you own? What is the value of your shares?</strong></p>
+</section>
+<section id="equity-financing-for-private-comp.-13" class="level2 smaller" data-background="#ead1dc" data-visibility="hidden">
+<h2 class="smaller anchored" data-background="#ead1dc" data-visibility="hidden" data-anchor-id="equity-financing-for-private-comp.-13">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Solution</strong></p>
+<p>Because the VC will invest 6 million out of the 10 million post-money valuation, her ownership percentage is 60%.</p>
+<p>. . .</p>
+<p>The pre-money valuation is 10 − 6 = 4 million. As there are 2 million pre-money shares outstanding, this implies a share price of <span class="math inline">\(\frac{4 million}{2 million\;shares}=2 \;per\;share\)</span></p>
+<p>. . .</p>
+<p>Thus, the V C will receive 3 million shares for her investment, and after this funding round, there will be a total of 5,000,000 shares outstanding.</p>
+<p>. . .</p>
+<p>You will own <span class="math inline">\(\frac{1,5000,000}{3,000,000} = 30\%\)</span> of the firm and the post-transaction valuation of your shares is $3 million.</p>
+</section>
+<section id="equity-financing-for-private-comp.-14" class="level2 smaller" data-background="#ead1dc" data-visibility="hidden">
+<h2 class="smaller anchored" data-background="#ead1dc" data-visibility="hidden" data-anchor-id="equity-financing-for-private-comp.-14">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Problem</strong></p>
+<p><strong>Assume</strong></p>
+<ul>
+<li>You founded your own firm two years ago.</li>
+<li>You initially contributed $50,000 of your money and in return received 1,000,000 shares of stock.</li>
+<li>Since then, you have sold an additional 750,000 shares to angel investors.</li>
+<li>You are now considering raising even more capital from a venture capitalist.</li>
+<li>The venture capitalist would invest $2 million and would receive 2,000,000 newly issued shares.</li>
+</ul>
+<p><strong>What is the post-money valuation? Assuming that this is the venture capitalist’s first investment in your company, what percentage of the firm will he end up owning? What percentage will you own? What is the value of your shares?</strong></p>
+</section>
+<section id="equity-financing-for-private-comp.-15" class="level2 smaller" data-background="#ead1dc" data-visibility="hidden">
+<h2 class="smaller anchored" data-background="#ead1dc" data-visibility="hidden" data-anchor-id="equity-financing-for-private-comp.-15">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Solution</strong></p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>Your shares</td>
+<td>1,000,000</td>
+<td>26,67%</td>
+</tr>
+<tr class="even">
+<td>Angel investor’s shares</td>
+<td>750,000</td>
+<td>20,00%</td>
+</tr>
+<tr class="odd">
+<td>Venture capitalist’s shares</td>
+<td>2,000,000</td>
+<td>53,33%</td>
+</tr>
+<tr class="even">
+<td>Total shares outstanding</td>
+<td>3,750,000</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The venture capitalist is paying $1 per share.</li>
+<li>Thus, the post-money valuation is $3,750,000.</li>
+<li>You will own 26.67% of the firm, and the post-money valuation of your shares is $1,000,000.</li>
+</ul>
+</section>
+<section id="equity-financing-for-private-comp.-16" class="level2 smaller" data-background="#ead1dc" data-visibility="hidden">
+<h2 class="smaller anchored" data-background="#ead1dc" data-visibility="hidden" data-anchor-id="equity-financing-for-private-comp.-16">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Venture Capital Financing Terms</strong></p>
+<p><strong>Liquidation Preference</strong>: The liquidation preference specifies a minimum amount that must be paid to these security holders—before any payments to common stockholders—in the event of a liquidation, sale, or merger of the company. It is typically set to between 1 and 3 times the value of the initial investment.</p>
+<p>. . .</p>
+<p><strong>Seniority</strong>: It is not uncommon for investors in later rounds to demand seniority over investors in earlier rounds, to ensure that they are repaid first. When later round investors accept securities with equal priority, they are said to be pari passu.</p>
+<p>. . .</p>
+<p><strong>Anti-Dilution Protection</strong>: If things are not going well and the firm raises new funding at a lower price than in a prior round, it is referred to as a “down round.” Anti-dilution protection lowers the price at which investors in earlier rounds can convert their shares to common, effectively increasing their ownership percentage in a down round at the expense of founders and employees.</p>
+<p>. . .</p>
+<p><strong>Exit Strategy</strong>: It details how investors will eventually realize the return from their investment</p>
+</section>
+<section id="equity-financing-for-private-comp.-17" class="level2 smaller" data-background="#ead1dc" data-visibility="hidden">
+<h2 class="smaller anchored" data-background="#ead1dc" data-visibility="hidden" data-anchor-id="equity-financing-for-private-comp.-17">23.1 Equity Financing for Private Comp.</h2>
+<p><strong>Problem</strong></p>
+<p>In addition to common shares, your firm raised 10 million in Series A financing with a 2x liquidation preference and a 25 million post-money valuation. <strong>What is the minimum sale price such that the Series A investors will convert their shares?</strong></p>
+<p><strong>Solution</strong></p>
+<ul>
+<li>Series A investors have a liquidation preference of 2x 10 million = 20 million</li>
+<li>Series A investors own 10/25 of the firm.</li>
+<li>Because the Series A investors will receive up to 2x their investment from their liquidation preference, they will not be willing to convert their shares to common unless the value of the firm has at least doubled from 25 million to 50 million.</li>
+<li>At 50 million, Series A investors are willing to convert and the other common shareholders will receive the remaining 30 million.</li>
+</ul>
+</section>
+</section>
+<section id="the-initial-public-offering" class="level1 smaller" data-background="#d9ead3">
+<h1 class="smaller" data-background="#d9ead3">23.2 The Initial Public Offering</h1>
+<section id="the-initial-public-offering-1" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-1">23.2 The Initial Public Offering</h2>
+<p><strong>Initial Public Offering (IPO)</strong></p>
+<p>The process of selling stock to the public for the first time.</p>
+<p>It allows <strong>greater liquidity</strong>, and <strong>better access to capital</strong> at the cost of <strong>more external monitoring</strong> and <strong>more demand for transparency</strong>.</p>
+<p>. . .</p>
+<p><strong>Primary Offering</strong>: New shares available in a public offering that raise new capital</p>
+<p><strong>Secondary Offering</strong>: Shares sold by existing shareholders in an equity offering</p>
+<p>. . .</p>
+<p><strong>Underwriter</strong></p>
+<p>An investment banking firm that manages a security issuance and designs its structure.</p>
+</section>
+<section id="the-initial-public-offering-2" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-2">23.2 The Initial Public Offering</h2>
+<p><strong>Best-Efforts Basis</strong>: For smaller IPOs, a situation in which the underwriter does not guarantee that the stock will be sold, but instead tries to sell the sock for the best possible price. Often such deals have an all-or-none clause: either all of the shares are sold on the IPO or the deal is called off.</p>
+<p>. . .</p>
+<p><strong>Firm Commitment</strong>: An agreement between an underwriter and an issuing firm in which the underwriter guarantees that it will sell all of the stock at the offer price. Most common.</p>
+<p>. . .</p>
+<p><strong>Auction IPO</strong>: A method of selling new issues directly to the public rather than setting a price itself and then allocating shares to buyers, the underwriter in an auction IPO takes bids from investors and then sets the price that clears the market.</p>
+</section>
+<section id="the-initial-public-offering-3" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-3">23.2 The Initial Public Offering</h2>
+<p><strong>Problem</strong></p>
+<ul>
+<li>Ashton, Inc., is selling 900,000 shares of stock in an <strong>auction IPO</strong>.</li>
+<li>At the end of the bidding period, Ashton’s investment bank has received the following bids. <strong>What will be the offer price of the shares?</strong></li>
+</ul>
+<p><img src="figs/bm_23_2_table.png" class="img-fluid"></p>
+<p>. . .</p>
+<p><strong>Solution</strong>: The winning auction price would be 9.25.</p>
+</section>
+<section id="the-initial-public-offering-4" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-4">23.2 The Initial Public Offering</h2>
+<p><strong>Lead Underwriter</strong>: The primary investment banking firm responsible for managing a security issuance.</p>
+<p><strong>Syndicate</strong>: A group of underwriters who jointly underwrite and distribute a security issuance.</p>
+<ul>
+<li>Underwriters market the IPO, and they help the company with all the necessary filings.</li>
+<li>More importantly, they actively participate in determining the offer price.</li>
+<li>In many cases, the underwriter will also commit to making a market in the stock after the issue, thereby guaranteeing that the stock will be liquid.</li>
+</ul>
+</section>
+<section id="the-initial-public-offering-5" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-5">23.2 The Initial Public Offering</h2>
+<p><strong>Filings</strong></p>
+<p><strong>Registration Statement</strong>: A legal document that provides financial and other information about a company to investors prior to a security issuance. Company managers work closely with the underwriters to prepare this registration statement.</p>
+<p><strong>Preliminary Prospectus</strong>: Part of the registration statement prepared by a company prior to an IPO that is circulated to investors before the stock is offered.</p>
+<p><strong>Final Prospectus</strong>: Part of the final registration statement prepared by a company prior to an IPO that contains all the details of the offering, including the number of shares offered and the offer price. This document is created only after carefull revision.</p>
+</section>
+<section id="the-initial-public-offering-6" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-6">23.2 The Initial Public Offering</h2>
+<p><strong>Valuation</strong>: There are two ways to value a company: a) Compute the present value of the estimated future cash flows, or B) Estimate the value by examining comparables (recent IPOs).</p>
+<p><strong>Road Show</strong>: During an IPO, when a company’s senior management and its underwriters travel around promoting the company and explaining their rationale for an offer price to the underwriters’ largest customers, mainly institutional investors such as mutual funds and pension funds.</p>
+<p><strong>Book Building</strong>: A process used by underwriters for coming up with an offer price based on customers’ expressions of interest. The book-building process provides an early indication of demand for the IPO. If demand appears to be weak in the target price range, the firm may choose to withdraw from the IPO process.</p>
+</section>
+<section id="the-initial-public-offering-7" class="level2 smaller" data-background="#d9ead3" data-visibility="hidden">
+<h2 class="smaller anchored" data-background="#d9ead3" data-visibility="hidden" data-anchor-id="the-initial-public-offering-7">23.2 The Initial Public Offering</h2>
+<p><strong>Problem</strong></p>
+<ul>
+<li>RAX House is a private company considering going public. RAX House has assets of 585 million and liabilities of 415 million. The firm’s cash flow from operations was 137 million for the previous year.</li>
+<li>After the IPO, RAX House will have 118 million shares outstanding.</li>
+<li>The industry average <strong>cash flow per share multiple is 3.0</strong>, and the <strong>average book value per share is 2.3</strong>. Based on these multiples, <strong>estimate the IPO price.</strong></li>
+</ul>
+<p>. . .</p>
+<p><strong>Solution</strong></p>
+<p>RAX House’s book value of equity is <span class="math inline">\(585 - 415 = 170 million\)</span>. With 118 million shares outstanding, book value per share is <span class="math inline">\(\frac{170}{118} = 1.44\)</span> per share. Given the industry average of 2.3, the estimated IPO price would be 1.44 × 2.3 = 3.31 per share.</p>
+<p>. . .</p>
+<p>The firm’s cash flow from operations was 137 million, thus cash flow per share is <span class="math inline">\(\frac{137}{118} =1.16\)</span>. Given the industry average multiple of 3.0, the estimated IPO price would be 1.16 × 3.0 = 3.48.</p>
+</section>
+<section id="the-initial-public-offering-8" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-8">23.2 The Initial Public Offering</h2>
+<p><strong>Spread</strong>: The fee a company pays to its underwriters that is a percentage of the issue price of a share of stock.</p>
+<ul>
+<li>For instance, consider the final offer price is 12.50 per share, and the company paid the underwriters a spread of $0.875 per share, exactly 7% of the issue price.</li>
+<li>The underwriters buy the stock for 11.625 per share and then resold it to their customers for $12.50 per share.</li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>When an underwriter provides a <strong>firm commitment</strong>, it is potentially exposing itself to the risk that the banking firm might have to sell the shares at less than the offer price and take a loss.
+<ul>
+<li>However, research shows that about 75% of IPOs experience an increase in share price on the first day (only 9% experience a decrease).</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-initial-public-offering-9" class="level2 smaller" data-background="#d9ead3">
+<h2 class="smaller anchored" data-background="#d9ead3" data-anchor-id="the-initial-public-offering-9">23.2 The Initial Public Offering</h2>
+<p><strong>Over-allotment allocation (greenshoe provision)</strong>: In an IPO, an option that allows the underwriter to issue more stock, usually amounting to some % of the original offer size, at the IPO offer price.</p>
+<p>. . .</p>
+<p><strong>Lockup</strong>: A restriction that prevents existing shareholders from selling their shares for some period, usually 180 days, after an IPO.</p>
+</section>
+</section>
+<section id="ipo-puzzles" class="level1 smaller" data-background="#FFD6A4">
+<h1 class="smaller" data-background="#FFD6A4">23.3 IPO Puzzles</h1>
+<section id="ipo-puzzles-1" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="ipo-puzzles-1">23.3 IPO Puzzles</h2>
+<ol type="1">
+<li><p>On average, IPOs appear to be <strong>underpriced</strong>: The price at the end of trading on the first day is often substantially higher than the IPO price.</p></li>
+<li><p>The number of issues is <strong>highly cyclical</strong>: When times are good, the market is flooded with new issues; when times are bad, the number of issues dries up.</p></li>
+<li><p>The <strong>costs of an IPO are very high</strong>, and it is unclear why firms willingly incur them (source: Berk &amp; DeMarzo).</p></li>
+<li><p>The <strong>long-run performance of a newly public company (three to five years from the date of issue) is poor</strong>. That is, on average, a three- to five-year buy and hold strategy appears to be a bad investment.</p></li>
+</ol>
+</section>
+<section id="ipo-puzzles-2" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="ipo-puzzles-2">23.3 IPO Puzzles</h2>
+<p><strong>Underpricing</strong></p>
+<ul>
+<li>Generally, underwriters set the issue price so that the average first-day return is positive.</li>
+<li>Research has found that about 75% of first-day returns are positive. The average first-day return in the United States is 17%.</li>
+<li>The underwriters benefit from the under pricing because it allows them to manage their risk.</li>
+<li>The pre-IPO shareholders bear the cost of underpricing.</li>
+<li>In effect, these owners are selling stock in their firm for less than they could get in the aftermarket.</li>
+</ul>
+</section>
+<section id="ipo-puzzles-3" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="ipo-puzzles-3">23.3 IPO Puzzles</h2>
+<p><strong>Underpricing</strong></p>
+<ul>
+<li>Although IPO returns are attractive, all investors cannot earn these returns.</li>
+<li>When an IPO goes well, the demand for the stock exceeds the supply.</li>
+<li>Thus the allocation of shares for each investor is rationed.</li>
+<li>When an IPO does not go well, demand at the issue price is weak, so all initial orders are filled completely.</li>
+<li>Thus, the typical investor will have their investment in “good” IPOs rationed while fully investing in “bad” IPOs.</li>
+</ul>
+<p><strong>Winner’s Curse</strong>: Refers to a situation in competitive bidding when the high bidder, by virtue of being the high bidder, has very likely overestimated the value of the item being bid on. You “win” (get all the shares you requested) when demand for the shares by others is low and the IPO is more likely to perform poorly.</p>
+</section>
+<section id="ipo-puzzles-4" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="ipo-puzzles-4">23.3 IPO Puzzles</h2>
+<p><strong>Cyclicality and Recent Trends</strong></p>
+<ul>
+<li>The number of issues is highly cyclical.</li>
+<li>When times are good, the market is flooded with new issues; when times are bad, the number of issues dries up.</li>
+<li>What is surprising is the magnitude of the swings.</li>
+<li>Another striking feature of the data in the following figure is that while the average dollar volume of IPOs since 2000 has been similar to that in the 1990s, the average number of IPOs per year has fallen significantly.</li>
+</ul>
+</section>
+<section id="section-3" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="section-3"></h2>
+<p><img src="figs/bm_23_5.jpg" class="img-fluid"></p>
+</section>
+<section id="ipo-puzzles-5" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="ipo-puzzles-5">23.3 IPO Puzzles</h2>
+<p><strong>Costs of an IPO</strong></p>
+<ul>
+<li>A typical spread is 7% of the issue price.</li>
+<li>By most standards, this fee is large, especially considering the additional cost to the firm associated with underpricing.</li>
+<li>It is puzzling that there seems to be a lack of sensitivity of fees to issue size.</li>
+<li>One possible explanation is that by charging lower fees, an underwriter may risk signaling that it is not the same quality as its higher priced competitors.</li>
+</ul>
+</section>
+<section id="section-4" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="section-4"></h2>
+<p><img src="figs/bm_23_6.jpg" class="img-fluid"></p>
+</section>
+<section id="ipo-puzzles-6" class="level2 smaller" data-background="#FFD6A4">
+<h2 class="smaller anchored" data-background="#FFD6A4" data-anchor-id="ipo-puzzles-6">23.3 IPO Puzzles</h2>
+<p><strong>Long-Run Underperformance</strong></p>
+<p>Although shares of IPOs generally perform very well immediately following the public offering, it has been shown that newly listed firms subsequently appear to perform relatively poorly over the following three to five years after their IPOs.</p>
+</section>
+</section>
+<section id="the-seasoned-equity-offering" class="level1 smaller" data-background="#f1f2c9">
+<h1 class="smaller" data-background="#f1f2c9">23.4 The Seasoned Equity Offering</h1>
+<section id="the-seasoned-equity-offering-1" class="level2 smaller" data-background="#f1f2c9">
+<h2 class="smaller anchored" data-background="#f1f2c9" data-anchor-id="the-seasoned-equity-offering-1">23.4 The Seasoned Equity Offering</h2>
+<p><strong>Seasoned Equity Offering (SEO)</strong></p>
+<ul>
+<li>When a public company offers new shares for sale</li>
+<li>Public firms use SEOs to raise additional equity.</li>
+<li>When a firm issues stock using an SEO, it follows many of the same steps as for an IPO.</li>
+<li>The main difference is that a market price for the stock already exists, so the price-setting process is not necessary.</li>
+</ul>
+<p>. . .</p>
+<p><strong>Primary Shares</strong>: New shares issued by a company in an equity offering.</p>
+<p><strong>Secondary Shares</strong>: Shares sold by existing shareholders in an equity offering.</p>
+</section>
+<section id="the-seasoned-equity-offering-2" class="level2 smaller" data-background="#f1f2c9">
+<h2 class="smaller anchored" data-background="#f1f2c9" data-anchor-id="the-seasoned-equity-offering-2">23.4 The Seasoned Equity Offering</h2>
+<p><strong>There are two types of seasoned equity offerings.</strong></p>
+<p><strong>Cash Offer</strong>: A type of SEO in which a firm offers the new shares to investors at large.</p>
+<p><strong>Rights Offer</strong>: A type of SEO in which a firm offers the new shares only to existing shareholders.</p>
+<ul>
+<li>Rights offers protect existing shareholders from underpricing.</li>
+</ul>
+</section>
+<section id="the-seasoned-equity-offering-3" class="level2 smaller" data-background="#f1f2c9">
+<h2 class="smaller anchored" data-background="#f1f2c9" data-anchor-id="the-seasoned-equity-offering-3">23.4 The Seasoned Equity Offering</h2>
+<p><strong>Rights offers protect existing shareholders from underpricing.</strong></p>
+<ul>
+<li>Suppose a firm holds 100 in cash and has 50 shares out. Each share is worth 2.</li>
+<li>It announces a cash offer for 50 shares at 1 per share. Once this offer is complete, the company will have 150 in cash and 100 shares outstanding. The price per share is now 1.50. <strong>The new shareholders therefore receive a 0.50 windfall at the expense of the old shareholders</strong>.</li>
+<li>If it announces a rights offer, shareholders have the right to purchase an additional share for 1. If all shareholders chose to exercise their rights, then after the sale, the value of the firm is 150 with 100 shares outstanding and a price of 1.50 per share. <strong>In this case, however, the 0.50 windfall accrues to existing shareholders, which exactly offsets the drop in the stock price.</strong></li>
+<li>By using a <strong>rights offering</strong> the firm can continue to issue equity without imposing a loss on its current shareholders.</li>
+</ul>
+</section>
+<section id="the-seasoned-equity-offering-4" class="level2 smaller" data-background="#f1f2c9">
+<h2 class="smaller anchored" data-background="#f1f2c9" data-anchor-id="the-seasoned-equity-offering-4">23.4 The Seasoned Equity Offering</h2>
+<p><strong>Price Reaction</strong></p>
+<ul>
+<li>Researchers have found that, on average, the market greets the news of an SEO with a price decline. This is consistent with the adverse selection discussed in Chapter 16.</li>
+</ul>
+<p><strong>Issuance Costs</strong></p>
+<ul>
+<li>Although not as costly as IPOs, seasoned offerings are still expensive. Underwriting fees amount to 5% of the proceeds of the issue. Rights offers have lower costs than cash offers.</li>
+</ul>
+</section>
+</section>
+<section id="problems" class="level1 smaller" data-background="#522f31">
+<h1 class="smaller" data-background="#522f31">Problems</h1>
+<section id="section-5" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="section-5"></h2>
+<iframe height="80%" width="100%" src="https://henriquemartins.net/teaching/financial_strategy/exams/p1tf.html#part-1-ch24">
+</iframe>
+</section>
+<section id="section-6" class="level2 smaller" data-background="#522f31">
+<h2 class="smaller anchored" data-background="#522f31" data-anchor-id="section-6"></h2>
+<p><strong>Question 2</strong></p>
+<iframe height="50%" width="100%" src="https://hcm.quarto.pub/p1q2/">
+</iframe>
+</section>
+<section id="section-7" class="level2 smaller" data-background="#522f31">
+<h2 class="smaller anchored" data-background="#522f31" data-anchor-id="section-7"></h2>
+<p><strong>Question 3</strong></p>
+<iframe height="60%" width="100%" src="https://hcm.quarto.pub/p1q3/">
+</iframe>
+</section>
+<section id="section-8" class="level2 smaller" data-background="#522f31">
+<h2 class="smaller anchored" data-background="#522f31" data-anchor-id="section-8"></h2>
+<p><strong>Question 4</strong></p>
+<iframe height="500%" width="100%" src="https://hcm.quarto.pub/p1q4/">
+</iframe>
+</section>
+<section id="section-9" class="level2 smaller" data-background="#522f31">
+<h2 class="smaller anchored" data-background="#522f31" data-anchor-id="section-9"></h2>
+<p><strong>Question 5</strong></p>
+<iframe height="200%" width="100%" src="https://hcm.quarto.pub/p1q5/">
+</iframe>
+</section>
+</section>
+<section id="final" class="level1 smaller" data-visibility="hidden">
+<h1 class="smaller" data-visibility="hidden">Final</h1>
+<section id="how-did-you-like-this-lecture" class="level2" data-background="#a2bef5" data-visibility="hidden">
+<h2 data-background="#a2bef5" data-visibility="hidden" class="anchored" data-anchor-id="how-did-you-like-this-lecture">How did you like this lecture?</h2>
+<p><strong>Your response:</strong></p>
+<div data-lyket-type="rate" data-lyket-id="part-1" data-lyket-namespace="EFPART1" data-lyket-show-rating="user" data-lyket-template="custom">
+
+</div>
+<strong>Average response:</strong>
+<div data-lyket-type="rate" data-lyket-id="part-1" data-lyket-namespace="EFPART1" data-lyket-show-rating="average" data-lyket-template="custom">
+
+</div>
+</section>
+<section id="practice" class="level2 smaller" data-background="#a2bef5">
+<h2 class="smaller anchored" data-background="#a2bef5" data-anchor-id="practice">Practice</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember to solve the <a href="https://henriquemartins.net/teaching/financial_strategy/exams/p1tf.html" data-preview-link="true">problems</a>. If you have any questions, ask next slide</p>
+</div>
+</div>
+</section>
+<section id="comments" class="level2 smaller" data-background="#a2bef5">
+<h2 class="smaller anchored" data-background="#a2bef5" data-anchor-id="comments">Comments?</h2>
+<script src="https://giscus.app/client.js" data-repo="henriquecastror/EF202401" data-repo-id="R_kgDOLJQ8yQ" data-mapping="number" data-term="7" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<div class="footer">
+
+</div>
+</section>
+<section id="thank-you" class="level2" data-background="#b1cafa">
+<h2 data-background="#b1cafa" class="anchored" data-anchor-id="thank-you"><strong>THANK YOU!</strong></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>QUESTIONS?</strong></p>
+<p><img src="figs/qa2.png" class="img-fluid" style="width:150.0%" data-heigth="150%"></p>
+</div><div class="column" style="width:40%;">
+<p><strong>Henrique C. Martins</strong></p>
+<ul>
+<li><a href="https://eaesp.fgv.br/en/people/henrique-castro-martins">FGV/EAESP</a></li>
+<li><a href="https://henriquemartins.net/">Personal Website</a></li>
+<li><a href="https://www.linkedin.com/in/henriquecastror/">LinkedIn</a></li>
+<li><a href="http://lattes.cnpq.br/6076997472159785">Lattes</a></li>
+<li><a href="https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&amp;hl=pt-BR&amp;oi=ao">Scholar</a><br>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer">
+
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Made using <a href="https://quarto.org/">Quarto</a>. Please, cite the website if you use the content.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">
+  Reveal.on('ready', event => {
+    if (event.indexh === 0) {
+      document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+    }
+  });
+  Reveal.addEventListener('slidechanged', (event) => {
+    if (event.indexh === 0) {
+      Reveal.configure({ slideNumber: null });
+      document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+    }
+    if (event.indexh === 1) {
+      Reveal.configure({ slideNumber: 'c' });
+      document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+    }
+  });
+</script>
+
+
+
+
+</body></html>
