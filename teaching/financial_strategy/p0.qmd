@@ -17,7 +17,7 @@ format:
     preview-links: auto
     logo: figs/background8.png
     css: logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_0.html#/comments)]**  '
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]  [[Interact](https://henriquemartins.net/teaching/financial_strategy/p0.html#/interact)][Do not use without permission]**  '
     multiplex: true
     scrollable: true
 title-slide-attributes:
@@ -49,26 +49,12 @@ include-after: |
 # Introduction  {.smaller visibility="hidden"}
 
 
-## Setting expectations {.smaller}
-
-- This is a two-weeks summer course, things will go **very fast**
-
-- For many of you, this is not the first time in this course. 
-
-  - So, you already know your areas of improvement. **Take advantage of that and focus on the areas you can improve more**.
-
-- You need hours to revise the material. 
-
-  - Not easy, if you are doing other activities. 
 
 
 
 
 
-## Introduction
-
-<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_ca9c2dc33cb8ed14993600aeb1a3c1"></script>
-
+## Introduction {.smaller}
 
 <center>
 ![](figs/changemymind.jpg)
@@ -77,7 +63,7 @@ include-after: |
 
 
 
-## Introduction
+## Introduction {.smaller}
 
 - **Today:**
 
@@ -149,7 +135,8 @@ At the end of the semester, the student should be able to master the:
 
 
 
-## {.smaller}
+## Setting expectations {.smaller}
+
 
 **<span style="color:red;">Your mission (should you choose to accept it...)</span>**
 
@@ -167,32 +154,7 @@ At the end of the semester, the student should be able to master the:
       - Research shows that taking notes boosts academic performance.
       - It is better to take a note and throw it away than to take a note on your computer.
       
-. . .
 
-
-
-::: {.columns}
-
-::: {.column width="33%"}
-<center>
-**I accept it:**  <div data-lyket-type="like" data-lyket-id="like1"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"></div>
-</center>
-:::
-
-::: {.column width="33%" }
-<center>
-**I love it:**  <div data-lyket-type="like" data-lyket-id="like2"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"   data-lyket-template="twitter"></div>
-</center>
-:::
-
-::: {.column width="33%" }
-<center>
-**I am enthusiastic:**  <div data-lyket-type="clap" data-lyket-id="like3"  data-lyket-show-counter-from="1" data-lyket-namespace="EFPART0"   ></div>
-</center>
-:::
-
-
-:::
 
 
 
@@ -207,9 +169,9 @@ At the end of the semester, the student should be able to master the:
 
 ## Resources {.smaller}
 
-
+<center>
 ![](figs/share_slides.png)
-
+</center>
 
 Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide course PowerPoint slides? The impact of instructor-provided slides upon student attendance and performance. Computers & Education, 85, 14-22.
 
@@ -223,8 +185,9 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, Boston, MA: Pearson, 2019. [https://amzn.to/3jl9YPl](https://amzn.to/3jl9YPl) 
 
+<center>
 ![](figs/berkdemarzo.jpg)
-
+</center>
 
 
 
@@ -233,20 +196,19 @@ BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, 
 
 ## Performance assessment {.smaller}
 
-1 Midterm Exam: **30%** 
+1 Midterm Exam: **40%** 
 
 . . .
 
-
-2 Final Exam: **30%** 
+2 Final Exam: **40%** 
 
 . . .
 
-3 Class Participation and problems resolution: **40%**
+3 Participation: **20%**
 
-  - Participation: **10%** 
-  - List of problems (two): **15%**  
-  - "Monitored activity" (three): **15%** 
+  - Participating in class
+  - Interacting on slides
+  - "Monitored activity" (three) 
     
 
 
@@ -527,40 +489,37 @@ BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, 
 
 
 
-## How did you like this lecture? {background="#a2bef5"}
 
-<!-- LikeBtn.com BEGIN -->
-<span class="likebtn-wrapper" data-theme="custom" data-white_label="true" data-identifier="item_1"></span>
-<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
-<!-- LikeBtn.com END -->
+# Now it is your turn... {.smaller background="#191f36"}
 
-
-<div class="like-dislike-container">
-  <button id="like-button">
-    <span class="like-text">Like</span>
-    <span class="like-count">0</span>
-  </button>
-  <button id="dislike-button">
-    <span class="dislike-text">Dislike</span>
-    <span class="dislike-count">0</span>
-  </button>
-</div>
+::: footer
+:::
 
 
 
-<button id="like-btn" onclick="toggleLike()">Like</button>
-<span id="like-count"></span>
+## Practice {.smaller background="#465280"}
+
+This is an introductory part. You can start preparing yourself by checking the following lists of problems.
 
 
+::: {.callout}
 
+**This is for Part 1 (ch24):**
 
+- [Questions T/F](https://henriquemartins.net/teaching/financial_strategy/p1tf.html){preview-link="true"} 
+- [Questions Numeric](https://henriquemartins.net/teaching/financial_strategy/p1num.html){preview-link="true"} 
+
+If you have any questions, ask next slide  
+:::
+
+::: footer
+:::
 
 
 
 
 
-
-## Comments?   {background="#a2bef5"}
+## Interact {.smaller background="#8091d1"}
 
 <script src="https://giscus.app/client.js"
         data-repo="henriquecastror/EF202401"
