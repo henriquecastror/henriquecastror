@@ -40,9 +40,9 @@ cat("22", fitb("T", num = FALSE, ignore_case = TRUE), "Systematic risk cannot be
 cat("23", fitb("F", num = FALSE, ignore_case = TRUE), "Systematic risk is specific to individual assets and can be diversified away by holding a diversified portfolio.", "\n\n")
 
 cat("24", fitb("T", num = FALSE, ignore_case = TRUE), "The following risk is an example of firm-specific risk: The risk that the founder and CEO retires", "\n\n")
-cat("25", fitb("F", num = FALSE, ignore_case = TRUE), "The risk that oil prices rise, increasing production costs", "\n\n")
-cat("26", fitb("T", num = FALSE, ignore_case = TRUE), "The risk that a product design is faulty and the product must be recalled", "\n\n")
-cat("27", fitb("F", num = FALSE, ignore_case = TRUE), "The risk that the economy slows, reducing demand for the firm’s products.", "\n\n")
+cat("25", fitb("F", num = FALSE, ignore_case = TRUE), "The following risk is an example of firm-specific risk: The risk that oil prices rise, increasing production costs", "\n\n")
+cat("26", fitb("T", num = FALSE, ignore_case = TRUE), "The following risk is an example of firm-specific risk: The risk that a product design is faulty and the product must be recalled", "\n\n")
+cat("27", fitb("F", num = FALSE, ignore_case = TRUE), "The following risk is an example of firm-specific risk: The risk that the economy slows, reducing demand for the firm’s products.", "\n\n")
 
 ```
 

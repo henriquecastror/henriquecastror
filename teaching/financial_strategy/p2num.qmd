@@ -36,12 +36,6 @@ How much of the return came from dividend yield and how much came from capital g
 
 ___
 
-::: {.callout-important}
-**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
-:::
-
-___
-
 **Answer**:
 
 1) `r  round( (p2-p1+div)/p1 * 100 ,3) `
@@ -76,12 +70,6 @@ beta <- rnorm(1, mean = 0.9, sd = 0.2)
 
 ___
 
-::: {.callout-important}
-**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
-:::
-
-___
-
 **Answer**:
 
 1) `r round(rf + beta * mrp ,3) `
@@ -96,7 +84,7 @@ ___
         data-category="General"
         data-category-id="DIC_kwDOLMIejs4Cc1yS"
         data-mapping="number"
-        data-term="2"
+        data-term="4"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
