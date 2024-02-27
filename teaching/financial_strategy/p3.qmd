@@ -17,7 +17,7 @@ format:
     preview-links: auto
     logo: figs/background8.png
     css: logo.css
-    footer: ' **[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [[Comments](https://henriquemartins.net/teaching/financial_strategy/part_3.html#/comments)]** '
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Practice [T/F](https://henriquemartins.net/teaching/financial_strategy/p3tf.html) & [Numeric](https://henriquemartins.net/teaching/financial_strategy/p3num.html)] [[Interact](https://henriquemartins.net/teaching/financial_strategy/p3.html#/interact)][Do not use without permission]**  '
     multiplex: true
     scrollable: true
 title-slide-attributes:
@@ -3158,140 +3158,40 @@ ggplotly(p)
 
 
 
-##  Recap {.smaller visibility="hidden"}
 
-**After this chapter, you should know:**
 
-- Compute the variance of an equally weighted portfolio 
+# Now it is your turn... {.smaller background="#191f36"}
 
-- Describe the contribution of each security to the portfolio.
+::: footer
+:::
 
-- Explain how an individual investor will choose from the set of efficient portfolios. Explain what is an efficient portfolio.
 
-- Describe what is meanHenrique C. Martins' Zoom Meetingt by a short sale, and illustrate how short selling extends the set of possible portfolios.
 
-- Explain the effect of combining a risk-free asset with a portfolio of risky assets, and compute the expected return and volatility for that combination.
+## Practice {.smaller background="#465280"}
 
-- Define the Sharpe ratio, and explain how it helps identify the portfolio with the highest possible expected return for any level of volatility, and how this information can be used to identify the tangency (efficient) portfolio.
 
-- Calculate the beta of an investment with a portfolio.
+::: {.callout}
+Remember to solve:
 
+- [Questions T/F](https://henriquemartins.net/teaching/financial_strategy/p3tf.html){preview-link="true"} 
+- [Questions Numeric](https://henriquemartins.net/teaching/financial_strategy/p3num.html){preview-link="true"} 
 
+:::
 
-##  Recap {.smaller visibility="hidden"}
+::: footer
+:::
 
-**After this chapter, you should know:**
 
-- Use the beta of a security, expected return on a portfolio, and the risk-free rate to decide whether buying shares of that security will improve the performance of the portfolio.
 
-- Use the risk-free rate, the expected return on the efficient (tangent) portfolio, and the beta of a security with the efficient portfolio to calculate the risk premium for an investment.
 
-- Explain why the CAPM implies that the market portfolio of all risky securities is the efficient portfolio.
 
-- Compare and contrast the capital market line with the security market line.
-
-- Define beta for an individual stock and for a portfolio.
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Problems {.smaller background="#522f31"}
-
-##  {.smaller background="#522f31"}
-
-**Question 1**
-
-<iframe height="80%" width="100%" src="https://hcm.quarto.pub/p3q1/"> </iframe>
-
-
-
-
-##  {.smaller background="#522f31"}
-
-**Question 2**
-
-<iframe height="80%" width="100%" src="https://hcm.quarto.pub/p3q2/"> </iframe>
-
-
-
-
-
-
-##  {.smaller background="#522f31"}
-
-**Question 3**
-
-<iframe height="80%" width="100%" src="https://hcm.quarto.pub/p3q3/"> </iframe>
-
-
-
-
-##  {.smaller background="#522f31"}
-
-**Question 4**
-
-<iframe height="80%" width="100%" src="https://hcm.quarto.pub/p3q4/"> </iframe>
-
-
-
-
-
-
-
-
-
-
-# Comments? {background="#a2bef5" visibility="hidden"}
-
-
-
-
-
-## How did you like this lecture? {background="#a2bef5" visibility="hidden"}
-
-<center>
-
-**Your response:**
-
-<div 
-data-lyket-type="rate" 
-data-lyket-id="part-3" 
-data-lyket-namespace="EFPART3" 
-data-lyket-show-rating="user" 
-data-lyket-template="custom" 
-></div>
-
-
-**Average response:**
-<div 
-data-lyket-type="rate" 
-data-lyket-id="part-3" 
-data-lyket-namespace="EFPART3" 
-data-lyket-show-rating="average" 
-data-lyket-template="custom" 
-></div>
-
-</center>
-
-
-
-
-## Comments? {background="#a2bef5"}
+## Interact {.smaller background="#8091d1"}
 
 <script src="https://giscus.app/client.js"
         data-repo="henriquecastror/EF202401"
         data-repo-id="R_kgDOLJQ8yQ"
         data-mapping="number"
-        data-term="9"
+        data-term="8"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
@@ -3304,7 +3204,6 @@ data-lyket-template="custom"
 
 ::: footer
 :::
-
 
 
 
@@ -3335,7 +3234,3 @@ data-lyket-template="custom"
 
 ::: footer
 :::
-
-
-
-
