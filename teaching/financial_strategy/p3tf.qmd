@@ -1,0 +1,62 @@
+---
+title: "Exams"
+---
+
+## Part 2 (ch10)
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat("1", fitb("F", num = FALSE, ignore_case = TRUE), "Buying shares of security *i* improves the Sharpe ratio of a portfolio if its expected return does not exceed the required return.", "\n\n")
+cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "The expected variance of a portfolio is the weighted average of the expected variances of the investments within it, using the portfolio weights.", "\n\n")
+cat("3", fitb("T", num = FALSE, ignore_case = TRUE), "Diversification eliminates independent risks. The volatility of a large portfolio results from the common risk between the stocks in the portfolio." , "\n\n")
+cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "Short selling extends the set of possible portfolios.", "\n\n")
+cat("5", fitb("F", num = FALSE, ignore_case = TRUE), "Investors mainly worry about those risks that can be eliminated through diversification.", "\n\n")
+cat("6", fitb("T", num = FALSE, ignore_case = TRUE), "Efficient portfolios offer investors the highest possible expected return for a given level of risk.", "\n\n")
+cat("7", fitb("T", num = FALSE, ignore_case = TRUE), "To find the risk of a portfolio, we need to know the degree to which stock returns move together. Covariance and correlation measure the co-movement of returns.", "\n\n")
+cat("8", fitb("T", num = FALSE, ignore_case = TRUE), "The goal of an investor who is seeking to earn the highest possible expected return for any level  of volatility is to find the portfolio that generates the steepest possible line when combined with the risk-free investment.", "\n\n")
+cat("9", fitb("T", num = FALSE, ignore_case = TRUE), "Under the CAPM assumptions, the capital market line (CML), which is the set of portfolios obtained by combining the risk-free security and the market portfolio, is the set of portfolios with the highest possible expected return for any level of volatility.", "\n\n")
+cat("10", fitb("T", num = FALSE, ignore_case = TRUE), "The variance of a portfolio depends on the covariance of the stocks within it.",  "\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "Portfolios that offer the highest expected return for a given variance (or standard deviation) are known as efficient portfolios.",  "\n\n")
+cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "Investors mainly worry about those risks that can be eliminated through diversification.", "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "The market portfolio is a tangency portfolio according to the CAPM.", "\n\n")
+
+cat("14", fitb("T", num = FALSE, ignore_case = TRUE), "Beta measures the sensitivity of a stock's returns to the overall market movements.", "\n\n")
+cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The efficient frontier represents the set of portfolios that offer the highest expected return for a given level of risk.", "\n\n")
+cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "The Sharpe ratio is a measure of risk-adjusted return, calculated by dividing the excess return of an investment by its standard deviation.", "\n\n")
+cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "The Security Market Line (SML) illustrates the relationship between expected return and systematic risk for individual securities, according to the Capital Asset Pricing Model (CAPM).", "\n\n")
+cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "A well-diversified portfolio always consists of assets with low or negative correlations to each other to reduce overall portfolio risk.", "\n\n")
+cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "The Markowitz Efficient Set refers to the collection of portfolios that offer the maximum expected return for any given level of portfolio risk, based on Harry Markowitz's Modern Portfolio Theory.", "\n\n")
+cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "An asset's standard deviation represents its systematic risk in the context of the Capital Asset Pricing Model (CAPM).", "\n\n")
+
+```
+
+:::
+
+
+___
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="3"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
