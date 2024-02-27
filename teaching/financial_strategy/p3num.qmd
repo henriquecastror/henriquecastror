@@ -31,18 +31,18 @@ correl <- rnorm(1, mean = 0.5, sd = 0.2)
 
 **Q:** What is the **expected return** of a portfolio that invests `r round(w1,3)` percent in Asset 1 (expected return = `r round(r1,3)`)  and the remaining `r round(w2,3)` in Asset 2 (expected return = `r round(r2,3)`)? 
 
-`r fitb( round( (w1 * r1 + w2 * r2) ,3) , tol=0.01)`
+`r fitb( round( (w1 * r1 + w2 * r2) * 100 ,3) , tol=0.01)`
 
 
 **Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **variance** of the portfolio above?
 
-`r fitb( round( w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2  ,3) , tol=0.01)`
+`r fitb( round( (w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2)* 100  ,3) , tol=0.01)`
 
 
 
 **Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **standard deviation** of the portfolio above?
 
-`r fitb( round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) ,3) , tol=0.01)`
+`r fitb( round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) * 100,3) , tol=0.01)`
 
 
 ___
@@ -50,11 +50,11 @@ ___
 
 **Answer**
 
-1) `r round( (w1 * r1 + w2 * r2) ,3) `
+1) `r round( (w1 * r1 + w2 * r2) * 100 ,3) `
 
-2) `r round( w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2  ,3) `
+2) `r round( (w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2) * 100  ,3) `
 
-3) `r round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) ,3) `
+3) `r round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 )* 100 ,3) `
 
 
 
