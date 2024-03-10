@@ -1,0 +1,61 @@
+---
+title: "Exams"
+---
+
+## Part 3 (ch11)
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat("1", fitb("F", num = FALSE, ignore_case = TRUE), "A value-weighted portfolio is an equal-ownership portfolio.", "\n\n")
+cat("2", fitb("T", num = FALSE, ignore_case = TRUE), "We can estimate a project’s cost of capital based on the asset or unlevered cost of capital of comparable firms in the same line of business.", "\n\n")
+cat("3", fitb("T", num = FALSE, ignore_case = TRUE), "Because of default risk, the debt cost of capital, which is its expected return to investors, is less than its yield to maturity, which is its promised return.", "\n\n")
+cat("4", fitb("F", num = FALSE, ignore_case = TRUE), "Because cash holdings will reduce a firm’s equity beta, when unlevering betas we can use the firm’s net debt, which is debt plus excess cash.", "\n\n")
+cat("5", fitb("T", num = FALSE, ignore_case = TRUE), "The market portfolio is a value-weighted portfolio of all securities traded in the market. According to the CAPM, the market portfolio is efficient.", "\n\n")
+cat("6", fitb("F", num = FALSE, ignore_case = TRUE), "If we regress a stock’s excess returns against the market’s excess returns, the intercept is the stock’s beta.", "\n\n")
+cat("7", fitb("T", num = FALSE, ignore_case = TRUE), "To implement the CAPM, we must (a) construct the market portfolio, and determine its expected excess return over the risk-free interest rate, and (b) estimate the stock’s beta, or sensitivity to the market portfolio.", "\n\n")
+cat("8", fitb("F", num = FALSE, ignore_case = TRUE), "Beta corresponds to the slope of the best fitting line in the plot of a security’s excess returns versus the market’s standard deviation.", "\n\n")
+cat("9", fitb("T", num = FALSE, ignore_case = TRUE), "Firm or industry asset betas reflect the market risk of the average project in that firm or industry while individual projects may be more or less sensitive to the overall market.", "\n\n")
+cat("10", fitb("T", num = FALSE, ignore_case = TRUE), "The weighted average cost of capital (WACC) is the discount rate used in capital budgeting to calculate the present value of cash flows arising from a project.", "\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "An increase in a project’s systematic risk will lead to an increase in its required rate of return according to the CAPM.", "\n\n")
+cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "A firm's beta is independent of its capital structure.", "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "The Modigliani-Miller theorem states that in the absence of taxes, bankruptcy costs, and asymmetric information, the value of a firm is unaffected by its capital structure.", "\n\n")
+cat("14", fitb("T", num = FALSE, ignore_case = TRUE), "The Modigliani-Miller theorem implies that the cost of equity is unaffected by changes in leverage when there are no taxes.", "\n\n")
+cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of debt is the effective rate that a company pays on its borrowed funds, including interest and other fees.", "\n\n")
+cat("16", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of debt is always higher than the cost of equity for a company.", "\n\n")
+cat("17", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of debt can be calculated using the yield to maturity (YTM) on the company's existing debt.", "\n\n")
+cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of debt is the same for all companies within the same industry regardless of their financial health or creditworthiness.", "\n\n")
+cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of equity is the return required by equity investors for their investment in a company.", "\n\n")
+cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of equity is solely determined by the company's dividend yield and growth rate.", "\n\n")
+
+```
+
+:::
+
+
+___
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="7"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
