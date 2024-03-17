@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-seminars .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-seminars'] = new List('listing-seminars', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -139,12 +139,13 @@ window.Quarto = {
 };
 </script>
 
-<link rel="alternate" type="application/rss+xml" title="Henrique Castro Martins" href="index.xml" data-external="1"><meta name="twitter:title" content="Henrique Castro Martins - Seminars">
+<link rel="stylesheet" href="../include/webex.css">
+<meta name="twitter:title" content="Henrique Castro Martins - Seminars">
 <meta name="twitter:description" content="Recent &amp; Upcoming Seminars">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -206,10 +207,11 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
+  
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Brazil">Brazil <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Corporate Finance">Corporate Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ESG">ESG <span class="quarto-category-count">(1)</span></div><div class="category" data-category="English">English <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Investors Relations">Investors Relations <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Português">Português <span class="quarto-category-count">(5)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(14)</span></div><div class="category" data-category="Brazil">Brazil <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Corporate Finance">Corporate Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ESG">ESG <span class="quarto-category-count">(1)</span></div><div class="category" data-category="English">English <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Investors Relations">Investors Relations <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Português">Português <span class="quarto-category-count">(5)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -233,15 +235,11 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div id="listing-seminars" class="quarto-listing quarto-listing-container-table">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+     <select id="listing-seminars-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-seminars'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
          <option value="listing-date-sort" data-direction="asc">
@@ -278,144 +276,155 @@ window.Quarto = {
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="English,Corporate Finance" data-listing-date-sort="1682564400000" data-listing-file-modified-sort="1706634720081" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4" data-listing-title-sort="The Working Capital Credit Multiplier - Heitor Almeida" data-listing-filename-sort="index.qmd">
+<tr data-index="0" data-listing-date-sort="1710817200000" data-listing-file-modified-sort="1710686150844" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21" data-listing-title-sort="Case studies" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Mar 19, 2024</span>
+</td>
+<td>
+<a href="../seminars/hbs/index.html" class="title listing-title">Case studies</a>
+</td>
+<td>
+<span class="listing-author">Henrique C. Martins</span>
+</td>
+</tr>
+<tr data-index="1" data-categories="English,Corporate Finance" data-listing-date-sort="1682564400000" data-listing-file-modified-sort="1706634720081" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4" data-listing-title-sort="The Working Capital Credit Multiplier - Heitor Almeida" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Apr 27, 2023</span>
 </td>
 <td>
-<a href="../seminars/seminars/rsfeb/index.html" class="title listing-title">The Working Capital Credit Multiplier - Heitor Almeida</a>
+<a href="../seminars/rsfeb/index.html" class="title listing-title">The Working Capital Credit Multiplier - Heitor Almeida</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1670036400000" data-listing-file-modified-sort="1706634690502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="603" data-listing-title-sort="Ethics &amp; Open Data (ANPCONT)" data-listing-filename-sort="index.qmd">
+<tr data-index="2" data-listing-date-sort="1670036400000" data-listing-file-modified-sort="1710685640827" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="604" data-listing-title-sort="Ethics &amp; Open Data (ANPCONT)" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Dec 3, 2022</span>
 </td>
 <td>
-<a href="../seminars/seminars/ethics_anpcont/index.html" class="title listing-title">Ethics &amp; Open Data (ANPCONT)</a>
+<a href="../seminars/ethics_anpcont/index.html" class="title listing-title">Ethics &amp; Open Data (ANPCONT)</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1659927600000" data-listing-file-modified-sort="1706634844771" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609" data-listing-title-sort="Talk about Research Productivity (Unisinos)" data-listing-filename-sort="index.qmd">
+<tr data-index="3" data-listing-date-sort="1659927600000" data-listing-file-modified-sort="1706634844771" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609" data-listing-title-sort="Talk about Research Productivity (Unisinos)" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Aug 8, 2022</span>
 </td>
 <td>
-<a href="../seminars/seminars/ethics_unisinos/index.html" class="title listing-title">Talk about Research Productivity (Unisinos)</a>
+<a href="../seminars/ethics_unisinos/index.html" class="title listing-title">Talk about Research Productivity (Unisinos)</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1629255600000" data-listing-file-modified-sort="1706634948066" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="878" data-listing-title-sort="Talk Research Internationalization (UFSM)" data-listing-filename-sort="index.qmd">
+<tr data-index="4" data-listing-date-sort="1629255600000" data-listing-file-modified-sort="1706634948066" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="878" data-listing-title-sort="Talk Research Internationalization (UFSM)" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Aug 18, 2021</span>
 </td>
 <td>
-<a href="../seminars/seminars/research_intnl_ufsm/index.html" class="title listing-title">Talk Research Internationalization (UFSM)</a>
+<a href="../seminars/research_intnl_ufsm/index.html" class="title listing-title">Talk Research Internationalization (UFSM)</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="4" data-categories="Português,Brazil,R" data-listing-date-sort="1618542000000" data-listing-file-modified-sort="1706634931642" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32" data-listing-title-sort="Talk With Marcelo Perlin" data-listing-filename-sort="index.qmd">
+<tr data-index="5" data-categories="Português,Brazil,R" data-listing-date-sort="1618542000000" data-listing-file-modified-sort="1706634931642" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32" data-listing-title-sort="Talk With Marcelo Perlin" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Apr 16, 2021</span>
 </td>
 <td>
-<a href="../seminars/seminars/marcelo_perlin/index.html" class="title listing-title">Talk With Marcelo Perlin</a>
+<a href="../seminars/marcelo_perlin/index.html" class="title listing-title">Talk With Marcelo Perlin</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="5" data-listing-date-sort="1617591600000" data-listing-file-modified-sort="1706634877903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="699" data-listing-title-sort="Competition and ESG practices in emerging markets" data-listing-filename-sort="index.qmd">
+<tr data-index="6" data-listing-date-sort="1617591600000" data-listing-file-modified-sort="1706634877903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="699" data-listing-title-sort="Competition and ESG practices in emerging markets" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Apr 5, 2021</span>
 </td>
 <td>
-<a href="../seminars/seminars/frl_esg/index.html" class="title listing-title">Competition and ESG practices in emerging markets</a>
+<a href="../seminars/frl_esg/index.html" class="title listing-title">Competition and ESG practices in emerging markets</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="6" data-categories="Português,Brazil,Investors Relations" data-listing-date-sort="1612839600000" data-listing-file-modified-sort="1706634961161" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="41" data-listing-title-sort="Webinar about Investors Relations" data-listing-filename-sort="index.qmd">
+<tr data-index="7" data-categories="Português,Brazil,Investors Relations" data-listing-date-sort="1612839600000" data-listing-file-modified-sort="1706634961161" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="41" data-listing-title-sort="Webinar about Investors Relations" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Feb 9, 2021</span>
 </td>
 <td>
-<a href="../seminars/seminars/webinar_ri/index.html" class="title listing-title">Webinar about Investors Relations</a>
+<a href="../seminars/webinar_ri/index.html" class="title listing-title">Webinar about Investors Relations</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="7" data-listing-date-sort="1605754800000" data-listing-file-modified-sort="1706634758685" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="674" data-listing-title-sort="9th Fórum EcoInovar: A experiência de Open Science na RAC" data-listing-filename-sort="index.qmd">
+<tr data-index="8" data-listing-date-sort="1605754800000" data-listing-file-modified-sort="1706634758685" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="674" data-listing-title-sort="9th Fórum EcoInovar: A experiência de Open Science na RAC" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Nov 19, 2020</span>
 </td>
 <td>
-<a href="../seminars/seminars/ecoinovar_open_science_rac/index.html" class="title listing-title">9th Fórum EcoInovar: A experiência de Open Science na RAC</a>
+<a href="../seminars/ecoinovar_open_science_rac/index.html" class="title listing-title">9th Fórum EcoInovar: A experiência de Open Science na RAC</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="8" data-listing-date-sort="1605495600000" data-listing-file-modified-sort="1706634898694" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="482" data-listing-title-sort="My notes about the 2020 ICGS Editors' tips" data-listing-filename-sort="index.qmd">
+<tr data-index="9" data-listing-date-sort="1605495600000" data-listing-file-modified-sort="1706634898694" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="482" data-listing-title-sort="My notes about the 2020 ICGS Editors' tips" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Nov 16, 2020</span>
 </td>
 <td>
-<a href="../seminars/seminars/icgs_tips/index.html" class="title listing-title">My notes about the 2020 ICGS Editors’ tips</a>
+<a href="../seminars/icgs_tips/index.html" class="title listing-title">My notes about the 2020 ICGS Editors’ tips</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="9" data-listing-date-sort="1603767600000" data-listing-file-modified-sort="1706634790104" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1108" data-listing-title-sort="Issues in Empirical Finance Research" data-listing-filename-sort="index.qmd">
+<tr data-index="10" data-listing-date-sort="1603767600000" data-listing-file-modified-sort="1706634790104" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1108" data-listing-title-sort="Issues in Empirical Finance Research" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Oct 27, 2020</span>
 </td>
 <td>
-<a href="../seminars/seminars/empirical_issues/index.html" class="title listing-title">Issues in Empirical Finance Research</a>
+<a href="../seminars/empirical_issues/index.html" class="title listing-title">Issues in Empirical Finance Research</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="10" data-categories="Português,Brazil,ESG" data-listing-date-sort="1601694000000" data-listing-file-modified-sort="1706636776548" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="ESG with Conrad Albrecht (MSCI)" data-listing-filename-sort="index.qmd">
+<tr data-index="11" data-categories="Português,Brazil,ESG" data-listing-date-sort="1601694000000" data-listing-file-modified-sort="1706636776548" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="ESG with Conrad Albrecht (MSCI)" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Oct 3, 2020</span>
 </td>
 <td>
-<a href="../seminars/seminars/esg_Conrad_Albrecht/index.html" class="title listing-title">ESG with Conrad Albrecht (MSCI)</a>
+<a href="../seminars/esg_Conrad_Albrecht/index.html" class="title listing-title">ESG with Conrad Albrecht (MSCI)</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="11" data-categories="Português,Brazil" data-listing-date-sort="1596510000000" data-listing-file-modified-sort="1706634940111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="45" data-listing-title-sort="Open Science Seminar" data-listing-filename-sort="index.qmd">
+<tr data-index="12" data-categories="Português,Brazil" data-listing-date-sort="1596510000000" data-listing-file-modified-sort="1706634940111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="45" data-listing-title-sort="Open Science Seminar" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Aug 4, 2020</span>
 </td>
 <td>
-<a href="../seminars/seminars/open_science/index.html" class="title listing-title">Open Science Seminar</a>
+<a href="../seminars/open_science/index.html" class="title listing-title">Open Science Seminar</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
 </td>
 </tr>
-<tr data-index="12" data-categories="Português,Corporate Finance,Brazil" data-listing-date-sort="1585278000000" data-listing-file-modified-sort="1706634733172" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="31" data-listing-title-sort="Café com ADM" data-listing-filename-sort="index.qmd">
+<tr data-index="13" data-categories="Português,Corporate Finance,Brazil" data-listing-date-sort="1585278000000" data-listing-file-modified-sort="1706634733172" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="31" data-listing-title-sort="Café com ADM" data-listing-filename-sort="index.qmd">
 <td>
 <span class="listing-date">Mar 27, 2020</span>
 </td>
 <td>
-<a href="../seminars/seminars/cafe_com_adm/index.html" class="title listing-title">Café com ADM</a>
+<a href="../seminars/cafe_com_adm/index.html" class="title listing-title">Café com ADM</a>
 </td>
 <td>
 <span class="listing-author">Henrique C. Martins</span>
@@ -426,7 +435,218 @@ window.Quarto = {
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+
+
+
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

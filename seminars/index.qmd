@@ -2,18 +2,18 @@
 title: Seminars
 subtitle: Recent & Upcoming Seminars
 listing:
-  sort: "date desc"
-  contents: "seminars"
-#  sort-ui: false
-#  filter-ui: false
-  categories: true
-  feed: true
-  type: table
+  - id: seminars
+    contents: "index.qmd"
+    type: table
+    categories: true
+    sort: "date desc"
 page-layout: full
-#title-block-banner: "#292929"
 title-block-banner-color: body
 search: true
 comments: false
-freeze: true
 ---
+
+
+::: {#seminars}
+:::
  
