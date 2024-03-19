@@ -1,8 +1,12 @@
 ---
 title: 'Estudos de Casos Quantitativos'
 subtitle: 'Escrita e Aplicação'
-date: 2024-03-19
-author: 'Henrique C. Martins'
+author:
+  - name: ' **Henrique C. Martins** '
+    affiliation: '**[![](background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: true
 format:
   revealjs: 
     slide-number: true
@@ -16,6 +20,26 @@ format:
     footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/)] [Do not use without permission]**  '
     multiplex: true
     toc: false
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>    
 ---
 
 

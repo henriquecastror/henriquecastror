@@ -11,7 +11,6 @@
   <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="Henrique C. Martins">
-  <meta name="dcterms.date" content="2024-03-19">
   <title>Henrique Castro Martins - Estudos de Casos Quantitativos</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -341,19 +340,22 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#b1cafa" class="quarto-title-block center">
   <h1 class="title">Estudos de Casos Quantitativos</h1>
   <p class="subtitle">Escrita e Aplicação</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Henrique C. Martins 
+<strong>Henrique C. Martins</strong> 
 </div>
-</div>
+        <p class="quarto-title-affiliation">
+            <strong><a href="https://eaesp.fgv.br/en"><img data-src="background6.png" width="300"></a></strong>
+          </p>
+    </div>
 </div>
 
-  <p class="date">2024-03-19</p>
+  <p class="date">19-03-2024</p>
 </section>
 <section id="before-anything-lets-align-expectations" class="slide level2 smaller" data-visbilitiby="hidden" data-background="#191f36">
 <h2>Before anything, let’s align expectations</h2>
@@ -1420,6 +1422,23 @@ Henrique C. Martins
     </script>
     <input type="hidden" id="giscus-base-theme" value="light">
     <input type="hidden" id="giscus-alt-theme" value="dark">
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) {
+          Reveal.configure({ slideNumber: 'c' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
+    </script>
     
 
 </body></html>
