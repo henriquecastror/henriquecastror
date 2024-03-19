@@ -1,0 +1,62 @@
+---
+title: "Exams"
+---
+
+## Part 5 (ch13)
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat("1", fitb("T", num = FALSE, ignore_case = TRUE), "Competition among savvy investors who try to “beat the market” and earn a positive alpha should keep their portfolio close to the market portfolio much of the time.",  "\n\n")
+cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "The difference between a stock’s expected return and its required return according to the capital market line (CML) is the stock’s alpha.",  "\n\n")
+cat("3", fitb("T", num = FALSE, ignore_case = TRUE), "Because beating the market requires enough trading skill to overcome transaction costs as well as behavioral biases, CAPM wisdom that investors should “hold the market” is probably the best advice for most people.",  "\n\n")
+cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "If all investors have homogeneous expectations, which states that all investors have the same information, all investors would be aware that the stock had a positive alpha and none would be willing to sell.",  "\n\n")
+cat("5", fitb("F", num = FALSE, ignore_case = TRUE), "An important conclusion of the CAPM is that investors should never hold the market portfolio combined with risk-free investments.", "\n\n")
+cat("6", fitb("F", num = FALSE, ignore_case = TRUE), "Securities always have zero alphas if the market portfolio that is used is not a good proxy for the true market portfolio.", "\n\n")
+cat("7", fitb("T", num = FALSE, ignore_case = TRUE), "There is evidence that individual investors fail to diversify their portfolios adequately (underdiversification bias) and favor investments in companies they are familiar with (familiarity bias).", "\n\n")
+cat("8", fitb("F", num = FALSE, ignore_case = TRUE),"An alternative reason why investors make similar trading errors is that they are actively trying to follow each other’s behavior. This phenomenon, in which individuals imitate each other’s actions, is referred to as disposition effect.","\n\n")
+cat("9", fitb("T", num = FALSE, ignore_case = TRUE),"The idea that investors can tailor their risk exposures based on common risk factors has become  known amongst as a smart beta strategy.","\n\n")
+cat("10", fitb("F", num = FALSE, ignore_case = TRUE),"We call the tendency to hang on to losers and sell winners the herd behavior.","\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "The relative wealth concerns bias suggests that investors care most about the performance of their portfolio relative to that of their peers.","\n\n")
+cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "The disposition effect refers to investors' tendency to sell winning investments too early and hold onto losing investments for too long due to their preference for realizing losses.", "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Herd behavior occurs when investors follow the actions of others rather than relying on their own analysis, often leading to market bubbles and crashes.", "\n\n")
+cat("14", fitb("F", num = FALSE, ignore_case = TRUE), "The disposition effect suggests that investors are more likely to sell losing investments too early and hold onto winning investments for too long, driven by a preference for realizing gains.", "\n\n")
+cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "In an efficient market, asset prices fully reflect all available information, making it impossible for investors to consistently outperform the market.",  "\n\n")
+cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Weak form market efficiency implies that past prices and trading volumes cannot be used to predict future price movements, as they are already reflected in 
+  current prices.", "\n\n")
+cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "In a semi-strong form efficient market, prices reflect all public information as well as private information known only to a select group of investors.", "\n\n")
+cat("18", fitb("T", num = FALSE, ignore_case = TRUE), "Strong form market efficiency suggests that even insider information cannot be used to consistently achieve abnormal returns, as it is already reflected in asset prices.", "\n\n")
+cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "Market efficiency suggests that it is difficult for investors to consistently identify undervalued or overvalued securities through fundamental or technical analysis.", "\n\n")
+cat("20", fitb("T", num = FALSE, ignore_case = TRUE), "In a perfectly efficient market, prices reflect all information instantaneously, leaving very limited room for arbitrage opportunities.", "\n\n")
+
+```
+
+:::
+
+
+___
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="10"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+

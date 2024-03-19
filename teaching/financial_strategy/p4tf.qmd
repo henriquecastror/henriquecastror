@@ -27,14 +27,12 @@ cat("9", fitb("T", num = FALSE, ignore_case = TRUE), "Firm or industry asset bet
 cat("10", fitb("T", num = FALSE, ignore_case = TRUE), "The weighted average cost of capital (WACC) is the discount rate used in capital budgeting to calculate the present value of cash flows arising from a project.", "\n\n")
 cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "An increase in a project’s systematic risk will lead to an increase in its required rate of return according to the CAPM.", "\n\n")
 cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "A firm's beta is independent of its capital structure.", "\n\n")
-cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "The Modigliani-Miller theorem states that in the absence of taxes, bankruptcy costs, and asymmetric information, the value of a firm is unaffected by its capital structure.", "\n\n")
-cat("14", fitb("T", num = FALSE, ignore_case = TRUE), "The Modigliani-Miller theorem implies that the cost of equity is unaffected by changes in leverage when there are no taxes.", "\n\n")
-cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of debt is the effective rate that a company pays on its borrowed funds, including interest and other fees.", "\n\n")
-cat("16", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of debt is always higher than the cost of equity for a company.", "\n\n")
-cat("17", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of debt can be calculated using the yield to maturity (YTM) on the company's existing debt.", "\n\n")
-cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of debt is the same for all companies within the same industry regardless of their financial health or creditworthiness.", "\n\n")
-cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of equity is the return required by equity investors for their investment in a company.", "\n\n")
-cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of equity is solely determined by the company's dividend yield and growth rate.", "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of debt is the effective rate that a company pays on its borrowed funds, including interest and other fees.", "\n\n")
+cat("14", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of debt is always higher than the cost of equity for a company.", "\n\n")
+cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of debt can be calculated using the yield to maturity (YTM) on the company's existing debt.", "\n\n")
+cat("16", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of debt is the same for all companies within the same industry regardless of their financial health or creditworthiness.", "\n\n")
+cat("17", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of equity is the return required by equity investors for their investment in a company.", "\n\n")
+cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of equity is solely determined by the company's dividend yield and growth rate.", "\n\n")
 
 ```
 
