@@ -1,0 +1,63 @@
+---
+title: "Part 5 (ch13) Questions Numeric"
+---
+
+::: {.callout-important}
+**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+:::
+
+
+## Question 1
+
+
+```{r, setup}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+er <- rnorm(1, mean = 9, sd = 0.01)
+mrp <- rnorm(1, mean = 8, sd = 0.01)
+rf <- rnorm(1, mean = 5, sd = 0.01)
+beta <- rnorm(1, mean = 1, sd = 0.2)
+em <- mrp + rf
+
+```
+
+
+
+**Q**: Consider a stock whose expected return is  `r round(er,3)` and beta is  `r round(beta,3)`. The market risk premium is currently  `r round(mrp,3)`% and the return of the risk-free asset is  `r round(rf,3)`. What is the alpha of the stock?
+
+`r fitb( round(   er - (rf+beta*mrp)      ,3) , tol=0.01)`
+
+___
+
+
+**Answer**:
+
+1) `r round(er - (rf+beta*mrp)    ,3)`
+
+
+
+
+
+___
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="11"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>

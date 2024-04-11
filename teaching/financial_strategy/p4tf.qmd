@@ -1,8 +1,8 @@
 ---
-title: "Exams"
+title: "Part 4 (ch12) Questions T/F & Multiple Choice"
 ---
 
-## Part 4 (ch12)
+___
 
 **Mark T (True) or F (False) in each of the following sentences.**
 
@@ -33,6 +33,38 @@ cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of debt can be c
 cat("16", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of debt is the same for all companies within the same industry regardless of their financial health or creditworthiness.", "\n\n")
 cat("17", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of equity is the return required by equity investors for their investment in a company.", "\n\n")
 cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of equity is solely determined by the company's dividend yield and growth rate.", "\n\n")
+
+```
+
+:::
+
+
+___
+
+**And here are some additional multiple choice problems.**
+
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **What is the relationship between a firm's cost of capital and its risk?**"
+q1_choices <- c("Firms with higher risk have lower cost of capital.",
+                answer= "Firms with lower risk have lower cost of capital.",
+                 "There is no relationship between a firm's risk and its cost of capital.")
+cat(q1,longmcq(q1_choices))
+
+
+q2 <- " **If a firm uses the firm's cost of capital for evaluating all projects, which situation(s) will likely occur?** 1) The firm will accept poor low-risk projects. 2) The firm will reject good high-risk projects. 3) The firm will correctly accept projects with average risk."
+q2_choices <- c("1 only",
+                "2 only",
+                "3 only",
+                answer="1, 2, and 3")
+cat(q2,longmcq(q2_choices))
 
 ```
 

@@ -1,8 +1,8 @@
 ---
-title: "Exams"
+title: "Part 1 (ch23)  Questions T/F & Multiple Choice"
 ---
 
-## Part 1 (ch24)
+___
 
 **Mark T (True) or F (False) in each of the following sentences.**
 
@@ -38,10 +38,54 @@ cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "The lock-up period for in
 cat("21", fitb("T", num = FALSE, ignore_case = TRUE), "Dilution occurs when a company issues additional shares, reducing the ownership percentage of existing shareholders.", "\n\n")
 cat("22", fitb("F", num = FALSE, ignore_case = TRUE), "The primary market involves the buying and selling of existing shares among investors.", "\n\n")
 cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "Underwriters in an IPO often form a syndicate to share the responsibility of selling the new issue.", "\n\n")
+cat("24", fitb("F", num = FALSE, ignore_case = TRUE), "The process of selling stock to the public for the first time is called a seasoned equity offering (SEO)", "\n\n")
+cat("25", fitb("T", num = FALSE, ignore_case = TRUE), "Public companies typically have access to much larger amounts of capital through the public markets.", "\n\n")
+cat("26", fitb("T", num = FALSE, ignore_case = TRUE), "By going public, companies give their private equity investors the ability to diversify.", "\n\n")
+cat("27", fitb("T", num = FALSE, ignore_case = TRUE), "The two advantages of going public are greater liquidity and better access to capital.", "\n\n")
+cat("28", fitb("T", num = FALSE, ignore_case = TRUE), "Before an IPO, the company prepares the final registration statement and final prospectus containing all the details of the IPO, including the number of shares offered and the offer price.", "\n\n")
+cat("29", fitb("F", num = FALSE, ignore_case = TRUE), "A common practice of early investors in private companies is to stay for a long time, i.e., years after the company's IPO.", "\n\n")
+cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "Institutional investors, like big Banks, who buy equity in small private firms are called angel investors.", "\n\n")
 
 ```
 
 :::
+
+
+
+
+___
+
+**And here are some additional multiple choice problems.**
+
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Which of the following issues have the expected highest total direct costs of issuing as a percentage of gross proceeds?**"
+q1_choices <- c(answer="Initial public offerings (IPOs)",
+                 "Seasoned equity offerings (SEOs)",
+                 "Convertible bonds",
+                 "Straight bonds")
+cat(q1,longmcq(q1_choices))
+
+
+q2 <- " **Which of the following factors is typically considered in determining the timing of an initial public offering (IPO)?**"
+q2_choices <- c("Market conditions and investor sentiment",
+                 "Firm's capital needs",
+                 "Industry regulations and compliance requirements",
+                 answer="All of the above")
+cat(q2,longmcq(q2_choices))
+
+
+```
+
+:::
+
 
 
 ___

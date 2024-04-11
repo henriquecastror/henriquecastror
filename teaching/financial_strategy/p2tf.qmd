@@ -1,8 +1,9 @@
 ---
-title: "Exams"
+title: "Part 2 (ch10) Questions T/F & Multiple Choice"
 ---
 
-## Part 2 (ch10)
+___
+
 
 **Mark T (True) or F (False) in each of the following sentences.**
 
@@ -37,7 +38,10 @@ cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "The following risk is an 
 cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "The following risk is an example of firm-specific risk: The risk that oil prices rise, increasing production costs", "\n\n")
 cat("21", fitb("T", num = FALSE, ignore_case = TRUE), "The following risk is an example of firm-specific risk: The risk that a product design is faulty and the product must be recalled", "\n\n")
 cat("22", fitb("F", num = FALSE, ignore_case = TRUE), "The following risk is an example of firm-specific risk: The risk that the economy slows, reducing demand for the firm’s products.", "\n\n")
-
+cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "A value-weighted portfolio is an equal-ownership portfolio: the investors holds an equal fraction of the total number of shares outstanding of each security in the portfolio.", "\n\n")
+cat("24", fitb("T", num = FALSE, ignore_case = TRUE), "If investors have homogeneous expectations, then each investor will identify the same portfolio as having the highest Sharpe ratio in the economy.", "\n\n")
+cat("25", fitb("T", num = FALSE, ignore_case = TRUE), "An assumption of the CAPM is that investors are rational and will always prefer a higher over a lower Sharpe ratio.", "\n\n")
+cat("26", fitb("F", num = FALSE, ignore_case = TRUE), "An assumption of the CAPM is that only informed investors are allowed to borrow or lend at the risk-free rate.", "\n\n")
 ```
 
 :::

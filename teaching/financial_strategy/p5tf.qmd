@@ -1,8 +1,9 @@
 ---
-title: "Exams"
+title: "Part 5 (ch13)  Questions T/F & Multiple Choice"
 ---
 
-## Part 5 (ch13)
+___
+
 
 **Mark T (True) or F (False) in each of the following sentences.**
 
@@ -40,6 +41,42 @@ cat("20", fitb("T", num = FALSE, ignore_case = TRUE), "In a perfectly efficient 
 ```
 
 :::
+
+
+
+___
+
+**And here are some additional multiple choice problems.**
+
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+q1 <- " **Which of the following is included in the Fama-French three-factor model?**"
+q1_choices <- c("Market factor and Size factor, only.",
+                "Market factor and book-to-market factor, only.",
+                "Market factor, book-to-market factor, and size factor, only.",
+                answer= "Market factor, book-to-market factor, size factor, and momentum factor, only.")
+cat(q1,longmcq(q1_choices))
+
+```
+
+:::
+
+
+
+
+
+
+
+
+
+
 
 
 ___
