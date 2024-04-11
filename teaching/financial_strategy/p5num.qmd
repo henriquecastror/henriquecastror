@@ -6,9 +6,10 @@ title: "Part 5 (ch13) Questions Numeric"
 **Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
 :::
 
+___
 
-## Question 1
 
+## Q1:  Alpha Calculation
 
 ```{r, setup}
 #| eval: true
@@ -18,9 +19,9 @@ title: "Part 5 (ch13) Questions Numeric"
 
 library(webexercises)
 
-er <- rnorm(1, mean = 9, sd = 0.01)
-mrp <- rnorm(1, mean = 8, sd = 0.01)
-rf <- rnorm(1, mean = 5, sd = 0.01)
+er <- rnorm(1, mean = 11, sd = 0.01)
+mrp <- rnorm(1, mean = 7, sd = 0.01)
+rf <- rnorm(1, mean = 3, sd = 0.01)
 beta <- rnorm(1, mean = 1, sd = 0.2)
 em <- mrp + rf
 
@@ -32,12 +33,68 @@ em <- mrp + rf
 
 `r fitb( round(   er - (rf+beta*mrp)      ,3) , tol=0.01)`
 
-___
 
 
 **Answer**:
 
 1) `r round(er - (rf+beta*mrp)    ,3)`
+
+
+___
+
+
+## Q2:  Fama-French Portfolio 
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+r1 <- rnorm(1, mean = 5, sd = 0.01)
+r2 <- rnorm(1, mean = 3, sd = 0.01)
+r3 <- rnorm(1, mean = 4, sd = 0.01)
+r4 <- rnorm(1, mean = 2.5, sd = 0.01)
+
+b1a <- rnorm(1, mean = 0.9, sd = 0.01)
+b2a <- rnorm(1, mean = 0.8, sd = 0.01)
+b3a <- rnorm(1, mean = 0.7, sd = 0.01)
+b4a <- rnorm(1, mean = 0.6, sd = 0.01)
+
+b1b <- rnorm(1, mean = 1.0, sd = 0.02)
+b2b <- rnorm(1, mean = 1.1, sd = 0.02)
+b3b <- rnorm(1, mean = 1.2, sd = 0.02)
+b4b <- rnorm(1, mean = 1.3, sd = 0.02)
+
+
+```
+
+**Q2:** Consider the following information regarding the Fama-French-Carhart four factor model. What is the expected return of Stock A (in %)? And Stock B (in %)? 
+
+| Factor Port. | Average  Return (%) | Stock A  Betas | Stock B   Betas | 
+|------------------|---------------------------|------------------|-----------------|
+| Rm - rf          | `r round(r1,3)`              | `r round(b1a,3)`     | `r round(b1b,3)`       |
+| SMB              | `r round(r2,3)`              | `r round(b2a,3)`     | `r round(b2b,3)`       |
+| HML              | `r round(r3,3)`              | `r round(b3a,3)`     | `r round(b3b,3)`       |
+| Mom.             | `r round(r4,3)`              | `r round(b4a,3)`     | `r round(b4b,3)`       | 
+
+
+**Stock A:** `r fitb( round(  r1*b1a + r2*b2a +  r3*b3a+   r4*b4a      , 3) , tol=0.01)`
+
+**Stock B:** `r fitb( round(  r1*b1b + r2*b2b +  r3*b3b+   r4*b4b      , 3) , tol=0.01)`
+
+
+**Answer**:
+
+A) `r round(r1*b1a + r2*b2a +  r3*b3a+   r4*b4a     ,3)`
+
+B) `r round(r1*b1b + r2*b2b +  r3*b3b+   r4*b4b     ,3)`
+
+
+
 
 
 

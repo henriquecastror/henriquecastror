@@ -66,7 +66,7 @@ ___
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Which of the following issues have the expected highest total direct costs of issuing as a percentage of gross proceeds?**"
+q1 <- " **Q1: Which of the following issues have the expected highest total direct costs of issuing as a percentage of gross proceeds?**"
 q1_choices <- c(answer="Initial public offerings (IPOs)",
                  "Seasoned equity offerings (SEOs)",
                  "Convertible bonds",
@@ -74,7 +74,7 @@ q1_choices <- c(answer="Initial public offerings (IPOs)",
 cat(q1,longmcq(q1_choices))
 
 
-q2 <- " **Which of the following factors is typically considered in determining the timing of an initial public offering (IPO)?**"
+q2 <- " **Q2: Which of the following factors is typically considered in determining the timing of an initial public offering (IPO)?**"
 q2_choices <- c("Market conditions and investor sentiment",
                  "Firm's capital needs",
                  "Industry regulations and compliance requirements",

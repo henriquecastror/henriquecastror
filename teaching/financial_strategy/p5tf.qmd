@@ -31,12 +31,20 @@ cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "The disposition effect re
 cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Herd behavior occurs when investors follow the actions of others rather than relying on their own analysis, often leading to market bubbles and crashes.", "\n\n")
 cat("14", fitb("F", num = FALSE, ignore_case = TRUE), "The disposition effect suggests that investors are more likely to sell losing investments too early and hold onto winning investments for too long, driven by a preference for realizing gains.", "\n\n")
 cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "In an efficient market, asset prices fully reflect all available information, making it impossible for investors to consistently outperform the market.",  "\n\n")
-cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Weak form market efficiency implies that past prices and trading volumes cannot be used to predict future price movements, as they are already reflected in 
+cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Weak form market efficiency implies that past prices and trading volumes cannot be used to predict future price movements, as they are already reflected in
   current prices.", "\n\n")
 cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "In a semi-strong form efficient market, prices reflect all public information as well as private information known only to a select group of investors.", "\n\n")
 cat("18", fitb("T", num = FALSE, ignore_case = TRUE), "Strong form market efficiency suggests that even insider information cannot be used to consistently achieve abnormal returns, as it is already reflected in asset prices.", "\n\n")
 cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "Market efficiency suggests that it is difficult for investors to consistently identify undervalued or overvalued securities through fundamental or technical analysis.", "\n\n")
 cat("20", fitb("T", num = FALSE, ignore_case = TRUE), "In a perfectly efficient market, prices reflect all information instantaneously, leaving very limited room for arbitrage opportunities.", "\n\n")
+cat("21", fitb("F", num = FALSE, ignore_case = TRUE), "If investors have relative wealth concerns, they care most about their  current portfolio performance relative to their past portfolio performance.", "\n\n")
+cat("22", fitb("T", num = FALSE, ignore_case = TRUE), "Strong-form efficiency implies that professional investors cannot consistently outperform the market.", "\n\n")
+cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "Semi strong-form efficiency implies that professional investors may outperform the market if they acquire private information  prior to the market.", "\n\n")
+cat("24", fitb("F", num = FALSE, ignore_case = TRUE), "Semi strong-form efficiency implies that stock prices reflect all available information.", "\n\n")
+
+
+
+
 
 ```
 
@@ -57,12 +65,17 @@ ___
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **Which of the following is included in the Fama-French three-factor model?**"
+q1 <- " **Q1: Which of the following is included in the Fama-French three-factor model?**"
 q1_choices <- c("Market factor and Size factor, only.",
                 "Market factor and book-to-market factor, only.",
                 "Market factor, book-to-market factor, and size factor, only.",
                 answer= "Market factor, book-to-market factor, size factor, and momentum factor, only.")
 cat(q1,longmcq(q1_choices))
+
+
+
+
+
 
 ```
 

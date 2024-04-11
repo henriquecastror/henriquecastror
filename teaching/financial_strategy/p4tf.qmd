@@ -52,14 +52,14 @@ ___
 #| echo: false
 #| warning: false
 library(webexercises)
-q1 <- " **What is the relationship between a firm's cost of capital and its risk?**"
+q1 <- " **Q1: What is the relationship between a firm's cost of capital and its risk?**"
 q1_choices <- c("Firms with higher risk have lower cost of capital.",
                 answer= "Firms with lower risk have lower cost of capital.",
                  "There is no relationship between a firm's risk and its cost of capital.")
 cat(q1,longmcq(q1_choices))
 
 
-q2 <- " **If a firm uses the firm's cost of capital for evaluating all projects, which situation(s) will likely occur?** 1) The firm will accept poor low-risk projects. 2) The firm will reject good high-risk projects. 3) The firm will correctly accept projects with average risk."
+q2 <- " **Q2: If a firm uses the firm's cost of capital for evaluating all projects, which situation(s) will likely occur?** 1) The firm will accept poor low-risk projects. 2) The firm will reject good high-risk projects. 3) The firm will correctly accept projects with average risk."
 q2_choices <- c("1 only",
                 "2 only",
                 "3 only",

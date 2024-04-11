@@ -7,8 +7,6 @@ title: "Part 4 (ch12) Questions Numeric"
 :::
 
 
-## Question 1
-
 
 ```{r, setup}
 #| eval: true
@@ -20,7 +18,12 @@ library(webexercises)
 
 ```
 
-### Cost of Equity Capital
+
+
+
+___ 
+
+### Q1: Cost of Equity Capital
 
 ```{r}
 #| eval: true
@@ -52,7 +55,7 @@ em2 <- mrp + rf
 
 `r fitb( round(rf2 + beta2 * (em2 - rf2 ) ,3) , tol=0.01)`
 
-___
+
 
 
 **Answer**:
@@ -62,13 +65,10 @@ ___
 2) `r round(rf2 + beta2 * (em2 - rf2 ) ,3)`
 
 
+___
 
 
-
-## Question 2
-
-
-### Cost of Debt 
+### Q2: Cost of Debt 
 
 ```{r}
 #| eval: true
