@@ -1,0 +1,64 @@
+---
+title: "Part 6 (ch24)  Questions T/F & Multiple Choice"
+---
+
+___
+
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat("1", fitb("F", num = FALSE, ignore_case = TRUE), "Corporate debt is typically considered a risk-free investment.",  "\n\n")
+cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "Sovereign debt is a type of corporate debt.",  "\n\n")
+cat("3", fitb("F", num = FALSE, ignore_case = TRUE), "Private placement is a method of raising capital that involves selling securities to the general public.",  "\n\n")
+cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "Collateralized Debt Obligations (CDOs) are financial instruments that are typically backed by a diversified pool of assets, such as mortgages and loans.",  "\n\n")
+cat("5", fitb("F", num = FALSE, ignore_case = TRUE), "Syndicated bank loans are typically provided by a single bank to a borrower.",  "\n\n")
+cat("6", fitb("F", num = FALSE, ignore_case = TRUE), "In a perfect capital market, a firm's market capitalization would change when it borrows to repurchase shares.",  "\n\n")
+cat("7", fitb("T", num = FALSE, ignore_case = TRUE), "Callable bonds give the issuer the right to redeem the bonds before their maturity date, while non-callable bonds cannot be redeemed by the issuer before maturity.",  "\n\n")
+cat("8", fitb("F", num = FALSE, ignore_case = TRUE), "Callable bonds usually offer a lower yield than non-callable bonds, which makes them less attractive to investors.",  "\n\n")
+cat("9", fitb("F", num = FALSE, ignore_case = TRUE), "Bond covenants are legally binding agreements that set specific terms and conditions for bond issuers and bondholders, but they cannot include restrictions on the issuer's activities.",  "\n\n")
+cat("10", fitb("F", num = FALSE, ignore_case = TRUE), "Junk bonds typically offer lower yields compared to investment-grade bonds.",  "\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "Commercial paper is a short-term debt instrument typically issued by large corporations to meet short-term obligations.",  "\n\n")
+cat("12", fitb("T", num = FALSE, ignore_case = TRUE), "Convertible bonds give bondholders the option to convert their bonds into a predetermined number of the issuer's common shares.",  "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Credit ratings provided by agencies like Moody's and Standard & Poor's assess the creditworthiness of corporate debt issuers.",  "\n\n")
+cat("14", fitb("T", num = FALSE, ignore_case = TRUE), "Asset-backed securities (ABS) are financial instruments backed by pools of assets such as credit card receivables, auto loans, or mortgages.",  "\n\n")
+cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The debt-to-equity ratio measures a company's financial leverage by comparing its total debt to its total equity.",  "\n\n")
+cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Bond indenture is a legal document outlining the terms and conditions of a bond issue, including its interest rate, maturity date, and any special features.",  "\n\n")
+cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "Zero-coupon bonds pay periodic interest payments to bondholders.",  "\n\n")
+cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "Treasury bills are long-term debt securities issued by the federal government with maturities typically ranging from 20 to 30 years.",  "\n\n")
+```
+
+:::
+
+
+
+
+
+
+
+___
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="12"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
