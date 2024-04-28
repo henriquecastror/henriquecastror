@@ -1,0 +1,60 @@
+---
+title: "Part 7 (ch14)  Questions T/F & Multiple Choice"
+---
+
+___
+
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat("1", fitb("T", num = FALSE, ignore_case = TRUE), "With perfect capital markets, financial transactions are a zero-NPV activity that neither add nor destroy value on their own.",  "\n\n")
+cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "When equity is used without debt, the firm is said to be levered.",  "\n\n")
+cat("3", fitb("T", num = FALSE, ignore_case = TRUE), "Leverage can raise a firm’s expected earnings per share and its return on equity, but it also increases the volatility of earnings per share and the riskiness of its equity.",  "\n\n")
+cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "Leverage increases the risk of equity and raises the equity cost of capital.",  "\n\n")
+cat("5", fitb("T", num = FALSE, ignore_case = TRUE), "A firm can change its capital structure at any time by issuing new securities and using the funds to pay its existing investors.",  "\n\n")
+cat("6", fitb("T", num = FALSE, ignore_case = TRUE), "According to MM Proposition I, with perfect capital markets, the value of a firm is independent of its capital structure.",  "\n\n")
+cat("7", fitb("F", num = FALSE, ignore_case = TRUE), "A firm’s net debt is equal to its debt plus its holdings of cash and other risk-free securities.",  "\n\n")
+cat("8", fitb("T", num = FALSE, ignore_case = TRUE), "The owner of a firm should choose the capital structure that maximizes the total value of the securities issued.",  "\n\n")
+cat("9", fitb("F", num = FALSE, ignore_case = TRUE), "The relative proportions of debt, equity, and other securities make up a firm's investment policy.",  "\n\n")
+cat("10", fitb("T", num = FALSE, ignore_case = TRUE), "The premium that investors demand for holding the company's equity increases as the company's D/E ratio increases, which leads to an increase in the cost of capital of levered equity.",  "\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "Leverage refers to the practice of using debt or other financial instruments to magnify returns on equity investments, while unlevered equity means using only equity capital without debt.",  "\n\n")
+cat("12", fitb("T", num = FALSE, ignore_case = TRUE), "According to Modigliani-Miller and the Law of One Price, in a world of perfect capital markets, two identical firms with the same cash flows should have the same market value, regardless of their capital structures.",  "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Debt financing is a less expensive source of capital for a firm compared to equity financing.",  "\n\n")
+```
+
+:::
+
+                
+
+
+                
+                
+
+
+___
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="13"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
