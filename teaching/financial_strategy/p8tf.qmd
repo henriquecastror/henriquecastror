@@ -1,0 +1,58 @@
+---
+title: "Part 8 (ch15)  Questions T/F & Multiple Choice"
+---
+
+___
+
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat("1", fitb("T", num = FALSE, ignore_case = TRUE), "Holding stocks over bonds can provide a tax advantage due to the deferral of capital gains taxes until the asset is sold, which effectively lowers the capital gains tax rate.",  "\n\n")
+cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "Unlevered beta measures the risk of a company's stock against that of the broader market, including the impact of a company's capital structure and leverage, while levered beta measures the market risk of a company without the impact of debt.",  "\n\n")
+cat("3", fitb("T", num = FALSE, ignore_case = TRUE), "The interest tax shield with permanent debt implies that a company with a permanent level of debt will receive a consistent tax benefit due to the deductibility of interest expenses.",  "\n\n")
+cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "The effective tax advantage of debt can be calculated by multiplying the firm's interest expense by the corporate tax rate.",  "\n\n")
+cat("5", fitb("T", num = FALSE, ignore_case = TRUE), "The Optimal Capital Structure with Taxes refers to the best mix of debt and equity financing that maximizes a company's market value while minimizing its cost of capital, taking into account the tax benefits of debt financing.",  "\n\n")
+cat("6", fitb("T", num = FALSE, ignore_case = TRUE), "The tax advantage of debt arises from the fact that interest payments are reducing the overall tax burden on the firm.",  "\n\n")
+cat("7", fitb("F", num = FALSE, ignore_case = TRUE), "The Modigliani-Miller theorem with taxes states that the value of a levered firm is equal to the value of an unlevered firm plus the present value of the tax shield from debt",  "\n\n")
+cat("8", fitb("F", num = FALSE, ignore_case = TRUE), "A firm's cost of debt typically decreases as its credit rating improves, reflecting the reduced risk of default associated with higher credit ratings.",  "\n\n")
+cat("9", fitb("T", num = FALSE, ignore_case = TRUE), "The tax shield from debt is equivalent to the amount of debt multiplied by the corporate tax rate.",  "\n\n")
+cat("10", fitb("T", num = FALSE, ignore_case = TRUE), "The weighted average cost of capital (WACC) decreases as the proportion of debt in a firm's capital structure increases due to the tax shield provided by debt financing.",  "\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of equity typically increases as a firm's leverage ratio increases due to the higher risk perceived by equity investors.",  "\n\n")
+```
+
+:::
+
+                
+
+
+                
+                
+
+
+___
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="14"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
