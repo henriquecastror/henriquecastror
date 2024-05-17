@@ -16,7 +16,42 @@ ___
 #| warning: false
 library(webexercises)
 
-cat("1", fitb("T", num = FALSE, ignore_case = TRUE), "Holding stocks over bonds can provide a tax advantage due to the deferral of capital gains taxes until the asset is sold, which effectively lowers the capital gains tax rate.",  "\n\n")
+cat("1", fitb("F", num = FALSE, ignore_case = TRUE), "According to financial theory, retaining earnings and not paying dividends is always the most value-maximizing approach for a company.", "\n\n")
+cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "An open market repurchase allows a company to buy back its own shares directly from shareholders at a specific price.", "\n\n")
+cat("3", fitb("T", num = FALSE, ignore_case = TRUE), "Modigliani-Miller theorem suggests that dividend policy is irrelevant in a world of perfect capital markets, as it doesn't affect the overall value of the firm.", "\n\n")
+cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "Holding excess cash in a firm can lead to inefficiencies and agency costs, which may be reduced by paying out dividends or engaging in share repurchases.", "\n\n")
+cat("5", fitb("T", num = FALSE, ignore_case = TRUE), "In the presence of asymmetric information between managers and shareholders, payout decisions may serve as signals of the firm's future prospects. Managers with better information may strategically set a firm's payout to communicate their private knowledge to the market.", "\n\n")
+cat("6", fitb("F", num = FALSE, ignore_case = TRUE), "According to the dividend signaling hypothesis, when a company increases its dividend payments, it generally signals that it expects lower future earnings.", "\n\n")
+cat("7", fitb("F", num = FALSE, ignore_case = TRUE), "According to the Modigliani-Miller theorem, in the absence of taxes, dividend policy has a significant impact on a firm's overall value.", "\n\n")
+cat("8", fitb("F", num = FALSE, ignore_case = TRUE), "Paying dividends reduces a firm's retained earnings, but it does not affect its cash reserves.", "\n\n")
+cat("9", fitb("T", num = FALSE, ignore_case = TRUE), "Dividend policy can signal management's confidence in the firm's future earnings to the market.", "\n\n")
+cat("10", fitb("F", num = FALSE, ignore_case = TRUE), "According to the bird-in-the-hand theory, investors are indifferent between dividends and capital gains.", "\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "Share repurchases can increase earnings per share (EPS) by reducing the number of shares outstanding.", "\n\n")
+cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "Dividend irrelevance theory states that the choice between paying dividends and retaining earnings affects a firm's stock price in a perfect market.", "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "A high dividend payout ratio can limit a firm's ability to reinvest in growth opportunities.", "\n\n")
+cat("14", fitb("F", num = FALSE, ignore_case = TRUE), "Dividend payments are tax-deductible expenses for a firm.", "\n\n")
+cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "Stable dividend policies can attract investors seeking predictable income streams.", "\n\n")
+cat("16", fitb("F", num = FALSE, ignore_case = TRUE), "Firms that do not pay dividends are always undervalued by the market.", "\n\n")
+
+cat("17", fitb("T", num = FALSE, ignore_case = TRUE), "Dividend payout decisions can be influenced by the firm's target capital structure.", "\n\n")
+
+cat("18", fitb("T", num = FALSE, ignore_case = TRUE), "A firm's life cycle stage can influence its dividend policy, with mature firms more likely to pay dividends than growth firms.", "\n\n")
+
+
+cat("19", fitb("F", num = FALSE, ignore_case = TRUE), "A stock dividend increases the total value of a shareholder's investment.", "\n\n")
+cat("20", fitb("T", num = FALSE, ignore_case = TRUE), "A reduction in dividend payments can signal financial distress to the market.", "\n\n")
+cat("21", fitb("F", num = FALSE, ignore_case = TRUE), "Dividend payments have no impact on a firm's liquidity.", "\n\n")
+
+cat("22", fitb("T", num = FALSE, ignore_case = TRUE), "Firms might choose to pay special dividends during periods of exceptionally high earnings or excess cash reserves.", "\n\n")
+
+cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "In the presence of agency costs, high dividend payouts can reduce the free cash flow available for managers to waste.", "\n\n")
+cat("24", fitb("F", num = FALSE, ignore_case = TRUE), "Share repurchases and dividends are taxed the same way under all tax regimes.", "\n\n")
+cat("25", fitb("T", num = FALSE, ignore_case = TRUE), "The clientele effect suggests that different groups of investors prefer different dividend policies.", "\n\n")
+cat("26", fitb("F", num = FALSE, ignore_case = TRUE), "Increasing dividends always leads to a higher stock price.", "\n\n")
+cat("27", fitb("T", num = FALSE, ignore_case = TRUE), "Dividend signaling hypothesis suggests that changes in dividend payments convey information about a firm's future prospects.", "\n\n")
+cat("28", fitb("F", num = FALSE, ignore_case = TRUE), "Retaining earnings instead of paying dividends is always the best approach for maximizing firm value.", "\n\n")
+cat("29", fitb("T", num = FALSE, ignore_case = TRUE), "Companies with volatile earnings may prefer to pay lower dividends to maintain flexibility.", "\n\n")
+cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "Firms should always distribute all their earnings as dividends.", "\n\n")
 
 ```
 
