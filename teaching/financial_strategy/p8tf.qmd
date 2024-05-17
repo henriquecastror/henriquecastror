@@ -27,6 +27,29 @@ cat("8", fitb("F", num = FALSE, ignore_case = TRUE), "A firm's cost of debt typi
 cat("9", fitb("T", num = FALSE, ignore_case = TRUE), "The tax shield from debt is equivalent to the amount of debt multiplied by the corporate tax rate.",  "\n\n")
 cat("10", fitb("T", num = FALSE, ignore_case = TRUE), "The weighted average cost of capital (WACC) decreases as the proportion of debt in a firm's capital structure increases due to the tax shield provided by debt financing.",  "\n\n")
 cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "The cost of equity typically increases as a firm's leverage ratio increases due to the higher risk perceived by equity investors.",  "\n\n")
+cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "Equity financing always provides a tax shield similar to debt financing.", "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Debt financing can lead to financial distress if a company cannot meet its debt obligations.", "\n\n")
+cat("14", fitb("F", num = FALSE, ignore_case = TRUE), "The tax shield from debt financing is only applicable if the company is profitable and pays taxes.", "\n\n")
+cat("15", fitb("F", num = FALSE, ignore_case = TRUE), "The Modigliani-Miller theorem without taxes states that the value of a firm is dependent on its capital structure.", "\n\n")
+cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Tax-deductible interest on debt can make borrowing a more attractive option for companies.", "\n\n")
+cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "Interest payments on debt are not tax-deductible for corporations.", "\n\n")
+cat("18", fitb("T", num = FALSE, ignore_case = TRUE), "An increase in the corporate tax rate generally increases the value of the interest tax shield.", "\n\n")
+cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "In the presence of corporate taxes, the value of a levered firm is higher than the value of an unlevered firm due to the tax shield provided by debt.", "\n\n")
+cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "Personal taxes have no impact on the value of a firm's debt and equity.", "\n\n")
+
+
+
+cat("21", fitb("T", num = FALSE, ignore_case = TRUE), "Retained earnings do not provide a tax shield similar to that provided by debt financing.", "\n\n")
+cat("22", fitb("F", num = FALSE, ignore_case = TRUE), "Preferred stock dividends provide the same tax benefits as interest on debt.", "\n\n")
+cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "Firms with higher marginal tax rates benefit more from the interest tax shield than firms with lower marginal tax rates.", "\n\n")
+cat("24", fitb("F", num = FALSE, ignore_case = TRUE), "The corporate tax shield from debt financing is irrelevant in determining a firm's capital structure.", "\n\n")
+cat("25", fitb("F", num = FALSE, ignore_case = TRUE), "Issuing new equity shares will generally increase a firm's interest tax shield.", "\n\n")
+cat("26", fitb("T", num = FALSE, ignore_case = TRUE), "Debt financing can result in restrictive covenants that limit a company's operational flexibility.", "\n\n")
+cat("27", fitb("F", num = FALSE, ignore_case = TRUE), "All companies, regardless of their profitability, can equally benefit from the tax shield provided by debt.", "\n\n")
+cat("28", fitb("T", num = FALSE, ignore_case = TRUE), "A high debt ratio can increase a company's financial risk and affect its stock price volatility.", "\n\n")
+cat("29", fitb("T", num = FALSE, ignore_case = TRUE), "Companies in highly cyclical industries might use less debt to avoid financial distress during downturns.", "\n\n")
+cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "The value of a firm's tax shield is independent of the corporate tax rate.", "\n\n")
+
 ```
 
 :::
