@@ -32,18 +32,12 @@ cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "A high dividend payout ra
 cat("14", fitb("F", num = FALSE, ignore_case = TRUE), "Dividend payments are tax-deductible expenses for a firm.", "\n\n")
 cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "Stable dividend policies can attract investors seeking predictable income streams.", "\n\n")
 cat("16", fitb("F", num = FALSE, ignore_case = TRUE), "Firms that do not pay dividends are always undervalued by the market.", "\n\n")
-
 cat("17", fitb("T", num = FALSE, ignore_case = TRUE), "Dividend payout decisions can be influenced by the firm's target capital structure.", "\n\n")
-
 cat("18", fitb("T", num = FALSE, ignore_case = TRUE), "A firm's life cycle stage can influence its dividend policy, with mature firms more likely to pay dividends than growth firms.", "\n\n")
-
-
 cat("19", fitb("F", num = FALSE, ignore_case = TRUE), "A stock dividend increases the total value of a shareholder's investment.", "\n\n")
 cat("20", fitb("T", num = FALSE, ignore_case = TRUE), "A reduction in dividend payments can signal financial distress to the market.", "\n\n")
 cat("21", fitb("F", num = FALSE, ignore_case = TRUE), "Dividend payments have no impact on a firm's liquidity.", "\n\n")
-
 cat("22", fitb("T", num = FALSE, ignore_case = TRUE), "Firms might choose to pay special dividends during periods of exceptionally high earnings or excess cash reserves.", "\n\n")
-
 cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "In the presence of agency costs, high dividend payouts can reduce the free cash flow available for managers to waste.", "\n\n")
 cat("24", fitb("F", num = FALSE, ignore_case = TRUE), "Share repurchases and dividends are taxed the same way under all tax regimes.", "\n\n")
 cat("25", fitb("T", num = FALSE, ignore_case = TRUE), "The clientele effect suggests that different groups of investors prefer different dividend policies.", "\n\n")
@@ -52,7 +46,6 @@ cat("27", fitb("T", num = FALSE, ignore_case = TRUE), "Dividend signaling hypoth
 cat("28", fitb("F", num = FALSE, ignore_case = TRUE), "Retaining earnings instead of paying dividends is always the best approach for maximizing firm value.", "\n\n")
 cat("29", fitb("T", num = FALSE, ignore_case = TRUE), "Companies with volatile earnings may prefer to pay lower dividends to maintain flexibility.", "\n\n")
 cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "Firms should always distribute all their earnings as dividends.", "\n\n")
-
 ```
 
 :::
