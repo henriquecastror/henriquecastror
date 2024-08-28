@@ -1,0 +1,41 @@
+
+
+. use "files/CEOSAL1.dta", clear
+
+. set seed 2
+
+. gen salary_noise = salary + runiform() * 200 - 100
+
+. gen roe_noise = roe + runiform() * 200 - 100
+
+. eststo: qui reg salary roe
+(est1 stored)
+
+. eststo: qui reg salary roe_noise
+(est2 stored)
+
+. eststo: qui reg salary_noise roe
+(est3 stored)
+
+. esttab
+
+------------------------------------------------------------
+                      (1)             (2)             (3)   
+                   salary          salary    salary_noise   
+------------------------------------------------------------
+roe                 18.50                           18.14   
+                   (1.66)                          (1.63)   
+
+roe_noise                          0.0336                   
+                                   (0.02)                   
+
+_cons               963.2***       1280.4***        966.1***
+                   (4.52)         (12.71)          (4.53)   
+------------------------------------------------------------
+N                     209             209             209   
+------------------------------------------------------------
+t statistics in parentheses
+* p<0.05, ** p<0.01, *** p<0.001
+
+. 
+end of do-file

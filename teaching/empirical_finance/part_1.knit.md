@@ -19,22 +19,6 @@ format:
 
 
 
-```{r setup}
-#| include: false
-#| warning: false
-
-
-# library(reticulate)
-# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
-library(reticulate)
-library(Statamarkdown)
-#reticulate::py_install("matplotlib")
-#reticulate::py_install("seaborn")
-#reticulate::py_install("pyfinance")
-#reticulate::py_install("xlrd")
-#reticulate::py_install("quandl")
-
-```
 
 
 # Agenda
@@ -124,20 +108,15 @@ Install R Studio [here](https://posit.co/download/rstudio-desktop/)
 
 Para instalar e carregar os pacotes você precisa rodar as duas linhas abaixo.
 
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: false
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: false
 
+::: {.cell layout-align="center" output-location='default'}
+
+```{.r .cell-code  code-fold="false" code-summary="R" code-line-numbers="true"}
 install.packages("ggplot2")
 library(ggplot2)
 ```
+:::
+
 
 
 
@@ -470,17 +449,10 @@ Veja esse [site](http://www.tylervigen.com/spurious-correlations).
 
 ### R
 
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
 
+::: {.cell layout-align="center" output-location='default'}
+
+```{.r .cell-code  code-fold="true" code-summary="R" code-line-numbers="true"}
 library(data.table)
 library(ggplot2)
 # Generate Data
@@ -506,23 +478,21 @@ ggplot(data_we_see, aes(x = x, y = y)) +
             axis.text.y = element_text(face="bold", color="black", size = 18),
             axis.text.x = element_text(face="bold", color="black", size = 18),
             legend.position = "none")
-```       
+```
+
+::: {.cell-output-display}
+![](part_1_files/figure-revealjs/unnamed-chunk-2-1.png){fig-align='center' width=960}
+:::
+:::
+
 
 
 ### Python
 
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Python"
+
+::: {.cell layout-align="center" output-location='default'}
+
+```{.python .cell-code  code-fold="true" code-summary="Python" code-line-numbers="true"}
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -546,23 +516,20 @@ plt.title("The observations we see", fontsize=18)
 plt.xlabel("")
 plt.ylabel("")
 plt.show()
+```
 
-```       
+::: {.cell-output-display}
+![](part_1_files/figure-revealjs/unnamed-chunk-3-1.png){fig-align='center' width=672}
+:::
+:::
+
 
 ### Stata
 
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
+
+::: {.cell layout-align="center" output-location='default'}
+
+```{.stata .cell-code  code-fold="true" code-summary="Stata" code-line-numbers="true"}
 clear all
 set seed 100
 set obs 10000
@@ -572,7 +539,9 @@ gen data1 = 1 / (1 + exp(2 - x - y))
 gen group = rbinomial(1, data1)
 twoway (scatter x y if group == 1, mcolor(black) msize(small))    (lfit y x if group == 1, color(blue)),title("The observations we see", size(large) ) xtitle("") ytitle("")
 quietly graph export figs/graph1.svg, replace
-```       
+```
+:::
+
 
 ![](figs/graph1.svg)
 
@@ -594,37 +563,50 @@ quietly graph export figs/graph1.svg, replace
 ::: panel-tabset
 
 ### R
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
 
+::: {.cell layout-align="center" output-location='default'}
+
+```{.r .cell-code  code-fold="true" code-summary="R" code-line-numbers="true"}
 # Fit a linear regression model
 model <- lm(y ~ x, data = data_we_see)
 # Print the summary of the regression model
 summary(model)
 ```
 
+::: {.cell-output .cell-output-stdout}
+
+```
+
+Call:
+lm(formula = y ~ x, data = data_we_see)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.05878 -0.63754 -0.00276  0.62056  3.11374 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.72820    0.02660   27.37  < 2e-16 ***
+x           -0.14773    0.02327   -6.35 2.75e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9113 on 1747 degrees of freedom
+Multiple R-squared:  0.02256,	Adjusted R-squared:  0.022 
+F-statistic: 40.32 on 1 and 1747 DF,  p-value: 2.746e-10
+```
+
+
+:::
+:::
+
+
 ### Python
 
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Python"
 
+::: {.cell layout-align="center" output-location='default'}
+
+```{.python .cell-code  code-fold="true" code-summary="Python" code-line-numbers="true"}
 import statsmodels.api as sm
 import pandas as pd
 n = 10000
@@ -644,19 +626,47 @@ model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
 
+::: {.cell-output .cell-output-stdout}
+
+```
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.018
+Model:                            OLS   Adj. R-squared:                  0.018
+Method:                 Least Squares   F-statistic:                     33.84
+Date:                qua, 28 ago 2024   Prob (F-statistic):           7.06e-09
+Time:                        19:20:03   Log-Likelihood:                -2411.1
+No. Observations:                1809   AIC:                             4826.
+Df Residuals:                    1807   BIC:                             4837.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.7037      0.026     26.826      0.000       0.652       0.755
+x             -0.1339      0.023     -5.817      0.000      -0.179      -0.089
+==============================================================================
+Omnibus:                        4.656   Durbin-Watson:                   1.973
+Prob(Omnibus):                  0.097   Jarque-Bera (JB):                5.264
+Skew:                          -0.038   Prob(JB):                       0.0720
+Kurtosis:                       3.253   Cond. No.                         1.93
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+```
+
+
+:::
+:::
+
+
 ### Stata
 
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
+
+::: {.cell layout-align="center" output-location='default'}
+
+```{.stata .cell-code  code-fold="true" code-summary="Stata" code-line-numbers="true"}
 clear all
 set seed 100
 set obs 10000
@@ -666,7 +676,33 @@ gen data1 = 1 / (1 + exp(2 - x - y))
 gen group = rbinomial(1, data1)
 reg y x if group ==1
 
-```    
+```
+
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Number of observations (_N) was 0, now 10,000.
+
+      Source |       SS           df       MS      Number of obs   =     1,872
+-------------+----------------------------------   F(1, 1870)      =     48.62
+       Model |  40.9398907         1  40.9398907   Prob > F        =    0.0000
+    Residual |  1574.57172     1,870  .842016963   R-squared       =    0.0253
+-------------+----------------------------------   Adj R-squared   =    0.0248
+       Total |  1615.51161     1,871  .863448215   Root MSE        =    .91761
+
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+           x |  -.1579538   .0226526    -6.97   0.000    -.2023808   -.1135269
+       _cons |   .7202285   .0257215    28.00   0.000     .6697827    .7706744
+------------------------------------------------------------------------------
+```
+
+
+:::
+:::
+
 
 :::
 
@@ -694,17 +730,10 @@ reg y x if group ==1
 
 ### R
 
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
 
+::: {.cell layout-align="center" output-location='default'}
+
+```{.r .cell-code  code-fold="true" code-summary="R" code-line-numbers="true"}
 ggplot(data_all, aes(x = x, y = y,  colour=group)) + 
   geom_point(aes(colour = factor(-group)), size = 1) +
   geom_smooth(method=lm, se=FALSE, fullrange=FALSE)+
@@ -715,22 +744,20 @@ ggplot(data_all, aes(x = x, y = y,  colour=group)) +
       axis.text.y = element_text(face="bold", color="black", size = 18),
       axis.text.x = element_text(face="bold", color="black", size = 18),
       legend.position = "none")
-``` 
+```
+
+::: {.cell-output-display}
+![](part_1_files/figure-revealjs/unnamed-chunk-8-1.png){fig-align='center' width=960}
+:::
+:::
+
 
 ### Python
 
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Python"
+
+::: {.cell layout-align="center" output-location='default'}
+
+```{.python .cell-code  code-fold="true" code-summary="Python" code-line-numbers="true"}
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -746,31 +773,28 @@ plt.legend(title="Group", labels=["0", "1"], loc="upper left")
 
 plt.gca().get_legend().remove()
 plt.show()
-```       
+```
+
+::: {.cell-output-display}
+![](part_1_files/figure-revealjs/unnamed-chunk-9-1.png){fig-align='center' width=576}
+:::
+:::
+
 
 ### Stata
 
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-clear all
-set seed 100
-set obs 10000
-gen x = rnormal(0,1)
-gen y = rnormal(0,1)
-gen data1 = 1 / (1 + exp(2 - x - y))
-gen group = rbinomial(1, data1)
-twoway (scatter x y if group == 1, mcolor(red) msize(small))   (scatter x y if group == 0, mcolor(blue) msize(small))   (lfit y x , color(blue)),  title("All observations", size(large))    legend(order(1 "Group 0" 2 "Group 1")) 
-quietly graph export figs/graph2.svg, replace
 
-```  
+::: {.cell layout-align="center"}
+::: {.cell-output .cell-output-stdout}
+
+```
+Number of observations (_N) was 0, now 10,000.
+```
+
+
+:::
+:::
+
 
 ![](figs/graph2.svg)
 
@@ -790,35 +814,46 @@ quietly graph export figs/graph2.svg, replace
 ::: panel-tabset
 
 ### R
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
 
+::: {.cell layout-align="center" output-location='default'}
+
+```{.r .cell-code  code-fold="true" code-summary="R" code-line-numbers="true"}
 model2 <- lm(y ~ x, data = data_all)
 summary(model2)
 ```
 
+::: {.cell-output .cell-output-stdout}
+
+```
+
+Call:
+lm(formula = y ~ x, data = data_all)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9515 -0.6716  0.0087  0.6698  3.9878 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) -0.011825   0.009994  -1.183    0.237
+x           -0.003681   0.010048  -0.366    0.714
+
+Residual standard error: 0.9994 on 9998 degrees of freedom
+Multiple R-squared:  1.342e-05,	Adjusted R-squared:  -8.66e-05 
+F-statistic: 0.1342 on 1 and 9998 DF,  p-value: 0.7141
+```
+
+
+:::
+:::
+
+
 ### Python
 
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Python"
 
+::: {.cell layout-align="center" output-location='default'}
+
+```{.python .cell-code  code-fold="true" code-summary="Python" code-line-numbers="true"}
 import statsmodels.api as sm
 import pandas as pd
 n = 10000
@@ -838,19 +873,47 @@ model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
 
+::: {.cell-output .cell-output-stdout}
+
+```
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.000
+Model:                            OLS   Adj. R-squared:                  0.000
+Method:                 Least Squares   F-statistic:                     1.281
+Date:                qua, 28 ago 2024   Prob (F-statistic):              0.258
+Time:                        19:20:12   Log-Likelihood:                -14157.
+No. Observations:               10000   AIC:                         2.832e+04
+Df Residuals:                    9998   BIC:                         2.833e+04
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0003      0.010     -0.034      0.973      -0.020       0.019
+x             -0.0112      0.010     -1.132      0.258      -0.031       0.008
+==============================================================================
+Omnibus:                        0.267   Durbin-Watson:                   2.009
+Prob(Omnibus):                  0.875   Jarque-Bera (JB):                0.242
+Skew:                           0.009   Prob(JB):                        0.886
+Kurtosis:                       3.017   Cond. No.                         1.01
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+```
+
+
+:::
+:::
+
+
 ### Stata
 
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
+
+::: {.cell layout-align="center" output-location='default'}
+
+```{.stata .cell-code  code-fold="true" code-summary="Stata" code-line-numbers="true"}
 clear all
 set seed 100
 set obs 10000
@@ -860,7 +923,33 @@ gen data1 = 1 / (1 + exp(2 - x - y))
 gen group = rbinomial(1, data1)
 reg y x 
 
-```    
+```
+
+
+::: {.cell-output .cell-output-stdout}
+
+```
+Number of observations (_N) was 0, now 10,000.
+
+      Source |       SS           df       MS      Number of obs   =    10,000
+-------------+----------------------------------   F(1, 9998)      =      0.28
+       Model |  .284496142         1  .284496142   Prob > F        =    0.5938
+    Residual |  9999.04347     9,998  1.00010437   R-squared       =    0.0000
+-------------+----------------------------------   Adj R-squared   =   -0.0001
+       Total |  9999.32797     9,999   1.0000328   Root MSE        =    1.0001
+
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+           x |  -.0053101    .009956    -0.53   0.594    -.0248259    .0142057
+       _cons |   .0006182   .0100006     0.06   0.951    -.0189849    .0202213
+------------------------------------------------------------------------------
+```
+
+
+:::
+:::
+
 
 
 :::
@@ -994,9 +1083,11 @@ Sometimes, there is causality even when we do not observe correlation.
 *The sailor is adjusting the rudder on a windy day to align the boat with the wind, but the boat is not changing direction.* ([Source: The Mixtape](https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality))
 
 
+
 ```{=html}
 <iframe width="1000" height="450" src="https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality" title="The Mixtape"></iframe>
 ```
+
 
 . . .
 
@@ -1470,3 +1561,4 @@ Artigo original [aqui](https://link.springer.com/article/10.1057/s41267-017-0081
 
 ::: footer
 :::
+
