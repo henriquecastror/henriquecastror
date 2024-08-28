@@ -7667,7 +7667,7 @@
   {
     "objectID": "teaching/empirical_finance/part_1.html#agenda-1",
     "href": "teaching/empirical_finance/part_1.html#agenda-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Agenda",
     "text": "Agenda\n\nApresentação do syllabus do curso\n\nApresentação dos critérios de avaliação\n\n\n\n\nBreve apresentação dos temas de pesquisa e discussão inicial sobre a entrega final\n\n\n\n\nInício do conteúdo\n\nIntrodução a causalidade"
   },
@@ -7702,336 +7702,336 @@
   {
     "objectID": "teaching/empirical_finance/part_1.html#stata",
     "href": "teaching/empirical_finance/part_1.html#stata",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Stata",
     "text": "Stata\nProvidenciar programa instalado semana que vem.\nPara instalação do Stata, seguir instruções da TI."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#r",
     "href": "teaching/empirical_finance/part_1.html#r",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "R",
     "text": "R\nProvidenciar programa instalado semana que vem.\nInstall R here Win\nInstall R here Mac\nInstall R Studio here\n\nPara instalar e carregar os pacotes você precisa rodar as duas linhas abaixo.\n\ninstall.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#python",
     "href": "teaching/empirical_finance/part_1.html#python",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Python",
     "text": "Python\nI might show some code in python, but I cannot offer you support on it."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#section-1",
     "href": "teaching/empirical_finance/part_1.html#section-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "",
     "text": "Você nunca sabe o resultado do caminho que não toma."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#quais-as-aplicações-do-que-vamos-discutir",
     "href": "teaching/empirical_finance/part_1.html#quais-as-aplicações-do-que-vamos-discutir",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Quais as aplicações do que vamos discutir?",
     "text": "Quais as aplicações do que vamos discutir?\nHá uma série de questões de pesquisa que poderiam ser investigadas com as ferramentas que vamos discutir hoje.\n\n\nVale mais a pena estudar em escola particular ou pública?\nQual o efeito de investimentos de marketing têm na lucratividade?\nQual o efeito que jornadas de 4 dias semanais têm na produtividade?\nQual efeito que educação tem na remuneração futura?\nE diversas outras semelhantes…"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#antes-de-começar-nossa-agenda",
     "href": "teaching/empirical_finance/part_1.html#antes-de-começar-nossa-agenda",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Antes de começar: Nossa agenda",
     "text": "Antes de começar: Nossa agenda\n\n\nIntrodução a pesquisa quantitativa\nValidade Externa vs. Validade Interna\nProblemas em pesquisa quantitativa inferencial\nRemédios"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#introdução",
     "href": "teaching/empirical_finance/part_1.html#introdução",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Introdução",
     "text": "Introdução\nO que fazemos em pesquisa quantitiva? Seguimos o método de pesquisa tradicional (com ajustes):\n\n\nObservação\nQuestão de pesquisa\nModelo teórico (abstrato)\nHipóteses\nModelo empírico\nColeta de dados\nAnálise do resultado do modelo (diferente de análise de dados “pura”)\nConclusão/desdobramentos/aprendizados"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#introdução-1",
     "href": "teaching/empirical_finance/part_1.html#introdução-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Introdução",
     "text": "Introdução\nO que fazemos em pesquisa quantitiva? Seguimos o método de pesquisa tradicional (com ajustes):\n\nObservação\nQuestão de pesquisa\nModelo teórico (abstrato): Aqui é onde a matemática é necessária\nHipóteses\nModelo empírico: Estatística e econometria necessárias\nColeta de dados: Geralmente secundários\nAnálise do resultado do modelo (diferente de análise de dados “pura”)\nConclusão/desdobramentos/aprendizados"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#definição",
     "href": "teaching/empirical_finance/part_1.html#definição",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Definição",
     "text": "Definição\nPesquisa quantitativa busca testar hipóteses…\n\n…a partir da definição de modelos formais (abstratos)…\n\n\n…de onde se estimam modelos empíricos utilizando a estatística e a econometria como mecanismos/instrumentos.\n\n\nNo fim do dia, buscamos entender as relações (que tenham validade interna e que ofereçam validade externa) entre diferentes variáveis de interesse."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#quais-as-vantagens",
     "href": "teaching/empirical_finance/part_1.html#quais-as-vantagens",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Quais as vantagens?",
     "text": "Quais as vantagens?\n\nValidade externa:\n\n\n\nConceito de que, se a pesquisa tem validade externa, os seus achados são representativos.\n\n\n\n\nI.e., são válidos além do seu modelo. Resultados “valem externamente”.\n\n\n\n\nIdealmente, buscamos resultados que valem externamente para acumular conhecimento…\n\n\n\n\n…naturalmente, nem toda pesquisa quantitativa oferece validade externa. A pesquisa ótima sim. A pesquisa excelente tem validade externa para além do seu tempo.\n\n\n\n\nPesquisa qualitativa dificilmente oferece validade externa."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#quais-as-armadilhas",
     "href": "teaching/empirical_finance/part_1.html#quais-as-armadilhas",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Quais as armadilhas?",
     "text": "Quais as armadilhas?\n\nValidade interna:\n\n\n\nConceito de que a pesquisa precisa de validade interna para que seus resultados sejam críveis.\n\n\n\n\nI.e., os resultados não podem conter erros, vieses, problemas de estimação, problemas nos dados, etc..\n\n\n\n\nÉ aqui que a gente separa a pesquisa ruim da pesquisa boa. Para ser levada a sério, a pesquisa PRECISA ter validade interna.\n\n\n\n\nMas isso, nem sempre é trivial. Muitas pesquisas que vemos publicadas, mesmo em top journals, não têm validade interna (seja por erro do pesquisador, por método incorreto, por falta de dados…)\n\n\n\n\nMas cada vez mais, avaliadores estão de olho em problemas e em modelos Trash-in-Trash-out"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#como-fazemos-na-prática",
     "href": "teaching/empirical_finance/part_1.html#como-fazemos-na-prática",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Como fazemos na prática?",
     "text": "Como fazemos na prática?\nExemplo de modelo empírico:\n\\(Y_{i} = α + 𝜷_{1} × X_i + Controls + error\\)\n\n\n\n\nUma vez que estimemos esse modelo, temos o valor, o sinal e a significância do \\(𝜷\\).\n\n\nSe o Beta for significativamente diferente de zero e positivo –&gt; X e Y estão positivamente correlacionados.\n\n\nO problema? Os pacotes estatísticos que utilizamos sempre “cospem” um beta. Seja ele com ou sem viés.\n\n\nCabe ao pesquisador ter um design empírico que garanta que o beta estimado tenha validade interna."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#como-fazemos-na-prática-1",
     "href": "teaching/empirical_finance/part_1.html#como-fazemos-na-prática-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Como fazemos na prática?",
     "text": "Como fazemos na prática?\n\nA decisão final é baseada na significância do Beta estimado. Se significativo, as variáveis são relacionadas e fazemos inferências em cima disso.\nContudo, sem um design empírico inteligente, o beta encontrado pode ter literalmente qualquer sinal e significância."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas",
     "href": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Exemplo desses problemas",
     "text": "Exemplo desses problemas\nVeja esse site."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas-1",
     "href": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Exemplo desses problemas",
     "text": "Exemplo desses problemas\nVeja esse site."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#selection-bias---we-see-i",
     "href": "teaching/empirical_finance/part_1.html#selection-bias---we-see-i",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Selection bias - We see I",
     "text": "Selection bias - We see I\n\nRPythonStata\n\n\n\n\nR\nlibrary(data.table)\nlibrary(ggplot2)\n# Generate Data\nn = 10000\nset.seed(100)\nx &lt;- rnorm(n)\ny &lt;- rnorm(n)\ndata1 &lt;- 1/(1+exp( 2 - x  -  y))\ngroup  &lt;- rbinom(n, 1, data1)\n\n# Data Together\ndata_we_see     &lt;- subset(data.table(x, y, group), group==1)\ndata_all        &lt;- data.table(x, y, group)\n\n# Graphs\nggplot(data_we_see, aes(x = x, y = y)) + \n      geom_point(aes(colour = factor(-group)), size = 1) +\n      geom_smooth(method=lm, se=FALSE, fullrange=FALSE)+\n      labs( y = \"\", x=\"\", title = \"The observations we see\")+\n      xlim(-3,4)+ ylim(-3,4)+ \n      theme(plot.title = element_text(color=\"black\", size=30, face=\"bold\"),\n            panel.background = element_rect(fill = \"grey95\", colour = \"grey95\"),\n            axis.text.y = element_text(face=\"bold\", color=\"black\", size = 18),\n            axis.text.x = element_text(face=\"bold\", color=\"black\", size = 18),\n            legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nn = 10000\nnp.random.seed(100)\nx = np.random.normal(size=n)\ny = np.random.normal(size=n)\ndata1 = 1 / (1 + np.exp(2 - x - y))\ngroup = np.random.binomial(1, data1, n)\n\ndata_we_see = pd.DataFrame({'x': x[group == 1], 'y': y[group == 1], 'group': group[group == 1]})\ndata_all = pd.DataFrame({'x': x, 'y': y, 'group': group})\n\nsns.set(style='whitegrid')\nplt.figure(figsize=(7, 5))\nplt.scatter(data_we_see['x'], data_we_see['y'], c=-data_we_see['group'], cmap='viridis', s=20)\nsns.regplot(x='x', y='y', data=data_we_see, scatter=False, ci=None, line_kws={'color': 'blue'})\nplt.title(\"The observations we see\", fontsize=18)\nplt.xlabel(\"\")\nplt.ylabel(\"\")\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\nStata\nclear all\nset seed 100\nset obs 10000\ngen x = rnormal(0,1)\ngen y = rnormal(0,1)\ngen data1 = 1 / (1 + exp(2 - x - y))\ngen group = rbinomial(1, data1)\ntwoway (scatter x y if group == 1, mcolor(black) msize(small))    (lfit y x if group == 1, color(blue)),title(\"The observations we see\", size(large) ) xtitle(\"\") ytitle(\"\")\nquietly graph export figs/graph1.svg, replace"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#selection-bias---we-see-ii",
     "href": "teaching/empirical_finance/part_1.html#selection-bias---we-see-ii",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Selection bias - We see II",
-    "text": "Selection bias - We see II\n\nRPythonStata\n\n\n\n\nR\n# Fit a linear regression model\nmodel &lt;- lm(y ~ x, data = data_we_see)\n# Print the summary of the regression model\nsummary(model)\n\n\n\nCall:\nlm(formula = y ~ x, data = data_we_see)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-3.05878 -0.63754 -0.00276  0.62056  3.11374 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.72820    0.02660   27.37  &lt; 2e-16 ***\nx           -0.14773    0.02327   -6.35 2.75e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.9113 on 1747 degrees of freedom\nMultiple R-squared:  0.02256,   Adjusted R-squared:  0.022 \nF-statistic: 40.32 on 1 and 1747 DF,  p-value: 2.746e-10\n\n\n\n\n\n\nPython\nimport statsmodels.api as sm\nimport pandas as pd\nn = 10000\nnp.random.seed(100)\nx = np.random.normal(size=n)\ny = np.random.normal(size=n)\ndata1 = 1 / (1 + np.exp(2 - x - y))\ngroup = np.random.binomial(1, data1, n)\n\ndata_we_see = pd.DataFrame({'x': x[group == 1], 'y': y[group == 1], 'group': group[group == 1]})\ndata_all = pd.DataFrame({'x': x, 'y': y, 'group': group})\n\nX = data_we_see['x']  \nX = sm.add_constant(X)\ny = data_we_see['y']  \nmodel = sm.OLS(y, X).fit()\nprint(model.summary())\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                      y   R-squared:                       0.018\nModel:                            OLS   Adj. R-squared:                  0.018\nMethod:                 Least Squares   F-statistic:                     33.84\nDate:                qua, 28 ago 2024   Prob (F-statistic):           7.06e-09\nTime:                        19:15:56   Log-Likelihood:                -2411.1\nNo. Observations:                1809   AIC:                             4826.\nDf Residuals:                    1807   BIC:                             4837.\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst          0.7037      0.026     26.826      0.000       0.652       0.755\nx             -0.1339      0.023     -5.817      0.000      -0.179      -0.089\n==============================================================================\nOmnibus:                        4.656   Durbin-Watson:                   1.973\nProb(Omnibus):                  0.097   Jarque-Bera (JB):                5.264\nSkew:                          -0.038   Prob(JB):                       0.0720\nKurtosis:                       3.253   Cond. No.                         1.93\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\n\n\n\nStata\nclear all\nset seed 100\nset obs 10000\ngen x = rnormal(0,1)\ngen y = rnormal(0,1)\ngen data1 = 1 / (1 + exp(2 - x - y))\ngen group = rbinomial(1, data1)\nreg y x if group ==1\n\n\nNumber of observations (_N) was 0, now 10,000.\n\n      Source |       SS           df       MS      Number of obs   =     1,872\n-------------+----------------------------------   F(1, 1870)      =     48.62\n       Model |  40.9398907         1  40.9398907   Prob &gt; F        =    0.0000\n    Residual |  1574.57172     1,870  .842016963   R-squared       =    0.0253\n-------------+----------------------------------   Adj R-squared   =    0.0248\n       Total |  1615.51161     1,871  .863448215   Root MSE        =    .91761\n\n------------------------------------------------------------------------------\n           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]\n-------------+----------------------------------------------------------------\n           x |  -.1579538   .0226526    -6.97   0.000    -.2023808   -.1135269\n       _cons |   .7202285   .0257215    28.00   0.000     .6697827    .7706744\n------------------------------------------------------------------------------"
+    "text": "Selection bias - We see II\n\nRPythonStata\n\n\n\n\nR\n# Fit a linear regression model\nmodel &lt;- lm(y ~ x, data = data_we_see)\n# Print the summary of the regression model\nsummary(model)\n\n\n\nCall:\nlm(formula = y ~ x, data = data_we_see)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-3.05878 -0.63754 -0.00276  0.62056  3.11374 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.72820    0.02660   27.37  &lt; 2e-16 ***\nx           -0.14773    0.02327   -6.35 2.75e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.9113 on 1747 degrees of freedom\nMultiple R-squared:  0.02256,   Adjusted R-squared:  0.022 \nF-statistic: 40.32 on 1 and 1747 DF,  p-value: 2.746e-10\n\n\n\n\n\n\nPython\nimport statsmodels.api as sm\nimport pandas as pd\nn = 10000\nnp.random.seed(100)\nx = np.random.normal(size=n)\ny = np.random.normal(size=n)\ndata1 = 1 / (1 + np.exp(2 - x - y))\ngroup = np.random.binomial(1, data1, n)\n\ndata_we_see = pd.DataFrame({'x': x[group == 1], 'y': y[group == 1], 'group': group[group == 1]})\ndata_all = pd.DataFrame({'x': x, 'y': y, 'group': group})\n\nX = data_we_see['x']  \nX = sm.add_constant(X)\ny = data_we_see['y']  \nmodel = sm.OLS(y, X).fit()\nprint(model.summary())\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                      y   R-squared:                       0.018\nModel:                            OLS   Adj. R-squared:                  0.018\nMethod:                 Least Squares   F-statistic:                     33.84\nDate:                qua, 28 ago 2024   Prob (F-statistic):           7.06e-09\nTime:                        19:32:52   Log-Likelihood:                -2411.1\nNo. Observations:                1809   AIC:                             4826.\nDf Residuals:                    1807   BIC:                             4837.\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst          0.7037      0.026     26.826      0.000       0.652       0.755\nx             -0.1339      0.023     -5.817      0.000      -0.179      -0.089\n==============================================================================\nOmnibus:                        4.656   Durbin-Watson:                   1.973\nProb(Omnibus):                  0.097   Jarque-Bera (JB):                5.264\nSkew:                          -0.038   Prob(JB):                       0.0720\nKurtosis:                       3.253   Cond. No.                         1.93\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\n\n\n\nStata\nclear all\nset seed 100\nset obs 10000\ngen x = rnormal(0,1)\ngen y = rnormal(0,1)\ngen data1 = 1 / (1 + exp(2 - x - y))\ngen group = rbinomial(1, data1)\nreg y x if group ==1\n\n\nNumber of observations (_N) was 0, now 10,000.\n\n      Source |       SS           df       MS      Number of obs   =     1,872\n-------------+----------------------------------   F(1, 1870)      =     48.62\n       Model |  40.9398907         1  40.9398907   Prob &gt; F        =    0.0000\n    Residual |  1574.57172     1,870  .842016963   R-squared       =    0.0253\n-------------+----------------------------------   Adj R-squared   =    0.0248\n       Total |  1615.51161     1,871  .863448215   Root MSE        =    .91761\n\n------------------------------------------------------------------------------\n           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]\n-------------+----------------------------------------------------------------\n           x |  -.1579538   .0226526    -6.97   0.000    -.2023808   -.1135269\n       _cons |   .7202285   .0257215    28.00   0.000     .6697827    .7706744\n------------------------------------------------------------------------------"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#selection-bias---all-i",
     "href": "teaching/empirical_finance/part_1.html#selection-bias---all-i",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Selection bias - All I",
     "text": "Selection bias - All I\n\nRPythonStata\n\n\n\n\nR\nggplot(data_all, aes(x = x, y = y,  colour=group)) + \n  geom_point(aes(colour = factor(-group)), size = 1) +\n  geom_smooth(method=lm, se=FALSE, fullrange=FALSE)+\n  labs( y = \"\", x=\"\", title = \"All observations\")+\n  xlim(-3,4)+ ylim(-3,4)+ \n  theme(plot.title = element_text(color=\"black\", size=30, face=\"bold\"),\n      panel.background = element_rect(fill = \"grey95\", colour = \"grey95\"),\n      axis.text.y = element_text(face=\"bold\", color=\"black\", size = 18),\n      axis.text.x = element_text(face=\"bold\", color=\"black\", size = 18),\n      legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython\nimport pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\nsns.set(style='whitegrid')\nplt.figure(figsize=(6, 4))\nsns.scatterplot(data=data_all, x='x', y='y', hue='group', palette=['blue', 'red'], s=20)\nsns.regplot(data=data_all, x='x', y='y', scatter=False, ci=None, line_kws={'color': 'blue'})\nplt.title(\"All observations\", fontsize=18)\nplt.xlabel(\"\")\nplt.ylabel(\"\")\nplt.legend(title=\"Group\", labels=[\"0\", \"1\"], loc=\"upper left\")\n\nplt.gca().get_legend().remove()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\nNumber of observations (_N) was 0, now 10,000."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#selection-bias---all-i-1",
     "href": "teaching/empirical_finance/part_1.html#selection-bias---all-i-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Selection bias - All I",
-    "text": "Selection bias - All I\n\nRPythonStata\n\n\n\n\nR\nmodel2 &lt;- lm(y ~ x, data = data_all)\nsummary(model2)\n\n\n\nCall:\nlm(formula = y ~ x, data = data_all)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.9515 -0.6716  0.0087  0.6698  3.9878 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)\n(Intercept) -0.011825   0.009994  -1.183    0.237\nx           -0.003681   0.010048  -0.366    0.714\n\nResidual standard error: 0.9994 on 9998 degrees of freedom\nMultiple R-squared:  1.342e-05, Adjusted R-squared:  -8.66e-05 \nF-statistic: 0.1342 on 1 and 9998 DF,  p-value: 0.7141\n\n\n\n\n\n\nPython\nimport statsmodels.api as sm\nimport pandas as pd\nn = 10000\nnp.random.seed(100)\nx = np.random.normal(size=n)\ny = np.random.normal(size=n)\ndata1 = 1 / (1 + np.exp(2 - x - y))\ngroup = np.random.binomial(1, data1, n)\n\ndata_we_see = pd.DataFrame({'x': x[group == 1], 'y': y[group == 1], 'group': group[group == 1]})\ndata_all = pd.DataFrame({'x': x, 'y': y, 'group': group})\n\nX = data_all['x']  \nX = sm.add_constant(X)\ny = data_all['y']  \nmodel = sm.OLS(y, X).fit()\nprint(model.summary())\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                      y   R-squared:                       0.000\nModel:                            OLS   Adj. R-squared:                  0.000\nMethod:                 Least Squares   F-statistic:                     1.281\nDate:                qua, 28 ago 2024   Prob (F-statistic):              0.258\nTime:                        19:16:06   Log-Likelihood:                -14157.\nNo. Observations:               10000   AIC:                         2.832e+04\nDf Residuals:                    9998   BIC:                         2.833e+04\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst         -0.0003      0.010     -0.034      0.973      -0.020       0.019\nx             -0.0112      0.010     -1.132      0.258      -0.031       0.008\n==============================================================================\nOmnibus:                        0.267   Durbin-Watson:                   2.009\nProb(Omnibus):                  0.875   Jarque-Bera (JB):                0.242\nSkew:                           0.009   Prob(JB):                        0.886\nKurtosis:                       3.017   Cond. No.                         1.01\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\n\n\n\nStata\nclear all\nset seed 100\nset obs 10000\ngen x = rnormal(0,1)\ngen y = rnormal(0,1)\ngen data1 = 1 / (1 + exp(2 - x - y))\ngen group = rbinomial(1, data1)\nreg y x \n\n\nNumber of observations (_N) was 0, now 10,000.\n\n      Source |       SS           df       MS      Number of obs   =    10,000\n-------------+----------------------------------   F(1, 9998)      =      0.28\n       Model |  .284496142         1  .284496142   Prob &gt; F        =    0.5938\n    Residual |  9999.04347     9,998  1.00010437   R-squared       =    0.0000\n-------------+----------------------------------   Adj R-squared   =   -0.0001\n       Total |  9999.32797     9,999   1.0000328   Root MSE        =    1.0001\n\n------------------------------------------------------------------------------\n           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]\n-------------+----------------------------------------------------------------\n           x |  -.0053101    .009956    -0.53   0.594    -.0248259    .0142057\n       _cons |   .0006182   .0100006     0.06   0.951    -.0189849    .0202213\n------------------------------------------------------------------------------"
+    "text": "Selection bias - All I\n\nRPythonStata\n\n\n\n\nR\nmodel2 &lt;- lm(y ~ x, data = data_all)\nsummary(model2)\n\n\n\nCall:\nlm(formula = y ~ x, data = data_all)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.9515 -0.6716  0.0087  0.6698  3.9878 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)\n(Intercept) -0.011825   0.009994  -1.183    0.237\nx           -0.003681   0.010048  -0.366    0.714\n\nResidual standard error: 0.9994 on 9998 degrees of freedom\nMultiple R-squared:  1.342e-05, Adjusted R-squared:  -8.66e-05 \nF-statistic: 0.1342 on 1 and 9998 DF,  p-value: 0.7141\n\n\n\n\n\n\nPython\nimport statsmodels.api as sm\nimport pandas as pd\nn = 10000\nnp.random.seed(100)\nx = np.random.normal(size=n)\ny = np.random.normal(size=n)\ndata1 = 1 / (1 + np.exp(2 - x - y))\ngroup = np.random.binomial(1, data1, n)\n\ndata_we_see = pd.DataFrame({'x': x[group == 1], 'y': y[group == 1], 'group': group[group == 1]})\ndata_all = pd.DataFrame({'x': x, 'y': y, 'group': group})\n\nX = data_all['x']  \nX = sm.add_constant(X)\ny = data_all['y']  \nmodel = sm.OLS(y, X).fit()\nprint(model.summary())\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                      y   R-squared:                       0.000\nModel:                            OLS   Adj. R-squared:                  0.000\nMethod:                 Least Squares   F-statistic:                     1.281\nDate:                qua, 28 ago 2024   Prob (F-statistic):              0.258\nTime:                        19:33:01   Log-Likelihood:                -14157.\nNo. Observations:               10000   AIC:                         2.832e+04\nDf Residuals:                    9998   BIC:                         2.833e+04\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst         -0.0003      0.010     -0.034      0.973      -0.020       0.019\nx             -0.0112      0.010     -1.132      0.258      -0.031       0.008\n==============================================================================\nOmnibus:                        0.267   Durbin-Watson:                   2.009\nProb(Omnibus):                  0.875   Jarque-Bera (JB):                0.242\nSkew:                           0.009   Prob(JB):                        0.886\nKurtosis:                       3.017   Cond. No.                         1.01\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\n\n\n\nStata\nclear all\nset seed 100\nset obs 10000\ngen x = rnormal(0,1)\ngen y = rnormal(0,1)\ngen data1 = 1 / (1 + exp(2 - x - y))\ngen group = rbinomial(1, data1)\nreg y x \n\n\nNumber of observations (_N) was 0, now 10,000.\n\n      Source |       SS           df       MS      Number of obs   =    10,000\n-------------+----------------------------------   F(1, 9998)      =      0.28\n       Model |  .284496142         1  .284496142   Prob &gt; F        =    0.5938\n    Residual |  9999.04347     9,998  1.00010437   R-squared       =    0.0000\n-------------+----------------------------------   Adj R-squared   =   -0.0001\n       Total |  9999.32797     9,999   1.0000328   Root MSE        =    1.0001\n\n------------------------------------------------------------------------------\n           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]\n-------------+----------------------------------------------------------------\n           x |  -.0053101    .009956    -0.53   0.594    -.0248259    .0142057\n       _cons |   .0006182   .0100006     0.06   0.951    -.0189849    .0202213\n------------------------------------------------------------------------------"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#selection-bias-1",
     "href": "teaching/empirical_finance/part_1.html#selection-bias-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Selection bias",
     "text": "Selection bias\nSelection bias não é o único dos nossos problemas, mas é um importante.\nVeja que suas conclusões mudaram significativamente.\nNão seria difícil criar um exemplo em que o coeficiente verdadeiro fosse positivo."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas-2",
     "href": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas-2",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Exemplo desses problemas",
     "text": "Exemplo desses problemas\n\nSource: Angrist\nNão podemos pegar dois caminhos."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas-3",
     "href": "teaching/empirical_finance/part_1.html#exemplo-desses-problemas-3",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Exemplo desses problemas",
     "text": "Exemplo desses problemas\n\nSource: Angrist\nNão podemos comparar pessoas que não são comparáveis."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#o-que-precisamos-fazer",
     "href": "teaching/empirical_finance/part_1.html#o-que-precisamos-fazer",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "O que precisamos fazer?",
     "text": "O que precisamos fazer?\n\nDefinir um bom Design empírico\n\n\nNo mundo ideal: teríamos universos paralelos. Teríamos dois clones, em que cada um escolhe um caminho. Todo o resto é igual.\n\nObviamente, isso não existe.\n\n\n\nSegunda melhor solução: experimentos\n\n\nMas o que é um experimento?\n\nGrupo de tratamento vs. Grupo de controle\nIgualdade entre os grupos (i.e., aleatoriedade no sampling)\n\nNada diferencia os grupos a não ser o fato de que um indivíduo recebe tratamento e o outro não\nEstamos comparando maças com maças e laranjas com laranjas\n\nTestes placebo/falsificação."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#correlation-causality",
     "href": "teaching/empirical_finance/part_1.html#correlation-causality",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Correlation & Causality",
     "text": "Correlation & Causality\nIt is very common these days to hear someone say “correlation does not mean causality.”\nIn essence, that is true.\n\nThe killer struck during daylight. Had the sun not been out that day, the victim would have been safe.\n\n\n\nThere is a correlation, but it is clear there is no causation."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#correlation-causality-1",
     "href": "teaching/empirical_finance/part_1.html#correlation-causality-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Correlation & Causality",
     "text": "Correlation & Causality\nSometimes, there is causality even when we do not observe correlation.\nThe sailor is adjusting the rudder on a windy day to align the boat with the wind, but the boat is not changing direction. (Source: The Mixtape)\n\n\nIn this example, the sailor is endogenously adjusting the course to balance the unobserved wind."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#the-challenge-1",
     "href": "teaching/empirical_finance/part_1.html#the-challenge-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "The challenge",
     "text": "The challenge\n\nI will discuss some issues in using plain OLS models in Finance Research (mainly with panel data).\n\n\n\nI will avoid the word “endogeneity” as much as I can\n\n\n\n\nI will also avoid the word “identification” because identification does not guarantee causality and vice-versa (Kahn and Whited 2017)\n\n\n\n\nThe discussion is based on Atanasov and Black (2016)"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#the-challenge-2",
     "href": "teaching/empirical_finance/part_1.html#the-challenge-2",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "The challenge",
     "text": "The challenge\n\nImagine that you want to investigate the effect of Governance on Q\n\nYou may have more covariates explaining Q (omitted from slides)\n\n\n\\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\nAll the issues in the next slides will make it not possible to infer that changing Gov will CAUSE a change in Q\nThat is, cannot infer causality"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#reverse-causation",
     "href": "teaching/empirical_finance/part_1.html#reverse-causation",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "1) Reverse causation",
     "text": "1) Reverse causation\nOne source of bias is: reverse causation\n\nPerhaps it is Q that causes Gov\nOLS based methods do not tell the difference between these two betas:\n\n\\(𝑄_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\\(Gov_{i} = α + 𝜷_{i} × Q + Controls + error\\)\n\nIf one Beta is significant, the other will most likely be significant too\nYou need a sound theory!"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#omitted-variable-bias-ovb",
     "href": "teaching/empirical_finance/part_1.html#omitted-variable-bias-ovb",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "2) Omitted variable bias (OVB)",
     "text": "2) Omitted variable bias (OVB)\nThe second source of bias is: OVB\n\nImagine that you do not include an important “true” predictor of Q\nLet’s say, long is: \\(𝑸_{i} = 𝜶_{long} + 𝜷_{long}* gov_{i} + δ * omitted + error\\)\nBut you estimate short: \\(𝑸_{i} = 𝜶_{short} + 𝜷_{short}* gov_{i} + error\\)\n\\(𝜷_{short}\\) will be:\n\n\\(𝜷_{short} = 𝜷_{long}\\) + bias\n\\(𝜷_{short} = 𝜷_{long}\\) + relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)\n\nWhere: relationship between omitted (omitted) and included (Gov) is: \\(Omitted = 𝜶 + ϕ *gov_{i} + u\\)\n\n\nThus, OVB is: \\(𝜷_{short} – 𝜷_{long} = ϕ * δ\\)"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#specification-error",
     "href": "teaching/empirical_finance/part_1.html#specification-error",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "3) Specification error",
     "text": "3) Specification error\nThe third source of bias is: Specification error\n\nEven if we could perfectly measure gov and all relevant covariates, we would not know for sure the functional form through which each influences q\n\nFunctional form: linear? Quadratic? Log-log? Semi-log?\n\nMisspecification of x’s is similar to OVB"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#signaling",
     "href": "teaching/empirical_finance/part_1.html#signaling",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "4) Signaling",
     "text": "4) Signaling\nThe fourth source of bias is: Signaling\n\nPerhaps, some individuals are signaling the existence of an X without truly having it:\n\nFor instance: firms signaling they have good governance without having it\n\nThis is similar to the OVB because you cannot observe the full story"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#simultaneity",
     "href": "teaching/empirical_finance/part_1.html#simultaneity",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "5) Simultaneity",
     "text": "5) Simultaneity\nThe fifth source of bias is: Simultaneity\n\nPerhaps gov and some other variable x are determined simultaneously\nPerhaps there is bidirectional causation, with q causing gov and gov also causing q\nIn both cases, OLS regression will provide a biased estimate of the effect\nAlso, the sign might be wrong"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#heterogeneous-effects",
     "href": "teaching/empirical_finance/part_1.html#heterogeneous-effects",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "6) Heterogeneous effects",
     "text": "6) Heterogeneous effects\nThe sixth source of bias is: Heterogeneous effects\n\nMaybe the causal effect of gov on q depends on observed and unobserved firm characteristics:\n\nLet’s assume that firms seek to maximize q\nDifferent firms have different optimal gov\nFirms know their optimal gov\nIf we observed all factors that affect q, each firm would be at its own optimum and OLS regression would give a non-significant coefficient\n\nIn such case, we may find a positive or negative relationship.\nNeither is the true causal relationship"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#construct-validity",
     "href": "teaching/empirical_finance/part_1.html#construct-validity",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "7) Construct validity",
     "text": "7) Construct validity\nThe seventh source of bias is: Construct validity\n\nSome constructs (e.g. Corporate governance) are complex, and sometimes have conflicting mechanisms\nWe usually don’t know for sure what “good” governance is, for instance\nIt is common that we use imperfect proxies\nThey may poorly fit the underlying concept"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#measurement-error",
     "href": "teaching/empirical_finance/part_1.html#measurement-error",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "8) Measurement error",
     "text": "8) Measurement error\nThe eighth source of bias is: Measurement error\n\n“Classical” random measurement error for the outcome will inflate standard errors but will not lead to biased coefficients.\n\n\\(y^{*} = y + \\sigma_{1}\\)\nIf you estimante \\(y^{*} = f(x)\\), you have \\(y + \\sigma_{1} = x + \\epsilon\\)\n\\(y = x + u\\)\n\nwhere \\(u = \\epsilon + \\sigma_{1}\\)\n\n\n“Classical” random measurement error in x’s will bias coefficient estimates toward zero\n\n\\(x^{*} = x + \\sigma_{2}\\)\nImagine that \\(x^{*}\\) is a bunch of noise\nIt would not explain anything\nThus, your results are biased toward zero"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#observation-bias",
     "href": "teaching/empirical_finance/part_1.html#observation-bias",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "9) Observation bias",
     "text": "9) Observation bias\nThe ninth source of bias is: Observation bias\n\nThis is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed\nFirms which change gov may behave differently because their managers or employees think the change in gov matters, when in fact it has no direct effect"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#interdependent-effects",
     "href": "teaching/empirical_finance/part_1.html#interdependent-effects",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "10) Interdependent effects",
     "text": "10) Interdependent effects\nThe tenth source of bias is: Interdependent effects\n\nImagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt\nConversely, a reform that improves efficiency for a single firm might not improve profitability if adopted widely because the gains will be competed away\n“One swallow doesn’t make a summer”"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#selection-bias-2",
     "href": "teaching/empirical_finance/part_1.html#selection-bias-2",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "11) Selection bias",
     "text": "11) Selection bias\nThe eleventh source of bias is: Selection bias\n\nIf you run a regression with two types of companies\n\nHigh gov (let’s say they are the treated group)\nLow gov (let’s say they are the control group)\n\nWithout any matching method, these companies are likely not comparable\nThus, the estimated beta will contain selection bias\nThe bias can be either be positive or negative\nIt is similar to OVB"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#self-selection",
     "href": "teaching/empirical_finance/part_1.html#self-selection",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "12) Self-Selection",
     "text": "12) Self-Selection\nThe twelfth source of bias is: Self-Selection\n\nSelf-selection is a type of selection bias\nUsually, firms decide which level of governance they adopt\nThere are reasons why firms adopt high governance\n\nIf observable, you need to control for\nIf unobservable, you have a problem\n\nIt is like they “self-select” into the treatment.\n\nUnits decide whether they receive the treatment of not\n\nYour coefficients will be biased."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#conclusão",
     "href": "teaching/empirical_finance/part_1.html#conclusão",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Conclusão",
     "text": "Conclusão\nPesquisa quantitativa tem a parte quanti (métodos, modelos, etc.)…\n… Mas talvez a parte mais importante seja o desenho da pesquisa (design empírico)!"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#preocupações-recentes-em-pesquisa",
     "href": "teaching/empirical_finance/part_1.html#preocupações-recentes-em-pesquisa",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Preocupações recentes em pesquisa",
     "text": "Preocupações recentes em pesquisa\nP-Hacking\n\nArtigo original aqui."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#preocupações-recentes-em-pesquisa-1",
     "href": "teaching/empirical_finance/part_1.html#preocupações-recentes-em-pesquisa-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Preocupações recentes em pesquisa",
     "text": "Preocupações recentes em pesquisa\nPublication bias\n\nArtigo original aqui."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#preocupações-recentes-em-pesquisa-2",
     "href": "teaching/empirical_finance/part_1.html#preocupações-recentes-em-pesquisa-2",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Preocupações recentes em pesquisa",
     "text": "Preocupações recentes em pesquisa\nCrise de replicação\n\nArtigo original aqui."
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#some-fun-stuff",
     "href": "teaching/empirical_finance/part_1.html#some-fun-stuff",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Some fun stuff",
     "text": "Some fun stuff"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#some-fun-stuff-1",
     "href": "teaching/empirical_finance/part_1.html#some-fun-stuff-1",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Some fun stuff",
     "text": "Some fun stuff"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#some-fun-stuff-2",
     "href": "teaching/empirical_finance/part_1.html#some-fun-stuff-2",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Some fun stuff",
     "text": "Some fun stuff"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#some-fun-stuff-3",
     "href": "teaching/empirical_finance/part_1.html#some-fun-stuff-3",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Some fun stuff",
     "text": "Some fun stuff"
   },
   {
     "objectID": "teaching/empirical_finance/part_1.html#some-fun-stuff-4",
     "href": "teaching/empirical_finance/part_1.html#some-fun-stuff-4",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "Some fun stuff",
     "text": "Some fun stuff"
   },
@@ -9130,9 +9130,9 @@
   {
     "objectID": "teaching/empirical_finance/part_1.html#thank-you",
     "href": "teaching/empirical_finance/part_1.html#thank-you",
-    "title": "Inferência Causal",
+    "title": "Empirical Methods in Finance",
     "section": "THANK YOU!",
-    "text": "THANK YOU!\n\n\n\n\n\n\n\n\nHenrique Castro Martins\n\nhenrique.martins@fgv.br\nhttps://eaesp.fgv.br/en/people/henrique-castro-martins\nhenriquemartins.net\nhttps://www.linkedin.com/in/henriquecastror/\n\n\n\n\n\n\n\nhttps://eaesp.fgv.br/"
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br][Do not use without permission]"
   },
   {
     "objectID": "teaching/financial_strategy/part_0.html#other",

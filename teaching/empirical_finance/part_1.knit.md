@@ -1,5 +1,5 @@
 ---
-title: 'Inferência Causal'
+title: 'Empirical Methods in Finance'
 subtitle: 'Part 1'
 author: 'Henrique C. Martins'
 format:
@@ -8,13 +8,32 @@ format:
     theme: simple
     chalkboard: true
     preview-links: auto
-    logo: figs/background2.png
-    css: styles.css
-    footer: <https://eaesp.fgv.br/>
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
     multiplex: true
-#resources:
- # - demo.pdf
-   
+    scrollable: true
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
 ---
 
 
@@ -83,7 +102,7 @@ format:
 
 ## Stata {.smaller}
 
-**Providenciar programa instalado semana que vem**.
+**Providenciar instalação para próximo encontro**.
 
 Para instalação do Stata, seguir instruções da TI. 
 
@@ -95,7 +114,7 @@ Para instalação do Stata, seguir instruções da TI.
 
 ## R {.smaller}
 
-**Providenciar programa instalado semana que vem**.
+**Providenciar instalação para próximo encontro**.
 
 
 Install R [here Win](https://cran.r-project.org/bin/windows/base/)
@@ -635,7 +654,7 @@ Dep. Variable:                      y   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.018
 Method:                 Least Squares   F-statistic:                     33.84
 Date:                qua, 28 ago 2024   Prob (F-statistic):           7.06e-09
-Time:                        19:20:03   Log-Likelihood:                -2411.1
+Time:                        19:38:24   Log-Likelihood:                -2411.1
 No. Observations:                1809   AIC:                             4826.
 Df Residuals:                    1807   BIC:                             4837.
 Df Model:                           1                                         
@@ -882,7 +901,7 @@ Dep. Variable:                      y   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                  0.000
 Method:                 Least Squares   F-statistic:                     1.281
 Date:                qua, 28 ago 2024   Prob (F-statistic):              0.258
-Time:                        19:20:12   Log-Likelihood:                -14157.
+Time:                        19:38:34   Log-Likelihood:                -14157.
 No. Observations:               10000   AIC:                         2.832e+04
 Df Residuals:                    9998   BIC:                         2.833e+04
 Df Model:                           1                                         
