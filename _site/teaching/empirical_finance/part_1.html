@@ -450,12 +450,12 @@ Henrique C. Martins
 
 <section id="stata" class="slide level2 smaller">
 <h2>Stata</h2>
-<p><strong>Providenciar programa instalado semana que vem</strong>.</p>
+<p><strong>Providenciar instalação para próximo encontro</strong>.</p>
 <p>Para instalação do Stata, seguir instruções da TI.</p>
 </section>
 <section id="r" class="slide level2 smaller">
 <h2>R</h2>
-<p><strong>Providenciar programa instalado semana que vem</strong>.</p>
+<p><strong>Providenciar instalação para próximo encontro</strong>.</p>
 <p>Install R <a href="https://cran.r-project.org/bin/windows/base/">here Win</a></p>
 <p>Install R <a href="https://cran.r-project.org/bin/macosx/">here Mac</a></p>
 <p>Install R Studio <a href="https://posit.co/download/rstudio-desktop/">here</a></p>
@@ -816,7 +816,7 @@ Dep. Variable:                      y   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.018
 Method:                 Least Squares   F-statistic:                     33.84
 Date:                qua, 28 ago 2024   Prob (F-statistic):           7.06e-09
-Time:                        19:32:52   Log-Likelihood:                -2411.1
+Time:                        21:18:16   Log-Likelihood:                -2411.1
 No. Observations:                1809   AIC:                             4826.
 Df Residuals:                    1807   BIC:                             4837.
 Df Model:                           1                                         
@@ -1003,7 +1003,7 @@ Dep. Variable:                      y   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                  0.000
 Method:                 Least Squares   F-statistic:                     1.281
 Date:                qua, 28 ago 2024   Prob (F-statistic):              0.258
-Time:                        19:33:01   Log-Likelihood:                -14157.
+Time:                        21:18:30   Log-Likelihood:                -14157.
 No. Observations:               10000   AIC:                         2.832e+04
 Df Residuals:                    9998   BIC:                         2.833e+04
 Df Model:                           1                                         
@@ -1127,9 +1127,19 @@ Notes:
 <h2>Correlation &amp; Causality</h2>
 <p>Sometimes, there is causality even when we do not observe correlation.</p>
 <p><em>The sailor is adjusting the rudder on a windy day to align the boat with the wind, but the boat is not changing direction.</em> (<a href="https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality">Source: The Mixtape</a>)</p>
-<iframe width="1000" height="450" src="https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality" title="The Mixtape"></iframe>
-<div class="fragment">
+
+<img data-src="figs/scottboat.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
 <p>In this example, the sailor is <em>endogenously</em> adjusting the course to balance the unobserved wind.</p>
+</div>
+</div>
 </div>
 </section>
 <section id="the-challenge-1" class="slide level2 smaller" data-background="#b0aeae">
@@ -1330,6 +1340,198 @@ Notes:
 </ul></li>
 <li><p>Your coefficients will be biased.</p></li>
 </ul>
+</section>
+<section id="collider-bias-endog.-selection-bias" class="slide level2 smaller" data-background="#b0aeae">
+<h2>13) Collider Bias (endog. selection bias)</h2>
+<p><strong>Let’s assume an arbitrary population.</strong></p>
+<ul>
+<li><p>Two variables describe the population: IQ and luck.</p></li>
+<li><p>These variables are random and normally distributed.</p></li>
+<li><p>Let’s say that after you reach a certain level of IQ and Luck, you become successful (i.e., upper-right quadrant).</p></li>
+<li><p>Because you are interested in successful people, you only investigate such subsample.</p></li>
+</ul>
+</section>
+<section id="collider-bias-endog.-selection-bias-1" class="slide level2 smaller" data-background="#b0aeae">
+<h2>13) Collider Bias (endog. selection bias)</h2>
+<p><strong>A representation of the population</strong></p>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">R</a></li><li><a href="#tabset-5-2">Python</a></li><li><a href="#tabset-5-3">Stata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>R</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(data.table)</span>
+<span id="cb20-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-3"><a></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb20-4"><a></a>luck <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
+<span id="cb20-5"><a></a>iq   <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
+<span id="cb20-6"><a></a>pop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(luck, iq)</span>
+<span id="cb20-7"><a></a></span>
+<span id="cb20-8"><a></a><span class="fu">ggplot</span>(pop, <span class="fu">aes</span>(<span class="at">x =</span> iq, <span class="at">y =</span> luck)) <span class="sc">+</span> </span>
+<span id="cb20-9"><a></a>      <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-10"><a></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The general population"</span>)  <span class="sc">+</span> </span>
+<span id="cb20-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_1_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Python</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-3"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-4"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb21-5"><a></a></span>
+<span id="cb21-6"><a></a>np.random.seed(<span class="dv">100</span>)</span>
+<span id="cb21-7"><a></a></span>
+<span id="cb21-8"><a></a>luck <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
+<span id="cb21-9"><a></a>iq <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
+<span id="cb21-10"><a></a>pop <span class="op">=</span> pd.DataFrame({<span class="st">'luck'</span>: luck, <span class="st">'iq'</span>: iq})</span>
+<span id="cb21-11"><a></a></span>
+<span id="cb21-12"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)  </span>
+<span id="cb21-13"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb21-14"><a></a>plt.scatter(pop[<span class="st">'iq'</span>], pop[<span class="st">'luck'</span>])</span>
+<span id="cb21-15"><a></a>plt.title(<span class="st">"The general population"</span>)</span>
+<span id="cb21-16"><a></a>plt.xlabel(<span class="st">"IQ"</span>)</span>
+<span id="cb21-17"><a></a>plt.ylabel(<span class="st">"Luck"</span>)</span>
+<span id="cb21-18"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_1_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Stata</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a></a><span class="kw">set</span> <span class="dv">seed</span> 100</span>
+<span id="cb22-2"><a></a><span class="kw">set</span> <span class="kw">obs</span> 1000</span>
+<span id="cb22-3"><a></a><span class="kw">gen</span> luck = rnormal(100, 15)</span>
+<span id="cb22-4"><a></a><span class="kw">gen</span> iq = rnormal(100, 15)</span>
+<span id="cb22-5"><a></a><span class="kw">twoway</span> (<span class="kw">scatter</span> luck iq), <span class="bn">title</span>(<span class="st">"The general population"</span>) </span>
+<span id="cb22-6"><a></a><span class="kw">quietly</span> <span class="kw">graph</span> <span class="kw">export</span> figs/collider1.svg, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of observations (_N) was 0, now 1,000.</code></pre>
+</div>
+</div>
+<p><img data-src="figs/graph1.svg"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="collider-bias-endog.-selection-bias-2" class="slide level2 smaller" data-background="#b0aeae">
+<h2>13) Collider Bias (endog. selection bias)</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Analyzing only successful people will suggest a negative correlation between luck and IQ.</strong></p>
+<ul>
+<li>“Success” is a collider in this example. It “collides” with luck and IQ.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">R</a></li><li><a href="#tabset-6-2">Python</a></li><li><a href="#tabset-6-3">Stata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>R</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">library</span>(data.table)</span>
+<span id="cb24-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-3"><a></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb24-4"><a></a>luck <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
+<span id="cb24-5"><a></a>iq   <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
+<span id="cb24-6"><a></a>pop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(luck, iq)</span>
+<span id="cb24-7"><a></a></span>
+<span id="cb24-8"><a></a>pop<span class="sc">$</span>comb <span class="ot">&lt;-</span> pop<span class="sc">$</span>luck <span class="sc">+</span> pop<span class="sc">$</span>iq </span>
+<span id="cb24-9"><a></a>successfull <span class="ot">&lt;-</span> pop[pop<span class="sc">$</span>comb <span class="sc">&gt;</span> <span class="dv">240</span>, ] </span>
+<span id="cb24-10"><a></a></span>
+<span id="cb24-11"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb24-12"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> pop, <span class="fu">aes</span>(<span class="at">x =</span> iq, <span class="at">y =</span> luck)) <span class="sc">+</span>  </span>
+<span id="cb24-13"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> successfull, <span class="fu">aes</span>(<span class="at">x =</span> iq, <span class="at">y =</span> luck), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span>  </span>
+<span id="cb24-14"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The general population &amp; successful subpopulation"</span>) <span class="sc">+</span> </span>
+<span id="cb24-15"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_1_files/figure-revealjs/unnamed-chunk-17-3.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Python</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb25-3"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb25-4"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb25-5"><a></a></span>
+<span id="cb25-6"><a></a>np.random.seed(<span class="dv">100</span>)</span>
+<span id="cb25-7"><a></a></span>
+<span id="cb25-8"><a></a>luck <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
+<span id="cb25-9"><a></a>iq <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
+<span id="cb25-10"><a></a>pop <span class="op">=</span> pd.DataFrame({<span class="st">'luck'</span>: luck, <span class="st">'iq'</span>: iq})</span>
+<span id="cb25-11"><a></a></span>
+<span id="cb25-12"><a></a>pop[<span class="st">'comb'</span>] <span class="op">=</span> pop[<span class="st">'luck'</span>] <span class="op">+</span> pop[<span class="st">'iq'</span>]</span>
+<span id="cb25-13"><a></a></span>
+<span id="cb25-14"><a></a>successful <span class="op">=</span> pop[pop[<span class="st">'comb'</span>] <span class="op">&gt;</span> <span class="dv">240</span>]</span>
+<span id="cb25-15"><a></a></span>
+<span id="cb25-16"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)  <span class="co"># Minimalistic theme similar to theme_minimal in ggplot2</span></span>
+<span id="cb25-17"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb25-18"><a></a>plt.scatter(pop[<span class="st">'iq'</span>], pop[<span class="st">'luck'</span>], label<span class="op">=</span><span class="st">"General Population"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb25-19"><a></a>plt.scatter(successful[<span class="st">'iq'</span>], successful[<span class="st">'luck'</span>], color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">"Successful Subpopulation"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb25-20"><a></a>plt.title(<span class="st">"The general population &amp; successful subpopulation"</span>)</span>
+<span id="cb25-21"><a></a>plt.xlabel(<span class="st">"IQ"</span>)</span>
+<span id="cb25-22"><a></a>plt.ylabel(<span class="st">"Luck"</span>)</span>
+<span id="cb25-23"><a></a>plt.legend()</span>
+<span id="cb25-24"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_1_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-3">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Stata</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="conclusão" class="slide level2 smaller" data-background="#b0aeae">
 <h2>Conclusão</h2>

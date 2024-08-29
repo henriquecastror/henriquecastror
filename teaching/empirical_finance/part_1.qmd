@@ -12,7 +12,7 @@ format:
     css: logo.css
     footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
     multiplex: true
-    scrollable: true
+    scrollable: true 
 title-slide-attributes:
     data-background-color: "#b1cafa"
 include-after: |
@@ -1013,13 +1013,20 @@ Sometimes, there is causality even when we do not observe correlation.
 *The sailor is adjusting the rudder on a windy day to align the boat with the wind, but the boat is not changing direction.* ([Source: The Mixtape](https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality))
 
 
-```{=html}
-<iframe width="1000" height="450" src="https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality" title="The Mixtape"></iframe>
-```
+![](figs/scottboat.jpg)
 
-. . .
+
+
+
+
+::: {.callout-note}
 
 In this example, the sailor is *endogenously* adjusting the course to balance the unobserved wind.
+
+:::
+
+
+
 
 
 
@@ -1325,6 +1332,225 @@ _The twelfth source of bias is: Self-Selection_
     - Units decide whether they receive the treatment of not
 
 - Your coefficients will be biased.
+
+
+
+
+
+
+## 13) Collider Bias (endog. selection bias) {.smaller background="#b0aeae"}
+
+
+**Let's assume an arbitrary population.**
+
+- Two variables describe the population: IQ and luck. 
+
+- These variables are random and normally distributed.
+
+- Let's say that after you reach a certain level of IQ and Luck, you become successful (i.e., upper-right quadrant).
+
+- Because you are interested in successful people, you only investigate such subsample. 
+
+
+
+
+## 13) Collider Bias (endog. selection bias) {.smaller background="#b0aeae"}
+
+**A representation of the population**
+
+::: panel-tabset
+
+### R
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(data.table)
+library(ggplot2)
+set.seed(100)
+luck <- rnorm(1000, 100, 15)
+iq   <- rnorm(1000, 100, 15)
+pop <- data.frame(luck, iq)
+
+ggplot(pop, aes(x = iq, y = luck)) + 
+      geom_point() +
+      labs(title = "The general population")  + 
+  theme_minimal()
+```
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+np.random.seed(100)
+
+luck = np.random.normal(100, 15, 1000)
+iq = np.random.normal(100, 15, 1000)
+pop = pd.DataFrame({'luck': luck, 'iq': iq})
+
+sns.set(style="whitegrid")  
+plt.figure(figsize=(8, 6))
+plt.scatter(pop['iq'], pop['luck'])
+plt.title("The general population")
+plt.xlabel("IQ")
+plt.ylabel("Luck")
+plt.show()
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+set seed 100
+set obs 1000
+gen luck = rnormal(100, 15)
+gen iq = rnormal(100, 15)
+twoway (scatter luck iq), title("The general population") 
+quietly graph export figs/collider1.svg, replace
+```       
+
+![](figs/graph1.svg)
+
+:::
+
+
+
+
+
+## 13) Collider Bias (endog. selection bias) {.smaller background="#b0aeae"}
+
+::: {.callout-important}
+**Analyzing only successful people will suggest a negative correlation between luck and IQ.**
+
+- "Success" is a collider in this example. It "collides" with luck and IQ.
+::: 
+
+::: panel-tabset
+
+### R
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(data.table)
+library(ggplot2)
+set.seed(100)
+luck <- rnorm(1000, 100, 15)
+iq   <- rnorm(1000, 100, 15)
+pop <- data.frame(luck, iq)
+
+pop$comb <- pop$luck + pop$iq 
+successfull <- pop[pop$comb > 240, ] 
+
+ggplot() + 
+  geom_point(data = pop, aes(x = iq, y = luck)) +  
+  geom_point(data = successfull, aes(x = iq, y = luck), color = "red") +  
+  labs(title = "The general population & successful subpopulation") + 
+  theme_minimal()
+
+```
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+np.random.seed(100)
+
+luck = np.random.normal(100, 15, 1000)
+iq = np.random.normal(100, 15, 1000)
+pop = pd.DataFrame({'luck': luck, 'iq': iq})
+
+pop['comb'] = pop['luck'] + pop['iq']
+
+successful = pop[pop['comb'] > 240]
+
+sns.set(style="whitegrid")  # Minimalistic theme similar to theme_minimal in ggplot2
+plt.figure(figsize=(8, 6))
+plt.scatter(pop['iq'], pop['luck'], label="General Population", alpha=0.5)
+plt.scatter(successful['iq'], successful['luck'], color='red', label="Successful Subpopulation", alpha=0.7)
+plt.title("The general population & successful subpopulation")
+plt.xlabel("IQ")
+plt.ylabel("Luck")
+plt.legend()
+plt.show()
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+
+
+```    
+
+
+:::
 
 
 
