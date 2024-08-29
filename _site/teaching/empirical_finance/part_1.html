@@ -816,7 +816,7 @@ Dep. Variable:                      y   R-squared:                       0.018
 Model:                            OLS   Adj. R-squared:                  0.018
 Method:                 Least Squares   F-statistic:                     33.84
 Date:                qua, 28 ago 2024   Prob (F-statistic):           7.06e-09
-Time:                        21:18:16   Log-Likelihood:                -2411.1
+Time:                        21:28:21   Log-Likelihood:                -2411.1
 No. Observations:                1809   AIC:                             4826.
 Df Residuals:                    1807   BIC:                             4837.
 Df Model:                           1                                         
@@ -1003,7 +1003,7 @@ Dep. Variable:                      y   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                  0.000
 Method:                 Least Squares   F-statistic:                     1.281
 Date:                qua, 28 ago 2024   Prob (F-statistic):              0.258
-Time:                        21:18:30   Log-Likelihood:                -14157.
+Time:                        21:28:33   Log-Likelihood:                -14157.
 No. Observations:               10000   AIC:                         2.832e+04
 Df Residuals:                    9998   BIC:                         2.833e+04
 Df Model:                           1                                         
@@ -1429,7 +1429,7 @@ Notes:
 <pre><code>Number of observations (_N) was 0, now 1,000.</code></pre>
 </div>
 </div>
-<p><img data-src="figs/graph1.svg"></p>
+<p><img data-src="figs/collider1.svg"></p>
 </div>
 </div>
 </div>
@@ -1526,9 +1526,21 @@ Notes:
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a></a><span class="kw">set</span> <span class="dv">seed</span> 100</span>
+<span id="cb26-2"><a></a><span class="kw">set</span> <span class="kw">obs</span> 1000</span>
+<span id="cb26-3"><a></a><span class="kw">gen</span> luck = rnormal(100, 15)</span>
+<span id="cb26-4"><a></a><span class="kw">gen</span> iq = rnormal(100, 15)</span>
+<span id="cb26-5"><a></a><span class="kw">gen</span> <span class="fu">comb</span> = luck + iq</span>
+<span id="cb26-6"><a></a><span class="kw">gen</span> successful = <span class="fu">comb</span> &gt; 240</span>
+<span id="cb26-7"><a></a><span class="kw">twoway</span> (<span class="kw">scatter</span> luck iq <span class="kw">if</span> successful == 0)  (<span class="kw">scatter</span> luck iq <span class="kw">if</span> successful == 1, mcolor(<span class="kw">red</span>)) , <span class="bn">title</span>(<span class="st">"The general population &amp; successful subpopulation"</span>) </span>
+<span id="cb26-8"><a></a></span>
+<span id="cb26-9"><a></a><span class="kw">quietly</span> <span class="kw">graph</span> <span class="kw">export</span> figs/collider2.svg, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of observations (_N) was 0, now 1,000.</code></pre>
 </div>
+</div>
+<p><img data-src="figs/collider2.svg"></p>
 </div>
 </div>
 </div>

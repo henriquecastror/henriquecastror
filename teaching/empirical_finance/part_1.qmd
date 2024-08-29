@@ -1442,7 +1442,7 @@ twoway (scatter luck iq), title("The general population")
 quietly graph export figs/collider1.svg, replace
 ```       
 
-![](figs/graph1.svg)
+![](figs/collider1.svg)
 
 :::
 
@@ -1546,9 +1546,18 @@ plt.show()
 #| eval: true
 #| code-summary: "Stata"
 
+set seed 100
+set obs 1000
+gen luck = rnormal(100, 15)
+gen iq = rnormal(100, 15)
+gen comb = luck + iq
+gen successful = comb > 240
+twoway (scatter luck iq if successful == 0)  (scatter luck iq if successful == 1, mcolor(red)) , title("The general population & successful subpopulation") 
 
-```    
+quietly graph export figs/collider2.svg, replace
+```       
 
+![](figs/collider2.svg)
 
 :::
 
