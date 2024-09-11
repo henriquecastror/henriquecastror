@@ -1,0 +1,1118 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 6'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+
+
+```{r setup}
+#| include: false
+#| warning: false
+
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+# Selection Bias {.smaller background="#e3e2b8"}
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Back to the selection bias example of before.
+
+-   Imagine that John and Mary are moving to the north of Canada.
+
+-   John has a history of respiratory disease and decide to buy insurance.
+
+-   Mary does not have a history of respiratory disease and decide not to buy insurance.
+
+
+
+| Default                     | John | Mary |
+|-----------------------------|:-----|-----:|
+| State of insurance          | 1    |    0 |
+| Situation without insurance | `3`  |    5 |
+| Situation with insurance    | 4    |  `5` |
+| Observed                    | 4    |    5 |
+| Effect                      | ?    |    ? |
+
+$$(Y_{1,john} - Y_{0,john}) + (Y_{1,Mary}- Y_{0,Mary}) = 4 - 3 + 5 - 5 = 0.5$$
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Rearranging the terms:
+
+
+$$(Y_{1,john} - Y_{0,Mary})   + (Y_{1,Mary}  - Y_{0,john})  = (4 - 5) + (5 - 3)  = 0.5$$
+$$We\;see   + We\;do\;not\;see  = (4 - 5) + (5 - 3)  = 0.5$$
+
+The term $(Y_{1,Mary}  - Y_{0,john}) =  (5 - 3) = 2$ is the **selection bias**.
+
+It exists because we are comparing two people that should not be compared.
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Some notation:
+
+$d=1$ for the treated units (treatment group)
+
+$d=0$ for the treated units (control group)
+
+
+. . . 
+
+
+$Y_{i}$ = Potential outcome of individual *i*.
+
+$Y_{i,1}$ or  $Y(1)$ = Potential outcome of individual *i*, treatement group.
+
+$Y_{i,0}$ or  $Y(0)$ = Potential outcome of individual *i*, control group.
+
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Some notation:
+
+These are the representations of the **causal effect** we often want to estimate.
+
+**Average Treatment Effect:**
+
+ATE = $\frac{1}{N} (E[Y_{i,1}] - E[Y_{i,0}])$
+
+. . . 
+
+**Average Treatment Effect on the treated:**
+
+ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
+
+. . . 
+
+**Average Treatment Effect on the untreated:**
+
+ATEU = $\frac{1}{N} (E[Y_{i,1}|D_i=0] - E[Y_{i,0}|D_i=0])$
+
+. . . 
+
+Of course, again, we cannot observe both potential outcomes of the same unit *i*.
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+When dealing with **causal inference**, we have to find ways to approximate what the hidden potential outcome of the treated units is. 
+
+That is, the challenge in identifying causal effects is that the untreated potential outcomes, $Y_{i,0}$, are never
+observed for the treated group ($D_i= 1$). The "second" term in the following equation:
+
+ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
+
+
+We need an empirical design to **"observe"** what we do not really observe (i.e., the counterfactual). 
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Many options:
+
+- Matching/Balancing
+- Difference-in-differences (DiD)
+- Instrumental variables
+- Regression discontinuity design (RDD)
+- Synthetic control (Synth)
+
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+The process of finding units that are comparable is called **matching**.
+
+. . .
+
+**Before we continue...**
+
+**We will match on observables. We cannot be on unobservables.**
+
+Thus, you may want to write in your article "selection bias due to observables".
+
+. . .
+
+**Cunningham:**
+
+*Propensity score matching has not seen as wide adoption among economists as in other nonexperimental methods like regression discontinuity or difference-in-differences. The most common reason given for this is that economists are oftentimes skeptical that CIA can be achieved in any dataset almost as an article of faith. This is because for many applications, economists as a group are usually more concerned about selection on unobservables than they are selection on observables, and as such, they reach for matching methods less often.*
+
+CIA = CMI
+
+
+
+
+
+
+
+
+# Matching  {.smaller background="#e0cafc"}
+
+## Matching   {.smaller background="#e0cafc"}
+
+**Matching** aims to compare the outcomes between observations that have the same values of all control variables, except that one unit is treated and the other is not. 
+
+. . .
+
+In this literature, the control variables used to matched are often called **covariates**.
+
+That is, for each treated unit, the researcher finds an untreated unit that is similar in all covariates.
+
+The implication is that the researcher can argue that "*units are comparable after matching*". 
+
+
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+The easiest to see is **exact matching**: *it matches observations that have the exact same values*. 
+
+- It might be doable if you have only one covariate. 
+
+- Naturally, if you have only one covariate, you might still be left with some selection bias.
+
+  - In the previous example, health history is one important covariate that makes John and Mary different. 
+  
+  - But what about life style? Nutrition? Etc. 
+  
+
+As the number of covariates grow, you cannot pursue exact matching. That is the job of PSM.
+
+
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+**In exact matching, the causal effect estimator (ATET) is:**
+
+$$ATET = \frac{1}{N} \sum (E[Y_{i}] - E[Y_{j(i)}] | D_i=1)$$
+
+Where $Y_{j(i)}$ is the j-th unit matched to the i-th unit based on the j-th being “closest to” the i-th unit for some  covariate. 
+
+For instance, let’s say that a unit in the treatment group has a covariate with a value of 2 and we find another unit in the control group (exactly one unit) with a covariate value of 2. 
+
+Then we will impute the treatment unit’s missing counterfactual with the matched unit’s, and take a difference.
+
+
+
+
+
+
+
+## Matching {.smaller background="#e0cafc"}
+
+Consider the following dataset from Cunningham:
+
+![](figs/scott.png)
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+::: panel-tabset
+### R Averages
+
+Average ages are very different. The salary of a 24 yrs old person is quite different than the salary of a 32 yrs person.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+summary(training_example$age_treat)
+summary(training_example$age_control)
+```
+
+
+### R Treated
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_treat)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+### R Control
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_control)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+
+### R Matched
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_matched)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+
+:::
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+In this example, you are literally finding the units in the control group that have the same age as the units in the treatment group.
+
+You are exact matching 1-by-1 in this example.
+
+You have only one covariate, i.e., age.
+
+
+
+
+
+
+
+
+
+
+
+# Distance Matching  {.smaller background="#c6f7ec"}
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+The last example was simple because you could *exact match*.
+
+If you cannot find one exact match, you need an approximate match. 
+
+. . .
+
+In order to do that, you have to use distance matching.
+
+**Distance matching** minimizes the distance (i.e., how far the covariates are from each other) between the treatment and control groups.
+
+
+
+
+
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'(X_i-X_j)}=\sqrt{\sum_{n=1}^k(X_{n,i}-X_{n,j})^2}$
+
+![](figs/euclidian.png)
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Normalized Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{V}^{-1}(X_i-X_j)}=\sqrt{\sum_{n=1}^k\frac{(X_{n,i}-X_{n,j})}{\sigma^2_n}}$
+
+The problem with this measure of distance is that the distance measure itself depends on the **scale of the variables themselves**. 
+
+For this reason, researchers typically will use some modification of the Euclidean distance, such as the **normalized Euclidean distance**, or they’ll use a wholly different alternative distance. 
+
+The normalized Euclidean distance is a commonly used distance, and what makes it different is that the distance of each variable is scaled by the variable’s variance. 
+
+
+ 
+ 
+ 
+ 
+ 
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Mahalanobis  distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{\sum_x}^{-1}(X_i-X_j)}$
+
+Where $\hat{\sum_x}$ is the sample covariance matrix of X.
+
+. . . 
+
+![](figs/malahanobis_king_nielsen.png)
+
+
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+Distance matching only goes so far...
+
+... **the larger the dimensionality, the harder is to use distance matching**.
+
+As sample size increases, for a given N of covariates, the matching discrepancies tend to zero.
+
+But, the more covariates, the longer it takes.
+
+. . . 
+
+At the end of the day, it is preferable to have many covariates, but it is makes distance matching harder.
+
+
+
+
+
+
+
+
+# Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
+
+## Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
+
+In coarsened exact matching, something only counts as a match if it exactly matches on each matching variable. 
+
+**The “coarsened” part comes in because, if you have any continuous variables to match on, you need to “coarsen” them first by putting them into bins, rather than matching on exact values.**
+
+Coarsening means creating bins. Fewer bins makes exact matches more likely. 
+
+. . .
+
+CER is not used much in empirical research in finance. It is used more in the big data realm when you have many variables to match. 
+
+
+
+
+
+
+
+# Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+**PSM is one way to matching using many covariates.** 
+
+**PSM aggregates all covariates into one score (propensity-score), which is the likelihood of receiving the treatment.**
+
+The idea is to match units that, based on observables, have the same probability (called propensity-score) of being treated. 
+
+. . .
+
+The idea is to estimate a probit (default in stata) or logit model (fist stage):
+
+$$P(D=1|X)$$
+
+**The propensity-score is the predicted probability of a unit being treated given all covariates X**. The p-score is just a single number.
+
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Considerations in PSM.
+
+1) How many neighbors to match?
+
+- Nearest neighbor, radius or kernel?
+
+2) With or without replacement?
+
+3) With or without common support?
+
+- *Common support*: imposes a common support by dropping treatment observations whose pscore is higher than the maximum or less than the minimum pscore of the controls.
+
+4) It is expected that, after PSM, you show the overlap of propensity-scores.
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**The y-axis is the propensity-score**.
+
+![](figs/ani_katchova1.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Nearest matching:** Find the observation closest to ($min|p_i-p_j|$)
+
+![](figs/ani_katchova3.png)
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Kernel matching:** Each treated observation i is matched with several control observations, with weights inversely proportional to the distance between treated and control observations.
+
+![](figs/ani_katchova2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Radius matching**: Each treated observation i is matched with control observations j that fall within a specified radius.
+
+$$|p_i-p_j| <r$$
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Common support:** Restrict matching only based on the common range of propensity scores.
+
+![](figs/ani_katchova5.png)
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems good overlap, but "good" is arbitrary.
+
+![](figs/psm1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems bad overlap
+
+![](figs/psm2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems good overlap, but "good" is arbitrary.
+
+![](figs/psm_graph1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems bad overlap
+
+![](figs/psm_graph2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_bias.png)
+
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_ttest1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_ttest2.png)
+
+
+
+
+
+
+
+
+
+
+# Example  {.smaller background="#dff5ce"}
+
+## Example  {.smaller background="#dff5ce"}
+
+Let's practice with an example. 185 treated units vs 15,992 control units. 
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+# Load necessary libraries
+library(haven)
+library(psych)
+data <- read_dta("files/cps1re74.dta")
+summary_stats <- by(data, data$treat, FUN = function(group) {
+  c(
+    mean = mean(group$age, na.rm = TRUE),
+    variance = var(group$age, na.rm = TRUE),
+    skewness = skew(group$age, na.rm = TRUE),
+    count = length(group$age)
+  )
+})
+summary_df <- as.data.frame(do.call(rbind, summary_stats))
+colnames(summary_df) <- c("mean", "variance", "skewness", "count")
+print(summary_df)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+from scipy.stats import skew
+import statsmodels.api as sm
+data = pd.read_stata("files/cps1re74.dta")
+grouped_data = data.groupby('treat')['age'].agg(['mean', 'var', lambda x: skew(x, nan_policy='omit'), 'count']).reset_index()
+grouped_data.columns = ['treat', 'mean', 'variance', 'skewness', 'count']
+print(grouped_data)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui estpost tabstat age black educ , by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs nonumber compress 
+```  
+
+:::
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+Clearly, the treated group is younger, mainly black, and less educated.
+
+Also note that the **variance and skewness** of the two subsamples are **different**.
+
+If we were to use these two subsamples in any econometric analysis **without preprocessing to make them comparable**, we would likely have coefficients biased by **selection bias**.
+
+Therefore, it is important to perform some matching method.
+
+Let's start with Propensity Score Matching (PSM). We will use the simplest matching, that is, without using any additional functions.
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Nearest with noreplacement.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# install.packages("MatchIt")
+library(haven)
+library(psych)
+library(MatchIt)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "nearest")
+summary(model)
+```
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+psmatch2 treat age black educ , n(1) noreplacement
+sum _weight , d
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Notice that we are creating weights now**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# install.packages("MatchIt")
+library(haven)
+library(MatchIt)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
+summary(model$weights)
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui psmatch2 treat age black educ , kernel
+sum _weight , d
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Now, the descriptive statistics are much closer**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven)
+library(MatchIt)
+#install.packages("e1071")
+library(e1071)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
+matched_data <- match.data(model)
+summary_stats <- by(matched_data, matched_data$treat, function(x) {
+  c(mean(x$age), var(x$age), skewness(x$age), length(x$age))
+})
+
+result_df <- data.frame(
+  Treatment = c("Control", "Treated"),
+  Mean_Age = sapply(summary_stats, function(x) x[1]),
+  Variance_Age = sapply(summary_stats, function(x) x[2]),
+  Skewness_Age = sapply(summary_stats, function(x) x[3]),
+  Count = sapply(summary_stats, function(x) x[4])
+)
+print(result_df)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui psmatch2 treat age black educ , kernel
+qui estpost tabstat age black educ [aweight = _weight], by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Entropy Balancing  {.smaller background="#fccad9"}
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+**Here, instead of matching units, we reweight the observations such that the moments of the distributions (mean, variance, skewness) are similar.**
+
+- The ebalance function implements a reweighting scheme. The user starts by choosing the covariates that should be included in the reweighting. 
+
+- For each covariate, the user then specifies a set of balance constraints (in Equation 5) to equate the moments of the covariate distribution between the treatment and the reweighted control group. 
+
+- The moment constraints may include the mean (first moment), the variance (second moment), and the skewness (third moment).
+
+**The outcome is a vector containing the weights to weight the observations, such that the weighted average, weighted variance, and weighted skewness of the covariates in control group are similar to those in the treatment group**
+
+
+
+
+
+
+
+
+
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven)
+#install.packages("ebal")
+library(ebal)
+data <- read_dta("files/cps1re74.dta")
+treatment <-cbind(data$treat)
+vars <-cbind(data$age, data$educ, data$black)
+eb <- ebalance(treatment, vars)
+# means in treatment group data
+apply(vars[treatment==1,],2,mean)
+# means in reweighted control group data
+apply(vars[treatment==0,],2,weighted.mean,w=eb$w)
+# means in raw data control group data
+apply(vars[treatment==0,],2,mean)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+ebalance treat age black educ, targets(3)
+```  
+
+:::
+
+
+
+
+
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+
+::: panel-tabset
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui ebalance treat age black educ, targets(3)
+qui estpost tabstat age black educ [aweight = _webal], by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
+```  
+
+:::
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::
