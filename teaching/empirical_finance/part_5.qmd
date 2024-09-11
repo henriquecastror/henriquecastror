@@ -1,0 +1,2246 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 5'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+
+
+```{r setup}
+#| include: false
+#| warning: false
+
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+
+```
+
+
+
+
+
+
+
+# Panel Data {.smaller background="#dff5ce"}
+
+## Panel Data {.smaller background="#dff5ce"}
+
+As explained previously, OVB is a significant source of "endogeneity" in empirical research.
+
+OVB is a problem because of the considerable heterogeneity in many empirical settings. 
+
+**Many of the omitted variables are unobservable to the researcher.**
+
+Panel data can sometimes offer a partial.
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+We start defining the following:
+
+
+$$y_{i,t} = \alpha + \beta_1 x_{i,t} + \epsilon_{i,t}$$
+
+Where: 
+
+  - $i = 1, . . . , N$
+  - $t = 1, . . . , T$
+
+. . . 
+
+
+Imagine that the residual can be decomposed in: 
+
+$$\epsilon_{i,t} = c_i + \mu_{i,t}$$
+
+The term $c_i$ is constant.
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+The term $c_i$ is constant.
+
+**It captures the aggregate effect of all of the unobservable, time-invariant explanatory variables for $y_{it}$.**
+
+To focus attention on the issues specific to panel data, we assume that $e_{it}$ has a zero mean conditional on $x_{it}$ and $c_i$ for all $t$.
+
+. . .
+
+The most important thing here is whether $x_{it}$ and $c_i$ are correlated.
+
+**Why?**
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+The most important thing here is whether $x_{it}$ and $c_i$ are correlated.
+
+
+- If $x_{it}$ and $c_i$ are correlated, then $c_i$  is referred to as a “fixed effect”.
+  
+  - It there is correlation, there is violation of the *Conditional Mean Independence* (CMI) assumption.
+
+    
+- If $x_{it}$ and $c_i$ are not correlated, then $c_i$  is referred to as a “random effect”.
+
+  - Endogeneity is not a concern; however, the computation of standard errors is affected.
+
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+**Why might fixed effects arise?**
+
+FE are any time-invariant unit characteristic that cannot be observed in the data.
+
+- education level,
+- firm's culture,
+- technology,
+- managerial talent,
+- investment opportunities,
+- location (economic development, institutions, etc.),
+- etc.
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+**We say things like (you have to understand that they refer to FE):** 
+
+- "*Time-invariant heterogeneity at the unit-level*"
+- "*Unobserved variation that occur at the unit-level that do not vary over time*"
+
+**Important**: with FE, you are capturing **all** unobserved heterogeneity that do not vary over time.
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+Definition of *Panel Data*:
+
+You have multiple observations per unit (individual, firm, etc.)
+
+In datasets, it is "one panel below the other" not "one panel beside the other".
+
+. . . 
+
+
+**Four main topics in Panel Data:**
+
+1) Pooled cross-sectional
+
+2) Fixed Effect models (including multidimensional FE)
+
+3) Random Effects model
+
+4) First differences
+
+5) Lagged models
+
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+Formal definition
+
+$$y_{i,t} = \alpha + \beta_1 x_{i,t} + \delta FE +  \epsilon_{i,t}$$
+
+- $E(\epsilon_{i,t}) = 0$
+
+- $corr(x_{i,t},FE) \neq 0$
+
+- $corr(FE, \epsilon_{i,t}) = 0$
+
+- $corr(x_{i,t},epsilon_{i,t}) = 0$, for all t
+
+The last assumption is called *strict exogeneity assumption* and means that the residual of any t is uncorrelated with x of any t.
+
+*That is, under a strict exogeneity assumption on the explanatory variables, the fixed effects estimator is unbiased: the idiosyncratic error should be uncorrelated with each explanatory variable across all time periods.*
+
+
+. . .
+
+**Remember that if we ignore FE, we have OVB.**
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+**Before we continue...**
+
+**Comment #1**
+
+*The standard errors in this framework must be “clustered” by panel unit (e.g., individual) to allow for correlation in the residual for the same person over time. This yields valid inference as long as the number of clusters is “large."*
+
+. . . 
+
+**Comment #2**
+
+*FE cannot solve reverse causality, it might help you with OVB.*
+
+. . . 
+
+**Comment #3**
+
+*Three main types of FE:*
+
+- Pooled
+- Within-transformation (when someone says FE, it is usually this one)
+- Random Effects
+
+
+
+
+
+
+# Pooling Cross-sections  {.smaller background="#e0cafc"}
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+When you have two periods of the same unit, but the periods are not consecutive, you have a pooled cross-sectional data.
+
+This is common in survey data.
+
+If you use only one period, you might find biased results.
+
+. . .
+
+Let's practice with the dataset CRIME2 from Wooldridge. 
+
+This dataset contains data (many cities) on the crime rate, unemployment rate and many other city-related variables.
+
+There are two years, 82 and 87 (this is pooled cross-section). 
+
+
+
+
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+If we estimate only using the year 87, we would interpret that unemployment leads to lower crime rate.
+
+::: panel-tabset
+
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven) 
+data <- read_dta("files/CRIME2.dta")
+data1 <- subset(data, year == 87)
+model <- lm(crmrte ~ unem, data = data1)
+summary(model)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+
+data = pd.read_stata("files/CRIME2.dta")
+data1 = data[data['year'] == 87]
+model = sm.OLS(data1['crmrte'], sm.add_constant(data1['unem'])).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CRIME2.dta" , clear
+reg crmrte une if year ==87
+```  
+
+:::
+
+
+
+
+
+
+
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+When we consider a panel, we get the expected positive sign. This is evidence that the previous model suffered from OVB. Still, the coefficient of unem is not significant probably because of time-invariant unobserved heterogeneity in the cities.
+
+::: panel-tabset
+
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven) 
+data <- read_dta("files/CRIME2.dta")
+model <- lm(crmrte ~ d87+ unem, data = data)
+summary(model)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+
+data = pd.read_stata("files/CRIME2.dta")
+model = sm.OLS(data['crmrte'], sm.add_constant(data[['d87','unem']])).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CRIME2.dta" , clear
+reg crmrte  d87 une 
+```  
+
+:::
+
+
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+This shows us that we should also control for the year variable. 
+
+We call this, **Year Fixed Effects.**
+
+We still most likely have OVB due to the unobserved heterogeneity in cities, that is, we still would need to include **cities FE**. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Demeaned variables  {.smaller background="#fccad9"}
+
+## Demeaned variables  {.smaller background="#fccad9"}
+
+**A first way to eliminate the FE is by demeaning the data.**
+
+Consider the following:
+
+$$\bar{y_i} = \alpha +\beta \bar{x_i} + \delta FE + \bar{\epsilon_i}$$
+
+$$\frac{1}{T}\sum{y_{i,t}} = \alpha +\beta \frac{1}{T}\sum{x_{i,t}} + \delta FE + \frac{1}{T}\sum{\epsilon_{i,t}}$$
+
+. . .
+
+If we subtract the mean of each variable, we have:
+
+$$(y_{i,t} - \bar{y_i}) = \beta (x_{i,t} - \bar{x_i}) + (\epsilon_{i,t} - \bar{\epsilon_i})$$
+
+Because the FE does not vary over time, each value is equal to the mean.
+
+Thus, when you demean, you eliminate the FE from the equation. You also eliminate the intercept $\alpha$.
+
+. . .
+
+**Takeaway**: OLS will estimate unbiased coefficients if you demean the variables.
+
+This is called **within-transformation** because you are demeaning "within" the group.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Demeaned variables  {.smaller background="#fccad9"}
+
+Let's use the dataset WAGEPAN to estimate the following equation.
+
+$$Ln(wage)=\alpha + \beta_1 exper^2 + \beta_2 married + \beta_3 union + \epsilon$$
+
+
+Some variables in the dataset do not vary over time. These variables cannot be included in this equation. 
+
+
+
+
+
+
+
+## Demeaned variables  {.smaller background="#fccad9"}
+
+See page 495 Wooldridge.
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign)
+library(stargazer)
+library(sandwich)
+
+data <- read.dta("files/WAGEPAN.dta")
+# Calculate mean by nr for lwage, expersq, married, and union
+data <- data[order(data$nr), ]  # Sort data by nr for by-group operations
+data$lwage_mean <- ave(data$lwage, data$nr, FUN = mean)
+data$expersq_mean <- ave(data$expersq, data$nr, FUN = mean)
+data$married_mean <- ave(data$married, data$nr, FUN = mean)
+data$union_mean <- ave(data$union, data$nr, FUN = mean)
+
+data$lwage_demean <- data$lwage - data$lwage_mean
+data$expersq_demean <- data$expersq - data$expersq_mean
+data$married_demean <- data$married - data$married_mean
+data$union_demean <- data$union - data$union_mean
+
+model1 <- lm(lwage ~ educ + black + hisp + exper + expersq + married + union + d81 + d82 + d83 + d84 + d85 + d86 + d87, data = data)
+model2 <- lm(lwage_demean ~ expersq_demean + married_demean + union_demean + d81 + d82 + d83 + d84 + d85 + d86 + d87, data = data)
+
+stargazer(model1, model2 ,title = "Regression Results", column.labels=c("OLS","Demean"),  type = "text")
+
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.iolib.summary2 import summary_col
+
+data = pd.read_stata("files/WAGEPAN.dta")
+
+data = data.sort_values(by='nr')  # Sort data by nr for by-group operations
+data['lwage_mean'] = data.groupby('nr')['lwage'].transform('mean')
+data['expersq_mean'] = data.groupby('nr')['expersq'].transform('mean')
+data['married_mean'] = data.groupby('nr')['married'].transform('mean')
+data['union_mean'] = data.groupby('nr')['union'].transform('mean')
+
+data['lwage_demean'] = data['lwage'] - data['lwage_mean']
+data['expersq_demean'] = data['expersq'] - data['expersq_mean']
+data['married_demean'] = data['married'] - data['married_mean']
+data['union_demean'] = data['union'] - data['union_mean']
+
+model1 = sm.OLS(data['lwage'], sm.add_constant(data[['educ', 'black', 'hisp', 'exper', 'expersq', 'married', 'union', 'd81', 'd82', 'd83', 'd84', 'd85', 'd86', 'd87']])).fit()
+model2 = sm.OLS(data['lwage_demean'], sm.add_constant(data[['expersq_demean', 'married_demean', 'union_demean', 'd81', 'd82', 'd83', 'd84', 'd85', 'd86', 'd87']])).fit()
+
+# Display regression results using stargazer
+summary = summary_col([model1, model2], stars=True)
+print(summary)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+bys nr:  egen lwage_mean = mean(lwage) 
+bys nr:  egen expersq_mean = mean(expersq) 
+bys nr:  egen married_mean = mean(married) 
+bys nr:  egen union_mean = mean(union)
+
+gen lwage_demean = lwage - lwage_mean
+gen expersq_demean = expersq - expersq_mean
+gen married_demean = married - married_mean
+gen union_demean = union - union_mean
+
+eststo: qui reg lwage        educ black hisp exper expersq       married        union d81 d82 d83 d84 d85 d86 d87
+eststo: qui reg lwage_demean expersq_demean married_demean union_demean d81 d82 d83 d84 d85 d86 d87
+esttab , mtitles("OLS" "Demean") compress
+
+```  
+
+:::
+
+
+
+
+
+
+# Practical Tips  {.smaller background="#fce0cc"}
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+You will not need to demean the variables every time you want to estimate a fixed effect models.
+
+The statistical softwares have packages that do that.
+
+You only need to know that **Fixed effects model** is a **demeaned model**, i.e., a **within-transformation model**. 
+
+But notice that you will have many different Fixed Effects together:
+
+- Firm Fixed Effects
+- Year Fixed Effects
+- Individual Fixed Effects (if individuals change between firms)
+
+. . . 
+
+I am calling a **multidimensional fixed effects design** if you expand the FE to interactions of FE. Most common:
+
+- Year-Industry Fixed Effects.
+- CEO-Firm Fixed Effects.
+
+
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+Notice the number of dummies in the last two columns.
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign)
+library(stargazer)
+library(sandwich)
+library(plm)
+
+data <- read.dta("files/WAGEPAN.dta")
+# Calculate mean by nr for lwage, expersq, married, and union
+data <- data[order(data$nr), ]  # Sort data by nr for by-group operations
+data$lwage_mean <- ave(data$lwage, data$nr, FUN = mean)
+data$expersq_mean <- ave(data$expersq, data$nr, FUN = mean)
+data$married_mean <- ave(data$married, data$nr, FUN = mean)
+data$union_mean <- ave(data$union, data$nr, FUN = mean)
+
+data$lwage_demean <- data$lwage - data$lwage_mean
+data$expersq_demean <- data$expersq - data$expersq_mean
+data$married_demean <- data$married - data$married_mean
+data$union_demean <- data$union - data$union_mean
+
+# set panel data
+pdata <- pdata.frame(data, index = c("nr", "year"))
+
+# Random effects regression using plm
+model_de <- lm(lwage_demean ~  expersq_demean + married_demean + union_demean +  d81 +d82+ d83+ d84+ d85 +d86 +d87 , data = data)
+model_fe <- plm(lwage ~  expersq + married + union + factor(year)              + educ + black + hisp + exper, data = pdata, model = "within")
+model_du <- lm( lwage ~  expersq + married + union + factor(year) + factor(nr) + educ + black + hisp + exper, data = data)
+
+# Display regression results using stargazer
+#summary(model_de)
+#summary(model_fe)
+#summary(model_du)
+stargazer(model_de, model_fe, model_du ,title = "Regression Results",  type = "text")
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+bys nr:  egen lwage_mean = mean(lwage) 
+bys nr:  egen expersq_mean = mean(expersq) 
+bys nr:  egen married_mean = mean(married) 
+bys nr:  egen union_mean = mean(union)
+
+gen lwage_demean = lwage - lwage_mean
+gen expersq_demean = expersq - expersq_mean
+gen married_demean = married - married_mean
+gen union_demean = union - union_mean
+
+xtset nr year 
+eststo: qui reg lwage_demean expersq_demean married_demean union_demean i.year
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , fe
+eststo: qui reg lwage expersq married union i.year i.nr  educ black hisp exper 
+esttab , mtitles("Demean" "FE" "LSDV") compress
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+Notice that the parameter $\delta$ does not have meaning. 
+
+$$y_{i,t} = \alpha + \beta_1 x_{i,t} + \delta FE +  \epsilon_{i,t}$$
+
+In fact, the previous slides have shown that you will find the same results of a FE model if you include the dummies for the units in the panel (i.e., dummies for the firms or individuals, etc.).
+
+This is called **least squares dummy variable (LSDV) model**.
+
+- the SE are also identical to the within-transformation model.
+
+- But the R2 of the LSDV will be very high because you are including a lot of "explanatory variables".
+
+::: {.callout-note}
+At the end of the day, you will use the package for the unit's FE (i.e., the firm), and will include the additional FE as dummies, just like a LSDV model.
+:::
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+When you estimate a LSDV, the software will inform an $\alpha$. 
+
+But this coefficient **has no interpretation whatsoever.** 
+
+- it will be FE for the dropped unit of FE. 
+
+You can simply ignore it, you even don't need to include in your final table. 
+
+No problem if you do, just **don't make inferences from it**.
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+A FE model helps a lot, but it only does what it can do.
+
+That is, FE models do not capture **time-variant unobserved heterogeneity**.
+
+. . .
+
+Also, if you have constant Xs in your model, you will have to drop them.
+
+- More technically, if there is no within-variation in a X, you cannot include it (the software will drop them).
+
+- For instance, the software will drop $year_{birth}$ below if you include CEO FE.
+
+$$Y_{i,t} = \alpha + \beta_1 year_{birth} + CEO \;FE + ... + \epsilon_{i,t}$$
+
+If you attempt to include the CEO FE manually, the software will drop a random CEO FE or the variable $year_{birth}$. If you get a beta for $year_{birth}$ it has no meaning.
+
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+Adding many FE can demand a lot of computational power.
+
+Consider the multidimensional model as follows:
+
+$$Y_{i,t} = \alpha + \beta_1 X_{i,t} + Firm \;FE + Year\; FE + Year.Industry \;FE + CEO \;FE + ... + \epsilon_{i,t}$$
+
+It would take a while to estimate in an average computer.
+
+
+
+
+
+
+
+
+# Random Effects  {.smaller background="#c6f7ec"}
+
+## Random Effects  {.smaller background="#c6f7ec"}
+
+Remember that:
+
+$$\epsilon_{i,t} = c_i + \mu_{i,t}$$
+
+The most important thing here is whether $x_{it}$ and $c_i$ are correlated.
+    
+- If they are, you should estimate Fixed Effects
+
+- If $x_{it}$ and $c_i$ are not correlated, then $c_i$  is referred to as a **random effect**.
+
+  - Endogeneity is not a concern; however, the computation of standard errors is affected.
+
+But, if the $x_{it}$ and $c_i$ are not correlated, there is **no endogeneity concern**. 
+
+$c_i$ can be let as part of the $\epsilon_{i,t}$ without bias in the estimated betas.
+
+
+
+
+
+
+
+## Random Effects  {.smaller background="#c6f7ec"}
+
+Additionally, the assumption that $x_{it}$ and $c_i$ are not correlated is rather strong and not practical to most applications of corporate finance, economics or public policy.
+
+RE is a model not used often. Cunningham does not even discuss it.
+
+*If the key explanatory variable is constant over time, we cannot use FE to estimate its effect on y.*
+
+*Of course, we can only use RE because we are willing to assume the unobserved effect is uncorrelated with all explanatory variables.*
+
+*Typically, if one uses RE, and as many time-constant controls as possible are included among the explanatory variables (with an FE analysis, it is not necessary to include such controls) RE is preferred to pooled OLS because RE is generally more efficient.*
+
+(Wooldridge, p.496)
+
+
+
+
+
+
+
+
+## Random Effects  {.smaller background="#c6f7ec"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(plm)
+library(jtools)
+library(foreign)
+data <- read.dta("files/WAGEPAN.dta")
+pdata <- pdata.frame(data, index = c("nr", "year"))
+
+po_model <- lm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = data)
+fe_model <- plm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = pdata, model = "within")
+re_model <- plm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = pdata, model = "random")
+
+stargazer(po_model, fe_model , re_model ,title = "Regression Results", column.labels=c("OLS","FE","RE"),  type = "text")
+
+```
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+xtset nr year 
+eststo: qui reg   lwage expersq married union i.year  educ black hisp exper 
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , fe
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , re
+
+esttab , mtitles("OLS" "FE" "RE") compress
+
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+# FE vs. RE    {.smaller background="#5c97f7" }
+
+
+## FE vs. RE    {.smaller background="#5c97f7" }
+
+*The idea is that one uses the random effects estimates unless the Hausman test rejects.* 
+
+*In practice, a failure to reject means either that the RE and FE estimates are sufficiently close so that it does not matter which is used, or the sampling variation is so large in the FE estimates that one cannot conclude practically significant differences are statistically significant.* (Wooldridge)
+
+
+**If the p-value of the Hausman test is significant then use FE, if not use RE.**
+
+
+
+
+
+## FE vs. RE   {.smaller background="#5c97f7" }
+
+
+::: panel-tabset
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta", clear
+xtset nr year
+qui xtreg lwage expersq married union i.year educ black hisp exper, fe
+estimates store fe_model
+qui xtreg lwage expersq married union i.year educ black hisp exper, re
+estimates store re_model
+hausman fe_model re_model
+```  
+
+:::
+
+
+
+
+
+
+
+# First differences   {.smaller background="#e3e2b8"}
+
+## First differences   {.smaller background="#e3e2b8"}
+
+In most applications, the main reason for collecting panel data is **to allow for the unobserved effect, $c_i$, to be correlated with the explanatory variables**. 
+
+For example, in the crime equation, we want to allow the unmeasured city factors in $c_i$ that affect the crime rate also to be correlated with the unemployment rate. 
+
+It turns out that this is simple to allow: **because $c_i$ is constant over time, we can difference the data across the two years.** 
+
+More precisely, for a cross-sectional observation $i$, write the two years as:
+
+
+$$y_{i,1} = \beta_0 + \beta_1 x_{i,1} + c_i + \mu_{i,1}, t=1$$ 
+
+$$y_{i,2} = (\beta_0 + \delta_0) + \beta_1 x_{i,2} + c_i + \mu_{i,2}, t=2$$ 
+
+If we subtract the second equation from the first, we obtain
+
+$$(y_{i,2} - y_{i,1}) = \delta_0 + \beta_1 (x_{i,2} - x_{i,1}) + (\mu_{i,2}-\mu_{i,1})$$ 
+
+
+$$\Delta y_{i} = \delta_0 + \beta_1 \Delta x_{i} + \Delta \mu_{i}$$ 
+
+
+
+
+
+
+
+
+
+## First differences   {.smaller background="#e3e2b8"}
+
+**So, rather than subtracting the group mean of each variable, you  subtract the lagged observation.**
+
+Not hard to see that, when t=2, FE and FD will give identical solutions
+
+. . .
+
+- FE is more efficient if disturbances $\mu_{i,t}$ have low serial correlation
+
+- FD is more efficient if disturbance $\mu_{i,t}$ follow a random walk
+
+At the end of the day, you can estimate both. 
+
+Empirical research usually estimate FD only in specific circumstances, when they are interested in how changes of X affect changes of Y.
+
+Things like stationarity or trends are often not concerns in panel data
+
+- where N is 10 to 20 
+
+
+
+
+
+
+## First differences   {.smaller background="#e3e2b8"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+# Load necessary libraries
+library(plm)
+library(lmtest)
+library(stargazer)
+
+data <- read.dta("files/WAGEPAN.dta")
+pdata <- pdata.frame(data, index = c("nr", "year"))
+
+ols_model <- lm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = pdata)
+fe_model <- plm(lwage ~ expersq + married + union + educ + black + hisp + exper, data = pdata, model = "within")
+re_model <- plm(lwage ~ expersq + married + union + educ + black + hisp + exper, data = pdata, model = "random")
+fd_model <- plm(lwage ~ expersq + married + union + educ + black + hisp + exper, data = pdata, model = "fd")
+
+stargazer(ols_model, fe_model ,re_model, fd_model,title = "Regression Results",   type = "text")
+
+```
+
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+xtset nr year 
+eststo: qui reg   lwage expersq married union i.year  educ black hisp exper 
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , fe
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , re
+eststo: qui reg D.lwage D.expersq D.married D.union i.year  D.educ D.black D.hisp D.exper 
+
+esttab , mtitles("OLS" "FE" "RE" "FD") compress
+
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+# Lagged independent variables   {.smaller background="#e3bfc3"}
+
+## Lagged independent variables   {.smaller background="#e3bfc3"}
+
+When you have a panel data and are concerned with simultaneity between Y and X, you can endeavor in lagging the Xs.
+
+
+$$y_{i,t} = \beta_0 + \beta_1 x_{i,t-1} + c_i + \mu_{i,t}$$ 
+
+As a matter of fact, this is often expected in finance research. 
+
+. . . 
+
+There is a limitation, however.
+
+The usual proxy of corporate finance research is highly autocorrelated. 
+ 
+ - e.g., total assets do not vary much throughout  time. 
+ 
+Thus, lagging the X often does not make much of a difference. 
+ 
+::: {.callout-tip}
+Always do it. Otherwise, you will have to explain why you didn't do it.
+:::
+
+
+
+
+
+
+
+# Lagged dependent variables   {.smaller background="#d6cbf5"}
+
+## Lagged dependent variables   {.smaller background="#d6cbf5"}
+
+Sometimes you may have something like
+
+$$y_{i,t} = \beta_0 + \beta_1 y_{i,t-1}+ \beta_2 x_{i,t} + c_i + \mu_{i,t}$$ 
+
+This is called a **Dynamic Panel Model**. It includes $y_{i,t-1}$ as X.
+
+. . .
+
+Consider a FE model.
+
+$$y_{i,t} - \bar{y_i} = \beta_0 + \gamma_1 (y_{i,t-1} - \bar{y}_{i,t-1}) + \omega_2 (x_{i,t-1} - \bar{x_i} )   + (FE_i - \bar{FE}_i)  + (\mu_{i,t} - \bar{\mu}_i )$$ 
+
+The within transformation removes the time-invariant unobserved heterogeneity from the model. 
+
+However, it introduces a correlation between the transformed lag $(y_{i,t−1}−\bar{y}_{i,t-1})$ and the transformed error $(\mu_{i,t−1}−\bar{\mu}_{i,t-1})$ because the average error ($\bar{\mu} = \sum_{i=1}^{T} \mu_{i,t}$) includes $\mu_{i,t-1}$, which is also "included" in $y_{i,t−1}$ 
+
+- $y_{i,t-1} = \beta_0 + \beta_1 y_{i,t-2}+ \beta_2 x_{i,t-1} + c_i + \mu_{i,t-1}$ 
+
+
+
+
+
+
+
+
+## Lagged dependent variables   {.smaller background="#d6cbf5"}
+
+The bias declines with panel length because $\epsilon_{i,t−1}$ becomes a smaller component of the average error term as T increases. 
+
+In other words, with higher T the correlation between the lagged dependent variable and the regression errors becomes smaller.
+
+**[Flannery and Hankins (2013)](https://doi.org/10.1016/j.jcorpfin.2012.09.004)** have a good review with applications in corporate finance.
+
+They conclude that FE is biased when estimating these models.
+
+They suggest to estimate **Sys-GMM** or **Least Squares Dummy Variable Correction**. We do not discuss these models in the course.
+
+
+
+
+
+
+
+
+
+
+# Selection Bias {.smaller background="#e3e2b8"}
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Back to the selection bias example of before.
+
+-   Imagine that John and Mary are moving to the north of Canada.
+
+-   John has a history of respiratory disease and decide to buy insurance.
+
+-   Mary does not have a history of respiratory disease and decide not to buy insurance.
+
+
+
+| Default                     | John | Mary |
+|-----------------------------|:-----|-----:|
+| State of insurance          | 1    |    0 |
+| Situation without insurance | `3`  |    5 |
+| Situation with insurance    | 4    |  `5` |
+| Observed                    | 4    |    5 |
+| Effect                      | ?    |    ? |
+
+$$(Y_{1,john} - Y_{0,john}) + (Y_{1,Mary}- Y_{0,Mary}) = 4 - 3 + 5 - 5 = 0.5$$
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Rearranging the terms:
+
+
+$$(Y_{1,john} - Y_{0,Mary})   + (Y_{1,Mary}  - Y_{0,john})  = (4 - 5) + (5 - 3)  = 0.5$$
+$$We\;see   + We\;do\;not\;see  = (4 - 5) + (5 - 3)  = 0.5$$
+
+The term $(Y_{1,Mary}  - Y_{0,john}) =  (5 - 3) = 2$ is the **selection bias**.
+
+It exists because we are comparing two people that should not be compared.
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Some notation:
+
+$d=1$ for the treated units (treatment group)
+
+$d=0$ for the treated units (control group)
+
+
+. . . 
+
+
+$Y_{i}$ = Potential outcome of individual *i*.
+
+$Y_{i,1}$ or  $Y(1)$ = Potential outcome of individual *i*, treatement group.
+
+$Y_{i,0}$ or  $Y(0)$ = Potential outcome of individual *i*, control group.
+
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Some notation:
+
+These are the representations of the **causal effect** we often want to estimate.
+
+**Average Treatment Effect:**
+
+ATE = $\frac{1}{N} (E[Y_{i,1}] - E[Y_{i,0}])$
+
+. . . 
+
+**Average Treatment Effect on the treated:**
+
+ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
+
+. . . 
+
+**Average Treatment Effect on the untreated:**
+
+ATEU = $\frac{1}{N} (E[Y_{i,1}|D_i=0] - E[Y_{i,0}|D_i=0])$
+
+. . . 
+
+Of course, again, we cannot observe both potential outcomes of the same unit *i*.
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+When dealing with **causal inference**, we have to find ways to approximate what the hidden potential outcome of the treated units is. 
+
+That is, the challenge in identifying causal effects is that the untreated potential outcomes, $Y_{i,0}$, are never
+observed for the treated group ($D_i= 1$). The "second" term in the following equation:
+
+ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
+
+
+We need an empirical design to **"observe"** what we do not really observe (i.e., the counterfactual). 
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Many options:
+
+- Matching/Balancing
+- Difference-in-differences (DiD)
+- Instrumental variables
+- Regression discontinuity design (RDD)
+- Synthetic control (Synth)
+
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+The process of finding units that are comparable is called **matching**.
+
+. . .
+
+**Before we continue...**
+
+**We will match on observables. We cannot be on unobservables.**
+
+Thus, you may want to write in your article "selection bias due to observables".
+
+. . .
+
+**Cunningham:**
+
+*Propensity score matching has not seen as wide adoption among economists as in other nonexperimental methods like regression discontinuity or difference-in-differences. The most common reason given for this is that economists are oftentimes skeptical that CIA can be achieved in any dataset almost as an article of faith. This is because for many applications, economists as a group are usually more concerned about selection on unobservables than they are selection on observables, and as such, they reach for matching methods less often.*
+
+CIA = CMI
+
+
+
+
+
+
+
+
+# Matching  {.smaller background="#e0cafc"}
+
+## Matching   {.smaller background="#e0cafc"}
+
+**Matching** aims to compare the outcomes between observations that have the same values of all control variables, except that one unit is treated and the other is not. 
+
+. . .
+
+In this literature, the control variables used to matched are often called **covariates**.
+
+That is, for each treated unit, the researcher finds an untreated unit that is similar in all covariates.
+
+The implication is that the researcher can argue that "*units are comparable after matching*". 
+
+
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+The easiest to see is **exact matching**: *it matches observations that have the exact same values*. 
+
+- It might be doable if you have only one covariate. 
+
+- Naturally, if you have only one covariate, you might still be left with some selection bias.
+
+  - In the previous example, health history is one important covariate that makes John and Mary different. 
+  
+  - But what about life style? Nutrition? Etc. 
+  
+
+As the number of covariates grow, you cannot pursue exact matching. That is the job of PSM.
+
+
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+**In exact matching, the causal effect estimator (ATET) is:**
+
+$$ATET = \frac{1}{N} \sum (E[Y_{i}] - E[Y_{j(i)}] | D_i=1)$$
+
+Where $Y_{j(i)}$ is the j-th unit matched to the i-th unit based on the j-th being “closest to” the i-th unit for some  covariate. 
+
+For instance, let’s say that a unit in the treatment group has a covariate with a value of 2 and we find another unit in the control group (exactly one unit) with a covariate value of 2. 
+
+Then we will impute the treatment unit’s missing counterfactual with the matched unit’s, and take a difference.
+
+
+
+
+
+
+
+## Matching {.smaller background="#e0cafc"}
+
+Consider the following dataset from Cunningham:
+
+![](figs/scott.png)
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+::: panel-tabset
+### R Averages
+
+Average ages are very different. The salary of a 24 yrs old person is quite different than the salary of a 32 yrs person.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+summary(training_example$age_treat)
+summary(training_example$age_control)
+```
+
+
+### R Treated
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_treat)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+### R Control
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_control)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+
+### R Matched
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_matched)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+
+:::
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+In this example, you are literally finding the units in the control group that have the same age as the units in the treatment group.
+
+You are exact matching 1-by-1 in this example.
+
+You have only one covariate, i.e., age.
+
+
+
+
+
+
+
+
+
+
+
+# Distance Matching  {.smaller background="#c6f7ec"}
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+The last example was simple because you could *exact match*.
+
+If you cannot find one exact match, you need an approximate match. 
+
+. . .
+
+In order to do that, you have to use distance matching.
+
+**Distance matching** minimizes the distance (i.e., how far the covariates are from each other) between the treatment and control groups.
+
+
+
+
+
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'(X_i-X_j)}=\sqrt{\sum_{n=1}^k(X_{n,i}-X_{n,j})^2}$
+
+![](figs/euclidian.png)
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Normalized Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{V}^{-1}(X_i-X_j)}=\sqrt{\sum_{n=1}^k\frac{(X_{n,i}-X_{n,j})}{\sigma^2_n}}$
+
+The problem with this measure of distance is that the distance measure itself depends on the **scale of the variables themselves**. 
+
+For this reason, researchers typically will use some modification of the Euclidean distance, such as the **normalized Euclidean distance**, or they’ll use a wholly different alternative distance. 
+
+The normalized Euclidean distance is a commonly used distance, and what makes it different is that the distance of each variable is scaled by the variable’s variance. 
+
+
+ 
+ 
+ 
+ 
+ 
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Mahalanobis  distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{\sum_x}^{-1}(X_i-X_j)}$
+
+Where $\hat{\sum_x}$ is the sample covariance matrix of X.
+
+. . . 
+
+![](figs/malahanobis_king_nielsen.png)
+
+
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+Distance matching only goes so far...
+
+... **the larger the dimensionality, the harder is to use distance matching**.
+
+As sample size increases, for a given N of covariates, the matching discrepancies tend to zero.
+
+But, the more covariates, the longer it takes.
+
+. . . 
+
+At the end of the day, it is preferable to have many covariates, but it is makes distance matching harder.
+
+
+
+
+
+
+
+
+# Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
+
+## Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
+
+In coarsened exact matching, something only counts as a match if it exactly matches on each matching variable. 
+
+**The “coarsened” part comes in because, if you have any continuous variables to match on, you need to “coarsen” them first by putting them into bins, rather than matching on exact values.**
+
+Coarsening means creating bins. Fewer bins makes exact matches more likely. 
+
+. . .
+
+CER is not used much in empirical research in finance. It is used more in the big data realm when you have many variables to match. 
+
+
+
+
+
+
+
+# Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+**PSM is one way to matching using many covariates.** 
+
+**PSM aggregates all covariates into one score (propensity-score), which is the likelihood of receiving the treatment.**
+
+The idea is to match units that, based on observables, have the same probability (called propensity-score) of being treated. 
+
+. . .
+
+The idea is to estimate a probit (default in stata) or logit model (fist stage):
+
+$$P(D=1|X)$$
+
+**The propensity-score is the predicted probability of a unit being treated given all covariates X**. The p-score is just a single number.
+
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Considerations in PSM.
+
+1) How many neighbors to match?
+
+- Nearest neighbor, radius or kernel?
+
+2) With or without replacement?
+
+3) With or without common support?
+
+- *Common support*: imposes a common support by dropping treatment observations whose pscore is higher than the maximum or less than the minimum pscore of the controls.
+
+4) It is expected that, after PSM, you show the overlap of propensity-scores.
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**The y-axis is the propensity-score**.
+
+![](figs/ani_katchova1.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Nearest matching:** Find the observation closest to ($min|p_i-p_j|$)
+
+![](figs/ani_katchova3.png)
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Kernel matching:** Each treated observation i is matched with several control observations, with weights inversely proportional to the distance between treated and control observations.
+
+![](figs/ani_katchova2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Radius matching**: Each treated observation i is matched with control observations j that fall within a specified radius.
+
+$$|p_i-p_j| <r$$
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Common support:** Restrict matching only based on the common range of propensity scores.
+
+![](figs/ani_katchova5.png)
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems good overlap, but "good" is arbitrary.
+
+![](figs/psm1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems bad overlap
+
+![](figs/psm2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems good overlap, but "good" is arbitrary.
+
+![](figs/psm_graph1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems bad overlap
+
+![](figs/psm_graph2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_bias.png)
+
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_ttest1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_ttest2.png)
+
+
+
+
+
+
+
+
+
+
+# Example  {.smaller background="#dff5ce"}
+
+## Example  {.smaller background="#dff5ce"}
+
+Let's practice with an example. 185 treated units vs 15,992 control units. 
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+# Load necessary libraries
+library(haven)
+library(psych)
+data <- read_dta("files/cps1re74.dta")
+summary_stats <- by(data, data$treat, FUN = function(group) {
+  c(
+    mean = mean(group$age, na.rm = TRUE),
+    variance = var(group$age, na.rm = TRUE),
+    skewness = skew(group$age, na.rm = TRUE),
+    count = length(group$age)
+  )
+})
+summary_df <- as.data.frame(do.call(rbind, summary_stats))
+colnames(summary_df) <- c("mean", "variance", "skewness", "count")
+print(summary_df)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+from scipy.stats import skew
+import statsmodels.api as sm
+data = pd.read_stata("files/cps1re74.dta")
+grouped_data = data.groupby('treat')['age'].agg(['mean', 'var', lambda x: skew(x, nan_policy='omit'), 'count']).reset_index()
+grouped_data.columns = ['treat', 'mean', 'variance', 'skewness', 'count']
+print(grouped_data)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui estpost tabstat age black educ , by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs nonumber compress 
+```  
+
+:::
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+Clearly, the treated group is younger, mainly black, and less educated.
+
+Also note that the **variance and skewness** of the two subsamples are **different**.
+
+If we were to use these two subsamples in any econometric analysis **without preprocessing to make them comparable**, we would likely have coefficients biased by **selection bias**.
+
+Therefore, it is important to perform some matching method.
+
+Let's start with Propensity Score Matching (PSM). We will use the simplest matching, that is, without using any additional functions.
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Nearest with noreplacement.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# install.packages("MatchIt")
+library(haven)
+library(psych)
+library(MatchIt)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "nearest")
+summary(model)
+```
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+psmatch2 treat age black educ , n(1) noreplacement
+sum _weight , d
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Notice that we are creating weights now**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# install.packages("MatchIt")
+library(haven)
+library(MatchIt)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
+summary(model$weights)
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui psmatch2 treat age black educ , kernel
+sum _weight , d
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Now, the descriptive statistics are much closer**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven)
+library(MatchIt)
+#install.packages("e1071")
+library(e1071)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
+matched_data <- match.data(model)
+summary_stats <- by(matched_data, matched_data$treat, function(x) {
+  c(mean(x$age), var(x$age), skewness(x$age), length(x$age))
+})
+
+result_df <- data.frame(
+  Treatment = c("Control", "Treated"),
+  Mean_Age = sapply(summary_stats, function(x) x[1]),
+  Variance_Age = sapply(summary_stats, function(x) x[2]),
+  Skewness_Age = sapply(summary_stats, function(x) x[3]),
+  Count = sapply(summary_stats, function(x) x[4])
+)
+print(result_df)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui psmatch2 treat age black educ , kernel
+qui estpost tabstat age black educ [aweight = _weight], by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Entropy Balancing  {.smaller background="#fccad9"}
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+**Here, instead of matching units, we reweight the observations such that the moments of the distributions (mean, variance, skewness) are similar.**
+
+- The ebalance function implements a reweighting scheme. The user starts by choosing the covariates that should be included in the reweighting. 
+
+- For each covariate, the user then specifies a set of balance constraints (in Equation 5) to equate the moments of the covariate distribution between the treatment and the reweighted control group. 
+
+- The moment constraints may include the mean (first moment), the variance (second moment), and the skewness (third moment).
+
+**The outcome is a vector containing the weights to weight the observations, such that the weighted average, weighted variance, and weighted skewness of the covariates in control group are similar to those in the treatment group**
+
+
+
+
+
+
+
+
+
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven)
+#install.packages("ebal")
+library(ebal)
+data <- read_dta("files/cps1re74.dta")
+treatment <-cbind(data$treat)
+vars <-cbind(data$age, data$educ, data$black)
+eb <- ebalance(treatment, vars)
+# means in treatment group data
+apply(vars[treatment==1,],2,mean)
+# means in reweighted control group data
+apply(vars[treatment==0,],2,weighted.mean,w=eb$w)
+# means in raw data control group data
+apply(vars[treatment==0,],2,mean)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+ebalance treat age black educ, targets(3)
+```  
+
+:::
+
+
+
+
+
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+
+::: panel-tabset
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui ebalance treat age black educ, targets(3)
+qui estpost tabstat age black educ [aweight = _webal], by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
+```  
+
+:::
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::
