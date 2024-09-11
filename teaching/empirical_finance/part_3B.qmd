@@ -1,0 +1,5591 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 3'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+
+
+```{r setup}
+#| include: false
+#| warning: false
+
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Conterfactuals {.smaller background="#b3eafc"}
+
+## Conterfactuals {.smaller background="#b3eafc"}
+
+-   Imagine that John and Mary are moving to the north of Canada.
+
+-   John has a history of respiratory disease and decide to buy insurance.
+
+-   Mary does not have a history of respiratory disease and decide not to buy insurance.
+
+-   What is the causal effect of buying insurance?
+
+| Default                     | John   |   Mary |
+|-----------------------------|:-------|-------:|
+| State of insurance          | 1      |      0 |
+| Situation without insurance | `n.o.` |      5 |
+| Situation with insurance    | 4      | `n.o.` |
+| Observed                    | 4      |      5 |
+| Effect                      | ?      |      ? |
+
+[Source: Mastering Metrics](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845)
+
+
+
+
+
+
+
+
+## Conterfactuals {.smaller background="#b3eafc"}
+
+**Naïve calculation: comparing John com Mary**
+
+$$Y_{john} - Y_{Mary} = 4 - 5 = -1$$
+
+Conclusion: buying insurance has a negative effect on health.
+
+. . .
+
+**This is wrong!**
+
+[Source: Mastering Metrics](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845)
+
+## Conterfactuals {.smaller background="#b3eafc"}
+
+| Default                     | John | Mary |
+|-----------------------------|:-----|-----:|
+| State of insurance          | 1    |    0 |
+| Situation without insurance | `3`  |    5 |
+| Situation with insurance    | 4    |  `5` |
+| Observed                    | 4    |    5 |
+| Effect                      | ?    |    ? |
+
+$$(Y_{1,john} - Y_{0,john}) + (Y_{1,Mary}- Y_{0,Mary}) = 4 - 3 + 5 - 5 = 0.5$$
+
+**Conclusion:** buying insurance has a positive effect of 1 in John's health and average effect of 0.5 in the sample's health (i.e. averages conditional on insurance status).
+
+[Source: Mastering Metrics](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Regressions {.smaller background="#dfe3f7"}
+
+## Regression [Source: Mastering Metrics](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+**Let's see how a regression could solve the problem.** Imagine that you have the following data on students' application. (**Decisions in bold**)
+
+| Student | Private   | Private   | Private   | Public    | Public    | Public    | Earnings |
+|---------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+|         | Ivy       | Leafy     | Smart     | State     | Tall      | Altered   | 110,000  |
+| 1       |           | Reject    | **Admit** |           | Admit     |           | 110,000  |
+| 2       |           | Reject    | **Admit** |           | Admit     |           | 100,000  |
+| 3       |           | Reject    | Admit     |           | **Admit** |           | 110,000  |
+| 4       | **Admit** |           | Admit     |           | Admit     | Admit     | 60,000   |
+| 5       | Admit     |           | Admit     |           | Admit     | **Admit** | 30,000   |
+| 6       |           | **Admit** |           |           |           |           | 115,000  |
+| 7       |           | **Admit** |           |           |           |           | 75,000   |
+| 8       | Reject    |           |           | **Admit** | Admit     |           | 90,000   |
+| 9       | Reject    |           |           | Admit     | **Admit** |           | 60,000   |
+
+
+
+
+
+
+
+
+## Regression [Source: Mastering Metrics](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+**We can see from the table that:**
+
+-   Some students earn high salary, in both situations
+
+-   Some students earn low salary, in both situations
+
+-   There are clusters of students that applied for the same universities
+
+    -   How likely are they to be similar? Can we benefit from the fact they believe they are similar?
+
+. . .
+
+-   If we compare earnings from the first three individuals:
+
+    -   ((110 + 100)/ 2 - 11000) = -5.000
+
+-   If we compare earnings from individuals 4 and 5:
+
+    -   (60 - 30) = 30.000
+
+-   The average is:
+
+    -   25.000/2 = 12.500
+
+
+
+
+
+
+
+
+
+
+
+## Regression [Source](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+Let's create a dataframe to run regressions with the previous student's data.
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Create the data frame
+data <- data.frame(
+  id = 1:9,
+  earnings = c(110000, 100000, 110000, 60000, 30000, 115000, 75000, 90000, 60000),
+  school = c("private", "private", "public", "private", "public", "private", "private", "public", "public"),
+  private = c(1, 1, 0, 1, 0, 1, 1, 0, 0),
+  group = c(1, 1, 1, 2, 2, 3, 3, 4, 4)
+)
+print(data)
+
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+
+import pandas as pd
+data = pd.DataFrame({
+    'id': range(1, 10),
+    'earnings': [110000, 100000, 110000, 60000, 30000, 115000, 75000, 90000, 60000],
+    'school': ["private", "private", "public", "private", "public", "private", "private", "public", "public"],
+    'private': [1, 1, 0, 1, 0, 1, 1, 0, 0],
+    'group': [1, 1, 1, 2, 2, 3, 3, 4, 4]
+})
+print(data)
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+input id earnings str7 school private group
+1 110000 "private" 1 1
+2 100000 "private" 1 1
+3 110000 "public" 0 1
+4 60000 "private" 1 2
+5 30000 "public" 0 2
+6 115000 "private" 1 3
+7 75000 "private" 1 3
+8 90000 "public" 0 4
+9 60000 "public" 0 4
+end
+list
+```
+:::
+
+
+
+
+
+
+
+
+## "Naive" regression all students [Source](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+$$earnings_i = \alpha + \beta_1 Private_i + \epsilon$$ **What is the benefit of private education here?**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Create the data frame
+model <- lm(earnings ~ private, data = data)
+summary(model)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+#pip install numpy scikit-learn statsmodels
+import statsmodels.api as sm
+X = sm.add_constant(data['private'])  
+y = data['earnings']
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+quiet input id earnings str7 school private group
+1 110000 "private" 1 1
+2 100000 "private" 1 1
+3 110000 "public" 0 1
+4 60000 "private" 1 2
+5 30000 "public" 0 2
+6 115000 "private" 1 3
+7 75000 "private" 1 3
+8 90000 "public" 0 4
+9 60000 "public" 0 4
+end
+
+reg earnings private 
+```
+:::
+
+
+
+
+
+
+
+
+## "Naive" regression all students [Source](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+$$earnings_i = \alpha + \beta_1 Private_i + \epsilon$$ **What is the benefit of private education here?**
+
+The coefficient of `private` is 19500, meaning that those that have private education earn 19500 more.
+
+. . . 
+
+The problem with this design is that 1) we are including all students, even those that do not bring any "information", and 2) we are not controlling for the differences in students' profiles. 
+
+
+Let's fix the first problem first. 
+
+**What students should we not include in the model?**
+
+
+
+
+
+## Students id\<=5 [Source](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+
+$$earnings_i = \alpha + \beta_1 Private_i + \epsilon \;,\; if\; i <=5$$ **What is the benefit of private education here?**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+
+model2 <- lm(earnings ~ private , data = subset(data,id<=5))
+summary(model2)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+#pip install numpy scikit-learn statsmodels
+
+subset_data = data[data['id'] <= 5]
+X = sm.add_constant(subset_data['private']) 
+y = subset_data['earnings']
+model2 = sm.OLS(y, X).fit()
+print(model2.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+quiet input id earnings str7 school private group
+1 110000 "private" 1 1
+2 100000 "private" 1 1
+3 110000 "public" 0 1
+4 60000 "private" 1 2
+5 30000 "public" 0 2
+6 115000 "private" 1 3
+7 75000 "private" 1 3
+8 90000 "public" 0 4
+9 60000 "public" 0 4
+end
+reg earnings private if id<=5
+```
+:::
+
+
+
+
+
+## Students id\<=5 [Source](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+$$earnings_i = \alpha + \beta_1 Private_i + \epsilon \;,\; if\; i <=5$$ **What is the benefit of private education here?**
+
+Students 6 and 7 only applied to Private, while students 8 and 9 did not really had a choice. So we should exclude them.
+
+. . .
+
+The benefit of private is now 20000.
+
+The coefficient did not change much, but the design improved partially.
+
+. . .
+
+We still have an uncontrolled "heterogeneity" in the groups of students. **Students 1 to 3 seem to earn more no matter their decisions**.
+
+
+
+
+
+
+
+## Apples-to-Apples [Source](https://www.amazon.com.br/Mastering-Metrics-Path-Cause-Effect/dp/0691152845) {.smaller background="#dfe3f7"}
+
+$$earnings_i = \alpha + \beta_1 Private_i + \beta_2 Group+ \epsilon \;,\; if\; i <=5$$ **This is the best we can do.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+
+data$dummy <- ifelse(data$group == 1, 1, 0)
+data$dummy[data$group == 2] <- 0
+model3 <- lm(earnings ~ private + dummy, data = subset(data,id<=5))
+summary(model3)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+#pip install numpy scikit-learn statsmodels
+
+data['dummy'] = 1
+data.loc[data['group'] == 2, 'dummy'] = 0
+subset_data = data[data['id'] <= 5]
+X = sm.add_constant(subset_data[['private', 'dummy']])
+y = subset_data['earnings']
+model3 = sm.OLS(y, X).fit()
+print(model3.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+quiet input id earnings str7 school private group
+1 110000 "private" 1 1
+2 100000 "private" 1 1
+3 110000 "public" 0 1
+4 60000 "private" 1 2
+5 30000 "public" 0 2
+6 115000 "private" 1 3
+7 75000 "private" 1 3
+8 90000 "public" 0 4
+9 60000 "public" 0 4
+end
+gen 	dummy = 1 if group == 1
+replace dummy = 0 if group == 2
+reg earnings private dummy if id<=5 
+```
+:::
+
+
+
+
+## Regression {.smaller background="#dfe3f7"}
+
+The previous regression assumes that students 1 to 3 are different that students 4 and 5. 
+
+We will find many instances like that in empirical research. E.g., industry. 
+
+. . .
+
+The private school coefficient, in this case 10,000, implies a private-public earnings differential of this value.
+
+. . .
+
+::: callout-important
+The Y above is used in monetary values.
+
+Using a logged y, ln(Y) or ln(earnings), allows estimates to be interpreted as a percent change.
+
+For instance if $\beta=0.05$, it means that the earnings differential is 5% for those studying in private schools (conditional on the controls included in the model). 
+:::
+
+
+
+
+
+
+
+
+
+
+
+# OVB again {.smaller background="#f5caae"}
+
+
+## OVB again {.smaller background="#f5caae"}
+
+
+
+Regression is a way to make other things equal (ceteris paribus), but equality  is generated only for variables included in the model as controls on the right-hand sided of the model.
+
+Failure to include enough controls of the right controls still leave us with selection bias.
+
+The regression version of the selection bias generated by the inadequate controls is called **Omitted Variable Bias (OVB)**. 
+
+The inclusion of a control that should not be included is called "**Bad Controls**" problem.
+
+
+
+
+
+
+
+
+## OVB again {.smaller background="#f5caae"}
+
+**How could we calculate the OVB in this example?**
+
+
+$$earnings_i = 70.000 + 20.000\times Private_i  \epsilon $$
+
+$$earnings_i = 40.000 + 10.000 \times Private_i + 60.000 \times Group+ \epsilon$$ 
+
+
+- $\beta$ (1st regression) - $\beta$ (second regression).
+- The OVB here is 20.000 - 10.000 = 10.000.
+- Meaning that the $\beta$ (1st regression) is 10.000 higher than what it should be.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## OVB again {.smaller background="#f5caae"}
+
+**How could we calculate the OVB in this example?**
+
+
+We could calculate the bias by estimating:
+
+$$Private=\alpha + \beta_{omitted} \times Group + \epsilon$$
+
+Then,
+
+$$\beta_{omitted} \times \beta_{missing} = 0.1667 * 60.000 = 10.000$$
+
+The OVB is 10.000, meaning that the first model (the one with the omitted variable) estimates a Beta that is 10.000 higher than it should be. 
+
+
+
+
+
+
+
+
+
+## OVB again {.smaller background="#f5caae"}
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+model4 <- lm(private ~ dummy , data = subset(data,id<=5))
+summary(model4)
+matrix2<- summary(model4)$coefficients
+sum(0.1667 * 60000 )
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+subset_data = data[data['id'] <= 5]
+model4 = sm.OLS(subset_data['private'], sm.add_constant(subset_data[['dummy']])).fit()
+print(model4.summary())
+bias = 0.1667 * 60000
+print(bias)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+quiet input id earnings str7 school private group
+1 110000 "private" 1 1
+2 100000 "private" 1 1
+3 110000 "public" 0 1
+4 60000 "private" 1 2
+5 30000 "public" 0 2
+6 115000 "private" 1 3
+7 75000 "private" 1 3
+8 90000 "public" 0 4
+9 60000 "public" 0 4
+end
+gen 	dummy = 1 if group == 1
+replace dummy = 0 if group == 2
+reg private dummy if id<=5
+di .1666667 *  60000 
+```
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+## OVB again {.smaller background="#f5caae"}
+
+**So what?**
+
+- Anticipating the effect of the omitted variable on the non-omitted variable can tell you the sign of the bias.
+
+- Then you can know if the bias is attenuating or increasing the effect you are investigating.
+
+- If attenuating, the problem is smaller than if it is increasing
+
+
+
+
+
+
+
+
+
+
+
+
+## OVB again {.smaller background="#f5caae"}
+
+**Regressions**
+
+-   The previous examples show that we can run **regressions and find correlations** ...
+
+-   ... And we can run regressions and find **causal effects**.
+
+-   But we need to control for all relevant variables, otherwise we have the *OVB problem*.
+
+-   Should you not look careful to your data, you'd miss the inclusion of the variable `group`.
+
+-   The results show that you may estimate a spurious coefficient twice the size of the "true" coefficient.
+
+
+
+
+
+
+
+# Bad Controls Problem {.smaller background="#dff2c7"}
+
+
+## Bad Controls Problem {.smaller background="#dff2c7"}
+
+**Bad controls** are variables that are **also outcome of the treatment** being studied.
+
+A **Bad control** could very well be a **dependent variable** of the treatment as well. 
+
+**Good controls** are variables that **you can think as being fixed** at the time of the treatment. 
+
+. . .
+
+Let's return to the model.
+
+$$earnings_i = \alpha + \beta_1 Private_i + \beta_2 Group+ \epsilon \;,\; if\; i <=5$$ 
+
+
+Assuming you also have the occupation of the students at the time of earnings. Should you include `occupation` in the model?
+
+
+$$earnings_i = \alpha + \beta_1 Private_i + \beta_2 Group + \beta_3 Occupation + \epsilon \;,\; if\; i <=5$$ 
+
+Reasoning: "*We should use occupation as control because it would be wise to look at the effect of education on earnings only for those within an occupation*".
+
+What is the problem with this reasoning?
+
+
+
+
+
+
+
+
+## Bad Controls Problem {.smaller background="#dff2c7"}
+
+The problem is that studying in private would increase the chances of getting a white-collar occupation, i.e., *private education (treatment) affects the occupation (bad control)*.
+
+In this case, should you include occupation as control, the coefficient of interest no longer has a causal interpretation.
+
+
+. . .
+
+**This is a very common problem in empirical research**.
+
+It is not hard to come up with stories of why a control is a bad control.
+
+
+
+
+
+
+# Randomization {.smaller background="#ff9c6b"}
+
+## Randomization {.smaller background="#ff9c6b"}
+
+**Now I want to discuss the idea of randomization**
+
+Suppose you have developed a treatment (e.g., a program) that you believe will increase the 'motivation' of employees of a factory.
+
+You have 100 employees to use in an experiment to test your claim that the treatment will increase motivation.
+
+. . .
+
+- You randomly allocate 50 employees to receive the treatment. The other 50 are part of the control group.
+
+. . .
+
+- You treat all employees in the same manner, except for the treatment.
+
+
+
+. . .
+
+Using the data available, this is the **difference in motivation between the treatment and control groups (next slide):**
+
+
+
+
+
+## Randomization {.smaller background="#ff9c6b"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+data  <- read_excel("files/part_3_data.xlsx", range = "A1:C101")
+# Box plot control vs treatment groups
+ggplot(data, aes(y=motivation, fill=group)) +   
+  geom_boxplot()+
+  theme(plot.title = element_text(color="black", size=30, face="bold"),
+        panel.background = element_rect(fill = "grey95", colour = "grey95"),
+        axis.text.y = element_text(face="bold", color="black", size = 18),
+        axis.text.x = element_blank(),
+        legend.title = element_blank(),
+        legend.key.size = unit(3, "cm"))
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Read data from Excel file
+data = pd.read_excel("files/part_3_data.xlsx")
+
+# Create a box plot of control vs treatment groups using seaborn
+plt.figure(figsize=(7, 5))
+sns.set(style='whitegrid')
+sns.boxplot(x='group', y='motivation', data=data, palette='Set2')
+plt.title("Box Plot of Control vs Treatment Groups", fontsize=18)
+plt.xlabel("Group", fontsize=14)
+plt.ylabel("Motivation", fontsize=14)
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+
+import excel "files/part_3_data.xlsx", cellrange(A1:C101) firstrow clear
+graph box motivation , over(group) box(1, color(black)) 	ytitle("Motivation")  
+
+quietly graph export "files/graph3_5.svg", replace
+```       
+
+![](files/graph3_5.svg)
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+## Randomization {.smaller background="#ff9c6b"}
+
+The calculated means are below. And they are statistically different.
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+data  <- read_excel("files/part_3_data.xlsx", range = "A1:C101")
+tapply(data$motivation, data$group, summary)
+t.test(motivation ~ group, data = data)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+data = pd.read_excel("files/part_3_data.xlsx")
+group_summary = data.groupby('group')['motivation'].describe()
+print(group_summary)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+import excel "files/part_3_data.xlsx", cellrange(A1:C101) firstrow clear
+bys group  : sum motivation
+estpost ttest motivation , by(group)
+```
+:::
+
+
+
+
+
+## Randomization {.smaller background="#ff9c6b"}
+
+**Is there evidence that the program has increased motivation?**
+
+. . .
+
+- well, if you randomly split a group of 100 people into two groups of 50, you certainly wouldn't get the same mean motivation in both groups even if you treated them exactly alike. 
+
+- Maybe the difference that we see is just such a difference?
+
+**How can we test this hypothesis?**
+
+
+
+
+## Randomization {.smaller background="#ff9c6b"}
+
+**Solution**: 
+
+- Suppose the treatment had no effect, and the employees developed their motivation  independently of the treatment. 
+
+- What is the chance that the 50 employees randomly assigned to the treatment group would have an average at least 1.47 (22.27 - 20.80)  points higher than the average motivation of the employees randomly assigned to the control group?
+
+
+
+
+
+
+
+
+## Randomization {.smaller background="#ff9c6b"}
+
+**Steps**
+
+1) Randomly split the 100 employees that we observed in this experiment into two groups of 50.
+
+2) Note the difference in the mean motivation  between the two groups.
+
+3) Repeat 1 and 2 a total of 10,000 times.
+
+4) Note the proportion of times the difference is at least 1.47 (22.27 - 20.80).
+
+
+
+
+
+
+
+
+
+## Randomization {.smaller background="#ff9c6b"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary libraries
+data <- read_excel("files/part_3_data.xlsx", range = "A1:C101")
+comb <- 10000
+df <- data.frame(matrix(ncol = 2, nrow = comb))
+colnames(df) <- c("order" ,"diff")
+# Create the loop for randomization:
+for (i in seq(from = 1, to = comb)) {
+  set.seed(i)                               
+  data$temp <- runif(100, min = 0, max = 1)  # Creating 100 random numbers 0 to 1
+  data <- data[order(data$temp),]            # Sorting data by the random numbers generated in the previous row
+  data$rank <- rank(data$temp)               # Ranking by the random numbers
+# The row below defines the treatment group based on the random numbers generated. This is where we guarantee randomization
+data$status_rank <- case_when(data$rank <= 50 ~ "Control_rand", data$rank > 50 ~ "Treated_rand")
+# Calculate the new means of the new groups. Need to transpose data.
+means <- t(as.data.frame(tapply(data$motivation, data$status_rank, mean)))
+# Moving the new means to df. Each row is the difference of means
+df[i, 1] <- i
+df[i, 2] <- means[1, 2] - means[1, 1]
+rm(means) # Deleting value
+data = subset(data, select = -c(temp, rank, status_rank)) # Deleting variables
+}
+# Calculate a suitable binwidth for the histogram
+binwidth <- (max(df$diff) - min(df$diff)) / sqrt(length(df$diff))
+# Create a histogram of the differences with the calculated binwidth
+ggplot(df, aes(x = diff)) +
+  geom_histogram(binwidth = binwidth, fill = "blue", color = "black") +
+  labs(title = "Distribution of Differences", x = "Difference", y = "Frequency")
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+import excel "files/part_3_data.xlsx", cellrange(A1:C101) firstrow clear
+set seed 472195 		
+sort group		 
+set obs 10000 				 
+egen fin_order = seq() 
+sort fin_order 				 
+summarize 					
+gen av_diff=.
+
+local i = 1
+while `i'<=10000 {
+
+	sort fin_order
+	gen rand_num`i' = uniform() if !missing(motivation)
+	egen ordering`i' = rank(rand_num`i')
+	sort ordering`i'
+
+	gen group`i' = ""
+	replace group`i' = "T" if ordering <= 50
+	replace group`i' = "C" if ordering > 50 & ordering<=100
+	
+	qui summ motivation if group`i'=="T"
+	scalar avT = `r(mean)'
+	qui summ motivation if group`i'=="C"
+	scalar avC = `r(mean)'
+	
+	sort fin_order
+	replace av_diff = avT-avC in `i'
+	
+	drop rand_num`i' ordering`i' group`i'
+	local i = `i' + 1
+}
+histogram av_diff, frequency kdensity  
+graph export "files/graph3_6.png" , replace
+
+```       
+
+![](files/graph3_6.png){ width=800px height=450px }
+:::
+
+
+
+
+
+
+## Randomization {.smaller background="#ff9c6b"}
+
+The mean difference was as far from 0 as 1.5 for only a few out of the 10,000 random divisions of the data into two groups of 50.
+
+- Thus, **the difference between the mean motivation would almost always be less than the observed difference of 1.47 (22.27 - 20.80) if the treatment had no effect.**
+
+- It seems reasonable to believe that the treatment caused the difference in motivation.
+
+
+
+
+
+
+
+
+
+# Measurement Error problem  {.smaller background="#f2e9b6"}
+
+
+## Measurement Error problem  {.smaller background="#f2e9b6"}
+
+The measurement error problem has a similar statistical structure to the omitted variable bias (OVB).
+
+- "Classical" random measurement error for the $y$ will inflate standard errors but will not lead to biased coefficients. 
+
+    - $y^{*} = y + \sigma_{1}$
+    - If you estimante $y^{*} = f(x)$, you have $y + \sigma_{1} = x + \epsilon$ 
+    - $y = x + u$ 
+        - where $u = \epsilon - \sigma_{1}$ 
+
+
+
+
+## Measurement Error problem  {.smaller background="#f2e9b6"}
+
+- "Classical” random measurement error in x’s will bias coefficient estimates toward zero.
+
+- $x^*=x+\sigma_2$
+
+- Imagine that $x^*$ is a bunch of noise. It would not explain anything. Thus, your results are biased toward zero.
+
+
+
+
+
+## Measurement Error problem  {.smaller background="#f2e9b6"}
+
+A example using one of the Wooldridge's datasets.
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) 
+library(jtools)
+data <- read.dta("files/CEOSAL1.dta")
+set.seed(2)
+data$salary_noise <- data$salary + runif(length((data$salary)), min=-100, max= 100)
+data$roe_noise <- data$roe + runif(length((data$roe)), min=-100, max= 100)
+# OLS model 
+model1 <- lm(data$salary ~ data$roe)
+model2 <- lm(data$salary ~ data$roe_noise)
+model3 <- lm(data$salary_noise ~ data$roe)
+#summary(model1)
+#summary(model2)
+#summary(model3)
+export_summs(model1, model2, model3, digits = 3 , model.names = c("Roe", "Roe (X) with noise", "Salary (y) with noise") )
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.iolib.summary2 import summary_col
+
+data = pd.read_stata("files/CEOSAL1.dta")
+np.random.seed(2)
+# Add noise to the 'salary' and 'roe' columns
+data['salary_noise'] = data['salary'] + np.random.uniform(-100, 100, len(data))
+data['roe_noise'] = data['roe'] + np.random.uniform(-100, 100, len(data))
+# OLS model
+model1 = smf.ols(formula='salary ~ roe', data=data).fit()
+model2 = smf.ols(formula='salary ~ roe_noise', data=data).fit()
+model3 = smf.ols(formula='salary_noise ~ roe', data=data).fit()
+# Create a summary table for all regressions
+results = summary_col([model1, model2, model3], 
+                      model_names=['Reg 1', 'Reg 2', 'Reg 3'],
+                      stars=True,
+                      float_format='%0.2f')
+# Print the summary table
+print(results)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.dta", clear
+set seed 2
+gen salary_noise = salary + runiform() * 200 - 100
+gen roe_noise = roe + runiform() * 200 - 100
+eststo: qui reg salary roe
+eststo: qui reg salary roe_noise
+eststo: qui reg salary_noise roe
+esttab
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+# More about Regressions {.smaller background="#454343"}
+
+## Regression {.smaller background="#454343"}
+
+Linear regressions are the workhorse tool in econometrics
+
+-   **Simplicity**: straightforward to understand, implement, and visualize.
+
+. . .
+
+-   **Interpretability**: coefficients have clear interpretations.
+    -   represents the change in the Y for a one-unit change in the X, holding all other variables constant.
+
+. . .
+
+-   **Versatility**: simple linear regression or *multiple linear regression*.
+
+. . .
+
+-   **Assumptions**: linearity, independence of errors, homoscedasticity, and normality of errors.
+
+. . .
+
+-   **Baseline Model**: You can compare the performance of more advanced models to linear regression.
+
+. . .
+
+-   **Estimation**: provides clear estimates of the coefficients' confidence intervals and hypothesis testing.
+
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+In this setting, the variables $y$ and $x$ can have several names.
+
+| Y                  | X                    |
+|--------------------|----------------------|
+| Dependent variable | Independent variable |
+| Explained variable | Explanatory variable |
+| Response variable  | Control variable     |
+| Predicted variable | Predictor variable   |
+| Regressand         | Regressor            |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+Broadly, we are interested in how y is explained by x?
+
+-   $y_i = \alpha + \beta_1 x_i + \epsilon$
+
+. . .
+
+Perhaps $\epsilon$ is the most important part of a regression.
+
+The interpretation is "*everything that is not explained by X and that explains Y*".
+
+. . .
+
+A comment
+
+-   Usually, the literature uses $\epsilon$ for the "estimated" residual.
+
+-   And $\mu$ for the "true" residual, which necessarily implies that the assumptions hold.
+
+-   At the end od the day, you don't need to worry to much with the notation of this term because we are always in the "estimated world", and almost never in the "true world".
+
+-   The "true world" implies that you are studying the population or that you have a true random sample of the population
+
+    -   $y_i = \alpha + \beta_1 x_i + \mu$
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+**Remember**
+
+- $y, x$, and $\mu$ are random variables
+- $y and x$ are observable
+- $\mu$ and $\beta$ are unobservable
+- $\mu$ captures everything that determines y after accounting for x 
+
+Our goal is to estimate β
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+There are some assumptions/requirements about $\mu$ in a OLS
+
+**First assumption**
+
+-   E($\mu$) = 0
+
+    -   This is a simple assumption, not strong at all.
+    -   It simply assumes that the average of $\mu$ is zero in the population.
+    -   Basically, any non-zero mean is absorbed by the intercept
+        -   Say that E($\mu$) = k
+        -   We could rewrite $\mu = k + w$, where E(w)=0
+        -   Then, model becomes $y=(\alpha +𝑘) + \beta𝑥+𝑤$
+        -   Intercept is now just (α + k), and error, w, is mean zero
+
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+**Second assumption**
+
+-   E($\mu$\|x) = E($\mu$) for all values of x
+    -   It says that the average value of $\mu$ does not depend on the value of x (i.e., the slice of the population you are looking at).
+    -   We say that $\mu$ is mean-independent of x.
+    -   This is true if the X and the $\mu$ are independent to each other.
+    -   Implies that x and $\mu$ are *uncorrelated*.
+    -   **Conditional Mean Independence (CMI)**.
+    -   This is one of the keys assumption to *causal inference*.
+
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+**Second assumption**
+
+**Example**
+
+Let's say the model is:
+
+$$wage = \alpha + \beta Schooling_{years} + \epsilon$$
+
+-   where $\epsilon$ represents *unobserved ability*.
+
+Does CMI hold?
+
+That is E(ability\|x=8)=E(ability\|x=10)=E(ability\|x=12)?
+
+. . .
+
+**Probably not**, because the unobserved ability should depend on the years of schooling.
+
+The solution (not trivial) would be to include ability as a new X.
+
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+**Another example**
+
+Consider the following model (with only one X)
+
+$$Leverage_i = \alpha + \beta_1 Profitability_i + \mu_i$$
+
+-   CMI says that, to every firm *i*, $\mu$ is the same, even when firms have different profitability.
+
+-   Can you think on examples when this assumption may not hold in this model?
+
+. . .
+
+1)  unprofitable firms have higher bankruptcy risk, which should make them to have lower leverage (tradeoff theory).
+
+2)  unprofitable firms have low cash, which should make them to have more leverage (pecking order theory).
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+**The discussion of whether the CMI holds is the origin of the "endogeneity" problem.**
+
+You will face reviewers arguing reasons of why the CMI might not hold in your case.
+
+- Many  will criticize a model by saying it has an “endogeneity problem”, whithout explaining more.
+
+  - This is very generic. **Don't do that!**
+
+. . .
+
+They should explain what is the source of the problem that is making the model violate CMI.
+
+ - OVB, selection bias, reverse causality, simultaneity, etc?
+
+. . . 
+
+Generally speaking, endogeneity refers to a violation of CMI, meaning that $x$ and $\mu$ are correlated.
+
+This is always a plausible possibility, since $\mu$ carries a lot of stuff (something must be correlated with X).
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+**Third assumption**
+
+Combining 1 and 2 leads to
+
+-   E($\mu$\|x) = 0
+    -   This is a very important assumption called **zero conditional mean assumption**.
+
+## Ordinary Least Squares {.smaller background="#454343"}
+
+Our focus is to find estimates for $\alpha$ and $\beta$. Should we have access to the population, it would be easy. We could write:
+
+$$y_i= \alpha + \beta_1x_i + \mu$$
+
+. . .
+
+But remember that,
+
+$$E(u) = 0$$ $$E(u|x) = 0$$
+
+The second bullet implies that the correlation between x and $\mu$ is zero (we can write that as E(x,u) = 0).
+
+. . .
+
+::: callout-important
+Remember: $\alpha$ and $\beta$ are parameters to be estimated (i.e., constants), while $X$ and $Y$ are variables
+:::
+
+
+
+
+
+
+
+
+## Regression {.smaller background="#454343"}
+
+So we can write that (in the **population**)
+
+$E(y - \alpha - \beta_1x ) = 0$
+
+$(x[y - \alpha - \beta_1x ]) = 0$
+
+. . .
+
+So we can write that (in the **sample**)
+
+$\frac{1}{n} \sum_{i=1}^n (y_i - \hat{\alpha} - \hat{\beta_1} x_i ) = 0$ , We will use this to find $\alpha$:
+
+$\frac{1}{n} \sum_{i=1}^n (x_i [y_i - \hat{\alpha} - \hat{\beta_1} x_i ]) = 0$ , We will use this to find $\beta$:
+
+
+
+
+
+
+
+## Finding $\alpha$ {.smaller background="#454343"}
+
+From before:
+
+$$\frac{1}{n} \sum_{i=1}^n (y_i - \hat{\alpha} - \hat{\beta_1} x_i ) =0$$
+
+. . .
+
+Passing the sum operator through
+
+$$\frac{1}{n}\sum_{i=1}^n(y_i) - \frac{1}{n}\sum_{i=1}^n(\hat{\alpha})  - \frac{1}{n} \sum_{i=1}^n(\hat{\beta_1} x_i )=0$$
+
+. . .
+
+Coefficients are constants, so we can get rid of the sum operator.
+
+$$\frac{1}{n}\sum_{i=1}^n(y_i) - \hat{\alpha}  - \hat{\beta_1} \frac{1}{n}  \sum_{i=1}^n(\ x_i )=0$$
+
+
+
+
+
+
+
+
+## Finding $\alpha$ {.smaller background="#454343"}
+
+-   We know that $\frac{1}{n}\sum_{i=1}^n(y_i)$ is $\bar{y_i}$ (the mean)
+
+$$\bar{y_i} - \hat{\alpha}  - \hat{\beta_1}  \bar{x_i}=0$$
+
+. . .
+
+So we write:
+
+$$\hat{\alpha}  = \bar{y_i} -  \hat{\beta_1}   \bar{x_i}$$
+
+. . .
+
+**Easy Peasy** 😀
+
+
+
+
+
+## Finding $\beta$ {.smaller background="#454343"}
+
+From before:
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i [y_i - \hat{\alpha} - \hat{\beta_1} x_i ]) = 0$$
+
+. . .
+
+But now we have:
+
+$$\hat{\alpha}  = \bar{y_i} -  \hat{\beta_1}   \bar{x_i}$$
+
+. . .
+
+Thus,
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i [y_i - (\bar{y_i} -  \hat{\beta_1}   \bar{x_i}) - \hat{\beta_1} x_i ]) = 0$$
+
+
+
+
+## Finding $\beta$ {.smaller background="#454343"}
+
+Turning into
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i [y_i - \bar{y_i} ])  -  \frac{1}{n} \sum_{i=1}^n (x_i [\hat{\beta_1} x_i - \hat{\beta_1} \bar{x_i} ]) = 0$$
+
+. . .
+
+Or
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i [y_i - \bar{y_i} ])  =  \hat{\beta_1} \frac{1}{n} \sum_{i=1}^n (x_i [ x_i  - \bar{x_i} ]) $$
+
+. . . 
+
+Last step (I am skipping some steps here)
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i - \bar{x} )(y_i - \bar{y_i} )  =  \hat{\beta_1} \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x_i} )^2 $$
+
+
+
+
+## Finding $\beta$ {.smaller background="#454343"}
+
+
+If the variance of x is not zero, we can write $\beta$ as
+
+$$\hat{\beta_1} = \frac{\sum_i^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_i^n (x_i - \bar{x})^2} = \frac{Covariance(x_i,y_i)}{Variance(x_i)}$$
+
+
+
+## Finding $\mu$  {.smaller background="#454343"}
+
+Now that we have $\hat{Y_i}=\hat{\alpha} + \hat{\beta_1} X_i$, we can estimate the residual $\mu$
+
+$$\hat{\mu} = Y_i - \hat{Y_i}$$
+
+
+Which is the same as:
+
+$$\hat{\mu} = Y_i - \hat{\alpha} - \hat{\beta_1}x_i$$
+
+Most residuals will not be 0, meaning they do not lie on the best fitting line. 
+
+
+
+
+
+
+## Finding $\mu$  {.smaller background="#454343"}
+
+The job of an OLS model is find the parameters to minimize the squared error (i.e., to find the best fitting line).
+
+$$\sum_{i=1}^n \hat{\mu}^2 = \sum_{i=1}^n(Y_i - \hat{Y_i})^2$$
+
+
+
+
+
+
+
+
+
+
+
+
+## Regression ([Source](https://mixtape.scunning.com/02-probability_and_regression#ordinary-least-squares)) {.smaller background="#454343"}
+
+Another example of regression. The differences in the coefficients are due to the differences in the seed of the random variables generator.
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(tidyverse)
+set.seed(1)
+tb <- tibble(
+  x = rnorm(10000),
+  u = rnorm(10000),
+  y = 5.5*x + 12*u # notice that I am defining the beta1 here. The 5.5 is the "true" beta we want to estimate.
+) 
+reg_tb <- lm(y ~ x, data=tb) 
+summary(reg_tb)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+np.random.seed(1)
+
+obs = 10000
+data = pd.DataFrame({
+    'x': np.random.normal(size=obs),
+    'u': np.random.normal(size=obs),
+})
+data['y'] = 5.5 * data['x'] + 12 * data['u']
+
+X = sm.add_constant(data['x'])
+model = sm.OLS(data['y'], X).fit()
+
+print(model.summary())
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+set seed 1 
+set obs 10000 
+gen x = rnormal() 
+gen u  = rnormal() 
+gen y  = 5.5*x + 12*u 
+reg y x 
+```
+:::
+
+
+
+
+
+
+## Regression ([Source](https://mixtape.scunning.com/02-probability_and_regression#ordinary-least-squares)) {.smaller background="#454343"}
+
+Another example of regression. The differences in the coefficients are due to the differences in the seed of the random variables generator.
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(tidyverse)
+set.seed(1)
+tb <- tibble(
+  x = rnorm(10000),
+  u = rnorm(10000),
+  y = 5.5*x + 12*u # notice that I am defining the beta1 here. The 5.5 is the "true" beta we want to estimate.
+) 
+reg_tb <- lm(y ~ x, data=tb) 
+tb %>% 
+  lm(y ~ x, .) %>% 
+  ggplot(aes(x=x, y=y)) + 
+  ggtitle("OLS Regression Line") +
+  geom_point(size = 0.05, color = "black", alpha = 0.5) +
+  geom_smooth(method = lm, color = "black") +
+  annotate("text", x = -1.5, y = 30, color = "red", 
+           label = paste("Intercept = ", reg_tb$coefficients[1])) +
+  annotate("text", x = 1.5, y = -30, color = "blue", 
+           label = paste("Slope =", reg_tb$coefficients[2]))
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Create a scatterplot with the OLS regression line using Seaborn
+sns.set(style='whitegrid')
+plt.figure(figsize=(7, 5))
+sns.scatterplot(x='x', y='y', data=data, color='black', alpha=0.5, s=5)
+sns.regplot(x='x', y='y', data=data, color='black', scatter=False, line_kws={'color':'black'})
+plt.title('OLS Regression Line')
+plt.annotate(f'Intercept = {model.params[0]:.2f}', xy=(-1.5, 30), color='red')
+plt.annotate(f'Slope = {model.params[1]:.2f}', xy=(1.5, -30), color='blue')
+plt.show()
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+set seed 1 
+set obs 10000 
+gen x = rnormal() 
+gen u  = rnormal() 
+gen y  = 5.5*x + 12*u 
+reg y x 
+predict yhat1 
+gen yhat2 = -0.0750109  + 5.598296*x 
+predict uhat1, residual 
+gen uhat2=y-yhat2 
+qui sum uhat* 
+twoway (lfit y x, lcolor(black) lwidth(medium)) (scatter y x, mcolor(black) msize(tiny) msymbol(point)), title(OLS Regression Line) 
+qui graph export "files/graph3.svg", replace
+```  
+
+![](files/graph3.svg) 
+
+:::
+
+
+
+
+
+
+## Regression ([Source](https://mixtape.scunning.com/02-probability_and_regression#ordinary-least-squares)) {.smaller background="#454343"}
+
+Using the previous regressions, we can show  that:
+
+1)  $\hat{y_i} = \hat{\alpha} + \hat{\beta_1} x_i$
+
+2)  $\hat{\mu_i} = y_i - \hat{y_i}$
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+
+library(tidyverse)
+set.seed(1)
+tb <- tibble(
+  x = rnorm(10000),
+  u = rnorm(10000),
+  y = 5.5*x + 12*u # notice that I am defining the beta1 here. The 5.5 is the "true" beta we want to estimate.
+) 
+reg_tb <- lm(y ~ x, data=tb) 
+
+tb <- tb %>% 
+  mutate(
+    yhat1 = predict(lm(y ~ x, .)),
+    yhat2 = reg_tb$coefficients[1] + reg_tb$coefficients[2]*x, 
+    uhat1 = residuals(lm(y ~ x, .)),
+    uhat2 = y - yhat2
+  )
+summary(tb[-1:-3])
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+np.random.seed(1)
+obs = 10000
+x = np.random.normal(size=obs)
+u = np.random.normal(size=obs)
+y = 5.5 * x + 12 * u
+
+X = sm.add_constant(x)
+model = sm.OLS(y, X).fit()
+
+tb = pd.DataFrame({'x': x, 'u': u, 'y': y})
+tb['yhat1'] = model.predict(X)
+tb['uhat1'] = y - tb['yhat1']
+tb['yhat2'] = model.params[0] + model.params[1] * x
+tb['uhat2'] = y - tb['yhat2']
+
+print(tb[['yhat1','yhat2', 'uhat1','uhat2']].describe())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+set seed 1 
+clear 
+qui set obs 10000 
+gen x = rnormal() 
+gen u  = rnormal() 
+gen y  = 5.5*x + 12*u 
+qui reg y x 
+predict uhat1, residual 
+predict yhat1 
+gen yhat2 = -0.0750109  + 5.598296*x 
+gen uhat2=y-yhat2 
+sum yhat*  uhat* 
+```
+:::
+
+
+
+
+
+
+
+
+
+
+
+# Properties of OLS {.smaller background="#bfc4d9"}
+
+
+## Properties of OLS {.smaller background="#bfc4d9"}
+
+We can easily show that (remember from before) 
+
+$$\sum_i^n(y_i - \hat{\alpha} - \hat{\beta_1} x_i) = 0$$
+
+And that 
+
+$$\sum_i^n \hat{\mu}  = 0$$
+
+The graphs next slide shows a spherical figure, suggesting that the residual is not correlated with the the fitted values ($\hat{y_i}$)
+
+
+
+
+
+
+
+## Properties of OLS {.smaller background="#bfc4d9"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(tidyverse)
+set.seed(1)
+tb <- tibble(
+  x = rnorm(10000),
+  u = rnorm(10000),
+  y = 5.5*x + 12*u # notice that I am defining the beta1 here. The 5.5 is the "true" beta we want to estimate.
+) 
+reg_tb <- lm(y ~ x, data=tb) 
+tb <- tb %>% 
+  mutate(
+    yhat1 = predict(lm(y ~ x, .)),
+    yhat2 = reg_tb$coefficients[1] + reg_tb$coefficients[2]*x, 
+    uhat1 = residuals(lm(y ~ x, .)),
+    uhat2 = y - yhat2
+  )
+tb %>% 
+  lm(uhat1 ~ yhat1 , .) %>% 
+  ggplot(aes(x=yhat1, y=uhat1)) + 
+  geom_point(size = 0.1, color = "black") +
+  geom_smooth(method = lm, color = "black")
+```
+
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+np.random.seed(1)
+obs = 10000
+x = np.random.normal(size=obs)
+u = np.random.normal(size=obs)
+y = 5.5 * x + 12 * u
+
+X = sm.add_constant(x)
+model = sm.OLS(y, X).fit()
+
+tb = pd.DataFrame({'x': x, 'u': u, 'y': y})
+tb['yhat1'] = model.predict(X)
+tb['uhat1'] = y - tb['yhat1']
+tb['yhat2'] = model.params[0] + model.params[1] * x
+tb['uhat2'] = y - tb['yhat2']
+model = sm.OLS(tb['uhat1'], sm.add_constant(tb['yhat1'])).fit()
+# Create a scatter plot with a regression line
+sns.set(style="whitegrid")
+plt.figure(figsize=(7, 4.5))
+sns.scatterplot(x='yhat1', y='uhat1', data=tb, size=0.05, color='black', alpha=0.5)
+sns.regplot(x='yhat1', y='uhat1', data=tb, scatter=False, color='black')
+plt.xlabel('yhat1')
+plt.ylabel('uhat1')
+plt.title('Scatter Plot of uhat1 vs. yhat1')
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+set seed 1 
+set obs 10000 
+gen x = rnormal() 
+gen u  = rnormal() 
+gen y  = 5.5*x + 12*u 
+qui reg y x 
+predict yhat1 
+predict uhat1, residual 
+twoway (lfit uhat1 yhat1 , lcolor(black) lwidth(large)) (scatter uhat1 yhat1 , mcolor(black)  msymbol(point))
+qui graph export "files/graph4.svg", replace
+```  
+
+![](files/graph4.svg) 
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Properties of OLS {.smaller background="#bfc4d9"}
+
+Similarly, we can easily show that 
+
+$$\sum_i^nx_i(y_i - \hat{\alpha} - \hat{\beta_1} x_i) = 0$$
+ 
+And that
+ 
+$$\sum_i^nx_i\hat{\mu}  = 0$$
+
+ 
+Meaning that the sample covariance between the X and the residual will be always zero.
+
+
+
+
+
+
+
+
+
+## Properties of OLS {.smaller background="#bfc4d9"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(tidyverse)
+set.seed(1)
+tb <- tibble(
+  x = rnorm(10000),
+  u = rnorm(10000),
+  y = 5.5*x + 12*u # notice that I am defining the beta1 here. The 5.5 is the "true" beta we want to estimate.
+) 
+reg_tb <- lm(y ~ x, data=tb) 
+tb <- tb %>% 
+  mutate(
+    yhat1 = predict(lm(y ~ x, .)),
+    yhat2 = reg_tb$coefficients[1] + reg_tb$coefficients[2]*x, 
+    uhat1 = residuals(lm(y ~ x, .)),
+    uhat2 = y - yhat2
+  )
+tb %>% 
+  lm(uhat1 ~ x , .) %>% 
+  ggplot(aes(x=x, y=uhat1)) + 
+  geom_point(size = 0.1, color = "black") +
+  geom_smooth(method = lm, color = "black")
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+np.random.seed(1)
+obs = 10000
+x = np.random.normal(size=obs)
+u = np.random.normal(size=obs)
+y = 5.5 * x + 12 * u
+
+X = sm.add_constant(x)
+model = sm.OLS(y, X).fit()
+
+tb = pd.DataFrame({'x': x, 'u': u, 'y': y})
+tb['yhat1'] = model.predict(X)
+tb['uhat1'] = y - tb['yhat1']
+tb['yhat2'] = model.params[0] + model.params[1] * x
+tb['uhat2'] = y - tb['yhat2']
+model = sm.OLS(tb['uhat1'], sm.add_constant(tb['yhat1'])).fit()
+# Create a scatter plot with a regression line
+sns.set(style="whitegrid")
+plt.figure(figsize=(7, 4.5))
+sns.scatterplot(x='x', y='uhat1', data=tb, size=0.05, color='black', alpha=0.5)
+sns.regplot(x='x', y='uhat1', data=tb, scatter=False, color='black')
+plt.xlabel('x')
+plt.ylabel('uhat1')
+plt.title('Scatter Plot of uhat1 vs. x')
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+set seed 1 
+set obs 10000 
+gen x = rnormal() 
+gen u  = rnormal() 
+gen y  = 5.5*x + 12*u 
+qui reg y x 
+predict yhat1 
+predict uhat1, residual 
+twoway (lfit uhat1 x , lcolor(black) lwidth(large)) (scatter uhat1 x , mcolor(black) msymbol(point))
+qui graph export "files/graph5.svg", replace
+```  
+
+![](files/graph5.svg) 
+
+:::
+
+
+## Properties of OLS {.smaller background="#bfc4d9"}
+
+Let's say you estimate a model and find the $\hat{\mu}$.
+
+If you calculate the correlation between the X and $\hat{\mu}$, you will find zero.
+
+**This is by construction!** It is not an evidence that CMI is nos violated.
+
+In fact, the OLS "assumes" and "forces" zero correlation.
+
+**It is intuitive: if you are "forcing" zero correlation when the correlation is not in fact zero, your coefficients will be biased.**
+
+The previous graphs actually show zero correlation. But that is expected and does not suggest the model is not violating CMI.
+
+**At the end of the day, CMI is untestable and unverifiable**.
+
+
+
+
+
+
+
+
+
+# Goodness-of-fit {.smaller background="#dff2c7"}
+
+## Goodness-of-fit {.smaller background="#dff2c7"}
+
+**Understanding what SSR, SSE and SST mean** 
+
+- SSE = Sum of Squares Explained = $\sum_i^n(\hat{y_i}-\bar{y})^2$
+- SSR = Sum of Squares Residuals = $\sum_i^n\hat{\mu}^2$
+- SST = Sum of Squares Total = SSE + SSR = $\sum_i^n(y_i-\hat{y_i})^2$ 
+
+
+R-squared is simply the ratio of portion explained over the total that could be explained.
+
+
+$$R^2 = \frac{SSE}{SST} = 1-\frac{SSR}{SST}$$
+
+
+
+## Goodness-of-fit {.smaller background="#dff2c7"}
+
+![](figs/R2.jpg)
+
+
+
+
+
+## Goodness-of-fit {.smaller background="#dff2c7"}
+
+You can think this way:
+
+1) If X does not explain Y, then the best predictor of Y is $\bar{y}$. In that case, your model does not explain anything of Y, thus $R^2$ is zero, and $\hat{y_i}=\bar{y}$
+
+. . .
+
+2) If X partially explains Y, then $\hat{y_i} \neq \bar{y}$, meaning that $\hat{y_i}$ has some inclination (like the figure next slide). This means that $SSE>0$ and your $R^2>0$ but $R^2<1$
+
+. . .
+
+3) Whatever is not explained by $\hat{y_i}$ is left to $\sum_i^2\hat{\mu}^2$, meaning that SSR will be non-zero.
+
+. . .
+
+4) The ratio of the portion that you can explain by  $\hat{y_i}$ over the total that is to be explained  $y_i-\hat{y_i}$ if the $R^2$.
+
+
+
+
+
+
+## Goodness-of-fit {.smaller background="#dff2c7"}
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) # importing dataset from a stata dta file
+data <- read.dta("files/CEOSAL1.dta")
+attach(data)
+# Statistics of salary 
+mean(salary)
+# OLS model
+model <- lm(salary ~ roe)
+salaryhat <- fitted(model)                      # Predict values for dependent variable
+uhat <- resid(model)                            # Predict regression residuals
+salarymean <- rep(mean(salary),length(salary))  # Generating the mean of salary 
+summary(model)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+data = pd.read_stata("files/CEOSAL1.dta")
+print(data['salary'].mean())
+# OLS model
+X = data['roe']
+X = sm.add_constant(X)
+y = data['salary']
+
+model = sm.OLS(y, X).fit()  # Fit the linear regression model
+salaryhat = model.fittedvalues  # Predicted values for the dependent variable
+uhat = model.resid  # Predict regression residuals
+salarymean = pd.Series([y.mean()] * len(y))  # Generating the mean of salary
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+sum salary 
+reg salary roe 
+predict salaryhat , xb				
+predict uhat, resid					
+egen salarymean = mean(salary)		
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+## Goodness-of-fit {.smaller background="#dff2c7"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) # importing dataset from a stata dta file
+mydata <- read.dta("files/CEOSAL1.dta")
+attach(mydata)
+model <- lm(salary ~ roe)
+salaryhat <- fitted(model)                      # Predict values for dependent variable
+uhat <- resid(model)                            # Predict regression residuals
+salarymean <- rep(mean(salary),length(salary))  # Generating the mean of salary 
+# r-squared is simply the ratio of portion explained over total that could be explained - Understanding what SSR, SSE and SST mean 
+plot(salary ~ roe)
+abline(lm(salary ~ roe), col = "blue")
+abline(lm(salarymean ~ roe), col = "red")
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+data = pd.read_stata("files/CEOSAL1.dta")
+X = data[['roe']]
+y = data['salary']
+salarymean = np.repeat(y.mean(), len(y))
+X_mean = X.mean()
+y_mean = y.mean()
+slope = np.sum((X - X_mean) * (y - y_mean)) / np.sum((X - X_mean) ** 2)
+intercept = y_mean - slope * X_mean
+salaryhat = slope * X + intercept
+# Plotting the data and regression lines
+plt.scatter(X, y,  alpha=0.7)
+plt.plot(X, salaryhat,  color='blue', linewidth=2)
+plt.plot(X, salarymean, color='red',  linewidth=2)
+plt.xlabel('roe')
+plt.ylabel('salary')
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+sum salary , d
+reg salary roe 
+predict salaryhat , xb				
+predict uhat, resid					
+egen salarymean = mean(salary)		
+
+twoway (scatter salary roe) (lfit salary roe) (lfit salarymean roe) 
+qui graph export "files/graph4_6.svg", replace
+```  
+
+![](files/graph4_6.svg) 
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Goodness-of-fit {.smaller background="#dff2c7"}
+
+Manually calculating $R^2$
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) # importing dataset from a stata dta file
+mydata <- read.dta("files/CEOSAL1.dta")
+attach(mydata)
+model <- lm(salary ~ roe)
+salaryhat <- fitted(model)                      # Predict values for dependent variable
+uhat <- resid(model)                            # Predict regression residuals
+salarymean <- rep(mean(salary),length(salary))  # Generating the mean of salary 
+
+# r-squared is simply the ratio of portion explained over total that could be explained
+ssr  <- sum(uhat^2)
+ssrB <- sum((salary    - salaryhat)^2)
+sst  <- sum((salary    - salarymean)^2)
+sse  <- sum((salaryhat - salarymean)^2)
+sse / sst
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+data = pd.read_stata("files/CEOSAL1.dta")
+X = data['roe']
+y = data['salary']
+X = sm.add_constant(X)  # Add a constant term (intercept)
+model = sm.OLS(y, X).fit()
+salaryhat = model.fittedvalues
+uhat = model.resid
+salarymean = np.repeat(y.mean(), len(y))
+# Calculate R-squared
+ssr = np.sum(uhat**2)
+ssrB = np.sum((y - salaryhat)**2)
+sst = np.sum((y - salarymean)**2)
+sse = np.sum((salaryhat - salarymean)**2)
+rsquared = sse / sst
+print(rsquared)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+qui reg salary roe 
+predict salaryhat , xb				
+predict uhat, resid					
+egen salarymean = mean(salary)		
+egen sst  = total((salary    - salarymean)^2)  
+egen ssr  = total((salary    - salaryhat)^2)
+egen ssrB = total(uhat^2)					
+egen sse  = total((salaryhat - salarymean)^2)	
+di sse / sst
+```  
+
+:::
+
+
+
+
+
+
+
+# Variance of coefficients {.smaller background="#c4f5d7"}
+
+## Variance of coefficients {.smaller background="#c4f5d7"}
+
+When we estimate coefficients we have some "error of estimation".
+
+- Basically, you are searching the "true" coefficient using a sample, which should be representative of the population but it is not the population itself.
+
+- This means that the coefficient estimated is estimated with error.
+
+- We would like (e.g., we will need) to impose some "structure" to that error.
+
+
+
+
+
+
+## Variance of coefficients {.smaller background="#c4f5d7"}
+
+**Standard error and T-stat**
+
+To assess if the variables are significantly related, you need to assess the significance of $\beta$ coefficients.
+
+Using the example from Wooldridge, we know that the Beta of ROE is `18.591`, while the standard error of ROE is `11.123`.
+
+. . .
+
+- The standard error is a measure of the accuracy of your estimate. If you find a large standard error, your estimate does not have good accuracy. 
+
+- Ideally, you would find small standard errors, meaning that your coefficient is accurately estimated. 
+
+- However, you do not have good control over the magnitude of the standard errors. 
+
+
+
+
+
+
+## Variance of coefficients {.smaller background="#c4f5d7"}
+
+**Standard error and T-stat**
+
+If you have a large standard error, probably you coefficient will not be significantly different from zero. You can test whether your coefficient is significantly different from zero computing the t-statistics as follows:
+
+$$t_{\beta} = \frac{\hat{\beta}}{se(\hat{\beta})}$$
+
+If $t_{\beta}$ is large enough, you can say that $\beta$ is significantly different from zero. Usually, $t_{\beta}$ larger than 2 is enough to be significant. 
+
+
+
+
+
+## Variance of coefficients {.smaller background="#c4f5d7"}
+
+In the previous example, you can find the t-stat manually as follows ($t_{\beta} =\frac{\hat{\beta}}{se(\hat{\beta})}$):
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) # importing dataset from a stata dta file
+data <- read.dta("files/CEOSAL1.dta")
+attach(data)
+# OLS model
+model <- lm(salary ~ roe)
+summary(model)$coefficients[2,1] / summary(model)$coefficients[2,2] 
+summary(model)$coefficients[2,3]
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+data = pd.read_stata("files/CEOSAL1.dta")
+# OLS model
+X = data['roe']
+X = sm.add_constant(X)
+y = data['salary']
+model = sm.OLS(y, X).fit()  
+# Extract and calculate specific coefficients
+coef_beta = model.params['roe']
+coef_std_error = model.bse['roe']
+# Calculate t-value
+t_value = coef_beta / coef_std_error
+# Print the coefficient and t-value
+print("Coefficient (beta):", coef_beta)
+print("Standard Error:", coef_std_error)
+print("t-value:", t_value)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+qui reg salary roe 
+local beta = _b[roe]
+local std_error = _se[roe]
+local t_value = `beta' / `std_error'
+display "Coefficient (beta): " `beta'
+display "Standard Error: " `std_error'
+display "t-value: " `t_value'
+```  
+
+:::
+
+
+
+
+
+
+
+## Variance of coefficients {.smaller background="#c4f5d7"}
+
+Naturally, the previous analysis requires an estimate of $\beta$ and an estimate of the $\beta$'s standard error.
+
+
+The standard error can be defined as:
+
+$$se(\hat{\beta_1})=\frac{\hat{\sigma}}{\sqrt{SST_x}}$$
+
+- Where $\hat{\sigma}$ is the standard deviation of the error term in the regression, which can be calculated as:
+
+$$\hat{\sigma} = \sqrt{\frac{SSR}{n-2}}$$
+
+    - The $n-2$ here is an adjustment for the degrees of freedom in the regression.
+
+- SST is defined as before $\sum_i^n(y_i-\hat{y_i})^2$ 
+
+
+
+
+
+
+
+
+
+
+## Variance of coefficients {.smaller background="#c4f5d7"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign) # importing dataset from a stata dta file
+data <- read.dta("files/CEOSAL1.dta")
+attach(data)
+# OLS model
+model <- lm(salary ~ roe)
+# Extract the standard error of the coefficient for 'roe'
+summary(model)$coefficients["roe", "Std. Error"]
+
+#calculating manually
+# Extract the residuals
+residuals <- resid(model)
+# Number of observations (n)
+n <- length(residuals)
+# Calculate the mean of the independent variable (roe)
+roe_mean <- mean(roe)
+# Calculate the sum of squared deviations of roe from its mean (SXX)
+SST <- sum((roe - roe_mean)^2)
+# Calculate the sum of squared errors (SSE)
+SSR <- sum(residuals^2)
+# Calculate the standard error of beta
+Sd_beta <- sqrt(SSR / ((n - 2)))
+# Calculate S.E
+Se_beta <- Sd_beta / sqrt(SST)
+# Print the standard error of beta
+print(Se_beta)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+data = pd.read_stata("files/CEOSAL1.dta")
+X = data['roe']
+y = data['salary']
+X = sm.add_constant(X)  
+model = sm.OLS(y, X).fit()
+# Extract the standard error of the coefficient for 'roe'
+beta_se_summary = model.bse['roe']
+print("Standard Error (from summary):", beta_se_summary)
+# Calculate it manually
+# Extract the residuals
+residuals = model.resid
+# Number of observations (n)
+n = len(residuals)
+# Calculate the mean of the independent variable (roe)
+roe_mean = X['roe'].mean()
+# Calculate the sum of squared deviations of roe from its mean (SST)
+SST = np.sum((X['roe'] - roe_mean) ** 2)
+# Calculate the sum of squared errors (SSE)
+SSE = np.sum(residuals ** 2)
+# Calculate the standard error of beta (Sd_beta)
+Sd_beta = np.sqrt(SSE / (n - 2))
+# Calculate SE_beta
+SE_beta = Sd_beta / np.sqrt(SST)
+print("Standard Error (manually calculated):", SE_beta)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+qui reg salary roe 
+gen beta_se_summary = _se[roe]
+gen n = _N
+predict residuals, residuals
+sum roe, meanonly
+gen roe_diff = roe - r(mean)
+egen roe_diff_sq = total(roe_diff^2)
+gen residuals_sq = residuals^2
+egen residuals_sq_sum = total(residuals_sq)
+gen Sd_beta = sqrt(residuals_sq_sum / (n - 2))
+gen SE_beta = Sd_beta / sqrt(roe_diff_sq)
+display "Standard Error (from summary): " sum(beta_se_summary)
+display "Standard Error (manually calculated): " sum(SE_beta)
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+## Variance of coefficients {.smaller background="#c4f5d7"}
+
+**Another comment:**
+
+$$se(\hat{\beta_1})=\frac{\hat{\sigma}}{\sqrt{SST_x}}$$
+
+1) The larger $\hat{\sigma}$ is, the larger the variance of $\beta$. That is, the more "noise" in the association between x and Y, the harder it is to learn something about $\beta$.
+
+2) However, more variation in x, the larger the SST, so the smaller is the variance of $\beta$.
+
+
+
+
+
+
+
+
+
+# Robust standard errors {.smaller background="#e0cafc"}
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+Looking at both equations below:
+
+$$t_{\beta} = \frac{\hat{\beta}}{se(\hat{\beta})}$$
+
+
+$$se(\hat{\beta_1})=\frac{\hat{\sigma}}{\sqrt{SST_x}}$$
+
+
+**What happens if $\hat{\sigma}$ is not constant (for the values of x)?**
+
+**In other words, how realistic is to assume that the variance in the errors is the same for all slices of x?**
+
+**Can you think of an example where that may happen?**
+
+
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+**Earnings = f(education)**
+
+PhD have a higher variance of earnings than non-educated people.
+
+. . .
+
+**Leveragge=f(Size)**
+
+It is quite possible that small firms will have less options of leverage than large companies. 
+
+This means that a sub-sample of large companies will have higher variance in the leverage decisions (and thus the error terms) than the sub-sample of small firms
+
+
+
+
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+One of the key assumptions in OLS estimators is homoscedasticity 
+
+That is, the assumption is that the variance of the errors is homoscedastic (constant variance in all slices of X). 
+
+It means that throughout all observations, the error term shows the **same variance**. 
+
+If errors are not homoscedastic, we have the heteroscedasticity problem.
+
+
+. . . 
+
+Heteroskedasticity **does not cause bias or inconsistency in the OLS estimators** of the $\beta$ like the OVB would. 
+
+It also does not affect the $R^2$. 
+
+**What Heteroscedasticity does is to bias the standard errors of the estimates.**
+
+
+
+
+
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+![](files/homoscedasticity.png)
+
+
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+
+
+![](files/heteroscedasticity.png)
+
+
+
+
+
+
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+**Homoskedascticity** = Constant $\hat{\sigma}$ to all slices of X.
+
+**Heteroskedascticity** = Non-constant $\hat{\sigma}$ to all slices of X.
+
+**Without homoskedascticity, OLS no longer has the minimum mean squared errors**, which means that the *estimated standard errors are biased*, which in turn creates bias in the t-stat and the inference you'll make with your model.
+ 
+
+. . . 
+
+Fortunately, we have an easy solution for that.
+
+
+$$Var(\hat{\beta_1}) = \frac{\sum_i^n(x_i-\bar{x})^2\hat{\mu}^2}{SST^2_x}$$
+
+This formula simply "includes" the heteroskedascticity in the calculation of $Var(\hat{\beta_1})$, meaning this correct the estimated standard deviation to heteroskedascticity.
+
+We call this correction as **Robust Standard Errors** (White Robust).
+
+. . .
+
+In other words, you should always use Robust Standard Errors. It is easy to use it with R.
+
+
+
+
+
+
+
+
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+**Using Robust Standard-errors.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(sandwich)
+library(foreign) 
+library(lmtest)
+
+data <- read.dta("files/CEOSAL1.DTA")
+model <- lm(salary ~ roe, data = data)
+robust_model <- coeftest(model, vcov = vcovHC(model, type = "HC3"))
+SE_beta_robust <- robust_model["roe", "Std. Error"]
+cat("Robust Standard Error :", SE_beta_robust, "\n")
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+data = pd.read_stata("files/CEOSAL1.DTA")
+model = smf.ols("salary ~ roe", data=data)
+results = model.fit(cov_type='HC3')  
+SE_beta_robust = results.bse['roe']
+print("Robust Standard Error :", SE_beta_robust)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+
+qui reg salary roe 
+gen beta_se_non = _se[roe]
+
+qui reg salary roe , robust
+gen beta_se_summary = _se[roe]
+
+di "Standard Error (non-robust): " sum(beta_se_non)
+di "Standard Error (robust): " sum(beta_se_summary)
+```  
+
+:::
+
+
+
+
+##  Robust standard errors {.smaller background="#e0cafc"}
+
+
+Notice that the standard errors have changed quite significantly  in this example. 
+
+Usually, the robust standard errors are larger than the traditional ones in empirical works.
+
+**But, in this example, they are smaller.**
+
+. . . 
+
+Perhaps more importantly:
+
+**Once the S.e. change, you should expect that the t-stat of the estimates also change.**
+
+
+. . . 
+
+
+**Final comment**: robust standard errors are robust in the case of homoskedasticity.
+
+::: {.callout-warning}
+Thus, you should always use robust S.E.
+:::
+
+
+
+
+
+
+
+
+
+# Clustered standard errors {.smaller background="#edc5d1"}
+
+## Clustered standard errors {.smaller background="#edc5d1"}
+
+Almost always, someone will ask you whether you clustered your standard errors.
+
+**The intuition is the following:**
+
+- When you do not cluster, you are assuming that all observations are independently and identically distributed (i.i.d.), which may or may not be true.
+
+- Imagine you are studying the effect of class size on students achievement.
+
+- How much of a effect would **have the teacher of a class**? 
+
+. . . 
+
+- In this design, the teacher influences the achievement of all the students in the same class, and one teacher cannot be at two classes at the same time.
+
+- Thus, it would be wise to cluster the errors at the class-level. This assumes that the residual of each individual is clustered with the other individuals in the same class.
+
+
+. . .
+
+In principle, clustering solves any form of dependence of the residuals in your data.
+
+
+
+
+
+
+
+
+## Clustered standard errors {.smaller background="#edc5d1"}
+
+In corporate finance/accounting research panel data research, the tradition is to cluster at the **firm-level**.
+
+- The reason is that the observations of the same firm are not independent trough time, thus are correlated. 
+
+But, there is a lot of debate about this decision. 
+
+. . .
+
+The tip is to cluster where the **randomness exist**. That is quite subjective. In the class size example, the **randomness** comes out of the teacher, since each teacher has their own ways of teaching (materials, resources, etc.).
+
+. . .
+ 
+But, it is a good practice to stress this decision a bit in your own research by **also showing results with clustered s.e. at the industry-level**.
+
+. . .
+
+**Final tip**: usually the minimum number of cluster is about 30. Less than that might be insufficient (but, again, the guidance in this topic is very subjective).  
+
+
+
+ 
+
+
+## Clustered standard errors {.smaller background="#edc5d1"}
+
+The clustered standard errors are different because I am fabricating the clusters here for the sake of the coding.
+
+In your real research, you would have the cluster at hands. 
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(sandwich)
+library(foreign) 
+library(lmtest)
+library(plm)
+
+data <- read.dta("files/CEOSAL1.DTA")
+model <- lm(salary ~ roe, data = data)
+robust_model <- coeftest(model, vcov = vcovHC(model, type = "HC3"))
+#clustered
+data$cluster <- rep(1:35, length.out = nrow(data))
+model <- plm(salary ~ roe, data = data, index = c("cluster"))
+
+clustered_se <- vcovHC(model, type = "HC3", cluster = "group")
+SE_beta_clustered <- sqrt(clustered_se["roe", "roe"])
+
+cat("Standard Error (robust):", SE_beta_robust, "\n")
+cat("Standard Error (clustered)::", SE_beta_clustered, "\n")
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+
+# Read the dataset
+data = pd.read_stata("files/CEOSAL1.DTA")
+
+# Create a new variable 'cluster' with cluster numbers ranging from 1 to 35
+data['cluster'] = list(range(1, 36)) * (len(data) // 35)
+
+# Fit the linear regression model
+model = sm.OLS(data['salary'], sm.add_constant(data['roe'])).fit()
+
+# Compute robust standard errors
+robust_model = model.get_robustcov_results(cov_type='HC3')
+SE_beta_robust = robust_model.cov_params().loc['roe', 'roe'] ** 0.5
+
+# Fit the linear regression model with clustered standard errors
+model_clustered = sm.OLS(data['salary'], sm.add_constant(data['roe'])).fit(cov_type='cluster', cov_kwds={'groups': data['cluster']})
+
+# Extract the clustered standard errors for 'roe'
+clustered_se = model_clustered.HC3_se.loc['roe']
+
+print("Robust Standard Error (HC3):", SE_beta_robust)
+print("Clustered Standard Error (HC3):", clustered_se)
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CEOSAL1.DTA" , replace
+
+qui reg salary roe 
+gen beta_se_non = _se[roe]
+
+qui reg salary roe , robust
+gen beta_se_summary = _se[roe]
+
+egen cluster = seq(), block(6)
+qui regress salary roe , vce(cluster cluster)
+gen SE_beta_clustered = _se[roe]
+
+di "Standard Error (non-robust): " sum(beta_se_non)
+di "Standard Error (robust): " sum(beta_se_summary)
+di "Standard Error (clustered): " sum(SE_beta_clustered)
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+# Panel Data {.smaller background="#dff5ce"}
+
+## Panel Data {.smaller background="#dff5ce"}
+
+As explained previously, OVB is a significant source of "endogeneity" in empirical research.
+
+OVB is a problem because of the considerable heterogeneity in many empirical settings. 
+
+**Many of the omitted variables are unobservable to the researcher.**
+
+Panel data can sometimes offer a partial.
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+We start defining the following:
+
+
+$$y_{i,t} = \alpha + \beta_1 x_{i,t} + \epsilon_{i,t}$$
+
+Where: 
+
+  - $i = 1, . . . , N$
+  - $t = 1, . . . , T$
+
+. . . 
+
+
+Imagine that the residual can be decomposed in: 
+
+$$\epsilon_{i,t} = c_i + \mu_{i,t}$$
+
+The term $c_i$ is constant.
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+The term $c_i$ is constant.
+
+**It captures the aggregate effect of all of the unobservable, time-invariant explanatory variables for $y_{it}$.**
+
+To focus attention on the issues specific to panel data, we assume that $e_{it}$ has a zero mean conditional on $x_{it}$ and $c_i$ for all $t$.
+
+. . .
+
+The most important thing here is whether $x_{it}$ and $c_i$ are correlated.
+
+**Why?**
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+The most important thing here is whether $x_{it}$ and $c_i$ are correlated.
+
+
+- If $x_{it}$ and $c_i$ are correlated, then $c_i$  is referred to as a “fixed effect”.
+  
+  - It there is correlation, there is violation of the *Conditional Mean Independence* (CMI) assumption.
+
+    
+- If $x_{it}$ and $c_i$ are not correlated, then $c_i$  is referred to as a “random effect”.
+
+  - Endogeneity is not a concern; however, the computation of standard errors is affected.
+
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+**Why might fixed effects arise?**
+
+FE are any time-invariant unit characteristic that cannot be observed in the data.
+
+- education level,
+- firm's culture,
+- technology,
+- managerial talent,
+- investment opportunities,
+- location (economic development, institutions, etc.),
+- etc.
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+**We say things like (you have to understand that they refer to FE):** 
+
+- "*Time-invariant heterogeneity at the unit-level*"
+- "*Unobserved variation that occur at the unit-level that do not vary over time*"
+
+**Important**: with FE, you are capturing **all** unobserved heterogeneity that do not vary over time.
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+Definition of *Panel Data*:
+
+You have multiple observations per unit (individual, firm, etc.)
+
+In datasets, it is "one panel below the other" not "one panel beside the other".
+
+. . . 
+
+
+**Four main topics in Panel Data:**
+
+1) Pooled cross-sectional
+
+2) Fixed Effect models (including multidimensional FE)
+
+3) Random Effects model
+
+4) First differences
+
+5) Lagged models
+
+
+
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+Formal definition
+
+$$y_{i,t} = \alpha + \beta_1 x_{i,t} + \delta FE +  \epsilon_{i,t}$$
+
+- $E(\epsilon_{i,t}) = 0$
+
+- $corr(x_{i,t},FE) \neq 0$
+
+- $corr(FE, \epsilon_{i,t}) = 0$
+
+- $corr(x_{i,t},epsilon_{i,t}) = 0$, for all t
+
+The last assumption is called *strict exogeneity assumption* and means that the residual of any t is uncorrelated with x of any t.
+
+*That is, under a strict exogeneity assumption on the explanatory variables, the fixed effects estimator is unbiased: the idiosyncratic error should be uncorrelated with each explanatory variable across all time periods.*
+
+
+. . .
+
+**Remember that if we ignore FE, we have OVB.**
+
+
+
+
+
+## Panel Data {.smaller background="#dff5ce"}
+
+**Before we continue...**
+
+**Comment #1**
+
+*The standard errors in this framework must be “clustered” by panel unit (e.g., individual) to allow for correlation in the residual for the same person over time. This yields valid inference as long as the number of clusters is “large."*
+
+. . . 
+
+**Comment #2**
+
+*FE cannot solve reverse causality, it might help you with OVB.*
+
+. . . 
+
+**Comment #3**
+
+*Three main types of FE:*
+
+- Pooled
+- Within-transformation (when someone says FE, it is usually this one)
+- Random Effects
+
+
+
+
+
+
+# Pooling Cross-sections  {.smaller background="#e0cafc"}
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+When you have two periods of the same unit, but the periods are not consecutive, you have a pooled cross-sectional data.
+
+This is common in survey data.
+
+If you use only one period, you might find biased results.
+
+. . .
+
+Let's practice with the dataset CRIME2 from Wooldridge. 
+
+This dataset contains data (many cities) on the crime rate, unemployment rate and many other city-related variables.
+
+There are two years, 82 and 87 (this is pooled cross-section). 
+
+
+
+
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+If we estimate only using the year 87, we would interpret that unemployment leads to lower crime rate.
+
+::: panel-tabset
+
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven) 
+data <- read_dta("files/CRIME2.dta")
+data1 <- subset(data, year == 87)
+model <- lm(crmrte ~ unem, data = data1)
+summary(model)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+
+data = pd.read_stata("files/CRIME2.dta")
+data1 = data[data['year'] == 87]
+model = sm.OLS(data1['crmrte'], sm.add_constant(data1['unem'])).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CRIME2.dta" , clear
+reg crmrte une if year ==87
+```  
+
+:::
+
+
+
+
+
+
+
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+When we consider a panel, we get the expected positive sign. This is evidence that the previous model suffered from OVB. Still, the coefficient of unem is not significant probably because of time-invariant unobserved heterogeneity in the cities.
+
+::: panel-tabset
+
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven) 
+data <- read_dta("files/CRIME2.dta")
+model <- lm(crmrte ~ d87+ unem, data = data)
+summary(model)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+
+data = pd.read_stata("files/CRIME2.dta")
+model = sm.OLS(data['crmrte'], sm.add_constant(data[['d87','unem']])).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/CRIME2.dta" , clear
+reg crmrte  d87 une 
+```  
+
+:::
+
+
+
+## Pooling Cross-Sections  {.smaller background="#e0cafc"}
+
+This shows us that we should also control for the year variable. 
+
+We call this, **Year Fixed Effects.**
+
+We still most likely have OVB due to the unobserved heterogeneity in cities, that is, we still would need to include **cities FE**. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Demeaned variables  {.smaller background="#fccad9"}
+
+## Demeaned variables  {.smaller background="#fccad9"}
+
+**A first way to eliminate the FE is by demeaning the data.**
+
+Consider the following:
+
+$$\bar{y_i} = \alpha +\beta \bar{x_i} + \delta FE + \bar{\epsilon_i}$$
+
+$$\frac{1}{T}\sum{y_{i,t}} = \alpha +\beta \frac{1}{T}\sum{x_{i,t}} + \delta FE + \frac{1}{T}\sum{\epsilon_{i,t}}$$
+
+. . .
+
+If we subtract the mean of each variable, we have:
+
+$$(y_{i,t} - \bar{y_i}) = \beta (x_{i,t} - \bar{x_i}) + (\epsilon_{i,t} - \bar{\epsilon_i})$$
+
+Because the FE does not vary over time, each value is equal to the mean.
+
+Thus, when you demean, you eliminate the FE from the equation. You also eliminate the intercept $\alpha$.
+
+. . .
+
+**Takeaway**: OLS will estimate unbiased coefficients if you demean the variables.
+
+This is called **within-transformation** because you are demeaning "within" the group.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Demeaned variables  {.smaller background="#fccad9"}
+
+Let's use the dataset WAGEPAN to estimate the following equation.
+
+$$Ln(wage)=\alpha + \beta_1 exper^2 + \beta_2 married + \beta_3 union + \epsilon$$
+
+
+Some variables in the dataset do not vary over time. These variables cannot be included in this equation. 
+
+
+
+
+
+
+
+## Demeaned variables  {.smaller background="#fccad9"}
+
+See page 495 Wooldridge.
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign)
+library(stargazer)
+library(sandwich)
+
+data <- read.dta("files/WAGEPAN.dta")
+# Calculate mean by nr for lwage, expersq, married, and union
+data <- data[order(data$nr), ]  # Sort data by nr for by-group operations
+data$lwage_mean <- ave(data$lwage, data$nr, FUN = mean)
+data$expersq_mean <- ave(data$expersq, data$nr, FUN = mean)
+data$married_mean <- ave(data$married, data$nr, FUN = mean)
+data$union_mean <- ave(data$union, data$nr, FUN = mean)
+
+data$lwage_demean <- data$lwage - data$lwage_mean
+data$expersq_demean <- data$expersq - data$expersq_mean
+data$married_demean <- data$married - data$married_mean
+data$union_demean <- data$union - data$union_mean
+
+model1 <- lm(lwage ~ educ + black + hisp + exper + expersq + married + union + d81 + d82 + d83 + d84 + d85 + d86 + d87, data = data)
+model2 <- lm(lwage_demean ~ expersq_demean + married_demean + union_demean + d81 + d82 + d83 + d84 + d85 + d86 + d87, data = data)
+
+stargazer(model1, model2 ,title = "Regression Results", column.labels=c("OLS","Demean"),  type = "text")
+
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.iolib.summary2 import summary_col
+
+data = pd.read_stata("files/WAGEPAN.dta")
+
+data = data.sort_values(by='nr')  # Sort data by nr for by-group operations
+data['lwage_mean'] = data.groupby('nr')['lwage'].transform('mean')
+data['expersq_mean'] = data.groupby('nr')['expersq'].transform('mean')
+data['married_mean'] = data.groupby('nr')['married'].transform('mean')
+data['union_mean'] = data.groupby('nr')['union'].transform('mean')
+
+data['lwage_demean'] = data['lwage'] - data['lwage_mean']
+data['expersq_demean'] = data['expersq'] - data['expersq_mean']
+data['married_demean'] = data['married'] - data['married_mean']
+data['union_demean'] = data['union'] - data['union_mean']
+
+model1 = sm.OLS(data['lwage'], sm.add_constant(data[['educ', 'black', 'hisp', 'exper', 'expersq', 'married', 'union', 'd81', 'd82', 'd83', 'd84', 'd85', 'd86', 'd87']])).fit()
+model2 = sm.OLS(data['lwage_demean'], sm.add_constant(data[['expersq_demean', 'married_demean', 'union_demean', 'd81', 'd82', 'd83', 'd84', 'd85', 'd86', 'd87']])).fit()
+
+# Display regression results using stargazer
+summary = summary_col([model1, model2], stars=True)
+print(summary)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+bys nr:  egen lwage_mean = mean(lwage) 
+bys nr:  egen expersq_mean = mean(expersq) 
+bys nr:  egen married_mean = mean(married) 
+bys nr:  egen union_mean = mean(union)
+
+gen lwage_demean = lwage - lwage_mean
+gen expersq_demean = expersq - expersq_mean
+gen married_demean = married - married_mean
+gen union_demean = union - union_mean
+
+eststo: qui reg lwage        educ black hisp exper expersq       married        union d81 d82 d83 d84 d85 d86 d87
+eststo: qui reg lwage_demean expersq_demean married_demean union_demean d81 d82 d83 d84 d85 d86 d87
+esttab , mtitles("OLS" "Demean") compress
+
+```  
+
+:::
+
+
+
+
+
+
+# Practical Tips  {.smaller background="#fce0cc"}
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+You will not need to demean the variables every time you want to estimate a fixed effect models.
+
+The statistical softwares have packages that do that.
+
+You only need to know that **Fixed effects model** is a **demeaned model**, i.e., a **within-transformation model**. 
+
+But notice that you will have many different Fixed Effects together:
+
+- Firm Fixed Effects
+- Year Fixed Effects
+- Individual Fixed Effects (if individuals change between firms)
+
+. . . 
+
+I am calling a **multidimensional fixed effects design** if you expand the FE to interactions of FE. Most common:
+
+- Year-Industry Fixed Effects.
+- CEO-Firm Fixed Effects.
+
+
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+Notice the number of dummies in the last two columns.
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(foreign)
+library(stargazer)
+library(sandwich)
+library(plm)
+
+data <- read.dta("files/WAGEPAN.dta")
+# Calculate mean by nr for lwage, expersq, married, and union
+data <- data[order(data$nr), ]  # Sort data by nr for by-group operations
+data$lwage_mean <- ave(data$lwage, data$nr, FUN = mean)
+data$expersq_mean <- ave(data$expersq, data$nr, FUN = mean)
+data$married_mean <- ave(data$married, data$nr, FUN = mean)
+data$union_mean <- ave(data$union, data$nr, FUN = mean)
+
+data$lwage_demean <- data$lwage - data$lwage_mean
+data$expersq_demean <- data$expersq - data$expersq_mean
+data$married_demean <- data$married - data$married_mean
+data$union_demean <- data$union - data$union_mean
+
+# set panel data
+pdata <- pdata.frame(data, index = c("nr", "year"))
+
+# Random effects regression using plm
+model_de <- lm(lwage_demean ~  expersq_demean + married_demean + union_demean +  d81 +d82+ d83+ d84+ d85 +d86 +d87 , data = data)
+model_fe <- plm(lwage ~  expersq + married + union + factor(year)              + educ + black + hisp + exper, data = pdata, model = "within")
+model_du <- lm( lwage ~  expersq + married + union + factor(year) + factor(nr) + educ + black + hisp + exper, data = data)
+
+# Display regression results using stargazer
+#summary(model_de)
+#summary(model_fe)
+#summary(model_du)
+stargazer(model_de, model_fe, model_du ,title = "Regression Results",  type = "text")
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+bys nr:  egen lwage_mean = mean(lwage) 
+bys nr:  egen expersq_mean = mean(expersq) 
+bys nr:  egen married_mean = mean(married) 
+bys nr:  egen union_mean = mean(union)
+
+gen lwage_demean = lwage - lwage_mean
+gen expersq_demean = expersq - expersq_mean
+gen married_demean = married - married_mean
+gen union_demean = union - union_mean
+
+xtset nr year 
+eststo: qui reg lwage_demean expersq_demean married_demean union_demean i.year
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , fe
+eststo: qui reg lwage expersq married union i.year i.nr  educ black hisp exper 
+esttab , mtitles("Demean" "FE" "LSDV") compress
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+Notice that the parameter $\delta$ does not have meaning. 
+
+$$y_{i,t} = \alpha + \beta_1 x_{i,t} + \delta FE +  \epsilon_{i,t}$$
+
+In fact, the previous slides have shown that you will find the same results of a FE model if you include the dummies for the units in the panel (i.e., dummies for the firms or individuals, etc.).
+
+This is called **least squares dummy variable (LSDV) model**.
+
+- the SE are also identical to the within-transformation model.
+
+- But the R2 of the LSDV will be very high because you are including a lot of "explanatory variables".
+
+::: {.callout-note}
+At the end of the day, you will use the package for the unit's FE (i.e., the firm), and will include the additional FE as dummies, just like a LSDV model.
+:::
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+When you estimate a LSDV, the software will inform an $\alpha$. 
+
+But this coefficient **has no interpretation whatsoever.** 
+
+- it will be FE for the dropped unit of FE. 
+
+You can simply ignore it, you even don't need to include in your final table. 
+
+No problem if you do, just **don't make inferences from it**.
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+A FE model helps a lot, but it only does what it can do.
+
+That is, FE models do not capture **time-variant unobserved heterogeneity**.
+
+. . .
+
+Also, if you have constant Xs in your model, you will have to drop them.
+
+- More technically, if there is no within-variation in a X, you cannot include it (the software will drop them).
+
+- For instance, the software will drop $year_{birth}$ below if you include CEO FE.
+
+$$Y_{i,t} = \alpha + \beta_1 year_{birth} + CEO \;FE + ... + \epsilon_{i,t}$$
+
+If you attempt to include the CEO FE manually, the software will drop a random CEO FE or the variable $year_{birth}$. If you get a beta for $year_{birth}$ it has no meaning.
+
+
+
+
+
+
+## Practical Tips  {.smaller background="#fce0cc"}
+
+Adding many FE can demand a lot of computational power.
+
+Consider the multidimensional model as follows:
+
+$$Y_{i,t} = \alpha + \beta_1 X_{i,t} + Firm \;FE + Year\; FE + Year.Industry \;FE + CEO \;FE + ... + \epsilon_{i,t}$$
+
+It would take a while to estimate in an average computer.
+
+
+
+
+
+
+
+
+# Random Effects  {.smaller background="#c6f7ec"}
+
+## Random Effects  {.smaller background="#c6f7ec"}
+
+Remember that:
+
+$$\epsilon_{i,t} = c_i + \mu_{i,t}$$
+
+The most important thing here is whether $x_{it}$ and $c_i$ are correlated.
+    
+- If they are, you should estimate Fixed Effects
+
+- If $x_{it}$ and $c_i$ are not correlated, then $c_i$  is referred to as a **random effect**.
+
+  - Endogeneity is not a concern; however, the computation of standard errors is affected.
+
+But, if the $x_{it}$ and $c_i$ are not correlated, there is **no endogeneity concern**. 
+
+$c_i$ can be let as part of the $\epsilon_{i,t}$ without bias in the estimated betas.
+
+
+
+
+
+
+
+## Random Effects  {.smaller background="#c6f7ec"}
+
+Additionally, the assumption that $x_{it}$ and $c_i$ are not correlated is rather strong and not practical to most applications of corporate finance, economics or public policy.
+
+RE is a model not used often. Cunningham does not even discuss it.
+
+*If the key explanatory variable is constant over time, we cannot use FE to estimate its effect on y.*
+
+*Of course, we can only use RE because we are willing to assume the unobserved effect is uncorrelated with all explanatory variables.*
+
+*Typically, if one uses RE, and as many time-constant controls as possible are included among the explanatory variables (with an FE analysis, it is not necessary to include such controls) RE is preferred to pooled OLS because RE is generally more efficient.*
+
+(Wooldridge, p.496)
+
+
+
+
+
+
+
+
+## Random Effects  {.smaller background="#c6f7ec"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(plm)
+library(jtools)
+library(foreign)
+data <- read.dta("files/WAGEPAN.dta")
+pdata <- pdata.frame(data, index = c("nr", "year"))
+
+po_model <- lm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = data)
+fe_model <- plm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = pdata, model = "within")
+re_model <- plm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = pdata, model = "random")
+
+stargazer(po_model, fe_model , re_model ,title = "Regression Results", column.labels=c("OLS","FE","RE"),  type = "text")
+
+```
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+xtset nr year 
+eststo: qui reg   lwage expersq married union i.year  educ black hisp exper 
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , fe
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , re
+
+esttab , mtitles("OLS" "FE" "RE") compress
+
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+# FE vs. RE    {.smaller background="#5c97f7" }
+
+
+## FE vs. RE    {.smaller background="#5c97f7" }
+
+*The idea is that one uses the random effects estimates unless the Hausman test rejects.* 
+
+*In practice, a failure to reject means either that the RE and FE estimates are sufficiently close so that it does not matter which is used, or the sampling variation is so large in the FE estimates that one cannot conclude practically significant differences are statistically significant.* (Wooldridge)
+
+
+**If the p-value of the Hausman test is significant then use FE, if not use RE.**
+
+
+
+
+
+## FE vs. RE   {.smaller background="#5c97f7" }
+
+
+::: panel-tabset
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta", clear
+xtset nr year
+qui xtreg lwage expersq married union i.year educ black hisp exper, fe
+estimates store fe_model
+qui xtreg lwage expersq married union i.year educ black hisp exper, re
+estimates store re_model
+hausman fe_model re_model
+```  
+
+:::
+
+
+
+
+
+
+
+# First differences   {.smaller background="#e3e2b8"}
+
+## First differences   {.smaller background="#e3e2b8"}
+
+In most applications, the main reason for collecting panel data is **to allow for the unobserved effect, $c_i$, to be correlated with the explanatory variables**. 
+
+For example, in the crime equation, we want to allow the unmeasured city factors in $c_i$ that affect the crime rate also to be correlated with the unemployment rate. 
+
+It turns out that this is simple to allow: **because $c_i$ is constant over time, we can difference the data across the two years.** 
+
+More precisely, for a cross-sectional observation $i$, write the two years as:
+
+
+$$y_{i,1} = \beta_0 + \beta_1 x_{i,1} + c_i + \mu_{i,1}, t=1$$ 
+
+$$y_{i,2} = (\beta_0 + \delta_0) + \beta_1 x_{i,2} + c_i + \mu_{i,2}, t=2$$ 
+
+If we subtract the second equation from the first, we obtain
+
+$$(y_{i,2} - y_{i,1}) = \delta_0 + \beta_1 (x_{i,2} - x_{i,1}) + (\mu_{i,2}-\mu_{i,1})$$ 
+
+
+$$\Delta y_{i} = \delta_0 + \beta_1 \Delta x_{i} + \Delta \mu_{i}$$ 
+
+
+
+
+
+
+
+
+
+## First differences   {.smaller background="#e3e2b8"}
+
+**So, rather than subtracting the group mean of each variable, you  subtract the lagged observation.**
+
+Not hard to see that, when t=2, FE and FD will give identical solutions
+
+. . .
+
+- FE is more efficient if disturbances $\mu_{i,t}$ have low serial correlation
+
+- FD is more efficient if disturbance $\mu_{i,t}$ follow a random walk
+
+At the end of the day, you can estimate both. 
+
+Empirical research usually estimate FD only in specific circumstances, when they are interested in how changes of X affect changes of Y.
+
+Things like stationarity or trends are often not concerns in panel data
+
+- where N is 10 to 20 
+
+
+
+
+
+
+## First differences   {.smaller background="#e3e2b8"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+# Load necessary libraries
+library(plm)
+library(lmtest)
+library(stargazer)
+
+data <- read.dta("files/WAGEPAN.dta")
+pdata <- pdata.frame(data, index = c("nr", "year"))
+
+ols_model <- lm(lwage ~ expersq + married + union + factor(year) + educ + black + hisp + exper, data = pdata)
+fe_model <- plm(lwage ~ expersq + married + union + educ + black + hisp + exper, data = pdata, model = "within")
+re_model <- plm(lwage ~ expersq + married + union + educ + black + hisp + exper, data = pdata, model = "random")
+fd_model <- plm(lwage ~ expersq + married + union + educ + black + hisp + exper, data = pdata, model = "fd")
+
+stargazer(ols_model, fe_model ,re_model, fd_model,title = "Regression Results",   type = "text")
+
+```
+
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/WAGEPAN.dta" , clear
+
+xtset nr year 
+eststo: qui reg   lwage expersq married union i.year  educ black hisp exper 
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , fe
+eststo: qui xtreg lwage expersq married union i.year  educ black hisp exper , re
+eststo: qui reg D.lwage D.expersq D.married D.union i.year  D.educ D.black D.hisp D.exper 
+
+esttab , mtitles("OLS" "FE" "RE" "FD") compress
+
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+# Lagged independent variables   {.smaller background="#e3bfc3"}
+
+## Lagged independent variables   {.smaller background="#e3bfc3"}
+
+When you have a panel data and are concerned with simultaneity between Y and X, you can endeavor in lagging the Xs.
+
+
+$$y_{i,t} = \beta_0 + \beta_1 x_{i,t-1} + c_i + \mu_{i,t}$$ 
+
+As a matter of fact, this is often expected in finance research. 
+
+. . . 
+
+There is a limitation, however.
+
+The usual proxy of corporate finance research is highly autocorrelated. 
+ 
+ - e.g., total assets do not vary much throughout  time. 
+ 
+Thus, lagging the X often does not make much of a difference. 
+ 
+::: {.callout-tip}
+Always do it. Otherwise, you will have to explain why you didn't do it.
+:::
+
+
+
+
+
+
+
+# Lagged dependent variables   {.smaller background="#d6cbf5"}
+
+## Lagged dependent variables   {.smaller background="#d6cbf5"}
+
+Sometimes you may have something like
+
+$$y_{i,t} = \beta_0 + \beta_1 y_{i,t-1}+ \beta_2 x_{i,t} + c_i + \mu_{i,t}$$ 
+
+This is called a **Dynamic Panel Model**. It includes $y_{i,t-1}$ as X.
+
+. . .
+
+Consider a FE model.
+
+$$y_{i,t} - \bar{y_i} = \beta_0 + \gamma_1 (y_{i,t-1} - \bar{y}_{i,t-1}) + \omega_2 (x_{i,t-1} - \bar{x_i} )   + (FE_i - \bar{FE}_i)  + (\mu_{i,t} - \bar{\mu}_i )$$ 
+
+The within transformation removes the time-invariant unobserved heterogeneity from the model. 
+
+However, it introduces a correlation between the transformed lag $(y_{i,t−1}−\bar{y}_{i,t-1})$ and the transformed error $(\mu_{i,t−1}−\bar{\mu}_{i,t-1})$ because the average error ($\bar{\mu} = \sum_{i=1}^{T} \mu_{i,t}$) includes $\mu_{i,t-1}$, which is also "included" in $y_{i,t−1}$ 
+
+- $y_{i,t-1} = \beta_0 + \beta_1 y_{i,t-2}+ \beta_2 x_{i,t-1} + c_i + \mu_{i,t-1}$ 
+
+
+
+
+
+
+
+
+## Lagged dependent variables   {.smaller background="#d6cbf5"}
+
+The bias declines with panel length because $\epsilon_{i,t−1}$ becomes a smaller component of the average error term as T increases. 
+
+In other words, with higher T the correlation between the lagged dependent variable and the regression errors becomes smaller.
+
+**[Flannery and Hankins (2013)](https://doi.org/10.1016/j.jcorpfin.2012.09.004)** have a good review with applications in corporate finance.
+
+They conclude that FE is biased when estimating these models.
+
+They suggest to estimate **Sys-GMM** or **Least Squares Dummy Variable Correction**. We do not discuss these models in the course.
+
+
+
+
+
+
+
+
+
+
+# Selection Bias {.smaller background="#e3e2b8"}
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Back to the selection bias example of before.
+
+-   Imagine that John and Mary are moving to the north of Canada.
+
+-   John has a history of respiratory disease and decide to buy insurance.
+
+-   Mary does not have a history of respiratory disease and decide not to buy insurance.
+
+
+
+| Default                     | John | Mary |
+|-----------------------------|:-----|-----:|
+| State of insurance          | 1    |    0 |
+| Situation without insurance | `3`  |    5 |
+| Situation with insurance    | 4    |  `5` |
+| Observed                    | 4    |    5 |
+| Effect                      | ?    |    ? |
+
+$$(Y_{1,john} - Y_{0,john}) + (Y_{1,Mary}- Y_{0,Mary}) = 4 - 3 + 5 - 5 = 0.5$$
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Rearranging the terms:
+
+
+$$(Y_{1,john} - Y_{0,Mary})   + (Y_{1,Mary}  - Y_{0,john})  = (4 - 5) + (5 - 3)  = 0.5$$
+$$We\;see   + We\;do\;not\;see  = (4 - 5) + (5 - 3)  = 0.5$$
+
+The term $(Y_{1,Mary}  - Y_{0,john}) =  (5 - 3) = 2$ is the **selection bias**.
+
+It exists because we are comparing two people that should not be compared.
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Some notation:
+
+$d=1$ for the treated units (treatment group)
+
+$d=0$ for the treated units (control group)
+
+
+. . . 
+
+
+$Y_{i}$ = Potential outcome of individual *i*.
+
+$Y_{i,1}$ or  $Y(1)$ = Potential outcome of individual *i*, treatement group.
+
+$Y_{i,0}$ or  $Y(0)$ = Potential outcome of individual *i*, control group.
+
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Some notation:
+
+These are the representations of the **causal effect** we often want to estimate.
+
+**Average Treatment Effect:**
+
+ATE = $\frac{1}{N} (E[Y_{i,1}] - E[Y_{i,0}])$
+
+. . . 
+
+**Average Treatment Effect on the treated:**
+
+ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
+
+. . . 
+
+**Average Treatment Effect on the untreated:**
+
+ATEU = $\frac{1}{N} (E[Y_{i,1}|D_i=0] - E[Y_{i,0}|D_i=0])$
+
+. . . 
+
+Of course, again, we cannot observe both potential outcomes of the same unit *i*.
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+When dealing with **causal inference**, we have to find ways to approximate what the hidden potential outcome of the treated units is. 
+
+That is, the challenge in identifying causal effects is that the untreated potential outcomes, $Y_{i,0}$, are never
+observed for the treated group ($D_i= 1$). The "second" term in the following equation:
+
+ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
+
+
+We need an empirical design to **"observe"** what we do not really observe (i.e., the counterfactual). 
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+Many options:
+
+- Matching/Balancing
+- Difference-in-differences (DiD)
+- Instrumental variables
+- Regression discontinuity design (RDD)
+- Synthetic control (Synth)
+
+
+
+
+
+
+
+
+## Selection Bias {.smaller background="#e3e2b8"}
+
+The process of finding units that are comparable is called **matching**.
+
+. . .
+
+**Before we continue...**
+
+**We will match on observables. We cannot be on unobservables.**
+
+Thus, you may want to write in your article "selection bias due to observables".
+
+. . .
+
+**Cunningham:**
+
+*Propensity score matching has not seen as wide adoption among economists as in other nonexperimental methods like regression discontinuity or difference-in-differences. The most common reason given for this is that economists are oftentimes skeptical that CIA can be achieved in any dataset almost as an article of faith. This is because for many applications, economists as a group are usually more concerned about selection on unobservables than they are selection on observables, and as such, they reach for matching methods less often.*
+
+CIA = CMI
+
+
+
+
+
+
+
+
+# Matching  {.smaller background="#e0cafc"}
+
+## Matching   {.smaller background="#e0cafc"}
+
+**Matching** aims to compare the outcomes between observations that have the same values of all control variables, except that one unit is treated and the other is not. 
+
+. . .
+
+In this literature, the control variables used to matched are often called **covariates**.
+
+That is, for each treated unit, the researcher finds an untreated unit that is similar in all covariates.
+
+The implication is that the researcher can argue that "*units are comparable after matching*". 
+
+
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+The easiest to see is **exact matching**: *it matches observations that have the exact same values*. 
+
+- It might be doable if you have only one covariate. 
+
+- Naturally, if you have only one covariate, you might still be left with some selection bias.
+
+  - In the previous example, health history is one important covariate that makes John and Mary different. 
+  
+  - But what about life style? Nutrition? Etc. 
+  
+
+As the number of covariates grow, you cannot pursue exact matching. That is the job of PSM.
+
+
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+**In exact matching, the causal effect estimator (ATET) is:**
+
+$$ATET = \frac{1}{N} \sum (E[Y_{i}] - E[Y_{j(i)}] | D_i=1)$$
+
+Where $Y_{j(i)}$ is the j-th unit matched to the i-th unit based on the j-th being “closest to” the i-th unit for some  covariate. 
+
+For instance, let’s say that a unit in the treatment group has a covariate with a value of 2 and we find another unit in the control group (exactly one unit) with a covariate value of 2. 
+
+Then we will impute the treatment unit’s missing counterfactual with the matched unit’s, and take a difference.
+
+
+
+
+
+
+
+## Matching {.smaller background="#e0cafc"}
+
+Consider the following dataset from Cunningham:
+
+![](figs/scott.png)
+
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+::: panel-tabset
+### R Averages
+
+Average ages are very different. The salary of a 24 yrs old person is quite different than the salary of a 32 yrs person.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+summary(training_example$age_treat)
+summary(training_example$age_control)
+```
+
+
+### R Treated
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_treat)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+### R Control
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_control)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+
+### R Matched
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+library(tidyverse)
+library(haven)
+library(knitr)
+library(kableExtra)
+
+read_data <- function(df)
+{
+  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
+  df <- read_dta(full_path)
+  return(df)
+}
+
+training_example <- read_data("training_example.dta") %>% slice(1:20)
+
+ggplot(training_example, aes(x=age_matched)) +
+  stat_bin(bins = 10, na.rm = TRUE)
+
+```
+
+
+:::
+
+
+
+
+## Matching   {.smaller background="#e0cafc"}
+
+In this example, you are literally finding the units in the control group that have the same age as the units in the treatment group.
+
+You are exact matching 1-by-1 in this example.
+
+You have only one covariate, i.e., age.
+
+
+
+
+
+
+
+
+
+
+
+# Distance Matching  {.smaller background="#c6f7ec"}
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+The last example was simple because you could *exact match*.
+
+If you cannot find one exact match, you need an approximate match. 
+
+. . .
+
+In order to do that, you have to use distance matching.
+
+**Distance matching** minimizes the distance (i.e., how far the covariates are from each other) between the treatment and control groups.
+
+
+
+
+
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'(X_i-X_j)}=\sqrt{\sum_{n=1}^k(X_{n,i}-X_{n,j})^2}$
+
+![](figs/euclidian.png)
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Normalized Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{V}^{-1}(X_i-X_j)}=\sqrt{\sum_{n=1}^k\frac{(X_{n,i}-X_{n,j})}{\sigma^2_n}}$
+
+The problem with this measure of distance is that the distance measure itself depends on the **scale of the variables themselves**. 
+
+For this reason, researchers typically will use some modification of the Euclidean distance, such as the **normalized Euclidean distance**, or they’ll use a wholly different alternative distance. 
+
+The normalized Euclidean distance is a commonly used distance, and what makes it different is that the distance of each variable is scaled by the variable’s variance. 
+
+
+ 
+ 
+ 
+ 
+ 
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+**Mahalanobis  distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{\sum_x}^{-1}(X_i-X_j)}$
+
+Where $\hat{\sum_x}$ is the sample covariance matrix of X.
+
+. . . 
+
+![](figs/malahanobis_king_nielsen.png)
+
+
+
+
+
+## Distance Matching  {.smaller background="#c6f7ec"}
+
+Distance matching only goes so far...
+
+... **the larger the dimensionality, the harder is to use distance matching**.
+
+As sample size increases, for a given N of covariates, the matching discrepancies tend to zero.
+
+But, the more covariates, the longer it takes.
+
+. . . 
+
+At the end of the day, it is preferable to have many covariates, but it is makes distance matching harder.
+
+
+
+
+
+
+
+
+# Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
+
+## Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
+
+In coarsened exact matching, something only counts as a match if it exactly matches on each matching variable. 
+
+**The “coarsened” part comes in because, if you have any continuous variables to match on, you need to “coarsen” them first by putting them into bins, rather than matching on exact values.**
+
+Coarsening means creating bins. Fewer bins makes exact matches more likely. 
+
+. . .
+
+CER is not used much in empirical research in finance. It is used more in the big data realm when you have many variables to match. 
+
+
+
+
+
+
+
+# Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+**PSM is one way to matching using many covariates.** 
+
+**PSM aggregates all covariates into one score (propensity-score), which is the likelihood of receiving the treatment.**
+
+The idea is to match units that, based on observables, have the same probability (called propensity-score) of being treated. 
+
+. . .
+
+The idea is to estimate a probit (default in stata) or logit model (fist stage):
+
+$$P(D=1|X)$$
+
+**The propensity-score is the predicted probability of a unit being treated given all covariates X**. The p-score is just a single number.
+
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Considerations in PSM.
+
+1) How many neighbors to match?
+
+- Nearest neighbor, radius or kernel?
+
+2) With or without replacement?
+
+3) With or without common support?
+
+- *Common support*: imposes a common support by dropping treatment observations whose pscore is higher than the maximum or less than the minimum pscore of the controls.
+
+4) It is expected that, after PSM, you show the overlap of propensity-scores.
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**The y-axis is the propensity-score**.
+
+![](figs/ani_katchova1.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Nearest matching:** Find the observation closest to ($min|p_i-p_j|$)
+
+![](figs/ani_katchova3.png)
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Kernel matching:** Each treated observation i is matched with several control observations, with weights inversely proportional to the distance between treated and control observations.
+
+![](figs/ani_katchova2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Radius matching**: Each treated observation i is matched with control observations j that fall within a specified radius.
+
+$$|p_i-p_j| <r$$
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+[Source](https://sites.google.com/site/econometricsacademy/home)
+
+**Common support:** Restrict matching only based on the common range of propensity scores.
+
+![](figs/ani_katchova5.png)
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems good overlap, but "good" is arbitrary.
+
+![](figs/psm1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems bad overlap
+
+![](figs/psm2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems good overlap, but "good" is arbitrary.
+
+![](figs/psm_graph1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+Seems bad overlap
+
+![](figs/psm_graph2.png)
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_bias.png)
+
+
+
+
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_ttest1.png)
+
+
+## Propensity-score matching (PSM)  {.smaller background="#e3bfc3"}
+
+![](figs/psm_ttest2.png)
+
+
+
+
+
+
+
+
+
+
+# Example  {.smaller background="#dff5ce"}
+
+## Example  {.smaller background="#dff5ce"}
+
+Let's practice with an example. 185 treated units vs 15,992 control units. 
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load necessary packages
+# Load necessary libraries
+library(haven)
+library(psych)
+data <- read_dta("files/cps1re74.dta")
+summary_stats <- by(data, data$treat, FUN = function(group) {
+  c(
+    mean = mean(group$age, na.rm = TRUE),
+    variance = var(group$age, na.rm = TRUE),
+    skewness = skew(group$age, na.rm = TRUE),
+    count = length(group$age)
+  )
+})
+summary_df <- as.data.frame(do.call(rbind, summary_stats))
+colnames(summary_df) <- c("mean", "variance", "skewness", "count")
+print(summary_df)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+from scipy.stats import skew
+import statsmodels.api as sm
+data = pd.read_stata("files/cps1re74.dta")
+grouped_data = data.groupby('treat')['age'].agg(['mean', 'var', lambda x: skew(x, nan_policy='omit'), 'count']).reset_index()
+grouped_data.columns = ['treat', 'mean', 'variance', 'skewness', 'count']
+print(grouped_data)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui estpost tabstat age black educ , by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs nonumber compress 
+```  
+
+:::
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+Clearly, the treated group is younger, mainly black, and less educated.
+
+Also note that the **variance and skewness** of the two subsamples are **different**.
+
+If we were to use these two subsamples in any econometric analysis **without preprocessing to make them comparable**, we would likely have coefficients biased by **selection bias**.
+
+Therefore, it is important to perform some matching method.
+
+Let's start with Propensity Score Matching (PSM). We will use the simplest matching, that is, without using any additional functions.
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Nearest with noreplacement.**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# install.packages("MatchIt")
+library(haven)
+library(psych)
+library(MatchIt)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "nearest")
+summary(model)
+```
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+psmatch2 treat age black educ , n(1) noreplacement
+sum _weight , d
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Notice that we are creating weights now**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# install.packages("MatchIt")
+library(haven)
+library(MatchIt)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
+summary(model$weights)
+
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui psmatch2 treat age black educ , kernel
+sum _weight , d
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#dff5ce"}
+
+**Now, the descriptive statistics are much closer**
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven)
+library(MatchIt)
+#install.packages("e1071")
+library(e1071)
+data <- read_dta("files/cps1re74.dta")
+model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
+matched_data <- match.data(model)
+summary_stats <- by(matched_data, matched_data$treat, function(x) {
+  c(mean(x$age), var(x$age), skewness(x$age), length(x$age))
+})
+
+result_df <- data.frame(
+  Treatment = c("Control", "Treated"),
+  Mean_Age = sapply(summary_stats, function(x) x[1]),
+  Variance_Age = sapply(summary_stats, function(x) x[2]),
+  Skewness_Age = sapply(summary_stats, function(x) x[3]),
+  Count = sapply(summary_stats, function(x) x[4])
+)
+print(result_df)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui psmatch2 treat age black educ , kernel
+qui estpost tabstat age black educ [aweight = _weight], by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Entropy Balancing  {.smaller background="#fccad9"}
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+**Here, instead of matching units, we reweight the observations such that the moments of the distributions (mean, variance, skewness) are similar.**
+
+- The ebalance function implements a reweighting scheme. The user starts by choosing the covariates that should be included in the reweighting. 
+
+- For each covariate, the user then specifies a set of balance constraints (in Equation 5) to equate the moments of the covariate distribution between the treatment and the reweighted control group. 
+
+- The moment constraints may include the mean (first moment), the variance (second moment), and the skewness (third moment).
+
+**The outcome is a vector containing the weights to weight the observations, such that the weighted average, weighted variance, and weighted skewness of the covariates in control group are similar to those in the treatment group**
+
+
+
+
+
+
+
+
+
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(haven)
+#install.packages("ebal")
+library(ebal)
+data <- read_dta("files/cps1re74.dta")
+treatment <-cbind(data$treat)
+vars <-cbind(data$age, data$educ, data$black)
+eb <- ebalance(treatment, vars)
+# means in treatment group data
+apply(vars[treatment==1,],2,mean)
+# means in reweighted control group data
+apply(vars[treatment==0,],2,weighted.mean,w=eb$w)
+# means in raw data control group data
+apply(vars[treatment==0,],2,mean)
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+ebalance treat age black educ, targets(3)
+```  
+
+:::
+
+
+
+
+
+
+## Entropy Balancing  {.smaller background="#fccad9"}
+
+
+::: panel-tabset
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/cps1re74.dta, clear
+qui ebalance treat age black educ, targets(3)
+qui estpost tabstat age black educ [aweight = _webal], by(treat) c(s) s(me v sk n) nototal
+esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
+```  
+
+:::
+
+
+
+
+
+## THANK YOU!
+
+::: columns
+::: {.column width="30%"}
+![](figs/fgv.png){fig-align="right"}
+:::
+
+::: {.column width="70%"}
+**Henrique Castro Martins**
+
+-   [henrique.martins\@fgv.br](henrique.martins@fgv.br)
+-   <https://eaesp.fgv.br/en/people/henrique-castro-martins>
+-   [henriquemartins.net](https://henriquemartins.net/)
+-   <https://www.linkedin.com/in/henriquecastror/>
+:::
+:::
