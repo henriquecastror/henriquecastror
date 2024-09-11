@@ -1,5 +1,5 @@
 ---
-title: 'Inferência Causal'
+title: 'Empirical Methods in Finance'
 subtitle: 'Part 2'
 author: 'Henrique C. Martins'
 format:
@@ -8,15 +8,40 @@ format:
     theme: simple
     chalkboard: true
     preview-links: auto
-    logo: figs/background2.png
-    css: styles.css
-    footer: <https://eaesp.fgv.br/>
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
     multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
 ---
+
+
 
 ```{r setup}
 #| include: false
 #| warning: false
+
 
 # library(reticulate)
 # use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
@@ -27,8 +52,6 @@ library(Statamarkdown)
 #reticulate::py_install("pyfinance")
 #reticulate::py_install("xlrd")
 #reticulate::py_install("quandl")
-#reticulate::py_install("linearmodels")
-#reticulate::py_install("causalml")
 
 ```
 
@@ -36,632 +59,287 @@ library(Statamarkdown)
 
 
 
-# Selection Bias {.smaller background="#f7e8dc"}
 
-## Selection Bias {.smaller background="#f7e8dc"}
 
-Back to the selection bias example of before.
 
--   Imagine that John and Mary are moving to the north of Canada.
 
--   John has a history of respiratory disease and decide to buy insurance.
 
--   Mary does not have a history of respiratory disease and decide not to buy insurance.
 
 
 
-| Default                     | John | Mary |
-|-----------------------------|:-----|-----:|
-| State of insurance          | 1    |    0 |
-| Situation without insurance | `3`  |    5 |
-| Situation with insurance    | 4    |  `5` |
-| Observed                    | 4    |    5 |
-| Effect                      | ?    |    ? |
 
-$$(Y_{1,john} - Y_{0,john}) + (Y_{1,Mary}- Y_{0,Mary}) = 4 - 3 + 5 - 5 = 0.5$$
 
 
 
-## Selection Bias {.smaller background="#f7e8dc"}
 
-Rearranging the terms:
+# The challenge {.smaller background="#b0aeae"}
 
+## Correlation & Causality {.smaller background="#b0aeae"}
 
-$$(Y_{1,john} - Y_{0,Mary})   + (Y_{1,Mary}  - Y_{0,john})  = (4 - 5) + (5 - 3)  = 0.5$$
-$$We\;see   + We\;do\;not\;see  = (4 - 5) + (5 - 3)  = 0.5$$
 
-The term $(Y_{1,Mary}  - Y_{0,john}) =  (5 - 3) = 2$ is the **selection bias**.
+It is very common these days to hear someone say “*correlation does not mean causality*.” 
 
-It exists because we are comparing two people that should not be compared.
+In essence, that is true.
 
-
-
-
-## Selection Bias {.smaller background="#f7e8dc"}
-
-Some notation:
-
-$d=1$ for the treated units (treatment group)
-
-$d=0$ for the treated units (control group)
-
-
-. . . 
-
-
-$Y_{i}$ = Potential outcome of individual *i*.
-
-$Y_{i,1}$ or  $Y(1)$ = Potential outcome of individual *i*, treatement group.
-
-$Y_{i,0}$ or  $Y(0)$ = Potential outcome of individual *i*, control group.
-
-
-
-
-
-
-
-
-## Selection Bias {.smaller background="#f7e8dc"}
-
-Some notation:
-
-These are the representations of the **causal effect** we often want to estimate.
-
-**Average Treatment Effect:**
-
-ATE = $\frac{1}{N} (E[Y_{i,1}] - E[Y_{i,0}])$
-
-. . . 
-
-**Average Treatment Effect on the treated:**
-
-ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
-
-. . . 
-
-**Average Treatment Effect on the untreated:**
-
-ATEU = $\frac{1}{N} (E[Y_{i,1}|D_i=0] - E[Y_{i,0}|D_i=0])$
-
-. . . 
-
-Of course, again, we cannot observe both potential outcomes of the same unit *i*.
-
-
-
-
-
-
-
-## Selection Bias {.smaller background="#f7e8dc"}
-
-When dealing with **causal inference**, we have to find ways to approximate what the hidden potential outcome of the treated units is. 
-
-That is, the challenge in identifying causal effects is that the untreated potential outcomes, $Y_{i,0}$, are never
-observed for the treated group ($D_i= 1$). The "second" term in the following equation:
-
-ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
-
-
-We need an empirical design to **"observe"** what we do not really observe (i.e., the counterfactual). 
-
-
-
-
-
-## Selection Bias {.smaller background="#f7e8dc"}
-
-Many options:
-
-- Matching/Balancing
-- Difference-in-differences (DiD)
-- Instrumental variables
-- Regression discontinuity design (RDD)
-- Synthetic control (Synth)
-
-
-
-
-
-
-
-
-## Selection Bias {.smaller background="#f7e8dc"}
-
-The process of finding units that are comparable is called **matching**.
+- *The killer struck during daylight. Had the sun not been out that day, the victim would have been safe.*
 
 . . .
 
-**Before we continue...**
+- There is a correlation, but it is clear there is no causation.
 
-**We will match on observables. We cannot be on unobservables.**
 
-Thus, you may want to write in your article "selection bias due to observables".
 
-. . .
 
-**Cunningham:**
 
-*Propensity score matching has not seen as wide adoption among economists as in other nonexperimental methods like regression discontinuity or difference-in-differences. The most common reason given for this is that economists are oftentimes skeptical that CIA can be achieved in any dataset almost as an article of faith. This is because for many applications, economists as a group are usually more concerned about selection on unobservables than they are selection on observables, and as such, they reach for matching methods less often.*
 
-CIA = CMI
 
+## Correlation & Causality  {.smaller background="#b0aeae"}
 
+Sometimes, there is causality even when we do not observe correlation.
 
+*The sailor is adjusting the rudder on a windy day to align the boat with the wind, but the boat is not changing direction.* ([Source: The Mixtape](https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality))
 
 
+![](figs/scottboat.jpg)
 
 
 
-# Matching  {.smaller background="#f2d5bf"}
 
-## Matching   {.smaller background="#f2d5bf"}
 
-**Matching** aims to compare the outcomes between observations that have the same values of all control variables, except that one unit is treated and the other is not. 
+::: {.callout-note}
 
-. . .
-
-In this literature, the control variables used to matched are often called **covariates**.
-
-That is, for each treated unit, the researcher finds an untreated unit that is similar in all covariates.
-
-The implication is that the researcher can argue that "*units are comparable after matching*". 
-
-
-
-
-
-
-
-## Matching   {.smaller background="#f2d5bf"}
-
-The easiest to see is **exact matching**: *it matches observations that have the exact same values*. 
-
-- It might be doable if you have only one covariate. 
-
-- Naturally, if you have only one covariate, you might still be left with some selection bias.
-
-  - In the previous example, health history is one important covariate that makes John and Mary different. 
-  
-  - But what about life style? Nutrition? Etc. 
-  
-
-As the number of covariates grow, you cannot pursue exact matching. That is the job of PSM.
-
-
-
-
-
-
-
-## Matching   {.smaller background="#f2d5bf"}
-
-**In exact matching, the causal effect estimator (ATET) is:**
-
-$$ATET = \frac{1}{N} \sum (E[Y_{i}] - E[Y_{j(i)}] | D_i=1)$$
-
-Where $Y_{j(i)}$ is the j-th unit matched to the i-th unit based on the j-th being “closest to” the i-th unit for some  covariate. 
-
-For instance, let’s say that a unit in the treatment group has a covariate with a value of 2 and we find another unit in the control group (exactly one unit) with a covariate value of 2. 
-
-Then we will impute the treatment unit’s missing counterfactual with the matched unit’s, and take a difference.
-
-
-
-
-
-
-
-## Matching {.smaller background="#f2d5bf"}
-
-Consider the following dataset from Cunningham:
-
-![](figs/scott.png)
-
-
-
-
-
-## Matching   {.smaller background="#f2d5bf"}
-
-::: panel-tabset
-### R Averages
-
-Average ages are very different. The salary of a 24 yrs old person is quite different than the salary of a 32 yrs person.
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-# Load necessary packages
-library(tidyverse)
-library(haven)
-library(knitr)
-library(kableExtra)
-
-read_data <- function(df)
-{
-  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
-  df <- read_dta(full_path)
-  return(df)
-}
-training_example <- read_data("training_example.dta") %>% slice(1:20)
-summary(training_example$age_treat)
-summary(training_example$age_control)
-```
-
-
-### R Treated
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-# Load necessary packages
-library(tidyverse)
-library(haven)
-library(knitr)
-library(kableExtra)
-
-read_data <- function(df)
-{
-  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
-  df <- read_dta(full_path)
-  return(df)
-}
-
-training_example <- read_data("training_example.dta") %>% slice(1:20)
-
-ggplot(training_example, aes(x=age_treat)) +
-  stat_bin(bins = 10, na.rm = TRUE)
-
-```
-
-### R Control
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-# Load necessary packages
-library(tidyverse)
-library(haven)
-library(knitr)
-library(kableExtra)
-
-read_data <- function(df)
-{
-  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
-  df <- read_dta(full_path)
-  return(df)
-}
-
-training_example <- read_data("training_example.dta") %>% slice(1:20)
-
-ggplot(training_example, aes(x=age_control)) +
-  stat_bin(bins = 10, na.rm = TRUE)
-
-```
-
-
-### R Matched
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-# Load necessary packages
-library(tidyverse)
-library(haven)
-library(knitr)
-library(kableExtra)
-
-read_data <- function(df)
-{
-  full_path <- paste("https://github.com/scunning1975/mixtape/raw/master/",df, sep = "")
-  df <- read_dta(full_path)
-  return(df)
-}
-
-training_example <- read_data("training_example.dta") %>% slice(1:20)
-
-ggplot(training_example, aes(x=age_matched)) +
-  stat_bin(bins = 10, na.rm = TRUE)
-
-```
-
+In this example, the sailor is *endogenously* adjusting the course to balance the unobserved wind.
 
 :::
 
 
 
 
-## Matching   {.smaller background="#f2d5bf"}
-
-In this example, you are literally finding the units in the control group that have the same age as the units in the treatment group.
-
-You are exact matching 1-by-1 in this example.
-
-You have only one covariate, i.e., age.
 
 
 
+## The challenge  {.smaller background="#b0aeae"}
 
-
-
-
-
-
-
-
-# Distance Matching  {.smaller background="#d4b8a3"}
-
-## Distance Matching  {.smaller background="#d4b8a3"}
-
-The last example was simple because you could *exact match*.
-
-If you cannot find one exact match, you need an approximate match. 
+- I will discuss some issues in using plain OLS models in Finance Research (mainly with panel data).
 
 . . .
 
-In order to do that, you have to use distance matching.
+- I will avoid the word “endogeneity” as much as I can
 
-**Distance matching** minimizes the distance (i.e., how far the covariates are from each other) between the treatment and control groups.
+. . .
 
+- I will also avoid the word “identification” because identification does not guarantee causality and vice-versa (Kahn and Whited 2017)
 
+. . .
 
+- The discussion is based on [Atanasov and Black (2016)](https://www.nowpublishers.com/article/Details/CFR-0036)
 
-
-
-
-
-## Distance Matching  {.smaller background="#d4b8a3"}
-
-**Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'(X_i-X_j)}=\sqrt{\sum_{n=1}^k(X_{n,i}-X_{n,j})^2}$
-
-![](figs/euclidian.png)
+![](figs/slides1-empiricalissues-paper.png)
 
 
 
-## Distance Matching  {.smaller background="#d4b8a3"}
-
-**Normalized Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{V}^{-1}(X_i-X_j)}=\sqrt{\sum_{n=1}^k\frac{(X_{n,i}-X_{n,j})}{\sigma^2_n}}$
-
-The problem with this measure of distance is that the distance measure itself depends on the **scale of the variables themselves**. 
-
-For this reason, researchers typically will use some modification of the Euclidean distance, such as the **normalized Euclidean distance**, or they’ll use a wholly different alternative distance. 
-
-The normalized Euclidean distance is a commonly used distance, and what makes it different is that the distance of each variable is scaled by the variable’s variance. 
 
 
- 
- 
- 
- 
- 
-## Distance Matching  {.smaller background="#d4b8a3"}
 
-**Mahalanobis  distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{\sum_x}^{-1}(X_i-X_j)}$
 
-Where $\hat{\sum_x}$ is the sample covariance matrix of X.
+
+## The challenge  {.smaller background="#b0aeae"}
+
+- Imagine that you want to investigate the effect of Governance on Q
+
+    - You may have more covariates explaining Q (omitted  from slides)
+  
+ $𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error$
 
 . . . 
 
-![](figs/malahanobis_king_nielsen.png)
+ All the issues in the next slides will make it not possible to infer that __changing Gov will _CAUSE_ a change in Q__ 
+ 
+ That is, cannot infer causality
+ 
+![](figs/slides1-empiricalissues-wrong.jpg)
 
 
 
 
 
-## Distance Matching  {.smaller background="#d4b8a3"}
 
-Distance matching only goes so far...
 
-... **the larger the dimensionality, the harder is to use distance matching**.
 
-As sample size increases, for a given N of covariates, the matching discrepancies tend to zero.
+## 1) Reverse causation   {.smaller background="#b0aeae"}
 
-But, the more covariates, the longer it takes.
+_One source of bias is: reverse causation_
 
-. . . 
+- Perhaps it is Q that causes Gov
 
-At the end of the day, it is preferable to have many covariates, but it is makes distance matching harder.
+- OLS based methods do not tell the difference between these two betas:
 
+$𝑄_{i} = α + 𝜷_{i} × Gov + Controls + error$
 
+$Gov_{i} = α + 𝜷_{i} × Q + Controls + error$
 
+- If one Beta is significant, the other will most likely be significant too
 
+- You need a sound theory!
 
 
 
 
-# Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
 
-## Coarsened Exact Matching (CER)  {.smaller background="#fce0cc"}
 
-In coarsened exact matching, something only counts as a match if it exactly matches on each matching variable. 
 
-**The “coarsened” part comes in because, if you have any continuous variables to match on, you need to “coarsen” them first by putting them into bins, rather than matching on exact values.**
 
-Coarsening means creating bins. Fewer bins makes exact matches more likely. 
 
-. . .
 
-CER is not used much in empirical research in finance. It is used more in the big data realm when you have many variables to match. 
 
 
+## 2) Omitted variable bias (OVB)  {.smaller background="#b0aeae"}
 
+_The second source of bias is: OVB_
 
+- Imagine that you do not include an important “true” predictor of Q
 
+- Let's say, long is:  $𝑸_{i} = 𝜶_{long} + 𝜷_{long}* gov_{i} + δ * omitted + error$
 
+- But you estimate short:  $𝑸_{i} = 𝜶_{short} + 𝜷_{short}* gov_{i} + error$
 
-# Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+- $𝜷_{short}$ will be: 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+    - $𝜷_{short} = 𝜷_{long}$ +  bias
 
-**PSM is one way to matching using many covariates.** 
+    - $𝜷_{short} = 𝜷_{long}$ +  relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)
 
-**PSM aggregates all covariates into one score (propensity-score), which is the likelihood of receiving the treatment.**
+        - Where: relationship between omitted (omitted) and included (Gov) is: $Omitted = 𝜶 + ϕ *gov_{i} + u$
 
-The idea is to match units that, based on observables, have the same probability (called propensity-score) of being treated. 
+- Thus, OVB is: $𝜷_{short} – 𝜷_{long} = ϕ * δ$
 
-. . .
 
-The idea is to estimate a probit (default in stata) or logit model (fist stage):
 
-$$P(D=1|X)$$
 
-**The propensity-score is the predicted probability of a unit being treated given all covariates X**. The p-score is just a single number.
 
 
 
 
 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
 
-Considerations in PSM.
 
-1) How many neighbors to match?
 
-- Nearest neighbor, radius or kernel?
 
-2) With or without replacement?
+## 3) Specification error  {.smaller background="#b0aeae"}
 
-3) With or without common support?
+_The third source of bias is: Specification error_
 
-- *Common support*: imposes a common support by dropping treatment observations whose pscore is higher than the maximum or less than the minimum pscore of the controls.
+- Even if we could perfectly measure gov and all relevant covariates, we would not know for sure the functional form through which each influences q
 
-4) It is expected that, after PSM, you show the overlap of propensity-scores.
+    - Functional form: linear? Quadratic? Log-log? Semi-log?
 
+- Misspecification of x’s is similar to OVB
 
 
 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
 
-[Source](https://sites.google.com/site/econometricsacademy/home)
 
-**The y-axis is the propensity-score**.
 
-![](figs/ani_katchova1.png)
 
+## 4) Signaling   {.smaller background="#b0aeae"}
 
+_The fourth source of bias is: Signaling_
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+- Perhaps, some individuals are signaling the existence of an X without truly having it:
 
-[Source](https://sites.google.com/site/econometricsacademy/home)
+    - For instance: firms signaling they have good governance without having it
 
-**Nearest matching:** Find the observation closest to ($min|p_i-p_j|$)
+- This is similar to the OVB because you cannot observe the full story
 
-![](figs/ani_katchova3.png)
 
 
 
 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
 
-[Source](https://sites.google.com/site/econometricsacademy/home)
 
-**Kernel matching:** Each treated observation i is matched with several control observations, with weights inversely proportional to the distance between treated and control observations.
 
-![](figs/ani_katchova2.png)
+## 5) Simultaneity  {.smaller background="#b0aeae"}
 
+_The fifth source of bias is: Simultaneity_
 
+- Perhaps gov and some other variable x are determined simultaneously
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+- Perhaps there is bidirectional causation, with q causing gov and gov also causing q 
 
-[Source](https://sites.google.com/site/econometricsacademy/home)
+- In both cases, OLS regression will provide a biased estimate of the effect
 
-**Radius matching**: Each treated observation i is matched with control observations j that fall within a specified radius.
+- Also, the sign might be wrong
 
-$$|p_i-p_j| <r$$
 
 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
 
-[Source](https://sites.google.com/site/econometricsacademy/home)
 
-**Common support:** Restrict matching only based on the common range of propensity scores.
 
-![](figs/ani_katchova5.png)
 
 
 
+## 6) Heterogeneous effects   {.smaller background="#b0aeae"}
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+_The sixth source of bias is: Heterogeneous effects_
 
-Seems good overlap, but "good" is arbitrary.
+- Maybe the causal effect of gov on q depends on observed and unobserved firm characteristics:
 
-![](figs/psm1.png)
+    - Let's assume that firms seek to maximize q
+    - Different firms have different optimal gov
+    - Firms know their optimal gov
+    - If we observed all factors that affect q, each firm would be at its own optimum and OLS regression would give a non-significant coefficient
 
+- In such case, we may find a positive or negative relationship.
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+- Neither is the true causal relationship
 
-Seems bad overlap
 
-![](figs/psm2.png)
 
 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+## 7) Construct validity  {.smaller background="#b0aeae"}
 
-Seems good overlap, but "good" is arbitrary.
+_The seventh source of bias is: Construct validity_
 
-![](figs/psm_graph1.png)
+- Some constructs (e.g. Corporate governance) are complex, and sometimes have conflicting mechanisms
 
+- We usually don’t know for sure what “good” governance is, for instance
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+- It is common that we use imperfect proxies
 
-Seems bad overlap
+- They may poorly fit the underlying concept
 
-![](figs/psm_graph2.png)
 
 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
 
-![](figs/psm_bias.png)
 
 
+## 8) Measurement error   {.smaller background="#b0aeae"}
 
+_The eighth source of bias is: Measurement error_
 
+- "Classical" random measurement error for the outcome will inflate standard errors but will not lead to biased coefficients. 
 
+    - $y^{*} = y + \sigma_{1}$
+    - If you estimante $y^{*} = f(x)$, you have $y + \sigma_{1} = x + \epsilon$ 
+    - $y = x + u$ 
+        - where $u = \epsilon + \sigma_{1}$ 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+- "Classical" random measurement error in x’s will bias coefficient estimates toward zero
 
-![](figs/psm_ttest1.png)
+    - $x^{*} = x + \sigma_{2}$
+    - Imagine that $x^{*}$ is a bunch of noise
+    - It would not explain anything
+    - Thus, your results are biased toward zero
 
 
-## Propensity-score matching (PSM)  {.smaller background="#f7dfcd"}
+<!-- https://web.stanford.edu/class/polisci100a/regress5.pdf  --> 
 
-![](figs/psm_ttest2.png)
 
 
 
@@ -670,17 +348,106 @@ Seems bad overlap
 
 
 
+## 9) Observation bias   {.smaller background="#b0aeae"}
 
+_The ninth source of bias is: Observation bias_
 
-# Example  {.smaller background="#debda4"}
+- This is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed
 
-## Example  {.smaller background="#debda4"}
+- Firms which change gov may behave differently because their managers or employees think the change in gov matters, when in fact it has no direct effect
 
-Let's practice with an example. 185 treated units vs 15,992 control units. 
+
+
+
+
+
+
+
+
+
+## 10) Interdependent effects   {.smaller background="#b0aeae"}
+
+_The tenth source of bias is: Interdependent effects_
+
+- Imagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt
+
+- Conversely, a reform that improves efficiency for a single firm might not improve profitability if adopted widely because the gains will be competed away
+
+- "One swallow doesn't make a summer" 
+
+
+
+
+
+
+## 11) Selection bias   {.smaller background="#b0aeae"}
+
+_The eleventh source of bias is: Selection bias_
+
+- If you run a regression with two types of companies
+
+    - High gov (let's say they are the treated group)
+    - Low gov (let's say they are the control group)
+
+    
+- Without any matching method, these companies are likely not comparable
+
+- Thus, the estimated beta will contain selection bias
+
+- The bias can be either be positive or negative
+
+- It is similar to OVB
+
+
+  
+
+## 12) Self-Selection  {.smaller background="#b0aeae"}
+
+_The twelfth source of bias is: Self-Selection_
+
+- Self-selection is a type of selection bias
+
+- Usually, firms decide which level of governance they adopt
+
+- There are reasons why firms adopt high governance
+
+    - If observable, you need to control for
+    - If unobservable, you have a problem
+
+- It is like they "self-select" into the treatment.
+
+    - Units decide whether they receive the treatment or not
+
+- Your coefficients will be biased.
+
+
+
+
+
+
+## 13) Collider Bias (endog. selection bias) {.smaller background="#b0aeae"}
+
+
+**Let's assume an arbitrary population.**
+
+- Two variables describe the population: IQ and luck. 
+
+- These variables are random and normally distributed.
+
+- Let's say that after you reach a certain level of IQ and Luck, you become successful (i.e., upper-right quadrant).
+
+- Because you are interested in successful people, you only investigate such subsample. 
+
+
+
+
+## 13) Collider Bias (endog. selection bias) {.smaller background="#b0aeae"}
+
+**A representation of the population**
 
 ::: panel-tabset
-### R
 
+### R
 ```{r}
 #| warning: false
 #| message: false
@@ -691,23 +458,20 @@ Let's practice with an example. 185 treated units vs 15,992 control units.
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
-# Load necessary packages
-# Load necessary libraries
-library(haven)
-library(psych)
-data <- read_dta("files/cps1re74.dta")
-summary_stats <- by(data, data$treat, FUN = function(group) {
-  c(
-    mean = mean(group$age, na.rm = TRUE),
-    variance = var(group$age, na.rm = TRUE),
-    skewness = skew(group$age, na.rm = TRUE),
-    count = length(group$age)
-  )
-})
-summary_df <- as.data.frame(do.call(rbind, summary_stats))
-colnames(summary_df) <- c("mean", "variance", "skewness", "count")
-print(summary_df)
+library(data.table)
+library(ggplot2)
+set.seed(100)
+luck <- rnorm(1000, 100, 15)
+iq   <- rnorm(1000, 100, 15)
+pop <- data.frame(luck, iq)
+
+ggplot(pop, aes(x = iq, y = luck)) + 
+      geom_point() +
+      labs(title = "The general population")  + 
+  theme_minimal()
 ```
+
+
 
 ### Python
 
@@ -722,137 +486,25 @@ print(summary_df)
 #| code-line-numbers: true
 #| eval: true
 #| code-summary: "Python"
+
 import pandas as pd
-from scipy.stats import skew
-import statsmodels.api as sm
-data = pd.read_stata("files/cps1re74.dta")
-grouped_data = data.groupby('treat')['age'].agg(['mean', 'var', lambda x: skew(x, nan_policy='omit'), 'count']).reset_index()
-grouped_data.columns = ['treat', 'mean', 'variance', 'skewness', 'count']
-print(grouped_data)
-```
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-### Stata
+np.random.seed(100)
 
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/cps1re74.dta, clear
-qui estpost tabstat age black educ , by(treat) c(s) s(me v sk n) nototal
-esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs nonumber compress 
-```  
+luck = np.random.normal(100, 15, 1000)
+iq = np.random.normal(100, 15, 1000)
+pop = pd.DataFrame({'luck': luck, 'iq': iq})
 
-:::
-
-
-
-## Example  {.smaller background="#debda4"}
-
-Clearly, the treated group is younger, mainly black, and less educated.
-
-Also note that the **variance and skewness** of the two subsamples are **different**.
-
-If we were to use these two subsamples in any econometric analysis **without preprocessing to make them comparable**, we would likely have coefficients biased by **selection bias**.
-
-Therefore, it is important to perform some matching method.
-
-Let's start with Propensity Score Matching (PSM). We will use the simplest matching, that is, without using any additional functions.
-
-
-
-
-
-
-
-
-
-
-## Example  {.smaller background="#debda4"}
-
-**Nearest with noreplacement.**
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-# install.packages("MatchIt")
-library(haven)
-library(psych)
-library(MatchIt)
-data <- read_dta("files/cps1re74.dta")
-model <- matchit(treat ~ age + black + educ, data = data, method = "nearest")
-summary(model)
-```
-
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/cps1re74.dta, clear
-psmatch2 treat age black educ , n(1) noreplacement
-sum _weight , d
-```  
-
-:::
-
-
-
-
-
-
-
-
-
-
-## Example  {.smaller background="#debda4"}
-
-**Notice that we are creating weights now**
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-# install.packages("MatchIt")
-library(haven)
-library(MatchIt)
-data <- read_dta("files/cps1re74.dta")
-model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
-summary(model$weights)
+sns.set(style="whitegrid")  
+plt.figure(figsize=(8, 6))
+plt.scatter(pop['iq'], pop['luck'])
+plt.title("The general population")
+plt.xlabel("IQ")
+plt.ylabel("Luck")
+plt.show()
 
 ```
 
@@ -869,10 +521,15 @@ summary(model$weights)
 #| code-line-numbers: true
 #| eval: true
 #| code-summary: "Stata"
-use files/cps1re74.dta, clear
-qui psmatch2 treat age black educ , kernel
-sum _weight , d
-```  
+set seed 100
+set obs 1000
+gen luck = rnormal(100, 15)
+gen iq = rnormal(100, 15)
+twoway (scatter luck iq), title("The general population") 
+quietly graph export figs/collider1.svg, replace
+```       
+
+![](figs/collider1.svg)
 
 :::
 
@@ -880,858 +537,17 @@ sum _weight , d
 
 
 
-
-
-
-
-
-## Example  {.smaller background="#debda4"}
-
-**Now, the descriptive statistics are much closer**
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-library(haven)
-library(MatchIt)
-#install.packages("e1071")
-library(e1071)
-data <- read_dta("files/cps1re74.dta")
-model <- matchit(treat ~ age + black + educ, data = data, method = "exact")
-matched_data <- match.data(model)
-summary_stats <- by(matched_data, matched_data$treat, function(x) {
-  c(mean(x$age), var(x$age), skewness(x$age), length(x$age))
-})
-
-result_df <- data.frame(
-  Treatment = c("Control", "Treated"),
-  Mean_Age = sapply(summary_stats, function(x) x[1]),
-  Variance_Age = sapply(summary_stats, function(x) x[2]),
-  Skewness_Age = sapply(summary_stats, function(x) x[3]),
-  Count = sapply(summary_stats, function(x) x[4])
-)
-print(result_df)
-```
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/cps1re74.dta, clear
-qui psmatch2 treat age black educ , kernel
-qui estpost tabstat age black educ [aweight = _weight], by(treat) c(s) s(me v sk n) nototal
-esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
-```  
-
-:::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Entropy Balancing  {.smaller background="#fac9a7"}
-
-## Entropy Balancing  {.smaller background="#fac9a7"}
-
-**Here, instead of matching units, we reweight the observations such that the moments of the distributions (mean, variance, skewness) are similar.**
-
-- The ebalance function implements a reweighting scheme. The user starts by choosing the covariates that should be included in the reweighting. 
-
-- For each covariate, the user then specifies a set of balance constraints (in Equation 5) to equate the moments of the covariate distribution between the treatment and the reweighted control group. 
-
-- The moment constraints may include the mean (first moment), the variance (second moment), and the skewness (third moment).
-
-**The outcome is a vector containing the weights to weight the observations, such that the weighted average, weighted variance, and weighted skewness of the covariates in control group are similar to those in the treatment group**
-
-
-
-
-
-
-
-
-
-
-## Entropy Balancing  {.smaller background="#fac9a7"}
-
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-library(haven)
-#install.packages("ebal")
-library(ebal)
-data <- read_dta("files/cps1re74.dta")
-treatment <-cbind(data$treat)
-vars <-cbind(data$age, data$educ, data$black)
-eb <- ebalance(treatment, vars)
-# means in treatment group data
-apply(vars[treatment==1,],2,mean)
-# means in reweighted control group data
-apply(vars[treatment==0,],2,weighted.mean,w=eb$w)
-# means in raw data control group data
-apply(vars[treatment==0,],2,mean)
-```
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/cps1re74.dta, clear
-ebalance treat age black educ, targets(3)
-```  
-
-:::
-
-
-
-
-
-
-## Entropy Balancing  {.smaller background="#fac9a7"}
-
-
-::: panel-tabset
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/cps1re74.dta, clear
-qui ebalance treat age black educ, targets(3)
-qui estpost tabstat age black educ [aweight = _webal], by(treat) c(s) s(me v sk n) nototal
-esttab . 	,varwidth(20) cells("mean(fmt(3)) variance(fmt(3)) skewness(fmt(3)) count(fmt(0))") noobs  nonumber compress 
-```  
-
-:::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# DiD Introduction {.smaller background="#c4f5d7"}
-
-## DiD Introduction  {.smaller background="#c4f5d7"}
-
-Let's introduce DiD using the most famous example in the topic: John Snow’s 1855 findings that demonstrated to the world that cholera was spread by fecally-contaminated water and not via the air (Snow 1855)
-
-- Snow compared the periods of 1849 and 1854 to analyze the impact of a  change in London's water supply dynamics. 
-- Various water companies, each drawing water from different sections of the Thames river, served the city's water needs. 
-- The downstream areas of the Thames, where some companies sourced their water, were susceptible to contamination due to the disposal of various substances, including fecal matter from cholera-infected individuals. 
-- In the interim between 1849 and 1854, a pivotal policy was implemented: the Lambeth Company was mandated by an Act of Parliament to relocate its water intake upstream of London.
-
-
-
-
-
-## DiD Introduction  {.smaller background="#c4f5d7"}
-
-**This is what happened.**
-
-| Region Supplier                        | Death Rates 1849 | Death Rates 1854 |
-|----------------------------------------|------------------|------------------|
-| Non-Lambeth Only (Dirty)               | 134.9            | 146.6            |
-| Lambeth + Others (Mix Dirty and Clean) | 130.1            | 84.9             |
-
-. . . 
-
-The specific DID estimate we can get here is:
-
-- $(84.9-130.1)-(146.9-134.9)=-57.2$.
-
-This resembles a "modern" DiD. 
-
-
-
-
-
-
-
-
-# Shocks {.smaller background="#95c9a9"}
-
-## Shocks  {.smaller background="#95c9a9"}
-
-**Shock-based designs use an external shock to limit selection bias. **
-
-They are very hard to find, but if you do, you can reasonably estimate causal effects.
-
-They are sources of exogenous variations in the X, which are crucial to causality when we have some of the problems discussed before. 
-
-A shock is often considered the first-best solution to causal inference (randomized control trials are the second-best).
-
-. . . 
-
-In social sciences, we cannot have randomized control trials. It is not feasible to have experiments.
-
-That is why we often explore the idea of "Natural experiments" or "Natural shocks" (I often use the terms interchangeably)
-
-
-
-
-
-
-
-## Shocks  {.smaller background="#95c9a9"}
-
-A **Natural experiment** is an exogenous variation that change a variable in a random subset of firms. 
-
-- Regulations, laws, etc.
-- Natural disasters.
-- Sudden death of CEOs or a product, etc.
-- The gender of a newborn.
-
-
-Because the variation that occur in x is truly exogenous, the CMI holds and thus we can infer causality.
-
-
-
-
-
-
-
-## Shocks  {.smaller background="#95c9a9"}
-
-A good shock has some conditions [source](https://cfr.pub/published/papers/cfr-0036.pdf):
-
-1) **Shock Strength**: The shock is strong enough to significantly change firm behavior or incentives.
-
-. . .
- 
-2) **Exogenous Shock**: The shock came from “outside” the system one is studying.
-
-  - Treated firms did not choose whether to be treated, 
-  - cannot anticipate the shock, 
-  - the shock is expected to be permanent, and 
-  - there is no reason to believe that which firms were treated depends on unobserved firm characteristics.
-  
-If the shock is exogenous, or appears to be, we are less worried that unobservables might be correlated with both assignment to treatment and the potential outcomes, and thus generate omitted variable bias. 
-
-Shock exogeneity should be defended, not just assumed.
-
-
-
-
-
-
-
-## Shocks  {.smaller background="#95c9a9"}
-
-A good shock has some conditions [source](https://cfr.pub/published/papers/cfr-0036.pdf):
-
-3) **“As If Random” Assignment**: The shock must separate firms into treated and controls in a manner which is close to random.
-
-. . .
-
-4) **Covariate balance:** The forcing and forced variables aside, the shock should produce reasonable covariate balance between treated and control firms, including “common support” (reasonable overlap between treated and control firms on all covariates). 
-
-Somewhat imperfect balance can be address with balancing methods, but severe imbalance undermines shock credibility, even if the reason for imbalance is not obvious. Covariate balance should be reported.
-
-
-
-
-
-
-
-## Shocks  {.smaller background="#95c9a9"}
-
-A good shock has some conditions [source](https://cfr.pub/published/papers/cfr-0036.pdf):
-
-5) **Only-Through Condition(s):** We must have reason to believe that the apparent effect of the shock on the outcome came only through the shock (sometimes, through a specific channel). 
-
-The shock must be “isolated”, there must be no other shock, at around the same time, that could also affect treated firms differently than control firms. 
-And if one expects the shock to affect outcomes through a particular channel, the shock must also affect the outcome only through that channel.
-
-. . .
-
-In IV analysis, this is called an **“exclusion restriction”** or **“only-through condition"**, because one assumes away (excludes) other channels.
-
-
-
-
-
-
-## Shocks  {.smaller background="#95c9a9"}
-
-The idea of a natural shock is often mixed with the difference-in-differences (DiD) design.
-
-It is more common that it should that people refer to shocks when they want to refer to DiD. 
-
-A Did design explores a Natural shock to estimate causal effects.
-
-**A good shock generates, by nature, random assignment**.
-
-
-
-
-
-
-
-
-
-## Remember  {.smaller background="#693d3a"}
-
-**Remember:**
-
-When dealing with **causal inference**, we have to find ways to approximate what the hidden potential outcome of the treated units is. 
-
-That is, the challenge in identifying causal effects is that the untreated potential outcomes, $Y_{i,0}$, are never
-observed for the treated group ($D_i= 1$). The "second" term in the following equation:
-
-ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
-
-We need an empirical design to **"observe"** what we do not really observe (i.e., the counterfactual). 
-
-
-
-
-
-
-
-# Single differences  {.smaller background="#a4baac"}
-
-## Single differences  {.smaller background="#a4baac"}
-
-There are two single differences we can use to estimate the causal effect of a treatments (i.e., a shock).
-
-**1) Single Cross-Sectional Differences After Treatment**
-
-**2) Single Time-Series Difference Before and After Treatment**
-
-
-
-
-
-
-
-## Single differences  {.smaller background="#a4baac"}
-
-**1) Single Cross-Sectional Differences After Treatment**
-
-One approach to estimating a parameter that summarizes the treatment effect is to compare the post-treatment outcomes of the treatment and control groups. 
-
-This method is often used when there is no data available on pre-treatment outcomes.
-
-It takes the form:
-
-$$y=\beta_0+\beta_1d_i+\epsilon$$
-
-where $d_i$ is a dummy marking the units that are treated. The treatment effect is given by $\beta_1$
-
-This is a cross-sectional comparison, using only post-treatment values.
-
-
-
-
-
-
-
-
-## Single differences  {.smaller background="#a4baac"}
-
-**1) Single Cross-Sectional Differences After Treatment**
-
-You may add the interaction between the treatment dummy and the years.
-
-$$y=\beta_0+\beta_1d_i\times year_1+\beta_2d_i\times year_2 +\beta_3d_i\times year_3+ . . . +\epsilon$$
-
-This design allows the treatment effect to vary over time by interacting the treatment dummy with period dummies.
-
-
-
-
-. . . 
-
-
-**What is the endogeneity concern here?**
-
-. . .
-
-The endogeneity concern is that these firms’ $y$ were different and could become more different between the treated and control groups even if the shock had not happened. 
-
-That is, there is something in the residual that explains the differences in $y$ that is correlated with the $d$.
-
-
-
-
-
-
-
-
-
-## Single differences  {.smaller background="#a4baac"}
-
-**2) Single Time-Series Difference Before and After Treatment**
-
-A second way to estimate the treatment effect is to compare the outcome after the treatment with the outcome before the treatment for **just those units that are treated.**
-
-The difference from before is that you have data before the treatment, but you only have data for the treated units.
-
-$$y=\beta_0+\beta_1 time+\epsilon$$
-
-where $time$ marks the years after the treatment. The treatment effect is given by $\beta_1$
-
-
-
-
-
-
-## Single differences  {.smaller background="#a4baac"}
-
-**2) Single Time-Series Difference Before and After Treatment**
-
-You can also estimate a multi-year regression.
-
-$$y=\beta_0+\beta_1year_1 +\beta_2\times year_2 +\beta_3\times year_3+ . . . +\epsilon$$
-
-. . . 
-
-
-**What is the endogeneity concern here?**
-
-. . .
-
-The endogeneity concern is that these firms’ $y$ could have changed over the period of observation even if the shock had not happened. 
-
-That is, there is something in the error term that explains $y$ that is correlated with the $year$ dummies.
-
-
-
-
-
-## Single differences  {.smaller background="#a4baac"}
-
-The combination of the  **1) Single Cross-Sectional Differences After Treatment** and **2) Single Time-Series Difference Before and After Treatment** is called **Difference-in-Differences**.
-
-
-
-
-
-
-
-
-# Difference-in-Differences {.smaller background="#8bc9a2"}
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-This is one of the most popular methods in social sciences for estimating causal effects in non-experimental settings.
-
-The literature is exploding over the recent years.
-
-. . . 
-
-There is one group that is treated, another is the control. 
-
-There are two periods of time, before and after the treatment.
-
-And the treated group receives the treatment in the second period.
-
-**The key identifying assumption is that the average outcome among the treated and comparison populations would have followed “parallel trends” in the absence of treatment.**
-
-
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-
-*The two single difference estimators complement one another.*
-
-*The cross-sectional comparison avoids the problem of omitted trends by comparing two groups over the same time period.*
-
-*The time series comparison avoids the problem of unobserved differences between two different groups of firms by looking at the same firms before and after the change.*
-
-*The double difference, difference-in-differences (DD), estimator combines these two estimators to take advantage of both estimators’ strengths.* 
-
-([Roberts and Whited, 2014](https://doi.org/10.1016/B978-0-44-453594-8.00007-0))
-
-
-
-
-
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-
-Difference-in-differences methods overcome the identification challenge via assumptions that allow us to impute the mean counterfactual untreated outcomes for the treated group by using 
-
-- (a) the change in outcomes for the untreated group and 
-- (b) the baseline outcomes for the treated group. 
-
-The key assumption for identifying the causal effect is the **parallel trends assumption**, which intuitively states that **the average outcome for the treated and untreated units would have evolved in parallel if treatment had not occurred**.
-
-**Assumption 1 (Parallel Trends).**
-
-$E[Y_{i,1,t=2}-Y_{i,0,t=1}|D_i=1] = E[Y_{i,1,t=2}-Y_{i,0,t=1}|D_i=0]$
-
-
-In other words: **this condition means that in the absence of treatment, the average change in the $y$ would have been the same for both the treatment and control groups.**
-
-
-
-
-
-
-
-
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-**The counterfactual is determined by the assumption of a parallel trend between the treated and control groups.** **[MM](https://www.masteringmetrics.com/)**
-
-
-![](figs/did1.png) 
-
-
-
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-![](figs/slides4-did.png) 
-
-
-
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-Inserting more periods.
-
-![](figs/did2.png) 
-
-
-
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-A more realistic example. ([The effect](https://theeffectbook.net/ch-DifferenceinDifference.html))
-
-
-![](figs/theeffect1.png)
-
-
-
-
-
-
-## Difference-in-Differences  {.smaller background="#8bc9a2"}
-
-
-**Assumption 2 (No anticipatory effects).**
-
-*The treatment has no causal effect prior to its implementation.*
-
-$$Y_{i,0,t=1}=Y_{i,1,t=1}$$
-
-Prior to the treatment (t=1), there is no effect of the treatment.
-
-
-
-
-
-
-
-
-
-# Estimation  {.smaller background="#c6f7ec"}
-
-## Estimation   {.smaller background="#c6f7ec"}
-
-Let's see how to implement a DiD model. The canonical DiD model is the followin:
-
-$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + \epsilon_{i,t}$$
-
-Where:
-
-$treated_i$ is a dummy marking the units that received the treatment.
-
-$time_t$ is a dummy marking the year of the treatment and the years after.
-
-
-
-
-
-
-## Estimation   {.smaller background="#c6f7ec"}
-
-Let's see how to implement a DiD model. The canonical DiD model is the followin:
-
-$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + \epsilon_{i,t}$$
-
-
-$\beta_0$ is the **average $y_{i,t}$** for the **control units before the treatment ($time_t$ =0 and $treated_i$ = 0)**.
-
-$\beta_0+\beta_1$ is the **average $y_{i,t}$** for the **control units after the treatment ($time_t$ =1 and $treated_i$ = 0)**.
-
-$\beta_0+\beta_2$ is the **average $y_{i,t}$** for the **treated units before the treatment ($time_t$ =0 and $treated_i$ = 1)**.
-
-$\beta_0+\beta_1+\beta_2+\beta_3$ is the **average $y_{i,t}$** for the **treated units after the treatment ($time_t$ =1 and $treated_i$ = 1)**.
-
-
-
-
-## Estimation   {.smaller background="#c6f7ec"}
-
-+------------------+-----------------------------------+---------------------+---------------------+
-|                  |   Post-treat. (1)                 |  Pre-treat. (2)     |  **Diff. (1-2)**    |
-+------------------+-----------------------------------+---------------------+---------------------+
-|   Treated (a)    | $\beta_0+\beta_1+\beta_2+\beta_3$ | $\beta_0+\beta_2$   |**$\beta_1+\beta_3$**|
-+------------------+-----------------------------------+---------------------+---------------------+
-|  Control (b)     | $\beta_0+\beta_1$                 |  $\beta_0$          | **$\beta_1$**       |
-+------------------+-----------------------------------+---------------------+---------------------+
-| **Diff. (a-b)**  | **$\beta_2+\beta_3$**             |  **$\beta_2$**      | **$\beta_3$**       |
-+------------------+-----------------------------------+---------------------+---------------------+
-
-
-**This is why we call difference-in-differences.**
-
-**$\beta_3$** gives us an estimate of the treatment effect on the treated units (ATE).
-
-This is very popular because you can run as a regression.
-
-. . . 
-
-Many papers simply show this table as final result.
-
-However, it is also possible that you include additional covariates (i.e., controls) in a DiD design. 
-
-You can also modify this to test the timing of the treatment (discussed later).
-
-
-
-
-
-
-
-
-
-
-# Controls in DiD  {.smaller background="#d5f5ee"}
-
-## Controls in DiD  {.smaller background="#d5f5ee"}
-
-If you add controls, you have something in the form:
-
-$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + \beta_4x_{1,i,t}+ \beta_5x_{2,i,t}+ ...+ \epsilon_{i,t}$$
-
-. . . 
+## 13) Collider Bias (endog. selection bias) {.smaller background="#b0aeae"}
 
 ::: {.callout-important}
-Bad Controls problem: Never add a control that is also affected by the treatment. 
-:::
+**Analyzing only successful people will suggest a negative correlation between luck and IQ.**
 
-. . . 
-
-::: {.callout-tip}
-Using pre-treatment values is good practice. 
-:::
-
-If you are including a *good control*, you should get lower standard deviations of the estimated effects.
-
-
-
-
-
-## Controls in DiD  {.smaller background="#d5f5ee"}
-
-One way of adding more controls is by adding FEs.
-
-$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + FirmFE+ YearFE + \epsilon_{i,t}$$
-
-They help control for unobserved heterogeneity at the firm-level and in each year.
-
-. . . 
-
-**But what do $\beta_1$ and  $\beta_2$ mean now?**
-
-. . .
- 
-**Answer:** They are perfectly correlated with the $FirmFE$ and $YearFE$, respectively.
-
-Reason: because they don't vary across each firm and year, respectively. 
-
-The software will most likely drop one $FirmFE$ and one $YearFE$, thus $\beta_1$ and  $\beta_2$ mean nothing.
-
-. . .
-
-I am guilty of this mistake because a referee asked and I couldn't reply properly.
-
-
-
-
-
-
-
-
-## Controls in DiD  {.smaller background="#d5f5ee"}
-
-You will be better off if you estimate:
-
-$$y_{i,t} = \beta_0 + \beta_3 treated_i \times time_t + FirmFE+ YearFE + \epsilon_{i,t}$$
-
-This is called a **generalized DiD**.
-
-The $FirmFE$ allow that each firm has one intercept (i.e., one average $y_{i,t}$).
-
-The $YearFE$ accommodate a potential shock in $y_{i,t}$ in each year.
-
-
-
-
-
-
-
-
-
-## Controls in DiD  {.smaller background="#d5f5ee"}
-
-Additionally, adding *good* controls can be helpful to maintain the shock **exogenous (i.e., random) after controlling by X.**
-
-. . . 
-
-Imagine that a financial shock is more likely to affect high leveraged firms than low-leverage ones.
-
-1) the shock will not change the leverage decision of each firm.
-
-2) we believe that high leveraged firms will have a different $y_{i,t}$ after the treatment.
-
-You may add leverage as a control to make sure the shock is random given the firms' levels of leverage.
-
-. . .
-
-If you may believe that the leverage will change after the treatment, you can use pre-treatment values (interacted with the time dummies).
-
-In this case, you are controlling for the pre-treatment condition but are not including the bias that might come due to changes in leverage after the treatment.
-
-
-
-
-
-
-
-## Controls in DiD  {.smaller background="#d5f5ee"}
-
-*If assignment is random, then including additional covariates should have a negligible effect on the estimated treatment effect.*
-
-*Thus, a large discrepancy between the treatment effect estimates with and without additional controls raises a red flag.* 
-
-*If assignment to treatment and control groups is not random but dictated by an observable rule, then controlling for this rule via covariates in the regression satisfies the conditional mean zero assumption required for unbiased estimates.* 
-
-*Regardless of the motivation, it is crucial to remember that any covariates included as controls must be unaffected by the treatment, a condition that eliminates other outcome variables and restricts most covariates to pre-treatment values.*
-
-([Roberts and Whited, 2014](https://doi.org/10.1016/B978-0-44-453594-8.00007-0))
- 
- 
-
-
-
-
-
-# Comment about DiD {.smaller background="#aecfc7"}
-
-## Comment about DiD  {.smaller background="#aecfc7"}
-
-([The effect](https://theeffectbook.net/ch-DifferenceinDifference.html))
-
-
-*Parallel trends means we have to think very carefully about how our dependent variable is measured and transformed.*
-
-*Because parallel trends is an assumption about the size of a gap remaining constant, which means something different depending on how you measure that gap.*
-
-*For example, if parallel trends holds for dependent variable $Y$, then it doesn’t hold for $ln(y)$, and vice versa*
-
-. . .
-
-*For example, say that in the pre-treatment period $y$ is 10 for the control group and 20 for the treated group. In the post-treatment period, in the counterfactual world where treatment never happened,$y$ would be 15 for the control group and 25 for the treated group. Gap of $20-10=10$  before, and $25-15=10$ after. Parallel trends holds!*
-
-. . . 
-
-*However: $Ln(20)-ln(10)=.693$  before, and $ln(25)-ln(15)=.51$ after. *
-
-
-
-
-
-
-
-
-
-
-# Example of DiD  {.smaller background="#98b8b0"}
-
-## Example of DiD  {.smaller background="#98b8b0"}
+- "Success" is a collider in this example. It "collides" with luck and IQ.
+::: 
 
 ::: panel-tabset
-### R
 
+### R
 ```{r}
 #| warning: false
 #| message: false
@@ -1742,555 +558,25 @@ In this case, you are controlling for the pre-treatment condition but are not in
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
-# Load the necessary library
-library(foreign)
-data <- read.dta("files/kielmc.dta")
-data$y81_nearinc <- data$y81 * data$nearinc
-model1 <- lm(rprice ~ y81 + nearinc + y81_nearinc, data = data)
-model2 <- lm(rprice ~ y81 + nearinc + y81_nearinc + age + agesq, data = data)
-model3 <- lm(rprice ~ y81 + nearinc + y81_nearinc + age + agesq + intst + land + area + rooms + baths, data = data)
-summary(model3)
-```
-
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use "files/kielmc.dta", clear
-gen y81_nearinc = y81 * nearinc
-eststo:qui reg rprice y81 nearinc y81_nearinc 
-eststo:qui reg rprice y81 nearinc y81_nearinc age agesq 
-eststo:qui reg rprice y81 nearinc y81_nearinc age agesq intst land area rooms baths
-esttab , compress
-```  
-
-
-
-:::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Regression Discontinuity Design (RDD) {.smaller background="#e3e2b8"}
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-**The regression-discontinuity (RD) research design is a quasi experimental method.**
-
-Here the *treatment* is not a binary as before. 
-
-**Treated units are assigned based on a cutoff score of a continuous variable.**
-
-. . .
-
-In a RDD the treatment assignment is not random...
-
-... but it is based in the value of an observed covariate, in which the units lie on either side of the threshold.
-
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
-
-- Age for drinking is 18 in Brazil. 
-
-Why prohibiting younger than 18?
-
-The theory behind this effort is that legal drinking at age 18 discourages binge drinking and promotes a culture of mature alcohol consumption. 
-
-The cutoff splits who can drink and who can't.
-
-
-
-
-
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-The name RDD comes from a *jump*, a discontinuity that occurs in a continuous variable.
-
-In its simplest form, the design has a:
-
-- The assignment variable (e.g., age), 
-
-- Two groups (above and below the cutoff),
-
-- The outcome variable.
-
-- You may include nonlinearities and control variables. 
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-RDD is:
-
-$$D_i = 1(x_i>c) \;$$
-
-where:
-
-- $$\;D = 1 \; if \;X \;_i>c $$ 
-
-- $$\;D = 0 \; if \;X \;_i<c $$
-
-
-$X$ is called the forcing variable because it "forces" units into treatment or control groups.
-
-$X$ may be correlated with $Y_1$ or $Y_0$, so simply comparing treated and control units would not provide causal effects
-
-However, if the units are randomly assigned into treatment around the cutoff, we would have causal effects.
-
-
-
-
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-The main assumption that allows using RDD as a causal method is that
-
-**Next to the cut, the participants are similar. The only difference is that one individual is in each of the "sides".** [Source](http://dx.doi.org/10.1016/B978-0-08-097086-8.44049-3)
-
-![](figs/rdd0.png){width=60%  height=60%}
-
-
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-- The cutoff value **occurs at 50**
-
-- What are the differences between someone that scores 49.99 and 50.01 in the X variable?
-
-- The intuition is that these individuals are similar and comparable.
-
-In the absence of **treatment**, the assumption is that the solid line would "continue" with the same inclination and values. 
-
-There is a discontinuity, however. This implies that the pretreatment  in the absence of the treatment should be the dashed line.
-
-The discontinuity is the causal effect of X (at the cutoff) to Y.
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-*Unlike the matching and regression strategies based on treatment-control comparisons conditional on covariates, the validity of RDD is based on our willingness to extrapolate across values of the running variable, at least for values in the neighborhood of the cutoff at which treatment switches on.* [MM](https://www.masteringmetrics.com/)
-
-
-
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-**Again the drinking example:**
-
-
-**In the US it is 21 years (age & alcohol).** **[Example Mastering Metrics](https://www.masteringmetrics.com/):**
-
-*Notice the x-axis.*
-
-![](figs/rdd1.png)
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-**In the US it is 21 years.** **[Example Mastering Metrics](https://www.masteringmetrics.com/):**
-
-*Notice the x-axis.*
-
-![](figs/rdd2.png)
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-Examples [Almeida et al 2016](https://doi.org/10.1016/j.jfineco.2015.08.008)
-
-
-![](figs/almeida.png)
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-Examples [Flammer 2015](https://doi.org/10.1287/mnsc.2014.2038)
-
-
-![](figs/flammer.png)
-
-
-
-
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-This is (legally, it should be) an example of a **Sharp RDD**
-
-A **Sharp RDD** occurs when the cutoff is mandatory. There are no exceptions. In this case, there are no 17 years old drinking and driving. 
-
-The treatment is
-
-$$D_a= 1, \;if \;a \;>=\; 18, \;0 \;if \;a\; <\; 18$$ 
-
-
-. . . 
-
-The alternative is a **fuzzy RDD**, which occurs when there is some misassignment.
-
-- People from under the cut also receiving the treatment.
-- Ex. students that receive 5,96 usually are *approved* in a course (this is a misassignment).
-- To estimate a Fuzzy RDD, you can use the treatment as an instrumental variable (Angrist & Pischke, 2009).  
-
-
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-**fuzzy RDD** ([The effect](https://theeffectbook.net/ch-DifferenceinDifference.html) )
-
-
-![](figs/fuzzy.png)
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-**fuzzy RDD** 
-
-*Compliers*: Takes treatment if above threshold but not if below threshold.
-
-*Always-Takers*: Always takes the treatment, ignores the cut.
-
-*Never-Takers*: Never takes the treatment, ignores the cut.
-
-*Defiers*: Takes treatment if below the threshold, does not take the treatment if above the threshold.
-
-
-
-
-## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
-
-Things that are "good" to a RDD.
-
-- Age 
-- Dates (you need 6 years to start school, 5,99 years is not allowed)
-  - Great example: Most of NHL players are those with anniversaries just after the enrollment date
-- Ranking systems
-- Location (when people cannot "move" easily)
-
-
-
-
-
-
-# Estimation {.smaller background="#d4d3bc"}
-
-
-## Estimation   {.smaller background="#d4d3bc"}
-
-A **Sharp RDD** can take the form of:
-
-$$Y_i = \alpha + \beta_1 D_a + \beta_2 \tilde{x}_1 + \epsilon$$
-
-Where $D_a$ is the treatment based on the cutoff.
-
-$x$ is the running variable (the difference between the actual $X$ and the cutoff in $X_0$).
-
-- For instance, months until the 18 years birthday.
-
-- We can also use the notation: $\tilde{X}=x-x_0$ regarding the difference. 
-
-
-
-
-
-
-
-## Estimation   {.smaller background="#d4d3bc"}
-
-You also should trim the sample to a reasonable window around the cutoff $c$ 
-
-- Something like: $c-h<X_i<c+h$, where $h$ is a positive value that determines the window
-
-- There is no theoretical solution to how big should $h$ be. It invites robustness tests.
-
-
-
-## Estimation   {.smaller background="#d4d3bc"}
-
-**Final Step:**
-
-Decide on the model of E[Y|X]:
-
-- linear in both "sides" with same slope
-
-- linear with different slopes
-
-- non-linear
-
-
-
-**Tip**: always execute a visual inspection to check which model os appropriate.
-
-Also, always estimate different models and discuss the results.
-
-
-
-
-
-
-## Estimation   {.smaller background="#d4d3bc"}
-
-**fuzzy RDD** 
-
-
-$$Y_i = \alpha + \beta_1 D_a + \beta_2 \tilde{x}_1 + \beta_3(Z \times \tilde{x}_1) \epsilon$$
-
-Where Z is 1 if unit is above the cut or 0 if unit is below the cut.
-
-Notice that D is not equal to Z, in these cases.
-
-
-
-
-
-
-
-
-
-# RDD Nonlinearities  {.smaller background="#f2f1d5"}
-
-## RDD Nonlinearities   {.smaller background="#f2f1d5"}
-
-
-**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
-
-This is a linear relationship, with the same slopes.
-
-![](figs/rdd3.png)
-
-$$E[Y|X,D] = \alpha + \beta_1 \times D + \beta_2 \times \tilde{X}$$
-
-
-
-## RDD Nonlinearities   {.smaller background="#f2f1d5"}
-
-
-[The effect](https://theeffectbook.net/ch-DifferenceinDifference.html) This is a linear relationship, with different  slopes.
-
-![](figs/rdd_diff_slope.png)
-
-
-
-
-
-
-
-
-
-
-## RDD Nonlinearities   {.smaller background="#f2f1d5"}
-
-**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
-
-This is a nonlinear relationship.
-
-![](figs/rdd4.png)
-
-
-
-
-
-
-
-
-
-
-## RDD Nonlinearities   {.smaller background="#f2f1d5"}
-
-**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
-
- Is the relationship linear or nonlinear here? If you misjudge the relationship, it will be hard to tell a story credibly.
-
-![](figs/rdd5.png)
-
-
-
-
-
-
-
-
-
-## RDD Nonlinearities   {.smaller background="#f2f1d5"}
-
-**The takeaway:** **RDD is a graphical method. You need to show the graphs**.
-
-**Nobody will believe your story without the correct specification of the model**.
-
-. . .
-
-In the first case:
-
-
-$$Y_i = \alpha + \beta_1 D_a + \beta_2 x_1 + \epsilon$$
-
-In the second case:
-
-$$Y_i = \alpha + \beta_1 D_a + \beta_2 x_1 + \beta_3 x_1^2 + \epsilon$$
-
-
-
-
-
-
-
-## RDD Nonlinearities   {.smaller background="#f2f1d5"}
-
-We can also add an interaction term (notice that I am changing the notation now to make it similar to MM)
-
-$$Y_i = \alpha + \beta_1 D_a + \beta_2 (x - x_0) + \beta_3 (x - x_0) D_a + \epsilon$$
-
-This allows for different inclinations before and after the cut.
-
-
-
-## RDD Nonlinearities   {.smaller background="#f2f1d5"}
-
-Or even different nonlinearities before and after the cut:
-
-
-$$Y_i = \alpha + \beta_1 D_a + \beta_2 (x - x_0) + \beta_3 (x - x_0)^2 + \beta_4 (x - x_0) D_a  + \beta_5 (x - x_0)^2 D_a + \epsilon$$
-
-
-![](figs/rdd6.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Example RDD  {.smaller background="#edecc0"}
-
-## Example RDD **Clearly, this is not linear.** {.smaller background="#edecc0"}
-
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-library(readxl)
+library(data.table)
 library(ggplot2)
-data  <- read_excel("files/RDD.xlsx")
-ggplot(data, aes(x, y))  + 
-  geom_point(size=1.2) + 
-  labs(y = "", x="", title = "Evolution of Y") +
-  theme(plot.title = element_text(color="black", size=20, face="bold"),
-        panel.background = element_rect(fill = "grey95", colour = "grey95"),
-        axis.text.y = element_text(face="bold", color="black", size = 12),
-        axis.text.x = element_text(face="bold", color="black", size = 12),
-        legend.title = element_blank(),
-        legend.key.size = unit(1, "cm")) +
-    geom_smooth(method = "lm", fill = NA)
+set.seed(100)
+luck <- rnorm(1000, 100, 15)
+iq   <- rnorm(1000, 100, 15)
+pop <- data.frame(luck, iq)
+
+pop$comb <- pop$luck + pop$iq 
+successfull <- pop[pop$comb > 240, ] 
+
+ggplot() + 
+  geom_point(data = pop, aes(x = iq, y = luck)) +  
+  geom_point(data = successfull, aes(x = iq, y = luck), color = "red") +  
+  labs(title = "The general population & successful subpopulation") + 
+  theme_minimal()
+
 ```
+
+
 
 ### Python
 
@@ -2305,358 +591,32 @@ ggplot(data, aes(x, y))  +
 #| code-line-numbers: true
 #| eval: true
 #| code-summary: "Python"
+
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-# Read Excel file
-data = pd.read_excel("files/RDD.xlsx")
-# Generate line graph - Including all observations together
-sns.set(style="whitegrid")
-plt.figure(figsize=(10, 5))
-scatter_plot = sns.scatterplot(x='x', y='y', data=data, s=50)
-scatter_plot.set_title("Evolution of Y", fontsize=20, fontweight='bold')
-scatter_plot.set_xlabel("", fontsize=12, fontweight='bold')
-scatter_plot.set_ylabel("", fontsize=12, fontweight='bold')
-# Add regression line
-sns.regplot(x='x', y='y', data=data, scatter=False, line_kws={'color': 'blue'})
+
+np.random.seed(100)
+
+luck = np.random.normal(100, 15, 1000)
+iq = np.random.normal(100, 15, 1000)
+pop = pd.DataFrame({'luck': luck, 'iq': iq})
+
+pop['comb'] = pop['luck'] + pop['iq']
+
+successful = pop[pop['comb'] > 240]
+
+sns.set(style="whitegrid")  # Minimalistic theme similar to theme_minimal in ggplot2
+plt.figure(figsize=(8, 6))
+plt.scatter(pop['iq'], pop['luck'], label="General Population", alpha=0.5)
+plt.scatter(successful['iq'], successful['luck'], color='red', label="Successful Subpopulation", alpha=0.7)
+plt.title("The general population & successful subpopulation")
+plt.xlabel("IQ")
+plt.ylabel("Luck")
+plt.legend()
 plt.show()
-```
 
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: false
-#| output: false
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-import excel "files/RDD.xlsx", firstrow
-twoway (scatter y x) (lfit y x)
-quietly graph export figs/graph1.svg, replace
-```  
-
-![](figs/graph1.svg)
-
-:::
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Example RDD  {.smaller background="#edecc0"}
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-library(readxl)
-library(ggplot2)
-data  <- read_excel("files/RDD.xlsx")
-# Creating  groups
-data$treated <- 0
-data$treated[data$x >= 101] <- 1  
-# Generate a line graph - two groups
-ggplot(data, aes(x, y, group=treated, color = factor(treated)))  + 
-    geom_point( size=1.25) + 
-    labs(y = "", x="", title = "RDD exemplo")+
-    theme(plot.title = element_text(color="black", size=25, face="bold"),
-          panel.background = element_rect(fill = "grey95", colour = "grey95"),
-          axis.text.y = element_text(face="bold", color="black", size = 16),
-          axis.text.x = element_text(face="bold", color="black", size = 16),
-          legend.title = element_blank(),
-          legend.key.size = unit(2, "cm")) +
-    geom_smooth(method = "lm", fill = NA)
-```
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Python"
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-# Read Excel file
-data = pd.read_excel("files/RDD.xlsx")
-# Create treated variable
-data['treated'] = 0
-data.loc[data['x'] >= 101, 'treated'] = 1
-# Generate line graph with two groups
-sns.set(style="whitegrid")
-plt.figure(figsize=(10, 5))
-scatter_plot = sns.scatterplot(x='x', y='y', hue='treated', style='treated', data=data, s=50)
-scatter_plot.set_title("RDD exemplo", fontsize=25, fontweight='bold')
-scatter_plot.set_xlabel("", fontsize=16, fontweight='bold')
-scatter_plot.set_ylabel("", fontsize=16, fontweight='bold')
-scatter_plot.legend().set_title('')
-scatter_plot.legend(title='', loc='upper left', fontsize='small')
-# Add regression lines
-sns.regplot(x='x', y='y', data=data[data['treated'] == 0], scatter=False, line_kws={'color': 'blue'})
-sns.regplot(x='x', y='y', data=data[data['treated'] == 1], scatter=False, line_kws={'color': 'orange'})
-plt.show()
-```
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: false
-#| output: false
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-import excel "files/RDD.xlsx", firstrow
-gen treated = 0
-replace treated = 1 if x >= 101
-twoway (scatter y x) (lfit y x if treated == 0) (lfit y x if treated == 1)
-quietly graph export figs/graph2.svg, replace
-```  
-
-![](figs/graph2.svg) 
-
-:::
-
-
-
-
-
-
-
-
-
-## Example RDD  {.smaller background="#edecc0"}
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-library(readxl)
-library(ggplot2)
-data  <- read_excel("files/RDD.xlsx")
-# Creating  groups
-data$treated <- 0
-data$treated[data$x >= 101] <- 1  
-# define cut
-cut <- 100
-band <- 50
-xlow = cut - band
-xhigh = cut + band
-# subset the data for the bandwidth
-data <- subset(data, x > xlow & x <= xhigh, select=c(x, y,  treated))
-# Generate a line graph - two groups
-ggplot(data, aes(x, y, group=treated, color = factor(treated)))  + 
-  geom_point( size=1.25) + 
-  labs(y = "", x="", title = "RDD example")+
-  theme(plot.title = element_text(color="black", size=25, face="bold"),
-        panel.background = element_rect(fill = "grey95", colour = "grey95"),
-        axis.text.y = element_text(face="bold", color="black", size = 16),
-        axis.text.x = element_text(face="bold", color="black", size = 16),
-        legend.title = element_blank(),
-        legend.key.size = unit(2, "cm")) +
-  geom_smooth(method = "lm", fill = NA)
-```
-
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Python"
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-# Read Excel file
-data = pd.read_excel("files/RDD.xlsx")
-# Create treated variable
-data['treated'] = 0
-data.loc[data['x'] >= 101, 'treated'] = 1
-# Define cut, band, and subset data
-cut = 100
-band = 50
-xlow = cut - band
-xhigh = cut + band
-data = data[(data['x'] > xlow) & (data['x'] <= xhigh)][['x', 'y', 'treated']]
-# Generate line graph with two groups
-sns.set(style="whitegrid")
-plt.figure(figsize=(10, 5))
-scatter_plot = sns.scatterplot(x='x', y='y', hue='treated', style='treated', data=data, s=50)
-scatter_plot.set_title("RDD example", fontsize=25, fontweight='bold')
-scatter_plot.set_xlabel("", fontsize=16, fontweight='bold')
-scatter_plot.set_ylabel("", fontsize=16, fontweight='bold')
-scatter_plot.legend().set_title('')
-scatter_plot.legend(title='', loc='upper left', fontsize='small')
-# Add regression lines
-sns.regplot(x='x', y='y', data=data[data['treated'] == 0], scatter=False, line_kws={'color': 'blue'})
-sns.regplot(x='x', y='y', data=data[data['treated'] == 1], scatter=False, line_kws={'color': 'orange'})
-plt.show()
-```
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: false
-#| output: false
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-import excel "files/RDD.xlsx", firstrow
-gen treated = 0
-replace treated = 1 if x >= 101
-gen cut = 100
-gen band = 50
-gen xlow = cut - band
-gen xhigh = cut + band
-keep if x > xlow & x <= xhigh
-twoway (scatter y x) (lfit y x if treated == 0) (lfit y x if treated == 1)
-quietly graph export figs/graph3.svg, replace
-```  
-
-![](figs/graph3.svg)
-
-:::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Example RDD  {.smaller background="#edecc0"}
-
-::: panel-tabset
-### R
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-library(readxl)
-library(ggplot2)
-data  <- read_excel("files/RDD.xlsx")
-data$treated <- 0
-data$treated[data$x >= 101] <- 1  
-cut <- 100
-band <- 50
-xlow = cut - band
-xhigh = cut + band
-data <- subset(data, x > xlow & x <= xhigh, select=c(x, y,  treated))
-# Generating xhat - Now we are going to the RDD
-data$xhat <- data$x - cut
-# Generating xhat * treated to allow different inclinations (we will use the findings of the last graph, i.e. that each group has a different trend.)
-data$xhat_treated <- data$xhat * data$treated
-# RDD Assuming different trends
-rdd <- lm(y  ~ xhat + treated  + xhat_treated, data = data)
-summary(rdd)
-```
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Python"
-import pandas as pd
-import statsmodels.api as sm
-data = pd.read_excel("files/RDD.xlsx")
-# Generate treated variable
-data['treated'] = 0
-data.loc[data['x'] >= 101, 'treated'] = 1
-# Define cut and band
-cut = 100
-band = 50
-xlow = cut - band
-xhigh = cut + band
-# Subset data
-data = data[(data['x'] > xlow) & (data['x'] <= xhigh)]
-# Generate xhat and xhat_treated
-data['xhat'] = data['x'] - cut
-data['xhat_treated'] = data['xhat'] * data['treated']
-# Regression
-X = data[['xhat', 'treated', 'xhat_treated']]
-X = sm.add_constant(X)  # Add a constant term
-y = data['y']
-model = sm.OLS(y, X).fit()
-print(model.summary())
 ```
 
 ### Stata
@@ -2672,31 +632,28 @@ print(model.summary())
 #| code-line-numbers: true
 #| eval: true
 #| code-summary: "Stata"
-import excel "files/RDD.xlsx", firstrow clear
-gen treated = 0
-replace treated = 1 if x >= 101
-gen cut = 100
-gen band = 50
-gen xlow = cut - band
-gen xhigh = cut + band
-keep if x > xlow & x <= xhigh
-gen xhat = x - cut
-gen xhat_treated = xhat * treated
-regress y xhat treated xhat_treated
-```  
+
+set seed 100
+set obs 1000
+gen luck = rnormal(100, 15)
+gen iq = rnormal(100, 15)
+gen comb = luck + iq
+gen successful = comb > 240
+twoway (scatter luck iq if successful == 0)  (scatter luck iq if successful == 1, mcolor(red)) , title("The general population & successful subpopulation") 
+
+quietly graph export figs/collider2.svg, replace
+```       
+
+![](figs/collider2.svg)
 
 :::
 
 
 
 
-## Example RDD  {.smaller background="#edecc0"}
 
-The coefficient of x before the cut is 0.29 (t-stat 5.45), and after the cut, it is -0.51 (t-stat -6.75). 
 
-We also have the coefficient of the treatment, which is measured by the "jump" that occurs near the cut: **an estimated coefficient of 28.9 (t-stat 13.11). **
 
-If this were a real example, this would be the causal effect of receiving the treatment (i.e., being beyond the cut).
 
 
 
@@ -2707,892 +664,150 @@ If this were a real example, this would be the causal effect of receiving the tr
 
 
 
-# Final comments RDD {.smaller background="#f0eeb4"}
 
-## Final comments RDD {.smaller background="#f0eeb4"}
 
+## Conclusão  {.smaller background="#b0aeae"}
 
-**Sensitivity to specification**
+**Pesquisa quantitativa tem a parte _quanti (métodos, modelos, etc.)_...**
 
-Misspecification can lead to a "spurious jump". **Do not mix nonlinearity with a discontinuity**.
+**... Mas talvez a parte mais importante seja o desenho da pesquisa (design empírico)!**
 
-. . . 
 
-**Sensitivity to window**
 
-Also, need to check many alternative $h$. 
 
-. . . 
 
-**Smoothness of the running around the cut**
 
-The distribution of X should be smooth around the cut. If it is not, it might indicate that the treatment assignment was not random. 
 
-. . . 
 
-**Test comparability of units around the cut**
 
-Covariates balance. You can check whether there are jumps in control variables as an additional robustness.
 
-. . . 
 
-**Placebo tests**
 
-Test whether the treatment is zero when it should be zero.
 
 
 
 
 
 
+## Preocupações recentes em pesquisa   {.smaller background="#b0aeae"}
 
+**P-Hacking**
 
+![](figs/slides4-phacking.png) 
 
+Artigo original [aqui](https://doi.org/10.1111/jofi.12530).
 
-# Synthetic Control {.smaller background="#f2c7c4"}
 
-## Synthetic Control {.smaller background="#f2c7c4"}
 
-It is a method to estimate the effect of events or policy interventions, often at an **aggregate level** (cities, states, etc.)
 
-The event occurs often in **only one unit**.
 
-It compares the evolution of the  outcome for the treated unit to the evolution of the control group.
 
-- The control group contains many units. 
 
-. . . 
 
-The limitation is often the selection of the control group. It is very **ambiguous**.
 
 
+## Preocupações recentes em pesquisa  {.smaller background="#b0aeae"}
 
+**Publication bias**
 
+![](figs/slides4-Harvey-2017.png) 
 
 
-## Synthetic Control {.smaller background="#f2c7c4"}
+Artigo original [aqui](https://doi.org/10.1111/jofi.12530).
 
-[Abadie, Diamond, and Hainmueller (2010)](https://doi.org/10.1198/jasa.2009.ap08746) apply synth  by using a cigarette tax in California called Proposition 99.
 
-*In 1988, California passed comprehensive tobacco control legislation called Proposition 99.*
 
-*Proposition 99 increased cigarette taxes by $0.25 a pack, spurred clean-air ordinances throughout the state, funded anti-smoking media campaigns, earmarked tax revenues to health and anti-smoking budgets, and produced more than $100 million a year in anti-tobacco projects.*
 
-*Other states had similar control programs, and they were dropped from their analysis.* [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#cuba-miami-and-the-mariel-boatlift)
 
 
 
+ 
 
+## Preocupações recentes em pesquisa   {.smaller background="#b0aeae"}
 
+**Crise de replicação**
 
-## Synthetic Control {.smaller background="#f2c7c4"}
 
-There was a trend before the treatment. **How can we estimate the causal effect?**
+![](figs/slides4-aguinis.png) 
 
-![](figs/synth1.png)
 
+Artigo original [aqui](https://link.springer.com/article/10.1057/s41267-017-0081-0).
 
 
 
 
 
+## Some fun stuff  {.smaller background="#b0aeae"}
 
-## Synthetic Control {.smaller background="#f2c7c4"}
+![](figs/selection bias.png) 
 
-The goal is to  elect an optimal set of weights that when applied to the rest of the country produces the following figure: 
 
-![](figs/synth3.png)
+## Some fun stuff  {.smaller background="#b0aeae"}
 
+![](figs/fig1.jpg) 
 
-## Synthetic Control {.smaller background="#f2c7c4"}
 
-The variables used for computing the weights are the following. You are creating weights such that weighting the other states, you can create a synthetic California. **Notice that, so far, the product of this analysis is only two data points per period.** 
 
 
-![](figs/synth2.png)
 
+## Some fun stuff  {.smaller background="#b0aeae"}
 
 
-## Synthetic Control {.smaller background="#f2c7c4"}
+![](figs/hypothesis2.png) 
 
-**Tip**: Synth is also an graphical method, so graphs like the following are common. This is the difference between the two series.
 
-![](figs/synth4.png)
 
 
 
 
-# Inference {.smaller background="#d49692"}
+## Some fun stuff {.smaller background="#b0aeae"}
 
-## Inference {.smaller background="#d49692"}
 
+![](figs/confounding variables.png) 
 
-**Notice that, so far, the product of this analysis is only two data points per period.** How can you stablish a "significant" causal effect?
 
 
-**Steps**
 
-1) Apply synth to each state in the control group (also called "donor pool"). 
 
-2) Obtain a distribution of placebos.
 
-3) Compare the gap for California to the distribution of the placebo gaps.
 
-4) Then, test whether the effect for the treated unit is large enough relative to the placebos (i.e., to the effect estimated for a placebo unit randomly selected).
 
 
+## Some fun stuff {.smaller background="#b0aeae"}
 
+![](figs/proxy variable.png) 
 
 
 
 
-## Inference {.smaller background="#d49692"}
 
-Notice the bold line (treated unit) after the treatment. It is at the bottom. 
 
-![](figs/synth5.png)
 
-## Inference {.smaller background="#d49692"}
 
-*Abadie, Diamond, and Hainmueller (2010) recommend iteratively dropping the states whose pre-treatment RMSPE is considerably different than California’s because as you can see, they’re kind of blowing up the scale and making it hard to see what’s going on.* [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#cuba-miami-and-the-mariel-boatlift)
 
-![](figs/synth6.png)
 
 
 
 
-
-
-## Inference {.smaller background="#d49692"}
-
-The previous figure suggests the effect is large enough relative to the placebo effects.
-
-. . . 
-
-
-1) The root mean squared prediction error (RMSPE) is:
-
-$$RMSPE = \bigg (\dfrac{1}{T-T_0} \sum_{t=T_0+t}^T \bigg (Y_{1t} - \sum_{j=2}^{J+1} w_j^* Y_{jt} \bigg )^2 \bigg )^{\tfrac{1}{2}}$$
-
-*It shows how far predictions fall from measured true values using Euclidean distance.*
-
-
-
-2) Sort the ratio post- to pre-treatment RMSPE in descending order
-
-3) Calculate the p-value as $\frac{Rank}{Total}$.
-
-
-. . . 
-
-Basically, these steps give how likely is the occurrence of the treated unit distance vis-a-vis the average placebo.
-
-
-
-
-
-
-
-
-
-
-
-## Inference {.smaller background="#d49692"}
-
-**RMSPE**: in the previous example, California has the largest increase in the error after the treatment. Position 1 out of 39 states, implying an exact p-value of $\frac{1}{38}=0.026$ (significant). 
-
-
-
-![](figs/synth7.png)
-
-
-
-
-
-
-
-
-
-
-
-
-# Example Synth  {.smaller background="#f5a7a2"}
-
-## Example Synth  {.smaller background="#f5a7a2"}
-
-::: panel-tabset
-
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/synth_smoking.dta , clear
-tsset state year
-synth cigsale beer(1984(1)1988) lnincome retprice age15to24 cigsale(1988) cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) 
-```  
-
-:::
-
-
-## Example Synth  {.smaller background="#f5a7a2"}
-
-::: panel-tabset
-
-
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: false
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: false
-#| code-summary: "Stata"
-use files/synth_smoking.dta , clear
-synth cigsale beer lnincome(1980&1985) retprice cigsale(1988) cigsale(1980) cigsale(1975), trunit(3) trperiod(1989) fig
-quietly graph export figs/synth1.svg, replace
-```  
-
-![](figs/synth1.svg)
-
-:::
-
-
-
-
-
-
-
-
-
-## Example Synth  {.smaller background="#f5a7a2"}
-
-
-*Authors using synthetic control must do more than merely run the synth command when doing comparative case studies.* 
-
-*They must find the exact-values through placebo-based inference, check for the quality of the pre-treatment fit, investigate the balance of the covariates used for matching, and check for the validity of the model through placebo estimation (e.g., rolling back the treatment date).*
-
-
-
-
-
-
-
-
-
-
-
-
-
-# [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#prison-construction-and-black-male-incarceration)  {.smaller background="#de938e"}
-
-
-## [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#prison-construction-and-black-male-incarceration)  {.smaller background="#de938e"}
-
-In 1992, Texas expanded the prision system operational capacity.
-
-![](figs/synth8.png)
-
-
-
-
-
-
-
-## [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#prison-construction-and-black-male-incarceration)  {.smaller background="#de938e"}
-
-This is what happened.
-
-![](figs/synth9.png)
-
-
-
-
-
-
-## [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#prison-construction-and-black-male-incarceration)  {.smaller background="#de938e"}
-
-Synthetic Texas.
-
-![](figs/synth10.png)
-
-
-
-
-## [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#prison-construction-and-black-male-incarceration)  {.smaller background="#de938e"}
-
-Gap between Synthetic Texas and Texas.
-
-![](figs/synth11.png)
-
-
-
-
-## [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#prison-construction-and-black-male-incarceration)  {.smaller background="#de938e"}
-
-Building Placebos.
-
-![](figs/synth13.png)
-
-
-
-
-## [Mastering Metrics](https://mixtape.scunning.com/10-synthetic_control#prison-construction-and-black-male-incarceration)  {.smaller background="#de938e"}
-
-Texas is the one in the far right tail. 
-
-![](figs/synth12.png)
-
-
-
-
-
-
-
-# Introduction IV {.smaller background="#bcd3f7"}
-
-## Introduction IV {.smaller background="#bcd3f7"}
-
-Imagine the following model
-
-$$Ln(wage)=\alpha + \beta_1 educ + \epsilon$$
-
-We can infer that *educ* is correlated with *ability*, but the latter is in the error term. 
-
-*educ* in this case is "endogenous".
-
-$$Cov(educ, \epsilon) \neq 0$$
-
-
-
-## Introduction IV {.smaller background="#bcd3f7"}
-
-**The setup of an IV is**
-
-Suppose that we have an observable variable z that satisfies these two assumptions: 
-
-(1) z is uncorrelated with u:
-
-$$Cov(z, \epsilon) = 0$$
-
-
-(2) z is correlated with x:
-
-$$Cov(z, x) \neq 0$$
-
-
-
-Then, we call z an instrumental variable for x, or sometimes simply an instrument for x.
-
-
-
-
-
-## Introduction IV {.smaller background="#bcd3f7"}
-
-Before we continue,
-
-IV is not a model, it is an **estimation method** 
-
-I'll call it a **Design**.
-
-
-Do not say, I estimated an IV model (more often than it should be).
-
-
-
-
-
-
-
-
-
-
-# Instrumental Variables {.smaller background="#8eadde"}
-
-## Instrumental Variables {.smaller background="#8eadde"}
-
-Imagine that you have one independent variable that is "endogenous":
-
-- $Cov(x_k,\mu)\neq 0$
-
-- You may have many other independent variables not "endogenous"
-
-. . .
-
-In this situation:
-
-- $B_k$ is biased
-
-- The other betas will likely be biased as well, since it is unlikely that all other Xs are not correlated with $x_k$
-
-
-
-
-
-
-
-
-## Instrumental Variables {.smaller background="#8eadde"}
-
-$x_k$ is the endogenous variable.
-
-- It has "good" variation: 
-
-  - the part that varies that is not correlated with $\mu$
-
-- It has "bad" variation: 
-
-  - the part that varies that is  correlated with $\mu$
-
-. . . 
-
-Let's assume now that you can find an instrument $z$
-
-- The instrument $z$ is correlated with $X_k$, but only the "good" variation, not the "bad".
-
-- The instrument $z$ does not explain $y$ directly, only through $x_k$.
-
-  - **Only through** condition.
-
-
-
-
-
-
-
-
-
-
-## Instrumental Variables {.smaller background="#8eadde"}
-
-**Relevance Condition**
-
-The instrument $z$ is correlated with $x_k$.
-
-- This assumption is easy to test. Simply run a regression of $x=f(z, all\; Xs)$ and check the significance of the $\beta_z$.
-
-- This is called the **first stage of an IV regression**
-
-  - **Tip**: Always show the beta coefficient and the R2 (even if low) of the first-stage.  
-
-. . . 
-
-**Exclusion Condition**
-
-The instrument $z$ is not correlated with $\mu$.
-
-- That is $cov(z,\mu) = 0$
-
-- As all correlations with $\mu$, you cannot test this prediction. You have to rely on the theory, create a story about that.
-
-
-
-
-
-
-
-
-## Instrumental Variables {.smaller background="#8eadde"}
-
-**An example of IV** [Murray](https://doi.org/10.1257/jep.20.4.111).
-
-![](figs/iv2.png)
-
-
-
-
-
-
-
-
-
-
-
-## Instrumental Variables {.smaller background="#8eadde"}
-
-**An example of IV** [Murray](http://dx.doi.org/10.1016/j.jcorpfin.2013.12.013).
-
-![](figs/iv6.png)
-
-
-
-
-
-
-## Instrumental Variables {.smaller background="#8eadde"}
-
-[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#good-instruments-should-feel-weird)
-
-**Good instruments should feel weird**
-
-Parents with two same-gender kids are more likely to try a third kid than a diverse-gender pair of parents.
-
-So, you may use the gender of the kids as instrument for the likelihood of the mother go back to the labor market.
-
-
-
-
-
-
-# Angrist's example {.smaller background="#d2e2fc"}
-
-## Angrist's example {.smaller background="#d2e2fc"}
-
-Remember the **Fuzzy RDD**.
-
-- There is the *treatment*
-- There is the *position* (before or after the cut) 
-
-The *position* is an indication of receiving or not the treatment, but it is not definitive.
-
-Thus, we can use the *position* as an IV for the treatment.
-
-
-
-## Angrist's example {.smaller background="#d2e2fc"}
-
-[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
-
-*One of the more seminal papers in instrumental variables for the modern period is Angrist and Krueger (1991).* 
-
-*Their idea is simple and clever; a quirk in the United States educational system is that a child enters a grade on the basis of his or her birthday.* 
-
-*For a long time, that cutoff was late December. If children were born on or before December 31, then they were assigned to the first grade. But if their birthday was on or after January 1, they were assigned to kindergarten. *
-
-*Thus two people—one born on December 31 and one born on January 1—were exogenously assigned different grades.*
-
-Everyone is forced to leave school when 16.
-
-
-
-
-## Angrist's example {.smaller background="#d2e2fc"}
-
-[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
-
-![](figs/iv3.png)
-
-*Angrist and Krueger had the insight that that small quirk was exogenously assigning more schooling to people born later in the year.*
-
-*The person born in December would reach age 16 with more education than the person born in January*
-
-
-
-
-## Angrist's example {.smaller background="#d2e2fc"}
-
-[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
-
-![](figs/iv4.jpg)
-
-
-**What is the instrument here?**
-
-
-
-## Angrist's example {.smaller background="#d2e2fc"}
-
-[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
-
-
-**What is the instrument here?**
-
-The instrument is the quarter of birth.
-
-- People born in the 3rd and 4th quarter receive more education than others due to **compulsory schooling**.
-
-
-
-
-
-
-
-
-# Two-stage least squares (2SLS) {.smaller background="#abc8f5"}
-
-## Two-stage least squares  (2SLS){.smaller background="#abc8f5"}
-
-
-One of the more intuitive instrumental variables estimators is the 2SLS. 
-
-
-
-**The first stage is**
-
-$$x_k = \delta + \delta_1 z + \delta_2 x_1 + . . .+ \delta_n x_n + \mu$$
-
-Then, you predict $x_k$ using the first stage.
-
-- "predict" means that you are finding the "response" Y of the equation after estimating the coefficients
-
- $$\hat{x_k} = \hat{\delta} + \hat{\delta_1} z + \hat{\delta_2} x_1 + . . . + \hat{\delta_n} x_n $$
-
-
-. . . 
-
-Then, **the second stage** is:
-
-
-$$y = \alpha + \beta_1 \hat{x_k} + \beta_2 x_1 + . . .+  \beta_n x_n + \mu$$
-
-
-The idea using $\hat{x_k}$ is that it represents only the variation that is not correlated with $\mu$.
-
-
-
-
-
-
-
-
-## Instrumental Variables {.smaller background="#abc8f5"}
-
-We can write that:
-
-$$\beta_1= \frac{Cov(z,y)}{Cov(z,x_k)}$$
-
-
-- It shows that $\beta_1$ is the population covariance between z and y divided by the population covariance between z and x.
-
-- Notice how this fails if z and x are uncorrelated, that is, if $Cov(z, x) = 0$ 
-
-
-
-
-. . . 
-
-
-
-$$\beta_1= \frac{\sum_{i=1}^n(z_i-\bar{z})(y_i-\bar{y})}{\sum_{i=1}^n(z_i-\bar{z})(x_i-\bar{x})}$$
-
-
-Notice that if $z$ and $x$ are the same (i.e., perfect correlation), $\beta_1$ above is the OLS $\beta$
-
-
-$$\beta_1= \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
-
-
-
-# Weak Instruments  {.smaller background="#8da6cc"}
-
-## Weak Instruments {.smaller background="#8da6cc"}
-
-I did not demonstrate here, but we can say that (see pp; 517-18 Wooldridge):
-
-- though IV is consistent when $z$ and $u$ are uncorrelated and $z$ and $x$ have any positive or negative correlation, IV estimates can have large standard errors, especially if $z$ and $x$ are only weakly correlated.
-
-This gives rise to the week instruments problem.
-
-We can write the probability limit of the IV estimator:
-
-$$plim \hat{\beta_{iv}} = \beta_1 + \frac{Corr(z,\mu)}{Corr(z,x)} \times \frac{\sigma_{\mu}}{\sigma_x}$$
-
-It shows that, even if $Corr(z,\mu)$ is small, the inconsistency in the IV estimator can be very large if $Corr(z,x)$ is also small.
-
-
-
-
-
-
-
-## Weak Instruments {.smaller background="#8da6cc"}
-
-Two tips:
-
-1) Look at the F-stat of the first-stage. It should not be low.
-
-2) The sign of the coefficient in the first stage should be as expected.
-
-3) Look at the S.E. When the instrument is week, the S.E., are even larger than it should be.
-
-. . .
-
-One more tip,
-
-4) Avoid computing the first stage by hand, it would give wrong estimates of the S.E. in the second stage.
-
-
-
-
-
-
-
-
-
-
-
-# Example {.smaller background="#95a9c7"}
-
-## Example  {.smaller background="#95a9c7"}
-
-OLS
-
-::: panel-tabset
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/mroz.dta , clear
-reg lwage educ 
-```  
-
-:::
-
-
-
-
-
-
-
-
-## Example  {.smaller background="#95a9c7"}
-
-The IV estimate of the return to education is 5.9%, which is barely more than one-half of the  OLS estimate. This suggests that the OLS estimate is too high and is consistent with omitted ability bias.
-
-::: panel-tabset
-
-### Stata
-
-```{stata}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| output-location: default
-#| code-fold: true
-#| code-line-numbers: true
-#| eval: true
-#| code-summary: "Stata"
-use files/mroz.dta , clear
-ivreg lwage (educ =fatheduc ) , first
-```  
-
-:::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Final Comments {.smaller background="#bcd3f7"}
-
-## Final Comments {.smaller background="#bcd3f7"}
-
-When you have only one Z, you can say that the model is **just identified**.
-
-But you can have multiple IVs, in which case you will say that the model is **overidentified**.
-
-- You can implement IV design just as before
-
-- The relevance and exclusion assumptions are there as well.
-
-. . . 
-
-Assuming that both conditions are satisfied, you will have more asymptotic efficiency in the IV estimates.
-
-
-
-
-
-
-## Final Comments {.smaller background="#bcd3f7"}
-
-**It is rare to have multiple Zs. You should be happy if you have a good one!**
-
-. . . 
-
-
-But if you do have multiple IVs, you can test their quality...
-
-- If they are all valid, you should get consistent estimates...
-
-- ... even if you use only a subset of them.
-
-- So the test is about how similar the estimates are if you use subsets of IVs.
-
-
-**But this test does not give really an answer about whether the IVs are good.**
-
-This always come from theory.
-
-
-
-
-## Final Comments {.smaller background="#bcd3f7"}
-
-**Some more comments:**
-
-1) If you have an interaction term between $x_1$ and $x_2$, and $z$ is the instrument for $x_1$, you can "create" the instrument $zx_2$ for $x_2$.
-
-. . . 
-
-2) GMM uses lagged variables as instruments. But, this is not a good decision if the variables are highly serially correlated.
-
-  - Lagged total assets is not a good instrument for total assets.
-  
-. . . 
-
-3) Using the average-group of variable X is also problematic (i.e., the industry average own. concentration as IV of firm-level own. concentration)
-
- - This is no different than a group FE, making hard to believe in the exclusion restriction.
-
-
-
-
-## THANK YOU!
+## **THANK YOU!** {background="#b1cafa"}
 
 ::: columns
-::: {.column width="30%"}
-![](figs/fgv.png){fig-align="right"}
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
 :::
 
-::: {.column width="70%"}
-**Henrique Castro Martins**
+::: {.column width="40%"}
+**Henrique C. Martins**
 
--   [henrique.martins\@fgv.br](henrique.martins@fgv.br)
--   <https://eaesp.fgv.br/en/people/henrique-castro-martins>
--   [henriquemartins.net](https://henriquemartins.net/)
--   <https://www.linkedin.com/in/henriquecastror/>
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
 :::
+:::
+
+::: footer
 :::
