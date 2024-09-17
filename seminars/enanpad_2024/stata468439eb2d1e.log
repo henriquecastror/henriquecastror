@@ -1,0 +1,26 @@
+
+
+. set seed 100
+
+. set obs 1000
+Number of observations (_N) was 0, now 1,000.
+
+. gen luck = rnormal(100, 15)
+
+. gen iq = rnormal(100, 15)
+
+. gen comb = luck + iq
+
+. gen successful = comb > 240
+
+. twoway (scatter luck iq if successful == 0)  (scatter luck iq if successful =
+> = 1, mcolor(red)) , title("The general population & successful subpopulation"
+> ) 
+
+. 
+. quietly graph export figs/collider2.svg, replace
+file figs/collider2.svg could not be opened
+r(603);
+
+end of do-file
+r(603);

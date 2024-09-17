@@ -29,71 +29,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="logo.css">
@@ -421,32 +356,20 @@ Henrique C. Martins
     </div>
 </div>
 
-  <p class="date">15-09-2024</p>
+  <p class="date">16-09-2024</p>
 </section>
-<section>
-<section id="the-challenge" class="title-slide slide level1 smaller center" data-background="#b0aeae">
-<h1>The challenge</h1>
-
-</section>
-<section id="correlation-causality" class="slide level2 smaller" data-background="#b0aeae">
+<section id="correlation-causality" class="slide level2 smaller">
 <h2>Correlation &amp; Causality</h2>
 <p>It is very common these days to hear someone say “<em>correlation does not mean causality</em>.”</p>
 <p>In essence, that is true.</p>
 <ul>
-<li><em>The killer struck during daylight. Had the sun not been out that day, the victim would have been safe.</em></li>
+<li><p><em>The killer struck during daylight. Had the sun not been out that day, the victim would have been safe.</em></p></li>
+<li><p>There is a correlation, but it is clear there is no causation.</p></li>
 </ul>
 <div class="fragment">
-<ul>
-<li>There is a correlation, but it is clear there is no causation.</li>
-</ul>
-</div>
-</section>
-<section id="correlation-causality-1" class="slide level2 smaller" data-background="#b0aeae">
-<h2>Correlation &amp; Causality</h2>
 <p>Sometimes, there is causality even when we do not observe correlation.</p>
 <p><em>The sailor is adjusting the rudder on a windy day to align the boat with the wind, but the boat is not changing direction.</em> (<a href="https://mixtape.scunning.com/01-introduction#do-not-confuse-correlation-with-causality">Source: The Mixtape</a>)</p>
-
-<img data-src="scottboat.jpg" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
+<div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -455,19 +378,23 @@ Henrique C. Martins
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>In this example, the sailor is <em>endogenously</em> adjusting the course to balance the unobserved wind.</p>
+<p><strong>In this example, the sailor is <em>endogenously</em> adjusting the course to balance the unobserved wind.</strong></p>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="the-challenge-1" class="slide level2 smaller" data-background="#b0aeae">
+<section id="the-challenge" class="slide level2 smaller">
 <h2>The challenge</h2>
 <ul>
 <li>I will discuss some issues in using plain OLS models in Finance Research (mainly with panel data).</li>
 </ul>
 <div class="fragment">
 <ul>
-<li>I will avoid the word “endogeneity” as much as I can</li>
+<li><p>I will avoid the word “endogeneity” as much as possible.</p>
+<ul>
+<li>This word refers to the violation of the Conditional Mean Independence (CMI) assumption, meaning that <span class="math inline">\(x\)</span> and <span class="math inline">\(\mu\)</span> are correlated.</li>
+</ul></li>
 </ul>
 </div>
 <div class="fragment">
@@ -477,12 +404,12 @@ Henrique C. Martins
 </div>
 <div class="fragment">
 <ul>
-<li>The discussion is based on <a href="https://www.nowpublishers.com/article/Details/CFR-0036">Atanasov and Black (2016)</a></li>
+<li>The discussion is mainly based on <a href="https://www.nowpublishers.com/article/Details/CFR-0036">Atanasov and Black (2016)</a></li>
 </ul>
 <p><img data-src="slides1-empiricalissues-paper.png"></p>
 </div>
 </section>
-<section id="the-challenge-2" class="slide level2 smaller" data-background="#b0aeae">
+<section id="the-challenge-1" class="slide level2 smaller">
 <h2>The challenge</h2>
 <ul>
 <li><p>Imagine that you want to investigate the effect of Governance on Q</p>
@@ -497,52 +424,97 @@ Henrique C. Martins
 <p><img data-src="slides1-empiricalissues-wrong.jpg"></p>
 </div>
 </section>
-<section id="reverse-causation" class="slide level2 smaller" data-background="#b0aeae">
+<section id="reverse-causation" class="slide level2 smaller">
 <h2>1) Reverse causation</h2>
-<p><em>One source of bias is: reverse causation</em></p>
 <ul>
-<li><p>Perhaps it is Q that causes Gov</p></li>
-<li><p>OLS based methods do not tell the difference between these two betas:</p></li>
-</ul>
-<p><span class="math inline">\(𝑄_{i} = α + 𝜷_{i} × Gov + Controls + error\)</span></p>
-<p><span class="math inline">\(Gov_{i} = α + 𝜷_{i} × Q + Controls + error\)</span></p>
+<li><p>Perhaps it is <span class="math inline">\(Q\)</span> that causes <span class="math inline">\(Gov\)</span></p></li>
+<li><p>OLS based methods do not tell the difference between these two betas:</p>
 <ul>
+<li><p><span class="math inline">\(Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon\)</span></p></li>
+<li><p><span class="math inline">\(Gov_{i} = \alpha + \beta × Q_{i} + Controls + \epsilon\)</span></p></li>
+</ul></li>
 <li><p>If one Beta is significant, the other will most likely be significant too</p></li>
 <li><p>You need a sound theory!</p></li>
 </ul>
 </section>
-<section id="omitted-variable-bias-ovb" class="slide level2 smaller" data-background="#b0aeae">
-<h2>2) Omitted variable bias (OVB)</h2>
-<p><em>The second source of bias is: OVB</em></p>
+<section id="simultaneity" class="slide level2 smaller">
+<h2>2) Simultaneity</h2>
 <ul>
-<li><p>Imagine that you do not include an important “true” predictor of Q</p></li>
-<li><p>Let’s say, long is: <span class="math inline">\(𝑸_{i} = 𝜶_{long} + 𝜷_{long}* gov_{i} + δ * omitted + error\)</span></p></li>
-<li><p>But you estimate short: <span class="math inline">\(𝑸_{i} = 𝜶_{short} + 𝜷_{short}* gov_{i} + error\)</span></p></li>
-<li><p><span class="math inline">\(𝜷_{short}\)</span> will be:</p>
-<ul>
-<li><p><span class="math inline">\(𝜷_{short} = 𝜷_{long}\)</span> + bias</p></li>
-<li><p><span class="math inline">\(𝜷_{short} = 𝜷_{long}\)</span> + relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)</p>
-<ul>
-<li>Where: relationship between omitted (omitted) and included (Gov) is: <span class="math inline">\(Omitted = 𝜶 + ϕ *gov_{i} + u\)</span></li>
-</ul></li>
-</ul></li>
-<li><p>Thus, OVB is: <span class="math inline">\(𝜷_{short} – 𝜷_{long} = ϕ * δ\)</span></p></li>
+<li><p>Perhaps <span class="math inline">\(Gov\)</span> and <span class="math inline">\(Q\)</span> are determined simultaneously</p></li>
+<li><p>That is, there is a third variable causing both</p></li>
+<li><p>An OLS regression will provide a biased estimate of the effect</p></li>
+<li><p>Also, the sign might be wrong</p></li>
 </ul>
 </section>
-<section id="specification-error" class="slide level2 smaller" data-background="#b0aeae">
-<h2>3) Specification error</h2>
-<p><em>The third source of bias is: Specification error</em></p>
+<section id="omitted-variable-bias-ovb" class="slide level2 smaller">
+<h2>3) Omitted variable bias (OVB)</h2>
 <ul>
-<li><p>Even if we could perfectly measure gov and all relevant covariates, we would not know for sure the functional form through which each influences q</p>
+<li><p>Imagine that you do not include an important “true” predictor of <span class="math inline">\(Q\)</span></p></li>
+<li><p>Let’s say, long is: <span class="math inline">\(𝑸_{i} = \alpha_{long} + \beta_{long}* gov_{i} + δ * omitted + error\)</span></p></li>
+<li><p>But you estimate short: <span class="math inline">\(𝑸_{i} = \alpha_{short} + \beta_{short}* gov_{i} + error\)</span></p></li>
+<li><p><span class="math inline">\(\beta_{short}\)</span> will be:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_{short} = \beta_{long}\)</span> + bias</p></li>
+<li><p><span class="math inline">\(\beta_{short} = \beta_{long}\)</span> + relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)</p>
+<ul>
+<li>Where: relationship between omitted (omitted) and included (Gov) is: <span class="math inline">\(Omitted = \alpha + ϕ *Gov_{i} + \mu\)</span></li>
+</ul></li>
+</ul></li>
+<li><p>Thus, OVB is: <span class="math inline">\(\beta_{short} – \beta_{long} = ϕ * δ\)</span></p></li>
+</ul>
+</section>
+<section id="bad-controls" class="slide level2 smaller">
+<h2>4) Bad Controls</h2>
+<ul>
+<li><p><strong>Bad controls</strong> are variables that are <strong>also outcome of the treatment</strong> (i.e., <span class="math inline">\(Gov\)</span>) being studied.</p></li>
+<li><p>A <strong>Bad control</strong> could very well be a <strong>dependent variable</strong> of <span class="math inline">\(Gov\)</span> as well.</p></li>
+<li><p><strong>Good controls</strong> are variables that <strong>you can think as being fixed</strong> at the time of the treatment.</p>
+<ul>
+<li><span class="math inline">\(𝑄_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon\)</span></li>
+</ul></li>
+<li><p>Assuming you also have something that is the consequence of good governance (e.g., Novo Mercado dummy). Should you include it in the model?</p></li>
+<li><p>No.&nbsp;In this case, the coefficient of interest no longer has a causal interpretation.</p></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>It is not hard to come up with stories of why a control is a bad control.</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="ovb-bad-controls" class="slide level2 smaller">
+<h2>OVB &amp; Bad Controls</h2>
+
+<img data-src="confounding variables.png" class="r-stretch"></section>
+<section id="collider-bias" class="slide level2 smaller">
+<h2>5) Collider bias</h2>
+<p>Collider bias occurs when an independent variable and outcome each influence a common third variable and that variable or collider is controlled for in the regression.</p>
+<pre><code>- In a way, a collider is a bad control. 
+- While a bad control makes you underestimate the coefficient, a collider creates spurious correlation between the X and the Y.</code></pre>
+<p>In the analysis below</p>
+<pre><code>- $Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon$</code></pre>
+<p>Including, for instance, CEO Reputation (assuming that both <span class="math inline">\(Q\)</span> and <span class="math inline">\(Gov\)</span> influences Reputation) creates a false correlation between <span class="math inline">\(Qov\)</span> and <span class="math inline">\(Q\)</span>.</p>
+<pre><code>- You may estimate a positive association even when there is none.</code></pre>
+</section>
+<section id="specification-error" class="slide level2 smaller">
+<h2>6) Specification error</h2>
+<ul>
+<li><p>Even if we could perfectly measure <span class="math inline">\(Gov\)</span> and all relevant covariates, we would not know for sure the functional form through which each influences <span class="math inline">\(Q\)</span>.</p>
 <ul>
 <li>Functional form: linear? Quadratic? Log-log? Semi-log?</li>
 </ul></li>
-<li><p>Misspecification of x’s is similar to OVB</p></li>
+<li><p>Misspecification of x’s is similar to OVB.</p></li>
 </ul>
 </section>
-<section id="signaling" class="slide level2 smaller" data-background="#b0aeae">
-<h2>4) Signaling</h2>
-<p><em>The fourth source of bias is: Signaling</em></p>
+<section id="signaling" class="slide level2 smaller">
+<h2>7) Signaling</h2>
 <ul>
 <li><p>Perhaps, some individuals are signaling the existence of an X without truly having it:</p>
 <ul>
@@ -551,46 +523,39 @@ Henrique C. Martins
 <li><p>This is similar to the OVB because you cannot observe the full story</p></li>
 </ul>
 </section>
-<section id="simultaneity" class="slide level2 smaller" data-background="#b0aeae">
-<h2>5) Simultaneity</h2>
-<p><em>The fifth source of bias is: Simultaneity</em></p>
+<section id="construct-validity" class="slide level2 smaller">
+<h2>8) Construct validity</h2>
 <ul>
-<li><p>Perhaps gov and some other variable x are determined simultaneously</p></li>
-<li><p>Perhaps there is bidirectional causation, with q causing gov and gov also causing q</p></li>
-<li><p>In both cases, OLS regression will provide a biased estimate of the effect</p></li>
-<li><p>Also, the sign might be wrong</p></li>
+<li><p>Some constructs (e.g.&nbsp;<span class="math inline">\(Gov\)</span>) are complex, and sometimes have conflicting mechanisms</p></li>
+<li><p>We usually don’t know for sure what “good” governance is, for instance</p></li>
+<li><p>It is common to use imperfect proxies, that may poorly fit the underlying concept</p></li>
 </ul>
-</section>
-<section id="heterogeneous-effects" class="slide level2 smaller" data-background="#b0aeae">
-<h2>6) Heterogeneous effects</h2>
-<p><em>The sixth source of bias is: Heterogeneous effects</em></p>
+
+<img data-src="proxy variable.png" class="r-stretch"></section>
+<section id="heterogeneous-effects" class="slide level2 smaller">
+<h2>9) Heterogeneous effects</h2>
 <ul>
-<li><p>Maybe the causal effect of gov on q depends on observed and unobserved firm characteristics:</p>
+<li><p>Maybe the causal effect of <span class="math inline">\(Gov\)</span> on <span class="math inline">\(Q\)</span> depends on observed and unobserved firm characteristics:</p>
 <ul>
-<li>Let’s assume that firms seek to maximize q</li>
-<li>Different firms have different optimal gov</li>
-<li>Firms know their optimal gov</li>
-<li>If we observed all factors that affect q, each firm would be at its own optimum and OLS regression would give a non-significant coefficient</li>
+<li>Let’s assume that firms seek to maximize <span class="math inline">\(Q\)</span></li>
+<li>Different firms have different optimal <span class="math inline">\(Gov\)</span></li>
+<li>Firms know their optimal <span class="math inline">\(Gov\)</span></li>
+<li>If we observed all factors that affect <span class="math inline">\(Q\)</span>, each firm would be at its own optimum and OLS regression would give a non-significant coefficient</li>
 </ul></li>
-<li><p>In such case, we may find a positive or negative relationship.</p></li>
+<li><p>In such case, we may find a positive or negative relationship</p></li>
 <li><p>Neither is the true causal relationship</p></li>
 </ul>
 </section>
-<section id="construct-validity" class="slide level2 smaller" data-background="#b0aeae">
-<h2>7) Construct validity</h2>
-<p><em>The seventh source of bias is: Construct validity</em></p>
+<section id="measurement-error" class="slide level2 smaller">
+<h2>10) Measurement error</h2>
 <ul>
-<li><p>Some constructs (e.g.&nbsp;Corporate governance) are complex, and sometimes have conflicting mechanisms</p></li>
-<li><p>We usually don’t know for sure what “good” governance is, for instance</p></li>
-<li><p>It is common that we use imperfect proxies</p></li>
-<li><p>They may poorly fit the underlying concept</p></li>
-</ul>
-</section>
-<section id="measurement-error" class="slide level2 smaller" data-background="#b0aeae">
-<h2>8) Measurement error</h2>
-<p><em>The eighth source of bias is: Measurement error</em></p>
+<li><p>“Classical” random measurement error in x’s will bias <strong>coefficient toward zero</strong></p>
 <ul>
-<li><p>“Classical” random measurement error for the outcome will inflate standard errors but will not lead to biased coefficients.</p>
+<li><span class="math inline">\(x^{*} = x + \sigma_{2}\)</span></li>
+<li>Imagine that <span class="math inline">\(x^{*}\)</span> is a bunch of noise. It would not explain anything</li>
+<li>Thus, your results are biased toward zero</li>
+</ul></li>
+<li><p>“Classical” random measurement error for the outcome will inflate standard errors but <strong>will not lead to biased coefficients.</strong></p>
 <ul>
 <li><span class="math inline">\(y^{*} = y + \sigma_{1}\)</span></li>
 <li>If you estimante <span class="math inline">\(y^{*} = f(x)\)</span>, you have <span class="math inline">\(y + \sigma_{1} = x + \epsilon\)</span></li>
@@ -599,161 +564,55 @@ Henrique C. Martins
 <li>where <span class="math inline">\(u = \epsilon + \sigma_{1}\)</span></li>
 </ul></li>
 </ul></li>
-<li><p>“Classical” random measurement error in x’s will bias coefficient estimates toward zero</p>
-<ul>
-<li><span class="math inline">\(x^{*} = x + \sigma_{2}\)</span></li>
-<li>Imagine that <span class="math inline">\(x^{*}\)</span> is a bunch of noise</li>
-<li>It would not explain anything</li>
-<li>Thus, your results are biased toward zero</li>
-</ul></li>
 </ul>
 <!-- https://web.stanford.edu/class/polisci100a/regress5.pdf  -->
 </section>
-<section id="observation-bias" class="slide level2 smaller" data-background="#b0aeae">
-<h2>9) Observation bias</h2>
-<p><em>The ninth source of bias is: Observation bias</em></p>
+<section id="observation-bias" class="slide level2 smaller">
+<h2>11) Observation bias</h2>
 <ul>
 <li><p>This is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed</p></li>
-<li><p>Firms which change gov may behave differently because their managers or employees think the change in gov matters, when in fact it has no direct effect</p></li>
+<li><p>Firms which change gov may behave differently because their managers or employees think the change in <span class="math inline">\(Gov\)</span> matters, when in fact it has no direct effect</p></li>
 </ul>
 </section>
-<section id="interdependent-effects" class="slide level2 smaller" data-background="#b0aeae">
-<h2>10) Interdependent effects</h2>
-<p><em>The tenth source of bias is: Interdependent effects</em></p>
+<section id="interdependent-effects" class="slide level2 smaller">
+<h2>12) Interdependent effects</h2>
 <ul>
-<li><p>Imagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt</p></li>
-<li><p>Conversely, a reform that improves efficiency for a single firm might not improve profitability if adopted widely because the gains will be competed away</p></li>
-<li><p>“One swallow doesn’t make a summer”</p></li>
+<li><p>Imagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt because investors will appreciate the reform’s impact.</p></li>
+<li><p>Conversely, a reform that improves efficiency for a single firm might not improve its <span class="math inline">\(Q\)</span> if adopted widely because the gains will be competed away</p></li>
 </ul>
 </section>
-<section id="selection-bias" class="slide level2 smaller" data-background="#b0aeae">
-<h2>11) Selection bias</h2>
-<p><em>The eleventh source of bias is: Selection bias</em></p>
+<section id="selection-bias" class="slide level2 smaller">
+<h2>13) Selection bias</h2>
 <ul>
 <li><p>If you run a regression with two types of companies</p>
 <ul>
 <li>High gov (let’s say they are the treated group)</li>
 <li>Low gov (let’s say they are the control group)</li>
 </ul></li>
-<li><p>Without any matching method, these companies are likely not comparable</p></li>
-<li><p>Thus, the estimated beta will contain selection bias</p></li>
-<li><p>The bias can be either be positive or negative</p></li>
-<li><p>It is similar to OVB</p></li>
+<li><p>Without any matching method, these companies are likely not comparable</p>
+<ul>
+<li><em>Apples compared to oranges</em></li>
+</ul></li>
+<li><p>Thus, the estimated beta will contain selection bias, which can be <strong>either be positive or negative</strong></p></li>
 </ul>
 </section>
-<section id="self-selection" class="slide level2 smaller" data-background="#b0aeae">
-<h2>12) Self-Selection</h2>
-<p><em>The twelfth source of bias is: Self-Selection</em></p>
+<section id="self-selection" class="slide level2 smaller">
+<h2>14) Self-Selection</h2>
 <ul>
-<li><p>Self-selection is a type of selection bias</p></li>
-<li><p>Usually, firms decide which level of governance they adopt</p></li>
-<li><p>There are reasons why firms adopt high governance</p>
-<ul>
-<li>If observable, you need to control for</li>
-<li>If unobservable, you have a problem</li>
-</ul></li>
+<li><p>Self-selection is a type of selection bias. Usually, firms decide which level of governance they adopt</p></li>
 <li><p>It is like they “self-select” into the treatment.</p>
 <ul>
 <li>Units decide whether they receive the treatment or not</li>
 </ul></li>
-<li><p>Your coefficients will be biased.</p></li>
-</ul>
-</section>
-<section id="collider-bias-endog.-selection-bias" class="slide level2 smaller" data-background="#b0aeae">
-<h2>13) Collider Bias (endog. selection bias)</h2>
-<p><strong>Let’s assume an arbitrary population.</strong></p>
+<li><p>There are reasons why firms adopt high governance</p>
 <ul>
-<li><p>Two variables describe the population: IQ and luck.</p></li>
-<li><p>These variables are random and normally distributed.</p></li>
-<li><p>Let’s say that after you reach a certain level of IQ and Luck, you become successful (i.e., upper-right quadrant).</p></li>
-<li><p>Because you are interested in successful people, you only investigate such subsample.</p></li>
+<li>If observable, you need to control for. If unobservable, you have a problem.</li>
+</ul></li>
 </ul>
-</section>
-<section id="collider-bias-endog.-selection-bias-1" class="slide level2 smaller" data-background="#b0aeae">
-<h2>13) Collider Bias (endog. selection bias)</h2>
-<p><strong>A representation of the population</strong></p>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">R</a></li><li><a href="#tabset-1-2">Python</a></li><li><a href="#tabset-1-3">Stata</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>R</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(data.table)</span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb1-4"><a></a>luck <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
-<span id="cb1-5"><a></a>iq   <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
-<span id="cb1-6"><a></a>pop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(luck, iq)</span>
-<span id="cb1-7"><a></a></span>
-<span id="cb1-8"><a></a><span class="fu">ggplot</span>(pop, <span class="fu">aes</span>(<span class="at">x =</span> iq, <span class="at">y =</span> luck)) <span class="sc">+</span> </span>
-<span id="cb1-9"><a></a>      <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb1-10"><a></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The general population"</span>)  <span class="sc">+</span> </span>
-<span id="cb1-11"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Python</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-3"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-4"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb2-5"><a></a></span>
-<span id="cb2-6"><a></a>np.random.seed(<span class="dv">100</span>)</span>
-<span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a>luck <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
-<span id="cb2-9"><a></a>iq <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
-<span id="cb2-10"><a></a>pop <span class="op">=</span> pd.DataFrame({<span class="st">'luck'</span>: luck, <span class="st">'iq'</span>: iq})</span>
-<span id="cb2-11"><a></a></span>
-<span id="cb2-12"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)  </span>
-<span id="cb2-13"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb2-14"><a></a>plt.scatter(pop[<span class="st">'iq'</span>], pop[<span class="st">'luck'</span>])</span>
-<span id="cb2-15"><a></a>plt.title(<span class="st">"The general population"</span>)</span>
-<span id="cb2-16"><a></a>plt.xlabel(<span class="st">"IQ"</span>)</span>
-<span id="cb2-17"><a></a>plt.ylabel(<span class="st">"Luck"</span>)</span>
-<span id="cb2-18"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-3">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a></a><span class="kw">set</span> <span class="dv">seed</span> 100</span>
-<span id="cb3-2"><a></a><span class="kw">set</span> <span class="kw">obs</span> 1000</span>
-<span id="cb3-3"><a></a><span class="kw">gen</span> luck = rnormal(100, 15)</span>
-<span id="cb3-4"><a></a><span class="kw">gen</span> iq = rnormal(100, 15)</span>
-<span id="cb3-5"><a></a><span class="kw">twoway</span> (<span class="kw">scatter</span> luck iq), <span class="bn">title</span>(<span class="st">"The general population"</span>) </span>
-<span id="cb3-6"><a></a><span class="kw">quietly</span> <span class="kw">graph</span> <span class="kw">export</span> collider1.svg, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Number of observations (_N) was 0, now 1,000.</code></pre>
-</div>
-</div>
-<p><img data-src="collider1.svg"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="collider-bias-endog.-selection-bias-2" class="slide level2 smaller" data-background="#b0aeae">
-<h2>13) Collider Bias (endog. selection bias)</h2>
+
+<img data-src="selection bias.png" class="r-stretch"></section>
+<section id="section" class="slide level2 smaller">
+<h2></h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -763,141 +622,12 @@ Henrique C. Martins
 <p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>Analyzing only successful people will suggest a negative correlation between luck and IQ.</strong></p>
-<ul>
-<li>“Success” is a collider in this example. It “collides” with luck and IQ.</li>
-</ul>
+<p><strong>More data is not necessarily a solution, you need a sound empirical design.</strong></p>
 </div>
 </div>
 </div>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">R</a></li><li><a href="#tabset-2-2">Python</a></li><li><a href="#tabset-2-3">Stata</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>R</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(data.table)</span>
-<span id="cb5-2"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-3"><a></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb5-4"><a></a>luck <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
-<span id="cb5-5"><a></a>iq   <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span>
-<span id="cb5-6"><a></a>pop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(luck, iq)</span>
-<span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a>pop<span class="sc">$</span>comb <span class="ot">&lt;-</span> pop<span class="sc">$</span>luck <span class="sc">+</span> pop<span class="sc">$</span>iq </span>
-<span id="cb5-9"><a></a>successfull <span class="ot">&lt;-</span> pop[pop<span class="sc">$</span>comb <span class="sc">&gt;</span> <span class="dv">240</span>, ] </span>
-<span id="cb5-10"><a></a></span>
-<span id="cb5-11"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb5-12"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> pop, <span class="fu">aes</span>(<span class="at">x =</span> iq, <span class="at">y =</span> luck)) <span class="sc">+</span>  </span>
-<span id="cb5-13"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> successfull, <span class="fu">aes</span>(<span class="at">x =</span> iq, <span class="at">y =</span> luck), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span>  </span>
-<span id="cb5-14"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The general population &amp; successful subpopulation"</span>) <span class="sc">+</span> </span>
-<span id="cb5-15"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-4-3.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-2">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Python</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-3"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-4"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb6-5"><a></a></span>
-<span id="cb6-6"><a></a>np.random.seed(<span class="dv">100</span>)</span>
-<span id="cb6-7"><a></a></span>
-<span id="cb6-8"><a></a>luck <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
-<span id="cb6-9"><a></a>iq <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, <span class="dv">1000</span>)</span>
-<span id="cb6-10"><a></a>pop <span class="op">=</span> pd.DataFrame({<span class="st">'luck'</span>: luck, <span class="st">'iq'</span>: iq})</span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a>pop[<span class="st">'comb'</span>] <span class="op">=</span> pop[<span class="st">'luck'</span>] <span class="op">+</span> pop[<span class="st">'iq'</span>]</span>
-<span id="cb6-13"><a></a></span>
-<span id="cb6-14"><a></a>successful <span class="op">=</span> pop[pop[<span class="st">'comb'</span>] <span class="op">&gt;</span> <span class="dv">240</span>]</span>
-<span id="cb6-15"><a></a></span>
-<span id="cb6-16"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)  <span class="co"># Minimalistic theme similar to theme_minimal in ggplot2</span></span>
-<span id="cb6-17"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb6-18"><a></a>plt.scatter(pop[<span class="st">'iq'</span>], pop[<span class="st">'luck'</span>], label<span class="op">=</span><span class="st">"General Population"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb6-19"><a></a>plt.scatter(successful[<span class="st">'iq'</span>], successful[<span class="st">'luck'</span>], color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">"Successful Subpopulation"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb6-20"><a></a>plt.title(<span class="st">"The general population &amp; successful subpopulation"</span>)</span>
-<span id="cb6-21"><a></a>plt.xlabel(<span class="st">"IQ"</span>)</span>
-<span id="cb6-22"><a></a>plt.ylabel(<span class="st">"Luck"</span>)</span>
-<span id="cb6-23"><a></a>plt.legend()</span>
-<span id="cb6-24"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-3">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a></a><span class="kw">set</span> <span class="dv">seed</span> 100</span>
-<span id="cb7-2"><a></a><span class="kw">set</span> <span class="kw">obs</span> 1000</span>
-<span id="cb7-3"><a></a><span class="kw">gen</span> luck = rnormal(100, 15)</span>
-<span id="cb7-4"><a></a><span class="kw">gen</span> iq = rnormal(100, 15)</span>
-<span id="cb7-5"><a></a><span class="kw">gen</span> <span class="fu">comb</span> = luck + iq</span>
-<span id="cb7-6"><a></a><span class="kw">gen</span> successful = <span class="fu">comb</span> &gt; 240</span>
-<span id="cb7-7"><a></a><span class="kw">twoway</span> (<span class="kw">scatter</span> luck iq <span class="kw">if</span> successful == 0)  (<span class="kw">scatter</span> luck iq <span class="kw">if</span> successful == 1, mcolor(<span class="kw">red</span>)) , <span class="bn">title</span>(<span class="st">"The general population &amp; successful subpopulation"</span>) </span>
-<span id="cb7-8"><a></a></span>
-<span id="cb7-9"><a></a><span class="kw">quietly</span> <span class="kw">graph</span> <span class="kw">export</span> figs/collider2.svg, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Number of observations (_N) was 0, now 1,000.
-
-
-
-
-
-
-file figs/collider2.svg could not be opened
-r(603);
-
-r(603);</code></pre>
-</div>
-</div>
-<p><img data-src="collider2.svg"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="conclusão" class="slide level2 smaller" data-background="#b0aeae">
-<h2>Conclusão</h2>
-<p><strong>Pesquisa quantitativa tem a parte <em>quanti (métodos, modelos, etc.)</em>…</strong></p>
-<p><strong>… Mas talvez a parte mais importante seja o desenho da pesquisa (design empírico)!</strong></p>
-</section>
-<section id="some-fun-stuff" class="slide level2 smaller" data-background="#b0aeae">
-<h2>Some fun stuff</h2>
-
-<img data-src="selection bias.png" class="r-stretch"></section>
-<section id="some-fun-stuff-1" class="slide level2 smaller" data-background="#b0aeae">
-<h2>Some fun stuff</h2>
-
-<img data-src="fig1.jpg" class="r-stretch"></section>
-<section id="some-fun-stuff-2" class="slide level2 smaller" data-background="#b0aeae">
-<h2>Some fun stuff</h2>
 
 <img data-src="hypothesis2.png" class="r-stretch"></section>
-<section id="some-fun-stuff-3" class="slide level2 smaller" data-background="#b0aeae">
-<h2>Some fun stuff</h2>
-
-<img data-src="confounding variables.png" class="r-stretch"></section>
-<section id="some-fun-stuff-4" class="slide level2 smaller" data-background="#b0aeae">
-<h2>Some fun stuff</h2>
-
-<img data-src="proxy variable.png" class="r-stretch"></section>
 <section id="thank-you" class="slide level2" data-background="#b1cafa">
 <h2><strong>THANK YOU!</strong></h2>
 <div class="columns">
@@ -926,7 +656,7 @@ r(603);</code></pre>
 <p><strong>[<strong>Henrique C. Martins</strong>] [<a href="mailto:henrique.martins@fgv.br">henrique.martins@fgv.br</a>][Do not use without permission]</strong></p>
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
