@@ -17659,5 +17659,12 @@
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "5) Collider bias",
     "text": "5) Collider bias\nCollider bias occurs when an independent variable and outcome each influence a third variable and that variable or collider is included in the regression.\n\nIn a way, a collider is a bad control.\nWhile a bad control makes you underestimate the effect, a collider creates spurious correlation between the X and the Y.\n\nIn the analysis below\n\n\\(Q_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon\\)\n\nIncluding, for instance, CEO Reputation (assuming that both \\(Q\\) and \\(Gov\\) influences CEO Reputation) creates a false correlation between \\(Gov\\) and \\(Q\\).\n\nYou may estimate a significant association even when there is none."
+  },
+  {
+    "objectID": "seminars/enanpad_2024/index.html#section-1",
+    "href": "seminars/enanpad_2024/index.html#section-1",
+    "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
+    "section": "",
+    "text": "Important\n\n\nMore data is not necessarily a solution, you need a sound empirical design."
   }
 ]
