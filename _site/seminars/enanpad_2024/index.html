@@ -421,7 +421,7 @@ Henrique C. Martins
 <li>You may have more covariates explaining Q (omitted from slides)</li>
 </ul></li>
 </ul>
-<p><span class="math inline">\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\)</span></p>
+<p><span class="math inline">\(𝑸_{i} = α + 𝜷 × Gov_{i} + Controls + error\)</span></p>
 <div class="fragment">
 <p>All the issues in the next slides will make it not possible to infer that <strong>changing Gov will <em>CAUSE</em> a change in Q</strong></p>
 <p>That is, cannot infer causality</p>
@@ -454,8 +454,8 @@ Henrique C. Martins
 <h2>3) Omitted variable bias (OVB)</h2>
 <ul>
 <li><p>Imagine that you do not include an important “true” predictor of <span class="math inline">\(Q\)</span></p></li>
-<li><p>Let’s say, long is: <span class="math inline">\(𝑸_{i} = \alpha_{long} + \beta_{long}* gov_{i} + δ * omitted + error\)</span></p></li>
-<li><p>But you estimate short: <span class="math inline">\(𝑸_{i} = \alpha_{short} + \beta_{short}* gov_{i} + error\)</span></p></li>
+<li><p>Let’s say, long is: <span class="math inline">\(𝑸_{i} = \alpha_{long} + \beta_{long}* Gov_{i} + δ * omitted + error\)</span></p></li>
+<li><p>But you estimate short: <span class="math inline">\(𝑸_{i} = \alpha_{short} + \beta_{short}* Gov_{i} + error\)</span></p></li>
 <li><p><span class="math inline">\(\beta_{short}\)</span> will be:</p>
 <ul>
 <li><p><span class="math inline">\(\beta_{short} = \beta_{long}\)</span> + bias</p></li>
@@ -493,10 +493,6 @@ Henrique C. Martins
 </div>
 </div>
 </section>
-<section id="ovb-bad-controls" class="slide level2 smaller">
-<h2>OVB &amp; Bad Controls</h2>
-
-<img data-src="confounding variables.png" class="r-stretch"></section>
 <section id="collider-bias" class="slide level2 smaller">
 <h2>5) Collider bias</h2>
 <p><strong>Collider bias</strong> occurs when an independent variable and outcome each influence a <strong>third variable and that variable or collider is included in the regression</strong>.</p>
@@ -515,6 +511,7 @@ Henrique C. Martins
 </section>
 <section id="specification-error" class="slide level2 smaller">
 <h2>6) Specification error</h2>
+<p><span class="math inline">\(Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon\)</span></p>
 <ul>
 <li><p>Even if we could perfectly measure <span class="math inline">\(Gov\)</span> and all relevant covariates, we would not know for sure the functional form through which each influences <span class="math inline">\(Q\)</span>.</p>
 <ul>
@@ -584,15 +581,8 @@ Henrique C. Martins
 <li><p>Firms which change gov may behave differently because their managers or employees think the change in <span class="math inline">\(Gov\)</span> matters, when in fact it has no direct effect.</p></li>
 </ul>
 </section>
-<section id="interdependent-effects" class="slide level2 smaller">
-<h2>12) Interdependent effects</h2>
-<ul>
-<li><p>Imagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt because investors will appreciate the reform’s impact.</p></li>
-<li><p>Conversely, a reform that improves efficiency for a single firm might not improve its <span class="math inline">\(Q\)</span> if adopted widely because the gains will be competed away.</p></li>
-</ul>
-</section>
 <section id="selection-bias" class="slide level2 smaller">
-<h2>13) Selection bias</h2>
+<h2>12) Selection bias</h2>
 <ul>
 <li><p>If you run a regression with two types of companies</p>
 <ul>
@@ -607,7 +597,7 @@ Henrique C. Martins
 </ul>
 </section>
 <section id="self-selection" class="slide level2 smaller">
-<h2>14) Self-Selection</h2>
+<h2>13) Self-Selection</h2>
 <ul>
 <li><p>Self-selection is a type of selection bias. Usually, firms decide which level of governance they adopt</p></li>
 <li><p>It is like they “self-select” into the treatment.</p>

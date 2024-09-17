@@ -145,7 +145,7 @@ Sometimes, there is causality even when we do not observe correlation.
 
     - You may have more covariates explaining Q (omitted  from slides)
   
- $𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error$
+ $𝑸_{i} = α + 𝜷 × Gov_{i} + Controls + error$
 
 . . . 
 
@@ -208,9 +208,9 @@ Sometimes, there is causality even when we do not observe correlation.
 
 - Imagine that you do not include an important “true” predictor of $Q$
 
-- Let's say, long is:  $𝑸_{i} = \alpha_{long} + \beta_{long}* gov_{i} + δ * omitted + error$
+- Let's say, long is:  $𝑸_{i} = \alpha_{long} + \beta_{long}* Gov_{i} + δ * omitted + error$
 
-- But you estimate short:  $𝑸_{i} = \alpha_{short} + \beta_{short}* gov_{i} + error$
+- But you estimate short:  $𝑸_{i} = \alpha_{short} + \beta_{short}* Gov_{i} + error$
 
 - $\beta_{short}$ will be: 
 
@@ -256,10 +256,6 @@ Sometimes, there is causality even when we do not observe correlation.
 
 
 
-## OVB &  Bad Controls {.smaller }
-
-![](confounding variables.png) 
-
 
 
 
@@ -288,6 +284,9 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
 
 ## 6) Specification error  {.smaller }
+
+$Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon$
+
 
 - Even if we could perfectly measure $Gov$ and all relevant covariates, we would not know for sure the functional form through which each influences $Q$.
 
@@ -390,20 +389,9 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
 
 
-## 12) Interdependent effects {.smaller }
-
-- Imagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt because investors will appreciate the reform’s impact.
-
-- Conversely, a reform that improves efficiency for a single firm might not improve its $Q$ if adopted widely because the gains will be competed away.
 
 
-
-
-
-
-
-
-## 13) Selection bias   {.smaller }
+## 12) Selection bias   {.smaller }
 
 - If you run a regression with two types of companies
 
@@ -419,7 +407,7 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
   
 
-## 14) Self-Selection {.smaller }
+## 13) Self-Selection {.smaller }
 
 - Self-selection is a type of selection bias. Usually, firms decide which level of governance they adopt
 

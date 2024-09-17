@@ -17420,7 +17420,7 @@
     "href": "seminars/enanpad_2024/index.html#the-challenge-1",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "The challenge",
-    "text": "The challenge\n\nImagine that you want to investigate the effect of Governance on Q\n\nYou may have more covariates explaining Q (omitted from slides)\n\n\n\\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\nAll the issues in the next slides will make it not possible to infer that changing Gov will CAUSE a change in Q\nThat is, cannot infer causality"
+    "text": "The challenge\n\nImagine that you want to investigate the effect of Governance on Q\n\nYou may have more covariates explaining Q (omitted from slides)\n\n\n\\(𝑸_{i} = α + 𝜷 × Gov_{i} + Controls + error\\)\n\nAll the issues in the next slides will make it not possible to infer that changing Gov will CAUSE a change in Q\nThat is, cannot infer causality"
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#the-challenge-2",
@@ -17441,14 +17441,14 @@
     "href": "seminars/enanpad_2024/index.html#omitted-variable-bias-ovb",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "3) Omitted variable bias (OVB)",
-    "text": "3) Omitted variable bias (OVB)\n\nImagine that you do not include an important “true” predictor of \\(Q\\)\nLet’s say, long is: \\(𝑸_{i} = \\alpha_{long} + \\beta_{long}* gov_{i} + δ * omitted + error\\)\nBut you estimate short: \\(𝑸_{i} = \\alpha_{short} + \\beta_{short}* gov_{i} + error\\)\n\\(\\beta_{short}\\) will be:\n\n\\(\\beta_{short} = \\beta_{long}\\) + bias\n\\(\\beta_{short} = \\beta_{long}\\) + relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)\n\nWhere: relationship between omitted (omitted) and included (Gov) is: \\(Omitted = \\alpha + ϕ *Gov_{i} + \\mu\\)\n\n\nThus, OVB is: \\(\\beta_{short} – \\beta_{long} = ϕ * δ\\)"
+    "text": "3) Omitted variable bias (OVB)\n\nImagine that you do not include an important “true” predictor of \\(Q\\)\nLet’s say, long is: \\(𝑸_{i} = \\alpha_{long} + \\beta_{long}* Gov_{i} + δ * omitted + error\\)\nBut you estimate short: \\(𝑸_{i} = \\alpha_{short} + \\beta_{short}* Gov_{i} + error\\)\n\\(\\beta_{short}\\) will be:\n\n\\(\\beta_{short} = \\beta_{long}\\) + bias\n\\(\\beta_{short} = \\beta_{long}\\) + relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)\n\nWhere: relationship between omitted (omitted) and included (Gov) is: \\(Omitted = \\alpha + ϕ *Gov_{i} + \\mu\\)\n\n\nThus, OVB is: \\(\\beta_{short} – \\beta_{long} = ϕ * δ\\)"
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#specification-error",
     "href": "seminars/enanpad_2024/index.html#specification-error",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "6) Specification error",
-    "text": "6) Specification error\n\nEven if we could perfectly measure \\(Gov\\) and all relevant covariates, we would not know for sure the functional form through which each influences \\(Q\\).\n\nFunctional form: linear? Quadratic? Log-log? Semi-log?\n\nMisspecification of x’s is similar to OVB."
+    "text": "6) Specification error\n\\(Q_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon\\)\n\nEven if we could perfectly measure \\(Gov\\) and all relevant covariates, we would not know for sure the functional form through which each influences \\(Q\\).\n\nFunctional form: linear? Quadratic? Log-log? Semi-log?\n\nMisspecification of x’s is similar to OVB."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#signaling",
@@ -17503,15 +17503,15 @@
     "objectID": "seminars/enanpad_2024/index.html#selection-bias",
     "href": "seminars/enanpad_2024/index.html#selection-bias",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
-    "section": "13) Selection bias",
-    "text": "13) Selection bias\n\nIf you run a regression with two types of companies\n\nHigh gov (let’s say they are the treated group)\nLow gov (let’s say they are the control group)\n\nWithout any matching method, these companies are likely not comparable\n\nApples compared to oranges\n\nThus, the estimated beta will contain selection bias, which can be either be positive or negative"
+    "section": "12) Selection bias",
+    "text": "12) Selection bias\n\nIf you run a regression with two types of companies\n\nHigh gov (let’s say they are the treated group)\nLow gov (let’s say they are the control group)\n\nWithout any matching method, these companies are likely not comparable\n\nApples compared to oranges\n\nThus, the estimated beta will contain selection bias, which can be either be positive or negative"
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#self-selection",
     "href": "seminars/enanpad_2024/index.html#self-selection",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
-    "section": "14) Self-Selection",
-    "text": "14) Self-Selection\n\nSelf-selection is a type of selection bias. Usually, firms decide which level of governance they adopt\nIt is like they “self-select” into the treatment.\n\nUnits decide whether they receive the treatment or not\n\nThere are reasons why firms adopt high governance\n\nIf observable, you need to control for. If unobservable, you have a problem."
+    "section": "13) Self-Selection",
+    "text": "13) Self-Selection\n\nSelf-selection is a type of selection bias. Usually, firms decide which level of governance they adopt\nIt is like they “self-select” into the treatment.\n\nUnits decide whether they receive the treatment or not\n\nThere are reasons why firms adopt high governance\n\nIf observable, you need to control for. If unobservable, you have a problem."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#collider-bias-endog.-selection-bias",
