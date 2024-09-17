@@ -17434,7 +17434,7 @@
     "href": "seminars/enanpad_2024/index.html#reverse-causation",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "1) Reverse causation",
-    "text": "1) Reverse causation\n\nPerhaps it is \\(Q\\) that causes \\(Gov\\)\nOLS based methods do not tell the difference between these two betas:\n\n\\(Q_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon\\)\n\\(Gov_{i} = \\alpha + \\beta × Q_{i} + Controls + \\epsilon\\)\n\nIf one Beta is significant, the other will most likely be significant too\nYou need a sound theory!"
+    "text": "1) Reverse causation\n\nPerhaps it is \\(Q\\) that causes \\(Gov\\).\nOLS based methods do not tell the difference between these two betas:\n\n\\(Q_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon\\)\n\\(Gov_{i} = \\alpha + \\beta × Q_{i} + Controls + \\epsilon\\)\n\nIf one Beta is significant, the other will most likely be significant too.\nYou need a sound theory (and possibly play with lags, might not be enough)!"
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#omitted-variable-bias-ovb",
@@ -17455,49 +17455,49 @@
     "href": "seminars/enanpad_2024/index.html#signaling",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "7) Signaling",
-    "text": "7) Signaling\n\nPerhaps, some individuals are signaling the existence of an X without truly having it:\n\nFor instance: firms signaling they have good governance without having it\n\nThis is similar to the OVB because you cannot observe the full story"
+    "text": "7) Signaling\n\nPerhaps, some individuals are signaling the existence of an X without truly having it:\n\nFor instance: firms signaling they have good governance without it\n\nThis is similar to the OVB because you cannot observe the full story."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#simultaneity",
     "href": "seminars/enanpad_2024/index.html#simultaneity",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "2) Simultaneity",
-    "text": "2) Simultaneity\n\nPerhaps \\(Gov\\) and \\(Q\\) are determined simultaneously\nThat is, there is a third variable causing both\nAn OLS regression will provide a biased estimate of the effect\nAlso, the sign might be wrong"
+    "text": "2) Simultaneity\n\nPerhaps \\(Gov\\) and \\(Q\\) are determined simultaneously.\nThat is, there is a third variable causing both.\nAn OLS regression will provide a biased estimate of the effect.\nAlso, the sign might be wrong."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#heterogeneous-effects",
     "href": "seminars/enanpad_2024/index.html#heterogeneous-effects",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
-    "section": "9) Heterogeneous effects",
-    "text": "9) Heterogeneous effects\n\nMaybe the causal effect of \\(Gov\\) on \\(Q\\) depends on observed and unobserved firm characteristics:\n\nLet’s assume that firms seek to maximize \\(Q\\)\nDifferent firms have different optimal \\(Gov\\)\nFirms know their optimal \\(Gov\\)\nIf we observed all factors that affect \\(Q\\), each firm would be at its own optimum and OLS regression would give a non-significant coefficient\n\nIn such case, we may find a positive or negative relationship\nNeither is the true causal relationship"
+    "section": "10) Heterogeneous effects",
+    "text": "10) Heterogeneous effects\n\nMaybe the causal effect of \\(Gov\\) on \\(Q\\) depends on observed and unobserved firm characteristics:\n\nLet’s assume that firms seek to maximize \\(Q\\).\nDifferent firms have different optimal \\(Gov\\).\nFirms know their optimal \\(Gov\\).\nIf we observed all factors that affect \\(Q\\), each firm would be at its own optimum and OLS regression would give a non-significant coefficient.\n\nIn such case, we may find a positive or negative relationship.\nNeither is the true causal relationship."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#construct-validity",
     "href": "seminars/enanpad_2024/index.html#construct-validity",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "8) Construct validity",
-    "text": "8) Construct validity\n\nSome constructs (e.g. \\(Gov\\)) are complex, and sometimes have conflicting mechanisms\nWe usually don’t know for sure what “good” governance is, for instance\nIt is common to use imperfect proxies, that may poorly fit the underlying concept"
+    "text": "8) Construct validity\n\nSome constructs (e.g. \\(Gov\\)) are complex and sometimes have conflicting mechanisms.\nWe usually don’t know for sure what “good” governance is, for instance.\nIt is common to use imperfect proxies, that may poorly fit the underlying concept."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#measurement-error",
     "href": "seminars/enanpad_2024/index.html#measurement-error",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
-    "section": "10) Measurement error",
-    "text": "10) Measurement error\n\n“Classical” random measurement error in x’s will bias coefficient toward zero\n\n\\(x^{*} = x + \\sigma_{2}\\)\nImagine that \\(x^{*}\\) is a bunch of noise. It would not explain anything\nThus, your results are biased toward zero\n\n“Classical” random measurement error for the outcome will inflate standard errors but will not lead to biased coefficients.\n\n\\(y^{*} = y + \\sigma_{1}\\)\nIf you estimante \\(y^{*} = f(x)\\), you have \\(y + \\sigma_{1} = x + \\epsilon\\)\n\\(y = x + u\\)\n\nwhere \\(u = \\epsilon + \\sigma_{1}\\)"
+    "section": "9) Measurement error",
+    "text": "9) Measurement error\n\n“Classical” random measurement error in x’s will bias the coefficient toward zero\n\n\\(x^{*} = x + \\sigma_{2}\\)\nImagine that \\(x^{*}\\) is a bunch of noise. It would not explain anything.\nThus, your results are biased toward zero.\n\n“Classical” random measurement error in the Y will inflate standard errors but will not lead to biased coefficients.\n\n\\(y^{*} = y + \\sigma_{1}\\)\nIf you estimante \\(y^{*} = f(x)\\), you have \\(y + \\sigma_{1} = x + \\epsilon\\)\n\\(y = x + u\\)\n\nwhere \\(u = \\epsilon + \\sigma_{1}\\)"
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#observation-bias",
     "href": "seminars/enanpad_2024/index.html#observation-bias",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "11) Observation bias",
-    "text": "11) Observation bias\n\nThis is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed\nFirms which change gov may behave differently because their managers or employees think the change in \\(Gov\\) matters, when in fact it has no direct effect"
+    "text": "11) Observation bias\n\nThis is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed.\nFirms which change gov may behave differently because their managers or employees think the change in \\(Gov\\) matters, when in fact it has no direct effect."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#interdependent-effects",
     "href": "seminars/enanpad_2024/index.html#interdependent-effects",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "12) Interdependent effects",
-    "text": "12) Interdependent effects\n\nImagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt because investors will appreciate the reform’s impact.\nConversely, a reform that improves efficiency for a single firm might not improve its \\(Q\\) if adopted widely because the gains will be competed away"
+    "text": "12) Interdependent effects\n\nImagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt because investors will appreciate the reform’s impact.\nConversely, a reform that improves efficiency for a single firm might not improve its \\(Q\\) if adopted widely because the gains will be competed away."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#selection-bias",
@@ -17630,7 +17630,7 @@
     "href": "seminars/enanpad_2024/index.html#bad-controls",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "4) Bad Controls",
-    "text": "4) Bad Controls\n\nBad controls are variables that are also outcome of the treatment (i.e., \\(Gov\\)) being studied.\nA Bad control could very well be a dependent variable of \\(Gov\\) as well.\nGood controls are variables that you can think as being fixed at the time of the treatment.\n\n\\(𝑄_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon\\)\n\nAssuming you also have something that is the consequence of good governance (e.g., Novo Mercado dummy). Should you include it in the model?\nNo. In this case, the coefficient of interest no longer has a causal interpretation.\n\n\n\n\n\n\n\nNote\n\n\nIt is not hard to come up with stories of why a control is a bad control."
+    "text": "4) Bad Controls\n\nBad controls are variables that are also outcome of the treatment (i.e., \\(Gov\\)) being studied.\nA Bad control could very well be a dependent variable of \\(Gov\\) as well.\nGood controls are variables that you can think as being fixed at the time of the treatment.\n\n\\(𝑄_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon\\)\n\nAssuming you also have something that is the consequence of good governance (e.g., Novo Mercado dummy). Should you include it in the model?\nNo. In this case, the coefficient of interest no longer has a causal interpretation.\n\n\n\n\n\n\n\nWarning\n\n\nIt is not hard to come up with stories of why a control is a bad control."
   },
   {
     "objectID": "seminars/enanpad_2024/index.html#bad-controls-1",
@@ -17658,6 +17658,6 @@
     "href": "seminars/enanpad_2024/index.html#collider-bias",
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "5) Collider bias",
-    "text": "5) Collider bias\nCollider bias occurs when an independent variable and outcome each influence a common third variable and that variable or collider is controlled for in the regression.\n- In a way, a collider is a bad control. \n- While a bad control makes you underestimate the coefficient, a collider creates spurious correlation between the X and the Y.\nIn the analysis below\n- $Q_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon$\nIncluding, for instance, CEO Reputation (assuming that both \\(Q\\) and \\(Gov\\) influences Reputation) creates a false correlation between \\(Qov\\) and \\(Q\\).\n- You may estimate a positive association even when there is none."
+    "text": "5) Collider bias\nCollider bias occurs when an independent variable and outcome each influence a third variable and that variable or collider is included in the regression.\n\nIn a way, a collider is a bad control.\nWhile a bad control makes you underestimate the effect, a collider creates spurious correlation between the X and the Y.\n\nIn the analysis below\n\n\\(Q_{i} = \\alpha + \\beta × Gov_{i} + Controls + \\epsilon\\)\n\nIncluding, for instance, CEO Reputation (assuming that both \\(Q\\) and \\(Gov\\) influences CEO Reputation) creates a false correlation between \\(Gov\\) and \\(Q\\).\n\nYou may estimate a significant association even when there is none."
   }
 ]

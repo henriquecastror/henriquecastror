@@ -159,7 +159,7 @@ Sometimes, there is causality even when we do not observe correlation.
 
 ## 1) Reverse causation   {.smaller }
 
-- Perhaps it is $Q$ that causes $Gov$
+- Perhaps it is $Q$ that causes $Gov$.
 
 - OLS based methods do not tell the difference between these two betas:
 
@@ -167,9 +167,9 @@ Sometimes, there is causality even when we do not observe correlation.
 
     - $Gov_{i} = \alpha + \beta × Q_{i} + Controls + \epsilon$
 
-- If one Beta is significant, the other will most likely be significant too
+- If one Beta is significant, the other will most likely be significant too.
 
-- You need a sound theory!
+- You need a sound theory (and possibly play with lags, might not be enough)!
 
 
 
@@ -182,13 +182,13 @@ Sometimes, there is causality even when we do not observe correlation.
 
 ## 2) Simultaneity  {.smaller }
 
-- Perhaps $Gov$ and $Q$ are determined simultaneously
+- Perhaps $Gov$ and $Q$ are determined simultaneously.
 
-- That is, there is a third variable causing both
+- That is, there is a third variable causing both.
 
-- An OLS regression will provide a biased estimate of the effect
+- An OLS regression will provide a biased estimate of the effect.
 
-- Also, the sign might be wrong
+- Also, the sign might be wrong.
 
 
 
@@ -243,7 +243,7 @@ Sometimes, there is causality even when we do not observe correlation.
 - No. In this case, the coefficient of interest no longer has a causal interpretation.
 
 
-::: {.callout-note}
+::: {.callout-warning}
 
 **It is not hard to come up with stories of why a control is a bad control.**
 
@@ -260,18 +260,18 @@ Sometimes, there is causality even when we do not observe correlation.
 
 ## 5) Collider bias {.smaller }
 
-Collider bias occurs when an independent variable and outcome each influence a common third variable and that variable or collider is controlled for in the regression.
+**Collider bias** occurs when an independent variable and outcome each influence a **third variable and that variable or collider is included in the regression**.
 
-    - In a way, a collider is a bad control. 
-    - While a bad control makes you underestimate the coefficient, a collider creates spurious correlation between the X and the Y.
+  - In a way, a collider is a bad control. 
+  - While a **bad control makes you underestimate the effect**, a **collider creates spurious correlation** between the X and the Y.
     
 In the analysis below
 
-    - $Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon$
+  - $Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon$
     
-Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influences Reputation) creates a false correlation between $Qov$ and $Q$.
+Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influences CEO Reputation) creates a false correlation between $Gov$ and $Q$.
 
-    - You may estimate a positive association even when there is none.
+  - You may estimate a significant association even when there is none.
     
     
     
@@ -301,9 +301,9 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
 - Perhaps, some individuals are signaling the existence of an X without truly having it:
 
-    - For instance: firms signaling they have good governance without having it
+    - For instance: firms signaling they have good governance without it
 
-- This is similar to the OVB because you cannot observe the full story
+- This is similar to the OVB because you cannot observe the full story.
 
 
 
@@ -316,11 +316,11 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
 ## 8) Construct validity  {.smaller }
 
-- Some constructs (e.g. $Gov$) are complex, and sometimes have conflicting mechanisms
+- Some constructs (e.g. $Gov$) are complex and sometimes have conflicting mechanisms.
 
-- We usually don’t know for sure what “good” governance is, for instance
+- We usually don’t know for sure what “good” governance is, for instance.
 
-- It is common to use imperfect proxies, that may poorly fit the underlying concept
+- It is common to use imperfect proxies, that may poorly fit the underlying concept.
 
 
 ![](proxy variable.png) 
@@ -328,39 +328,15 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
 
 
+## 9) Measurement error   {.smaller }
 
-## 9) Heterogeneous effects  {.smaller }
-
-- Maybe the causal effect of $Gov$ on $Q$ depends on observed and unobserved firm characteristics:
-
-    - Let's assume that firms seek to maximize $Q$
-    - Different firms have different optimal $Gov$
-    - Firms know their optimal $Gov$
-    - If we observed all factors that affect $Q$, each firm would be at its own optimum and OLS regression would give a non-significant coefficient
-
-- In such case, we may find a positive or negative relationship
-
-- Neither is the true causal relationship
-
-
-
-
-
-
-
-
-
-
-
-## 10) Measurement error   {.smaller }
-
-- "Classical" random measurement error in x’s will bias  **coefficient toward zero**
+- "Classical" random measurement error in **x’s** will bias the **coefficient toward zero**
 
     - $x^{*} = x + \sigma_{2}$
-    - Imagine that $x^{*}$ is a bunch of noise. It would not explain anything
-    - Thus, your results are biased toward zero
+    - Imagine that $x^{*}$ is a bunch of noise. It would not explain anything.
+    - Thus, your results are biased toward zero.
     
-- "Classical" random measurement error for the outcome will inflate standard errors but **will not lead to biased coefficients.** 
+- "Classical" random measurement error in the **Y** will inflate standard errors but **will not lead to biased coefficients.** 
 
     - $y^{*} = y + \sigma_{1}$
     - If you estimante $y^{*} = f(x)$, you have $y + \sigma_{1} = x + \epsilon$ 
@@ -374,12 +350,31 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
 
 
+## 10) Heterogeneous effects  {.smaller }
+
+- Maybe the causal effect of $Gov$ on $Q$ depends on observed and unobserved firm characteristics:
+
+    - Let's assume that firms seek to maximize $Q$.
+    - Different firms have different optimal $Gov$.
+    - Firms know their optimal $Gov$.
+    - If we observed all factors that affect $Q$, each firm would be at its own optimum and OLS regression would give a non-significant coefficient.
+
+- In such case, we may find a positive or negative relationship.
+
+- Neither is the true causal relationship.
+
+
+
+
+
+
+
 
 ## 11) Observation bias   {.smaller }
 
-- This is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed
+- This is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed.
 
-- Firms which change gov may behave differently because their managers or employees think the change in $Gov$ matters, when in fact it has no direct effect
+- Firms which change gov may behave differently because their managers or employees think the change in $Gov$ matters, when in fact it has no direct effect.
 
 
 
@@ -394,7 +389,7 @@ Including, for instance, CEO Reputation (assuming that both $Q$ and $Gov$ influe
 
 - Imagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt because investors will appreciate the reform’s impact.
 
-- Conversely, a reform that improves efficiency for a single firm might not improve its $Q$ if adopted widely because the gains will be competed away
+- Conversely, a reform that improves efficiency for a single firm might not improve its $Q$ if adopted widely because the gains will be competed away.
 
 
 

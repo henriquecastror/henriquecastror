@@ -427,23 +427,23 @@ Henrique C. Martins
 <section id="reverse-causation" class="slide level2 smaller">
 <h2>1) Reverse causation</h2>
 <ul>
-<li><p>Perhaps it is <span class="math inline">\(Q\)</span> that causes <span class="math inline">\(Gov\)</span></p></li>
+<li><p>Perhaps it is <span class="math inline">\(Q\)</span> that causes <span class="math inline">\(Gov\)</span>.</p></li>
 <li><p>OLS based methods do not tell the difference between these two betas:</p>
 <ul>
 <li><p><span class="math inline">\(Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon\)</span></p></li>
 <li><p><span class="math inline">\(Gov_{i} = \alpha + \beta × Q_{i} + Controls + \epsilon\)</span></p></li>
 </ul></li>
-<li><p>If one Beta is significant, the other will most likely be significant too</p></li>
-<li><p>You need a sound theory!</p></li>
+<li><p>If one Beta is significant, the other will most likely be significant too.</p></li>
+<li><p>You need a sound theory (and possibly play with lags, might not be enough)!</p></li>
 </ul>
 </section>
 <section id="simultaneity" class="slide level2 smaller">
 <h2>2) Simultaneity</h2>
 <ul>
-<li><p>Perhaps <span class="math inline">\(Gov\)</span> and <span class="math inline">\(Q\)</span> are determined simultaneously</p></li>
-<li><p>That is, there is a third variable causing both</p></li>
-<li><p>An OLS regression will provide a biased estimate of the effect</p></li>
-<li><p>Also, the sign might be wrong</p></li>
+<li><p>Perhaps <span class="math inline">\(Gov\)</span> and <span class="math inline">\(Q\)</span> are determined simultaneously.</p></li>
+<li><p>That is, there is a third variable causing both.</p></li>
+<li><p>An OLS regression will provide a biased estimate of the effect.</p></li>
+<li><p>Also, the sign might be wrong.</p></li>
 </ul>
 </section>
 <section id="omitted-variable-bias-ovb" class="slide level2 smaller">
@@ -475,13 +475,13 @@ Henrique C. Martins
 <li><p>Assuming you also have something that is the consequence of good governance (e.g., Novo Mercado dummy). Should you include it in the model?</p></li>
 <li><p>No.&nbsp;In this case, the coefficient of interest no longer has a causal interpretation.</p></li>
 </ul>
-<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Note</strong></p>
+<p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
 <p><strong>It is not hard to come up with stories of why a control is a bad control.</strong></p>
@@ -495,13 +495,19 @@ Henrique C. Martins
 <img data-src="confounding variables.png" class="r-stretch"></section>
 <section id="collider-bias" class="slide level2 smaller">
 <h2>5) Collider bias</h2>
-<p>Collider bias occurs when an independent variable and outcome each influence a common third variable and that variable or collider is controlled for in the regression.</p>
-<pre><code>- In a way, a collider is a bad control. 
-- While a bad control makes you underestimate the coefficient, a collider creates spurious correlation between the X and the Y.</code></pre>
+<p><strong>Collider bias</strong> occurs when an independent variable and outcome each influence a <strong>third variable and that variable or collider is included in the regression</strong>.</p>
+<ul>
+<li>In a way, a collider is a bad control.</li>
+<li>While a <strong>bad control makes you underestimate the effect</strong>, a <strong>collider creates spurious correlation</strong> between the X and the Y.</li>
+</ul>
 <p>In the analysis below</p>
-<pre><code>- $Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon$</code></pre>
-<p>Including, for instance, CEO Reputation (assuming that both <span class="math inline">\(Q\)</span> and <span class="math inline">\(Gov\)</span> influences Reputation) creates a false correlation between <span class="math inline">\(Qov\)</span> and <span class="math inline">\(Q\)</span>.</p>
-<pre><code>- You may estimate a positive association even when there is none.</code></pre>
+<ul>
+<li><span class="math inline">\(Q_{i} = \alpha + \beta × Gov_{i} + Controls + \epsilon\)</span></li>
+</ul>
+<p>Including, for instance, CEO Reputation (assuming that both <span class="math inline">\(Q\)</span> and <span class="math inline">\(Gov\)</span> influences CEO Reputation) creates a false correlation between <span class="math inline">\(Gov\)</span> and <span class="math inline">\(Q\)</span>.</p>
+<ul>
+<li>You may estimate a significant association even when there is none.</li>
+</ul>
 </section>
 <section id="specification-error" class="slide level2 smaller">
 <h2>6) Specification error</h2>
@@ -518,44 +524,30 @@ Henrique C. Martins
 <ul>
 <li><p>Perhaps, some individuals are signaling the existence of an X without truly having it:</p>
 <ul>
-<li>For instance: firms signaling they have good governance without having it</li>
+<li>For instance: firms signaling they have good governance without it</li>
 </ul></li>
-<li><p>This is similar to the OVB because you cannot observe the full story</p></li>
+<li><p>This is similar to the OVB because you cannot observe the full story.</p></li>
 </ul>
 </section>
 <section id="construct-validity" class="slide level2 smaller">
 <h2>8) Construct validity</h2>
 <ul>
-<li><p>Some constructs (e.g.&nbsp;<span class="math inline">\(Gov\)</span>) are complex, and sometimes have conflicting mechanisms</p></li>
-<li><p>We usually don’t know for sure what “good” governance is, for instance</p></li>
-<li><p>It is common to use imperfect proxies, that may poorly fit the underlying concept</p></li>
+<li><p>Some constructs (e.g.&nbsp;<span class="math inline">\(Gov\)</span>) are complex and sometimes have conflicting mechanisms.</p></li>
+<li><p>We usually don’t know for sure what “good” governance is, for instance.</p></li>
+<li><p>It is common to use imperfect proxies, that may poorly fit the underlying concept.</p></li>
 </ul>
 
 <img data-src="proxy variable.png" class="r-stretch"></section>
-<section id="heterogeneous-effects" class="slide level2 smaller">
-<h2>9) Heterogeneous effects</h2>
-<ul>
-<li><p>Maybe the causal effect of <span class="math inline">\(Gov\)</span> on <span class="math inline">\(Q\)</span> depends on observed and unobserved firm characteristics:</p>
-<ul>
-<li>Let’s assume that firms seek to maximize <span class="math inline">\(Q\)</span></li>
-<li>Different firms have different optimal <span class="math inline">\(Gov\)</span></li>
-<li>Firms know their optimal <span class="math inline">\(Gov\)</span></li>
-<li>If we observed all factors that affect <span class="math inline">\(Q\)</span>, each firm would be at its own optimum and OLS regression would give a non-significant coefficient</li>
-</ul></li>
-<li><p>In such case, we may find a positive or negative relationship</p></li>
-<li><p>Neither is the true causal relationship</p></li>
-</ul>
-</section>
 <section id="measurement-error" class="slide level2 smaller">
-<h2>10) Measurement error</h2>
+<h2>9) Measurement error</h2>
 <ul>
-<li><p>“Classical” random measurement error in x’s will bias <strong>coefficient toward zero</strong></p>
+<li><p>“Classical” random measurement error in <strong>x’s</strong> will bias the <strong>coefficient toward zero</strong></p>
 <ul>
 <li><span class="math inline">\(x^{*} = x + \sigma_{2}\)</span></li>
-<li>Imagine that <span class="math inline">\(x^{*}\)</span> is a bunch of noise. It would not explain anything</li>
-<li>Thus, your results are biased toward zero</li>
+<li>Imagine that <span class="math inline">\(x^{*}\)</span> is a bunch of noise. It would not explain anything.</li>
+<li>Thus, your results are biased toward zero.</li>
 </ul></li>
-<li><p>“Classical” random measurement error for the outcome will inflate standard errors but <strong>will not lead to biased coefficients.</strong></p>
+<li><p>“Classical” random measurement error in the <strong>Y</strong> will inflate standard errors but <strong>will not lead to biased coefficients.</strong></p>
 <ul>
 <li><span class="math inline">\(y^{*} = y + \sigma_{1}\)</span></li>
 <li>If you estimante <span class="math inline">\(y^{*} = f(x)\)</span>, you have <span class="math inline">\(y + \sigma_{1} = x + \epsilon\)</span></li>
@@ -567,18 +559,32 @@ Henrique C. Martins
 </ul>
 <!-- https://web.stanford.edu/class/polisci100a/regress5.pdf  -->
 </section>
+<section id="heterogeneous-effects" class="slide level2 smaller">
+<h2>10) Heterogeneous effects</h2>
+<ul>
+<li><p>Maybe the causal effect of <span class="math inline">\(Gov\)</span> on <span class="math inline">\(Q\)</span> depends on observed and unobserved firm characteristics:</p>
+<ul>
+<li>Let’s assume that firms seek to maximize <span class="math inline">\(Q\)</span>.</li>
+<li>Different firms have different optimal <span class="math inline">\(Gov\)</span>.</li>
+<li>Firms know their optimal <span class="math inline">\(Gov\)</span>.</li>
+<li>If we observed all factors that affect <span class="math inline">\(Q\)</span>, each firm would be at its own optimum and OLS regression would give a non-significant coefficient.</li>
+</ul></li>
+<li><p>In such case, we may find a positive or negative relationship.</p></li>
+<li><p>Neither is the true causal relationship.</p></li>
+</ul>
+</section>
 <section id="observation-bias" class="slide level2 smaller">
 <h2>11) Observation bias</h2>
 <ul>
-<li><p>This is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed</p></li>
-<li><p>Firms which change gov may behave differently because their managers or employees think the change in <span class="math inline">\(Gov\)</span> matters, when in fact it has no direct effect</p></li>
+<li><p>This is analogous to the Hawthorne effect, in which observed subjects behave differently because they are observed.</p></li>
+<li><p>Firms which change gov may behave differently because their managers or employees think the change in <span class="math inline">\(Gov\)</span> matters, when in fact it has no direct effect.</p></li>
 </ul>
 </section>
 <section id="interdependent-effects" class="slide level2 smaller">
 <h2>12) Interdependent effects</h2>
 <ul>
 <li><p>Imagine that a governance reform that will not affect share prices for a single firm might be effective if several firms adopt because investors will appreciate the reform’s impact.</p></li>
-<li><p>Conversely, a reform that improves efficiency for a single firm might not improve its <span class="math inline">\(Q\)</span> if adopted widely because the gains will be competed away</p></li>
+<li><p>Conversely, a reform that improves efficiency for a single firm might not improve its <span class="math inline">\(Q\)</span> if adopted widely because the gains will be competed away.</p></li>
 </ul>
 </section>
 <section id="selection-bias" class="slide level2 smaller">
