@@ -1019,7 +1019,7 @@
     "href": "teaching/empirical_finance/index.html",
     "title": "Empirical Methods 2024/02",
     "section": "",
-    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1: Slides\nPart 2: Slides\nPart 3: Slides\nPart 4 OLS: Slides\nPart 5 Panel data: Slides\nPart 6 Matching: Slides\nPart 7 DiD: Slides\nPart 8 RDD: Slides\nPart 8 Synth: Slides\n\nTo be continued"
+    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1: Slides\nPart 2: Slides\nPart 3: Slides\nPart 4 OLS: Slides\nPart 5 Panel data: Slides\nPart 6 Matching: Slides\nPart 7 DiD: Slides\nPart 8 RDD: Slides\nPart 9 Synth: Slides\nPart 10 IV: Slides\n\nTo be continued"
   },
   {
     "objectID": "research/research/EMR_2023/index.html",
@@ -18279,6 +18279,174 @@
   {
     "objectID": "teaching/empirical_finance/part_9.html#thank-you",
     "href": "teaching/empirical_finance/part_9.html#thank-you",
+    "title": "Empirical Methods in Finance",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br][Do not use without permission]"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#introduction-iv-1",
+    "href": "teaching/empirical_finance/part_10.html#introduction-iv-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Introduction IV",
+    "text": "Introduction IV\nImagine the following model\n\\[Ln(wage)=\\alpha + \\beta_1 educ + \\epsilon\\]\nWe can infer that educ is correlated with ability, but the latter is in the error term.\neduc in this case is “endogenous”.\n\\[Cov(educ, \\epsilon) \\neq 0\\]"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#introduction-iv-2",
+    "href": "teaching/empirical_finance/part_10.html#introduction-iv-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Introduction IV",
+    "text": "Introduction IV\nThe setup of an IV is\nSuppose that we have an observable variable z that satisfies these two assumptions:\n\nz is uncorrelated with u:\n\n\\[Cov(z, \\epsilon) = 0\\]\n\nz is correlated with x:\n\n\\[Cov(z, x) \\neq 0\\]\nThen, we call z an instrumental variable for x, or sometimes simply an instrument for x."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#introduction-iv-3",
+    "href": "teaching/empirical_finance/part_10.html#introduction-iv-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Introduction IV",
+    "text": "Introduction IV\nBefore we continue,\nIV is not a model, it is an estimation method\nI’ll call it a Design.\nDo not say, I estimated an IV model (more often than it should be)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#instrumental-variables-1",
+    "href": "teaching/empirical_finance/part_10.html#instrumental-variables-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Instrumental Variables",
+    "text": "Instrumental Variables\nImagine that you have one independent variable that is “endogenous”:\n\n\\(Cov(x_k,\\mu)\\neq 0\\)\nYou may have many other independent variables not “endogenous”\n\n\nIn this situation:\n\n\\(B_k\\) is biased\nThe other betas will likely be biased as well, since it is unlikely that all other Xs are not correlated with \\(x_k\\)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#instrumental-variables-2",
+    "href": "teaching/empirical_finance/part_10.html#instrumental-variables-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Instrumental Variables",
+    "text": "Instrumental Variables\n\\(x_k\\) is the endogenous variable.\n\nIt has “good” variation:\n\nthe part that varies that is not correlated with \\(\\mu\\)\n\nIt has “bad” variation:\n\nthe part that varies that is correlated with \\(\\mu\\)\n\n\n\nLet’s assume now that you can find an instrument \\(z\\)\n\nThe instrument \\(z\\) is correlated with \\(X_k\\), but only the “good” variation, not the “bad”.\nThe instrument \\(z\\) does not explain \\(y\\) directly, only through \\(x_k\\).\n\nOnly through condition."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#instrumental-variables-3",
+    "href": "teaching/empirical_finance/part_10.html#instrumental-variables-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Instrumental Variables",
+    "text": "Instrumental Variables\nRelevance Condition\nThe instrument \\(z\\) is correlated with \\(x_k\\).\n\nThis assumption is easy to test. Simply run a regression of \\(x=f(z, all\\; Xs)\\) and check the significance of the \\(\\beta_z\\).\nThis is called the first stage of an IV regression\n\nTip: Always show the beta coefficient and the R2 (even if low) of the first-stage.\n\n\n\nExclusion Condition\nThe instrument \\(z\\) is not correlated with \\(\\mu\\).\n\nThat is \\(cov(z,\\mu) = 0\\)\nAs all correlations with \\(\\mu\\), you cannot test this prediction. You have to rely on the theory, create a story about that."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#instrumental-variables-4",
+    "href": "teaching/empirical_finance/part_10.html#instrumental-variables-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Instrumental Variables",
+    "text": "Instrumental Variables\nAn example of IV Murray."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#instrumental-variables-5",
+    "href": "teaching/empirical_finance/part_10.html#instrumental-variables-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Instrumental Variables",
+    "text": "Instrumental Variables\nAn example of IV Murray."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#instrumental-variables-6",
+    "href": "teaching/empirical_finance/part_10.html#instrumental-variables-6",
+    "title": "Empirical Methods in Finance",
+    "section": "Instrumental Variables",
+    "text": "Instrumental Variables\nMixtape\nGood instruments should feel weird\nParents with two same-gender kids are more likely to try a third kid than a diverse-gender pair of parents.\nSo, you may use the gender of the kids as instrument for the likelihood of the mother go back to the labor market."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#angrists-example-1",
+    "href": "teaching/empirical_finance/part_10.html#angrists-example-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Angrist’s example",
+    "text": "Angrist’s example\nRemember the Fuzzy RDD.\n\nThere is the treatment\nThere is the position (before or after the cut)\n\nThe position is an indication of receiving or not the treatment, but it is not definitive.\nThus, we can use the position as an IV for the treatment."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#angrists-example-2",
+    "href": "teaching/empirical_finance/part_10.html#angrists-example-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Angrist’s example",
+    "text": "Angrist’s example\nMixtape\nOne of the more seminal papers in instrumental variables for the modern period is Angrist and Krueger (1991).\nTheir idea is simple and clever; a quirk in the United States educational system is that a child enters a grade on the basis of his or her birthday.\nFor a long time, that cutoff was late December. If children were born on or before December 31, then they were assigned to the first grade. But if their birthday was on or after January 1, they were assigned to kindergarten. \nThus two people—one born on December 31 and one born on January 1—were exogenously assigned different grades.\nEveryone is forced to leave school when 16."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#angrists-example-3",
+    "href": "teaching/empirical_finance/part_10.html#angrists-example-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Angrist’s example",
+    "text": "Angrist’s example\nMixtape\n\nAngrist and Krueger had the insight that that small quirk was exogenously assigning more schooling to people born later in the year.\nThe person born in December would reach age 16 with more education than the person born in January"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#angrists-example-4",
+    "href": "teaching/empirical_finance/part_10.html#angrists-example-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Angrist’s example",
+    "text": "Angrist’s example\nMixtape\n\nWhat is the instrument here?"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#angrists-example-5",
+    "href": "teaching/empirical_finance/part_10.html#angrists-example-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Angrist’s example",
+    "text": "Angrist’s example\nMixtape\nWhat is the instrument here?\nThe instrument is the quarter of birth.\n\nPeople born in the 3rd and 4th quarter receive more education than others due to compulsory schooling."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#two-stage-least-squares-2sls-1",
+    "href": "teaching/empirical_finance/part_10.html#two-stage-least-squares-2sls-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Two-stage least squares (2SLS)",
+    "text": "Two-stage least squares (2SLS)\nOne of the more intuitive instrumental variables estimators is the 2SLS.\nThe first stage is\n\\[x_k = \\delta + \\delta_1 z + \\delta_2 x_1 + . . .+ \\delta_n x_n + \\mu\\]\nThen, you predict \\(x_k\\) using the first stage.\n\n“predict” means that you are finding the “response” Y of the equation after estimating the coefficients\n\n\\[\\hat{x_k} = \\hat{\\delta} + \\hat{\\delta_1} z + \\hat{\\delta_2} x_1 + . . . + \\hat{\\delta_n} x_n \\]\n\nThen, the second stage is:\n\\[y = \\alpha + \\beta_1 \\hat{x_k} + \\beta_2 x_1 + . . .+  \\beta_n x_n + \\mu\\]\nThe idea using \\(\\hat{x_k}\\) is that it represents only the variation that is not correlated with \\(\\mu\\)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#instrumental-variables-7",
+    "href": "teaching/empirical_finance/part_10.html#instrumental-variables-7",
+    "title": "Empirical Methods in Finance",
+    "section": "Instrumental Variables",
+    "text": "Instrumental Variables\nWe can write that:\n\\[\\beta_1= \\frac{Cov(z,y)}{Cov(z,x_k)}\\]\n\nIt shows that \\(\\beta_1\\) is the population covariance between z and y divided by the population covariance between z and x.\nNotice how this fails if z and x are uncorrelated, that is, if \\(Cov(z, x) = 0\\)\n\n\n\\[\\beta_1= \\frac{\\sum_{i=1}^n(z_i-\\bar{z})(y_i-\\bar{y})}{\\sum_{i=1}^n(z_i-\\bar{z})(x_i-\\bar{x})}\\]\nNotice that if \\(z\\) and \\(x\\) are the same (i.e., perfect correlation), \\(\\beta_1\\) above is the OLS \\(\\beta\\)\n\\[\\beta_1= \\frac{\\sum_{i=1}^n(x_i-\\bar{x})(y_i-\\bar{y})}{\\sum_{i=1}^n(x_i-\\bar{x})^2}\\]"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#weak-instruments-1",
+    "href": "teaching/empirical_finance/part_10.html#weak-instruments-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Weak Instruments",
+    "text": "Weak Instruments\nI did not demonstrate here, but we can say that (see pp; 517-18 Wooldridge):\n\nthough IV is consistent when \\(z\\) and \\(u\\) are uncorrelated and \\(z\\) and \\(x\\) have any positive or negative correlation, IV estimates can have large standard errors, especially if \\(z\\) and \\(x\\) are only weakly correlated.\n\nThis gives rise to the week instruments problem.\nWe can write the probability limit of the IV estimator:\n\\[plim \\hat{\\beta_{iv}} = \\beta_1 + \\frac{Corr(z,\\mu)}{Corr(z,x)} \\times \\frac{\\sigma_{\\mu}}{\\sigma_x}\\]\nIt shows that, even if \\(Corr(z,\\mu)\\) is small, the inconsistency in the IV estimator can be very large if \\(Corr(z,x)\\) is also small."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#weak-instruments-2",
+    "href": "teaching/empirical_finance/part_10.html#weak-instruments-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Weak Instruments",
+    "text": "Weak Instruments\nTwo tips:\n\nLook at the F-stat of the first-stage. It should not be low.\nThe sign of the coefficient in the first stage should be as expected.\nLook at the S.E. When the instrument is week, the S.E., are even larger than it should be.\n\n\nOne more tip,\n\nAvoid computing the first stage by hand, it would give wrong estimates of the S.E. in the second stage."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#example-1",
+    "href": "teaching/empirical_finance/part_10.html#example-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Example",
+    "text": "Example\nOLS\n\nStata\n\n\n\n\nStata\nuse files/mroz.dta , clear\nreg lwage educ \n\n\n      Source |       SS           df       MS      Number of obs   =       428\n-------------+----------------------------------   F(1, 426)       =     56.93\n       Model |  26.3264237         1  26.3264237   Prob &gt; F        =    0.0000\n    Residual |  197.001028       426  .462443727   R-squared       =    0.1179\n-------------+----------------------------------   Adj R-squared   =    0.1158\n       Total |  223.327451       427  .523015108   Root MSE        =    .68003\n\n------------------------------------------------------------------------------\n       lwage | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]\n-------------+----------------------------------------------------------------\n        educ |   .1086487   .0143998     7.55   0.000     .0803451    .1369523\n       _cons |  -.1851969   .1852259    -1.00   0.318    -.5492674    .1788735\n------------------------------------------------------------------------------"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#example-2",
+    "href": "teaching/empirical_finance/part_10.html#example-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Example",
+    "text": "Example\nThe IV estimate of the return to education is 5.9%, which is barely more than one-half of the OLS estimate. This suggests that the OLS estimate is too high and is consistent with omitted ability bias.\n\nStata\n\n\n\n\nStata\nuse files/mroz.dta , clear\nivreg lwage (educ =fatheduc ) , first\n\n\nFirst-stage regressions\n-----------------------\n\n      Source |       SS           df       MS      Number of obs   =       428\n-------------+----------------------------------   F(1, 426)       =     88.84\n       Model |  384.841983         1  384.841983   Prob &gt; F        =    0.0000\n    Residual |  1845.35428       426  4.33181756   R-squared       =    0.1726\n-------------+----------------------------------   Adj R-squared   =    0.1706\n       Total |  2230.19626       427  5.22294206   Root MSE        =    2.0813\n\n------------------------------------------------------------------------------\n        educ | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]\n-------------+----------------------------------------------------------------\n    fatheduc |   .2694416   .0285863     9.43   0.000     .2132538    .3256295\n       _cons |   10.23705   .2759363    37.10   0.000     9.694685    10.77942\n------------------------------------------------------------------------------\n\n\nInstrumental variables 2SLS regression\n\n      Source |       SS           df       MS      Number of obs   =       428\n-------------+----------------------------------   F(1, 426)       =      2.84\n       Model |  20.8673618         1  20.8673618   Prob &gt; F        =    0.0929\n    Residual |  202.460089       426  .475258426   R-squared       =    0.0934\n-------------+----------------------------------   Adj R-squared   =    0.0913\n       Total |  223.327451       427  .523015108   Root MSE        =    .68939\n\n------------------------------------------------------------------------------\n       lwage | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]\n-------------+----------------------------------------------------------------\n        educ |   .0591735   .0351418     1.68   0.093    -.0098994    .1282463\n       _cons |   .4411035   .4461018     0.99   0.323    -.4357311    1.317938\n------------------------------------------------------------------------------\nInstrumented: educ\n Instruments: fatheduc"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#final-comments-1",
+    "href": "teaching/empirical_finance/part_10.html#final-comments-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Final Comments",
+    "text": "Final Comments\nWhen you have only one Z, you can say that the model is just identified.\nBut you can have multiple IVs, in which case you will say that the model is overidentified.\n\nYou can implement IV design just as before\nThe relevance and exclusion assumptions are there as well.\n\n\nAssuming that both conditions are satisfied, you will have more asymptotic efficiency in the IV estimates."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#final-comments-2",
+    "href": "teaching/empirical_finance/part_10.html#final-comments-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Final Comments",
+    "text": "Final Comments\nIt is rare to have multiple Zs. You should be happy if you have a good one!\n\nBut if you do have multiple IVs, you can test their quality…\n\nIf they are all valid, you should get consistent estimates…\n… even if you use only a subset of them.\nSo the test is about how similar the estimates are if you use subsets of IVs.\n\nBut this test does not give really an answer about whether the IVs are good.\nThis always come from theory."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#final-comments-3",
+    "href": "teaching/empirical_finance/part_10.html#final-comments-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Final Comments",
+    "text": "Final Comments\nSome more comments:\n\nIf you have an interaction term between \\(x_1\\) and \\(x_2\\), and \\(z\\) is the instrument for \\(x_1\\), you can “create” the instrument \\(zx_2\\) for \\(x_2\\).\n\n\n\nGMM uses lagged variables as instruments. But, this is not a good decision if the variables are highly serially correlated.\n\n\nLagged total assets is not a good instrument for total assets.\n\n\n\n\nUsing the average-group of variable X is also problematic (i.e., the industry average own. concentration as IV of firm-level own. concentration)\n\n\nThis is no different than a group FE, making hard to believe in the exclusion restriction."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_10.html#thank-you",
+    "href": "teaching/empirical_finance/part_10.html#thank-you",
     "title": "Empirical Methods in Finance",
     "section": "THANK YOU!",
     "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br][Do not use without permission]"

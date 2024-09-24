@@ -1,0 +1,606 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 10'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+```{r setup}
+#| include: false
+#| warning: false
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+#reticulate::py_install("linearmodels")
+#reticulate::py_install("causalml")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+# Introduction IV {.smaller background="#bcd3f7"}
+
+## Introduction IV {.smaller background="#bcd3f7"}
+
+Imagine the following model
+
+$$Ln(wage)=\alpha + \beta_1 educ + \epsilon$$
+
+We can infer that *educ* is correlated with *ability*, but the latter is in the error term. 
+
+*educ* in this case is "endogenous".
+
+$$Cov(educ, \epsilon) \neq 0$$
+
+
+
+## Introduction IV {.smaller background="#bcd3f7"}
+
+**The setup of an IV is**
+
+Suppose that we have an observable variable z that satisfies these two assumptions: 
+
+(1) z is uncorrelated with u:
+
+$$Cov(z, \epsilon) = 0$$
+
+
+(2) z is correlated with x:
+
+$$Cov(z, x) \neq 0$$
+
+
+
+Then, we call z an instrumental variable for x, or sometimes simply an instrument for x.
+
+
+
+
+
+## Introduction IV {.smaller background="#bcd3f7"}
+
+Before we continue,
+
+IV is not a model, it is an **estimation method** 
+
+I'll call it a **Design**.
+
+
+Do not say, I estimated an IV model (more often than it should be).
+
+
+
+
+
+
+
+
+
+
+# Instrumental Variables {.smaller background="#8eadde"}
+
+## Instrumental Variables {.smaller background="#8eadde"}
+
+Imagine that you have one independent variable that is "endogenous":
+
+- $Cov(x_k,\mu)\neq 0$
+
+- You may have many other independent variables not "endogenous"
+
+. . .
+
+In this situation:
+
+- $B_k$ is biased
+
+- The other betas will likely be biased as well, since it is unlikely that all other Xs are not correlated with $x_k$
+
+
+
+
+
+
+
+
+## Instrumental Variables {.smaller background="#8eadde"}
+
+$x_k$ is the endogenous variable.
+
+- It has "good" variation: 
+
+  - the part that varies that is not correlated with $\mu$
+
+- It has "bad" variation: 
+
+  - the part that varies that is  correlated with $\mu$
+
+. . . 
+
+Let's assume now that you can find an instrument $z$
+
+- The instrument $z$ is correlated with $X_k$, but only the "good" variation, not the "bad".
+
+- The instrument $z$ does not explain $y$ directly, only through $x_k$.
+
+  - **Only through** condition.
+
+
+
+
+
+
+
+
+
+
+## Instrumental Variables {.smaller background="#8eadde"}
+
+**Relevance Condition**
+
+The instrument $z$ is correlated with $x_k$.
+
+- This assumption is easy to test. Simply run a regression of $x=f(z, all\; Xs)$ and check the significance of the $\beta_z$.
+
+- This is called the **first stage of an IV regression**
+
+  - **Tip**: Always show the beta coefficient and the R2 (even if low) of the first-stage.  
+
+. . . 
+
+**Exclusion Condition**
+
+The instrument $z$ is not correlated with $\mu$.
+
+- That is $cov(z,\mu) = 0$
+
+- As all correlations with $\mu$, you cannot test this prediction. You have to rely on the theory, create a story about that.
+
+
+
+
+
+
+
+
+## Instrumental Variables {.smaller background="#8eadde"}
+
+**An example of IV** [Murray](https://doi.org/10.1257/jep.20.4.111).
+
+![](figs/iv2.png)
+
+
+
+
+
+
+
+
+
+
+
+## Instrumental Variables {.smaller background="#8eadde"}
+
+**An example of IV** [Murray](http://dx.doi.org/10.1016/j.jcorpfin.2013.12.013).
+
+![](figs/iv6.png)
+
+
+
+
+
+
+## Instrumental Variables {.smaller background="#8eadde"}
+
+[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#good-instruments-should-feel-weird)
+
+**Good instruments should feel weird**
+
+Parents with two same-gender kids are more likely to try a third kid than a diverse-gender pair of parents.
+
+So, you may use the gender of the kids as instrument for the likelihood of the mother go back to the labor market.
+
+
+
+
+
+
+# Angrist's example {.smaller background="#d2e2fc"}
+
+## Angrist's example {.smaller background="#d2e2fc"}
+
+Remember the **Fuzzy RDD**.
+
+- There is the *treatment*
+- There is the *position* (before or after the cut) 
+
+The *position* is an indication of receiving or not the treatment, but it is not definitive.
+
+Thus, we can use the *position* as an IV for the treatment.
+
+
+
+## Angrist's example {.smaller background="#d2e2fc"}
+
+[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
+
+*One of the more seminal papers in instrumental variables for the modern period is Angrist and Krueger (1991).* 
+
+*Their idea is simple and clever; a quirk in the United States educational system is that a child enters a grade on the basis of his or her birthday.* 
+
+*For a long time, that cutoff was late December. If children were born on or before December 31, then they were assigned to the first grade. But if their birthday was on or after January 1, they were assigned to kindergarten. *
+
+*Thus two people—one born on December 31 and one born on January 1—were exogenously assigned different grades.*
+
+Everyone is forced to leave school when 16.
+
+
+
+
+## Angrist's example {.smaller background="#d2e2fc"}
+
+[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
+
+![](figs/iv3.png)
+
+*Angrist and Krueger had the insight that that small quirk was exogenously assigning more schooling to people born later in the year.*
+
+*The person born in December would reach age 16 with more education than the person born in January*
+
+
+
+
+## Angrist's example {.smaller background="#d2e2fc"}
+
+[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
+
+![](figs/iv4.jpg)
+
+
+**What is the instrument here?**
+
+
+
+## Angrist's example {.smaller background="#d2e2fc"}
+
+[Mixtape](https://mixtape.scunning.com/07-instrumental_variables#the-problem-of-weak-instruments)
+
+
+**What is the instrument here?**
+
+The instrument is the quarter of birth.
+
+- People born in the 3rd and 4th quarter receive more education than others due to **compulsory schooling**.
+
+
+
+
+
+
+
+
+# Two-stage least squares (2SLS) {.smaller background="#abc8f5"}
+
+## Two-stage least squares  (2SLS){.smaller background="#abc8f5"}
+
+
+One of the more intuitive instrumental variables estimators is the 2SLS. 
+
+
+
+**The first stage is**
+
+$$x_k = \delta + \delta_1 z + \delta_2 x_1 + . . .+ \delta_n x_n + \mu$$
+
+Then, you predict $x_k$ using the first stage.
+
+- "predict" means that you are finding the "response" Y of the equation after estimating the coefficients
+
+ $$\hat{x_k} = \hat{\delta} + \hat{\delta_1} z + \hat{\delta_2} x_1 + . . . + \hat{\delta_n} x_n $$
+
+
+. . . 
+
+Then, **the second stage** is:
+
+
+$$y = \alpha + \beta_1 \hat{x_k} + \beta_2 x_1 + . . .+  \beta_n x_n + \mu$$
+
+
+The idea using $\hat{x_k}$ is that it represents only the variation that is not correlated with $\mu$.
+
+
+
+
+
+
+
+
+## Instrumental Variables {.smaller background="#abc8f5"}
+
+We can write that:
+
+$$\beta_1= \frac{Cov(z,y)}{Cov(z,x_k)}$$
+
+
+- It shows that $\beta_1$ is the population covariance between z and y divided by the population covariance between z and x.
+
+- Notice how this fails if z and x are uncorrelated, that is, if $Cov(z, x) = 0$ 
+
+
+
+
+. . . 
+
+
+
+$$\beta_1= \frac{\sum_{i=1}^n(z_i-\bar{z})(y_i-\bar{y})}{\sum_{i=1}^n(z_i-\bar{z})(x_i-\bar{x})}$$
+
+
+Notice that if $z$ and $x$ are the same (i.e., perfect correlation), $\beta_1$ above is the OLS $\beta$
+
+
+$$\beta_1= \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
+
+
+
+# Weak Instruments  {.smaller background="#8da6cc"}
+
+## Weak Instruments {.smaller background="#8da6cc"}
+
+I did not demonstrate here, but we can say that (see pp; 517-18 Wooldridge):
+
+- though IV is consistent when $z$ and $u$ are uncorrelated and $z$ and $x$ have any positive or negative correlation, IV estimates can have large standard errors, especially if $z$ and $x$ are only weakly correlated.
+
+This gives rise to the week instruments problem.
+
+We can write the probability limit of the IV estimator:
+
+$$plim \hat{\beta_{iv}} = \beta_1 + \frac{Corr(z,\mu)}{Corr(z,x)} \times \frac{\sigma_{\mu}}{\sigma_x}$$
+
+It shows that, even if $Corr(z,\mu)$ is small, the inconsistency in the IV estimator can be very large if $Corr(z,x)$ is also small.
+
+
+
+
+
+
+
+## Weak Instruments {.smaller background="#8da6cc"}
+
+Two tips:
+
+1) Look at the F-stat of the first-stage. It should not be low.
+
+2) The sign of the coefficient in the first stage should be as expected.
+
+3) Look at the S.E. When the instrument is week, the S.E., are even larger than it should be.
+
+. . .
+
+One more tip,
+
+4) Avoid computing the first stage by hand, it would give wrong estimates of the S.E. in the second stage.
+
+
+
+
+
+
+
+
+
+
+
+# Example {.smaller background="#95a9c7"}
+
+## Example  {.smaller background="#95a9c7"}
+
+OLS
+
+::: panel-tabset
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/mroz.dta , clear
+reg lwage educ 
+```  
+
+:::
+
+
+
+
+
+
+
+
+## Example  {.smaller background="#95a9c7"}
+
+The IV estimate of the return to education is 5.9%, which is barely more than one-half of the  OLS estimate. This suggests that the OLS estimate is too high and is consistent with omitted ability bias.
+
+::: panel-tabset
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use files/mroz.dta , clear
+ivreg lwage (educ =fatheduc ) , first
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Final Comments {.smaller background="#bcd3f7"}
+
+## Final Comments {.smaller background="#bcd3f7"}
+
+When you have only one Z, you can say that the model is **just identified**.
+
+But you can have multiple IVs, in which case you will say that the model is **overidentified**.
+
+- You can implement IV design just as before
+
+- The relevance and exclusion assumptions are there as well.
+
+. . . 
+
+Assuming that both conditions are satisfied, you will have more asymptotic efficiency in the IV estimates.
+
+
+
+
+
+
+## Final Comments {.smaller background="#bcd3f7"}
+
+**It is rare to have multiple Zs. You should be happy if you have a good one!**
+
+. . . 
+
+
+But if you do have multiple IVs, you can test their quality...
+
+- If they are all valid, you should get consistent estimates...
+
+- ... even if you use only a subset of them.
+
+- So the test is about how similar the estimates are if you use subsets of IVs.
+
+
+**But this test does not give really an answer about whether the IVs are good.**
+
+This always come from theory.
+
+
+
+
+## Final Comments {.smaller background="#bcd3f7"}
+
+**Some more comments:**
+
+1) If you have an interaction term between $x_1$ and $x_2$, and $z$ is the instrument for $x_1$, you can "create" the instrument $zx_2$ for $x_2$.
+
+. . . 
+
+2) GMM uses lagged variables as instruments. But, this is not a good decision if the variables are highly serially correlated.
+
+  - Lagged total assets is not a good instrument for total assets.
+  
+. . . 
+
+3) Using the average-group of variable X is also problematic (i.e., the industry average own. concentration as IV of firm-level own. concentration)
+
+ - This is no different than a group FE, making hard to believe in the exclusion restriction.
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::
