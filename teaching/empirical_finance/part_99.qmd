@@ -1,6 +1,6 @@
 ---
-title: 'Inferência Causal'
-subtitle: 'Part 2'
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 99'
 author: 'Henrique C. Martins'
 format:
   revealjs: 
@@ -8,10 +8,32 @@ format:
     theme: simple
     chalkboard: true
     preview-links: auto
-    logo: figs/background2.png
-    css: styles.css
-    footer: <https://eaesp.fgv.br/>
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
     multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
 ---
 
 ```{r setup}
