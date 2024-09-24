@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.549">
+
+  <meta name="author" content="Henrique C. Martins">
+  <title>Henrique Castro Martins - Empirical Methods in Finance</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="logo.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-771J5563G0"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
+  </script>
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta name="twitter:title" content="Henrique Castro Martins - Empirical Methods in Finance">
+<meta name="twitter:description" content="Part 8">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#b1cafa" class="quarto-title-block center">
+  <h1 class="title">Empirical Methods in Finance</h1>
+  <p class="subtitle">Part 8</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Henrique C. Martins 
+</div>
+</div>
+</div>
+
+</section>
+<section>
+<section id="regression-discontinuity-design-rdd" class="title-slide slide level1 smaller center" data-background="#e3e2b8">
+<h1>Regression Discontinuity Design (RDD)</h1>
+
+</section>
+<section id="regression-discontinuity-design-rdd-1" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p><strong>The regression-discontinuity (RD) research design is a quasi experimental method.</strong></p>
+<p>Here the <em>treatment</em> is not a binary as before.</p>
+<p><strong>Treated units are assigned based on a cutoff score of a continuous variable.</strong></p>
+<div class="fragment">
+<p>In a RDD the treatment assignment is not random…</p>
+<p>… but it is based in the value of an observed covariate, in which the units lie on either side of the threshold.</p>
+</div>
+</section>
+<section id="regression-discontinuity-design-rdd-2" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p><strong><a href="https://www.masteringmetrics.com/">Example Mastering Metrics</a>:</strong></p>
+<ul>
+<li>Age for drinking is 18 in Brazil.</li>
+</ul>
+<p>Why prohibiting younger than 18?</p>
+<p>The theory behind this effort is that legal drinking at age 18 discourages binge drinking and promotes a culture of mature alcohol consumption.</p>
+<p>The cutoff splits who can drink and who can’t.</p>
+</section>
+<section id="regression-discontinuity-design-rdd-3" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p>The name RDD comes from a <em>jump</em>, a discontinuity that occurs in a continuous variable.</p>
+<p>In its simplest form, the design has a:</p>
+<ul>
+<li><p>The assignment variable (e.g., age),</p></li>
+<li><p>Two groups (above and below the cutoff),</p></li>
+<li><p>The outcome variable.</p></li>
+<li><p>You may include nonlinearities and control variables.</p></li>
+</ul>
+</section>
+<section id="regression-discontinuity-design-rdd-4" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p>RDD is:</p>
+<p><span class="math display">\[D_i = 1(x_i&gt;c) \;\]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math display">\[\;D = 1 \; if \;X \;_i&gt;c \]</span></p></li>
+<li><p><span class="math display">\[\;D = 0 \; if \;X \;_i&lt;c \]</span></p></li>
+</ul>
+<p><span class="math inline">\(X\)</span> is called the forcing variable because it “forces” units into treatment or control groups.</p>
+<p><span class="math inline">\(X\)</span> may be correlated with <span class="math inline">\(Y_1\)</span> or <span class="math inline">\(Y_0\)</span>, so simply comparing treated and control units would not provide causal effects</p>
+<p>However, if the units are randomly assigned into treatment around the cutoff, we would have causal effects.</p>
+</section>
+<section id="regression-discontinuity-design-rdd-5" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p>The main assumption that allows using RDD as a causal method is that</p>
+<p><strong>Next to the cut, the participants are similar. The only difference is that one individual is in each of the “sides”.</strong> <a href="http://dx.doi.org/10.1016/B978-0-08-097086-8.44049-3">Source</a></p>
+<p><img data-src="figs/rdd0.png" style="width:60.0%;height:60.0%"></p>
+</section>
+<section id="regression-discontinuity-design-rdd-6" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<ul>
+<li><p>The cutoff value <strong>occurs at 50</strong></p></li>
+<li><p>What are the differences between someone that scores 49.99 and 50.01 in the X variable?</p></li>
+<li><p>The intuition is that these individuals are similar and comparable.</p></li>
+</ul>
+<p>In the absence of <strong>treatment</strong>, the assumption is that the solid line would “continue” with the same inclination and values.</p>
+<p>There is a discontinuity, however. This implies that the pretreatment in the absence of the treatment should be the dashed line.</p>
+<p>The discontinuity is the causal effect of X (at the cutoff) to Y.</p>
+</section>
+<section id="regression-discontinuity-design-rdd-7" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p><em>Unlike the matching and regression strategies based on treatment-control comparisons conditional on covariates, the validity of RDD is based on our willingness to extrapolate across values of the running variable, at least for values in the neighborhood of the cutoff at which treatment switches on.</em> <a href="https://www.masteringmetrics.com/">MM</a></p>
+</section>
+<section id="regression-discontinuity-design-rdd-8" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p><strong>Again the drinking example:</strong></p>
+<p><strong>In the US it is 21 years (age &amp; alcohol).</strong> <strong><a href="https://www.masteringmetrics.com/">Example Mastering Metrics</a>:</strong></p>
+<p><em>Notice the x-axis.</em></p>
+
+<img data-src="figs/rdd1.png" class="r-stretch"></section>
+<section id="regression-discontinuity-design-rdd-9" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p><strong>In the US it is 21 years.</strong> <strong><a href="https://www.masteringmetrics.com/">Example Mastering Metrics</a>:</strong></p>
+<p><em>Notice the x-axis.</em></p>
+
+<img data-src="figs/rdd2.png" class="r-stretch"></section>
+<section id="regression-discontinuity-design-rdd-10" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p>Examples <a href="https://doi.org/10.1016/j.jfineco.2015.08.008">Almeida et al 2016</a></p>
+
+<img data-src="figs/almeida.png" class="r-stretch"></section>
+<section id="regression-discontinuity-design-rdd-11" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p>Examples <a href="https://doi.org/10.1287/mnsc.2014.2038">Flammer 2015</a></p>
+
+<img data-src="figs/flammer.png" class="r-stretch"></section>
+<section id="regression-discontinuity-design-rdd-12" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p>This is (legally, it should be) an example of a <strong>Sharp RDD</strong></p>
+<p>A <strong>Sharp RDD</strong> occurs when the cutoff is mandatory. There are no exceptions. In this case, there are no 17 years old drinking and driving.</p>
+<p>The treatment is</p>
+<p><span class="math display">\[D_a= 1, \;if \;a \;&gt;=\; 18, \;0 \;if \;a\; &lt;\; 18\]</span></p>
+<div class="fragment">
+<p>The alternative is a <strong>fuzzy RDD</strong>, which occurs when there is some misassignment.</p>
+<ul>
+<li>People from under the cut also receiving the treatment.</li>
+<li>Ex. students that receive 5,96 usually are <em>approved</em> in a course (this is a misassignment).</li>
+<li>To estimate a Fuzzy RDD, you can use the treatment as an instrumental variable (Angrist &amp; Pischke, 2009).</li>
+</ul>
+</div>
+</section>
+<section id="regression-discontinuity-design-rdd-13" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p><strong>fuzzy RDD</strong> (<a href="https://theeffectbook.net/ch-DifferenceinDifference.html">The effect</a> )</p>
+
+<img data-src="figs/fuzzy.png" class="r-stretch"></section>
+<section id="regression-discontinuity-design-rdd-14" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p><strong>fuzzy RDD</strong></p>
+<p><em>Compliers</em>: Takes treatment if above threshold but not if below threshold.</p>
+<p><em>Always-Takers</em>: Always takes the treatment, ignores the cut.</p>
+<p><em>Never-Takers</em>: Never takes the treatment, ignores the cut.</p>
+<p><em>Defiers</em>: Takes treatment if below the threshold, does not take the treatment if above the threshold.</p>
+</section>
+<section id="regression-discontinuity-design-rdd-15" class="slide level2 smaller" data-background="#e3e2b8">
+<h2>Regression Discontinuity Design (RDD)</h2>
+<p>Things that are “good” to a RDD.</p>
+<ul>
+<li>Age</li>
+<li>Dates (you need 6 years to start school, 5,99 years is not allowed)
+<ul>
+<li>Great example: Most of NHL players are those with anniversaries just after the enrollment date</li>
+</ul></li>
+<li>Ranking systems</li>
+<li>Location (when people cannot “move” easily)</li>
+</ul>
+</section></section>
+<section>
+<section id="estimation" class="title-slide slide level1 smaller center" data-background="#d4d3bc">
+<h1>Estimation</h1>
+
+</section>
+<section id="estimation-1" class="slide level2 smaller" data-background="#d4d3bc">
+<h2>Estimation</h2>
+<p>A <strong>Sharp RDD</strong> can take the form of:</p>
+<p><span class="math display">\[Y_i = \alpha + \beta_1 D_a + \beta_2 \tilde{x}_1 + \epsilon\]</span></p>
+<p>Where <span class="math inline">\(D_a\)</span> is the treatment based on the cutoff.</p>
+<p><span class="math inline">\(x\)</span> is the running variable (the difference between the actual <span class="math inline">\(X\)</span> and the cutoff in <span class="math inline">\(X_0\)</span>).</p>
+<ul>
+<li><p>For instance, months until the 18 years birthday.</p></li>
+<li><p>We can also use the notation: <span class="math inline">\(\tilde{X}=x-x_0\)</span> regarding the difference.</p></li>
+</ul>
+</section>
+<section id="estimation-2" class="slide level2 smaller" data-background="#d4d3bc">
+<h2>Estimation</h2>
+<p>You also should trim the sample to a reasonable window around the cutoff <span class="math inline">\(c\)</span></p>
+<ul>
+<li><p>Something like: <span class="math inline">\(c-h&lt;X_i&lt;c+h\)</span>, where <span class="math inline">\(h\)</span> is a positive value that determines the window</p></li>
+<li><p>There is no theoretical solution to how big should <span class="math inline">\(h\)</span> be. It invites robustness tests.</p></li>
+</ul>
+</section>
+<section id="estimation-3" class="slide level2 smaller" data-background="#d4d3bc">
+<h2>Estimation</h2>
+<p><strong>Final Step:</strong></p>
+<p>Decide on the model of E[Y|X]:</p>
+<ul>
+<li><p>linear in both “sides” with same slope</p></li>
+<li><p>linear with different slopes</p></li>
+<li><p>non-linear</p></li>
+</ul>
+<p><strong>Tip</strong>: always execute a visual inspection to check which model os appropriate.</p>
+<p>Also, always estimate different models and discuss the results.</p>
+</section>
+<section id="estimation-4" class="slide level2 smaller" data-background="#d4d3bc">
+<h2>Estimation</h2>
+<p><strong>fuzzy RDD</strong></p>
+<p><span class="math display">\[Y_i = \alpha + \beta_1 D_a + \beta_2 \tilde{x}_1 + \beta_3(Z \times \tilde{x}_1) \epsilon\]</span></p>
+<p>Where Z is 1 if unit is above the cut or 0 if unit is below the cut.</p>
+<p>Notice that D is not equal to Z, in these cases.</p>
+</section></section>
+<section>
+<section id="rdd-nonlinearities" class="title-slide slide level1 smaller center" data-background="#f2f1d5">
+<h1>RDD Nonlinearities</h1>
+
+</section>
+<section id="rdd-nonlinearities-1" class="slide level2 smaller" data-background="#f2f1d5">
+<h2>RDD Nonlinearities</h2>
+<p><strong><a href="https://www.masteringmetrics.com/">Example Mastering Metrics</a>:</strong></p>
+<p>This is a linear relationship, with the same slopes.</p>
+
+<img data-src="figs/rdd3.png" class="r-stretch"><p><span class="math display">\[E[Y|X,D] = \alpha + \beta_1 \times D + \beta_2 \times \tilde{X}\]</span></p>
+</section>
+<section id="rdd-nonlinearities-2" class="slide level2 smaller" data-background="#f2f1d5">
+<h2>RDD Nonlinearities</h2>
+<p><a href="https://theeffectbook.net/ch-DifferenceinDifference.html">The effect</a> This is a linear relationship, with different slopes.</p>
+
+<img data-src="figs/rdd_diff_slope.png" class="r-stretch"></section>
+<section id="rdd-nonlinearities-3" class="slide level2 smaller" data-background="#f2f1d5">
+<h2>RDD Nonlinearities</h2>
+<p><strong><a href="https://www.masteringmetrics.com/">Example Mastering Metrics</a>:</strong></p>
+<p>This is a nonlinear relationship.</p>
+
+<img data-src="figs/rdd4.png" class="r-stretch"></section>
+<section id="rdd-nonlinearities-4" class="slide level2 smaller" data-background="#f2f1d5">
+<h2>RDD Nonlinearities</h2>
+<p><strong><a href="https://www.masteringmetrics.com/">Example Mastering Metrics</a>:</strong></p>
+<p>Is the relationship linear or nonlinear here? If you misjudge the relationship, it will be hard to tell a story credibly.</p>
+
+<img data-src="figs/rdd5.png" class="r-stretch"></section>
+<section id="rdd-nonlinearities-5" class="slide level2 smaller" data-background="#f2f1d5">
+<h2>RDD Nonlinearities</h2>
+<p><strong>The takeaway:</strong> <strong>RDD is a graphical method. You need to show the graphs</strong>.</p>
+<p><strong>Nobody will believe your story without the correct specification of the model</strong>.</p>
+<div class="fragment">
+<p>In the first case:</p>
+<p><span class="math display">\[Y_i = \alpha + \beta_1 D_a + \beta_2 x_1 + \epsilon\]</span></p>
+<p>In the second case:</p>
+<p><span class="math display">\[Y_i = \alpha + \beta_1 D_a + \beta_2 x_1 + \beta_3 x_1^2 + \epsilon\]</span></p>
+</div>
+</section>
+<section id="rdd-nonlinearities-6" class="slide level2 smaller" data-background="#f2f1d5">
+<h2>RDD Nonlinearities</h2>
+<p>We can also add an interaction term (notice that I am changing the notation now to make it similar to MM)</p>
+<p><span class="math display">\[Y_i = \alpha + \beta_1 D_a + \beta_2 (x - x_0) + \beta_3 (x - x_0) D_a + \epsilon\]</span></p>
+<p>This allows for different inclinations before and after the cut.</p>
+</section>
+<section id="rdd-nonlinearities-7" class="slide level2 smaller" data-background="#f2f1d5">
+<h2>RDD Nonlinearities</h2>
+<p>Or even different nonlinearities before and after the cut:</p>
+<p><span class="math display">\[Y_i = \alpha + \beta_1 D_a + \beta_2 (x - x_0) + \beta_3 (x - x_0)^2 + \beta_4 (x - x_0) D_a  + \beta_5 (x - x_0)^2 D_a + \epsilon\]</span></p>
+
+<img data-src="figs/rdd6.png" class="r-stretch"></section></section>
+<section>
+<section id="example-rdd" class="title-slide slide level1 smaller center" data-background="#edecc0">
+<h1>Example RDD</h1>
+
+</section>
+<section id="example-rdd-clearly-this-is-not-linear." class="slide level2 smaller" data-background="#edecc0">
+<h2>Example RDD <strong>Clearly, this is not linear.</strong></h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">R</a></li><li><a href="#tabset-1-2">Python</a></li><li><a href="#tabset-1-3">Stata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>R</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb1-4"><a></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y))  <span class="sc">+</span> </span>
+<span id="cb1-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">1.2</span>) <span class="sc">+</span> </span>
+<span id="cb1-6"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"Evolution of Y"</span>) <span class="sc">+</span></span>
+<span id="cb1-7"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">20</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb1-8"><a></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
+<span id="cb1-9"><a></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb1-10"><a></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb1-11"><a></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-12"><a></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb1-13"><a></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_8_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Python</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-4"><a></a><span class="co"># Read Excel file</span></span>
+<span id="cb2-5"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb2-6"><a></a><span class="co"># Generate line graph - Including all observations together</span></span>
+<span id="cb2-7"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb2-8"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb2-9"><a></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb2-10"><a></a>scatter_plot.set_title(<span class="st">"Evolution of Y"</span>, fontsize<span class="op">=</span><span class="dv">20</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-11"><a></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-12"><a></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb2-13"><a></a><span class="co"># Add regression line</span></span>
+<span id="cb2-14"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data, scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
+<span id="cb2-15"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_8_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell" data-layout-align="center">
+
+</div>
+<p><img data-src="figs/graph1.svg"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-rdd-1" class="slide level2 smaller" data-background="#edecc0">
+<h2>Example RDD</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">R</a></li><li><a href="#tabset-2-2">Python</a></li><li><a href="#tabset-2-3">Stata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>R</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb3-4"><a></a><span class="co"># Creating  groups</span></span>
+<span id="cb3-5"><a></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-6"><a></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
+<span id="cb3-7"><a></a><span class="co"># Generate a line graph - two groups</span></span>
+<span id="cb3-8"><a></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y, <span class="at">group=</span>treated, <span class="at">color =</span> <span class="fu">factor</span>(treated)))  <span class="sc">+</span> </span>
+<span id="cb3-9"><a></a>    <span class="fu">geom_point</span>( <span class="at">size=</span><span class="fl">1.25</span>) <span class="sc">+</span> </span>
+<span id="cb3-10"><a></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"RDD exemplo"</span>)<span class="sc">+</span></span>
+<span id="cb3-11"><a></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">25</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb3-12"><a></a>          <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
+<span id="cb3-13"><a></a>          <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb3-14"><a></a>          <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb3-15"><a></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-16"><a></a>          <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb3-17"><a></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_8_files/figure-revealjs/unnamed-chunk-4-3.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Python</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-4"><a></a><span class="co"># Read Excel file</span></span>
+<span id="cb4-5"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb4-6"><a></a><span class="co"># Create treated variable</span></span>
+<span id="cb4-7"><a></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-8"><a></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-9"><a></a><span class="co"># Generate line graph with two groups</span></span>
+<span id="cb4-10"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb4-11"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb4-12"><a></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, hue<span class="op">=</span><span class="st">'treated'</span>, style<span class="op">=</span><span class="st">'treated'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb4-13"><a></a>scatter_plot.set_title(<span class="st">"RDD exemplo"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-14"><a></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-15"><a></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-16"><a></a>scatter_plot.legend().set_title(<span class="st">''</span>)</span>
+<span id="cb4-17"><a></a>scatter_plot.legend(title<span class="op">=</span><span class="st">''</span>, loc<span class="op">=</span><span class="st">'upper left'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>)</span>
+<span id="cb4-18"><a></a><span class="co"># Add regression lines</span></span>
+<span id="cb4-19"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">0</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
+<span id="cb4-20"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">1</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'orange'</span>})</span>
+<span id="cb4-21"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_8_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3">
+<div class="cell" data-layout-align="center">
+
+</div>
+<p><img data-src="figs/graph2.svg"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-rdd-2" class="slide level2 smaller" data-background="#edecc0">
+<h2>Example RDD</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">R</a></li><li><a href="#tabset-3-2">Python</a></li><li><a href="#tabset-3-3">Stata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>R</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb5-4"><a></a><span class="co"># Creating  groups</span></span>
+<span id="cb5-5"><a></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb5-6"><a></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
+<span id="cb5-7"><a></a><span class="co"># define cut</span></span>
+<span id="cb5-8"><a></a>cut <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb5-9"><a></a>band <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb5-10"><a></a>xlow <span class="ot">=</span> cut <span class="sc">-</span> band</span>
+<span id="cb5-11"><a></a>xhigh <span class="ot">=</span> cut <span class="sc">+</span> band</span>
+<span id="cb5-12"><a></a><span class="co"># subset the data for the bandwidth</span></span>
+<span id="cb5-13"><a></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, x <span class="sc">&gt;</span> xlow <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> xhigh, <span class="at">select=</span><span class="fu">c</span>(x, y,  treated))</span>
+<span id="cb5-14"><a></a><span class="co"># Generate a line graph - two groups</span></span>
+<span id="cb5-15"><a></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y, <span class="at">group=</span>treated, <span class="at">color =</span> <span class="fu">factor</span>(treated)))  <span class="sc">+</span> </span>
+<span id="cb5-16"><a></a>  <span class="fu">geom_point</span>( <span class="at">size=</span><span class="fl">1.25</span>) <span class="sc">+</span> </span>
+<span id="cb5-17"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x=</span><span class="st">""</span>, <span class="at">title =</span> <span class="st">"RDD example"</span>)<span class="sc">+</span></span>
+<span id="cb5-18"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">25</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb5-19"><a></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey95"</span>, <span class="at">colour =</span> <span class="st">"grey95"</span>),</span>
+<span id="cb5-20"><a></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb5-21"><a></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb5-22"><a></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-23"><a></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb5-24"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_8_files/figure-revealjs/unnamed-chunk-7-3.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Python</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb6-4"><a></a><span class="co"># Read Excel file</span></span>
+<span id="cb6-5"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb6-6"><a></a><span class="co"># Create treated variable</span></span>
+<span id="cb6-7"><a></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-8"><a></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-9"><a></a><span class="co"># Define cut, band, and subset data</span></span>
+<span id="cb6-10"><a></a>cut <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb6-11"><a></a>band <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb6-12"><a></a>xlow <span class="op">=</span> cut <span class="op">-</span> band</span>
+<span id="cb6-13"><a></a>xhigh <span class="op">=</span> cut <span class="op">+</span> band</span>
+<span id="cb6-14"><a></a>data <span class="op">=</span> data[(data[<span class="st">'x'</span>] <span class="op">&gt;</span> xlow) <span class="op">&amp;</span> (data[<span class="st">'x'</span>] <span class="op">&lt;=</span> xhigh)][[<span class="st">'x'</span>, <span class="st">'y'</span>, <span class="st">'treated'</span>]]</span>
+<span id="cb6-15"><a></a><span class="co"># Generate line graph with two groups</span></span>
+<span id="cb6-16"><a></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb6-17"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb6-18"><a></a>scatter_plot <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, hue<span class="op">=</span><span class="st">'treated'</span>, style<span class="op">=</span><span class="st">'treated'</span>, data<span class="op">=</span>data, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb6-19"><a></a>scatter_plot.set_title(<span class="st">"RDD example"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-20"><a></a>scatter_plot.set_xlabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-21"><a></a>scatter_plot.set_ylabel(<span class="st">""</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-22"><a></a>scatter_plot.legend().set_title(<span class="st">''</span>)</span>
+<span id="cb6-23"><a></a>scatter_plot.legend(title<span class="op">=</span><span class="st">''</span>, loc<span class="op">=</span><span class="st">'upper left'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>)</span>
+<span id="cb6-24"><a></a><span class="co"># Add regression lines</span></span>
+<span id="cb6-25"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">0</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'blue'</span>})</span>
+<span id="cb6-26"><a></a>sns.regplot(x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>data[data[<span class="st">'treated'</span>] <span class="op">==</span> <span class="dv">1</span>], scatter<span class="op">=</span><span class="va">False</span>, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'orange'</span>})</span>
+<span id="cb6-27"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part_8_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-3">
+<div class="cell" data-layout-align="center">
+
+</div>
+<p><img data-src="figs/graph3.svg"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-rdd-3" class="slide level2 smaller" data-background="#edecc0">
+<h2>Example RDD</h2>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">R</a></li><li><a href="#tabset-4-2">Python</a></li><li><a href="#tabset-4-3">Stata</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>R</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb7-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-3"><a></a>data  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb7-4"><a></a>data<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb7-5"><a></a>data<span class="sc">$</span>treated[data<span class="sc">$</span>x <span class="sc">&gt;=</span> <span class="dv">101</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  </span>
+<span id="cb7-6"><a></a>cut <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb7-7"><a></a>band <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb7-8"><a></a>xlow <span class="ot">=</span> cut <span class="sc">-</span> band</span>
+<span id="cb7-9"><a></a>xhigh <span class="ot">=</span> cut <span class="sc">+</span> band</span>
+<span id="cb7-10"><a></a>data <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, x <span class="sc">&gt;</span> xlow <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> xhigh, <span class="at">select=</span><span class="fu">c</span>(x, y,  treated))</span>
+<span id="cb7-11"><a></a><span class="co"># Generating xhat - Now we are going to the RDD</span></span>
+<span id="cb7-12"><a></a>data<span class="sc">$</span>xhat <span class="ot">&lt;-</span> data<span class="sc">$</span>x <span class="sc">-</span> cut</span>
+<span id="cb7-13"><a></a><span class="co"># Generating xhat * treated to allow different inclinations (we will use the findings of the last graph, i.e. that each group has a different trend.)</span></span>
+<span id="cb7-14"><a></a>data<span class="sc">$</span>xhat_treated <span class="ot">&lt;-</span> data<span class="sc">$</span>xhat <span class="sc">*</span> data<span class="sc">$</span>treated</span>
+<span id="cb7-15"><a></a><span class="co"># RDD Assuming different trends</span></span>
+<span id="cb7-16"><a></a>rdd <span class="ot">&lt;-</span> <span class="fu">lm</span>(y  <span class="sc">~</span> xhat <span class="sc">+</span> treated  <span class="sc">+</span> xhat_treated, <span class="at">data =</span> data)</span>
+<span id="cb7-17"><a></a><span class="fu">summary</span>(rdd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ xhat + treated + xhat_treated, data = data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.9477  -3.2607   0.6875   3.2227  12.2004 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  55.83059    1.53681  36.329  &lt; 2e-16 ***
+xhat          0.29431    0.05405   5.445 3.97e-07 ***
+treated      28.93921    2.20672  13.114  &lt; 2e-16 ***
+xhat_treated -0.51587    0.07644  -6.749 1.13e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.515 on 96 degrees of freedom
+Multiple R-squared:  0.8942,    Adjusted R-squared:  0.8909 
+F-statistic: 270.3 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Python</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-2"><a></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb9-3"><a></a>data <span class="op">=</span> pd.read_excel(<span class="st">"files/RDD.xlsx"</span>)</span>
+<span id="cb9-4"><a></a><span class="co"># Generate treated variable</span></span>
+<span id="cb9-5"><a></a>data[<span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-6"><a></a>data.loc[data[<span class="st">'x'</span>] <span class="op">&gt;=</span> <span class="dv">101</span>, <span class="st">'treated'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb9-7"><a></a><span class="co"># Define cut and band</span></span>
+<span id="cb9-8"><a></a>cut <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb9-9"><a></a>band <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb9-10"><a></a>xlow <span class="op">=</span> cut <span class="op">-</span> band</span>
+<span id="cb9-11"><a></a>xhigh <span class="op">=</span> cut <span class="op">+</span> band</span>
+<span id="cb9-12"><a></a><span class="co"># Subset data</span></span>
+<span id="cb9-13"><a></a>data <span class="op">=</span> data[(data[<span class="st">'x'</span>] <span class="op">&gt;</span> xlow) <span class="op">&amp;</span> (data[<span class="st">'x'</span>] <span class="op">&lt;=</span> xhigh)]</span>
+<span id="cb9-14"><a></a><span class="co"># Generate xhat and xhat_treated</span></span>
+<span id="cb9-15"><a></a>data[<span class="st">'xhat'</span>] <span class="op">=</span> data[<span class="st">'x'</span>] <span class="op">-</span> cut</span>
+<span id="cb9-16"><a></a>data[<span class="st">'xhat_treated'</span>] <span class="op">=</span> data[<span class="st">'xhat'</span>] <span class="op">*</span> data[<span class="st">'treated'</span>]</span>
+<span id="cb9-17"><a></a><span class="co"># Regression</span></span>
+<span id="cb9-18"><a></a>X <span class="op">=</span> data[[<span class="st">'xhat'</span>, <span class="st">'treated'</span>, <span class="st">'xhat_treated'</span>]]</span>
+<span id="cb9-19"><a></a>X <span class="op">=</span> sm.add_constant(X)  <span class="co"># Add a constant term</span></span>
+<span id="cb9-20"><a></a>y <span class="op">=</span> data[<span class="st">'y'</span>]</span>
+<span id="cb9-21"><a></a>model <span class="op">=</span> sm.OLS(y, X).fit()</span>
+<span id="cb9-22"><a></a><span class="bu">print</span>(model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.894
+Model:                            OLS   Adj. R-squared:                  0.891
+Method:                 Least Squares   F-statistic:                     270.3
+Date:                ter, 24 set 2024   Prob (F-statistic):           1.14e-46
+Time:                        19:51:19   Log-Likelihood:                -310.60
+No. Observations:                 100   AIC:                             629.2
+Df Residuals:                      96   BIC:                             639.6
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const           55.8306      1.537     36.329      0.000      52.780      58.881
+xhat             0.2943      0.054      5.445      0.000       0.187       0.402
+treated         28.9392      2.207     13.114      0.000      24.559      33.320
+xhat_treated    -0.5159      0.076     -6.749      0.000      -0.668      -0.364
+==============================================================================
+Omnibus:                        0.995   Durbin-Watson:                   2.114
+Prob(Omnibus):                  0.608   Jarque-Bera (JB):                1.079
+Skew:                          -0.221   Prob(JB):                        0.583
+Kurtosis:                       2.747   Cond. No.                         151.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-3">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Stata</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a></a>import excel <span class="st">"files/RDD.xlsx"</span>, firstrow <span class="kw">clear</span></span>
+<span id="cb11-2"><a></a><span class="kw">gen</span> treated = 0</span>
+<span id="cb11-3"><a></a><span class="kw">replace</span> treated = 1 <span class="kw">if</span> x &gt;= 101</span>
+<span id="cb11-4"><a></a><span class="kw">gen</span> <span class="fu">cut</span> = 100</span>
+<span id="cb11-5"><a></a><span class="kw">gen</span> band = 50</span>
+<span id="cb11-6"><a></a><span class="kw">gen</span> xlow = <span class="fu">cut</span> - band</span>
+<span id="cb11-7"><a></a><span class="kw">gen</span> xhigh = <span class="fu">cut</span> + band</span>
+<span id="cb11-8"><a></a><span class="kw">keep</span> <span class="kw">if</span> x &gt; xlow &amp; x &lt;= xhigh</span>
+<span id="cb11-9"><a></a><span class="kw">gen</span> xhat = x - <span class="fu">cut</span></span>
+<span id="cb11-10"><a></a><span class="kw">gen</span> xhat_treated = xhat * treated</span>
+<span id="cb11-11"><a></a><span class="kw">regress</span> <span class="fu">y</span> xhat treated xhat_treated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(2 vars, 200 obs)
+
+
+(100 real changes made)
+
+
+
+
+
+(100 observations deleted)
+
+      Source |       SS           df       MS      Number of obs   =       100
+-------------+----------------------------------   F(3, 96)        =    270.35
+       Model |  24669.3025         3  8223.10084   Prob &gt; F        =    0.0000
+    Residual |  2920.00749        96  30.4167447   R-squared       =    0.8942
+-------------+----------------------------------   Adj R-squared   =    0.8909
+       Total |    27589.31        99  278.679899   Root MSE        =    5.5151
+
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        xhat |   .2943097   .0540479     5.45   0.000     .1870255     .401594
+     treated |   28.93921   2.206717    13.11   0.000     24.55891    33.31951
+xhat_treated |  -.5158703   .0764353    -6.75   0.000    -.6675932   -.3641475
+       _cons |   55.83059   1.536805    36.33   0.000     52.78005    58.88112
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-rdd-4" class="slide level2 smaller" data-background="#edecc0">
+<h2>Example RDD</h2>
+<p>The coefficient of x before the cut is 0.29 (t-stat 5.45), and after the cut, it is -0.51 (t-stat -6.75).</p>
+<p>We also have the coefficient of the treatment, which is measured by the “jump” that occurs near the cut: <strong>an estimated coefficient of 28.9 (t-stat 13.11). </strong></p>
+<p>If this were a real example, this would be the causal effect of receiving the treatment (i.e., being beyond the cut).</p>
+</section></section>
+<section>
+<section id="final-comments-rdd" class="title-slide slide level1 smaller center" data-background="#f0eeb4">
+<h1>Final comments RDD</h1>
+
+</section>
+<section id="final-comments-rdd-1" class="slide level2 smaller" data-background="#f0eeb4">
+<h2>Final comments RDD</h2>
+<p><strong>Sensitivity to specification</strong></p>
+<p>Misspecification can lead to a “spurious jump”. <strong>Do not mix nonlinearity with a discontinuity</strong>.</p>
+<div class="fragment">
+<p><strong>Sensitivity to window</strong></p>
+<p>Also, need to check many alternative <span class="math inline">\(h\)</span>.</p>
+</div>
+<div class="fragment">
+<p><strong>Smoothness of the running around the cut</strong></p>
+<p>The distribution of X should be smooth around the cut. If it is not, it might indicate that the treatment assignment was not random.</p>
+</div>
+<div class="fragment">
+<p><strong>Test comparability of units around the cut</strong></p>
+<p>Covariates balance. You can check whether there are jumps in control variables as an additional robustness.</p>
+</div>
+<div class="fragment">
+<p><strong>Placebo tests</strong></p>
+<p>Test whether the treatment is zero when it should be zero.</p>
+</div>
+</section>
+<section id="thank-you" class="slide level2" data-background="#b1cafa">
+<h2><strong>THANK YOU!</strong></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>QUESTIONS?</strong></p>
+<p><img data-src="figs/qa2.png" style="width:150.0%" data-heigth="150%"></p>
+</div><div class="column" style="width:40%;">
+<p><strong>Henrique C. Martins</strong></p>
+<ul>
+<li><a href="https://eaesp.fgv.br/en/people/henrique-castro-martins">FGV/EAESP</a></li>
+<li><a href="https://henriquemartins.net/">Personal Website</a></li>
+<li><a href="https://www.linkedin.com/in/henriquecastror/">LinkedIn</a></li>
+<li><a href="http://lattes.cnpq.br/6076997472159785">Lattes</a></li>
+<li><a href="https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&amp;hl=pt-BR&amp;oi=ao">Scholar</a><br>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer">
+
+</div>
+
+<div class="quarto-auto-generated-content">
+<p><img src="figs/background8.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><strong>[<strong>Henrique C. Martins</strong>] [<a href="mailto:henrique.martins@fgv.br">henrique.martins@fgv.br</a>][Do not use without permission]</strong></p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="../../site_libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'multiplex': {"secret":null,"id":"dd5ee421c30ab4bb","url":"https://reveal-multiplex.glitch.me/"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) {
+          Reveal.configure({ slideNumber: 'c' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
+    </script>
+    
+
+</body></html>

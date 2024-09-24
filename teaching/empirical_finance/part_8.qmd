@@ -1,0 +1,1044 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 8'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+```{r setup}
+#| include: false
+#| warning: false
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+#reticulate::py_install("linearmodels")
+#reticulate::py_install("causalml")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Regression Discontinuity Design (RDD) {.smaller background="#e3e2b8"}
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+**The regression-discontinuity (RD) research design is a quasi experimental method.**
+
+Here the *treatment* is not a binary as before. 
+
+**Treated units are assigned based on a cutoff score of a continuous variable.**
+
+. . .
+
+In a RDD the treatment assignment is not random...
+
+... but it is based in the value of an observed covariate, in which the units lie on either side of the threshold.
+
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
+
+- Age for drinking is 18 in Brazil. 
+
+Why prohibiting younger than 18?
+
+The theory behind this effort is that legal drinking at age 18 discourages binge drinking and promotes a culture of mature alcohol consumption. 
+
+The cutoff splits who can drink and who can't.
+
+
+
+
+
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+The name RDD comes from a *jump*, a discontinuity that occurs in a continuous variable.
+
+In its simplest form, the design has a:
+
+- The assignment variable (e.g., age), 
+
+- Two groups (above and below the cutoff),
+
+- The outcome variable.
+
+- You may include nonlinearities and control variables. 
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+RDD is:
+
+$$D_i = 1(x_i>c) \;$$
+
+where:
+
+- $$\;D = 1 \; if \;X \;_i>c $$ 
+
+- $$\;D = 0 \; if \;X \;_i<c $$
+
+
+$X$ is called the forcing variable because it "forces" units into treatment or control groups.
+
+$X$ may be correlated with $Y_1$ or $Y_0$, so simply comparing treated and control units would not provide causal effects
+
+However, if the units are randomly assigned into treatment around the cutoff, we would have causal effects.
+
+
+
+
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+The main assumption that allows using RDD as a causal method is that
+
+**Next to the cut, the participants are similar. The only difference is that one individual is in each of the "sides".** [Source](http://dx.doi.org/10.1016/B978-0-08-097086-8.44049-3)
+
+![](figs/rdd0.png){width=60%  height=60%}
+
+
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+- The cutoff value **occurs at 50**
+
+- What are the differences between someone that scores 49.99 and 50.01 in the X variable?
+
+- The intuition is that these individuals are similar and comparable.
+
+In the absence of **treatment**, the assumption is that the solid line would "continue" with the same inclination and values. 
+
+There is a discontinuity, however. This implies that the pretreatment  in the absence of the treatment should be the dashed line.
+
+The discontinuity is the causal effect of X (at the cutoff) to Y.
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+*Unlike the matching and regression strategies based on treatment-control comparisons conditional on covariates, the validity of RDD is based on our willingness to extrapolate across values of the running variable, at least for values in the neighborhood of the cutoff at which treatment switches on.* [MM](https://www.masteringmetrics.com/)
+
+
+
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+**Again the drinking example:**
+
+
+**In the US it is 21 years (age & alcohol).** **[Example Mastering Metrics](https://www.masteringmetrics.com/):**
+
+*Notice the x-axis.*
+
+![](figs/rdd1.png)
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+**In the US it is 21 years.** **[Example Mastering Metrics](https://www.masteringmetrics.com/):**
+
+*Notice the x-axis.*
+
+![](figs/rdd2.png)
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+Examples [Almeida et al 2016](https://doi.org/10.1016/j.jfineco.2015.08.008)
+
+
+![](figs/almeida.png)
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+Examples [Flammer 2015](https://doi.org/10.1287/mnsc.2014.2038)
+
+
+![](figs/flammer.png)
+
+
+
+
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+This is (legally, it should be) an example of a **Sharp RDD**
+
+A **Sharp RDD** occurs when the cutoff is mandatory. There are no exceptions. In this case, there are no 17 years old drinking and driving. 
+
+The treatment is
+
+$$D_a= 1, \;if \;a \;>=\; 18, \;0 \;if \;a\; <\; 18$$ 
+
+
+. . . 
+
+The alternative is a **fuzzy RDD**, which occurs when there is some misassignment.
+
+- People from under the cut also receiving the treatment.
+- Ex. students that receive 5,96 usually are *approved* in a course (this is a misassignment).
+- To estimate a Fuzzy RDD, you can use the treatment as an instrumental variable (Angrist & Pischke, 2009).  
+
+
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+**fuzzy RDD** ([The effect](https://theeffectbook.net/ch-DifferenceinDifference.html) )
+
+
+![](figs/fuzzy.png)
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+**fuzzy RDD** 
+
+*Compliers*: Takes treatment if above threshold but not if below threshold.
+
+*Always-Takers*: Always takes the treatment, ignores the cut.
+
+*Never-Takers*: Never takes the treatment, ignores the cut.
+
+*Defiers*: Takes treatment if below the threshold, does not take the treatment if above the threshold.
+
+
+
+
+## Regression Discontinuity Design (RDD)   {.smaller background="#e3e2b8"}
+
+Things that are "good" to a RDD.
+
+- Age 
+- Dates (you need 6 years to start school, 5,99 years is not allowed)
+  - Great example: Most of NHL players are those with anniversaries just after the enrollment date
+- Ranking systems
+- Location (when people cannot "move" easily)
+
+
+
+
+
+
+# Estimation {.smaller background="#d4d3bc"}
+
+
+## Estimation   {.smaller background="#d4d3bc"}
+
+A **Sharp RDD** can take the form of:
+
+$$Y_i = \alpha + \beta_1 D_a + \beta_2 \tilde{x}_1 + \epsilon$$
+
+Where $D_a$ is the treatment based on the cutoff.
+
+$x$ is the running variable (the difference between the actual $X$ and the cutoff in $X_0$).
+
+- For instance, months until the 18 years birthday.
+
+- We can also use the notation: $\tilde{X}=x-x_0$ regarding the difference. 
+
+
+
+
+
+
+
+## Estimation   {.smaller background="#d4d3bc"}
+
+You also should trim the sample to a reasonable window around the cutoff $c$ 
+
+- Something like: $c-h<X_i<c+h$, where $h$ is a positive value that determines the window
+
+- There is no theoretical solution to how big should $h$ be. It invites robustness tests.
+
+
+
+## Estimation   {.smaller background="#d4d3bc"}
+
+**Final Step:**
+
+Decide on the model of E[Y|X]:
+
+- linear in both "sides" with same slope
+
+- linear with different slopes
+
+- non-linear
+
+
+
+**Tip**: always execute a visual inspection to check which model os appropriate.
+
+Also, always estimate different models and discuss the results.
+
+
+
+
+
+
+## Estimation   {.smaller background="#d4d3bc"}
+
+**fuzzy RDD** 
+
+
+$$Y_i = \alpha + \beta_1 D_a + \beta_2 \tilde{x}_1 + \beta_3(Z \times \tilde{x}_1) \epsilon$$
+
+Where Z is 1 if unit is above the cut or 0 if unit is below the cut.
+
+Notice that D is not equal to Z, in these cases.
+
+
+
+
+
+
+
+
+
+# RDD Nonlinearities  {.smaller background="#f2f1d5"}
+
+## RDD Nonlinearities   {.smaller background="#f2f1d5"}
+
+
+**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
+
+This is a linear relationship, with the same slopes.
+
+![](figs/rdd3.png)
+
+$$E[Y|X,D] = \alpha + \beta_1 \times D + \beta_2 \times \tilde{X}$$
+
+
+
+## RDD Nonlinearities   {.smaller background="#f2f1d5"}
+
+
+[The effect](https://theeffectbook.net/ch-DifferenceinDifference.html) This is a linear relationship, with different  slopes.
+
+![](figs/rdd_diff_slope.png)
+
+
+
+
+
+
+
+
+
+
+## RDD Nonlinearities   {.smaller background="#f2f1d5"}
+
+**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
+
+This is a nonlinear relationship.
+
+![](figs/rdd4.png)
+
+
+
+
+
+
+
+
+
+
+## RDD Nonlinearities   {.smaller background="#f2f1d5"}
+
+**[Example Mastering Metrics](https://www.masteringmetrics.com/):**
+
+ Is the relationship linear or nonlinear here? If you misjudge the relationship, it will be hard to tell a story credibly.
+
+![](figs/rdd5.png)
+
+
+
+
+
+
+
+
+
+## RDD Nonlinearities   {.smaller background="#f2f1d5"}
+
+**The takeaway:** **RDD is a graphical method. You need to show the graphs**.
+
+**Nobody will believe your story without the correct specification of the model**.
+
+. . .
+
+In the first case:
+
+
+$$Y_i = \alpha + \beta_1 D_a + \beta_2 x_1 + \epsilon$$
+
+In the second case:
+
+$$Y_i = \alpha + \beta_1 D_a + \beta_2 x_1 + \beta_3 x_1^2 + \epsilon$$
+
+
+
+
+
+
+
+## RDD Nonlinearities   {.smaller background="#f2f1d5"}
+
+We can also add an interaction term (notice that I am changing the notation now to make it similar to MM)
+
+$$Y_i = \alpha + \beta_1 D_a + \beta_2 (x - x_0) + \beta_3 (x - x_0) D_a + \epsilon$$
+
+This allows for different inclinations before and after the cut.
+
+
+
+## RDD Nonlinearities   {.smaller background="#f2f1d5"}
+
+Or even different nonlinearities before and after the cut:
+
+
+$$Y_i = \alpha + \beta_1 D_a + \beta_2 (x - x_0) + \beta_3 (x - x_0)^2 + \beta_4 (x - x_0) D_a  + \beta_5 (x - x_0)^2 D_a + \epsilon$$
+
+
+![](figs/rdd6.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Example RDD  {.smaller background="#edecc0"}
+
+## Example RDD **Clearly, this is not linear.** {.smaller background="#edecc0"}
+
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(readxl)
+library(ggplot2)
+data  <- read_excel("files/RDD.xlsx")
+ggplot(data, aes(x, y))  + 
+  geom_point(size=1.2) + 
+  labs(y = "", x="", title = "Evolution of Y") +
+  theme(plot.title = element_text(color="black", size=20, face="bold"),
+        panel.background = element_rect(fill = "grey95", colour = "grey95"),
+        axis.text.y = element_text(face="bold", color="black", size = 12),
+        axis.text.x = element_text(face="bold", color="black", size = 12),
+        legend.title = element_blank(),
+        legend.key.size = unit(1, "cm")) +
+    geom_smooth(method = "lm", fill = NA)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Read Excel file
+data = pd.read_excel("files/RDD.xlsx")
+# Generate line graph - Including all observations together
+sns.set(style="whitegrid")
+plt.figure(figsize=(10, 5))
+scatter_plot = sns.scatterplot(x='x', y='y', data=data, s=50)
+scatter_plot.set_title("Evolution of Y", fontsize=20, fontweight='bold')
+scatter_plot.set_xlabel("", fontsize=12, fontweight='bold')
+scatter_plot.set_ylabel("", fontsize=12, fontweight='bold')
+# Add regression line
+sns.regplot(x='x', y='y', data=data, scatter=False, line_kws={'color': 'blue'})
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: false
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+import excel "files/RDD.xlsx", firstrow
+twoway (scatter y x) (lfit y x)
+quietly graph export figs/graph1.svg, replace
+```  
+
+![](figs/graph1.svg)
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Example RDD  {.smaller background="#edecc0"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(readxl)
+library(ggplot2)
+data  <- read_excel("files/RDD.xlsx")
+# Creating  groups
+data$treated <- 0
+data$treated[data$x >= 101] <- 1  
+# Generate a line graph - two groups
+ggplot(data, aes(x, y, group=treated, color = factor(treated)))  + 
+    geom_point( size=1.25) + 
+    labs(y = "", x="", title = "RDD exemplo")+
+    theme(plot.title = element_text(color="black", size=25, face="bold"),
+          panel.background = element_rect(fill = "grey95", colour = "grey95"),
+          axis.text.y = element_text(face="bold", color="black", size = 16),
+          axis.text.x = element_text(face="bold", color="black", size = 16),
+          legend.title = element_blank(),
+          legend.key.size = unit(2, "cm")) +
+    geom_smooth(method = "lm", fill = NA)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Read Excel file
+data = pd.read_excel("files/RDD.xlsx")
+# Create treated variable
+data['treated'] = 0
+data.loc[data['x'] >= 101, 'treated'] = 1
+# Generate line graph with two groups
+sns.set(style="whitegrid")
+plt.figure(figsize=(10, 5))
+scatter_plot = sns.scatterplot(x='x', y='y', hue='treated', style='treated', data=data, s=50)
+scatter_plot.set_title("RDD exemplo", fontsize=25, fontweight='bold')
+scatter_plot.set_xlabel("", fontsize=16, fontweight='bold')
+scatter_plot.set_ylabel("", fontsize=16, fontweight='bold')
+scatter_plot.legend().set_title('')
+scatter_plot.legend(title='', loc='upper left', fontsize='small')
+# Add regression lines
+sns.regplot(x='x', y='y', data=data[data['treated'] == 0], scatter=False, line_kws={'color': 'blue'})
+sns.regplot(x='x', y='y', data=data[data['treated'] == 1], scatter=False, line_kws={'color': 'orange'})
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: false
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+import excel "files/RDD.xlsx", firstrow
+gen treated = 0
+replace treated = 1 if x >= 101
+twoway (scatter y x) (lfit y x if treated == 0) (lfit y x if treated == 1)
+quietly graph export figs/graph2.svg, replace
+```  
+
+![](figs/graph2.svg) 
+
+:::
+
+
+
+
+
+
+
+
+
+## Example RDD  {.smaller background="#edecc0"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(readxl)
+library(ggplot2)
+data  <- read_excel("files/RDD.xlsx")
+# Creating  groups
+data$treated <- 0
+data$treated[data$x >= 101] <- 1  
+# define cut
+cut <- 100
+band <- 50
+xlow = cut - band
+xhigh = cut + band
+# subset the data for the bandwidth
+data <- subset(data, x > xlow & x <= xhigh, select=c(x, y,  treated))
+# Generate a line graph - two groups
+ggplot(data, aes(x, y, group=treated, color = factor(treated)))  + 
+  geom_point( size=1.25) + 
+  labs(y = "", x="", title = "RDD example")+
+  theme(plot.title = element_text(color="black", size=25, face="bold"),
+        panel.background = element_rect(fill = "grey95", colour = "grey95"),
+        axis.text.y = element_text(face="bold", color="black", size = 16),
+        axis.text.x = element_text(face="bold", color="black", size = 16),
+        legend.title = element_blank(),
+        legend.key.size = unit(2, "cm")) +
+  geom_smooth(method = "lm", fill = NA)
+```
+
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Read Excel file
+data = pd.read_excel("files/RDD.xlsx")
+# Create treated variable
+data['treated'] = 0
+data.loc[data['x'] >= 101, 'treated'] = 1
+# Define cut, band, and subset data
+cut = 100
+band = 50
+xlow = cut - band
+xhigh = cut + band
+data = data[(data['x'] > xlow) & (data['x'] <= xhigh)][['x', 'y', 'treated']]
+# Generate line graph with two groups
+sns.set(style="whitegrid")
+plt.figure(figsize=(10, 5))
+scatter_plot = sns.scatterplot(x='x', y='y', hue='treated', style='treated', data=data, s=50)
+scatter_plot.set_title("RDD example", fontsize=25, fontweight='bold')
+scatter_plot.set_xlabel("", fontsize=16, fontweight='bold')
+scatter_plot.set_ylabel("", fontsize=16, fontweight='bold')
+scatter_plot.legend().set_title('')
+scatter_plot.legend(title='', loc='upper left', fontsize='small')
+# Add regression lines
+sns.regplot(x='x', y='y', data=data[data['treated'] == 0], scatter=False, line_kws={'color': 'blue'})
+sns.regplot(x='x', y='y', data=data[data['treated'] == 1], scatter=False, line_kws={'color': 'orange'})
+plt.show()
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: false
+#| output: false
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+import excel "files/RDD.xlsx", firstrow
+gen treated = 0
+replace treated = 1 if x >= 101
+gen cut = 100
+gen band = 50
+gen xlow = cut - band
+gen xhigh = cut + band
+keep if x > xlow & x <= xhigh
+twoway (scatter y x) (lfit y x if treated == 0) (lfit y x if treated == 1)
+quietly graph export figs/graph3.svg, replace
+```  
+
+![](figs/graph3.svg)
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Example RDD  {.smaller background="#edecc0"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(readxl)
+library(ggplot2)
+data  <- read_excel("files/RDD.xlsx")
+data$treated <- 0
+data$treated[data$x >= 101] <- 1  
+cut <- 100
+band <- 50
+xlow = cut - band
+xhigh = cut + band
+data <- subset(data, x > xlow & x <= xhigh, select=c(x, y,  treated))
+# Generating xhat - Now we are going to the RDD
+data$xhat <- data$x - cut
+# Generating xhat * treated to allow different inclinations (we will use the findings of the last graph, i.e. that each group has a different trend.)
+data$xhat_treated <- data$xhat * data$treated
+# RDD Assuming different trends
+rdd <- lm(y  ~ xhat + treated  + xhat_treated, data = data)
+summary(rdd)
+```
+
+### Python
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Python"
+import pandas as pd
+import statsmodels.api as sm
+data = pd.read_excel("files/RDD.xlsx")
+# Generate treated variable
+data['treated'] = 0
+data.loc[data['x'] >= 101, 'treated'] = 1
+# Define cut and band
+cut = 100
+band = 50
+xlow = cut - band
+xhigh = cut + band
+# Subset data
+data = data[(data['x'] > xlow) & (data['x'] <= xhigh)]
+# Generate xhat and xhat_treated
+data['xhat'] = data['x'] - cut
+data['xhat_treated'] = data['xhat'] * data['treated']
+# Regression
+X = data[['xhat', 'treated', 'xhat_treated']]
+X = sm.add_constant(X)  # Add a constant term
+y = data['y']
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+import excel "files/RDD.xlsx", firstrow clear
+gen treated = 0
+replace treated = 1 if x >= 101
+gen cut = 100
+gen band = 50
+gen xlow = cut - band
+gen xhigh = cut + band
+keep if x > xlow & x <= xhigh
+gen xhat = x - cut
+gen xhat_treated = xhat * treated
+regress y xhat treated xhat_treated
+```  
+
+:::
+
+
+
+
+## Example RDD  {.smaller background="#edecc0"}
+
+The coefficient of x before the cut is 0.29 (t-stat 5.45), and after the cut, it is -0.51 (t-stat -6.75). 
+
+We also have the coefficient of the treatment, which is measured by the "jump" that occurs near the cut: **an estimated coefficient of 28.9 (t-stat 13.11). **
+
+If this were a real example, this would be the causal effect of receiving the treatment (i.e., being beyond the cut).
+
+
+
+
+
+
+
+
+
+
+# Final comments RDD {.smaller background="#f0eeb4"}
+
+## Final comments RDD {.smaller background="#f0eeb4"}
+
+
+**Sensitivity to specification**
+
+Misspecification can lead to a "spurious jump". **Do not mix nonlinearity with a discontinuity**.
+
+. . . 
+
+**Sensitivity to window**
+
+Also, need to check many alternative $h$. 
+
+. . . 
+
+**Smoothness of the running around the cut**
+
+The distribution of X should be smooth around the cut. If it is not, it might indicate that the treatment assignment was not random. 
+
+. . . 
+
+**Test comparability of units around the cut**
+
+Covariates balance. You can check whether there are jumps in control variables as an additional robustness.
+
+. . . 
+
+**Placebo tests**
+
+Test whether the treatment is zero when it should be zero.
+
+
+
+
+
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::
