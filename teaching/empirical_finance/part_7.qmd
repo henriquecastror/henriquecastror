@@ -1,0 +1,792 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 7'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+
+```{r setup}
+#| include: false
+#| warning: false
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+#reticulate::py_install("linearmodels")
+#reticulate::py_install("causalml")
+
+```
+
+
+
+
+
+# DiD Introduction {.smaller background="#c4f5d7"}
+
+## DiD Introduction  {.smaller background="#c4f5d7"}
+
+Let's introduce DiD using the most famous example in the topic: John Snow’s 1855 findings that demonstrated to the world that cholera was spread by fecally-contaminated water and not via the air (Snow 1855)
+
+- Snow compared the periods of 1849 and 1854 to analyze the impact of a  change in London's water supply dynamics. 
+- Various water companies, each drawing water from different sections of the Thames river, served the city's water needs. 
+- The downstream areas of the Thames, where some companies sourced their water, were susceptible to contamination due to the disposal of various substances, including fecal matter from cholera-infected individuals. 
+- In the interim between 1849 and 1854, a pivotal policy was implemented: the Lambeth Company was mandated by an Act of Parliament to relocate its water intake upstream of London.
+
+
+
+
+
+## DiD Introduction  {.smaller background="#c4f5d7"}
+
+**This is what happened.**
+
+| Region Supplier                        | Death Rates 1849 | Death Rates 1854 |
+|----------------------------------------|------------------|------------------|
+| Non-Lambeth Only (Dirty)               | 134.9            | 146.6            |
+| Lambeth + Others (Mix Dirty and Clean) | 130.1            | 84.9             |
+
+. . . 
+
+The specific DID estimate we can get here is:
+
+- $(84.9-130.1)-(146.9-134.9)=-57.2$.
+
+This resembles a "modern" DiD. 
+
+
+
+
+
+
+
+
+# Shocks {.smaller background="#95c9a9"}
+
+## Shocks  {.smaller background="#95c9a9"}
+
+**Shock-based designs use an external shock to limit selection bias. **
+
+They are very hard to find, but if you do, you can reasonably estimate causal effects.
+
+They are sources of exogenous variations in the X, which are crucial to causality when we have some of the problems discussed before. 
+
+A shock is often considered the first-best solution to causal inference (randomized control trials are the second-best).
+
+. . . 
+
+In social sciences, we cannot have randomized control trials. It is not feasible to have experiments.
+
+That is why we often explore the idea of "Natural experiments" or "Natural shocks" (I often use the terms interchangeably)
+
+
+
+
+
+
+
+## Shocks  {.smaller background="#95c9a9"}
+
+A **Natural experiment** is an exogenous variation that change a variable in a random subset of firms. 
+
+- Regulations, laws, etc.
+- Natural disasters.
+- Sudden death of CEOs or a product, etc.
+- The gender of a newborn.
+
+
+Because the variation that occur in x is truly exogenous, the CMI holds and thus we can infer causality.
+
+
+
+
+
+
+
+## Shocks  {.smaller background="#95c9a9"}
+
+A good shock has some conditions [source](https://cfr.pub/published/papers/cfr-0036.pdf):
+
+1) **Shock Strength**: The shock is strong enough to significantly change firm behavior or incentives.
+
+. . .
+ 
+2) **Exogenous Shock**: The shock came from “outside” the system one is studying.
+
+  - Treated firms did not choose whether to be treated, 
+  - cannot anticipate the shock, 
+  - the shock is expected to be permanent, and 
+  - there is no reason to believe that which firms were treated depends on unobserved firm characteristics.
+  
+If the shock is exogenous, or appears to be, we are less worried that unobservables might be correlated with both assignment to treatment and the potential outcomes, and thus generate omitted variable bias. 
+
+Shock exogeneity should be defended, not just assumed.
+
+
+
+
+
+
+
+## Shocks  {.smaller background="#95c9a9"}
+
+A good shock has some conditions [source](https://cfr.pub/published/papers/cfr-0036.pdf):
+
+3) **“As If Random” Assignment**: The shock must separate firms into treated and controls in a manner which is close to random.
+
+. . .
+
+4) **Covariate balance:** The forcing and forced variables aside, the shock should produce reasonable covariate balance between treated and control firms, including “common support” (reasonable overlap between treated and control firms on all covariates). 
+
+Somewhat imperfect balance can be address with balancing methods, but severe imbalance undermines shock credibility, even if the reason for imbalance is not obvious. Covariate balance should be reported.
+
+
+
+
+
+
+
+## Shocks  {.smaller background="#95c9a9"}
+
+A good shock has some conditions [source](https://cfr.pub/published/papers/cfr-0036.pdf):
+
+5) **Only-Through Condition(s):** We must have reason to believe that the apparent effect of the shock on the outcome came only through the shock (sometimes, through a specific channel). 
+
+The shock must be “isolated”, there must be no other shock, at around the same time, that could also affect treated firms differently than control firms. 
+And if one expects the shock to affect outcomes through a particular channel, the shock must also affect the outcome only through that channel.
+
+. . .
+
+In IV analysis, this is called an **“exclusion restriction”** or **“only-through condition"**, because one assumes away (excludes) other channels.
+
+
+
+
+
+
+## Shocks  {.smaller background="#95c9a9"}
+
+The idea of a natural shock is often mixed with the difference-in-differences (DiD) design.
+
+It is more common that it should that people refer to shocks when they want to refer to DiD. 
+
+A Did design explores a Natural shock to estimate causal effects.
+
+**A good shock generates, by nature, random assignment**.
+
+
+
+
+
+
+
+
+
+## Remember  {.smaller background="#693d3a"}
+
+**Remember:**
+
+When dealing with **causal inference**, we have to find ways to approximate what the hidden potential outcome of the treated units is. 
+
+That is, the challenge in identifying causal effects is that the untreated potential outcomes, $Y_{i,0}$, are never
+observed for the treated group ($D_i= 1$). The "second" term in the following equation:
+
+ATET = $\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])$
+
+We need an empirical design to **"observe"** what we do not really observe (i.e., the counterfactual). 
+
+
+
+
+
+
+
+# Single differences  {.smaller background="#a4baac"}
+
+## Single differences  {.smaller background="#a4baac"}
+
+There are two single differences we can use to estimate the causal effect of a treatments (i.e., a shock).
+
+**1) Single Cross-Sectional Differences After Treatment**
+
+**2) Single Time-Series Difference Before and After Treatment**
+
+
+
+
+
+
+
+## Single differences  {.smaller background="#a4baac"}
+
+**1) Single Cross-Sectional Differences After Treatment**
+
+One approach to estimating a parameter that summarizes the treatment effect is to compare the post-treatment outcomes of the treatment and control groups. 
+
+This method is often used when there is no data available on pre-treatment outcomes.
+
+It takes the form:
+
+$$y=\beta_0+\beta_1d_i+\epsilon$$
+
+where $d_i$ is a dummy marking the units that are treated. The treatment effect is given by $\beta_1$
+
+This is a cross-sectional comparison, using only post-treatment values.
+
+
+
+
+
+
+
+
+## Single differences  {.smaller background="#a4baac"}
+
+**1) Single Cross-Sectional Differences After Treatment**
+
+You may add the interaction between the treatment dummy and the years.
+
+$$y=\beta_0+\beta_1d_i\times year_1+\beta_2d_i\times year_2 +\beta_3d_i\times year_3+ . . . +\epsilon$$
+
+This design allows the treatment effect to vary over time by interacting the treatment dummy with period dummies.
+
+
+
+
+. . . 
+
+
+**What is the endogeneity concern here?**
+
+. . .
+
+The endogeneity concern is that these firms’ $y$ were different and could become more different between the treated and control groups even if the shock had not happened. 
+
+That is, there is something in the residual that explains the differences in $y$ that is correlated with the $d$.
+
+
+
+
+
+
+
+
+
+## Single differences  {.smaller background="#a4baac"}
+
+**2) Single Time-Series Difference Before and After Treatment**
+
+A second way to estimate the treatment effect is to compare the outcome after the treatment with the outcome before the treatment for **just those units that are treated.**
+
+The difference from before is that you have data before the treatment, but you only have data for the treated units.
+
+$$y=\beta_0+\beta_1 time+\epsilon$$
+
+where $time$ marks the years after the treatment. The treatment effect is given by $\beta_1$
+
+
+
+
+
+
+## Single differences  {.smaller background="#a4baac"}
+
+**2) Single Time-Series Difference Before and After Treatment**
+
+You can also estimate a multi-year regression.
+
+$$y=\beta_0+\beta_1year_1 +\beta_2\times year_2 +\beta_3\times year_3+ . . . +\epsilon$$
+
+. . . 
+
+
+**What is the endogeneity concern here?**
+
+. . .
+
+The endogeneity concern is that these firms’ $y$ could have changed over the period of observation even if the shock had not happened. 
+
+That is, there is something in the error term that explains $y$ that is correlated with the $year$ dummies.
+
+
+
+
+
+## Single differences  {.smaller background="#a4baac"}
+
+The combination of the  **1) Single Cross-Sectional Differences After Treatment** and **2) Single Time-Series Difference Before and After Treatment** is called **Difference-in-Differences**.
+
+
+
+
+
+
+
+
+# Difference-in-Differences {.smaller background="#8bc9a2"}
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+This is one of the most popular methods in social sciences for estimating causal effects in non-experimental settings.
+
+The literature is exploding over the recent years.
+
+. . . 
+
+There is one group that is treated, another is the control. 
+
+There are two periods of time, before and after the treatment.
+
+And the treated group receives the treatment in the second period.
+
+**The key identifying assumption is that the average outcome among the treated and comparison populations would have followed “parallel trends” in the absence of treatment.**
+
+
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+
+*The two single difference estimators complement one another.*
+
+*The cross-sectional comparison avoids the problem of omitted trends by comparing two groups over the same time period.*
+
+*The time series comparison avoids the problem of unobserved differences between two different groups of firms by looking at the same firms before and after the change.*
+
+*The double difference, difference-in-differences (DD), estimator combines these two estimators to take advantage of both estimators’ strengths.* 
+
+([Roberts and Whited, 2014](https://doi.org/10.1016/B978-0-44-453594-8.00007-0))
+
+
+
+
+
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+
+Difference-in-differences methods overcome the identification challenge via assumptions that allow us to impute the mean counterfactual untreated outcomes for the treated group by using 
+
+- (a) the change in outcomes for the untreated group and 
+- (b) the baseline outcomes for the treated group. 
+
+The key assumption for identifying the causal effect is the **parallel trends assumption**, which intuitively states that **the average outcome for the treated and untreated units would have evolved in parallel if treatment had not occurred**.
+
+**Assumption 1 (Parallel Trends).**
+
+$E[Y_{i,1,t=2}-Y_{i,0,t=1}|D_i=1] = E[Y_{i,1,t=2}-Y_{i,0,t=1}|D_i=0]$
+
+
+In other words: **this condition means that in the absence of treatment, the average change in the $y$ would have been the same for both the treatment and control groups.**
+
+
+
+
+
+
+
+
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+**The counterfactual is determined by the assumption of a parallel trend between the treated and control groups.** **[MM](https://www.masteringmetrics.com/)**
+
+
+![](figs/did1.png) 
+
+
+
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+![](figs/slides4-did.png) 
+
+
+
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+Inserting more periods.
+
+![](figs/did2.png) 
+
+
+
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+A more realistic example. ([The effect](https://theeffectbook.net/ch-DifferenceinDifference.html))
+
+
+![](figs/theeffect1.png)
+
+
+
+
+
+
+## Difference-in-Differences  {.smaller background="#8bc9a2"}
+
+
+**Assumption 2 (No anticipatory effects).**
+
+*The treatment has no causal effect prior to its implementation.*
+
+$$Y_{i,0,t=1}=Y_{i,1,t=1}$$
+
+Prior to the treatment (t=1), there is no effect of the treatment.
+
+
+
+
+
+
+
+
+
+# Estimation  {.smaller background="#c6f7ec"}
+
+## Estimation   {.smaller background="#c6f7ec"}
+
+Let's see how to implement a DiD model. The canonical DiD model is the followin:
+
+$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + \epsilon_{i,t}$$
+
+Where:
+
+$treated_i$ is a dummy marking the units that received the treatment.
+
+$time_t$ is a dummy marking the year of the treatment and the years after.
+
+
+
+
+
+
+## Estimation   {.smaller background="#c6f7ec"}
+
+Let's see how to implement a DiD model. The canonical DiD model is the followin:
+
+$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + \epsilon_{i,t}$$
+
+
+$\beta_0$ is the **average $y_{i,t}$** for the **control units before the treatment ($time_t$ =0 and $treated_i$ = 0)**.
+
+$\beta_0+\beta_1$ is the **average $y_{i,t}$** for the **control units after the treatment ($time_t$ =1 and $treated_i$ = 0)**.
+
+$\beta_0+\beta_2$ is the **average $y_{i,t}$** for the **treated units before the treatment ($time_t$ =0 and $treated_i$ = 1)**.
+
+$\beta_0+\beta_1+\beta_2+\beta_3$ is the **average $y_{i,t}$** for the **treated units after the treatment ($time_t$ =1 and $treated_i$ = 1)**.
+
+
+
+
+## Estimation   {.smaller background="#c6f7ec"}
+
++------------------+-----------------------------------+---------------------+---------------------+
+|                  |   Post-treat. (1)                 |  Pre-treat. (2)     |  **Diff. (1-2)**    |
++------------------+-----------------------------------+---------------------+---------------------+
+|   Treated (a)    | $\beta_0+\beta_1+\beta_2+\beta_3$ | $\beta_0+\beta_2$   |**$\beta_1+\beta_3$**|
++------------------+-----------------------------------+---------------------+---------------------+
+|  Control (b)     | $\beta_0+\beta_1$                 |  $\beta_0$          | **$\beta_1$**       |
++------------------+-----------------------------------+---------------------+---------------------+
+| **Diff. (a-b)**  | **$\beta_2+\beta_3$**             |  **$\beta_2$**      | **$\beta_3$**       |
++------------------+-----------------------------------+---------------------+---------------------+
+
+
+**This is why we call difference-in-differences.**
+
+**$\beta_3$** gives us an estimate of the treatment effect on the treated units (ATE).
+
+This is very popular because you can run as a regression.
+
+. . . 
+
+Many papers simply show this table as final result.
+
+However, it is also possible that you include additional covariates (i.e., controls) in a DiD design. 
+
+You can also modify this to test the timing of the treatment (discussed later).
+
+
+
+
+
+
+
+
+
+
+# Controls in DiD  {.smaller background="#d5f5ee"}
+
+## Controls in DiD  {.smaller background="#d5f5ee"}
+
+If you add controls, you have something in the form:
+
+$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + \beta_4x_{1,i,t}+ \beta_5x_{2,i,t}+ ...+ \epsilon_{i,t}$$
+
+. . . 
+
+::: {.callout-important}
+Bad Controls problem: Never add a control that is also affected by the treatment. 
+:::
+
+. . . 
+
+::: {.callout-tip}
+Using pre-treatment values is good practice. 
+:::
+
+If you are including a *good control*, you should get lower standard deviations of the estimated effects.
+
+
+
+
+
+## Controls in DiD  {.smaller background="#d5f5ee"}
+
+One way of adding more controls is by adding FEs.
+
+$$y_{i,t} = \beta_0 + \beta_1 time_t + \beta_2 treated_i  + \beta_3 treated_i \times time_t + FirmFE+ YearFE + \epsilon_{i,t}$$
+
+They help control for unobserved heterogeneity at the firm-level and in each year.
+
+. . . 
+
+**But what do $\beta_1$ and  $\beta_2$ mean now?**
+
+. . .
+ 
+**Answer:** They are perfectly correlated with the $FirmFE$ and $YearFE$, respectively.
+
+Reason: because they don't vary across each firm and year, respectively. 
+
+The software will most likely drop one $FirmFE$ and one $YearFE$, thus $\beta_1$ and  $\beta_2$ mean nothing.
+
+. . .
+
+I am guilty of this mistake because a referee asked and I couldn't reply properly.
+
+
+
+
+
+
+
+
+## Controls in DiD  {.smaller background="#d5f5ee"}
+
+You will be better off if you estimate:
+
+$$y_{i,t} = \beta_0 + \beta_3 treated_i \times time_t + FirmFE+ YearFE + \epsilon_{i,t}$$
+
+This is called a **generalized DiD**.
+
+The $FirmFE$ allow that each firm has one intercept (i.e., one average $y_{i,t}$).
+
+The $YearFE$ accommodate a potential shock in $y_{i,t}$ in each year.
+
+
+
+
+
+
+
+
+
+## Controls in DiD  {.smaller background="#d5f5ee"}
+
+Additionally, adding *good* controls can be helpful to maintain the shock **exogenous (i.e., random) after controlling by X.**
+
+. . . 
+
+Imagine that a financial shock is more likely to affect high leveraged firms than low-leverage ones.
+
+1) the shock will not change the leverage decision of each firm.
+
+2) we believe that high leveraged firms will have a different $y_{i,t}$ after the treatment.
+
+You may add leverage as a control to make sure the shock is random given the firms' levels of leverage.
+
+. . .
+
+If you may believe that the leverage will change after the treatment, you can use pre-treatment values (interacted with the time dummies).
+
+In this case, you are controlling for the pre-treatment condition but are not including the bias that might come due to changes in leverage after the treatment.
+
+
+
+
+
+
+
+## Controls in DiD  {.smaller background="#d5f5ee"}
+
+*If assignment is random, then including additional covariates should have a negligible effect on the estimated treatment effect.*
+
+*Thus, a large discrepancy between the treatment effect estimates with and without additional controls raises a red flag.* 
+
+*If assignment to treatment and control groups is not random but dictated by an observable rule, then controlling for this rule via covariates in the regression satisfies the conditional mean zero assumption required for unbiased estimates.* 
+
+*Regardless of the motivation, it is crucial to remember that any covariates included as controls must be unaffected by the treatment, a condition that eliminates other outcome variables and restricts most covariates to pre-treatment values.*
+
+([Roberts and Whited, 2014](https://doi.org/10.1016/B978-0-44-453594-8.00007-0))
+ 
+ 
+
+
+
+
+
+# Comment about DiD {.smaller background="#aecfc7"}
+
+## Comment about DiD  {.smaller background="#aecfc7"}
+
+([The effect](https://theeffectbook.net/ch-DifferenceinDifference.html))
+
+
+*Parallel trends means we have to think very carefully about how our dependent variable is measured and transformed.*
+
+*Because parallel trends is an assumption about the size of a gap remaining constant, which means something different depending on how you measure that gap.*
+
+*For example, if parallel trends holds for dependent variable $Y$, then it doesn’t hold for $ln(y)$, and vice versa*
+
+. . .
+
+*For example, say that in the pre-treatment period $y$ is 10 for the control group and 20 for the treated group. In the post-treatment period, in the counterfactual world where treatment never happened,$y$ would be 15 for the control group and 25 for the treated group. Gap of $20-10=10$  before, and $25-15=10$ after. Parallel trends holds!*
+
+. . . 
+
+*However: $Ln(20)-ln(10)=.693$  before, and $ln(25)-ln(15)=.51$ after. *
+
+
+
+
+
+
+
+
+
+
+# Example of DiD  {.smaller background="#98b8b0"}
+
+## Example of DiD  {.smaller background="#98b8b0"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Load the necessary library
+library(foreign)
+data <- read.dta("files/kielmc.dta")
+data$y81_nearinc <- data$y81 * data$nearinc
+model1 <- lm(rprice ~ y81 + nearinc + y81_nearinc, data = data)
+model2 <- lm(rprice ~ y81 + nearinc + y81_nearinc + age + agesq, data = data)
+model3 <- lm(rprice ~ y81 + nearinc + y81_nearinc + age + agesq + intst + land + area + rooms + baths, data = data)
+summary(model3)
+```
+
+
+### Stata
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+use "files/kielmc.dta", clear
+gen y81_nearinc = y81 * nearinc
+eststo:qui reg rprice y81 nearinc y81_nearinc 
+eststo:qui reg rprice y81 nearinc y81_nearinc age agesq 
+eststo:qui reg rprice y81 nearinc y81_nearinc age agesq intst land area rooms baths
+esttab , compress
+```  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::

@@ -1019,7 +1019,7 @@
     "href": "teaching/empirical_finance/index.html",
     "title": "Empirical Methods 2024/02",
     "section": "",
-    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1: Slides\nPart 2: Slides\nPart 3: Slides\nPart 4: Slides\nPart 5: Slides\nPart 6: Slides\n\nTo be continued"
+    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1: Slides\nPart 2: Slides\nPart 3: Slides\nPart 4: Slides\nPart 5: Slides\nPart 6: Slides\nPart 7 DiD: Slides\n\nTo be continued"
   },
   {
     "objectID": "research/research/EMR_2023/index.html",
@@ -17666,5 +17666,243 @@
     "title": "Inferência Causal em Pesquisas de Finanças: Problemas e Soluções",
     "section": "",
     "text": "Important\n\n\nMore data is not necessarily a solution, you need a sound empirical design."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#did-introduction-1",
+    "href": "teaching/empirical_finance/part_7.html#did-introduction-1",
+    "title": "Empirical Methods in Finance",
+    "section": "DiD Introduction",
+    "text": "DiD Introduction\nLet’s introduce DiD using the most famous example in the topic: John Snow’s 1855 findings that demonstrated to the world that cholera was spread by fecally-contaminated water and not via the air (Snow 1855)\n\nSnow compared the periods of 1849 and 1854 to analyze the impact of a change in London’s water supply dynamics.\nVarious water companies, each drawing water from different sections of the Thames river, served the city’s water needs.\nThe downstream areas of the Thames, where some companies sourced their water, were susceptible to contamination due to the disposal of various substances, including fecal matter from cholera-infected individuals.\nIn the interim between 1849 and 1854, a pivotal policy was implemented: the Lambeth Company was mandated by an Act of Parliament to relocate its water intake upstream of London."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#did-introduction-2",
+    "href": "teaching/empirical_finance/part_7.html#did-introduction-2",
+    "title": "Empirical Methods in Finance",
+    "section": "DiD Introduction",
+    "text": "DiD Introduction\nThis is what happened.\n\n\n\n\n\n\n\n\nRegion Supplier\nDeath Rates 1849\nDeath Rates 1854\n\n\n\n\nNon-Lambeth Only (Dirty)\n134.9\n146.6\n\n\nLambeth + Others (Mix Dirty and Clean)\n130.1\n84.9\n\n\n\n\nThe specific DID estimate we can get here is:\n\n\\((84.9-130.1)-(146.9-134.9)=-57.2\\).\n\nThis resembles a “modern” DiD."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#shocks-1",
+    "href": "teaching/empirical_finance/part_7.html#shocks-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Shocks",
+    "text": "Shocks\nShock-based designs use an external shock to limit selection bias. \nThey are very hard to find, but if you do, you can reasonably estimate causal effects.\nThey are sources of exogenous variations in the X, which are crucial to causality when we have some of the problems discussed before.\nA shock is often considered the first-best solution to causal inference (randomized control trials are the second-best).\n\nIn social sciences, we cannot have randomized control trials. It is not feasible to have experiments.\nThat is why we often explore the idea of “Natural experiments” or “Natural shocks” (I often use the terms interchangeably)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#shocks-2",
+    "href": "teaching/empirical_finance/part_7.html#shocks-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Shocks",
+    "text": "Shocks\nA Natural experiment is an exogenous variation that change a variable in a random subset of firms.\n\nRegulations, laws, etc.\nNatural disasters.\nSudden death of CEOs or a product, etc.\nThe gender of a newborn.\n\nBecause the variation that occur in x is truly exogenous, the CMI holds and thus we can infer causality."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#shocks-3",
+    "href": "teaching/empirical_finance/part_7.html#shocks-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Shocks",
+    "text": "Shocks\nA good shock has some conditions source:\n\nShock Strength: The shock is strong enough to significantly change firm behavior or incentives.\n\n\n\nExogenous Shock: The shock came from “outside” the system one is studying.\n\n\nTreated firms did not choose whether to be treated,\ncannot anticipate the shock,\nthe shock is expected to be permanent, and\nthere is no reason to believe that which firms were treated depends on unobserved firm characteristics.\n\nIf the shock is exogenous, or appears to be, we are less worried that unobservables might be correlated with both assignment to treatment and the potential outcomes, and thus generate omitted variable bias.\nShock exogeneity should be defended, not just assumed."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#shocks-4",
+    "href": "teaching/empirical_finance/part_7.html#shocks-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Shocks",
+    "text": "Shocks\nA good shock has some conditions source:\n\n“As If Random” Assignment: The shock must separate firms into treated and controls in a manner which is close to random.\n\n\n\nCovariate balance: The forcing and forced variables aside, the shock should produce reasonable covariate balance between treated and control firms, including “common support” (reasonable overlap between treated and control firms on all covariates).\n\nSomewhat imperfect balance can be address with balancing methods, but severe imbalance undermines shock credibility, even if the reason for imbalance is not obvious. Covariate balance should be reported."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#shocks-5",
+    "href": "teaching/empirical_finance/part_7.html#shocks-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Shocks",
+    "text": "Shocks\nA good shock has some conditions source:\n\nOnly-Through Condition(s): We must have reason to believe that the apparent effect of the shock on the outcome came only through the shock (sometimes, through a specific channel).\n\nThe shock must be “isolated”, there must be no other shock, at around the same time, that could also affect treated firms differently than control firms. And if one expects the shock to affect outcomes through a particular channel, the shock must also affect the outcome only through that channel.\n\nIn IV analysis, this is called an “exclusion restriction” or “only-through condition”, because one assumes away (excludes) other channels."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#shocks-6",
+    "href": "teaching/empirical_finance/part_7.html#shocks-6",
+    "title": "Empirical Methods in Finance",
+    "section": "Shocks",
+    "text": "Shocks\nThe idea of a natural shock is often mixed with the difference-in-differences (DiD) design.\nIt is more common that it should that people refer to shocks when they want to refer to DiD.\nA Did design explores a Natural shock to estimate causal effects.\nA good shock generates, by nature, random assignment."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#remember",
+    "href": "teaching/empirical_finance/part_7.html#remember",
+    "title": "Empirical Methods in Finance",
+    "section": "Remember",
+    "text": "Remember\nRemember:\nWhen dealing with causal inference, we have to find ways to approximate what the hidden potential outcome of the treated units is.\nThat is, the challenge in identifying causal effects is that the untreated potential outcomes, \\(Y_{i,0}\\), are never observed for the treated group (\\(D_i= 1\\)). The “second” term in the following equation:\nATET = \\(\\frac{1}{N} (E[Y_{i,1}|D_i=1] - E[Y_{i,0}|D_i=1])\\)\nWe need an empirical design to “observe” what we do not really observe (i.e., the counterfactual)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#single-differences-1",
+    "href": "teaching/empirical_finance/part_7.html#single-differences-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Single differences",
+    "text": "Single differences\nThere are two single differences we can use to estimate the causal effect of a treatments (i.e., a shock).\n1) Single Cross-Sectional Differences After Treatment\n2) Single Time-Series Difference Before and After Treatment"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#single-differences-2",
+    "href": "teaching/empirical_finance/part_7.html#single-differences-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Single differences",
+    "text": "Single differences\n1) Single Cross-Sectional Differences After Treatment\nOne approach to estimating a parameter that summarizes the treatment effect is to compare the post-treatment outcomes of the treatment and control groups.\nThis method is often used when there is no data available on pre-treatment outcomes.\nIt takes the form:\n\\[y=\\beta_0+\\beta_1d_i+\\epsilon\\]\nwhere \\(d_i\\) is a dummy marking the units that are treated. The treatment effect is given by \\(\\beta_1\\)\nThis is a cross-sectional comparison, using only post-treatment values."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#single-differences-3",
+    "href": "teaching/empirical_finance/part_7.html#single-differences-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Single differences",
+    "text": "Single differences\n1) Single Cross-Sectional Differences After Treatment\nYou may add the interaction between the treatment dummy and the years.\n\\[y=\\beta_0+\\beta_1d_i\\times year_1+\\beta_2d_i\\times year_2 +\\beta_3d_i\\times year_3+ . . . +\\epsilon\\]\nThis design allows the treatment effect to vary over time by interacting the treatment dummy with period dummies.\n\nWhat is the endogeneity concern here?\n\n\nThe endogeneity concern is that these firms’ \\(y\\) were different and could become more different between the treated and control groups even if the shock had not happened.\nThat is, there is something in the residual that explains the differences in \\(y\\) that is correlated with the \\(d\\)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#single-differences-4",
+    "href": "teaching/empirical_finance/part_7.html#single-differences-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Single differences",
+    "text": "Single differences\n2) Single Time-Series Difference Before and After Treatment\nA second way to estimate the treatment effect is to compare the outcome after the treatment with the outcome before the treatment for just those units that are treated.\nThe difference from before is that you have data before the treatment, but you only have data for the treated units.\n\\[y=\\beta_0+\\beta_1 time+\\epsilon\\]\nwhere \\(time\\) marks the years after the treatment. The treatment effect is given by \\(\\beta_1\\)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#single-differences-5",
+    "href": "teaching/empirical_finance/part_7.html#single-differences-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Single differences",
+    "text": "Single differences\n2) Single Time-Series Difference Before and After Treatment\nYou can also estimate a multi-year regression.\n\\[y=\\beta_0+\\beta_1year_1 +\\beta_2\\times year_2 +\\beta_3\\times year_3+ . . . +\\epsilon\\]\n\nWhat is the endogeneity concern here?\n\n\nThe endogeneity concern is that these firms’ \\(y\\) could have changed over the period of observation even if the shock had not happened.\nThat is, there is something in the error term that explains \\(y\\) that is correlated with the \\(year\\) dummies."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#single-differences-6",
+    "href": "teaching/empirical_finance/part_7.html#single-differences-6",
+    "title": "Empirical Methods in Finance",
+    "section": "Single differences",
+    "text": "Single differences\nThe combination of the 1) Single Cross-Sectional Differences After Treatment and 2) Single Time-Series Difference Before and After Treatment is called Difference-in-Differences."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-1",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences\nThis is one of the most popular methods in social sciences for estimating causal effects in non-experimental settings.\nThe literature is exploding over the recent years.\n\nThere is one group that is treated, another is the control.\nThere are two periods of time, before and after the treatment.\nAnd the treated group receives the treatment in the second period.\nThe key identifying assumption is that the average outcome among the treated and comparison populations would have followed “parallel trends” in the absence of treatment."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-2",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences\nThe two single difference estimators complement one another.\nThe cross-sectional comparison avoids the problem of omitted trends by comparing two groups over the same time period.\nThe time series comparison avoids the problem of unobserved differences between two different groups of firms by looking at the same firms before and after the change.\nThe double difference, difference-in-differences (DD), estimator combines these two estimators to take advantage of both estimators’ strengths.\n(Roberts and Whited, 2014)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-3",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences\nDifference-in-differences methods overcome the identification challenge via assumptions that allow us to impute the mean counterfactual untreated outcomes for the treated group by using\n\n\nthe change in outcomes for the untreated group and\n\n\nthe baseline outcomes for the treated group.\n\n\nThe key assumption for identifying the causal effect is the parallel trends assumption, which intuitively states that the average outcome for the treated and untreated units would have evolved in parallel if treatment had not occurred.\nAssumption 1 (Parallel Trends).\n\\(E[Y_{i,1,t=2}-Y_{i,0,t=1}|D_i=1] = E[Y_{i,1,t=2}-Y_{i,0,t=1}|D_i=0]\\)\nIn other words: this condition means that in the absence of treatment, the average change in the \\(y\\) would have been the same for both the treatment and control groups."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-4",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences\nThe counterfactual is determined by the assumption of a parallel trend between the treated and control groups. MM"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-5",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-6",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-6",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences\nInserting more periods."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-7",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-7",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences\nA more realistic example. (The effect)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#difference-in-differences-8",
+    "href": "teaching/empirical_finance/part_7.html#difference-in-differences-8",
+    "title": "Empirical Methods in Finance",
+    "section": "Difference-in-Differences",
+    "text": "Difference-in-Differences\nAssumption 2 (No anticipatory effects).\nThe treatment has no causal effect prior to its implementation.\n\\[Y_{i,0,t=1}=Y_{i,1,t=1}\\]\nPrior to the treatment (t=1), there is no effect of the treatment."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#estimation-1",
+    "href": "teaching/empirical_finance/part_7.html#estimation-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Estimation",
+    "text": "Estimation\nLet’s see how to implement a DiD model. The canonical DiD model is the followin:\n\\[y_{i,t} = \\beta_0 + \\beta_1 time_t + \\beta_2 treated_i  + \\beta_3 treated_i \\times time_t + \\epsilon_{i,t}\\]\nWhere:\n\\(treated_i\\) is a dummy marking the units that received the treatment.\n\\(time_t\\) is a dummy marking the year of the treatment and the years after."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#estimation-2",
+    "href": "teaching/empirical_finance/part_7.html#estimation-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Estimation",
+    "text": "Estimation\nLet’s see how to implement a DiD model. The canonical DiD model is the followin:\n\\[y_{i,t} = \\beta_0 + \\beta_1 time_t + \\beta_2 treated_i  + \\beta_3 treated_i \\times time_t + \\epsilon_{i,t}\\]\n\\(\\beta_0\\) is the average \\(y_{i,t}\\) for the control units before the treatment (\\(time_t\\) =0 and \\(treated_i\\) = 0).\n\\(\\beta_0+\\beta_1\\) is the average \\(y_{i,t}\\) for the control units after the treatment (\\(time_t\\) =1 and \\(treated_i\\) = 0).\n\\(\\beta_0+\\beta_2\\) is the average \\(y_{i,t}\\) for the treated units before the treatment (\\(time_t\\) =0 and \\(treated_i\\) = 1).\n\\(\\beta_0+\\beta_1+\\beta_2+\\beta_3\\) is the average \\(y_{i,t}\\) for the treated units after the treatment (\\(time_t\\) =1 and \\(treated_i\\) = 1)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#estimation-3",
+    "href": "teaching/empirical_finance/part_7.html#estimation-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Estimation",
+    "text": "Estimation\n\n\n\n\n\n\n\n\n\n\nPost-treat. (1)\nPre-treat. (2)\nDiff. (1-2)\n\n\nTreated (a)\n\\(\\beta_0+\\beta_1+\\beta_2+\\beta_3\\)\n\\(\\beta_0+\\beta_2\\)\n\\(\\beta_1+\\beta_3\\)\n\n\nControl (b)\n\\(\\beta_0+\\beta_1\\)\n\\(\\beta_0\\)\n\\(\\beta_1\\)\n\n\nDiff. (a-b)\n\\(\\beta_2+\\beta_3\\)\n\\(\\beta_2\\)\n\\(\\beta_3\\)\n\n\n\nThis is why we call difference-in-differences.\n\\(\\beta_3\\) gives us an estimate of the treatment effect on the treated units (ATE).\nThis is very popular because you can run as a regression.\n\nMany papers simply show this table as final result.\nHowever, it is also possible that you include additional covariates (i.e., controls) in a DiD design.\nYou can also modify this to test the timing of the treatment (discussed later)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#controls-in-did-1",
+    "href": "teaching/empirical_finance/part_7.html#controls-in-did-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Controls in DiD",
+    "text": "Controls in DiD\nIf you add controls, you have something in the form:\n\\[y_{i,t} = \\beta_0 + \\beta_1 time_t + \\beta_2 treated_i  + \\beta_3 treated_i \\times time_t + \\beta_4x_{1,i,t}+ \\beta_5x_{2,i,t}+ ...+ \\epsilon_{i,t}\\]\n\n\n\n\n\n\n\nImportant\n\n\nBad Controls problem: Never add a control that is also affected by the treatment.\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nUsing pre-treatment values is good practice.\n\n\n\nIf you are including a good control, you should get lower standard deviations of the estimated effects."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#controls-in-did-2",
+    "href": "teaching/empirical_finance/part_7.html#controls-in-did-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Controls in DiD",
+    "text": "Controls in DiD\nOne way of adding more controls is by adding FEs.\n\\[y_{i,t} = \\beta_0 + \\beta_1 time_t + \\beta_2 treated_i  + \\beta_3 treated_i \\times time_t + FirmFE+ YearFE + \\epsilon_{i,t}\\]\nThey help control for unobserved heterogeneity at the firm-level and in each year.\n\nBut what do \\(\\beta_1\\) and \\(\\beta_2\\) mean now?\n\n\nAnswer: They are perfectly correlated with the \\(FirmFE\\) and \\(YearFE\\), respectively.\nReason: because they don’t vary across each firm and year, respectively.\nThe software will most likely drop one \\(FirmFE\\) and one \\(YearFE\\), thus \\(\\beta_1\\) and \\(\\beta_2\\) mean nothing.\n\n\nI am guilty of this mistake because a referee asked and I couldn’t reply properly."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#controls-in-did-3",
+    "href": "teaching/empirical_finance/part_7.html#controls-in-did-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Controls in DiD",
+    "text": "Controls in DiD\nYou will be better off if you estimate:\n\\[y_{i,t} = \\beta_0 + \\beta_3 treated_i \\times time_t + FirmFE+ YearFE + \\epsilon_{i,t}\\]\nThis is called a generalized DiD.\nThe \\(FirmFE\\) allow that each firm has one intercept (i.e., one average \\(y_{i,t}\\)).\nThe \\(YearFE\\) accommodate a potential shock in \\(y_{i,t}\\) in each year."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#controls-in-did-4",
+    "href": "teaching/empirical_finance/part_7.html#controls-in-did-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Controls in DiD",
+    "text": "Controls in DiD\nAdditionally, adding good controls can be helpful to maintain the shock exogenous (i.e., random) after controlling by X.\n\nImagine that a financial shock is more likely to affect high leveraged firms than low-leverage ones.\n\nthe shock will not change the leverage decision of each firm.\nwe believe that high leveraged firms will have a different \\(y_{i,t}\\) after the treatment.\n\nYou may add leverage as a control to make sure the shock is random given the firms’ levels of leverage.\n\n\nIf you may believe that the leverage will change after the treatment, you can use pre-treatment values (interacted with the time dummies).\nIn this case, you are controlling for the pre-treatment condition but are not including the bias that might come due to changes in leverage after the treatment."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#controls-in-did-5",
+    "href": "teaching/empirical_finance/part_7.html#controls-in-did-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Controls in DiD",
+    "text": "Controls in DiD\nIf assignment is random, then including additional covariates should have a negligible effect on the estimated treatment effect.\nThus, a large discrepancy between the treatment effect estimates with and without additional controls raises a red flag.\nIf assignment to treatment and control groups is not random but dictated by an observable rule, then controlling for this rule via covariates in the regression satisfies the conditional mean zero assumption required for unbiased estimates.\nRegardless of the motivation, it is crucial to remember that any covariates included as controls must be unaffected by the treatment, a condition that eliminates other outcome variables and restricts most covariates to pre-treatment values.\n(Roberts and Whited, 2014)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#comment-about-did-1",
+    "href": "teaching/empirical_finance/part_7.html#comment-about-did-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Comment about DiD",
+    "text": "Comment about DiD\n(The effect)\nParallel trends means we have to think very carefully about how our dependent variable is measured and transformed.\nBecause parallel trends is an assumption about the size of a gap remaining constant, which means something different depending on how you measure that gap.\nFor example, if parallel trends holds for dependent variable \\(Y\\), then it doesn’t hold for \\(ln(y)\\), and vice versa\n\nFor example, say that in the pre-treatment period \\(y\\) is 10 for the control group and 20 for the treated group. In the post-treatment period, in the counterfactual world where treatment never happened,\\(y\\) would be 15 for the control group and 25 for the treated group. Gap of \\(20-10=10\\) before, and \\(25-15=10\\) after. Parallel trends holds!\n\n\nHowever: \\(Ln(20)-ln(10)=.693\\) before, and \\(ln(25)-ln(15)=.51\\) after."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#example-of-did-1",
+    "href": "teaching/empirical_finance/part_7.html#example-of-did-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Example of DiD",
+    "text": "Example of DiD\n\nRStata\n\n\n\n\nR\n# Load the necessary library\nlibrary(foreign)\ndata &lt;- read.dta(\"files/kielmc.dta\")\ndata$y81_nearinc &lt;- data$y81 * data$nearinc\nmodel1 &lt;- lm(rprice ~ y81 + nearinc + y81_nearinc, data = data)\nmodel2 &lt;- lm(rprice ~ y81 + nearinc + y81_nearinc + age + agesq, data = data)\nmodel3 &lt;- lm(rprice ~ y81 + nearinc + y81_nearinc + age + agesq + intst + land + area + rooms + baths, data = data)\nsummary(model3)\n\n\n\nCall:\nlm(formula = rprice ~ y81 + nearinc + y81_nearinc + age + agesq + \n    intst + land + area + rooms + baths, data = data)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-76721  -8885   -252   8433 136649 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  1.381e+04  1.117e+04   1.237  0.21720    \ny81          1.393e+04  2.799e+03   4.977 1.07e-06 ***\nnearinc      3.780e+03  4.453e+03   0.849  0.39661    \ny81_nearinc -1.418e+04  4.987e+03  -2.843  0.00477 ** \nage         -7.395e+02  1.311e+02  -5.639 3.85e-08 ***\nagesq        3.453e+00  8.128e-01   4.248 2.86e-05 ***\nintst       -5.386e-01  1.963e-01  -2.743  0.00643 ** \nland         1.414e-01  3.108e-02   4.551 7.69e-06 ***\narea         1.809e+01  2.306e+00   7.843 7.16e-14 ***\nrooms        3.304e+03  1.661e+03   1.989  0.04758 *  \nbaths        6.977e+03  2.581e+03   2.703  0.00725 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 19620 on 310 degrees of freedom\nMultiple R-squared:   0.66, Adjusted R-squared:  0.6491 \nF-statistic: 60.19 on 10 and 310 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\nStata\nuse \"files/kielmc.dta\", clear\ngen y81_nearinc = y81 * nearinc\neststo:qui reg rprice y81 nearinc y81_nearinc \neststo:qui reg rprice y81 nearinc y81_nearinc age agesq \neststo:qui reg rprice y81 nearinc y81_nearinc age agesq intst land area rooms baths\nesttab , compress\n\n\n(est1 stored)\n\n(est2 stored)\n\n(est3 stored)\n\n\n-------------------------------------------------\n                 (1)          (2)          (3)   \n              rprice       rprice       rprice   \n-------------------------------------------------\ny81          18790.3***   21321.0***   13928.5***\n              (4.64)       (6.19)       (4.98)   \n\nnearinc     -18824.4***    9397.9       3780.3   \n             (-3.86)       (1.95)       (0.85)   \n\ny81_near~c  -11863.9     -21920.3***  -14177.9** \n             (-1.59)      (-3.45)      (-2.84)   \n\nage                       -1494.4***    -739.5***\n                         (-11.33)      (-5.64)   \n\nagesq                       8.691***     3.453***\n                          (10.25)       (4.25)   \n\nintst                                   -0.539** \n                                       (-2.74)   \n\nland                                     0.141***\n                                        (4.55)   \n\narea                                     18.09***\n                                        (7.84)   \n\nrooms                                   3304.2*  \n                                        (1.99)   \n\nbaths                                   6977.3** \n                                        (2.70)   \n\n_cons        82517.2***   89116.5***   13807.7   \n             (30.26)      (37.04)       (1.24)   \n-------------------------------------------------\nN                321          321          321   \n-------------------------------------------------\nt statistics in parentheses\n* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_7.html#thank-you",
+    "href": "teaching/empirical_finance/part_7.html#thank-you",
+    "title": "Empirical Methods in Finance",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br][Do not use without permission]"
   }
 ]
