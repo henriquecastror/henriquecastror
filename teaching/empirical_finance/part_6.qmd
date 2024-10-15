@@ -186,10 +186,9 @@ Many options:
 
 - Matching/Balancing
 - Difference-in-differences (DiD)
-- Instrumental variables
 - Regression discontinuity design (RDD)
 - Synthetic control (Synth)
-
+- Instrumental variables
 
 
 
@@ -205,7 +204,7 @@ The process of finding units that are comparable is called **matching**.
 
 **Before we continue...**
 
-**We will match on observables. We cannot be on unobservables.**
+**We will match on observables. We cannot match on unobservables.**
 
 Thus, you may want to write in your article "selection bias due to observables".
 
@@ -482,7 +481,7 @@ In order to do that, you have to use distance matching.
 
 **Normalized Euclidean distance** = $|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{V}^{-1}(X_i-X_j)}=\sqrt{\sum_{n=1}^k\frac{(X_{n,i}-X_{n,j})}{\sigma^2_n}}$
 
-The problem with this measure of distance is that the distance measure itself depends on the **scale of the variables themselves**. 
+The problem with this metric of distance is that the distance measure itself depends on the **scale of the variables themselves**. 
 
 For this reason, researchers typically will use some modification of the Euclidean distance, such as the **normalized Euclidean distance**, or they’ll use a wholly different alternative distance. 
 
@@ -520,10 +519,12 @@ But, the more covariates, the longer it takes.
 
 . . . 
 
-At the end of the day, it is preferable to have many covariates, but it is makes distance matching harder.
+At the end of the day, it is preferable to have many covariates, but it  makes distance matching harder.
 
 
-
+::: {.callout-note}
+**At the end of the day, it is preferable to have many covariates, but it  makes distance matching harder.**
+:::
 
 
 
@@ -578,13 +579,13 @@ Considerations in PSM.
 
 1) How many neighbors to match?
 
-- Nearest neighbor, radius or kernel?
+   - Nearest neighbor, radius or kernel?
 
 2) With or without replacement?
 
 3) With or without common support?
 
-- *Common support*: imposes a common support by dropping treatment observations whose pscore is higher than the maximum or less than the minimum pscore of the controls.
+   - *Common support*: imposes a common support by dropping treatment observations whose pscore is higher than the maximum or less than the minimum pscore of the controls.
 
 4) It is expected that, after PSM, you show the overlap of propensity-scores.
 

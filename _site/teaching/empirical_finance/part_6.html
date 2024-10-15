@@ -519,9 +519,9 @@ Henrique C. Martins
 <ul>
 <li>Matching/Balancing</li>
 <li>Difference-in-differences (DiD)</li>
-<li>Instrumental variables</li>
 <li>Regression discontinuity design (RDD)</li>
 <li>Synthetic control (Synth)</li>
+<li>Instrumental variables</li>
 </ul>
 </section>
 <section id="selection-bias-7" class="slide level2 smaller" data-background="#e3e2b8">
@@ -529,7 +529,7 @@ Henrique C. Martins
 <p>The process of finding units that are comparable is called <strong>matching</strong>.</p>
 <div class="fragment">
 <p><strong>Before we continue…</strong></p>
-<p><strong>We will match on observables. We cannot be on unobservables.</strong></p>
+<p><strong>We will match on observables. We cannot match on unobservables.</strong></p>
 <p>Thus, you may want to write in your article “selection bias due to observables”.</p>
 </div>
 <div class="fragment">
@@ -741,7 +741,7 @@ Henrique C. Martins
 <section id="distance-matching-3" class="slide level2 smaller" data-background="#c6f7ec">
 <h2>Distance Matching</h2>
 <p><strong>Normalized Euclidean distance</strong> = <span class="math inline">\(|X_i-X_j|=\sqrt{(X_i-X_j)'\hat{V}^{-1}(X_i-X_j)}=\sqrt{\sum_{n=1}^k\frac{(X_{n,i}-X_{n,j})}{\sigma^2_n}}\)</span></p>
-<p>The problem with this measure of distance is that the distance measure itself depends on the <strong>scale of the variables themselves</strong>.</p>
+<p>The problem with this metric of distance is that the distance measure itself depends on the <strong>scale of the variables themselves</strong>.</p>
 <p>For this reason, researchers typically will use some modification of the Euclidean distance, such as the <strong>normalized Euclidean distance</strong>, or they’ll use a wholly different alternative distance.</p>
 <p>The normalized Euclidean distance is a commonly used distance, and what makes it different is that the distance of each variable is scaled by the variable’s variance.</p>
 </section>
@@ -760,7 +760,20 @@ Henrique C. Martins
 <p>As sample size increases, for a given N of covariates, the matching discrepancies tend to zero.</p>
 <p>But, the more covariates, the longer it takes.</p>
 <div class="fragment">
-<p>At the end of the day, it is preferable to have many covariates, but it is makes distance matching harder.</p>
+<p>At the end of the day, it is preferable to have many covariates, but it makes distance matching harder.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>At the end of the day, it is preferable to have many covariates, but it makes distance matching harder.</strong></p>
+</div>
+</div>
+</div>
 </div>
 </section></section>
 <section>
@@ -797,20 +810,16 @@ Henrique C. Martins
 <h2>Propensity-score matching (PSM)</h2>
 <p>Considerations in PSM.</p>
 <ol type="1">
-<li>How many neighbors to match?</li>
-</ol>
+<li><p>How many neighbors to match?</p>
 <ul>
 <li>Nearest neighbor, radius or kernel?</li>
-</ul>
-<ol start="2" type="1">
+</ul></li>
 <li><p>With or without replacement?</p></li>
-<li><p>With or without common support?</p></li>
-</ol>
+<li><p>With or without common support?</p>
 <ul>
 <li><em>Common support</em>: imposes a common support by dropping treatment observations whose pscore is higher than the maximum or less than the minimum pscore of the controls.</li>
-</ul>
-<ol start="4" type="1">
-<li>It is expected that, after PSM, you show the overlap of propensity-scores.</li>
+</ul></li>
+<li><p>It is expected that, after PSM, you show the overlap of propensity-scores.</p></li>
 </ol>
 </section>
 <section id="propensity-score-matching-psm-3" class="slide level2 smaller" data-background="#e3bfc3">
