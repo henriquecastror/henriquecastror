@@ -1019,7 +1019,7 @@
     "href": "teaching/empirical_finance/index.html",
     "title": "Empirical Methods 2024/02",
     "section": "",
-    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1 Intro: Slides\nPart 2 CMI: Slides\nPart 3 Misc.: Slides\nPart 4 OLS: Slides\nPart 5 Panel data: Slides\nPart 6 Matching: Slides\nPart 7 DiD: Slides\nPart 8 RDD: Slides\nPart 9 Synth: Slides\nPart 10 IV: Slides\n\nTo be continued"
+    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1 Intro: Slides\nPart 2 CMI: Slides\nPart 3 Misc.: Slides\nPart 4 OLS: Slides\nPart 5 Panel data: Slides\nPart 6 Matching: Slides\nPart 7 DiD: Slides\nPart 8 RDD: Slides\nPart 9 Synth: Slides\nPart 10 IV: Slides\n\n\n\nPracticing\n\nPractice 1: Slides\nPractice 2: Slides\nPractice 3: Slides\nPractice 4: Slides\nPractice 5: Slides\nPractice 6: Slides\n\nTo be continued"
   },
   {
     "objectID": "research/research/EMR_2023/index.html",
@@ -19346,5 +19346,201 @@
     "title": "Empirical Methods in Finance",
     "section": "Multiple regressions",
     "text": "Multiple regressions\nLet’s estimate this equation using Example 3.1 of Wooldridge.\n\niris &lt;- iris \nlibrary(wooldridge)\ndata(gpa1)\ngpa &lt;- lm(gpa1$colGPA ~ gpa1$hsGPA + gpa1$ACT)\nsummary(gpa)\n\n\nCall:\nlm(formula = gpa1$colGPA ~ gpa1$hsGPA + gpa1$ACT)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.85442 -0.24666 -0.02614  0.28127  0.85357 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 1.286328   0.340822   3.774 0.000238 ***\ngpa1$hsGPA  0.453456   0.095813   4.733 5.42e-06 ***\ngpa1$ACT    0.009426   0.010777   0.875 0.383297    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.3403 on 138 degrees of freedom\nMultiple R-squared:  0.1764,    Adjusted R-squared:  0.1645 \nF-statistic: 14.78 on 2 and 138 DF,  p-value: 1.526e-06"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#panel-data-1",
+    "href": "teaching/empirical_finance/part_O6.html#panel-data-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Panel Data",
+    "text": "Panel Data\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(readxl) \nlibrary(jtools) # for nice tables of models - https://cran.r-project.org/web/packages/jtools/vignettes/summ.html#summ\ndata &lt;- read_excel(\"files/data.xls\")\n\nAfter uploading the data, tell R the data is panel. You need two identifiers: one for the cross-sectional part (usually, firms in accounting & finance research), and other for the time-series part (usually, year but sometimes can be quarter). The following example uses a panel wit quarterly data.\nI am also creating an identifier for industries, which might be useful.\n\nlibrary(dplyr)\ndata &lt;- data %&gt;% group_by(id )                %&gt;% dplyr::mutate(id_firm = cur_group_id())\ndata &lt;- data %&gt;% group_by(setor_economatica)  %&gt;% dplyr::mutate(id_ind = cur_group_id())\n\nNow, I am stating to r that I have a dataset in a panel structure.\n\nlibrary(plm)\ndata &lt;- pdata.frame(data, index=c(\"id_firm\",\"year\"))"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#ols-panel-fixed-effects-and-random-effects",
+    "href": "teaching/empirical_finance/part_O6.html#ols-panel-fixed-effects-and-random-effects",
+    "title": "Empirical Methods in Finance",
+    "section": "OLS, Panel, Fixed effects, and Random Effects",
+    "text": "OLS, Panel, Fixed effects, and Random Effects\nLet’s attach the dataset to make things easier.\n\nattach(data)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#section",
+    "href": "teaching/empirical_finance/part_O6.html#section",
+    "title": "Empirical Methods in Finance",
+    "section": "",
+    "text": "Let’s inspect the dataset. First, let’s see how many observations we have by country:\n\nlibrary('plyr')\ncount(country)\n\n   x freq\n1 AR 1497\n2 BR 6804\n3 CL 3050\n4 CO  483\n5 MX 2315\n6 PE 1928"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#section-1",
+    "href": "teaching/empirical_finance/part_O6.html#section-1",
+    "title": "Empirical Methods in Finance",
+    "section": "",
+    "text": "Now, by year.\n\ncount(year)\n\n      x freq\n1  1995  624\n2  1996  676\n3  1997  743\n4  1998  749\n5  1999  738\n6  2000  739\n7  2001  681\n8  2002  671\n9  2003  666\n10 2004  687\n11 2005  679\n12 2006  685\n13 2007  739\n14 2008  722\n15 2009  727\n16 2010  717\n17 2011  719\n18 2012  706\n19 2013  701\n20 2014  690\n21 2015  669\n22 2016  663\n23 2017  686"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#ols-panel-fixed-effects-and-random-effects-1",
+    "href": "teaching/empirical_finance/part_O6.html#ols-panel-fixed-effects-and-random-effects-1",
+    "title": "Empirical Methods in Finance",
+    "section": "OLS, Panel, Fixed effects, and Random Effects",
+    "text": "OLS, Panel, Fixed effects, and Random Effects\nNow, by industry.\n\ncount(setor_economatica)\n\n                   x freq\n1       Agro e Pesca  832\n2    Alimentos e Beb 1537\n3           Comércio 1117\n4         Construção  806\n5  Eletroeletrônicos  332\n6   Energia Elétrica 1539\n7    Máquinas Indust  259\n8          Mineração  693\n9   Minerais não Met  587\n10            Outros 2860\n11  Papel e Celulose  299\n12    Petróleo e Gas  522\n13           Química  859\n14 Siderur & Metalur 1104\n15  Software e Dados   75\n16  Telecomunicações  770\n17            Textil  845\n18 Transporte Serviç  517\n19  Veiculos e peças  524"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#generating-variables",
+    "href": "teaching/empirical_finance/part_O6.html#generating-variables",
+    "title": "Empirical Methods in Finance",
+    "section": "Generating variables",
+    "text": "Generating variables\nLet’s generate some variables to use later.\n\ndata$lev1 &lt;- Debt / (Debt + Equity.market.value)\ndata$lev2 &lt;- Debt / Total.Assets\ndata$wc_ta &lt;- wc  / Total.Assets \ndata$cash_ta &lt;- cash / Total.Assets\ndata$div_ta &lt;- Dividends / Total.Assets\ndata$fcf_ta &lt;- Free.cash.flow / Total.Assets\ndata$tang_ta &lt;- tangible / Total.Assets\ndata$roa2 &lt;- roa / 100\nlibrary(SciViews)\ndata$size1  &lt;- ln(Total.Assets)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#summary-statistics",
+    "href": "teaching/empirical_finance/part_O6.html#summary-statistics",
+    "title": "Empirical Methods in Finance",
+    "section": "Summary statistics",
+    "text": "Summary statistics\n\nlibrary(vtable)\nsumtable(data, vars = c('lev1' , 'lev2' , 'wc_ta', 'cash_ta',  'size1'  , 'fcf_ta' , 'div_ta', 'roa' , 'tang_ta'))\n\n\nSummary Statistics\n\n\nVariable\nN\nMean\nStd. Dev.\nMin\nPctl. 25\nPctl. 75\nMax\n\n\n\n\nlev1\n12708\n0.35\n0.28\n0\n0.11\n0.55\n1\n\n\nlev2\n12706\n0.41\n3.7\n0\n0.095\n0.37\n244\n\n\nwc_ta\n15584\n-0.025\n2.5\n-139\n-0.015\n0.22\n1\n\n\ncash_ta\n15056\n0.073\n0.1\n0\n0.01\n0.096\n1\n\n\nsize1\n15686\n20\n2\n7.3\n18\n21\n27\n\n\nfcf_ta\n12426\n0.091\n7.4\n-35\n0.019\n0.066\n818\n\n\ndiv_ta\n10295\n0.023\n1.4\n-0.073\n0\n0.0043\n136\n\n\nroa\n13689\n1.6\n378\n-3656\n-0.47\n2.4\n43650\n\n\ntang_ta\n15600\n0.4\n0.25\n0\n0.19\n0.59\n1.1"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#winsorization",
+    "href": "teaching/empirical_finance/part_O6.html#winsorization",
+    "title": "Empirical Methods in Finance",
+    "section": "Winsorization",
+    "text": "Winsorization\nSome of the variables have weird values. For instance, the variable \\(\\frac{Free cash flow}{Total Assets}\\) has a maximum value of 817. It means that there is one firm-year observation in which the cash flow of that firm in that year is 817 times the firm’s total assets. This is very odd to say the least.\nTo avoid this type of problem, we can winsorize our variables.\n\nlibrary(DescTools)\ndata$w_lev1     &lt;- Winsorize(data$lev1   , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_lev2     &lt;- Winsorize(data$lev2   , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_wc_ta    &lt;- Winsorize(data$wc_ta  , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_cash_ta  &lt;- Winsorize(data$cash_ta, probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_size1    &lt;- Winsorize(data$size1  , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_fcf_ta   &lt;- Winsorize(data$fcf_ta , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_div_ta   &lt;- Winsorize(data$div_ta , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_roa      &lt;- Winsorize(data$roa    , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_tang_ta  &lt;- Winsorize(data$tang_ta, probs = c(0.01, 0.99) , na.rm = TRUE)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#panel-data-2",
+    "href": "teaching/empirical_finance/part_O6.html#panel-data-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Panel data",
+    "text": "Panel data\nMultiple times are always helpful. That is, in a panel dataset, you have many observations of the same unit in different time periods. This is helpful because you observe the evolution of that unit. Also, this allows to control for time-invariant unobserved heterogeneity at the unit level.\nA general representation of a regression using panel data is:\n\\[Y_{t,i} = \\alpha + \\beta \\times X_{t,i} + \\epsilon_{t,i}\\]\nNotice that each variable has two subscripts, t represents the year = t, and i represents the unit = i. This type of notation is common in empirical research."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#functional-form-of-relationships",
+    "href": "teaching/empirical_finance/part_O6.html#functional-form-of-relationships",
+    "title": "Empirical Methods in Finance",
+    "section": "Functional form of relationships",
+    "text": "Functional form of relationships\nAs mentioned before, in many cases, you want to use the logarithm of a variable. This changes the interpretation of the coefficients you estimate.\nWe have three possible scenarios for regression’s functional forms.\n\nlog-log regression: both Y and X are in log values \\(ln(Y) = \\alpha + \\beta \\times ln(X) + \\epsilon\\). The interpretation of \\(\\beta\\) in this case is: \\(y\\) is \\(\\beta\\) percent higher on average for observations with one percent higher \\(x\\).\nlog-level regression: both Y and X are in log values \\(ln(Y) = \\alpha + \\beta \\times X + \\epsilon\\). The interpretation of \\(\\beta\\) in this case is: \\(y\\) is \\(\\beta\\) percent higher on average for observations with one unit higher \\(x\\).\nlevel-log regression: both Y and X are in log values \\(Y = \\alpha + \\beta \\times ln(X) + \\epsilon\\). The interpretation of \\(\\beta\\) in this case is: \\(y\\) is \\(\\frac{\\beta}{100}\\) units higher on average for observations with one percent higher \\(x\\).\n\nImportant note: the misspecification of x’s is similar to the omitted variable bias (OVB)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#ols",
+    "href": "teaching/empirical_finance/part_O6.html#ols",
+    "title": "Empirical Methods in Finance",
+    "section": "OLS",
+    "text": "OLS\nThis is a plain OLS model using the original data (i.e., not winsorized yet).\n\nols &lt;- lm(lev1 ~ size1 + fcf_ta + roa + tang_ta + cash_ta + div_ta, data = data)\nsummary(ols)\n\n\nCall:\nlm(formula = lev1 ~ size1 + fcf_ta + roa + tang_ta + cash_ta + \n    div_ta, data = data)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.44535 -0.19888 -0.04651  0.16032  1.40432 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.024252   0.031814  -0.762 0.445911    \nsize1        0.018368   0.001564  11.741  &lt; 2e-16 ***\nfcf_ta       0.160553   0.105327   1.524 0.127473    \nroa         -0.001686   0.001054  -1.600 0.109642    \ntang_ta      0.049239   0.012935   3.807 0.000142 ***\ncash_ta     -0.476372   0.031985 -14.893  &lt; 2e-16 ***\ndiv_ta      -1.112794   0.106868 -10.413  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.2462 on 6878 degrees of freedom\n  (9192 observations deleted due to missingness)\nMultiple R-squared:  0.07463,   Adjusted R-squared:  0.07382 \nF-statistic: 92.45 on 6 and 6878 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#ols-1",
+    "href": "teaching/empirical_finance/part_O6.html#ols-1",
+    "title": "Empirical Methods in Finance",
+    "section": "OLS",
+    "text": "OLS\nA nicer looking table.\n\nlibrary(jtools)\nexport_summs(ols, digits = 3 , model.names = c(\"OLS\") )\n\n\n\n\n\nOLS\n\n\n(Intercept)\n-0.024    \n\n\n\n(0.032)   \n\n\nsize1\n0.018 ***\n\n\n\n(0.002)   \n\n\nfcf_ta\n0.161    \n\n\n\n(0.105)   \n\n\nroa\n-0.002    \n\n\n\n(0.001)   \n\n\ntang_ta\n0.049 ***\n\n\n\n(0.013)   \n\n\ncash_ta\n-0.476 ***\n\n\n\n(0.032)   \n\n\ndiv_ta\n-1.113 ***\n\n\n\n(0.107)   \n\n\nN\n6885        \n\n\nR2\n0.075    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#ols-2",
+    "href": "teaching/empirical_finance/part_O6.html#ols-2",
+    "title": "Empirical Methods in Finance",
+    "section": "OLS",
+    "text": "OLS\nNow, we are using the winsorized data.\n\nw_ols &lt;- lm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta, data = data)\n#summary(w_ols)\nexport_summs(ols,w_ols ,model.names = c(\"OLS\",\"OLS (winsorized)\"))\n\n\n\n\n\nOLS\nOLS (winsorized)\n\n\n(Intercept)\n-0.02    \n-0.17 ***\n\n\n\n(0.03)   \n(0.03)   \n\n\nsize1\n0.02 ***\n       \n\n\n\n(0.00)   \n       \n\n\nfcf_ta\n0.16    \n       \n\n\n\n(0.11)   \n       \n\n\nroa\n-0.00    \n       \n\n\n\n(0.00)   \n       \n\n\ntang_ta\n0.05 ***\n       \n\n\n\n(0.01)   \n       \n\n\ncash_ta\n-0.48 ***\n       \n\n\n\n(0.03)   \n       \n\n\ndiv_ta\n-1.11 ***\n       \n\n\n\n(0.11)   \n       \n\n\nw_size1\n       \n0.03 ***\n\n\n\n       \n(0.00)   \n\n\nw_fcf_ta\n       \n-0.03    \n\n\n\n       \n(0.11)   \n\n\nw_roa\n       \n-0.01 ***\n\n\n\n       \n(0.00)   \n\n\nw_tang_ta\n       \n0.06 ***\n\n\n\n       \n(0.01)   \n\n\nw_cash_ta\n       \n-0.50 ***\n\n\n\n       \n(0.03)   \n\n\nw_div_ta\n       \n-3.03 ***\n\n\n\n       \n(0.19)   \n\n\nN\n6885       \n6885       \n\n\nR2\n0.07    \n0.15    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#heterogeneity-across-countries",
+    "href": "teaching/empirical_finance/part_O6.html#heterogeneity-across-countries",
+    "title": "Empirical Methods in Finance",
+    "section": "Heterogeneity across countries",
+    "text": "Heterogeneity across countries\nThere is a huge literature on capital structure decisions. Let’s see the heterogeneity of leverage across countries. Thus, it makes sense to control for this type of heterogeneity somehow.\n\nlibrary(gplots)\nplotmeans(lev1 ~ country, data = data)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#fe-country",
+    "href": "teaching/empirical_finance/part_O6.html#fe-country",
+    "title": "Empirical Methods in Finance",
+    "section": "FE Country",
+    "text": "FE Country\nThe following example uses fixed effects for countries. Notice that one country is missing.\n\nfe_c &lt;- lm(lev1 ~ size1 + fcf_ta + roa + tang_ta + cash_ta + div_ta  + factor(country) , data = data)\nexport_summs(fe_c)\n\n\n\n\n\nModel 1\n\n\n(Intercept)\n-0.02    \n\n\n\n(0.03)   \n\n\nsize1\n0.01 ***\n\n\n\n(0.00)   \n\n\nfcf_ta\n0.11    \n\n\n\n(0.10)   \n\n\nroa\n-0.00    \n\n\n\n(0.00)   \n\n\ntang_ta\n0.09 ***\n\n\n\n(0.01)   \n\n\ncash_ta\n-0.48 ***\n\n\n\n(0.03)   \n\n\ndiv_ta\n-1.14 ***\n\n\n\n(0.11)   \n\n\nfactor(country)BR\n0.10 ***\n\n\n\n(0.01)   \n\n\nfactor(country)CL\n0.02    \n\n\n\n(0.01)   \n\n\nfactor(country)CO\n0.11 ***\n\n\n\n(0.03)   \n\n\nfactor(country)MX\n0.03 ** \n\n\n\n(0.01)   \n\n\nfactor(country)PE\n0.09 ***\n\n\n\n(0.01)   \n\n\nN\n6885       \n\n\nR2\n0.10    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#fe-country-1",
+    "href": "teaching/empirical_finance/part_O6.html#fe-country-1",
+    "title": "Empirical Methods in Finance",
+    "section": "FE Country",
+    "text": "FE Country\nNow, we are using fixed effects for countries and years.\n\nfe_cy &lt;- lm(lev1 ~ size1 + fcf_ta + roa + tang_ta + cash_ta + div_ta  + factor(country) + factor(year), data = data)\nexport_summs(fe_c, fe_cy)\n\n\n\n\n\nModel 1\nModel 2\n\n\n(Intercept)\n-0.02    \n-0.01    \n\n\n\n(0.03)   \n(0.04)   \n\n\nsize1\n0.01 ***\n0.02 ***\n\n\n\n(0.00)   \n(0.00)   \n\n\nfcf_ta\n0.11    \n0.08    \n\n\n\n(0.10)   \n(0.10)   \n\n\nroa\n-0.00    \n-0.00    \n\n\n\n(0.00)   \n(0.00)   \n\n\ntang_ta\n0.09 ***\n0.09 ***\n\n\n\n(0.01)   \n(0.01)   \n\n\ncash_ta\n-0.48 ***\n-0.44 ***\n\n\n\n(0.03)   \n(0.03)   \n\n\ndiv_ta\n-1.14 ***\n-1.12 ***\n\n\n\n(0.11)   \n(0.10)   \n\n\nfactor(country)BR\n0.10 ***\n0.10 ***\n\n\n\n(0.01)   \n(0.01)   \n\n\nfactor(country)CL\n0.02    \n0.01    \n\n\n\n(0.01)   \n(0.01)   \n\n\nfactor(country)CO\n0.11 ***\n0.08 *  \n\n\n\n(0.03)   \n(0.03)   \n\n\nfactor(country)MX\n0.03 ** \n0.01    \n\n\n\n(0.01)   \n(0.01)   \n\n\nfactor(country)PE\n0.09 ***\n0.05 ** \n\n\n\n(0.01)   \n(0.02)   \n\n\nfactor(year)1996\n       \n-0.03    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)1997\n       \n-0.08 *  \n\n\n\n       \n(0.03)   \n\n\nfactor(year)1998\n       \n0.02    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)1999\n       \n-0.03    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2000\n       \n0.03    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2001\n       \n0.04    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2002\n       \n0.04    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2003\n       \n-0.01    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2004\n       \n-0.06    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2005\n       \n-0.08 *  \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2006\n       \n-0.10 ***\n\n\n\n       \n(0.03)   \n\n\nfactor(year)2007\n       \n-0.12 ***\n\n\n\n       \n(0.03)   \n\n\nfactor(year)2008\n       \n-0.03    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2009\n       \n-0.12 ***\n\n\n\n       \n(0.03)   \n\n\nfactor(year)2010\n       \n-0.13 ***\n\n\n\n       \n(0.03)   \n\n\nfactor(year)2011\n       \n-0.08 ** \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2012\n       \n-0.07 ** \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2013\n       \n-0.06 *  \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2014\n       \n-0.05    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2015\n       \n0.00    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2016\n       \n-0.04    \n\n\n\n       \n(0.03)   \n\n\nfactor(year)2017\n       \n-0.07 ** \n\n\n\n       \n(0.03)   \n\n\nN\n6885       \n6885       \n\n\nR2\n0.10    \n0.13    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#fe-firms",
+    "href": "teaching/empirical_finance/part_O6.html#fe-firms",
+    "title": "Empirical Methods in Finance",
+    "section": "FE Firms",
+    "text": "FE Firms\nThe most usual regression we estimate in Accounting & Finance is a panel using firms as units. Imagine that you are including one dummy for each firm, just as we included a dummy for each country in the previous example. This is the way to do it.\nThe strength of a firm fixed effect model is that it controls for time-invariant unobserved heterogeneity at the firm level.\nThat is, if there is an omitted variable in your model (something that is constant over time that you cannot measure because you do not observe, for instance, the quality of the managerial team), you should use firm fixed effects.\nFE is a very traditional and accepted solution in this type of research because our models are always a representation of reality, we can never be sure we are controlling for everything that is important. By including a firm FE you are, at least, safe that you are controlling of omitted variables that do not change over time at the firm level. That is, Firm FE mitigates concerns of omitted variable bias of time-invariant at the firm level."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#ols-vs-fe",
+    "href": "teaching/empirical_finance/part_O6.html#ols-vs-fe",
+    "title": "Empirical Methods in Finance",
+    "section": "OLS vs FE",
+    "text": "OLS vs FE\nAt the end of the day, you never can be sure that the FE model is better. So, we can test if it is an improvement over OLS, as follows.\nIf the p-value low enough then the fixed effects model is the path to go.\n\npFtest(fe, ols)\n\n\n    F test for individual effects\n\ndata:  w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta +  ...\nF = 17.45, df1 = 964, df2 = 5914, p-value &lt; 2.2e-16\nalternative hypothesis: significant effects"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#random-effects",
+    "href": "teaching/empirical_finance/part_O6.html#random-effects",
+    "title": "Empirical Methods in Finance",
+    "section": "Random Effects",
+    "text": "Random Effects\nAn alternative to FE models is the RE (random effects) models. In FE models, we assume \\(\\alpha_i\\) is correlated with the other X variables. This makes sense since the unobserved time-invariant characteristics of a firm is expected to be correlated with the observed characteristics of that firm.\nIf we believe that \\(\\alpha_i\\) is not correlated with X, we should use a RE model. You can estimate as follows.\n\nre &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta  , data = data, model=\"random\") \nexport_summs(fe, re, coefs = c(\"w_size1\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\"),  digits = 3 , model.names = c(\"FE\", \"RE\") )\n\n\n\n\n\nFE\nRE\n\n\nw_size1\n0.076 ***\n0.033 ***\n\n\n\n(0.004)   \n(0.003)   \n\n\nw_div_ta\n-0.894 ***\n-1.336 ***\n\n\n\n(0.152)   \n(0.157)   \n\n\nw_fcf_ta\n0.453 ***\n0.307 ** \n\n\n\n(0.117)   \n(0.112)   \n\n\nw_roa\n-0.009 ***\n-0.009 ***\n\n\n\n(0.001)   \n(0.001)   \n\n\nw_tang_ta\n0.176 ***\n0.149 ***\n\n\n\n(0.019)   \n(0.016)   \n\n\nw_cash_ta\n-0.304 ***\n-0.410 ***\n\n\n\n(0.029)   \n(0.029)   \n\n\nnobs\n6885        \n6885        \n\n\nr.squared\n0.215    \n0.144    \n\n\nadj.r.squared\n0.086    \n0.144    \n\n\nstatistic\n57.872    \n856.420    \n\n\np.value\n0.000    \n0.000    \n\n\ndeviance\n108.418    \n146.431    \n\n\ndf.residual\n5914.000    \n6878.000    \n\n\nnobs.1\n6885.000    \n6885.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#re-vs-fe",
+    "href": "teaching/empirical_finance/part_O6.html#re-vs-fe",
+    "title": "Empirical Methods in Finance",
+    "section": "RE vs FE",
+    "text": "RE vs FE\nIf you want to test which model is best suited to your dataset, you can test as follows. If the p-value is significant then use FE, if not use RE.\n\nphtest(fe, re)\n\n\n    Hausman Test\n\ndata:  w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta +  ...\nchisq = 9718.9, df = 6, p-value &lt; 2.2e-16\nalternative hypothesis: one model is inconsistent"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#thank-you",
+    "href": "teaching/empirical_finance/part_O6.html#thank-you",
+    "title": "Empirical Methods in Finance",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br][Do not use without permission]"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#generating-variables-1",
+    "href": "teaching/empirical_finance/part_O6.html#generating-variables-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Generating variables",
+    "text": "Generating variables\nNotice that most variables are ratios and thus are expected to fall in the 0-100% range.\nThere is one important exception: Size. Size in this example is the natural logarithm of Total Assets (sometimes, studies use the natural logarithm of Total Sales). Taking the natural logarithm is a traditional decision in this type of research.\nSo, why did I do that in Size but not in the others?"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#generating-variables-2",
+    "href": "teaching/empirical_finance/part_O6.html#generating-variables-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Generating variables",
+    "text": "Generating variables\nIn many cases, you want to use relative differences or percentages change. For instance, GDP growth is usually measured as the growth of each year over the previous year. The same is true for stock prices.\n\\[GDP\\; growth = \\frac{GDP_t - GDP_{t-1}}{GDP`{t-1}}\\]\nThis is possible because you always have a previous value to use as base for comparison."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#generating-variables-3",
+    "href": "teaching/empirical_finance/part_O6.html#generating-variables-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Generating variables",
+    "text": "Generating variables\nIn many cases, you do not have such base for comparison. This is the case of a firm’s Total Assets. What is the natural base for Total Assets? No answer.\nTherefore, you take the natural logarithm so that you minimize this concern.\nAdditionally, keep in mind that the empirical values of Total Assets are often very dissimilar and with huge magnitude. Consider two firms, one with 1 million of total assets, the other with 1 billion. Assume that both firms increased throughout one year their total assets by 1 million. The first firm is twice the size of before, but 1 million make little difference for a billion dollar firm. Taking the logarithm helps you to have a similar base and mitigate the magnitude effect of these changes."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#section-2",
+    "href": "teaching/empirical_finance/part_O6.html#section-2",
+    "title": "Empirical Methods in Finance",
+    "section": "",
+    "text": "On top of the firm FE, it is always a good idea to include year FE at the same time, as follows. You do not need to present them in your final paper, but you need to mention them.\n\nfe &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\nexport_summs(fe, coefs = c(\"w_size1\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\"),  digits = 3 , model.names = c(\"FE\") )\n\n\n\n\n\nFE\n\n\nw_size1\n0.076 ***\n\n\n\n(0.004)   \n\n\nw_div_ta\n-0.894 ***\n\n\n\n(0.152)   \n\n\nw_fcf_ta\n0.453 ***\n\n\n\n(0.117)   \n\n\nw_roa\n-0.009 ***\n\n\n\n(0.001)   \n\n\nw_tang_ta\n0.176 ***\n\n\n\n(0.019)   \n\n\nw_cash_ta\n-0.304 ***\n\n\n\n(0.029)   \n\n\nnobs\n6885        \n\n\nr.squared\n0.215    \n\n\nadj.r.squared\n0.086    \n\n\nstatistic\n57.872    \n\n\np.value\n0.000    \n\n\ndeviance\n108.418    \n\n\ndf.residual\n5914.000    \n\n\nnobs.1\n6885.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#section-3",
+    "href": "teaching/empirical_finance/part_O6.html#section-3",
+    "title": "Empirical Methods in Finance",
+    "section": "",
+    "text": "More technically (but really not that much), a firm FE model can be represented as follows. That is, you include one fixed term for each firm (again, except for the first firm). Also, I am adding the year FE in the equation below.\n\\[Y_{t,i} = \\beta \\times X_{t-1,i} + \\alpha_i + \\alpha_t+  \\epsilon_{t,i}\\]\nTechnically, the inclusion of the FE acts as a transformation of Y and X into differences such as \\(y_{t,i} - \\bar{y_i}\\) and \\(x_{t,i} - \\bar{x_i}\\), where \\(\\bar{y_i}\\) is the mean value of y across all time periods for unit i. As a result, in FE regressions, \\(\\beta\\) shows how much larger y is compared to its mean within the cross-sectional unit. That is, compare two observations of x that are different in terms of their value x compared to the i-specific mean. On average, x is larger that average x by \\(\\beta\\)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#section-4",
+    "href": "teaching/empirical_finance/part_O6.html#section-4",
+    "title": "Empirical Methods in Finance",
+    "section": "",
+    "text": "Thus, a FE model is a within-unit comparison model and the model is not affected by whether the unit has larger average of X or Y. That is, the estimates are not affected by unobserved confounders that affect either x or y in the same way in all time periods."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O6.html#section-5",
+    "href": "teaching/empirical_finance/part_O6.html#section-5",
+    "title": "Empirical Methods in Finance",
+    "section": "",
+    "text": "Important question: Can you include firm FE and country FE at the same time in a regression? The answer is no. If you try, all the country FE will be dropped due to colinearity with firm FE.\n\nFinal notes on FE models:\n\nNotice there is no intercept in the table above. The reason is that the model includes \\(i\\) intercepts, one for each firm. In some cases, some softwares report an intercept value that is the average of all intercepts. But that is of little value to us.\nThere are two possible r-squares in FE models: within R-squared and the R-squared (the traditional one). The first is more adequate, because the second uses all intercepts as explanatory variables of y and thus overstates the magnitude of the model’s explanatory power."
   }
 ]
