@@ -1,0 +1,839 @@
+
+
+
+
+# Real research II
+
+
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+library(ggplot2)
+library(ggthemes)
+library(readxl) 
+library(jtools) # for nice tables of models - https://cran.r-project.org/web/packages/jtools/vignettes/summ.html#summ
+data <- read_excel("files/data.xls")
+
+library(dplyr)
+data <- data %>% group_by(id )                %>% dplyr::mutate(id_firm = cur_group_id())
+data <- data %>% group_by(setor_economatica)  %>% dplyr::mutate(id_ind = cur_group_id())
+
+library(plm)
+data <- pdata.frame(data, index=c("id_firm","year"))
+
+attach(data)
+
+# variables
+data$lev1 <- Debt / (Debt + Equity.market.value)
+data$lev2 <- Debt / Total.Assets
+data$wc_ta <- wc  / Total.Assets 
+data$cash_ta <- cash / Total.Assets
+data$div_ta <- Dividends / Total.Assets
+data$fcf_ta <- Free.cash.flow / Total.Assets
+data$tang_ta <- tangible / Total.Assets
+data$roa2 <- roa / 100
+library(SciViews)
+data$size1  <- ln(Total.Assets)
+
+# winsor
+library(DescTools)
+data$w_lev1     <- Winsorize(data$lev1   , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_lev2     <- Winsorize(data$lev2   , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_wc_ta    <- Winsorize(data$wc_ta  , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_cash_ta  <- Winsorize(data$cash_ta, probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_size1    <- Winsorize(data$size1  , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_fcf_ta   <- Winsorize(data$fcf_ta , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_div_ta   <- Winsorize(data$div_ta , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_roa      <- Winsorize(data$roa    , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_tang_ta  <- Winsorize(data$tang_ta, probs = c(0.01, 0.99) , na.rm = TRUE) 
+
+```
+
+
+
+
+## Reverse causation 
+
+
+- Imagine that you want to investigate the effect of Governance on Q
+
+    - You may have more covariates explaining Q 
+    
+$𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error$
+
+
+The ideal is to establish estimates that allow you to infer that __changing Gov will _CAUSE_ a change in Q__. However, without a nice empirical design, we cannot infer causality
+
+
+_One source of bias is: reverse causation_
+
+- Perhaps it is Q that causes Gov
+
+- OLS based methods do not tell the difference between these two betas:
+
+$𝑄_{i} = α + 𝜷_{i} × Gov + Controls + error$
+
+$Gov_{i} = α + 𝜷_{i} × Q + Controls + error$
+
+- If one Beta is significant, the other will most likely be significant too
+
+- You need a sound theory!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+
+## Lags to mitigate reverse causation concerns
+
+One main concern of empirical research relies on the reverse causality problems. In a regression model, there is always the possibility that it is Y that causes X, meaning that your assumptions about the relationship of these variables can always be wrong (i.e., what *causes* what?).
+
+We are not discussing **causality** yet (which is a whole new chapter). But one possible simple solution is to use lagged values of your X. Something along the following lines:
+
+$$Y_{t,i} = \alpha + \beta \times X_{t-1,i} + \epsilon_{t,i}$$
+
+Notice the subscript $t-1$ in x now. It means that you are using the previous year's value of X as explanatory variable of the current year's value of Y. This type of structure mitigates the concern that variations in Y are the reason of why X varies since it is less likely that the **current** variation of Y **provokes** variations on X in  the previous years (i.e., the idea is that the future does not affect the past).
+
+This is not a perfect solution because Y and X in most accounting and finance research designs are usually auto-correlated, meaning that the previous values are correlated with the present value. For instance, the firm's leverage of 2015 is highly correlated with the firm's leverage of 2016. 
+
+But in many cases it is a good idea to use lag values. At least, you should have this solution in your toolbox. 
+
+
+```{r}
+#| message: false
+#| warning: false
+fe <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+lag <- plm(w_lev1 ~ lag(w_size1) + lag(w_fcf_ta) + lag(w_roa) + lag(w_tang_ta) + lag(w_cash_ta) + lag(w_div_ta) + factor(year) , data = data, model="within")
+export_summs(fe, lag, coefs = c("w_size1","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta",
+                              "lag(w_size1)","lag(w_div_ta)","lag(w_fcf_ta)", "lag(w_roa)","lag(w_tang_ta)","lag(w_cash_ta)"), digits = 3 , model.names = c("FE","FE with lags") )
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## First difference models
+
+Alternatively, we can estimate a first difference model as follows.
+
+$$\Delta Y_{t,i} = \alpha + \beta \times \Delta X_{t,i} +\ epsilon_{t,i}$$
+
+Where, $\Delta Y_{t,i} =Y_{t,i} - Y_{t-1,i}$   and $\Delta X_{t,i} =X_{t,i} - X_{t-1,i}$ 
+
+$\beta$ shows the difference in the average change of Y for units that experience a change in x during the same period. Saying the same thing in a different way, $\beta$ shows how much more y changes, on average, where and when X increases by one unit. 
+
+Let's say that x is binary and it changes from 0 to 1 for each firm during several different periods. So, y will change, on average, by $\beta$ when x changes from 0 to 1. 
+
+
+
+```{r}
+#| message: false
+#| warning: false
+fe <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+fd <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="fd") 
+export_summs(fe, fd, coefs = c("w_size1","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta")  , digits = 3, model.names = c("FE","FD"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Binary variables
+
+As mentioned before, a Fixed effect is equivalent to a binary variable marking one group of observations. For instance, all observations of the same year, or from the same firm.
+
+We can explore many interesting types of binary variables in most cases of corporate finance. For instance, whether the firm is included in "Novo Mercado", if the firm has high levels of ESG, etc. 
+
+The implementation of a binary variable is quite simple: it takes the value of  0 for one group, and 1 for the other.
+
+The interpretation is a bit trickier. 
+
+Let's think about the example 7.1 of Wooldridge. He estimates the following equation:
+
+$$wage = \beta_0 + \delta_1 female + \beta_1 educ + \mu$$
+
+*In model (7.1), only two observed factors affect wage: gender and education. Because $female = 1$ when the person is female, and $female = 0 $ when the person is male, the parameter $\delta_1$ has the following interpretation: *
+
+*- $\delta_1$  is the difference in hourly wage between females and males, given the same amount of education (and the same error term u). Thus, the coefficient $\delta_1$  determines whether there is discrimination against women: if $\delta_1<0$, then, for the same level of other factors, women earn less than men on average.*
+
+
+In terms of expectations, if we assume the zero conditional mean assumption E($\mu$ | female,educ) = 0, then 
+
+$\delta_1 = E(wage | female = 1, educ) - E(wage | female = 0, educ)$ 
+
+Or 
+
+$\delta_1 = E(wage | female, educ) - E(wage | male, educ)$ 
+
+
+- The key here is that the level of education is the same in both expectations; the difference, $\delta_1$ , is due to gender only.
+
+The visual interpretation is as follows. The situation can be depicted graphically as an intercept shift between males and females. The interpretation relies on $\delta_1$. We can observe that $delta_1 < 0$; this is an argument for existence of a gender gap in wage.
+ 
+
+![](files/wooldridge_7_1.png)
+
+
+
+
+Using our own example, we can make the case that it is necessary to separate the firms in two groups: dividend payers and non-payers. There is literature suggesting that dividend payers are not financially constrained, while those firms that do not pay dividends are. If financially constrain is something important to our model (and assuming that the right way to control for it is by including a dividend payer dummy), we should include such a dummy.
+
+
+
+$$Lev_{t,i} = \alpha + \beta_1 \times Size_{t,i} + \beta_2 \times Div.\;payer_{t,i} + controls + \epsilon_{t,i}$$
+
+We could estimate this model as follows. 
+
+
+
+
+```{r}
+#| message: false
+#| warning: false
+data$w_div_payer <- ifelse(data$w_div_ta <= 0, 0, 1)
+tapply(data$w_div_ta, data$w_div_payer, summary)    # Summary by group using tapply
+fe1 <- plm(w_lev1 ~ w_size1 + w_div_ta + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta  + factor(year) , data = data, model="within")
+fe2 <- plm(w_lev1 ~ w_size1 + w_div_payer + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta  + factor(year) , data = data, model="within")
+export_summs(fe1, fe2, coefs = c("w_size1","w_div_ta","w_div_payer","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta")  , digits = 3, model.names = c("FE 1","FE 2"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Models with squared variables
+
+Let's say you have a variable that should not show a clear linear relationship with another variable. 
+
+For instance, consider ownership concentration and firm value. There is a case to be made the relationship between these variable is not linear. That is, in low levels of ownership concentration (let's say 5% of shares), a small increase in it might lead to an increase in firm value. The argument is that, in such levels, an increase in ownership concentration will lead the shareholder to monitor more the management maximizing the likelihood of value increasing  decisions.
+
+But consider now the case where the shareholder has 60% or more of the firm's outstanding shares. If you increase further the concentration it might signals the market that this shareholder is too powerful that might start using the firm to personal benefits (which will not be shared with minorities). 
+
+If this story is true, the relationship is (inverse) u-shaped. That is, at first the relationship is positive, then becomes negative.
+
+Theoretically, I could make an argument for a non-linear relationship between several variables of interest in finance. Let's say size and leverage. Small firms might not be able to issue too much debt as middle size firms. At the same time, huge firms might not need debt. The empirical relationship might be non-linear. 
+
+There is always a potential case to be made regarding the relationship between the variables.
+
+The way to empirically test it is as follows:
+
+
+$$Y_{t,i} = \alpha + \beta_1 \times X_{t,i} + \beta_2 \times X^2_{t,i} + \epsilon_{t,i}$$
+Or using the size-leverage example:
+
+$$Lev_{t,i} = \alpha + \beta_1 \times Size_{t,i} + \beta_2 \times Size^2_{t,i} + controls + \epsilon_{t,i}$$
+As Wooldridge says, misspecifying the functional form of a model can certainly have serious consequences. But, in this specific case, the problem seems minor since we have the data to fix it. 
+
+
+Let's see how to run such model. 
+
+In this specific case, our theory does not hold, since the squared term is not significant. So we can conclude that in this model, the relationship is linear.
+
+```{r}
+#| message: false
+#| warning: false
+data$w_size1_sq <- data$w_size1 * data$w_size1 
+fe <- plm(w_lev1 ~ w_size1 + w_size1_sq + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+export_summs(fe, coefs = c("w_size1","w_size1_sq","w_div_ta","w_fcf_ta","w_roa", "w_tang_ta","w_cash_ta")  , digits = 3)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Models with Interactions
+
+In some specific cases, you want to interact variables to test if the interacted effect is significant. For instance, you might believe that, using Wooldridge very traditional example 7.4., women that are married are yet more discriminated in the job market. So, you may prefer to estimate the following equation.
+
+
+$$wage = \beta_0 + \beta_1 female + \beta_2 married + \beta_3 female.married + \mu$$
+
+Where $maried$ is a binary variable marking all married people with 1, and 0 otherwise. 
+
+In this setting, the group of single men is the base case and is represented by $\beta_0$. That is, both female and married are 0.
+
+The group of single women is represented by $\beta_0 + \beta_1$. That is, female is 1 but married is 0.
+
+The group of married men is represented by $\beta_0 + \beta_2$. That is, female is 0 but married is 1.
+
+Finally, the group of married women is represented by $\beta_0 + \beta_1 + \beta_2 + \beta_3$. That is, female and married are 1.
+
+Using a random sample taken from the U.S. Current Population Survey for the year 1976, Wooldridge estimates that $female<0$, $married>0$, and $female.married<0$. This result makes sense for the 70s. 
+
+
+The lines below reproduce this result.
+
+
+```{r}
+#| message: false
+#| warning: false
+library(wooldridge)
+data('wage1')
+wage1$fem_mar <- wage1$female * wage1$married
+wage<- lm(lwage ~ female + married + fem_mar + educ + exper + expersq + tenure + tenursq , data = wage1)
+export_summs(wage, coefs = c("(Intercept)", "female","married","fem_mar") , digits = 3)
+```
+
+
+
+![](files/wooldridge_7_4.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Linear probability model
+
+
+When the dependent variable is binary we cannot rely on linear models as those discussed so far. We need a **linear probability model**. In such models, we are interested in how the probability of the occurrence of an event depends on the values of x. That is, we want to know $P[y=1|x]$.
+
+Imagine that y is employment status, 0 for unemployed, 1 for employed. This is our Y. Imagine that we are interested in estimating the probability that a person start working after a training program. For these types of problem, we need a linear probability model.
+
+
+$$P[y=1|x] = \beta_0+\beta_1x_1+\beta_2x_2+...+\beta_kx_k$$
+
+The mechanics of estimating these model is similar to before, except that Y is binary.
+
+The interpretation of coefficients change. That is, **a change in x changes the probability of y = 1**. So, let's say that $\beta_1$ is 0.05. It means that changing $x_1$ by one unit will change the probability of y = 1 (i.e., getting a job) in 5%, ceteris paribus. 
+
+Using Wooldridge's example 7.29:
+
+```{r}
+#| message: false
+#| warning: false
+library(wooldridge)
+data('mroz')
+lpm <- lm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)
+export_summs(lpm, coefs = c("(Intercept)", "nwifeinc" , "educ" , "exper" , "expersq" , "age"  ,"kidslt6" , "kidsge6"), digits = 3 , model.names = c("LPM"))
+```
+
+![](files/wooldridge_7_29.png)
+
+
+The relationship between the probability of labor force participation and educ is plotted in the figure below. Fixing the other independent variables at 50, 5, 30, 1 and 6, respectively, the predicted probability is negative until education equals 3.84 years. This is odd, since the model is predicting negative probability of employment given a set of specific values. 
+
+
+
+![](files/wooldridge_7_3.png)
+
+
+
+
+Another example, perhaps an easier one. The model is predicting that *going from 0 to 4 kids less than 6 years old* reduces the probability of working by $4\times 0.262 = 1.048$, which is impossible since it is higher than 1.
+
+
+That is, one important caveat of a linear probability model is that probabilities might falls off of expected empirical values. If this is troublesome to us, we might need a different solution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Logit and Probit
+
+
+Although the linear probability model is simple to estimate and use, it has some limitations as discussed. If that problem is important to us, we need a solution that addresses the problem of  negative or higher than 1 probability. That is, **we need a binary response model**.
+
+
+In a binary response model, interest relies on the response probability.
+
+$$P(y =1 | x) = P(y=1| x_1,x_2,x_3,...)$$
+
+That is, we have a group of X variables explaining Y, which is binary. In a LPM, we assume that the response probability is linear in the parameters $\beta$. This is the assumption that created the problem discussed above.
+
+We can change that assumption to a different function. 
+
+- A **logit** model assumes a logistic function ($G(Z)=\frac{exp(z)}{[1+exp(z)]}$)
+- A **probit** model assumes a standard normal cumulative distribution function ($\int_{-inf}^{+z}\phi(v)dv$)
+
+The adjustment is something as follows.
+
+$$P(y =1 | x) = G(\beta_0 + \beta_1 x_1+ \beta_2 x_2 + \beta_3 x_3)$$
+Where G is either the logistic (logit) or the normal (probit) function. 
+
+
+We don't need to memorize the functions, but we need to understand the adjustment that assuming a different function makes. Basically, we will not have predicted negative values anymore because the function adjusts at very low and very high values. 
+
+
+
+
+![](files/wooldridge_17_1.png)
+
+
+
+
+Let's estimate a logit and probit to compare with the LPM.
+
+```{r}
+#| message: false
+#| warning: false
+lpm <- lm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)
+logit <- glm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz,family = binomial)
+probit <- glm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz, family = binomial(link = probit))
+export_summs(lpm , logit, probit, coefs = c( "nwifeinc" , "educ" , "exper" , "expersq" , "age"  ,"kidslt6" , "kidsge6", "(Intercept)"), digits = 4 , model.names = c("LPM","Logit","Probit"))
+```
+
+Importantly, in a LPM model, the coefficients have similar interpretations as usual. But logit and probit models lead to harder to interpret coefficients. In fact, often we do not make any interpretation of these coefficients. Instead, we usually transform them to arrive at an interpretation that is similar to what we have in LPM. 
+
+To make the magnitudes of probit and logit roughly comparable, we can multiply the probit coefficients by 1.6, or we can multiply the logit estimates by .625. Also, the probit slope estimates can be divided by 2.5 to make them comparable to the LPM estimates.
+
+At the end of the day, the interpretation of the logit and probit outputs are similar to LPM's.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Tobit
+
+Another problem in the dependent variable occurs when we have a **limited dependent variable** with a corner solution. That is, a variable that ranges from zero to all positive values. For instance, hours working. Nobody works less than zero hours, but individuals in the population can work many number of positive hours. When we have such type of dependent variable, we need to estimate a **tobit** model.
+
+Using Wooldridge's example 17.2.
+
+```{r}
+#| message: false
+#| warning: false
+library(AER)
+lpm <- lm(hours ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)
+tobit <- tobit(hours ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)
+summary(tobit)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Heteroscedasticity
+
+One of the key assumptions in OLS estimators is that $var(\mu|x_1,x_2,x_3,...) = \sigma^2$. That is, the assumption is that the variance of the errors is homoskedastic (present constant variance). It means that throughout all observations, the error term shows the same variance $\sigma^2$. If errors are not homoskedastic, we have the **Heteroscedasticity problem**.
+
+Heteroskedasticity does not cause bias or inconsistency in the OLS estimators of the $\beta$ like the OVB would. It also does not affect the $R^2$. What **Heteroscedasticity does is to bias the standard errors of the estimates**.
+
+Remember again that $t_{\beta} = \frac{\hat{\beta}}{se(\hat{\beta})}$. So, if you have biased standard errors, you will not assess correctly the significance of your coefficients. It also affects the F statistics.
+
+Graphically, we can think as follows.
+
+
+Example of homoscedasticity: 
+
+![](files/homoscedasticity.png)
+
+
+Example of heteroscedasticity: 
+
+![](files/heteroscedasticity.png)
+
+
+To give you more context, think in terms of the relationship that we've discussing $leverage=f(size)$. It is quite possible that small firms will have less options of leverage than large companies. This means that a subsample of large companies will have higher variance in the leverage decisions (and thus the error terms) than the subsample of small firms. So, we need to correct somehow the heteroskedasticity problem to find unbiased standard errors for the independent variable size in this model. 
+
+The solution to this problem is to estimate **Robust standard errors**. Basically, we will need to change the estimator of the standard error to an unbiased version.
+
+We used to estimate
+
+$$var(\hat\beta_1) = \frac{\sum_{i=1}^n(x_1-\bar{x}^2) \sigma^2_i}{SST^2_x}$$
+
+But now we would estimate. This is called *White-Robust standard error* or the *Heteroscedasticity-Robust standard error* and was first showed by White (1980). 
+
+$$var(\hat\beta_1) = \frac{\sum_{i=1}^n(x_1-\bar{x}^2) \mu^2_i}{SST^2_x}$$
+
+
+
+Before we estimate a model with robust standard errors, let's visually check if there is heteroskedasticity in the errors of the model. I am using Wooldridge's example 8.1.
+
+```{r}
+#| message: false
+#| warning: false
+library(dplyr)
+library(sandwich)
+library(lmtest) 
+wage1<-wage1  %>%  mutate(marmale = case_when(female == 0 & married == 1 ~ 1,
+                                              female == 0 & married == 0 ~ 0,
+                                              female == 1 & married == 1 ~ 0,
+                                              female == 1 & married == 0 ~ 0) )
+wage1<-wage1  %>%  mutate(marrfem = case_when(female == 0 & married == 1 ~ 0,
+                                              female == 0 & married == 0 ~ 0,
+                                              female == 1 & married == 1 ~ 1,
+                                              female == 1 & married == 0 ~ 0) )
+wage1<-wage1  %>%  mutate(singfem = case_when(female == 0 & married == 1 ~ 0,
+                                              female == 0 & married == 0 ~ 0,
+                                              female == 1 & married == 1 ~ 0,
+                                              female == 1 & married == 0 ~ 1) )
+wage_t <- lm(lwage ~ marmale + marrfem + singfem + educ + exper + expersq + tenure + tenursq , data = wage1)
+
+library(tidyverse)
+library(broom)
+fitted_data <- augment(wage_t, data = wage1)
+ggplot(fitted_data, aes(x = .fitted, y = .resid)) +  geom_point() + geom_smooth(method = "lm") + theme_solarized()
+```
+
+Visually, we do not see much variation in the error term throughout the x axis. Not much sign for heteroskedasticity. But let's formally test it using the Breusch-Pagan test.
+
+The H_0 of this test is for homoskedasticity. Thus, if we reject the test, heteroskedasticity is present. The estimated p-value is 10.55%, above the usual levels. We can conclude that heteroskedasticity is not present is such model. 
+
+```{r}
+#| message: false
+#| warning: false
+bptest(wage_t)
+```
+
+Let's estimate both standard errors to see their difference. Because we do not see much heteroskedasticity we should not see much difference in the estimated standard errors. 
+
+```{r}
+#| message: false
+#| warning: false
+wage_r <- coeftest(wage_t, vcov = vcovHC)
+export_summs(wage_t, wage_r, coefs = c("(Intercept)", "marmale","marrfem","singfem",  "educ" , "exper" ,"expersq" , "tenure" , "tenursq" ) , digits = 4 ,model.names = c("Traditional S.E.", "Robust S.E."))
+```
+
+Notice that the standard errors have changed a bit, but not too much in this example. Usually, the robust standard errors are larger than the traditional ones in empirical works, but they could be smaller. Also notice that most of the independent variables have similar significance levels, but some have less significance. This is expected, since the robust standard errors are expected to be larger (but again not always). A final note, the standard errors estimates here are a bit different than those showed in Wooldridge's book. I am assuming this is due to the package that I am using.
+
+**Finally, it is often common and most widely accepted to estimate the robust standard errors instead of the traditional ones.** 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+## Multicollinearity
+
+Multicollinearity is the term used when many of the independent variables in a model are correlated. This problem is not clearly formulated in econometrics book due to its nature. But one thing is evident: multicollinearity works to increase the standard errors of the coefficients. In a sense, this problem is similar to having a small sample, from which is hard (in a statistical sense, meaning high standard deviation) to estimate the coefficient.
+
+As Wooldridge says: *everything else being equal, for estimating $\beta_j$, it is better to have less correlation between $x_j$ and the other independent variables. 
+
+We can use the following test to verify if multicollinearity exists: **variance inflation factor (VIF)**. There is no formal threshold to interpret the test, but 10 is usually accepted as appropriate. That is, if there is one or more variables showing a VIF of 10 or higher, the interpretation is that multicollinearity is present.
+
+We can observe below that the experience variables are multicolinear. This is expected since one is the squared root of the other.
+
+```{r}
+#| message: false
+#| warning: false
+vif(wage_t)
+```
+Assuming that expersq is important to be included in the model, there is not much we can do in this example. Some scholars argue that we could ignore the multicollinearity altogether, others would argue to exclude expersq if possible.
+
+The general most accepted solution is to keep multicolinear variables if they are control variables. That is, if your focus is on any other variable, you can keep the multicolinear ones and move on. If the multicolinear variable is one of the interest variables, you might want to discuss dropping the other one. 
+
+
+Let's investigate our plain OLS model of before. We see no evidence of multicollinearity.
+
+```{r}
+#| message: false
+#| warning: false
+ols <- lm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data)
+vif(ols)
+```
+
+
+
+
+
+
+___
+
+
+
+##  Measurement error
+
+**The measurement error problem has a similar statistical structure to the omitted variable bias (OVB).**
+
+- "Classical" random measurement error for the outcome will inflate standard errors but will not lead to biased coefficients. 
+
+    - $y^{*} = y + \sigma_{1}$
+    - If you estimante $y^{*} = f(x)$, you have $y + \sigma_{1} = x + \epsilon$ 
+    - $y = x + u$ 
+        - where $u = \epsilon + \sigma_{1}$ 
+
+
+```{r}
+#| message: false
+#| warning: false
+data$w_lev1_noise <- data$w_lev1 + runif(length((data$w_lev1)), min=-0.2, max= 0.2)
+
+fe <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+fe_noise <- plm(w_lev1_noise  ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+
+export_summs(fe, fe_noise, coefs = c("w_size1","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta"), digits = 3 , model.names = c("Size","Size with noise") )
+```
+
+
+- "Classical" random measurement error in x’s will bias coefficient estimates toward zero
+
+    - $x^{*} = x + \sigma_{2}$
+    - Imagine that $x^{*}$ is a bunch of noise
+    - It would not explain anything
+    - Thus, your results are biased toward zero
+
+
+
+```{r}
+#| message: false
+#| warning: false
+data$w_size1_noise <- data$w_size1 + runif(length((data$w_size1)), min=-2, max= 2)
+
+fe <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+fe_noise <- plm(w_lev1 ~ w_size1_noise + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+
+export_summs(fe, fe_noise, coefs = c("w_size1","w_size1_noise","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta"), digits = 3 , model.names = c("Size","Size with noise") )
+```
+
+
+
+___
+
+##  Omitted  variable bias (OVB)
+
+Let's walk through an empirical example of the OVB problem. 
+
+- Imagine that you do not include an important “true” predictor of Q:
+
+- Let's say, you have a long equation as:  $𝑸_{i} = 𝜶_{long} + 𝜷_{long}* gov_{i} + δ * omitted + error$
+
+- But you estimate a short version of the same equation missing one variable:  $𝑸_{i} = 𝜶_{short} + 𝜷_{short}* gov_{i} + error$
+
+- $𝜷_{short}$ will be: 
+
+    - $𝜷_{short} = 𝜷_{long}$ +  bias
+
+    - $𝜷_{short} = 𝜷_{long}$ +  relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)
+
+        - Where: relationship between omitted (omitted) and included (Gov) is: $Omitted = 𝜶 + ϕ *gov_{i} + u$
+
+- Thus, OVB is: $𝜷_{short} – 𝜷_{long} = ϕ * δ$
+
+
+
+```{r}
+#| message: false
+#| warning: false
+
+library(readxl)
+ovb <- read_excel("files/ovb.xlsx")
+short <- lm(performance ~ bad_decision  , data = ovb)
+long <- lm(performance ~ bad_decision  + risky_firm, data = ovb)
+export_summs(short, long, coefs = c("bad_decision","risky_firm"), digits = 3 , model.names = c("Short","Long") )
+```
+
+In this example, we can say that the OVB is $short = long + bias$.
+
+That is, $0.44535  = -0.38389 + bias$, or $0.44535  = -0.38389 + 0.82924$. Which is the same as: $0.44535  = -0.38389 + phi (which is omitted = f(non-omitted)) * omega (beta of omitted in long)$
+
+
+```{r}
+ovbmodel <- lm(risky_firm ~bad_decision , data = ovb )
+# The OVB is 0.44535  = -0.38389 + 1.25146 * 0.66262
+matrix1<- summary(long)$coefficients
+matrix2<- summary(ovbmodel)$coefficients
+# Calculating OVB
+sum(matrix1[3,1] * matrix2[2,1]) 
+```
+
+
+
+
+We can see that omitting the variable "risky_firm" is problematic since it seems to explain the outcome of this regression.
+
+```{r}
+tapply(ovb$performance, ovb$risky_firm, summary)
+tapply(ovb$bad_decision, ovb$risky_firm, summary)
+```

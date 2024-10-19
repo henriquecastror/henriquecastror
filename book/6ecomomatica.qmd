@@ -1,0 +1,420 @@
+
+
+
+
+# Real research
+
+
+
+## OLS, Panel, Fixed effects, and Random Effects 
+
+
+```{r}
+#| message: false
+#| warning: false
+library(ggplot2)
+library(ggthemes)
+library(readxl) 
+library(jtools) # for nice tables of models - https://cran.r-project.org/web/packages/jtools/vignettes/summ.html#summ
+data <- read_excel("files/data.xls")
+```
+
+
+After uploading the data, tell R the data is panel. You need two identifiers: one for the cross-sectional part (usually, firms in accounting & finance research), and other for the time-series part (usually, year but sometimes can be quarter). The following example uses a panel wit quarterly data. 
+
+I am also creating an identifier for industries, which might be useful.
+
+
+
+```{r}
+#| message: false
+#| warning: false
+library(dplyr)
+data <- data %>% group_by(id )                %>% dplyr::mutate(id_firm = cur_group_id())
+data <- data %>% group_by(setor_economatica)  %>% dplyr::mutate(id_ind = cur_group_id())
+```
+
+
+
+Now, I am stating to r that I have a dataset in a panel structure.
+
+```{r}
+#| message: false
+#| warning: false
+library(plm)
+data <- pdata.frame(data, index=c("id_firm","year"))
+```
+
+
+
+
+
+___
+
+Let's attach the dataset to make things easier.
+
+```{r}
+#| message: false
+#| warning: false
+attach(data)
+```
+
+
+___
+
+
+Let's inspect the dataset. First, let's see how many observations we have by country:
+
+```{r}
+#| message: false
+#| warning: false
+library('plyr')
+count(country)
+```
+
+___
+
+Now, by year.
+
+```{r}
+#| message: false
+#| warning: false
+count(year)
+```
+___
+
+Now, by industry.
+
+```{r}
+#| message: false
+#| warning: false
+count(setor_economatica)
+```
+
+
+
+
+
+___
+
+## Generating variables
+
+Let's generate some variables to use later. 
+
+```{r}
+#| message: false
+#| warning: false
+data$lev1 <- Debt / (Debt + Equity.market.value)
+data$lev2 <- Debt / Total.Assets
+data$wc_ta <- wc  / Total.Assets 
+data$cash_ta <- cash / Total.Assets
+data$div_ta <- Dividends / Total.Assets
+data$fcf_ta <- Free.cash.flow / Total.Assets
+data$tang_ta <- tangible / Total.Assets
+data$roa2 <- roa / 100
+library(SciViews)
+data$size1  <- ln(Total.Assets)
+```
+
+Notice that most variables are ratios and thus are expected to fall in the 0-100% range. 
+
+There is one important exception: Size. Size in this example is the **natural logarithm of Total Assets** (sometimes, studies use the natural logarithm of Total Sales). Taking the natural logarithm is a traditional decision in this type of research.
+
+So, why did I do that in Size but not in the others?
+
+In many cases, you want to use **relative differences or percentages change**. For instance, GDP growth is usually measured as the growth of each year over the previous year. The same is true for stock prices. 
+
+$$GDP\; growth = \frac{GDP_t - GDP_{t-1}}{GDP`{t-1}}$$
+
+This is possible because you always have a previous value to use as base for comparison.
+
+In many cases, you do not have such base for comparison. This is the case of a firm's Total Assets. What is the natural base for Total Assets? No answer.
+
+Therefore, you take the natural logarithm so that you minimize this concern. 
+
+Additionally, keep in mind that the empirical values of Total Assets are often very dissimilar and with huge magnitude. Consider two firms, one with 1 million of total assets, the other with 1 billion. Assume that both firms increased throughout one year their total assets by 1 million. The first firm is twice the size of before, but 1 million make little difference for a billion dollar firm. Taking the logarithm helps you to have a similar base and mitigate the magnitude effect of these changes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___
+
+
+## Summary statistics
+
+```{r}
+#| message: false
+#| warning: false
+library(vtable)
+sumtable(data, vars = c('lev1' , 'lev2' , 'wc_ta', 'cash_ta',  'size1'  , 'fcf_ta' , 'div_ta', 'roa' , 'tang_ta'))
+```
+
+
+
+___
+
+## Winsorization
+
+Some of the variables have weird values. For instance, the variable $\frac{Free cash flow}{Total Assets}$ has a maximum value of 817. It means that there is one firm-year observation in which the cash flow of that firm in that year is 817 times the firm's total assets. This is very odd to say the least. 
+
+To avoid this type of problem, we can winsorize our variables.
+
+```{r}
+#| message: false
+#| warning: false
+library(DescTools)
+data$w_lev1     <- Winsorize(data$lev1   , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_lev2     <- Winsorize(data$lev2   , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_wc_ta    <- Winsorize(data$wc_ta  , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_cash_ta  <- Winsorize(data$cash_ta, probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_size1    <- Winsorize(data$size1  , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_fcf_ta   <- Winsorize(data$fcf_ta , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_div_ta   <- Winsorize(data$div_ta , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_roa      <- Winsorize(data$roa    , probs = c(0.01, 0.99) , na.rm = TRUE) 
+data$w_tang_ta  <- Winsorize(data$tang_ta, probs = c(0.01, 0.99) , na.rm = TRUE) 
+```
+
+
+
+
+___
+
+## Panel data
+
+Multiple times are always helpful. That is, in a panel dataset, you have many observations of the same unit in different time periods. This is helpful because you observe the evolution of that unit. Also, this allows to control for **time-invariant unobserved heterogeneity at the unit level**.
+
+A general representation of a regression using panel data is:
+
+$$Y_{t,i} = \alpha + \beta \times X_{t,i} + \epsilon_{t,i}$$
+
+Notice that each variable has two subscripts, t represents the year = t, and i represents the unit = i. This type of notation is common in empirical research.
+
+
+
+
+
+
+___
+
+## Functional form of relationships
+
+As mentioned before, in many cases, you want to use the logarithm of a variable. This changes the interpretation of the coefficients you estimate.
+
+We have three possible scenarios for regression's functional forms.
+
+- **log-log regression**: both Y and X are in log values $ln(Y) = \alpha + \beta \times ln(X) + \epsilon$. The interpretation of $\beta$ in this case is: **$y$ is $\beta$ percent higher** on average for observations with **one percent higher $x$**.   
+
+
+- **log-level regression**: both Y and X are in log values $ln(Y) = \alpha + \beta \times X + \epsilon$. The interpretation of $\beta$ in this case is: **$y$ is $\beta$ percent higher** on average for observations with **one unit higher $x$**.   
+
+- **level-log regression**: both Y and X are in log values $Y = \alpha + \beta \times ln(X) + \epsilon$. The interpretation of $\beta$ in this case is: **$y$ is $\frac{\beta}{100}$ units higher** on average for observations with **one percent higher $x$**.   
+
+
+**Important note:** the misspecification of x’s is similar to the omitted variable bias (OVB).
+
+
+
+
+
+
+___
+
+## OLS
+
+This is a plain OLS model using the original data (i.e., not winsorized yet).
+
+```{r}
+#| message: false
+#| warning: false
+ols <- lm(lev1 ~ size1 + fcf_ta + roa + tang_ta + cash_ta + div_ta, data = data)
+summary(ols)
+```
+
+A nicer looking table.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(jtools)
+export_summs(ols, digits = 3 , model.names = c("OLS") )
+```
+
+
+
+
+Now, we are using the winsorized data.
+
+```{r}
+#| message: false
+#| warning: false
+w_ols <- lm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta, data = data)
+#summary(w_ols)
+export_summs(ols,w_ols ,model.names = c("OLS","OLS (winsorized)"))
+```
+
+___
+
+
+
+
+
+
+## Heterogeneity across countries
+
+There is a huge literature on capital structure decisions. Let's see the heterogeneity of leverage across countries. Thus, it makes sense to control for this type of heterogeneity somehow. 
+
+```{r}
+#| warning: false
+#| message: false
+library(gplots)
+plotmeans(lev1 ~ country, data = data)
+```
+
+
+
+
+
+
+
+
+
+
+___
+
+## FE Country
+
+The following example uses fixed effects for countries. Notice that one country is missing.
+
+```{r}
+#| message: false
+#| warning: false
+fe_c <- lm(lev1 ~ size1 + fcf_ta + roa + tang_ta + cash_ta + div_ta  + factor(country) , data = data)
+export_summs(fe_c)
+```
+
+Now, we are using fixed effects for countries and years.
+
+```{r}
+#| message: false
+#| warning: false
+fe_cy <- lm(lev1 ~ size1 + fcf_ta + roa + tang_ta + cash_ta + div_ta  + factor(country) + factor(year), data = data)
+export_summs(fe_c, fe_cy)
+```
+
+
+___
+
+## FE Firms
+
+The most usual regression we estimate in Accounting & Finance is a panel using firms as units. Imagine that you are including one dummy for each firm, just as we included a dummy for each country in the previous example. This is the way to do it.
+
+The strength of a firm fixed effect model is that it controls for **time-invariant unobserved heterogeneity at the firm level**. 
+
+That is, if there is an omitted variable in your model (something that is constant over time that you cannot measure because you do not observe, for instance, the quality of the managerial team), you should use firm fixed effects.
+
+FE is a very traditional and accepted solution in this type of research because our models are always a representation of reality, we can never be sure we are controlling for everything that is important. By including a firm FE you are, at least, safe that you are controlling of omitted variables that do not change over time at the firm level. **That is, Firm FE mitigates concerns of omitted variable bias of time-invariant at the firm level**.
+
+On top of the firm FE, it is always a good idea to include year FE at the same time, as follows. You do not need to present them in your final paper, but you need to mention them.
+
+
+```{r}
+#| message: false
+#| warning: false
+fe <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
+export_summs(fe, coefs = c("w_size1","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta"),  digits = 3 , model.names = c("FE") )
+```
+
+
+More technically (but really not that much), a firm FE model can be represented as follows. That is, you include one fixed term for each firm (again, except for the first firm). Also, I am adding the year FE in the equation below. 
+
+$$Y_{t,i} = \beta \times X_{t-1,i} + \alpha_i + \alpha_t+  \epsilon_{t,i}$$
+
+
+Technically, the inclusion of the FE acts as a transformation of Y and X into differences such as $y_{t,i} - \bar{y_i}$ and $x_{t,i} - \bar{x_i}$, where $\bar{y_i}$ is the mean value of y across all time periods for unit i. As a result, in FE regressions, $\beta$ shows how much larger y is compared to its mean within the cross-sectional unit. That is, compare two observations of x that are different in terms of their value x compared to the i-specific mean. On average, x is larger that average x by $\beta$.
+
+Thus, **a FE model is a within-unit comparison model** and the model is not affected by whether the unit has larger average of X or Y. That is, the estimates are not affected by **unobserved confounders that affect either x or y in the same way in all time periods**.
+
+
+**Important question**: Can you include firm FE and country FE at the same time in a regression? **The answer is no**. If you try, all the country FE will be dropped due to colinearity with firm FE.
+
+
+Final notes on FE models:
+
+1) Notice there is no intercept in the table above. The reason is that the model includes $i$ intercepts, one for each firm. In some cases, some  softwares report an intercept value that is the average of all intercepts. But that is of little value to us.
+
+2) There are two possible r-squares in FE models: **within R-squared** and the **R-squared** (the traditional one). The first is more adequate, because the second uses all intercepts as explanatory variables of y and thus overstates the magnitude of the model's explanatory power.
+
+
+
+
+
+
+
+
+
+
+
+___
+
+
+
+## OLS vs FE 
+
+At the end of the day, you never can be sure that the FE model is better. So, we can test if it is an improvement over OLS, as follows.
+
+If the p-value low enough then the fixed effects model is the path to go. 
+
+```{r}
+#| message: false
+#| warning: false
+pFtest(fe, ols)
+```
+
+
+
+ 
+
+___
+
+## Random Effects
+
+An alternative to FE models is the RE (random effects) models. In FE models, we assume $\alpha_i$ is correlated with the other X variables. This makes sense since the unobserved time-invariant characteristics of a firm is expected to be correlated with the observed characteristics of that firm.
+
+If we believe that $\alpha_i$ is not correlated with X, we should use a RE model. You can estimate as follows.
+
+
+```{r}
+#| message: false
+#| warning: false
+re <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta  , data = data, model="random") 
+export_summs(fe, re, coefs = c("w_size1","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta"),  digits = 3 , model.names = c("FE", "RE") )
+```
+
+___
+
+## RE vs FE 
+
+If you want to test which model is best suited to your dataset, you can test as follows. If the p-value is significant then use FE, if not use RE. 
+
+
+```{r}
+#| message: false
+#| warning: false
+phtest(fe, re)
+```
+
+

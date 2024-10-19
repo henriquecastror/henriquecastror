@@ -1,0 +1,479 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Practicing 5'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+```{r setup}
+#| include: false
+#| warning: false
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+library(ggplot2)
+library(dplyr)
+library(ggthemes)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+#reticulate::py_install("linearmodels")
+#reticulate::py_install("causalml")
+
+```
+
+
+
+
+# Linear regression {.smaller}
+
+## Regression Basics {.smaller} 
+
+
+Let's learn how to run a regression in R and how to compute the Beta.
+
+First, let's remember what a linear regression is. In a linear regression, we want to estimate the population paramenters $\beta_0$ and $\beta_1$ of the following model.
+
+$$ y = \beta_0 + \beta_1 \times x + \mu$$
+
+In this setting, the variables $y$ and $x$ can have several names.
+
+| Y                  | X                    |
+|--------------------|----------------------|
+| Dependent variable | Independent variable |
+| Explained variable | Explanatory variable |
+| Response variable  | Control variable     |
+| Predicted variable | Predictor variable   |
+| Regressand         | Regressor            |
+
+
+## Regression Basics {.smaller} 
+
+The variable $\mu$, called the error term, represents all factors that are $X$ that also affect $y$. These factors are unobserved in your model. It has specific properties and assumptions. 
+
+The parameter $\beta_0$, i.e., the intercept, is often called the *constant term*, but it is rarely useful in the type of analysis we'll run. 
+
+We can estimate these parameters as follows:
+
+$$\beta_1 = \frac{Cov(x,y)}{Var(x)}$$
+
+$$\beta_0 = \hat{y} - \hat{\beta_1} \hat{x}$$
+
+
+## Regression Basics {.smaller} 
+
+
+Let's estimate Example 2.3 of Wooldridge (2020).
+
+```{r}
+#| warning: false
+#| echo: true
+#| fig-align: center
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+library(wooldridge)
+data(ceosal1)
+reg <- lm(ceosal1$salary ~ ceosal1$roe)
+summary(reg)
+```
+
+
+## Regression Basics {.smaller} 
+
+Let's find the parameters manually now.
+
+```{r}
+#| warning: false
+#| echo: true
+#| fig-align: center
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+cov(ceosal1$roe, ceosal1$salary)
+var(ceosal1$roe)
+mean(ceosal1$salary)
+mean(ceosal1$roe)
+(b1 <- cov(ceosal1$roe, ceosal1$salary)/var(ceosal1$roe))
+(b0 <- mean(ceosal1$salary) - b1*mean(ceosal1$roe))
+```
+
+
+
+
+
+
+
+
+
+## Graph  {.smaller} 
+
+Let's visualize the relationship between these variables now.
+
+```{r}
+#| warning: false
+#| echo: true
+#| fig-align: center
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+library(ggplot2)
+library(ggthemes)
+ggplot(ceosal1) +  geom_point( aes(x=roe, y=salary)) +
+                   geom_smooth(data = ceosal1, aes(x=roe, y=salary) , method = lm) + 
+                   theme_solarized()
+```
+
+So we see the positive relationship between a firm's ROE and the Salary paid to the CEO as the regression showed before.
+
+
+
+
+
+
+
+## Regression's coefficients {.smaller} 
+
+Let's run the regression again.
+
+```{r}
+#| warning: false
+#| fig-align: center
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+#| collapse: true
+#| echo: true
+model <- lm(ceosal1$salary ~ ceosal1$roe)
+summary(model)
+```
+
+
+## Regression's coefficients {.smaller} 
+
+Beta of ROE is **`r round( summary(model)$coefficients[2,1], 3)`**
+
+Standard error of ROE is **`r round( summary(model)$coefficients[2,2], 3)`**.
+
+T-stat of ROE is **`r round( summary(model)$coefficients[2,3], 3)`**.
+
+And p-value is **`r round( summary(model)$coefficients[2,4], 3)`**. So it is barely significantly different from zero at the 10% threshold. 
+
+The intercept is **`r round( summary(model)$coefficients[1,1], 3)`**.
+
+
+
+
+
+
+
+
+
+
+## Predicting salary {.smaller} 
+
+The line from the previous graph contains the estimated salary value of each CEO.
+
+Let's say that Firm A shows a ROE of `r round(ceosal1$roe[1],3)` and a Salary of `r round(ceosal1$salary[1], 3)`. You know that the Beta of the linear regression is `r round( summary(model)$coefficients[2,1], 3)` and the intercept is `r round( summary(model)$coefficients[1,1], 3)`. Using these estimates, you can estimate that the salary of Firm A's CEO is:
+
+$$`r round(ceosal1$roe[1],3)` \times  `r round( summary(model)$coefficients[2,1], 3)`  + `r round( summary(model)$coefficients[1,1], 3)` = `r round( ceosal1$roe[1] *summary(model)$coefficients[2,1]  +  summary(model)$coefficients[1,1] , 3)`$$
+
+If you do the same to all observations in the dataset, you get the red points below. The darkgreen line connects the points and represents the association between ROE and Salary.
+
+Now, if you can trust your estimates you can estimate ("predict") the salary for a given new ROE. For instance, you could estimate what is the salary of a new firm that shows a ROE of, let's say, 30%.
+
+
+
+
+
+
+
+## R-squared {.smaller} 
+
+We can see in the previous example that the r-squared of the regression is `r round (var(fitted(model))/ var(ceosal1$salary) * 100 , 3)` percent. This means that the variable ROE explains around 1.3% of the variation of Salary.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+
+summary(model)$r.squared
+summary(model)$adj.r.squared
+```
+
+
+
+## Residual {.smaller} 
+
+Notice in the graph above that there is a distance between the **"real"** values of salary (i.e., blue points) and the **estimated** values of salary (i.e., the red points).
+
+This distance is called **error** or **residual**.
+
+One thing that you need to understand is that, in a OLS model, the regression line is selected in a way that **minimizes the sum of the squared values of the residuals**.
+
+You can compute the errors as follows.
+
+Notice that most residuals are very close to zero. This basically shows that the red points (i.e., the estimated value) are very close to the blue points (i.e., the "real" data) in most of the observations.
+
+But notice there are some observations with large residual, showing they are very far from the estimated value.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+ceosal1$uhat <- resid(model)
+ggplot(ceosal1) +  geom_point( aes(x=roe, y=uhat), color = "darkred") +
+                   theme_solarized()
+```
+
+The residuals have a mean of zero.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+summary(ceosal1$uhat) 
+```
+
+
+
+
+## Standard error and T-stat {.smaller} 
+
+
+To assess if the variables are significantly related, you need to assess the significance of $\beta$ coefficients.
+
+Using the example from Wooldridge, we know that the Beta of ROE is **`r round( summary(model)$coefficients[2,1], 3)`**, while the standard error of ROE is **`r round( summary(model)$coefficients[2,2], 3)`**.
+
+The standard error is a measure of the accuracy of your estimate. If you find a large standard error, your estimate does not have good accuracy. Ideally, you would find small standard errors, meaning that your coefficient is accurately estimated. However, you do not have good control over the magnitude of the standard errors. 
+
+
+## Standard error and T-stat {.smaller} 
+
+If you have a large standard error, probably you coefficient will not be significantly different from zero. You can test whether your coefficient is significantly different from zero computing the t-statistics as follows:
+
+$$t_{\beta} = \frac{\hat{\beta}}{se(\hat{\beta})}$$
+
+If $t_{\beta}$ is large enough, you can say that $\beta$ is significantly different from zero.  Usually, $t_{\beta}$ larger than 2 is enough to be significant. 
+
+
+
+
+
+## Standard error and T-stat {.smaller} 
+
+In the previous example, you can find the  t-stat manually as follows:
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+summary(model)$coefficients[2,1] / summary(model)$coefficients[2,2] 
+summary(model)$coefficients[2,3]
+```
+
+Large t-stats will lead you to low p-values. Usually, we interpret that p-values lower than 10% suggest significance, but you would prefer p-values lower than at least 5%.
+
+You can find the p-values of the previous example as follows.
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+summary(model)$coefficients[2,4]
+pt(summary(model)$coefficients[2,3], 207, lower.tail=FALSE) * 2
+```
+
+In this case, p-value is lower than 10% so you can make the case that the relationship is significant at the 10% level. But notice that the relationship is not significant at the level of 5%.
+
+
+
+
+
+## Confidence intervals {.smaller} 
+
+We can further explore significance calculating confidence intervals. First, let's compute the intervals at 5%. Because our test is a two-tailed test, 5% means 2.5% in each tail.
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+confint(model)
+```
+
+
+
+## Confidence intervals {.smaller} 
+
+
+We can see above that the interval contains the value of Zero (notice that the estimate of ROE goes from a negative to a positive value, thus containing the zero). This means that you cannot separate your estimate of Beta from zero. In other words, your coefficient is not *significantly different from zero* in this case. This supports the previous finding that the coefficient is not significantly different from zero at the level of 5%.
+
+
+## Confidence intervals {.smaller} 
+
+
+Let's see what are the confidence intervals at the level of 10%.
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+confint(model, level = 0.90)
+```
+
+
+Now, we can see that the interval does not contain zero, which means that Beta is *significantly different from zero* at the level of 10%. Again, it confirms the previous findings.  
+
+
+
+
+
+
+
+
+## Multiple regressions {.smaller} 
+
+A multiple regression follows a model like:
+
+$$ y = \beta_0 + \beta_1 \times x_1 + \beta_2 \times x_2 +  ... + \beta_k \times x_k + \mu$$
+
+## Multiple regressions {.smaller} 
+
+Let's estimate this equation using Example 3.1 of Wooldridge.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+iris <- iris 
+library(wooldridge)
+data(gpa1)
+gpa <- lm(gpa1$colGPA ~ gpa1$hsGPA + gpa1$ACT)
+summary(gpa)
+
+```
+
+
+
+
+
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::

@@ -1,0 +1,204 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Practicing 2'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+```{r setup}
+#| include: false
+#| warning: false
+
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+library(Statamarkdown)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+#reticulate::py_install("pyfinance")
+#reticulate::py_install("xlrd")
+#reticulate::py_install("quandl")
+#reticulate::py_install("linearmodels")
+#reticulate::py_install("causalml")
+
+```
+
+
+
+
+
+
+# Graphs {.smaller}
+
+
+## Scatterplot  {.smaller}
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(ggplot2)
+library(ggthemes)
+iris <- iris 
+
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + 
+    geom_point(size =2) +   theme_solarized() + 
+        labs(title ="My title",
+             subtitle = "My subtitle",
+             caption = "An explanation about the graph",
+             x = "My title for the x-axis (suggestion: Sepal Length)",
+             y = "Sepal Width")
+```
+
+
+
+## Scatterplot  {.smaller}
+
+
+The same thing with a different pair of variables, but now I am including the linear relationship between the variables.
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+ggplot(iris, aes(x=Petal.Length, y=Petal.Width)) + 
+    geom_point(size =2) +   theme_solarized() +
+   geom_point(aes(color = Species))+
+   geom_smooth(method='lm')
+```
+
+
+
+## Scatterplot  {.smaller}
+
+
+I could  include a linear relationship by group. In all cases, we observe a positive relationship between the variables, but the relationship seens stonger in `versicolor`.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color = Species)) + 
+    geom_point(size =2) +   theme_solarized() +
+   geom_point(aes(color = Species))+
+   geom_smooth(method='lm')
+```
+
+
+## Boxplot  {.smaller}
+
+I could also create boxplots using the `iris` dataset. Notice there is one observation with very low Length in the `virginica` group.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+ggplot(iris, aes(Species, Sepal.Length, fill=Species)) + 
+  geom_boxplot()+ theme_solarized() + 
+  scale_y_continuous(breaks= seq(0,30, by=.5)) 
+```
+
+
+
+
+## Density plots  {.smaller}
+
+Here is a nice-looking density plot.
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: false
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+ ggplot(iris, aes(x=Petal.Length, colour=Species, fill=Species)) +
+  geom_density(alpha=.3) + theme_solarized()
+```
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::

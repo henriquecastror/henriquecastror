@@ -1,0 +1,165 @@
+
+
+# Types of dataset
+
+
+
+```{r setup}
+#| warning: false
+#| echo: false
+#| fig-align: center
+#| message: false
+
+library(ggplot2)
+library(dplyr)
+library(ggthemes)
+```
+
+
+
+
+
+## Cross-sectional data
+
+Here is an example of a cross-sectional dataset. Notice that you have one observation for each unit only. You might have several variables for each unit. Usually, when you create a plot, you will have two variables, one in each axis.
+
+::: panel-tabset
+
+### Plot
+```{r}
+library(ggplot2)
+library(ggthemes)
+mtcars <- mtcars
+ggplot(mtcars, aes(hp, mpg, color = am)) +
+  geom_point() +  geom_smooth(formula = y ~ x, method = "loess") +   theme_solarized()
+```
+
+### Data
+```{r}
+knitr::kable(head(mtcars,30))
+```
+:::
+
+
+
+
+
+
+
+## Time-series data
+
+Here is an example of a Time-series dataset. Notice that you have one observation per period. You need to pay attention to the **frequency** when you have time-series. Usually, when you create a plot, you will have the period variable as the x-axis.
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+library(GetQuandlData)
+library(GetTDData)
+api_key <- "kfqxH5NsN8Nhe_U1NADB"
+first_date <- '2020-01-01'
+last_date <- '2022-01-01'
+inf <- get_Quandl_series(id_in =  c('Inflation' = 'BCB/433'),
+                               api_key = api_key, 
+                               first_date = first_date,
+                               last_date = last_date)
+```
+
+
+::: panel-tabset
+### Plot
+```{r}
+library(ggplot2)
+library(ggthemes)
+ggplot(inf, aes( x = ref_date, y= value)) + geom_line() + labs(title = "Selic")+
+   theme(axis.text.x = element_text(color = "grey20", size = 15, angle = 0, hjust = .5, vjust = .5, face = "plain"),
+        axis.text.y = element_text(color = "grey20", size = 15, angle = 0, hjust = 1, vjust = 0, face = "plain"),  
+        axis.title.x = element_text(color = "grey20", size = 15, angle = 0, hjust = .5, vjust = 0, face = "plain"),
+        axis.title.y = element_text(color = "grey20", size = 15, angle = 90, hjust = .5, vjust = .5, face = "plain")) +   theme_solarized()
+```
+
+### Data
+```{r}
+knitr::kable(inf)
+```
+:::
+
+
+
+
+
+
+
+
+
+## Pooled cross sections data
+
+A pooled cross section dataset combines more than one cross-sectional dataset collected overtime. For instance, when you have data from two non consecutive years. It is hard to create a graph with this dataset, but you can manage to include more than one year in the same plot. 
+
+More about the dataset [here](http://fmwww.bc.edu/ec-p/data/wooldridge/datasets.list.html)
+
+::: panel-tabset
+### Plot
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(wooldridge)
+data('infmrt')
+ggplot(infmrt, aes(pcinc, infmort, color=factor(year), group=factor(year))) +   geom_point() + theme_solarized()  
+```
+### Data
+```{r}
+knitr::kable(infmrt)
+```
+:::
+
+
+
+
+
+
+
+
+
+## Panel dataset
+
+When you have a Panel, you have both dimensions: a cross-sectional and a time-series. That is, you have several variables from several units through several years. This is the type of dataset that most finance and accounting research deals with.
+
+::: panel-tabset
+### Data
+```{r}
+library(wooldridge)
+data('prison')
+knitr::kable(head(prison,50))
+```
+
+### Plot
+```{r}
+library(ggplot2)
+library(ggthemes)
+ggplot(prison, aes(year, black, color=factor(state))) +    theme_solarized()   +    geom_line()
+```
+### Plot II
+```{r}
+library(ggplot2)
+library(ggthemes)
+mean_st <- prison %>%  group_by( state ) %>%  summarise( mean_unem = mean( unem ) )
+ggplot(mean_st, aes(state, mean_unem)) +    theme_solarized()   +    geom_point() 
+```
+
+### Plot III
+```{r}
+library(ggplot2)
+library(ggthemes)
+mean_year <- prison %>%  group_by( year ) %>%  summarise( mean_unem = mean( unem ) )
+ggplot(mean_year, aes(year, mean_unem)) +    theme_solarized()   +    geom_point() 
+```
+:::
+
+
+
+
+
+
+
+
