@@ -1019,7 +1019,7 @@
     "href": "teaching/empirical_finance/index.html",
     "title": "Empirical Methods 2024/02",
     "section": "",
-    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1 Intro: Slides\nPart 2 CMI: Slides\nPart 3 Misc.: Slides\nPart 4 OLS: Slides\nPart 5 Panel data: Slides\nPart 6 Matching: Slides\nPart 7 DiD: Slides\nPart 8 RDD: Slides\nPart 9 Synth: Slides\nPart 10 IV: Slides\n\n\n\nPracticing\n\nPractice 1: Slides\nPractice 2: Slides\nPractice 3: Slides\nPractice 4: Slides\nPractice 5: Slides\nPractice 6: Slides\n\nTo be continued"
+    "text": "Important\n\n\n\nWe may or may not use all the slides throughout our course.\n\n\n\nSlides\n\nPart 1 Intro: Slides\nPart 2 CMI: Slides\nPart 3 Misc.: Slides\nPart 4 OLS: Slides\nPart 5 Panel data: Slides\nPart 6 Matching: Slides\nPart 7 DiD: Slides\nPart 8 RDD: Slides\nPart 9 Synth: Slides\nPart 10 IV: Slides\n\n\n\nPracticing\n\nPractice 1: Slides\nPractice 2: Slides\nPractice 3: Slides\nPractice 4: Slides\nPractice 5: Slides\nPractice 6: Slides\nPractice 7: Slides\n\nTo be continued"
   },
   {
     "objectID": "research/research/EMR_2023/index.html",
@@ -19542,5 +19542,397 @@
     "title": "Empirical Methods in Finance",
     "section": "",
     "text": "Important question: Can you include firm FE and country FE at the same time in a regression? The answer is no. If you try, all the country FE will be dropped due to colinearity with firm FE.\n\nFinal notes on FE models:\n\nNotice there is no intercept in the table above. The reason is that the model includes \\(i\\) intercepts, one for each firm. In some cases, some softwares report an intercept value that is the average of all intercepts. But that is of little value to us.\nThere are two possible r-squares in FE models: within R-squared and the R-squared (the traditional one). The first is more adequate, because the second uses all intercepts as explanatory variables of y and thus overstates the magnitude of the model’s explanatory power."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#reverse-causation",
+    "href": "teaching/empirical_finance/part_O7.html#reverse-causation",
+    "title": "Empirical Methods in Finance",
+    "section": "Reverse causation",
+    "text": "Reverse causation\n\nImagine that you want to investigate the effect of Governance on Q\n\n\\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\nThe ideal is to establish estimates that allow you to infer that changing Gov will CAUSE a change in Q. However, without a nice empirical design, we cannot infer causality\nOne source of bias is: reverse causation\n\nPerhaps it is Q that causes Gov\nOLS based methods do not tell the difference between these two betas:\n\n\\(𝑄_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\\(Gov_{i} = α + 𝜷_{i} × Q + Controls + error\\)\n\nIf one Beta is significant, the other will most likely be significant too."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#reverse-causation-1",
+    "href": "teaching/empirical_finance/part_O7.html#reverse-causation-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Reverse causation",
+    "text": "Reverse causation\n\nImagine that you want to investigate the effect of Governance on Q\n\n\\(𝑸_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\nThe ideal is to establish estimates that allow you to infer that changing Gov will CAUSE a change in Q. However, without a nice empirical design, we cannot infer causality\nOne source of bias is: reverse causation\n\nPerhaps it is Q that causes Gov\nOLS based methods do not tell the difference between these two betas:\n\n\\(𝑄_{i} = α + 𝜷_{i} × Gov + Controls + error\\)\n\\(Gov_{i} = α + 𝜷_{i} × Q + Controls + error\\)\n\nIf one Beta is significant, the other will most likely be significant too."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-concerns",
+    "href": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-concerns",
+    "title": "Empirical Methods in Finance",
+    "section": "Lags to mitigate reverse causation concerns",
+    "text": "Lags to mitigate reverse causation concerns\nOne main concern of empirical research relies on the reverse causality problems. In a regression model, there is always the possibility that it is Y that causes X, meaning that your assumptions about the relationship of these variables can always be wrong (i.e., what causes what?).\nWe are not discussing causality yet (which is a whole new chapter). But one possible simple solution is to use lagged values of your X. Something along the following lines:\n\\[Y_{t,i} = \\alpha + \\beta \\times X_{t-1,i} + \\epsilon_{t,i}\\]\nNotice the subscript \\(t-1\\) in x now. It means that you are using the previous year’s value of X as explanatory variable of the current year’s value of Y. This type of structure mitigates the concern that variations in Y are the reason of why X varies since it is less likely that the current variation of Y provokes variations on X in the previous years (i.e., the idea is that the future does not affect the past).\nThis is not a perfect solution because Y and X in most accounting and finance research designs are usually auto-correlated, meaning that the previous values are correlated with the present value. For instance, the firm’s leverage of 2015 is highly correlated with the firm’s leverage of 2016.\nBut in many cases it is a good idea to use lag values. At least, you should have this solution in your toolbox."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-concerns-1",
+    "href": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-concerns-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Lags to mitigate reverse causation concerns",
+    "text": "Lags to mitigate reverse causation concerns\n\nfe &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\nlag &lt;- plm(w_lev1 ~ lag(w_size1) + lag(w_fcf_ta) + lag(w_roa) + lag(w_tang_ta) + lag(w_cash_ta) + lag(w_div_ta) + factor(year) , data = data, model=\"within\")\nexport_summs(fe, lag, coefs = c(\"w_size1\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\",\n                              \"lag(w_size1)\",\"lag(w_div_ta)\",\"lag(w_fcf_ta)\", \"lag(w_roa)\",\"lag(w_tang_ta)\",\"lag(w_cash_ta)\"), digits = 3 , model.names = c(\"FE\",\"FE with lags\") )\n\n\n\n\n\nFE\nFE with lags\n\n\nw_size1\n0.076 ***\n        \n\n\n\n(0.004)   \n        \n\n\nw_div_ta\n-0.894 ***\n        \n\n\n\n(0.152)   \n        \n\n\nw_fcf_ta\n0.453 ***\n        \n\n\n\n(0.117)   \n        \n\n\nw_roa\n-0.009 ***\n        \n\n\n\n(0.001)   \n        \n\n\nw_tang_ta\n0.176 ***\n        \n\n\n\n(0.019)   \n        \n\n\nw_cash_ta\n-0.304 ***\n        \n\n\n\n(0.029)   \n        \n\n\nlag(w_size1)\n        \n0.083 ***\n\n\n\n        \n(0.005)   \n\n\nlag(w_div_ta)\n        \n-0.833 ***\n\n\n\n        \n(0.163)   \n\n\nlag(w_fcf_ta)\n        \n0.042    \n\n\n\n        \n(0.128)   \n\n\nlag(w_roa)\n        \n-0.004 ***\n\n\n\n        \n(0.001)   \n\n\nlag(w_tang_ta)\n        \n0.135 ***\n\n\n\n        \n(0.020)   \n\n\nlag(w_cash_ta)\n        \n-0.260 ***\n\n\n\n        \n(0.031)   \n\n\nnobs\n6885        \n6032        \n\n\nr.squared\n0.215    \n0.197    \n\n\nadj.r.squared\n0.086    \n0.057    \n\n\nstatistic\n57.872    \n46.689    \n\n\np.value\n0.000    \n0.000    \n\n\ndeviance\n108.418    \n92.542    \n\n\ndf.residual\n5914.000    \n5132.000    \n\n\nnobs.1\n6885.000    \n6032.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#first-difference-models",
+    "href": "teaching/empirical_finance/part_O7.html#first-difference-models",
+    "title": "Empirical Methods in Finance",
+    "section": "First difference models",
+    "text": "First difference models\nAlternatively, we can estimate a first difference model as follows.\n\\[\\Delta Y_{t,i} = \\alpha + \\beta \\times \\Delta X_{t,i} +\\ epsilon_{t,i}\\]\nWhere, \\(\\Delta Y_{t,i} =Y_{t,i} - Y_{t-1,i}\\) and \\(\\Delta X_{t,i} =X_{t,i} - X_{t-1,i}\\)\n\\(\\beta\\) shows the difference in the average change of Y for units that experience a change in x during the same period.\nSaying the same thing in a different way, \\(\\beta\\) shows how much y changes, on average, where and when X increases by one unit.\nLet’s say that x is binary and it changes from 0 to 1 for each firm during several different periods. So, y will change, on average, by \\(\\beta\\) when x changes from 0 to 1."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#binary-variables",
+    "href": "teaching/empirical_finance/part_O7.html#binary-variables",
+    "title": "Empirical Methods in Finance",
+    "section": "Binary variables",
+    "text": "Binary variables\nAs mentioned before, a Fixed effect is equivalent to a binary variable marking one group of observations. For instance, all observations of the same year, or from the same firm.\nWe can explore many interesting types of binary variables in most cases of corporate finance. For instance, whether the firm is included in “Novo Mercado”, if the firm has high levels of ESG, etc.\nThe implementation of a binary variable is quite simple: it takes the value of 0 for one group, and 1 for the other.\nThe interpretation is a bit trickier."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#models-with-squared-variables",
+    "href": "teaching/empirical_finance/part_O7.html#models-with-squared-variables",
+    "title": "Empirical Methods in Finance",
+    "section": "Models with squared variables",
+    "text": "Models with squared variables\nLet’s say you have a variable that should not show a clear linear relationship with another variable.\nFor instance, consider ownership concentration and firm value. There is a case to be made the relationship between these variable is not linear. That is, in low levels of ownership concentration (let’s say 5% of shares), a small increase in it might lead to an increase in firm value. The argument is that, in such levels, an increase in ownership concentration will lead the shareholder to monitor more the management maximizing the likelihood of value increasing decisions.\nBut consider now the case where the shareholder has 60% or more of the firm’s outstanding shares. If you increase further the concentration it might signals the market that this shareholder is too powerful that might start using the firm to personal benefits (which will not be shared with minorities)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#models-with-interactions",
+    "href": "teaching/empirical_finance/part_O7.html#models-with-interactions",
+    "title": "Empirical Methods in Finance",
+    "section": "Models with Interactions",
+    "text": "Models with Interactions\nIn some specific cases, you want to interact variables to test if the interacted effect is significant. For instance, you might believe that, using Wooldridge very traditional example 7.4., women that are married are yet more discriminated in the job market. So, you may prefer to estimate the following equation.\n\\[wage = \\beta_0 + \\beta_1 female + \\beta_2 married + \\beta_3 female.married + \\mu\\]\nWhere \\(maried\\) is a binary variable marking all married people with 1, and 0 otherwise.\nIn this setting, the group of single men is the base case and is represented by \\(\\beta_0\\). That is, both female and married are 0.\n\nThe group of single women is represented by \\(\\beta_0 + \\beta_1\\). That is, female is 1 but married is 0.\nThe group of married men is represented by \\(\\beta_0 + \\beta_2\\). That is, female is 0 but married is 1.\nFinally, the group of married women is represented by \\(\\beta_0 + \\beta_1 + \\beta_2 + \\beta_3\\). That is, female and married are 1."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#linear-probability-model",
+    "href": "teaching/empirical_finance/part_O7.html#linear-probability-model",
+    "title": "Empirical Methods in Finance",
+    "section": "Linear probability model",
+    "text": "Linear probability model\nWhen the dependent variable is binary we cannot rely on linear models as those discussed so far. We need a linear probability model. In such models, we are interested in how the probability of the occurrence of an event depends on the values of x. That is, we want to know \\(P[y=1|x]\\).\nImagine that y is employment status, 0 for unemployed, 1 for employed. This is our Y. Imagine that we are interested in estimating the probability that a person start working after a training program. For these types of problem, we need a linear probability model.\n\\[P[y=1|x] = \\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_kx_k\\]\nThe mechanics of estimating these model is similar to before, except that Y is binary.\nThe interpretation of coefficients change. That is, a change in x changes the probability of y = 1. So, let’s say that \\(\\beta_1\\) is 0.05. It means that changing \\(x_1\\) by one unit will change the probability of y = 1 (i.e., getting a job) in 5%, ceteris paribus."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#logit-and-probit",
+    "href": "teaching/empirical_finance/part_O7.html#logit-and-probit",
+    "title": "Empirical Methods in Finance",
+    "section": "Logit and Probit",
+    "text": "Logit and Probit\nAlthough the linear probability model is simple to estimate and use, it has some limitations as discussed. If that problem is important to us, we need a solution that addresses the problem of negative or higher than 1 probability. That is, we need a binary response model.\nIn a binary response model, interest relies on the response probability.\n\\[P(y =1 | x) = P(y=1| x_1,x_2,x_3,...)\\]\nThat is, we have a group of X variables explaining Y, which is binary. In a LPM, we assume that the response probability is linear in the parameters \\(\\beta\\). This is the assumption that created the problem discussed above."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#tobit",
+    "href": "teaching/empirical_finance/part_O7.html#tobit",
+    "title": "Empirical Methods in Finance",
+    "section": "Tobit",
+    "text": "Tobit\nAnother problem in the dependent variable occurs when we have a limited dependent variable with a corner solution.\n\nThat is, a variable that ranges from zero to all positive values.\nFor instance, hours working. Nobody works less than zero hours, but individuals in the population can work many number of positive hours.\nWhen we have such type of dependent variable, we need to estimate a tobit model."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nOne of the key assumptions in OLS estimators is that \\(var(\\mu|x_1,x_2,x_3,...) = \\sigma^2\\). That is, the assumption is that the variance of the errors is homoskedastic (present constant variance). It means that throughout all observations, the error term shows the same variance \\(\\sigma^2\\). If errors are not homoskedastic, we have the Heteroscedasticity problem.\nHeteroskedasticity does not cause bias or inconsistency in the OLS estimators of the \\(\\beta\\) like the OVB would. It also does not affect the \\(R^2\\). What Heteroscedasticity does is to bias the standard errors of the estimates.\nRemember again that \\(t_{\\beta} = \\frac{\\hat{\\beta}}{se(\\hat{\\beta})}\\). So, if you have biased standard errors, you will not assess correctly the significance of your coefficients. It also affects the F statistics.\nGraphically, we can think as follows."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#multicollinearity",
+    "href": "teaching/empirical_finance/part_O7.html#multicollinearity",
+    "title": "Empirical Methods in Finance",
+    "section": "Multicollinearity",
+    "text": "Multicollinearity\nMulticollinearity is the term used when many of the independent variables in a model are correlated.\nThis problem is not clearly formulated in econometrics book due to its nature.\nBut one thing is evident: multicollinearity increases the standard errors of the coefficients\nIn a sense, this problem is similar to having a small sample, from which is hard (in a statistical sense, meaning high standard deviation) to estimate the coefficient.\nAs Wooldridge says: everything else being equal, for estimating \\(\\beta_j\\), it is better to have less correlation between \\(x_j\\) and the other independent variables."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#measurement-error",
+    "href": "teaching/empirical_finance/part_O7.html#measurement-error",
+    "title": "Empirical Methods in Finance",
+    "section": "Measurement error",
+    "text": "Measurement error\nThe measurement error problem has a similar statistical structure to the omitted variable bias (OVB).\n\n“Classical” random measurement error for the outcome will inflate standard errors but will not lead to biased coefficients.\n\n\\(y^{*} = y + \\sigma_{1}\\)\nIf you estimante \\(y^{*} = f(x)\\), you have \\(y + \\sigma_{1} = x + \\epsilon\\)\n\\(y = x + u\\)\n\nwhere \\(u = \\epsilon + \\sigma_{1}\\)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb",
+    "href": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb",
+    "title": "Empirical Methods in Finance",
+    "section": "Omitted variable bias (OVB)",
+    "text": "Omitted variable bias (OVB)\nLet’s walk through an empirical example of the OVB problem.\n\nImagine that you do not include an important “true” predictor of Q:\nLet’s say, you have a long equation as: \\(𝑸_{i} = 𝜶_{long} + 𝜷_{long}* gov_{i} + δ * omitted + error\\)\nBut you estimate a short version of the same equation missing one variable: \\(𝑸_{i} = 𝜶_{short} + 𝜷_{short}* gov_{i} + error\\)\n\\(𝜷_{short}\\) will be:\n\n\\(𝜷_{short} = 𝜷_{long}\\) + bias\n\\(𝜷_{short} = 𝜷_{long}\\) + relationship between omitted (omitted) and included (Gov) * effect of omitted in long (δ)\n\nWhere: relationship between omitted (omitted) and included (Gov) is: \\(Omitted = 𝜶 + ϕ *gov_{i} + u\\)\n\n\nThus, OVB is: \\(𝜷_{short} – 𝜷_{long} = ϕ * δ\\)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#thank-you",
+    "href": "teaching/empirical_finance/part_O7.html#thank-you",
+    "title": "Empirical Methods in Finance",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br][Do not use without permission]"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation",
+    "href": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation",
+    "title": "Empirical Methods in Finance",
+    "section": "Lags to mitigate reverse causation",
+    "text": "Lags to mitigate reverse causation\nIn a regression model, there is always the possibility that it is Y that causes X, meaning that your assumptions about the relationship of these variables can always be wrong (i.e., what causes what?).\nWe are not discussing causality yet (which is a whole new chapter). But one possible simple solution is to use lagged values of your X. Something along the following lines:\n\\[Y_{t,i} = \\alpha + \\beta \\times X_{t-1,i} + \\epsilon_{t,i}\\]\nNotice the subscript \\(t-1\\) in x now. It means that you are using the previous period’s value of X as explanatory variable of the current period’s value of Y.\nThis type of structure mitigates the concern that variations in Y are the reason of why X varies since it is less likely that the current variation of Y provokes variations on X in the previous years (i.e., the idea is that the future does not affect the past)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-1",
+    "href": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Lags to mitigate reverse causation",
+    "text": "Lags to mitigate reverse causation\nThis is not a perfect solution because Y and X in most accounting and finance research designs are usually auto-correlated, meaning that the previous values are correlated with the present value.\nFor instance, the firm’s leverage of 2015 is highly correlated with the firm’s leverage of 2016.\nBut in many cases it is a good idea to use lag values. At least, you should have this solution in your toolbox."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-2",
+    "href": "teaching/empirical_finance/part_O7.html#lags-to-mitigate-reverse-causation-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Lags to mitigate reverse causation",
+    "text": "Lags to mitigate reverse causation\n\nfe &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\nlag &lt;- plm(w_lev1 ~ lag(w_size1) + lag(w_fcf_ta) + lag(w_roa) + lag(w_tang_ta) + lag(w_cash_ta) + lag(w_div_ta) + factor(year) , data = data, model=\"within\")\nexport_summs(fe, lag, coefs = c(\"w_size1\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\",\n                              \"lag(w_size1)\",\"lag(w_div_ta)\",\"lag(w_fcf_ta)\", \"lag(w_roa)\",\"lag(w_tang_ta)\",\"lag(w_cash_ta)\"), digits = 3 , model.names = c(\"FE\",\"FE with lags\") )\n\n\n\n\n\nFE\nFE with lags\n\n\nw_size1\n0.076 ***\n        \n\n\n\n(0.004)   \n        \n\n\nw_div_ta\n-0.894 ***\n        \n\n\n\n(0.152)   \n        \n\n\nw_fcf_ta\n0.453 ***\n        \n\n\n\n(0.117)   \n        \n\n\nw_roa\n-0.009 ***\n        \n\n\n\n(0.001)   \n        \n\n\nw_tang_ta\n0.176 ***\n        \n\n\n\n(0.019)   \n        \n\n\nw_cash_ta\n-0.304 ***\n        \n\n\n\n(0.029)   \n        \n\n\nlag(w_size1)\n        \n0.083 ***\n\n\n\n        \n(0.005)   \n\n\nlag(w_div_ta)\n        \n-0.833 ***\n\n\n\n        \n(0.163)   \n\n\nlag(w_fcf_ta)\n        \n0.042    \n\n\n\n        \n(0.128)   \n\n\nlag(w_roa)\n        \n-0.004 ***\n\n\n\n        \n(0.001)   \n\n\nlag(w_tang_ta)\n        \n0.135 ***\n\n\n\n        \n(0.020)   \n\n\nlag(w_cash_ta)\n        \n-0.260 ***\n\n\n\n        \n(0.031)   \n\n\nnobs\n6885        \n6032        \n\n\nr.squared\n0.215    \n0.197    \n\n\nadj.r.squared\n0.086    \n0.057    \n\n\nstatistic\n57.872    \n46.689    \n\n\np.value\n0.000    \n0.000    \n\n\ndeviance\n108.418    \n92.542    \n\n\ndf.residual\n5914.000    \n5132.000    \n\n\nnobs.1\n6885.000    \n6032.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#first-difference-models-1",
+    "href": "teaching/empirical_finance/part_O7.html#first-difference-models-1",
+    "title": "Empirical Methods in Finance",
+    "section": "First difference models",
+    "text": "First difference models\n\nfe &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\nfd &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"fd\") \nexport_summs(fe, fd, coefs = c(\"w_size1\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\")  , digits = 3, model.names = c(\"FE\",\"FD\"))\n\n\n\n\n\nFE\nFD\n\n\nw_size1\n0.076 ***\n0.097 ***\n\n\n\n(0.004)   \n(0.005)   \n\n\nw_div_ta\n-0.894 ***\n-0.182    \n\n\n\n(0.152)   \n(0.104)   \n\n\nw_fcf_ta\n0.453 ***\n0.195 *  \n\n\n\n(0.117)   \n(0.092)   \n\n\nw_roa\n-0.009 ***\n-0.005 ***\n\n\n\n(0.001)   \n(0.001)   \n\n\nw_tang_ta\n0.176 ***\n0.142 ***\n\n\n\n(0.019)   \n(0.018)   \n\n\nw_cash_ta\n-0.304 ***\n-0.127 ***\n\n\n\n(0.029)   \n(0.025)   \n\n\nnobs\n6885        \n5942        \n\n\nr.squared\n0.215    \n0.218    \n\n\nadj.r.squared\n0.086    \n0.214    \n\n\nstatistic\n57.872    \n58.794    \n\n\np.value\n0.000    \n0.000    \n\n\ndeviance\n108.418    \n81.641    \n\n\ndf.residual\n5914.000    \n5913.000    \n\n\nnobs.1\n6885.000    \n5942.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#binary-variables-1",
+    "href": "teaching/empirical_finance/part_O7.html#binary-variables-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Binary variables",
+    "text": "Binary variables\nLet’s think about the example 7.1 of Wooldridge. He estimates the following equation:\n\\[wage = \\beta_0 + \\delta_1 female + \\beta_1 educ + \\mu\\]\nIn model (7.1), only two observed factors affect wage: gender and education. Because \\(female = 1\\) when the person is female, and $female = 0 $ when the person is male, the parameter \\(\\delta_1\\) has the following interpretation: \n- \\(\\delta_1\\) is the difference in hourly wage between females and males, given the same amount of education (and the same error term u). Thus, the coefficient \\(\\delta_1\\) determines whether there is discrimination against women: if \\(\\delta_1&lt;0\\), then, for the same level of other factors, women earn less than men on average."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#binary-variables-2",
+    "href": "teaching/empirical_finance/part_O7.html#binary-variables-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Binary variables",
+    "text": "Binary variables\nIn terms of expectations, if we assume the zero conditional mean assumption E(\\(\\mu\\) | female,educ) = 0, then\n\\(\\delta_1 = E(wage | female = 1, educ) - E(wage | female = 0, educ)\\)\nOr\n\\(\\delta_1 = E(wage | female, educ) - E(wage | male, educ)\\)\n\nThe key here is that the level of education is the same in both expectations; the difference, \\(\\delta_1\\) , is due to gender only."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#binary-variables-3",
+    "href": "teaching/empirical_finance/part_O7.html#binary-variables-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Binary variables",
+    "text": "Binary variables\nThe visual interpretation is as follows. The situation can be depicted graphically as an intercept shift between males and females. The interpretation relies on \\(\\delta_1\\). We can observe that \\(delta_1 &lt; 0\\); this is an argument for existence of a gender gap in wage."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#binary-variables-4",
+    "href": "teaching/empirical_finance/part_O7.html#binary-variables-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Binary variables",
+    "text": "Binary variables\nUsing our own example, we can make the case that it is necessary to separate the firms in two groups: dividend payers and non-payers.\nThere is literature suggesting that dividend payers are not financially constrained, while those firms that do not pay dividends are.\nIf financial constrain is something important to our model (and assuming that the right way to control for it is by including a dividend payer dummy), we should include such a dummy."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#binary-variables-5",
+    "href": "teaching/empirical_finance/part_O7.html#binary-variables-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Binary variables",
+    "text": "Binary variables\n\\[Lev_{t,i} = \\alpha + \\beta_1 \\times Size_{t,i} + \\beta_2 \\times Div.\\;payer_{t,i} + controls + \\epsilon_{t,i}\\]\nWe could estimate this model as follows.\n\ndata$w_div_payer &lt;- ifelse(data$w_div_ta &lt;= 0, 0, 1)\ntapply(data$w_div_ta, data$w_div_payer, summary)    # Summary by group using tapply\n\n$`0`\n      Min.    1st Qu.     Median       Mean    3rd Qu.       Max. \n-2.087e-05  0.000e+00  0.000e+00 -4.538e-07  0.000e+00  0.000e+00 \n\n$`1`\n     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. \n0.0000000 0.0003314 0.0048639 0.0134473 0.0160092 0.0997752 \n\nfe1 &lt;- plm(w_lev1 ~ w_size1 + w_div_ta + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta  + factor(year) , data = data, model=\"within\")\nfe2 &lt;- plm(w_lev1 ~ w_size1 + w_div_payer + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta  + factor(year) , data = data, model=\"within\")\nexport_summs(fe1, fe2, coefs = c(\"w_size1\",\"w_div_ta\",\"w_div_payer\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\")  , digits = 3, model.names = c(\"FE 1\",\"FE 2\"))\n\n\n\n\n\nFE 1\nFE 2\n\n\nw_size1\n0.076 ***\n0.079 ***\n\n\n\n(0.004)   \n(0.004)   \n\n\nw_div_ta\n-0.894 ***\n        \n\n\n\n(0.152)   \n        \n\n\nw_div_payer\n        \n-0.036 ***\n\n\n\n        \n(0.005)   \n\n\nw_fcf_ta\n0.453 ***\n0.458 ***\n\n\n\n(0.117)   \n(0.117)   \n\n\nw_roa\n-0.009 ***\n-0.009 ***\n\n\n\n(0.001)   \n(0.001)   \n\n\nw_tang_ta\n0.176 ***\n0.177 ***\n\n\n\n(0.019)   \n(0.019)   \n\n\nw_cash_ta\n-0.304 ***\n-0.297 ***\n\n\n\n(0.029)   \n(0.029)   \n\n\nnobs\n6885        \n6885        \n\n\nr.squared\n0.215    \n0.218    \n\n\nadj.r.squared\n0.086    \n0.089    \n\n\nstatistic\n57.872    \n58.733    \n\n\np.value\n0.000    \n0.000    \n\n\ndeviance\n108.418    \n108.072    \n\n\ndf.residual\n5914.000    \n5914.000    \n\n\nnobs.1\n6885.000    \n6885.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#models-with-squared-variables-1",
+    "href": "teaching/empirical_finance/part_O7.html#models-with-squared-variables-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Models with squared variables",
+    "text": "Models with squared variables\nIf this story is true, the relationship is (inverse) u-shaped. That is, at first the relationship is positive, then becomes negative.\nTheoretically, I could make an argument for a non-linear relationship between several variables of interest in finance. Let’s say size and leverage. Small firms might not be able to issue too much debt as middle size firms. At the same time, large firms might not need debt. The empirical relationship might be non-linear.\nThere is always a potential case to be made regarding the relationship between the variables."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#models-with-squared-variables-2",
+    "href": "teaching/empirical_finance/part_O7.html#models-with-squared-variables-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Models with squared variables",
+    "text": "Models with squared variables\nThe way to empirically test it is as follows:\n\\[Y_{t,i} = \\alpha + \\beta_1 \\times X_{t,i} + \\beta_2 \\times X^2_{t,i} + \\epsilon_{t,i}\\]\nOr using the size-leverage example:\n\\[Lev_{t,i} = \\alpha + \\beta_1 \\times Size_{t,i} + \\beta_2 \\times Size^2_{t,i} + controls + \\epsilon_{t,i}\\] As Wooldridge says, misspecifying the functional form of a model can certainly have serious consequences. But, in this specific case, the problem seems minor since we have the data to fix it."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#models-with-squared-variables-3",
+    "href": "teaching/empirical_finance/part_O7.html#models-with-squared-variables-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Models with squared variables",
+    "text": "Models with squared variables\nIn this specific case, our theory does not hold, since the squared term is not significant. So we can conclude that in this model, the relationship is linear.\n\ndata$w_size1_sq &lt;- data$w_size1 * data$w_size1 \nfe &lt;- plm(w_lev1 ~ w_size1 + w_size1_sq + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\nexport_summs(fe, coefs = c(\"w_size1\",\"w_size1_sq\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\", \"w_tang_ta\",\"w_cash_ta\")  , digits = 3)\n\n\n\n\n\nModel 1\n\n\nw_size1\n0.157 ***\n\n\n\n(0.043)   \n\n\nw_size1_sq\n-0.002    \n\n\n\n(0.001)   \n\n\nw_div_ta\n-0.894 ***\n\n\n\n(0.152)   \n\n\nw_fcf_ta\n0.453 ***\n\n\n\n(0.117)   \n\n\nw_roa\n-0.009 ***\n\n\n\n(0.001)   \n\n\nw_tang_ta\n0.174 ***\n\n\n\n(0.019)   \n\n\nw_cash_ta\n-0.305 ***\n\n\n\n(0.029)   \n\n\nnobs\n6885        \n\n\nr.squared\n0.216    \n\n\nadj.r.squared\n0.087    \n\n\nstatistic\n56.024    \n\n\np.value\n0.000    \n\n\ndeviance\n108.353    \n\n\ndf.residual\n5913.000    \n\n\nnobs.1\n6885.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#models-with-interactions-1",
+    "href": "teaching/empirical_finance/part_O7.html#models-with-interactions-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Models with Interactions",
+    "text": "Models with Interactions\nUsing a random sample taken from the U.S. Current Population Survey for the year 1976, Wooldridge estimates that \\(female&lt;0\\), \\(married&gt;0\\), and \\(female.married&lt;0\\). This result makes sense for the 70s.\n\nlibrary(wooldridge)\ndata('wage1')\nwage1$fem_mar &lt;- wage1$female * wage1$married\nwage&lt;- lm(lwage ~ female + married + fem_mar + educ + exper + expersq + tenure + tenursq , data = wage1)\nexport_summs(wage, coefs = c(\"(Intercept)\", \"female\",\"married\",\"fem_mar\") , digits = 3)\n\n\n\n\n\nModel 1\n\n\n(Intercept)\n0.321 ** \n\n\n\n(0.100)   \n\n\nfemale\n-0.110 *  \n\n\n\n(0.056)   \n\n\nmarried\n0.213 ***\n\n\n\n(0.055)   \n\n\nfem_mar\n-0.301 ***\n\n\n\n(0.072)   \n\n\nN\n526        \n\n\nR2\n0.461    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#linear-probability-model-1",
+    "href": "teaching/empirical_finance/part_O7.html#linear-probability-model-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Linear probability model",
+    "text": "Linear probability model\nUsing Wooldridge’s example 7.29:\n\nlibrary(wooldridge)\ndata('mroz')\nlpm &lt;- lm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)\nexport_summs(lpm, coefs = c(\"(Intercept)\", \"nwifeinc\" , \"educ\" , \"exper\" , \"expersq\" , \"age\"  ,\"kidslt6\" , \"kidsge6\"), digits = 3 , model.names = c(\"LPM\"))\n\n\n\n\n\nLPM\n\n\n(Intercept)\n0.586 ***\n\n\n\n(0.154)   \n\n\nnwifeinc\n-0.003 *  \n\n\n\n(0.001)   \n\n\neduc\n0.038 ***\n\n\n\n(0.007)   \n\n\nexper\n0.039 ***\n\n\n\n(0.006)   \n\n\nexpersq\n-0.001 ** \n\n\n\n(0.000)   \n\n\nage\n-0.016 ***\n\n\n\n(0.002)   \n\n\nkidslt6\n-0.262 ***\n\n\n\n(0.034)   \n\n\nkidsge6\n0.013    \n\n\n\n(0.013)   \n\n\nN\n753        \n\n\nR2\n0.264    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb-1",
+    "href": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Omitted variable bias (OVB)",
+    "text": "Omitted variable bias (OVB)\n\nlibrary(readxl)\novb &lt;- read_excel(\"files/ovb.xlsx\")\nshort &lt;- lm(performance ~ bad_decision  , data = ovb)\nlong &lt;- lm(performance ~ bad_decision  + risky_firm, data = ovb)\nexport_summs(short, long, coefs = c(\"bad_decision\",\"risky_firm\"), digits = 3 , model.names = c(\"Short\",\"Long\") )\n\n\n\n\n\nShort\nLong\n\n\nbad_decision\n0.445 ***\n-0.384 ** \n\n\n\n(0.118)   \n(0.127)   \n\n\nrisky_firm\n        \n0.663 ***\n\n\n\n        \n(0.081)   \n\n\nN\n50        \n50        \n\n\nR2\n0.229    \n0.683    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#tobit-1",
+    "href": "teaching/empirical_finance/part_O7.html#tobit-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Tobit",
+    "text": "Tobit\nUsing Wooldridge’s example 17.2.\n\nlibrary(AER)\nlpm &lt;- lm(hours ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)\ntobit &lt;- tobit(hours ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)\nsummary(tobit)\n\n\nCall:\ntobit(formula = hours ~ nwifeinc + educ + exper + expersq + age + \n    kidslt6 + kidsge6, data = mroz)\n\nObservations:\n         Total  Left-censored     Uncensored Right-censored \n           753            325            428              0 \n\nCoefficients:\n              Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)  965.30528  446.43614   2.162 0.030599 *  \nnwifeinc      -8.81424    4.45910  -1.977 0.048077 *  \neduc          80.64561   21.58324   3.736 0.000187 ***\nexper        131.56430   17.27939   7.614 2.66e-14 ***\nexpersq       -1.86416    0.53766  -3.467 0.000526 ***\nage          -54.40501    7.41850  -7.334 2.24e-13 ***\nkidslt6     -894.02174  111.87804  -7.991 1.34e-15 ***\nkidsge6      -16.21800   38.64139  -0.420 0.674701    \nLog(scale)     7.02289    0.03706 189.514  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nScale: 1122 \n\nGaussian distribution\nNumber of Newton-Raphson Iterations: 4 \nLog-likelihood: -3819 on 9 Df\nWald-statistic: 253.9 on 7 Df, p-value: &lt; 2.22e-16"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-1",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nExample of homoscedasticity:"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-2",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nExample of heteroscedasticity:"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-3",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nTo give you more context, think in terms of the relationship that we’ve discussing \\(leverage=f(size)\\).\nIt is quite possible that small firms will have less options of leverage than large companies.\nThis means that a subsample of large companies will have higher variance in the leverage decisions (and thus the error terms) than the subsample of small firms.\nSo, we need to correct somehow the heteroskedasticity problem to find unbiased standard errors for the independent variable size in this model."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-4",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nThe solution to this problem is to estimate Robust standard errors. Basically, we will need to change the estimator of the standard error to an unbiased version.\nWe used to estimate (theoretical, populational):\n\\[var(\\hat\\beta_1) = \\frac{\\sum_{i=1}^n(x_1-\\bar{x}^2) \\sigma^2_i}{SST^2_x}\\]\nBut now we would estimate (sample).\n\\[var(\\hat\\beta_1) = \\frac{\\sum_{i=1}^n(x_1-\\bar{x}^2) \\mu^2_i}{SST^2_x}\\]\nThis is called White-Robust standard error or the Heteroscedasticity-Robust standard error and was first showed by White (1980)."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-5",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-5",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nBefore we estimate a model with robust standard errors, let’s visually check if there is heteroskedasticity in the errors of the model. I am using Wooldridge’s example 8.1.\n\nlibrary(dplyr)\nlibrary(sandwich)\nlibrary(lmtest) \nwage1&lt;-wage1  %&gt;%  mutate(marmale = case_when(female == 0 & married == 1 ~ 1,\n                                              female == 0 & married == 0 ~ 0,\n                                              female == 1 & married == 1 ~ 0,\n                                              female == 1 & married == 0 ~ 0) )\nwage1&lt;-wage1  %&gt;%  mutate(marrfem = case_when(female == 0 & married == 1 ~ 0,\n                                              female == 0 & married == 0 ~ 0,\n                                              female == 1 & married == 1 ~ 1,\n                                              female == 1 & married == 0 ~ 0) )\nwage1&lt;-wage1  %&gt;%  mutate(singfem = case_when(female == 0 & married == 1 ~ 0,\n                                              female == 0 & married == 0 ~ 0,\n                                              female == 1 & married == 1 ~ 0,\n                                              female == 1 & married == 0 ~ 1) )\nwage_t &lt;- lm(lwage ~ marmale + marrfem + singfem + educ + exper + expersq + tenure + tenursq , data = wage1)\n\nlibrary(tidyverse)\nlibrary(broom)\nfitted_data &lt;- augment(wage_t, data = wage1)\nggplot(fitted_data, aes(x = .fitted, y = .resid)) +  geom_point() + geom_smooth(method = \"lm\") + theme_solarized()"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-6",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-6",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nVisually, we do not see much variation in the error term throughout the x axis. Not much evidence of heteroskedasticity.\nBut let’s formally test it using the Breusch-Pagan test.\nThe H_0 of this test is for homoskedasticity. Thus, if we reject the test, heteroskedasticity is present.\nThe estimated p-value is 10.55%, above the usual levels. We can conclude that heteroskedasticity is not present is such model.\n\nbptest(wage_t)\n\n\n    studentized Breusch-Pagan test\n\ndata:  wage_t\nBP = 13.189, df = 8, p-value = 0.1055"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-7",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-7",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nLet’s estimate both standard errors to see their difference. Because we do not see much heteroskedasticity we should not see much difference in the estimated standard errors.\n\nwage_r &lt;- coeftest(wage_t, vcov = vcovHC)\nexport_summs(wage_t, wage_r, coefs = c(\"(Intercept)\", \"marmale\",\"marrfem\",\"singfem\",  \"educ\" , \"exper\" ,\"expersq\" , \"tenure\" , \"tenursq\" ) , digits = 4 ,model.names = c(\"Traditional S.E.\", \"Robust S.E.\"))\n\n\n\n\n\nTraditional S.E.\nRobust S.E.\n\n\n(Intercept)\n0.3214 ** \n0.3214 ** \n\n\n\n(0.1000)   \n(0.1115)   \n\n\nmarmale\n0.2127 ***\n0.2127 ***\n\n\n\n(0.0554)   \n(0.0582)   \n\n\nmarrfem\n-0.1983 ***\n-0.1983 ***\n\n\n\n(0.0578)   \n(0.0597)   \n\n\nsingfem\n-0.1104 *  \n-0.1104    \n\n\n\n(0.0557)   \n(0.0579)   \n\n\neduc\n0.0789 ***\n0.0789 ***\n\n\n\n(0.0067)   \n(0.0076)   \n\n\nexper\n0.0268 ***\n0.0268 ***\n\n\n\n(0.0052)   \n(0.0052)   \n\n\nexpersq\n-0.0005 ***\n-0.0005 ***\n\n\n\n(0.0001)   \n(0.0001)   \n\n\ntenure\n0.0291 ***\n0.0291 ***\n\n\n\n(0.0068)   \n(0.0074)   \n\n\ntenursq\n-0.0005 *  \n-0.0005    \n\n\n\n(0.0002)   \n(0.0003)   \n\n\nN\n526         \n526         \n\n\nR2\n0.4609    \n         \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#multicollinearity-1",
+    "href": "teaching/empirical_finance/part_O7.html#multicollinearity-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Multicollinearity",
+    "text": "Multicollinearity\nWe can use the following test to verify if multicollinearity exists: variance inflation factor (VIF).\nThere is no formal threshold to interpret the test, but 10 is usually accepted as appropriate.\nThat is, if there is one or more variables showing a VIF of 10 or higher, the interpretation is that there is evidence of multicollinearity."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#multicollinearity-2",
+    "href": "teaching/empirical_finance/part_O7.html#multicollinearity-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Multicollinearity",
+    "text": "Multicollinearity\nWe can observe below that the experience variables are multicolinear. This is expected since one is the squared root of the other.\n\nvif(wage_t)\n\n  marmale   marrfem   singfem      educ     exper   expersq    tenure   tenursq \n 2.393377  2.138194  1.860638  1.166333 17.185652 15.707207  8.100194  7.218910 \n\n\nAssuming that expersq is important to be included in the model, there is not much we can do in this example.\nSome scholars argue that we could ignore the multicollinearity altogether, others would argue to exclude expersq if possible.\nThe general most accepted solution is to keep multicolinear variables if they are control variables.\nThat is, if your focus is on any other variable, you can keep the multicolinear ones and move on. If the multicolinear variable is one of the interest variables, you might want to discuss dropping the other one."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#measurement-error-1",
+    "href": "teaching/empirical_finance/part_O7.html#measurement-error-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Measurement error",
+    "text": "Measurement error\n\ndata$w_lev1_noise &lt;- data$w_lev1 + runif(length((data$w_lev1)), min=-0.2, max= 0.2)\n\nfe &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\nfe_noise &lt;- plm(w_lev1_noise  ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\n\nexport_summs(fe, fe_noise, coefs = c(\"w_size1\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\"), digits = 3 , model.names = c(\"Size\",\"Size with noise\") )\n\n\n\n\n\nSize\nSize with noise\n\n\nw_size1\n0.076 ***\n0.076 ***\n\n\n\n(0.004)   \n(0.005)   \n\n\nw_div_ta\n-0.894 ***\n-0.681 ***\n\n\n\n(0.152)   \n(0.200)   \n\n\nw_fcf_ta\n0.453 ***\n0.603 ***\n\n\n\n(0.117)   \n(0.155)   \n\n\nw_roa\n-0.009 ***\n-0.010 ***\n\n\n\n(0.001)   \n(0.002)   \n\n\nw_tang_ta\n0.176 ***\n0.173 ***\n\n\n\n(0.019)   \n(0.025)   \n\n\nw_cash_ta\n-0.304 ***\n-0.339 ***\n\n\n\n(0.029)   \n(0.039)   \n\n\nnobs\n6885        \n6885        \n\n\nr.squared\n0.215    \n0.134    \n\n\nadj.r.squared\n0.086    \n-0.008    \n\n\nstatistic\n57.872    \n32.788    \n\n\np.value\n0.000    \n0.000    \n\n\ndeviance\n108.418    \n188.907    \n\n\ndf.residual\n5914.000    \n5914.000    \n\n\nnobs.1\n6885.000    \n6885.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#measurement-error-2",
+    "href": "teaching/empirical_finance/part_O7.html#measurement-error-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Measurement error",
+    "text": "Measurement error\n\n“Classical” random measurement error in x’s will bias coefficient estimates toward zero\n\n\\(x^{*} = x + \\sigma_{2}\\)\nImagine that \\(x^{*}\\) is a bunch of noise\nIt would not explain anything\nThus, your results are biased toward zero"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb-2",
+    "href": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Omitted variable bias (OVB)",
+    "text": "Omitted variable bias (OVB)\nIn this example, we can say that the OVB is \\(short = long + bias\\).\nThat is, \\(0.44535  = -0.38389 + bias\\), or \\(0.44535  = -0.38389 + 0.82924\\).\nWhich is the same as: \\(0.44535  = -0.38389 + phi (omitted = f(non-omitted)) * omega (beta\\; \\; omitted \\;in\\; long)\\)\n\novbmodel &lt;- lm(risky_firm ~bad_decision , data = ovb )\n# The OVB is 0.44535  = -0.38389 + 1.25146 * 0.66262\nmatrix1&lt;- summary(long)$coefficients\nmatrix2&lt;- summary(ovbmodel)$coefficients\n# Calculating OVB\nsum(matrix1[3,1] * matrix2[2,1]) \n\n[1] 0.8292402"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb-3",
+    "href": "teaching/empirical_finance/part_O7.html#omitted-variable-bias-ovb-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Omitted variable bias (OVB)",
+    "text": "Omitted variable bias (OVB)\nWe can see that omitting the variable “risky_firm” is problematic since it seems to explain the outcome of this regression.\n\ntapply(ovb$performance, ovb$risky_firm, summary)\n\n$`0`\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n 0.0400  0.0800  0.1300  0.1472  0.2000  0.3100 \n\n$`1`\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n 0.0500  0.4500  0.5800  0.6148  0.8000  0.9900 \n\ntapply(ovb$bad_decision, ovb$risky_firm, summary)\n\n$`0`\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n 0.0100  0.0500  0.0800  0.0976  0.1300  0.2000 \n\n$`1`\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n 0.1200  0.4400  0.6300  0.6056  0.8200  0.9600"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#logit-and-probit-1",
+    "href": "teaching/empirical_finance/part_O7.html#logit-and-probit-1",
+    "title": "Empirical Methods in Finance",
+    "section": "Logit and Probit",
+    "text": "Logit and Probit\nWe can change that assumption to a different function.\n\nA logit model assumes a logistic function (\\(G(Z)=\\frac{exp(z)}{[1+exp(z)]}\\))\nA probit model assumes a standard normal cumulative distribution function (\\(\\int_{-inf}^{+z}\\phi(v)dv\\))\n\nThe adjustment is something as follows.\n\\[P(y =1 | x) = G(\\beta_0 + \\beta_1 x_1+ \\beta_2 x_2 + \\beta_3 x_3)\\] Where G is either the logistic (logit) or the normal (probit) function.\nWe don’t need to memorize these functions, but we need to understand the adjustment that assuming a different function makes. Basically, **we will not predict negative or above 1 values anymore because the function adjusts at very low and very high values*."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#logit-and-probit-2",
+    "href": "teaching/empirical_finance/part_O7.html#logit-and-probit-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Logit and Probit",
+    "text": "Logit and Probit"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#logit-and-probit-3",
+    "href": "teaching/empirical_finance/part_O7.html#logit-and-probit-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Logit and Probit",
+    "text": "Logit and Probit\nLet’s estimate a logit and probit to compare with the LPM.\n\nlpm &lt;- lm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz)\nlogit &lt;- glm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz,family = binomial)\nprobit &lt;- glm(inlf ~ nwifeinc + educ + exper + expersq + age + kidslt6 + kidsge6  , data = mroz, family = binomial(link = probit))\nexport_summs(lpm , logit, probit, coefs = c( \"nwifeinc\" , \"educ\" , \"exper\" , \"expersq\" , \"age\"  ,\"kidslt6\" , \"kidsge6\", \"(Intercept)\"), digits = 4 , model.names = c(\"LPM\",\"Logit\",\"Probit\"))\n\n\n\n\n\nLPM\nLogit\nProbit\n\n\nnwifeinc\n-0.0034 *  \n-0.0213 *  \n-0.0120 *  \n\n\n\n(0.0014)   \n(0.0084)   \n(0.0049)   \n\n\neduc\n0.0380 ***\n0.2212 ***\n0.1309 ***\n\n\n\n(0.0074)   \n(0.0434)   \n(0.0254)   \n\n\nexper\n0.0395 ***\n0.2059 ***\n0.1233 ***\n\n\n\n(0.0057)   \n(0.0321)   \n(0.0188)   \n\n\nexpersq\n-0.0006 ** \n-0.0032 ** \n-0.0019 ** \n\n\n\n(0.0002)   \n(0.0010)   \n(0.0006)   \n\n\nage\n-0.0161 ***\n-0.0880 ***\n-0.0529 ***\n\n\n\n(0.0025)   \n(0.0146)   \n(0.0085)   \n\n\nkidslt6\n-0.2618 ***\n-1.4434 ***\n-0.8683 ***\n\n\n\n(0.0335)   \n(0.2036)   \n(0.1184)   \n\n\nkidsge6\n0.0130    \n0.0601    \n0.0360    \n\n\n\n(0.0132)   \n(0.0748)   \n(0.0440)   \n\n\n(Intercept)\n0.5855 ***\n0.4255    \n0.2701    \n\n\n\n(0.1542)   \n(0.8604)   \n(0.5081)   \n\n\nN\n753         \n753         \n753         \n\n\nR2\n0.2642    \n         \n         \n\n\nAIC\n865.7847    \n819.5303    \n818.6044    \n\n\nBIC\n907.4013    \n856.5228    \n855.5969    \n\n\nPseudo R2\n         \n0.3482    \n0.3494    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#logit-and-probit-4",
+    "href": "teaching/empirical_finance/part_O7.html#logit-and-probit-4",
+    "title": "Empirical Methods in Finance",
+    "section": "Logit and Probit",
+    "text": "Logit and Probit\nImportantly, in a LPM model, the coefficients have similar interpretations as usual. But logit and probit models lead to harder to interpret coefficients.\nIn fact, often we do not make any interpretation of these coefficients. Instead, we usually transform them to arrive at an interpretation that is similar to what we have in LPM.\nTo make the magnitudes of probit and logit roughly comparable, we can multiply the probit coefficients by 1.6, or we can multiply the logit estimates by .625.\nAlso, the probit slope estimates can be divided by 2.5 to make them comparable to the LPM estimates.\nAt the end of the day, the interpretation of the logit and probit outputs are similar to LPM’s."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#setup",
+    "href": "teaching/empirical_finance/part_O7.html#setup",
+    "title": "Empirical Methods in Finance",
+    "section": "Setup",
+    "text": "Setup\n\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(readxl) \nlibrary(jtools) # for nice tables of models - https://cran.r-project.org/web/packages/jtools/vignettes/summ.html#summ\ndata &lt;- read_excel(\"files/data.xls\")\n\nlibrary(dplyr)\ndata &lt;- data %&gt;% group_by(id )                %&gt;% dplyr::mutate(id_firm = cur_group_id())\ndata &lt;- data %&gt;% group_by(setor_economatica)  %&gt;% dplyr::mutate(id_ind = cur_group_id())\n\nlibrary(plm)\ndata &lt;- pdata.frame(data, index=c(\"id_firm\",\"year\"))\n\nattach(data)\n\n# variables\ndata$lev1 &lt;- Debt / (Debt + Equity.market.value)\ndata$lev2 &lt;- Debt / Total.Assets\ndata$wc_ta &lt;- wc  / Total.Assets \ndata$cash_ta &lt;- cash / Total.Assets\ndata$div_ta &lt;- Dividends / Total.Assets\ndata$fcf_ta &lt;- Free.cash.flow / Total.Assets\ndata$tang_ta &lt;- tangible / Total.Assets\ndata$roa2 &lt;- roa / 100\nlibrary(SciViews)\ndata$size1  &lt;- ln(Total.Assets)\n\n# winsor\nlibrary(DescTools)\ndata$w_lev1     &lt;- Winsorize(data$lev1   , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_lev2     &lt;- Winsorize(data$lev2   , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_wc_ta    &lt;- Winsorize(data$wc_ta  , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_cash_ta  &lt;- Winsorize(data$cash_ta, probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_size1    &lt;- Winsorize(data$size1  , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_fcf_ta   &lt;- Winsorize(data$fcf_ta , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_div_ta   &lt;- Winsorize(data$div_ta , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_roa      &lt;- Winsorize(data$roa    , probs = c(0.01, 0.99) , na.rm = TRUE) \ndata$w_tang_ta  &lt;- Winsorize(data$tang_ta, probs = c(0.01, 0.99) , na.rm = TRUE)"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#linear-probability-model-2",
+    "href": "teaching/empirical_finance/part_O7.html#linear-probability-model-2",
+    "title": "Empirical Methods in Finance",
+    "section": "Linear probability model",
+    "text": "Linear probability model\n\nThe relationship between the probability of labor force participation and educ is plotted in the figure below. Fixing the other independent variables at 50, 5, 30, 1 and 6, respectively, the predicted probability is negative until education equals 3.84 years. This is odd, since the model is predicting negative probability of employment given a set of specific values."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#linear-probability-model-3",
+    "href": "teaching/empirical_finance/part_O7.html#linear-probability-model-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Linear probability model",
+    "text": "Linear probability model\nAnother example. The model is predicting that going from 0 to 4 kids less than 6 years old reduces the probability of working by \\(4\\times 0.262 = 1.048\\), which is impossible since it is higher than 1.\nThat is, one important caveat of a linear probability model is that probabilities might falls off of expected empirical values. If this is troublesome to us, we might need a different solution."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-5-output",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-5-output",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#heteroscedasticity-8",
+    "href": "teaching/empirical_finance/part_O7.html#heteroscedasticity-8",
+    "title": "Empirical Methods in Finance",
+    "section": "Heteroscedasticity",
+    "text": "Heteroscedasticity\nNotice that the standard errors have changed a bit, but not too much in this example.\nUsually, the robust standard errors are larger than the traditional ones in empirical works, but they could be smaller.\nAlso notice that most of the independent variables have similar significance levels, but some have less significance.\nThis is expected, since the robust standard errors are expected to be larger (but again not always).\nA final note, the standard errors estimates here are a bit different than those in Wooldridge I am assuming this is due to the package that I am using.\nFinally, it is often common and most widely accepted to estimate the robust standard errors instead of the traditional ones."
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#multicollinearity-3",
+    "href": "teaching/empirical_finance/part_O7.html#multicollinearity-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Multicollinearity",
+    "text": "Multicollinearity\nLet’s investigate our previous OLS model. We see no evidence of multicollinearity.\n\nols &lt;- lm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data)\nvif(ols)\n\n                 GVIF Df GVIF^(1/(2*Df))\nw_size1      1.094364  1        1.046119\nw_fcf_ta     5.667425  1        2.380635\nw_roa        5.435571  1        2.331431\nw_tang_ta    1.277390  1        1.130217\nw_cash_ta    1.066064  1        1.032504\nw_div_ta     1.039222  1        1.019422\nfactor(year) 1.202165 22        1.004193"
+  },
+  {
+    "objectID": "teaching/empirical_finance/part_O7.html#measurement-error-3",
+    "href": "teaching/empirical_finance/part_O7.html#measurement-error-3",
+    "title": "Empirical Methods in Finance",
+    "section": "Measurement error",
+    "text": "Measurement error\n\ndata$w_size1_noise &lt;- data$w_size1 + runif(length((data$w_size1)), min=-2, max= 2)\n\nfe &lt;- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\nfe_noise &lt;- plm(w_lev1 ~ w_size1_noise + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model=\"within\")\n\nexport_summs(fe, fe_noise, coefs = c(\"w_size1\",\"w_size1_noise\",\"w_div_ta\",\"w_fcf_ta\",\"w_roa\",\"w_tang_ta\",\"w_cash_ta\"), digits = 3 , model.names = c(\"Size\",\"Size with noise\") )\n\n\n\n\n\nSize\nSize with noise\n\n\nw_size1\n0.076 ***\n        \n\n\n\n(0.004)   \n        \n\n\nw_size1_noise\n        \n0.011 ***\n\n\n\n        \n(0.001)   \n\n\nw_div_ta\n-0.894 ***\n-0.964 ***\n\n\n\n(0.152)   \n(0.155)   \n\n\nw_fcf_ta\n0.453 ***\n0.168    \n\n\n\n(0.117)   \n(0.119)   \n\n\nw_roa\n-0.009 ***\n-0.006 ***\n\n\n\n(0.001)   \n(0.001)   \n\n\nw_tang_ta\n0.176 ***\n0.194 ***\n\n\n\n(0.019)   \n(0.019)   \n\n\nw_cash_ta\n-0.304 ***\n-0.308 ***\n\n\n\n(0.029)   \n(0.030)   \n\n\nnobs\n6885        \n6885        \n\n\nr.squared\n0.215    \n0.174    \n\n\nadj.r.squared\n0.086    \n0.038    \n\n\nstatistic\n57.872    \n44.370    \n\n\np.value\n0.000    \n0.000    \n\n\ndeviance\n108.418    \n114.146    \n\n\ndf.residual\n5914.000    \n5914.000    \n\n\nnobs.1\n6885.000    \n6885.000    \n\n\n*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05."
   }
 ]
