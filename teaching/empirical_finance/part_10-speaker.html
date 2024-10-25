@@ -655,14 +655,31 @@ Henrique C. Martins
 <h2>Example</h2>
 <p>OLS</p>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Stata</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">R</a></li><li><a href="#tabset-1-2">Stata</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
-<span id="cb1-2"><a></a><span class="kw">reg</span> lwage educ </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a></a>library(haven)  </span>
+<span id="cb1-2"><a></a><span class="kw">data</span> &lt;- read_dta(<span class="st">"files/mroz.dta"</span>)</span>
+<span id="cb1-3"><a></a><span class="kw">model</span> &lt;- lm(lwage ~ educ, <span class="kw">data</span> = <span class="kw">data</span>)</span>
+<span id="cb1-4"><a></a>summary(<span class="kw">model</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>command library is unrecognized
+r(199);
+
+r(199);</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Stata</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
+<span id="cb3-2"><a></a><span class="kw">reg</span> lwage educ </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Source |       SS           df       MS      Number of obs   =       428
@@ -688,14 +705,32 @@ Henrique C. Martins
 <h2>Example</h2>
 <p>The IV estimate of the return to education is 5.9%, which is barely more than one-half of the OLS estimate. This suggests that the OLS estimate is too high and is consistent with omitted ability bias.</p>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Stata</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">R</a></li><li><a href="#tabset-2-2">Stata</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
-<span id="cb3-2"><a></a><span class="kw">ivreg</span> lwage (educ =fatheduc ) , first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a></a>library(haven)  </span>
+<span id="cb5-2"><a></a>library(AER)    # For IV regression</span>
+<span id="cb5-3"><a></a><span class="kw">data</span> &lt;- read_dta(<span class="st">"files/mroz.dta"</span>)</span>
+<span id="cb5-4"><a></a>model_iv &lt;- <span class="kw">ivreg</span>(lwage ~ educ | fatheduc, <span class="kw">data</span> = <span class="kw">data</span>)</span>
+<span id="cb5-5"><a></a>summary(model_iv, diagnostics = TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>command library is unrecognized
+r(199);
+
+r(199);</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Stata</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a></a><span class="kw">use</span> files/mroz.dta , <span class="kw">clear</span></span>
+<span id="cb7-2"><a></a><span class="kw">ivreg</span> lwage (educ =fatheduc ) , first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>First-stage regressions

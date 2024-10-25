@@ -443,8 +443,28 @@ One more tip,
 ## Example  {.smaller background="#95a9c7"}
 
 OLS
-
+ 
 ::: panel-tabset
+
+### R
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+library(haven)  
+data <- read_dta("files/mroz.dta")
+model <- lm(lwage ~ educ, data = data)
+summary(model)
+```  
+
 
 ### Stata
 
@@ -477,6 +497,26 @@ reg lwage educ
 The IV estimate of the return to education is 5.9%, which is barely more than one-half of the  OLS estimate. This suggests that the OLS estimate is too high and is consistent with omitted ability bias.
 
 ::: panel-tabset
+
+### R
+
+```{stata}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output: true
+#| output-location: default
+#| code-fold: true
+#| code-line-numbers: true
+#| eval: true
+#| code-summary: "Stata"
+library(haven)  
+library(AER)    # For IV regression
+data <- read_dta("files/mroz.dta")
+model_iv <- ivreg(lwage ~ educ | fatheduc, data = data)
+summary(model_iv, diagnostics = TRUE)
+```  
 
 ### Stata
 
