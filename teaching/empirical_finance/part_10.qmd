@@ -458,7 +458,7 @@ OLS
 #| code-fold: true
 #| code-line-numbers: true
 #| eval: true
-#| code-summary: "Stata"
+#| code-summary: "R"
 library(haven)  
 data <- read_dta("files/mroz.dta")
 model <- lm(lwage ~ educ, data = data)
@@ -510,7 +510,7 @@ The IV estimate of the return to education is 5.9%, which is barely more than on
 #| code-fold: true
 #| code-line-numbers: true
 #| eval: true
-#| code-summary: "Stata"
+#| code-summary: "R"
 library(haven)  
 library(AER)    # For IV regression
 data <- read_dta("files/mroz.dta")

@@ -660,7 +660,7 @@ Henrique C. Martins
 <div id="tabset-1-1">
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
-<summary>Stata</summary>
+<summary>R</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(haven)  </span>
 <span id="cb1-2"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/mroz.dta"</span>)</span>
 <span id="cb1-3"><a></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(lwage <span class="sc">~</span> educ, <span class="at">data =</span> data)</span>
@@ -725,7 +725,7 @@ F-statistic: 56.93 on 1 and 426 DF,  p-value: 2.761e-13</code></pre>
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
-<summary>Stata</summary>
+<summary>R</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(haven)  </span>
 <span id="cb5-2"><a></a><span class="fu">library</span>(AER)    <span class="co"># For IV regression</span></span>
 <span id="cb5-3"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/mroz.dta"</span>)</span>
