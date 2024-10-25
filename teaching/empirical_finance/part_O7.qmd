@@ -1099,7 +1099,7 @@ data$w_lev1_noise <- data$w_lev1 + runif(length((data$w_lev1)), min=-0.2, max= 0
 fe <- plm(w_lev1 ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
 fe_noise <- plm(w_lev1_noise  ~ w_size1 + w_fcf_ta + w_roa + w_tang_ta + w_cash_ta + w_div_ta + factor(year) , data = data, model="within")
 
-export_summs(fe, fe_noise, coefs = c("w_size1","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta"), digits = 3 , model.names = c("Size","Size with noise") )
+export_summs(fe, fe_noise, coefs = c("w_size1","w_div_ta","w_fcf_ta","w_roa","w_tang_ta","w_cash_ta"), digits = 3 , model.names = c("Size","Lev with noise") )
 ```
 
 ##  Measurement error {.smaller}

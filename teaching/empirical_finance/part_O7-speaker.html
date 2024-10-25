@@ -1847,19 +1847,19 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <span id="cb21-3"><a></a>fe <span class="ot">&lt;-</span> <span class="fu">plm</span>(w_lev1 <span class="sc">~</span> w_size1 <span class="sc">+</span> w_fcf_ta <span class="sc">+</span> w_roa <span class="sc">+</span> w_tang_ta <span class="sc">+</span> w_cash_ta <span class="sc">+</span> w_div_ta <span class="sc">+</span> <span class="fu">factor</span>(year) , <span class="at">data =</span> data, <span class="at">model=</span><span class="st">"within"</span>)</span>
 <span id="cb21-4"><a></a>fe_noise <span class="ot">&lt;-</span> <span class="fu">plm</span>(w_lev1_noise  <span class="sc">~</span> w_size1 <span class="sc">+</span> w_fcf_ta <span class="sc">+</span> w_roa <span class="sc">+</span> w_tang_ta <span class="sc">+</span> w_cash_ta <span class="sc">+</span> w_div_ta <span class="sc">+</span> <span class="fu">factor</span>(year) , <span class="at">data =</span> data, <span class="at">model=</span><span class="st">"within"</span>)</span>
 <span id="cb21-5"><a></a></span>
-<span id="cb21-6"><a></a><span class="fu">export_summs</span>(fe, fe_noise, <span class="at">coefs =</span> <span class="fu">c</span>(<span class="st">"w_size1"</span>,<span class="st">"w_div_ta"</span>,<span class="st">"w_fcf_ta"</span>,<span class="st">"w_roa"</span>,<span class="st">"w_tang_ta"</span>,<span class="st">"w_cash_ta"</span>), <span class="at">digits =</span> <span class="dv">3</span> , <span class="at">model.names =</span> <span class="fu">c</span>(<span class="st">"Size"</span>,<span class="st">"Size with noise"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a></a><span class="fu">export_summs</span>(fe, fe_noise, <span class="at">coefs =</span> <span class="fu">c</span>(<span class="st">"w_size1"</span>,<span class="st">"w_div_ta"</span>,<span class="st">"w_fcf_ta"</span>,<span class="st">"w_roa"</span>,<span class="st">"w_tang_ta"</span>,<span class="st">"w_cash_ta"</span>), <span class="at">digits =</span> <span class="dv">3</span> , <span class="at">model.names =</span> <span class="fu">c</span>(<span class="st">"Size"</span>,<span class="st">"Lev with noise"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table id="tab:unnamed-chunk-15" class="huxtable" data-quarto-postprocess="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
 <td data-quarto-table-cell-role="th" style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Size</td>
-<td data-quarto-table-cell-role="th" style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Size with noise</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Lev with noise</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_size1</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.076 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.076 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.075 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -1869,27 +1869,27 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_div_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.894 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.681 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.860 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.152)&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.200)&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.197)&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_fcf_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.453 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.603 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.455 **&nbsp;</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.117)&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.155)&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.153)&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_roa</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.009 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.010 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.009 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -1899,7 +1899,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_tang_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.176 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.173 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.200 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -1909,12 +1909,12 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_cash_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.304 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.339 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.277 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.029)&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.039)&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">(0.038)&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">nobs</td>
@@ -1924,17 +1924,17 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">r.squared</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.215&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.134&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.141&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">adj.r.squared</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.086&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.008&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.000&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">statistic</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">57.872&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">32.788&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">34.646&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">p.value</td>
@@ -1944,7 +1944,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">deviance</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">108.418&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">188.907&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">183.893&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">df.residual</td>
@@ -2008,7 +2008,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_size1_noise</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.011 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.012 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -2018,7 +2018,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_div_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.894 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.964 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.973 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -2028,7 +2028,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_fcf_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.453 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.168&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.180&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -2048,7 +2048,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_tang_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.176 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.194 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.196 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -2058,7 +2058,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">w_cash_ta</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.304 ***</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.308 ***</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.305 ***</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td>
@@ -2073,17 +2073,17 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">r.squared</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.215&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.174&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.175&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">adj.r.squared</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.086&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.038&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.040&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">statistic</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">57.872&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">44.370&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">44.851&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">p.value</td>
@@ -2093,7 +2093,7 @@ factor(year) 1.202165 22        1.004193</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">deviance</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">108.418&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">114.146&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">113.931&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">df.residual</td>
