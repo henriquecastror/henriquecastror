@@ -661,16 +661,31 @@ Henrique C. Martins
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a></a>library(haven)  </span>
-<span id="cb1-2"><a></a><span class="kw">data</span> &lt;- read_dta(<span class="st">"files/mroz.dta"</span>)</span>
-<span id="cb1-3"><a></a><span class="kw">model</span> &lt;- lm(lwage ~ educ, <span class="kw">data</span> = <span class="kw">data</span>)</span>
-<span id="cb1-4"><a></a>summary(<span class="kw">model</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(haven)  </span>
+<span id="cb1-2"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/mroz.dta"</span>)</span>
+<span id="cb1-3"><a></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(lwage <span class="sc">~</span> educ, <span class="at">data =</span> data)</span>
+<span id="cb1-4"><a></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>command library is unrecognized
-r(199);
+<pre><code>
+Call:
+lm(formula = lwage ~ educ, data = data)
 
-r(199);</code></pre>
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.10256 -0.31473  0.06434  0.40081  2.10029 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -0.1852     0.1852  -1.000    0.318    
+educ          0.1086     0.0144   7.545 2.76e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.68 on 426 degrees of freedom
+  (325 observations deleted due to missingness)
+Multiple R-squared:  0.1179,    Adjusted R-squared:  0.1158 
+F-statistic: 56.93 on 1 and 426 DF,  p-value: 2.761e-13</code></pre>
 </div>
 </div>
 </div>
@@ -711,17 +726,37 @@ r(199);</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Stata</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a></a>library(haven)  </span>
-<span id="cb5-2"><a></a>library(AER)    # For IV regression</span>
-<span id="cb5-3"><a></a><span class="kw">data</span> &lt;- read_dta(<span class="st">"files/mroz.dta"</span>)</span>
-<span id="cb5-4"><a></a>model_iv &lt;- <span class="kw">ivreg</span>(lwage ~ educ | fatheduc, <span class="kw">data</span> = <span class="kw">data</span>)</span>
-<span id="cb5-5"><a></a>summary(model_iv, diagnostics = TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(haven)  </span>
+<span id="cb5-2"><a></a><span class="fu">library</span>(AER)    <span class="co"># For IV regression</span></span>
+<span id="cb5-3"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"files/mroz.dta"</span>)</span>
+<span id="cb5-4"><a></a>model_iv <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(lwage <span class="sc">~</span> educ <span class="sc">|</span> fatheduc, <span class="at">data =</span> data)</span>
+<span id="cb5-5"><a></a><span class="fu">summary</span>(model_iv, <span class="at">diagnostics =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>command library is unrecognized
-r(199);
+<pre><code>
+Call:
+ivreg(formula = lwage ~ educ | fatheduc, data = data)
 
-r(199);</code></pre>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.0870 -0.3393  0.0525  0.4042  2.0677 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)  0.44110    0.44610   0.989   0.3233  
+educ         0.05917    0.03514   1.684   0.0929 .
+
+Diagnostic tests:
+                 df1 df2 statistic p-value    
+Weak instruments   1 426     88.84  &lt;2e-16 ***
+Wu-Hausman         1 425      2.47   0.117    
+Sargan             0  NA        NA      NA    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6894 on 426 degrees of freedom
+Multiple R-Squared: 0.09344,    Adjusted R-squared: 0.09131 
+Wald test: 2.835 on 1 and 426 DF,  p-value: 0.09294 </code></pre>
 </div>
 </div>
 </div>
