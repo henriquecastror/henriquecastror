@@ -1,5 +1,5 @@
 ---
-title: "ABS 2024 list"
+title: "list"
 slide-format: revealjs
 comments: false
 toc: true
@@ -8,49 +8,6 @@ freeze: true
 
 
 
-This is the list of journals listed as ABS4\*, ABS4, ABS3 or ABS2.
 
-**Updated in: 04 November 2024**
-
-## ABS4*
-
-```{r, echo=FALSE, warning= FALSE}
-library(readxl)
-smart <- read_excel("abs44.xlsx")
-knitr::kable(head(smart[, 1:3],1000))
-```
-
-## ABS4
-
-```{r, echo=FALSE, warning= FALSE}
-library(readxl)
-smart <- read_excel("abs4.xlsx")
-knitr::kable(head(smart[, 1:3],1000))
-```
-
-## ABS3
-
-```{r, echo=FALSE, warning= FALSE}
-library(readxl)
-smart <- read_excel("abs3.xlsx")
-knitr::kable(head(smart[, 1:3],1000))
-```
-
-## ABS2
-
-```{r, echo=FALSE, warning= FALSE}
-library(readxl)
-smart <- read_excel("abs2.xlsx")
-knitr::kable(head(smart[, 1:3],1000))
-```
-
-
-## ABS1
-
-```{r, echo=FALSE, warning= FALSE}
-library(readxl)
-smart <- read_excel("abs1.xlsx")
-knitr::kable(head(smart[, 1:3],1000))
-```
 
 
