@@ -30,18 +30,15 @@ library(roll)
 library(tidyr)
 library(tidyquant)
 library(yfR)
+library(shiny)
+
 
 # Shiny UI and Server functions
 ui <- fluidPage(
-  titlePanel("Cumulative Returns of Ibov and Selic"),
   sidebarLayout(
     sidebarPanel(
-      helpText("Select the date range for analysis"),
-      
-      # Date inputs for start and end date
       dateInput("start_date", "Start Date:",
                 value = '1995-01-01', format = "yyyy-mm-dd"),
-      
       dateInput("end_date", "End Date:",
                 value = Sys.Date(), format = "yyyy-mm-dd")
     ),
