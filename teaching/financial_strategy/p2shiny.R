@@ -1,22 +1,3 @@
----
-title: "Shiny Cumulative Return Plot"
-output: 
-  html_document:
-    self_contained: true
-runtime: shiny
----
-
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: false
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
 
 library(downloader)
 library(dplyr)
@@ -33,7 +14,7 @@ library(yfR)
 library(shiny)
 
 
-# Shiny UI and Server functions
+
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
@@ -101,13 +82,6 @@ server <- function(input, output) {
 
 shinyApp(ui, server)
 
-```
-
-
-
-```{r}
-#| echo: false
 
 #rsconnect::deployApp('p2shiny.qmd')
 
-```
