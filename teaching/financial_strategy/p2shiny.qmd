@@ -6,6 +6,7 @@ output:
 runtime: shiny
 ---
 
+
 ```{r}
 #| warning: false
 #| message: false
@@ -16,6 +17,7 @@ runtime: shiny
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
+
 
 
 library(downloader)
@@ -103,3 +105,11 @@ shinyApp(ui, server)
 
 ```
 
+
+
+```{r}
+#| echo: false
+
+#rsconnect::deployApp('p2shiny.qmd')
+
+```
