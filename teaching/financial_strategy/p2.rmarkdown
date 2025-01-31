@@ -72,7 +72,6 @@ library(yfR)
 
 
 
-
 # Intro {visibility="hidden"}
 
 ## {background-image="figs/ch10.png" background-size="1300px"}
@@ -173,7 +172,6 @@ Notice the volatility next slide.
 ### R
 
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -239,9 +237,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 
@@ -301,7 +297,6 @@ plt.show()
 ```
 
 
-
 :::
 
 
@@ -320,7 +315,6 @@ plt.show()
 ::: panel-tabset
 
 ### R
-
 
 
 ```{r}
@@ -394,9 +388,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 
@@ -461,7 +453,6 @@ plt.show()
 ```
 
 
-
 :::
 
 
@@ -483,7 +474,6 @@ plt.show()
 ::: panel-tabset
 
 ### R
-
 
 
 ```{r}
@@ -557,9 +547,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 
@@ -613,7 +601,6 @@ plt.xlabel('Date', fontsize=13)
 plt.legend(loc='upper left')
 plt.show()
 ```
-
 
 
 :::
@@ -766,7 +753,6 @@ $$SD[R] = (0.1225) ^{0.5} = 35\%$$
 ### R
 
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -788,9 +774,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 ```{python}
@@ -822,7 +806,6 @@ plt.show()
 
 
 
-
 ::: 
 
 
@@ -845,7 +828,6 @@ plt.show()
 ::: {.panel-tabset}
 
 ### R 
-
 
 
 ```{r}
@@ -873,9 +855,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 ```{python}
@@ -910,7 +890,6 @@ plt.show()
 ```
 
 
-
 ::: 
 
 
@@ -935,7 +914,6 @@ plt.show()
 ::: {.panel-tabset}
 
 ### R 
-
 
 
 ```{r}
@@ -968,9 +946,7 @@ ggplotly(p)
 
 
 
-
 ###  Python
-
 
 
 ```{python}
@@ -1010,7 +986,6 @@ plt.show()
 
 
 
-
 :::
 
 
@@ -1027,7 +1002,6 @@ plt.show()
 ::: {.panel-tabset}
 
 ### R 
-
 
 
 ```{r}
@@ -1050,9 +1024,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 
@@ -1078,7 +1050,6 @@ plt.show()
 ```
 
 
-
 :::
 
 
@@ -1096,7 +1067,6 @@ plt.show()
 ::: {.panel-tabset}
 
 ### R 
-
 
 
 
@@ -1124,9 +1094,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 
@@ -1153,7 +1121,6 @@ plt.show()
 ```
 
 
-
 :::
 
 
@@ -1174,7 +1141,6 @@ plt.show()
 ::: {.panel-tabset}
 
 ### R
-
 
 
 ```{r}
@@ -1207,9 +1173,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 ```{python}
@@ -1245,7 +1209,6 @@ plt.legend(loc='upper left', fontsize=20)
 plt.xlim(-0.1, 0.1)
 plt.show()
 ```
-
 
 
 
@@ -1542,7 +1505,6 @@ Remember the (arithmetic) average was 12% (in previous slide).
 ### R
 
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -1597,9 +1559,7 @@ p
 
 
 
-
 ### Python
-
 
 
 ```{python}
@@ -1643,7 +1603,6 @@ plt.xlabel("Average standard deviation (daily returns)", fontsize=15)
 plt.ylabel("Average return (daily returns)", fontsize=15)
 plt.show()
 ```
-
 
 
 
@@ -1746,7 +1705,6 @@ The volatility will therefore decline until only the systematic risk remains.
 **That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it.** It is like free lunch.
 
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -1812,7 +1770,6 @@ p<-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +
              title ="Diversification benefits - Ibov vs. Weighted sd of individual stocks") +   theme_solarized()
 ggplotly(p)
 ```
-
 
 
 
@@ -2047,7 +2004,6 @@ Source: Brealey, Myers and Allen (13ed)
 ### R 
 
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -2074,9 +2030,7 @@ ggplotly(p)
 
 
 
-
 ### Python
-
 
 
 ```{python}
@@ -2106,7 +2060,6 @@ ax.set_title("Equity Risk Premium (ERP) in Brazil", fontsize=25)
 ax.text(0.5, -0.1, "Source: https://ceqef.fgv.br/node/594", transform=ax.transAxes, ha="center")
 plt.show()
 ```
-
 
 
 
