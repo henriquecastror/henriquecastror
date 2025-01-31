@@ -2,17 +2,26 @@
 title: "Part 1 (ch24) Questions Numeric"
 ---
 
-::: {.callout-important}
-**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+
+::: {style="text-align: right"}
+[Go to next Chapter](p2tf.qmd){.btn .btn-primary .btn role="button" data-toggle="tool}
 :::
 
 
+
+::: {.callout-note}
+### For students
+
+**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
+
+**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+
+:::
+
+
+___
+
 ## Question 1
-
-
-
-
-
 
 ```{r}
 #| eval: true
@@ -172,3 +181,7 @@ ___
         crossorigin="anonymous"
         async>
 </script>
+
+::: {style="text-align: right"}
+[Go to next Chapter](p2tf.qmd){.btn .btn-primary .btn role="button" data-toggle="tool}
+:::

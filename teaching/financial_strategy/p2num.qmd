@@ -2,9 +2,21 @@
 title: "Part 2 (ch10) Questions Numeric"
 ---
 
-::: {.callout-important}
-**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p1tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p3tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
 :::
+
+::: {.callout-note}
+### For students
+
+**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
+
+**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+
+:::
+
 
 
 ## Question 1
@@ -93,3 +105,8 @@ ___
         crossorigin="anonymous"
         async>
 </script>
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p1tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p3tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+:::
