@@ -1,0 +1,13 @@
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var likeButton = document.getElementById("like-button");
+    var likeCount = document.getElementById("like-count");
+    var count = 0;
+
+    likeButton.addEventListener("click", function() {
+      count++;
+      likeCount.textContent = count;
+    });
+  });
+</script>

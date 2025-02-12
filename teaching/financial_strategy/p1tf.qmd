@@ -67,6 +67,19 @@ cat("27", fitb("T", num = FALSE, ignore_case = TRUE), "The two advantages of goi
 cat("28", fitb("T", num = FALSE, ignore_case = TRUE), "Before an IPO, the company prepares the final registration statement and final prospectus containing all the details of the IPO, including the number of shares offered and the offer price.", "\n\n")
 cat("29", fitb("F", num = FALSE, ignore_case = TRUE), "A common practice of early investors in private companies is to stay for a long time, i.e., years after the company's IPO.", "\n\n")
 cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "Institutional investors, like big Banks, who buy equity in small private firms are called angel investors.", "\n\n")
+cat("31", fitb("T", num = FALSE, ignore_case = TRUE), "A follow-on offering occurs when a publicly traded company issues additional shares after its IPO.", "\n\n")
+cat("32", fitb("F", num = FALSE, ignore_case = TRUE), "An IPO always increases the wealth of existing shareholders.", "\n\n")
+cat("33", fitb("T", num = FALSE, ignore_case = TRUE), "Investment banks play a crucial role in pricing and marketing new stock issues.", "\n\n")
+cat("34", fitb("T", num = FALSE, ignore_case = TRUE), "The aftermarket performance of an IPO is often unpredictable and subject to market conditions (but many IPOs have a positive first-day return).", "\n\n")
+cat("35", fitb("F", num = FALSE, ignore_case = TRUE), "A company must always conduct an IPO to raise equity capital.", "\n\n")
+cat("36", fitb("T", num = FALSE, ignore_case = TRUE), "The Dutch auction method allows investors to bid for shares in an IPO, determining the final offer price.", "\n\n")
+cat("37", fitb("T", num = FALSE, ignore_case = TRUE), "A dual-class share structure allows company founders to maintain control even after going public.", "\n\n")
+cat("38", fitb("T", num = FALSE, ignore_case = TRUE), "Regulatory filings must be submitted before an IPO.", "\n\n")
+cat("39", fitb("F", num = FALSE, ignore_case = TRUE), "IPOs eliminate financial risk for company founders and early investors.", "\n\n")
+cat("40", fitb("T", num = FALSE, ignore_case = TRUE), "The CVM requires full disclosure of financials and risks in an IPO prospectus.", "\n\n")
+cat("41", fitb("F", num = FALSE, ignore_case = TRUE), "The stock price of a newly public company is always stable in the first year post-IPO.", "\n\n")
+cat("42", fitb("T", num = FALSE, ignore_case = TRUE), "Liquidity risk is one of the major concerns for investors in newly public companies.", "\n\n")
+
 
 ```
 

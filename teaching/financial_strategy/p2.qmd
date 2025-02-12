@@ -165,7 +165,7 @@ Notice the volatility next slide.
 
 ## {.smaller background="#f2f5ce"} 
 
-**Insights from Brazil (1995-2023).**
+**Insights from Brazil**
 
 ::: panel-tabset
 
@@ -196,7 +196,7 @@ library(yfR)
 
 #Ibov
 stock<-'^BVSP' 
-start<-'1995-01-01' 
+start<-'2000-01-01' 
 end   <- Sys.Date() 
 ibov <- yf_get(tickers = stock,first_date = start,last_date = end)
 ibov<- ibov[order(as.numeric(ibov$ref_date)),]
@@ -211,7 +211,7 @@ selic <- na.omit(selic)
 selic$selic <- selic$selic / (252* 100)
 
 # Cumulative return Selic
-return_selic <- data.frame(nrow(selic):1)
+return_selic <- data.frame(selic_return = rep(NA, nrow(selic)))
 colnames(return_selic)<- "selic_return"
 for(i in (2:nrow(selic))) {
 return_selic[i,1] <- Return.cumulative( selic$selic[1:i] )
@@ -227,8 +227,9 @@ p <- ggplot(df, aes(ref_date)) +
 geom_line(aes(y = Ibov_return, colour = "Ibov")) +
 geom_line(aes(y = selic_return, colour = "Selic")) +
 labs(y='Cumulative return (daily)') + theme_solarized() +
-  ggtitle("Cumulative Returns  Ibov, and Selic (1995-2023)")
+  ggtitle("Cumulative Returns  Ibov, and Selic")
 ggplotly(p)
+
 ```
 
 
@@ -257,7 +258,7 @@ import pandas as pd
 import yfinance as yf
 
 stock = "^BVSP"
-start = "1995-01-01"
+start = "2000-01-01"
 end = pd.Timestamp.now()
 
 # Get data for IBOV
@@ -287,7 +288,7 @@ fig, ax = plt.subplots(figsize=(10,5))
 ax.plot(df["ref_date"], df["Ibov_return"], label='Ibov')
 ax.plot(df["ref_date"], df["selic_return"], label='Selic')
 plt.ylabel('Cumulative return (daily)', fontsize=13)
-plt.title('Cumulative Returns Ibov and Selic (1995-2023)', fontsize=15)
+plt.title('Cumulative Returns Ibov and Selic ', fontsize=15)
 plt.xlabel('Date', fontsize=13)
 plt.legend(loc='upper left')
 plt.show()
@@ -750,6 +751,16 @@ $$SD[R] = (0.1225) ^{0.5} = 35\%$$
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
+
+stock <- '^BVSP'
+start <- '2010-01-01'  # Adjusted start date
+end <- Sys.Date()   # Adjusted end date
+ibov <- yf_get(tickers = stock, first_date = start, last_date = end)
+ibov <- ibov[order(as.numeric(ibov$ref_date)),]
+
+# Cumulative return Ibov
+ibov$Ibov_return <- ibov$cumret_adjusted_prices - 1
+
 p<-ggplot(ibov,aes(ibov$ret_closing_prices))+
         geom_histogram(color='#006600',
                        bins = 100) + 
@@ -775,6 +786,11 @@ ggplotly(p)
 #| code-summary: "Python"
 #| collapse: true
 #| eval: true
+import numpy as np
+import matplotlib.pyplot as plt
+import yfinance as yf
+start = "2010-01-01"
+end = pd.Timestamp.now()
 ibov = yf.download(stock, start=start, end=end)
 ibov = ibov.reset_index()
 ibov = ibov.sort_values("Date")
@@ -1971,7 +1987,7 @@ Source: Brealey, Myers and Allen (13ed)
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
-url <- "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
+url <- "https://ceqef.fgv.br/sites/default/files/2025-01/Serie%20de%20Equity%20Risk%20Premium%20Dezembro%202024.xlsx"
 download(url, dest="files/epr.xlsx", mode="wb") 
 data <- read_excel("files/epr.xlsx", col_types = c("date","numeric") )
 data <- data[2:nrow(data),1:2]
@@ -1981,7 +1997,7 @@ p<-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+
   labs(y = "Equity Risk Premium (ERP)", 
        x = "", 
        title = "Equity Risk Premium (ERP) in Brazil" , 
-       caption = "Source: https://ceqef.fgv.br/node/594" )
+       caption = "Source: https://ceqef.fgv.br/banco-de-dados" )
 ggplotly(p)
 ```
 

@@ -106,8 +106,6 @@ seriesbpost <- round(seriesbpre +  runif(1, 10,50),3 )
 seriescpre <- round(seriesbpost + runif(1, 50,70),3 )
 seriescpost <- round(seriescpre +  runif(1, 50,70),3 )
 
-
-
 ```
 
 
@@ -161,6 +159,64 @@ Round B: `r round(seriesbpre ,3)` /  `r round( seriesbpost   ,3) ` *   `r round(
 Round C: `r round(seriescpre ,3)` /  `r round( seriescpost   ,3) ` *   `r round( seriesapre   ,3)` /  `r round( seriesapost   ,3)` * `r round(seriesbpre ,3)` /  `r round( seriesbpost   ,3) ` = `r round( 100*(seriescpre / seriescpost * seriesapre / seriesapost * seriesbpre / seriesbpost)  ,3) `
 
 
+
+
+
+
+___
+
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+v1 <-  round( runif(1, 0.2,0.3) ,3 )
+v2 <-  round( runif(1, 1,2) ,3 )
+
+v3 <-  round( runif(1, 1,2) ,3 )
+v4 <-  round( runif(1, 5,6) ,3 )
+v5 <-  round( runif(1, 2,3) ,3 )
+
+
+```
+
+
+## Question 3
+
+You founded a firm three years ago. You started with  $ **`r  round( v1  ,3) `** million, which returned to you   **`r  round( v2 ,3) `** million shares. Since then, you have sold an additional  **`r  round( v3 ,3) `** million shares to angel investors. 
+
+You are about to raise more capital from a VC firm, which wants to invest $**`r  round( v4 ,3)  `** million in exchange of **`r  round( v5 ,3) `** million new shares .
+
+What is the post-money valuation (in million)? 
+
+Answer: `r fitb( round( ((v2 + v3 + v5) / v5) * v4   ,3)) `
+
+What percentage of shares the VC will own? 
+
+Answer: `r fitb( round(   v5/ (v2 + v3 + v5) * 100   ,3)) `
+
+
+
+
+**Answer:** 
+
+Part 1
+
+- Final Number of shares: `r round(      (v2 + v3 + v5)  , 3  ) `
+
+- Price per share (last round): `r round(  (v4 / v5)  , 3  ) `
+
+- Post-money valuation (in million): `r round(      (v2 + v3 + v5)  , 3  ) ` * `r round(  (v4 / v5)  , 3  ) ` =  `r round(      (v2 + v3 + v5) * (v4 / v5)  , 3  ) `
+
+Part 2
+
+- `r  round(   v5  ,3)  `  / `r round(    (v2 + v3 + v5)   ,3) `  =  `r round(   v5/ (v2 + v3 + v5) * 100   ,3) ` % 
+ 
 
 ___
 
