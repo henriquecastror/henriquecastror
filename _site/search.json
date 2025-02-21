@@ -9181,7 +9181,7 @@
     "href": "teaching/index.html",
     "title": "Teaching resources",
     "section": "",
-    "text": "Period\nCourse\n\n\n\n\n2025/01\nFinancial Strategy\n\n\n2024/02\nEmpirical Methods for Finance\n\n\n2024/01\nFinancial Strategy\n\n\n2024/01 Summer\nFinancial Strategy\n\n\n2023/02\nEconometrics for Finance (DPA)\n\n\n\nFinancial Strategy\n\n\n\nCausal Inference\n\n\n2023/02 Winter\nFinancial Strategy\n\n\n2023/01\nFinancial Strategy\n\n\n\nESG & Institutional Investment\n\n\n2023/01 Summer\nFinancial Strategy\n\n\n2022/02\nData & Empirical Finance\n\n\n\nFinancial Strategy\n\n\n\nESG & Institutional Investment"
+    "text": "Period\nCourse\n\n\n\n\n2025/01\nFinancial Strategy\n\n\n\nSTAII\n\n\n2024/02\nEmpirical Methods for Finance\n\n\n2024/01\nFinancial Strategy\n\n\n2024/01 Summer\nFinancial Strategy\n\n\n2023/02\nEconometrics for Finance (DPA)\n\n\n\nFinancial Strategy\n\n\n\nCausal Inference\n\n\n2023/02 Winter\nFinancial Strategy\n\n\n2023/01\nFinancial Strategy\n\n\n\nESG & Institutional Investment\n\n\n2023/01 Summer\nFinancial Strategy\n\n\n2022/02\nData & Empirical Finance\n\n\n\nFinancial Strategy\n\n\n\nESG & Institutional Investment"
   },
   {
     "objectID": "teaching/financial_strategy/exams/p1tf.html",
@@ -19990,5 +19990,187 @@
     "title": "Estratégia Financeira",
     "section": "",
     "text": "That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it. It is like free lunch.\n\n\nR\nstart &lt;-'2010-01-01' \nend   &lt;- Sys.Date() \ndata &lt;- yf_collection_get(\"IBOV\", \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\n\n\nError in dplyr::rename(., ticker = Ticker, company = Company, industry = Industry) : \n  Can't rename columns that don't exist.\n✖ Column `Ticker` doesn't exist.\n\n\nR\ndata&lt;-data[complete.cases(data),] \ndata$month &lt;- format(as.Date(data$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(ret_adjusted_prices),list(sd = sd)) %&gt;% \n            as.data.frame()\nvol  &lt;-    data %&gt;%                          \n            group_by(ticker,month) %&gt;%\n            summarise_at(vars(volume),list(vol_sum = sum)) %&gt;% \n            as.data.frame()\nvol2  &lt;-    data %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(volume),\n                         list(vol_tot = sum)) %&gt;% \n            as.data.frame()\ndata2 &lt;- merge(sd ,vol, by=c(\"ticker\",\"month\"))\ndata2 &lt;- merge(data2 ,vol2, by=c(\"month\"))\ndata2$w &lt;- data2$vol_sum/data2$vol_tot\ndata2$sdw &lt;- data2$sd * data2$w\ndata3  &lt;-   data2 %&gt;%                          \n            group_by(month) %&gt;%\n            summarise_at(vars(sdw),list(total = sum)) %&gt;% \n            as.data.frame()\ndata3&lt;-data3[complete.cases(data3),] \ndata3$id &lt;-\"Weighted\"\n# Index\nibov &lt;- yf_get(tickers = '^BVSP', \n                         first_date = start,\n                         last_date = end,\n                         freq_data = \"daily\",)\nibov&lt;-ibov[complete.cases(ibov),] \nibov$month &lt;- format(as.Date(ibov$ref_date, format=\"%y/%m/%d\"),\"%y/%m\")\nsd2  &lt;-    ibov %&gt;%                          \n            group_by(month, ticker) %&gt;%\n            summarise_at(vars(ret_closing_prices) ,\n                         list(total = var ) ) %&gt;% \n            as.data.frame()\nsd2$total &lt;- sd2$total^0.5\nsd2$id &lt;-\"ibov\"\nsd2$ticker &lt;- NULL\ndata4 &lt;- rbind(data3,sd2)\np&lt;-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +\n  geom_line() + \n        labs(x = \"\",\n             y='Standard deviation',\n             title =\"Diversification benefits - Ibov vs. Weighted sd of individual stocks\") +   theme_solarized()\nggplotly(p)"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#apresentação",
+    "href": "teaching/202501_staii/p1.html#apresentação",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Apresentação",
+    "text": "Apresentação\nEste curso destina-se apenas para os/as alunos/as da Linha de Finanças e Controladoria que já tenham cursado e sido aprovados(as) em STAI.\n\nO objetivo do seminário é aprofundar a reflexão do projeto de Trabalho Aplicado revisando e discutindo as escolhas de questão de pesquisa, revisão de literatura, metodologia, e resultados.\n\n\nO objetivo do seminário é que os/as alunos/as terminem o semestre com os capítulos de revisão de literatura e de metodologia avançados o suficiente para que possam, no semestre seguinte, se dedicarem à parte empírica do trabalho e redação final."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#apresentação-1",
+    "href": "teaching/202501_staii/p1.html#apresentação-1",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Apresentação",
+    "text": "Apresentação\nO objetivo maior da disciplina é auxiliar os/as alunos/as a aprimorarem seus projetos de pesquisa. Para isso, é fundamental a leitura dos projetos por todos/as e a avaliação construtiva de todos os colegas.\n\nComo resultado, a avaliação da disciplina se dará também pela qualidade das contribuições realizadas pelo/a aluno/a aos demais colegas ao longo curso, e não apenas pela qualidade do projeto de dissertação dos alunos.\nCom isso, visa-se fomentar o espírito cooperativo entre todos os colegas, elemento essencial para o aprimoramento de todos os trabalhos ao longo do curso."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#introdução",
+    "href": "teaching/202501_staii/p1.html#introdução",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Introdução",
+    "text": "Introdução\n\nFazer boa pesquisa não é fácil\n\nPara ninguém\n\nFazer pesquisa não é uma atividade solitária\n\nVocê pode e deve conversar com colegas\n\nOrganização is key\n\nKeep detailed notes on all your thoughts or you’ll forget them quickly\nIf you decide something will make or break the project, look into it immediately!!\n\nVocê não precisa recriar a roda\n\nVocê pode e deve se valer de uma estrutura (um “mapa”) para organizar suas ideias.\n\nConseguir explicar sua pesquisa para um beginner is very important"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\nEsse “mapa” traduz a minha preferência para a organização de uma boa introdução.\nA estrutura não é obrigatória, mas todas as partes descritas devem estar presentes.\n\n1.1 MOTIVAÇÃO\nAqui você motiva o seu trabalho.\nApresenta as razões pelas quais alguém deveria se interessar pelo seu texto (afinal, se seu trabalho não for interessante, pq alguém deveria lê-lo?)\nÉ nessa parte que você motiva alguém a ler seu texto."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-1",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-1",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.1 MOTIVAÇÃO\nGeralmente, você deve escrever quatro ou cinco parágrafos:\n\nO primeiro (e talvez segundo, se precisar) faz uma breve introdução ao tema, é mais geral/amplo.\n\n\n\nNo segundo/terceiro, você descreve, em uma ou duas frases, o objetivo do trabalho de forma bem sucinta.\n\nEx. O objetivo desse trabalho é (utilize aqui o mesmo verbo que utilizar no objetivo geral a seguir).\nE apresente um pouco mais de contexto sobre essa questão de pesquisa.\n\n\n\n\n\nO quarto você inicia da seguinte forma: A principal contribuição desse trabalho é..\n\n\n\n\nNo quarto/quinto você elenca a estrutura do trabalho: “A primeira seção é uma introdução ao tema do presente estudo. Na seção dois, tem-se o referencial utilizado…” e por aí vai."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-2",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-2",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.2 PROBLEMA DE PESQUISA\nAqui você deve descrever toda sua problemática, o que lhe gerou o questionamento e os motivos que você tem para fazer tal estudo.\nEscreva no mínimo quatro parágrafos bem fundamentados (essa é a parte mais importante da introdução).\nNo último desses quatro parágrafos, você deve explicar, pormenorizadamente, a sua questão de pesquisa.\n\nExemplo:\n\nDiante do exposto acima, esse trabalho possui a seguinte questão de pesquisa: quais são as etapas de uma dissertação?"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-3",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-3",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.2 PROBLEMA DE PESQUISA\nUma das primeiras coisas que alguém irá olhar em seu trabalho é a sua questão de pesquisa. Treine-se a olhar a questão de pesquisa de suas referências também.\n\nEvite questões cuja resposta seja sim ou não.\nExemplo de Questão ruim: Aumentar o salário da equipe de gestão aumenta vendas?\n\n\nExemplo de Questão boa: Qual a relação entre o aumento de salário da equipe de gestão e as vendas da empresa?"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-4",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-4",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.3 OBJETIVOS\n1.3.1 Geral\nO objetivo dessa dissertação é: identificar quais são as etapas necessárias para se elaborar uma boa dissertação.\nPs. Note que o objetivo geral é responder a questão de pesquisa (assim, é recomendável que você utilize as mesmas palavras)."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-5",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-5",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.3.2 Específicos\nCrie uma lista de etapas, em ordem lógica, necessárias para se chegar ao objetivo geral.\nExemplo:\n\nEntender o que é uma dissertação;\nInvestigar o referencial teórico acerca das partes da dissertação;\nCriar uma métrica para avaliar a qualidade de uma dissertação;\nAplicar a métrica na elaboração de uma dissertação de qualidade.\n\n\n\n\n\n\n\nNote\n\n\nCada vez menos TA estão apresentando objetivos específicos de forma clara na introdução. Artigos raramente apresentam.\nAinda assim, é importante que se saiba definir quais são."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-6",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-6",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.4 JUSTIFICATIVA\n3 a 4 parágrafos explicando porque esse trabalho é relevante de ser executado.\nIdealmente, faça conexão com a literatura importante, apresente o que você descobriu ou criou e qual gap da literatura você fechou."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-7",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-7",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.5 CONTRIBUIÇÕES\n1.5.1 Gerencial/prática\n2 parágrafos explicando porque esse trabalho é relevante. São comentários mais práticos, citando os atores da sociedade que se beneficiaram do seu trabalho.\n1.5.2 Teórica (se for o caso)\n2 parágrafos explicando porque esse trabalho é relevante do ponto de vista teórico. É mais focado em qual teoria você melhorou e qual problema que você resolveu. Citando os trabalhos importantes. É mais focado e específico que os parágrafos de Justificativa (lá você vende o trabalho, aqui você fala objetivamente as contribuições teóricas)."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#mapa-da-introdução-8",
+    "href": "teaching/202501_staii/p1.html#mapa-da-introdução-8",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "“Mapa” da Introdução",
+    "text": "“Mapa” da Introdução\n1.6 LIMITAÇÕES DA PESQUISA (se houver)\n1 a 2 parágrafos explicando as limitações de dados, instrumentos, modelos etc. do seu trabalho."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#referencial-teórico",
+    "href": "teaching/202501_staii/p1.html#referencial-teórico",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Referencial Teórico",
+    "text": "Referencial Teórico\nProvavelmente, você irá precisar utilizar 3 a 5 sub-seções, em que cada sub-seção se destina a tratar sobre um tópico\n\nSugestão 1:\nComece explicando o seu X de interesse (i.e., variável de interesse).\nEm seguida, explique seu y.\nA seguir, explique efeitos moderadores, atenuantes, fatores importantes, etc.\n\n\nSugestão 2:\nComece explicando o seu y (i.e., variável que será explicada).\nEm seguida, explique seu y.\nA seguir, explique efeitos moderadores, atenuantes, fatores importantes, etc."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#hipótese-de-pesquisa",
+    "href": "teaching/202501_staii/p1.html#hipótese-de-pesquisa",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Hipótese de pesquisa",
+    "text": "Hipótese de pesquisa\nPor fim, motive e apresente sua hipótese.\n\nEssa parte também é crucial ao seu trabalho.\nÉ aqui que você precisa conectar bem seu texto à literatura anterior.\nTodo revisor lê esse trecho detalhadamente."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#hipótese-de-pesquisa-1",
+    "href": "teaching/202501_staii/p1.html#hipótese-de-pesquisa-1",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Hipótese de pesquisa",
+    "text": "Hipótese de pesquisa\nExemplo de hipótese de pesquisa\n\nHipótese de correlação\n\nHipótese 1: Empresas com melhores práticas ESG apresentam maior performance financeira.\n\nHipótese de causalidade\n\nHipótese 1: A implementação de práticas ESG aumenta a performance financeira das empresas.\n\n\nA redação da hipótese de pesquisa é consequência do seu design empírico.\n\nSe você tem um método que permite concluir causalidade, escolha a 2a redação. Caso contrário, é mais seguro utilizar a primeira."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#design-empírico-de-pesquisa",
+    "href": "teaching/202501_staii/p1.html#design-empírico-de-pesquisa",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Design empírico de pesquisa",
+    "text": "Design empírico de pesquisa\nSe você tiver elaborando uma survey, as etapas podem ser diferentes.\n\n3.1 Amostra\nVocê começa descrevendo sua amostra (ano, país, setor, características peculiares, etc.)\n\n\n3.2 Variáveis\n3.2.1 Variável dependente\n3.2.2 Variável independente de interesse\n3.2.3 Variáveis de controle\nps. Em cada etapa, discuta a “proxy” empírica que está utilizando (sempre com base em literatura anterior)."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#design-empírico-de-pesquisa-1",
+    "href": "teaching/202501_staii/p1.html#design-empírico-de-pesquisa-1",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Design empírico de pesquisa",
+    "text": "Design empírico de pesquisa\n3.3 Modelo\nAqui, você descreve a sua regressão.\nDescreva as defasagens, efeitos fixos, erros, etc.\n\n3.4 Outras questões relevantes"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#resultados",
+    "href": "teaching/202501_staii/p1.html#resultados",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Resultados",
+    "text": "Resultados\n4.1 Estatísticas descritivas e Correlação\n\nGeral\nPor grupo\nPor ano\nPor setor\nOutros agrupamentos relevantes\n\n\n4.2 Resultados\n\n\n4.3 Testes de Robustez\n\n\n4.4 Discussão"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#conclusões",
+    "href": "teaching/202501_staii/p1.html#conclusões",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Conclusões",
+    "text": "Conclusões\n5. Conclusões"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#atividade-de-sala-1",
+    "href": "teaching/202501_staii/p1.html#atividade-de-sala-1",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Atividade de Sala",
+    "text": "Atividade de Sala\nSeparada em trios, colegas apresentarão entre si o seu trabalho.\n\nColega A irá apresentará seu trabalho para Colega B. Colega C Tomará notas da explicação de A.\n\nAlternância entre quem é A, B e C.\n\nDepois da discussão nos pequenos grupos, no grande grupo, Colega B explica o trabalho da(o) Colega A para a turma. Colega C toma nota de quão fidedigno foi a explicação (utilizando o “mapa” do TA, discutido anteriormente)."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#atividade-de-sala-2",
+    "href": "teaching/202501_staii/p1.html#atividade-de-sala-2",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Atividade de Sala",
+    "text": "Atividade de Sala\nItens a serem apresentados (Baseados no “Mapa”):\n\nQual a motivação principal do trabalho?\nQual a etapa que o trabalho se encontra?\nQual a questão de pesquisa?\nQual o objetivo da pesquisa?\nQual(is) a(s) hipótese(s)?\nQual base dados será utilizada? Quais?\nOutros itens que julguem interessantes peculiares ao trabalho."
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#atividade-de-sala-ii",
+    "href": "teaching/202501_staii/p1.html#atividade-de-sala-ii",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Atividade de Sala II",
+    "text": "Atividade de Sala II\nEm grupos de 3 pessoas e utilizando a tabela “Hints for reading a paper”:\nOs grupos deverão ler o artigo disponibilizado e responder às seguintes questões:\n\nQual é a questão de pesquisa?\nPor que ela é relevante?\nPara quem ela é relevante?\nQuais são os 3 a 5 artigos mais importantes para a pesquisa? (ps. pode ser mais de 5 eventualmente)\nQual(is) a(s) hipótese(s) da pesquisa? Ela está explícita no texto?\n\nÉ possível melhorar a redação da hipótese de pesquisa?"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#atividade-de-sala-ii-1",
+    "href": "teaching/202501_staii/p1.html#atividade-de-sala-ii-1",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Atividade de Sala II",
+    "text": "Atividade de Sala II\n\nSobre o design empírico\n\nqual a categoria do estudo (quali ou quanti?)\nQual a amostra?\nQual o período?\nO estudo tem validade externa? E interna?\nAs variáveis utilizadas capturam aquilo que os(as) autores(as) pretendiam?\nQuais são as limitações desse design empírico?\n\nQuais são as principais conclusões dos(as) autores(as)?\nAs conclusões são consistentes com os resultados empíricos? Ou os(as) autores(as) fazem “claims” não compreendidos pelos resultados?"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#hints-for-reading-a-paper",
+    "href": "teaching/202501_staii/p1.html#hints-for-reading-a-paper",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "Hints for reading a paper",
+    "text": "Hints for reading a paper"
+  },
+  {
+    "objectID": "teaching/202501_staii/p1.html#thank-you",
+    "href": "teaching/202501_staii/p1.html#thank-you",
+    "title": "Seminário de Trabalho Aplicado de Finanças e Controladoria II",
+    "section": "THANK YOU!",
+    "text": "THANK YOU!\n\n\nQUESTIONS?\n\n\nHenrique C. Martins\n\nFGV/EAESP\nPersonal Website\nLinkedIn\nLattes\nScholar\n\n\n\n\n\n\n\n\n\n\n\n[Henrique C. Martins] [henrique.martins@fgv.br] [Do not use without permission]"
+  },
+  {
+    "objectID": "teaching/202501_staii/index.html",
+    "href": "teaching/202501_staii/index.html",
+    "title": "STAII - 2025/01",
+    "section": "",
+    "text": "Slides\n\nPart 1: Slides"
   }
 ]

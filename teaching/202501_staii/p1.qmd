@@ -1,0 +1,578 @@
+---
+title: 'Seminário de Trabalho Aplicado de Finanças e Controladoria II'
+author:
+  - name: ' **Henrique C. Martins** '
+    affiliation: '**[![](figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: true
+format:
+  revealjs: 
+    touch: true
+    controls: true
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [Do not use without permission]**  '
+    multiplex: false
+    scrollable: true
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+---
+
+
+## Apresentação {.smaller}
+
+Este curso destina-se apenas para os/as alunos/as da Linha de Finanças e Controladoria que já tenham cursado e sido aprovados(as) em STAI. 
+
+. . .
+
+O objetivo do seminário é **aprofundar a reflexão** do projeto de Trabalho Aplicado revisando e discutindo as escolhas de questão de pesquisa, revisão de literatura, metodologia, e resultados. 
+
+. . .
+
+O objetivo do seminário é que os/as alunos/as **terminem o semestre com os capítulos de revisão de literatura e de metodologia avançados** o suficiente para que possam, no semestre seguinte, se dedicarem à parte empírica do trabalho e redação final. 
+
+
+
+
+
+
+
+
+
+
+
+## Apresentação {.smaller}
+
+O objetivo maior da disciplina é auxiliar os/as alunos/as a aprimorarem seus projetos de pesquisa. Para isso, é fundamental a leitura dos projetos por todos/as e a avaliação construtiva de todos os colegas.
+
+. . .
+
+Como resultado, a avaliação da disciplina se dará também pela **qualidade das contribuições realizadas** pelo/a aluno/a aos demais colegas ao longo curso, e não apenas pela qualidade do projeto de dissertação dos alunos. 
+
+Com isso, visa-se fomentar o **espírito cooperativo** entre todos os colegas, elemento essencial para o aprimoramento de todos os trabalhos ao longo do curso.
+
+
+
+
+
+
+
+
+## ATIVIDADE DE SALA {.smaller visibility="hidden"}
+
+Separada em trios, a turma se reunirá em breakout rooms para que os colegas apresentem entre si o seu trabalho.
+
+. . .
+
+•	Nas breakout rooms, **Colega A** irá apresentará seu trabalho para **Colega B**.
+
+. . .
+
+•	Depois da apresentação em grupos, a turma se reunirá no grande grupo para que **Colega B** explica o trabalho da(o) **Colega A** para a turma.
+
+. . .
+
+**Itens a serem apresentados:**
+
+ - Qual a motivação principal do trabalho?
+ - Qual a etapa que o trabalho se encontra?
+ - Qual a questão de pesquisa?
+ - Qual o objetivo da pesquisa?
+ - Qual(is) a(s) hipótese(s)?
+ - Qual base dados será utilizada? Quais?
+ - Outros itens que julguem interessantes peculiares ao trabalho.
+ 
+
+
+
+
+
+## Introdução {.smaller}
+
+- Fazer boa pesquisa não é fácil
+
+  - Para ninguém
+
+- Fazer pesquisa não é uma atividade solitária
+
+  - Você pode e deve conversar com colegas
+
+- Organização *is key*
+
+  - Keep detailed notes on all your thoughts or you’ll forget them quickly
+  - If you decide something will make or break the project, look into it immediately!!
+
+- Você não precisa recriar a roda
+  
+  - Você pode e deve se valer de uma estrutura (um "mapa") para organizar suas ideias.
+
+- *Conseguir explicar sua pesquisa para um beginner* is very important
+
+
+
+
+
+
+
+
+
+## "Mapa" da Introdução {.smaller}
+
+Esse "mapa" traduz a minha preferência para a organização de uma boa introdução. 
+
+**A estrutura não é obrigatória**, mas **todas as partes descritas devem estar presentes**. 
+
+. . .
+
+**1.1 MOTIVAÇÃO**
+
+Aqui você motiva o seu trabalho. 
+
+Apresenta as razões pelas quais alguém deveria se interessar pelo seu texto (afinal, se seu trabalho não for interessante, pq alguém deveria lê-lo?) 
+
+É nessa parte que você motiva alguém a ler seu texto.
+
+
+
+
+
+
+
+## "Mapa" da Introdução {.smaller}
+
+
+**1.1 MOTIVAÇÃO**
+
+Geralmente, você deve escrever quatro ou cinco parágrafos: 
+
+- O primeiro (e talvez segundo, se precisar) faz uma breve introdução ao tema, é mais geral/amplo. 
+
+. . .
+
+- No segundo/terceiro, você descreve, em uma ou duas frases, o objetivo do trabalho de forma bem sucinta. 
+  - Ex. O objetivo desse trabalho é (utilize aqui o mesmo verbo que utilizar no objetivo geral a seguir). 
+  - E apresente um pouco mais de contexto sobre essa questão de pesquisa.
+
+. . .
+
+- O quarto você inicia da seguinte forma: *A principal contribuição desse trabalho é..*
+
+. . .
+
+- No quarto/quinto você elenca a estrutura do trabalho: “A primeira seção é uma introdução ao tema do presente estudo. Na seção dois, tem-se o referencial utilizado...” e por aí vai.
+
+
+
+
+
+
+
+## "Mapa" da Introdução {.smaller}
+
+**1.2	PROBLEMA DE PESQUISA**
+
+Aqui você deve descrever toda sua problemática, o que lhe gerou o questionamento e os motivos que você tem para fazer tal estudo. 
+
+Escreva no mínimo quatro parágrafos bem fundamentados (essa é a parte mais importante da introdução). 
+
+No último desses quatro parágrafos, você deve explicar, pormenorizadamente, a sua questão de pesquisa.
+
+- Exemplo: 
+
+  - Diante do exposto acima, esse trabalho possui a seguinte questão de pesquisa: *quais são as etapas de uma dissertação?*
+
+
+
+
+
+
+
+
+
+
+## "Mapa" da Introdução {.smaller}
+
+**1.2	PROBLEMA DE PESQUISA**
+
+Uma das primeiras coisas que alguém irá olhar em seu trabalho é a sua questão de pesquisa. Treine-se a olhar a questão de pesquisa de suas referências também.
+
+. . .
+
+**Evite questões cuja resposta seja sim ou não.**
+
+**Exemplo de Questão ruim:** Aumentar o salário da equipe de gestão aumenta vendas?
+
+. . .
+
+**Exemplo de Questão boa:** Qual a relação entre o aumento de salário da equipe de gestão e as vendas da empresa?
+
+
+
+
+
+
+
+
+
+
+## "Mapa" da Introdução {.smaller}
+
+
+**1.3	OBJETIVOS**
+
+**1.3.1 Geral**
+
+O objetivo dessa dissertação é: _identificar quais são as etapas necessárias para se elaborar uma boa dissertação_.
+
+Ps. Note que o objetivo geral é responder a questão de pesquisa (assim, é recomendável que você utilize as mesmas palavras).
+
+
+
+
+
+
+
+## "Mapa" da Introdução {.smaller}
+
+**1.3.2	Específicos**
+
+Crie uma lista de etapas, em ordem lógica, necessárias para se chegar ao objetivo geral.
+
+Exemplo:
+
+-	Entender o que é uma dissertação;
+-	Investigar o referencial teórico acerca das partes da dissertação;
+-	Criar uma métrica para avaliar a qualidade de uma dissertação;
+-	Aplicar a métrica na elaboração de uma dissertação de qualidade.
+
+
+
+::: {.callout-note}
+Cada vez menos TA estão apresentando objetivos específicos de forma clara na introdução. Artigos raramente apresentam. 
+
+Ainda assim, é importante que se saiba definir quais são.
+:::
+
+
+
+
+
+
+##  "Mapa" da Introdução {.smaller}
+
+**1.4	JUSTIFICATIVA**
+
+3 a 4 parágrafos explicando porque esse trabalho é relevante de ser executado. 
+
+Idealmente, faça conexão com a literatura importante, apresente o que você descobriu ou criou e qual gap da literatura você fechou. 
+
+
+
+
+
+
+##  "Mapa" da Introdução {.smaller}
+
+**1.5	CONTRIBUIÇÕES**
+
+**1.5.1	Gerencial/prática**
+
+2 parágrafos explicando porque esse trabalho é relevante. São comentários mais práticos, citando os atores da sociedade que se beneficiaram do seu trabalho.
+
+**1.5.2	Teórica (se for o caso)**
+
+2 parágrafos explicando porque esse trabalho é relevante do ponto de vista teórico. É mais focado em qual teoria você melhorou e qual problema que você resolveu. Citando os trabalhos importantes. É mais focado e específico que os parágrafos de Justificativa (lá você vende o trabalho, aqui você fala objetivamente as contribuições teóricas).
+
+
+
+##  "Mapa" da Introdução {.smaller}
+
+**1.6	LIMITAÇÕES DA PESQUISA (se houver)**
+
+1 a 2 parágrafos explicando as limitações de dados, instrumentos, modelos etc. do seu trabalho.
+
+
+
+
+
+
+## Referencial Teórico {.smaller}
+
+Provavelmente, você irá precisar utilizar 3 a 5 sub-seções, em que cada sub-seção se destina a tratar sobre um tópico
+
+. . . 
+
+Sugestão 1:
+
+**Comece explicando o seu X de interesse (i.e., variável de interesse).**
+
+**Em seguida, explique seu y**. 
+
+A seguir, explique efeitos moderadores, atenuantes, fatores importantes, etc.
+
+. . .
+
+Sugestão 2:
+
+**Comece explicando o seu y (i.e., variável que será explicada).**
+
+**Em seguida, explique seu y**.
+
+A seguir, explique efeitos moderadores, atenuantes, fatores importantes, etc.
+
+
+
+
+
+
+
+
+## Hipótese de pesquisa {.smaller}
+
+**Por fim, motive e apresente sua hipótese**.
+
+. . . 
+
+Essa parte também é crucial ao seu trabalho. 
+
+É aqui que você precisa conectar bem seu texto à literatura anterior.
+
+**Todo revisor lê esse trecho detalhadamente**.
+
+
+
+
+
+
+
+## Hipótese de pesquisa {.smaller}
+
+Exemplo de hipótese de pesquisa
+
+- **Hipótese de correlação**
+  
+  - *Hipótese 1: Empresas com melhores práticas ESG apresentam maior performance financeira.*
+
+- **Hipótese de causalidade**
+  
+  - *Hipótese 1: A implementação de práticas ESG aumenta a performance financeira das empresas.*
+  
+A redação da hipótese de pesquisa é consequência do seu design empírico. 
+
+- Se você tem um método que permite concluir causalidade, escolha a 2a redação. Caso contrário, é mais seguro utilizar a primeira. 
+
+
+
+
+
+
+
+
+
+
+
+
+## Design empírico de pesquisa {.smaller}
+
+_Se você tiver elaborando uma survey, as etapas podem ser diferentes._ 
+
+. . .
+
+**3.1 Amostra**
+
+Você começa descrevendo sua amostra (ano, país, setor, características peculiares, etc.)
+
+. . .
+
+**3.2 Variáveis**
+
+3.2.1 Variável dependente
+
+3.2.2 Variável independente de interesse
+
+3.2.3 Variáveis de controle
+
+ps. Em cada etapa, discuta a "proxy" empírica que está utilizando (sempre com base em literatura anterior).
+
+
+
+
+
+
+
+
+
+## Design empírico de pesquisa {.smaller}
+
+**3.3 Modelo**
+
+Aqui, você descreve a sua regressão. 
+
+Descreva as defasagens, efeitos fixos, erros, etc. 
+
+. . .
+
+**3.4 Outras questões relevantes**
+
+
+
+
+
+
+## Resultados {.smaller}
+
+**4.1 Estatísticas descritivas e Correlação**
+
+- Geral
+- Por grupo
+- Por ano
+- Por setor
+- Outros agrupamentos relevantes
+
+. . .
+
+**4.2 Resultados**
+
+. . .
+
+**4.3 Testes de Robustez**
+
+. . .
+
+**4.4 Discussão**
+
+
+
+
+## Conclusões {.smaller}
+
+**5. Conclusões**
+
+
+
+
+## Atividade de Sala {.smaller background="#FFD6A4"}
+
+Separada em trios, colegas apresentarão entre si o seu trabalho.
+
+- **Colega A** irá apresentará seu trabalho para **Colega B**. **Colega C** Tomará notas da explicação de A.
+  
+  - Alternância entre quem é A, B e C.
+
+- Depois da discussão nos pequenos grupos, no grande grupo,  **Colega B** explica o trabalho da(o) **Colega A** para a turma. **Colega C** toma nota de quão fidedigno foi a explicação (utilizando o "mapa" do TA, discutido anteriormente).
+
+
+
+## Atividade de Sala  {.smaller background="#FFD6A4"}
+
+**Itens a serem apresentados (Baseados no "Mapa"):**
+
+ - Qual a motivação principal do trabalho?
+ - Qual a etapa que o trabalho se encontra?
+ - Qual a questão de pesquisa?
+ - Qual o objetivo da pesquisa?
+ - Qual(is) a(s) hipótese(s)?
+ - Qual base dados será utilizada? Quais?
+ - Outros itens que julguem interessantes peculiares ao trabalho.
+ 
+
+
+
+
+
+
+
+
+
+
+## Atividade de Sala II {.smaller background="#ead1dc"}
+
+
+Em grupos de 3 pessoas e utilizando a tabela "Hints for reading a paper":
+
+Os grupos deverão ler o artigo disponibilizado e responder às seguintes questões:
+
+- Qual é a questão de pesquisa? 
+- Por que ela é relevante?
+- Para quem ela é relevante?
+- Quais são os 3 a 5 artigos mais importantes para a pesquisa? (ps. pode ser mais de 5 eventualmente)
+- Qual(is) a(s) hipótese(s) da pesquisa? Ela está explícita no texto?
+  - É possível melhorar a redação da hipótese de pesquisa?
+
+
+
+## Atividade de Sala II {.smaller background="#ead1dc"}
+
+- Sobre o design empírico
+  - qual a categoria do estudo (quali ou quanti?)
+  - Qual a amostra?
+  - Qual o período?
+  - O estudo tem validade externa? E interna?
+  - As variáveis utilizadas capturam aquilo que os(as) autores(as) pretendiam?
+  - Quais são as limitações desse design empírico?
+  
+- Quais são as principais conclusões dos(as) autores(as)?
+- As conclusões são consistentes com os resultados empíricos? Ou os(as) autores(as) fazem "claims" não compreendidos pelos resultados?
+
+
+
+
+
+## Hints for reading a paper {.smaller background="#ead1dc"}
+
+<img src="figs/hints.png" width="80%" />
+
+
+
+
+
+
+
+
+
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](figs/qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::
