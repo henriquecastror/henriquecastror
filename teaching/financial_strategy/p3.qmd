@@ -271,9 +271,7 @@ These assets have the same historical return and volatility, **but they 'move' v
 
 ## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
 
-::: {.panel-tabset}
 
-### R 
 
 ```{r}
 #| warning: false
@@ -312,49 +310,7 @@ ggplotly(p)
 ```
 
 
-### Python
 
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-import yfinance as yf
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
-from scipy.stats import norm
-stocks = ['BBDC3.SA', 'PETR3.SA']
-start = '2010-01-01'
-end = pd.Timestamp.today().strftime('%Y-%m-%d')
-data = yf.download(stocks, start=start, end=end)['Close']
-data = data.dropna()
-# plot the data
-plt.close()
-plt.plot(data.index, data['BBDC3.SA'], label='BBDC3.SA')
-plt.plot(data.index, data['PETR3.SA'], label='PETR3.SA')
-# add title and axis labels
-plt.title('Two assets returns')
-plt.xlabel('Date')
-plt.ylabel('Closing prices')
-# add legend
-plt.legend()
-# display the plot
-plt.show()
-```
-
-
-
-::: 
 
 
 
@@ -365,9 +321,7 @@ plt.show()
 
 **Same graph using prices in day 1 = $100.**
 
-::: {.panel-tabset}
 
-### R 
 
 ```{r}
 #| warning: false
@@ -394,37 +348,8 @@ ggplotly(p)
 ```
 
 
-### Python 
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-plt.close()
-stock1 = data[stocks[0]]
-stock2 = data[stocks[1]]
-stock1 = (stock1 / stock1.iloc[0]) * 100
-stock2 = (stock2 / stock2.iloc[0]) * 100
-fig, ax = plt.subplots()
-ax.plot(stock1.index, stock1.values, label=stocks[0])
-ax.plot(stock2.index, stock2.values, label=stocks[1])
-ax.set_ylabel('Price')
-ax.set_title('Two assets returns, Initial price = 100')
-ax.legend()
-plt.show()
-```
 
 
-::: 
 
 
 
@@ -443,9 +368,7 @@ plt.show()
 
 Let's compute the average return of a portfolio with 40% invested in A and 60% in B. **The portfolio return is the average return of the assets**.
 
-::: {.panel-tabset}
-
-### R 
+ 
 
 ```{r}
 #| warning: false
@@ -482,42 +405,6 @@ p <- ggplot(stock1, aes(ref_date , price_close2, color = ticker))+
 ggplotly(p)
 ```
 
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-plt.close()
-w = [0.40, 0.60]
-# Calculate the weighted returns for each stock
-returns = data.pct_change().dropna()
-weighted_returns = returns.mul(w, axis=1)
-# Calculate the portfolio returns by taking the sum of the weighted returns
-portfolio_returns = weighted_returns.sum(axis=1)
-# Calculate the cumulative returns for each series
-stock_returns_cum = (1 + returns).cumprod() * 100
-portfolio_returns_cum = (1 + portfolio_returns).cumprod() * 100
-# Plot the results
-fig, ax = plt.subplots(figsize=(12, 6))
-ax.plot(stock_returns_cum)
-ax.plot(portfolio_returns_cum, label='Portfolio')
-ax.set(title='Two assets and Portfolio returns, Initial price = 100', xlabel='', ylabel='Closing prices')
-ax.legend()
-plt.show()
-```
-
-:::
 
 
 
@@ -628,134 +515,11 @@ So, if you **increase the size of your portfolio, the risk decreases** (until to
 
 
 
-## 11.3 Volatility of a large portfolio {.smaller background="#f5d5d5"}
-
-::: {.panel-tabset}
-
-### R
-
-```{r}
-#| warning: false
-#| error: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: false
-start <-'2015-01-01' 
-end   <-'2023-12-01'
-# Finding the tickers
-data_temp <- yf_collection_get("IBOV", first_date = start, last_date = end, freq_data = "monthly")
-tickers<-unique(data_temp$ticker)
-df <- data_temp %>%  select(ref_date)  %>% distinct()
-# Now collecting data
-for (i in 1:length(tickers)) {
-data <- yf_get(tickers[[i]],first_date = start,last_date = end,freq_data = "monthly")
-data <- data[complete.cases(data),] 
-data <- data %>%  select(ref_date, ret_closing_prices)
-colnames(data) <- c("ref_date",  tickers[[i]]  )
-df <- merge(df,data,by="ref_date")
-}
-df$ref_date <- NULL
-# Setup to randomly combine "j" stocks and compute the standard deviation of this combination
-rows <- 1000
-final <- data.frame(matrix(NA,nrow = rows, ncol = length(tickers)))
-for (j in 1:length(tickers) ) {
-for (i in 1:rows ) {
-df_r <- as.data.frame(df[, sample(  ncol(df) , j )])
-cov <- cov(df_r)
-# Var mean
-var <- as.data.frame(diag(cov))
-var_mean <- mean(var$`diag(cov)`)
-  #Covariance mean
-  if (j == 1) {
-  covar_mean <- var_mean
-  } else {
-  covar <- cov
-  diag(covar)=NA 
-  covar[upper.tri(covar)] <- NA
-  covar<-c(covar)
-  covar_mean<- mean(covar,na.rm=TRUE)
-  }
-# Port Sd.
-var_p <- (  (1/ j  * var_mean )   + (1- (1/j ) ) * covar_mean    ) ^ 0.5
-final[i,j] <- var_p
-}
-}
-# Computing the average of the "i" portfolios with "j" stocks 
-sd   <- as.data.frame(colMeans(final))
-sd$N  <- seq_along(sd[,1])
-p<- ggplot(sd, aes(y=`colMeans(final)` , x = N)) + geom_line() +
-        labs(x = "Number of stocks (equal weight)",
-             y='Standard deviation (monthly)', 
-             title="Standard deviation of equally weighted portfolios", 
-             subtitle = "01/01/2015-today (Brazilian stocks)") +   theme_solarized()
-ggplotly(p)
-```
 
 
 
 
 
-
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-start = '2015-01-01'
-end = pd.Timestamp.now()
-stocks = ["ABEV3.SA","ALPA4.SA","AMER3.SA","B3SA3.SA","BBAS3.SA","BBDC3.SA","BBDC4.SA","BEEF3.SA","BPAN4.SA","BRAP4.SA","BRFS3.SA","BRKM5.SA","BRML3.SA","CCRO3.SA","CIEL3.SA","CMIG4.SA","COGN3.SA","CPFE3.SA","CPLE6.SA","CSAN3.SA","CSNA3.SA","CYRE3.SA","DXCO3.SA","ECOR3.SA","EGIE3.SA","ELET3.SA","ELET6.SA","EMBR3.SA","ENBR3.SA","ENEV3.SA","ENGI11.SA","EQTL3.SA","EZTC3.SA","FLRY3.SA","GGBR4.SA","GOAU4.SA","GOLL4.SA","HYPE3.SA","ITSA4.SA","ITUB4.SA","JBSS3.SA","JHSF3.SA","LREN3.SA","MGLU3.SA","MRFG3.SA","MRVE3.SA","MULT3.SA","PCAR3.SA","PETR3.SA","PETR4.SA","PRIO3.SA","QUAL3.SA","RADL3.SA","RENT3.SA","SANB11.SA","SBSP3.SA","SULA11.SA","SUZB3.SA","TAEE11.SA","TIMS3.SA","TOTS3.SA","UGPA3.SA","USIM5.SA","VALE3.SA","VIIA3.SA","VIVT3.SA","WEGE3.SA","YDUQ3.SA"]
-data_temp = yf.download(stocks,start=start,end=end,interval='1mo', group_by='ticker')
-df = data_temp.loc[:, (slice(None), 'Adj Close')].droplevel(level=1, axis=1)
-df = df.pct_change()
-rows = 1000
-final = pd.DataFrame(np.empty((rows, len(data_temp))) * np.nan)
-for j in range(len(stocks)):
-    for i in range(rows):
-        df_r = df.iloc[:, np.random.choice(df.shape[1], j+1, replace=False)]
-        cov = df_r.cov()
-        var = pd.DataFrame(np.diag(cov))
-        var_mean = var.mean().item()
-        if j == 0:
-            covar_mean = var_mean
-        else:
-            covar = cov.copy()
-            np.fill_diagonal(covar.values, np.nan)
-            covar = covar.where(np.triu(np.ones(covar.shape)).astype(np.bool_))
-            covar_mean = covar.stack().mean()
-        var_p = ((1/(j+1) * var_mean) + (1 - 1/(j+1)) * covar_mean) ** 0.5
-        final.iloc[i, j] = var_p
-# Computing the average of the "i" portfolios with "j" stocks 
-sd = final.mean(axis=0).reset_index()
-sd = sd.rename(columns={'index': 'N', 0: 'colMeans(final)'})
-sd['N'] = sd['N'] + 1
-
-plt.close()
-plt.plot(sd['N'], sd['colMeans(final)'])
-plt.xlabel('Number of stocks (equal weight)')
-plt.ylabel('Standard deviation (monthly)')
-plt.title('Standard deviation of equally weighted portfolios')
-plt.suptitle('01/01/2015-today (Brazilian stocks)')
-plt.show()
-```
-
-
-:::
 
 
 
@@ -818,9 +582,6 @@ Each asset *i* contributes to the portfolio's volatility according to its Sd sca
 
 **More about correlation**. 
 
-::: {.panel-tabset}
-
-### R
 
 ```{r}
 #| warning: false
@@ -865,58 +626,6 @@ ggplotly(p)
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-#data
-corr12 = -0.50
-ret1 = 0.175
-sd1 = 0.258
-var1 = sd1**2
-ret2 = 0.055
-sd2 = 0.115
-var2 = sd2**2
-covar12 = corr12*sd1*sd2
-#weight 
-w1 = np.arange(-0.4, 1.4, 0.05)
-w2 = 1 - w1
-retp = w1*ret1 + w2*ret2
-varp = w1**2 * var1 + w2**2 * var2 + 2*w1*w2*covar12
-sdp = np.sqrt(varp)
-port_names = ["portfolio" + str(i+1) for i in range(len(w1))]
-df = pd.DataFrame({'port.names': port_names, 'w1': w1, 'w2': w2, 'retp': retp, 'sdp': sdp})
-df['Condition'] = np.select(  [df['w1']<0, df['w1']>1, (df['w1']>0) & (df['w1']<1)], ['green', 'blue', 'red'])
-#Conditions to graph
-d1 = df[df['w1'] == 1]
-d2 = df[df['w2'] == 1]
-#Graph
-plt.close()
-fig, ax = plt.subplots()
-ax.scatter(df['sdp'], df['retp'], c=df['Condition'], cmap='viridis')
-ax.set(xlabel='Standard deviation', ylabel='Expected return', xlim=(0, max(sdp)), ylim=(0, max(retp)))
-ax.set_title("Correlation = {}".format(corr12))
-ax.text(sd1+0.005,ret1-0.005, 'Asset 1', color='black', ha='left', va='center', fontsize=10)
-ax.text(sd2+0.005,ret2+0.005, 'Asset 2', color='black', ha='left', va='center', fontsize=10)
-plt.show()
-```
-
-:::
-
-
-
-
 
 
 
@@ -924,9 +633,6 @@ plt.show()
 ## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
 
 
-::: panel-tabset
-
-### R 
 
 ```{r}
 #| warning: false
@@ -986,65 +692,6 @@ ggarrange(plot_list[[1]], plot_list[[2]], plot_list[[3]],
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-#data
-ret1 = 0.175
-sd1 = 0.258
-var1 = sd1**2
-ret2 = 0.055
-sd2 = 0.115
-var2 = sd2**2
-#weight 
-w1 = np.arange(-0.4, 1.4, 0.05)
-w2 = 1 - w1
-# create a list of correlation values
-corr_values = [0.9, 0.5, 0, -0.5, -0.9, -1]
-plt.close()
-# create a 2x3 grid of subplots
-fig, axs = plt.subplots(2, 3, figsize=(20, 10))
-# loop through each correlation value and plot the corresponding scatter plot
-for i, corr12 in enumerate(corr_values):
-    covar12 = corr12*sd1*sd2
-    retp = w1*ret1 + w2*ret2
-    varp = w1**2 * var1 + w2**2 * var2 + 2*w1*w2*covar12
-    sdp = np.sqrt(varp)
-    port_names = ["portfolio" + str(i+1) for i in range(len(w1))]
-    df = pd.DataFrame({'port.names': port_names, 'w1': w1, 'w2': w2, 'retp': retp, 'sdp': sdp})
-    df['Condition'] = np.select([df['w1']<0, df['w1']>1, (df['w1']>0) & (df['w1']<1)], ['green', 'blue', 'red'])
-    d1 = df[df['w1'] == 1]
-    d2 = df[df['w2'] == 1]
-    ax = axs[i//3, i%3]  
-    ax.scatter(df['sdp'], df['retp'], c=df['Condition'], cmap='viridis')
-#    ax.set(xlabel='Standard deviation', ylabel='Expected return', xlim=(0, max(sdp)), ylim=(0, max(retp)))
-    ax.set_title("Correlation = {}".format(corr12), fontsize=16)
-    ax.tick_params(labelsize=14)
-#    ax.set_xlabel('Standard deviation', fontsize=16)
-#    ax.set_ylabel('Expected return', fontsize=20)
-plt.tight_layout()  # adjust spacing between subplots
-plt.show()
-```
-
-
-:::
-
-
-
-
-
 
 
 
@@ -1088,9 +735,7 @@ The idea is that you think that a stock's price will go down so you sell it. Lat
 
 **Correlations usually positive**.
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -1135,39 +780,6 @@ corrplot(cor,method = 'number' ,  tl.col = "black",   tl.cex = 0.9,  col = COL1(
 
 
 
-### Python
-
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-stocks = ["ITUB3.SA", "WEGE3.SA", "PETR3.SA", "VALE3.SA", "ITSA3.SA", "BBAS3.SA", "ABEV3.SA", "GGBR4.SA", "LREN3.SA", "B3SA3.SA", "UGPA3.SA", "CSMG3.SA", "HYPE3.SA"]
-start = '2010-01-01'
-end = pd.Timestamp.now()
-df = yf.download(stocks[0], start=start, end=end, interval="1mo")[["Adj Close"]]
-df.columns = [stocks[0]]
-for stock in stocks[1:]:
-    data = yf.download(stock, start=start, end=end, interval="1mo")[["Adj Close"]]
-    data.columns = [stock]
-    df = df.merge(data, how="inner", on="Date")
-df = df.ffill()  # forward-fill missing values
-cor = df.corr(method="pearson")
-sns.heatmap(cor, annot=True, fmt=".2f", cmap="Reds", annot_kws={"fontsize":20})
-```
-
-:::
-
-
 
 
 
@@ -1204,9 +816,6 @@ Now, you can understand what an **efficient portfolio** is.
 
 ## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
 
-::: {.panel-tabset}
-
-### R
 
 ```{r}
 #| warning: false
@@ -1253,64 +862,6 @@ ggplotly(p)
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-# Set up variables
-corr12 = -0.164
-ret1 = 0.175
-sd1 = 0.258
-var1 = sd1**2
-ret2 = 0.055
-sd2 = 0.115
-var2 = sd2**2
-covar12 = corr12*sd1*sd2
-w1 = np.arange(-0.4, 1.41, 0.01)
-w2 = 1 - w1
-retp = w1*ret1 + w2*ret2
-varp = w1**2 * var1 + w2**2 * var2 + 2*w1*w2*covar12
-sdp = np.sqrt(varp)
-port_names = [f"portfolio {i+1}" for i in range(len(w1))]
-data = {'port_names': port_names, 'w1': w1, 'w2': w2, 'retp': retp, 'sdp': sdp}
-df = pd.DataFrame(data)
-w1_min = round((var2 - covar12)/(var1 + var2 - 2*covar12), 1)
-w2_min = 1 - w1_min
-d_min = df.loc[df['w2'] >= w2_min, :]
-d_min = pd.DataFrame(d_min.iloc[-1, :]).T
-df['Efficient'] = np.where(df['w2'] <= w2_min, 'Efficient', 'Not Efficient')
-# Plotting
-fig, ax = plt.subplots(figsize=(20, 10))
-colors = {'Efficient': '#dc322f', 'Not Efficient': '#2aa198'}
-for label, color in colors.items():
-    mask = df['Efficient'] == label
-    ax.scatter(df.loc[mask, 'sdp'], df.loc[mask, 'retp'], c=color, label=label, alpha=0.7, s=50)
-ax.set_xlabel('Standard deviation', fontsize=25)
-ax.set_ylabel('Expected return', fontsize=25)
-ax.set_xlim(0, max(sdp))
-ax.set_ylim(0, max(retp))
-ax.text(sd1+0.01,ret1, 'Asset 1', color='black', ha='left', va='center', fontsize=20)
-ax.text(sd2+0.01,ret2, 'Asset 2', color='black', ha='left', va='center', fontsize=20)
-ax.text(sd2-0.01,ret2+0.02, 'Minimum Variance Portfolio', color='black', ha='left', va='center', fontsize=20)
-ax.legend(fontsize=20)
-ax.tick_params(axis='both', which='major', labelsize=20, color='#839496', length=8, width=1.5)
-plt.grid(color='#657b83', linestyle='--', linewidth=0.5, alpha=0.5)
-plt.show()
-```
-
-
-:::
 
 
 
@@ -1322,9 +873,7 @@ plt.show()
 
 **Example with real data**
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -1365,33 +914,6 @@ kable(table,col.names = c("Ticker", "Expected Return", "Standard Deviation"),
 
 
 
-### Python
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-p<-ggplot(table, aes(x = SD, y = ER, color = Ticker)) +
-      geom_point(size = 4) +
-      theme_bw() + 
-      ggtitle("Risk-Return Tradeoff, 2010 to 2023.") +
-      xlab("Standard deviation") + ylab("Expected Return") +
-      scale_y_continuous( limits = c(min(table$ER)*0.95, max(table$ER)*1.05)) +
-      scale_x_continuous( limits = c(min(table$SD)*0.95, max(table$SD)*1.05))+   theme_solarized()
-ggplotly(p)
-```
-
-
-
-
-:::
-
 
 
 
@@ -1402,9 +924,7 @@ ggplotly(p)
 
 ## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -1443,59 +963,8 @@ ggplotly(p)
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-start = '2010-01-01'
-end = pd.to_datetime('today')
-freq_data = '1mo'
-ticker1 = 'BBDC3.SA'
-ticker2 = 'PETR3.SA'
-asset1 = yf.download(ticker1, start=start, end=end, interval=freq_data)['Adj Close']
-asset2 = yf.download(ticker2, start=start, end=end, interval=freq_data)['Adj Close']
-asset1 = asset1.dropna()
-asset2 = asset2.dropna()
-er_1 = np.mean(asset1.pct_change().dropna()) * 12
-er_2 = np.mean(asset2.pct_change().dropna()) * 12
-sd_1 = np.std(asset1.pct_change().dropna()) * np.sqrt(12)
-sd_2 = np.std(asset2.pct_change().dropna()) * np.sqrt(12)
-cov_12 = np.cov(asset1.pct_change().dropna(), asset2.pct_change().dropna())[0, 1]
-corr_12 = np.corrcoef(asset1.pct_change().dropna(), asset2.pct_change().dropna())[0, 1]
-weights = np.linspace(0, 1, 1000)
-two_assets = pd.DataFrame({'w1': weights, 'w2': 1 - weights})
-two_assets['er_p'] = two_assets['w1'] * er_1 + two_assets['w2'] * er_2
-two_assets['sd_p'] = np.sqrt(two_assets['w1']**2 * sd_1**2 + two_assets['w2']**2 * sd_2**2 + 2 * two_assets['w1'] * two_assets['w2'] * cov_12)
-plt.close()
-plt.figure(figsize=(20,10))
-plt.scatter(two_assets['sd_p'], two_assets['er_p'], c=two_assets['w1'])
-plt.scatter(sd_1, er_1, color='red', marker='s', s=100)
-plt.scatter(sd_2, er_2, color='red', marker='s', s=100)
-plt.title('Possible Portfolios with Two Risky Assets',fontsize=25)
-plt.xlabel('Standard deviation',fontsize=22)
-plt.ylabel('Expected Return',fontsize=22)
-plt.xlim(min(two_assets['sd_p']) * 0.9, max(two_assets['sd_p']) * 1.1)
-plt.ylim(min(two_assets['er_p']) * 0.99, max(two_assets['er_p']) * 1.01)
-plt.colorbar(label=r'$Weight\;Asset\;1$')
-ax.tick_params(axis='both', which='major', labelsize=18)
-plt.show()
-```
 
 
-
-
-:::
 
 
 
@@ -1542,9 +1011,7 @@ When you combine several assets, you will have what is called **efficient fronti
 
 **The frontier is not so clear here**
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -1610,78 +1077,6 @@ p<-ggplot(port, aes(x=Sd, y=Return)) +
         labs(title = paste(int , "random portfolios - All Ibov (2010-2023, yearly returns)") )
 ggplotly(p)
 ```
-
-
-
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: false
-#| results: false
-#| output: false
-#| code-fold: true
-#| code-line-numbers: false	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: false
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import yfinance as yf
-start = '2010-01-01'
-end = '2023-01-01'
-freq_data = '1mo'
-#stocks = r.yf_collection_get("IBOV", first_date = start,last_date = end,freq_data = "yearly")
-stocks = ["ABEV3.SA","ALPA4.SA","AMER3.SA","B3SA3.SA","BBAS3.SA","BBDC3.SA","BBDC4.SA","BEEF3.SA","BPAN4.SA","BRAP4.SA","BRFS3.SA","BRKM5.SA","BRML3.SA","CCRO3.SA","CIEL3.SA","CMIG4.SA","COGN3.SA","CPFE3.SA","CPLE6.SA","CSAN3.SA","CSNA3.SA","CYRE3.SA","DXCO3.SA","ECOR3.SA","EGIE3.SA","ELET3.SA","ELET6.SA","EMBR3.SA","ENBR3.SA","ENEV3.SA","ENGI11.SA","EQTL3.SA","EZTC3.SA","FLRY3.SA","GGBR4.SA","GOAU4.SA","GOLL4.SA","HYPE3.SA","ITSA4.SA","ITUB4.SA","JBSS3.SA","JHSF3.SA","LREN3.SA","MGLU3.SA","MRFG3.SA","MRVE3.SA","MULT3.SA","PCAR3.SA","PETR3.SA","PETR4.SA","PRIO3.SA","QUAL3.SA","RADL3.SA","RENT3.SA","SANB11.SA","SBSP3.SA","SULA11.SA","SUZB3.SA","TAEE11.SA","TIMS3.SA","TOTS3.SA","UGPA3.SA","USIM5.SA","VALE3.SA","VIIA3.SA","VIVT3.SA","WEGE3.SA","YDUQ3.SA"]
-df = yf.download(stocks, start=start, end=end, interval=freq_data)[['Adj Close']]
-df = df.reset_index()[['Date']]
-for stock in stocks:
-    data = yf.download(stock, start=start, end=end, interval=freq_data)
-    data = data.dropna() 
-    data = data[['Adj Close']]
-    data.columns = [stock]
-    df = pd.merge(df, data, on='Date', how='outer')
-
-df = df.drop(df.columns[[0,1]], axis=1)
-#Return and covariance calculation
-ret = df.pct_change().mean(axis=0)
-ret_m = df.pct_change()
-cov = ret_m.cov()
-
-# Random numbers to create the frontier
-np.random.seed(100)
-int_ = 10000
-w = np.random.randint(0, int_+1, size=(int_, len(stocks))) / int_
-w = w / np.sum(w, axis=1, keepdims=True)
-# creating final dataframe
-port = pd.DataFrame(np.zeros((int_, 2)), columns=["Return", "Sd"])
-cov_array = cov.values  # Convert covariance matrix to NumPy array
-for i in range(int_):
-    port.iloc[i, 0] = np.sum(w[i, :len(stocks)] * ret)
-    port.iloc[i, 1] = np.sqrt(np.matmul(np.matmul(w[i, :], cov_array), w[i, :].T))
-    
-#plot
-plt.close()
-plt.figure(figsize=(20,10))
-plt.scatter(port['Sd'], port['Return'], alpha=0.5, color="darkblue", s=50)
-plt.xlabel('Standard deviation', fontsize=25)
-plt.ylabel('Expected Return', fontsize=25)
-ax.tick_params(axis='both', which='major', labelsize=18)
-plt.title(str(int_) + ' random portfolios - All Ibov (2010-2023, monthly returns)' , fontsize=25)
-plt.show()
-```
-
-
-
-
-:::
-
-
 
 
 
@@ -1770,9 +1165,6 @@ That is, the volatility is only a fraction of the volatility of the portfolio, b
 
 **Combine an asset with the Rf rate**
 
-::: {.panel-tabset}
-
-### R
 
 ```{r}
 #| warning: false
@@ -1824,70 +1216,6 @@ ggplotly(p)
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-
-plt.close()
-ret1 = 0.175
-sd1 = 0.258
-var1 = sd1**2
-ret2 = 0.055
-sd2 = 0.115
-var2 = sd2**2
-rf = 0.03
-#asset 1
-w1 = np.arange(0, 1.4, 0.01)
-wrf1 = 1 - w1
-retp1 = wrf1 * rf + w1 * ret1
-sdp1 = w1 * sd1
-#asset2 
-w2 = np.arange(0, 1.4, 0.02)
-wrf2 = 1 - w2
-retp2 = wrf2 * rf + w2 * ret2
-sdp2 = w2 * sd2
-#dfs
-df1 = np.column_stack((w1, retp1, sdp1))
-df2 = np.column_stack((w2, retp2, sdp2))
-d1 = df1[df1[:, 0] == 1, :]
-d2 = df2[df2[:, 0] == 1, :]
-#plot
-plt.figure(figsize=(10, 6))
-plt.scatter(sdp1, retp1, c=np.where(w1>1, 'blue', 'lightblue'), s=15, edgecolors='none')
-plt.scatter(sdp2, retp2, c=np.where(w2>1, 'red', 'pink'), s=15, edgecolors='none')
-plt.plot(d1[0, 2], d1[0, 1], 'ko', markersize=5)
-plt.plot(d2[0, 2], d2[0, 1], 'ko', markersize=5)
-plt.annotate('Asset 1', xy=(d1[0, 2], d1[0, 1]), xytext=(d1[0, 2], d1[0, 1]-0.01), color='black', fontsize=10)
-plt.annotate('Asset 2', xy=(d2[0, 2], d2[0, 1]), xytext=(d2[0, 2], d2[0, 1]-0.01), color='black', fontsize=10)
-plt.annotate('Risk-free',  xy=(0.015, rf-0.01), xytext=(0.01, rf-0.01), color='black', fontsize=10)
-plt.xlabel('Standard deviation', fontsize=15)
-plt.ylabel('Expected return', fontsize=15)
-plt.title('Risk and Return of two assets combined with the Risk-Free Rate', fontsize=15)
-plt.xlim(0, sdp1.max())
-plt.ylim(0, retp1.max())
-plt.show()
-```
-
-
-
-:::
-
-
-
-
-
 
 
 
@@ -1897,9 +1225,7 @@ plt.show()
 
 Remember that **we have several potential combinations between Assets 1 and 2**. 
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -1952,68 +1278,6 @@ ggplotly(p)
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-
-corr12 = -0.164
-ret1 = 0.175
-sd1 = 0.258
-var1 = sd1**2
-ret2 = 0.055
-sd2 = 0.115
-var2 = sd2**2
-covar12 = corr12*sd1*sd2
-w1 = np.arange(-0.4, 1.41, 0.01)
-w2 = 1 - w1
-retp = w1*ret1 + w2*ret2
-varp = w1**2 * var1 + w2**2 * var2 + 2*w1*w2*covar12
-sdp = np.sqrt(varp)
-port_names = [f"portfolio{i+1}" for i in range(len(w1))]
-df = {'port.names': port_names, 'w1': w1, 'w2': w2, 'retp': retp, 'sdp': sdp}
-df = pd.DataFrame(df)
-d1 = df[df['w1'] == 1]
-d2 = df[df['w2'] == 1]
-rf = 0.03
-wrf1   = 1 - w1
-wrf2   = 1 - w2
-retp1  = wrf1 * rf + w1 * ret1
-sdp1   = w1*sd1
-retp2  = wrf2 * rf + w2 * ret2
-sdp2   = w2*sd2
-#plot
-plt.close()
-fig, ax = plt.subplots()
-scatter1 = ax.scatter(df['sdp'], df['retp'], s=3, c=np.where(df['w1'] > 1, 'red', np.where(df['w1'] < 0, 'grey', 'pink')))
-scatter2 = ax.scatter(sdp1, retp1, s=3, c=np.where(df['w1'] > 1, 'blue', 'lightblue'))
-plt.xlim(0, max(df['sdp']))
-plt.ylim(0, max(df['retp']))
-plt.xlabel('Standard deviation',fontsize=12)
-plt.ylabel('Expected return',fontsize=12)
-ax.text(0.005, 0.025, 'Risk-free', color='black', ha='left', va='center', fontsize=10)
-ax.text(sd1+0.01,ret1, 'Asset 1', color='black', ha='left', va='center', fontsize=10)
-ax.text(sd2+0.01,ret2, 'Asset 2', color='black', ha='left', va='center', fontsize=10)
-plt.title('Combinations of Risk and Return of two assets and the Risk-Free Rate', fontsize=15)
-plt.show()
-```
-
-
-:::
-
-
-
 
 
 
@@ -2026,9 +1290,7 @@ plt.show()
 
 In this situation, we are better off investing in the **Tangent portfolio**, then "moving" to adjust the level of risk.
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -2102,94 +1364,6 @@ ggplotly(p)
 
 
 
-
-
-
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-
-corr12 = -0.164
-ret1 = 0.175
-sd1 = 0.258
-var1 = sd1**2
-ret2 = 0.055
-sd2 = 0.115
-var2 = sd2**2
-covar12 = corr12*sd1*sd2
-w1 = np.arange(-0.4, 1.41, 0.01)
-w2 = 1 - w1
-retp = w1*ret1 + w2*ret2
-varp = w1**2 * var1 + w2**2 * var2 + 2*w1*w2*covar12
-sdp = np.sqrt(varp)
-port_names = [f"portfolio {i+1}" for i in range(len(w1))]
-df = pd.DataFrame({'port.names': port_names, 'w1': w1, 'w2': w2, 'retp': retp, 'sdp': sdp})
-d1 = df[df['w1'] == 1]
-d2 = df[df['w2'] == 1]
-df1 = df[['w1', 'retp', 'sdp']]
-
-# Including risk free rate
-rf = 0.03
-wrf1 = 1 - w1
-wrf2 = 1 - w2
-retp1 = wrf1 * rf + w1 * ret1
-sdp1 = w1*sd1
-retp2 = wrf2 * rf + w2 * ret2
-sdp2 = w2*sd2
-dfrf1 = np.column_stack((w1, retp1, sdp1))
-# Tangent portfolio
-top = (ret1 - rf)*var2 - (ret2 - rf)*covar12
-bot = (ret1 - rf)*var2 + (ret2 - rf)*var1 - (ret1 - rf + ret2 - rf)*covar12
-w1_t = top/bot
-w2_t = 1 - w1_t
-retp_t = w1_t*ret1 + w2_t*ret2
-varp_t = w1_t**2 * var1 + w2_t**2 * var2 + 2*w1_t*w2_t*covar12
-sdp_t = np.sqrt(varp_t)
-tan = (retp_t - rf)/sdp_t
-dft = np.column_stack((w1_t, retp_t, sdp_t))
-# exploding tangent line
-wt = np.arange(0, 2.01, 0.01)
-wrft = 1 - wt
-retpt = wrft * rf + wt * retp_t
-sdpt = wt*sdp_t
-dft = np.column_stack((wt, retpt, sdpt))
-dft1 = dft[dft[:, 0] == 1, :]
-dft = pd.DataFrame(dft)
-dft = {'wt': wt, 'retpt': retpt, 'sdpt': sdpt}
-
-#plot
-plt.close()
-fig, ax = plt.subplots()
-scatter1 = ax.scatter(df['sdp'], df['retp'], s=3, c=np.where(df['w1'] > 1, 'red', np.where(df['w1'] < 0, 'grey', 'pink')))
-scatter2 = ax.scatter(sdp1, retp1, s=3, c=np.where(df['w1'] > 1, 'blue', 'lightblue'))
-scatter3 = ax.scatter(dft['sdpt'], dft['retpt'], s=3, c=np.where(dft['wt']>1,'darkgreen','lightgreen'))
-plt.xlim(0, max(df['sdp']))
-plt.ylim(0, max(df['retp']))
-plt.xlabel('Standard deviation',fontsize=15)
-plt.ylabel('Expected return',fontsize=15)
-plt.title('Efficient frontier and the tanget portfolio',fontsize=20)
-ax.text(0.005, 0.025, 'Risk-free', color='black', ha='left', va='center', fontsize=12)
-ax.text(sd1+0.01,ret1, 'Asset 1', color='black', ha='left', va='center', fontsize=12)
-ax.text(sd2+0.01,ret2, 'Asset 2', color='black', ha='left', va='center', fontsize=12)
-ax.text(sdp_t-0.07,retp_t, 'Tangent Port.', color='black', ha='left', va='center', fontsize=12)
-plt.show()
-```
-
-
-:::
 
 
 
@@ -2286,9 +1460,7 @@ If you ignore the risk free asset, you have several efficient portfolios (**effi
 
 **What is a good Sharpe Ratio?**
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -2311,39 +1483,6 @@ ggplotly(p)
 ```
 
 
-### Python
-
-::: {.callout-important}
-
-**The following code uses monthly returns instead of annual.** 
-
-:::
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: false
-port['rf'] = 0.01 # using 1% of RF per month
-port['sharpe'] = (port['Return'] - port['rf']) / port['Sd']
-# Plot histogram
-plt.close()
-plt.hist(port['sharpe'], alpha=0.5)
-plt.xlabel('Sharpe',fontsize=15)
-plt.ylabel('Number of portfolios',fontsize=15)
-plt.title(str(int_) + ' random portfolios - All Ibov (2010-2023, monthly returns)' , fontsize=25)
-plt.show()
-```
-
-:::
 
 
 
@@ -2556,9 +1695,7 @@ All investors will have a combination of the Market Portfolio and the Rf rate.
 
 ## 11.7 The CAPM {.smaller background="#c9f7ba"}
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -2579,37 +1716,6 @@ p<-ggplot(port, aes(x=Sd, y=Return)) +
 ggplotly(p)
 ```
 
-### Python
-
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: false
-plt.close()
-plt.figure(figsize=(20,10))
-plt.scatter(port['Sd'], port['Return'], alpha=0.5, color="darkblue", s=50)
-plt.xlabel('Standard deviation', fontsize=25)
-plt.ylabel('Expected Return', fontsize=25)
-plt.title(str(int_) + ' random portfolios - All Ibov (2010-2023, monthly returns)' , fontsize=25)
-plt.xlim(0, 0.02+max(port['Sd']))
-plt.ylim(0, 0.02+max(port['Return']))
-ax.tick_params(axis='both', which='major', labelsize=14)
-plt.plot([0, 0.75], [port['rf'].iloc[0], port['sharpe'].max()], color='red')
-plt.show()
-```
-
-:::
-
 
 
 
@@ -2619,9 +1725,6 @@ plt.show()
 
 ## 11.7 The CAPM {.smaller background="#c9f7ba"}
 
-::: {.panel-tabset}
-
-### R
 
 ```{r}
 #| warning: false
@@ -2642,7 +1745,7 @@ p<-ggplot(port, aes(x=Sd, y=Return)) +
 ggplotly(p)
 ```
 
-:::
+
 
 
 
@@ -2685,9 +1788,7 @@ The beta of a security measures its volatility due to market risk relative to th
 
 List of Betas of Brazilian Companies.
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -2746,74 +1847,6 @@ ggplotly(p)
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-start = '2018-06-01'
-end = '2023-01-01'
-freq_data = '1mo'
-ibov_tickers = ["ABEV3.SA","ALPA4.SA","AMER3.SA","B3SA3.SA","BBAS3.SA","BBDC3.SA","BBDC4.SA","BEEF3.SA","BPAN4.SA","BRAP4.SA","BRFS3.SA","BRKM5.SA","BRML3.SA","CCRO3.SA","CIEL3.SA","CMIG4.SA","COGN3.SA","CPFE3.SA","CPLE6.SA","CSAN3.SA","CSNA3.SA","CYRE3.SA","DXCO3.SA","ECOR3.SA","EGIE3.SA","ELET3.SA","ELET6.SA","EMBR3.SA","ENBR3.SA","ENEV3.SA","ENGI11.SA","EQTL3.SA","EZTC3.SA","FLRY3.SA","GGBR4.SA","GOAU4.SA","GOLL4.SA","HYPE3.SA","ITSA4.SA","ITUB4.SA","JBSS3.SA","JHSF3.SA","LREN3.SA","MGLU3.SA","MRFG3.SA","MRVE3.SA","MULT3.SA","PCAR3.SA","PETR3.SA","PETR4.SA","PRIO3.SA","QUAL3.SA","RADL3.SA","RENT3.SA","SANB11.SA","SBSP3.SA","SULA11.SA","SUZB3.SA","TAEE11.SA","TIMS3.SA","TOTS3.SA",  "UGPA3.SA","USIM5.SA","VALE3.SA","VIIA3.SA","VIVT3.SA","WEGE3.SA","YDUQ3.SA"]
-
-ibov = yf.download(tickers="^BVSP", start=start, end=end, interval=freq_data)
-asset = yf.download(tickers=ibov_tickers   ,start=start, end=end, interval=freq_data)
-
-ret_ibov = pd.DataFrame(ibov['Adj Close'].pct_change().dropna())
-ret_ibov.columns = ['return']
-
-ret_asset = pd.DataFrame()
-for col in asset.columns.get_level_values(1).unique():
-    temp_df = pd.DataFrame(asset['Adj Close'][col].pct_change().dropna())
-    temp_df.columns = ['return']
-    temp_df['ticker'] = col.split('.')[0]
-    ret_asset = pd.concat([ret_asset, temp_df], axis=0)
-ret = pd.merge(ret_ibov, ret_asset, on='Date')
-# To compute beta
-var = pd.DataFrame(ret.groupby('ticker')['return_x'].var())
-var = var.rename(columns={"return_x": "variance"})
-cov = ret.groupby('ticker')['return_x', 'return_y'].cov().iloc[0::2, 1]
-beta = pd.merge(var, cov, on='ticker')
-beta.reset_index(inplace=True)
-beta.rename(columns={"return_y": "covariance", "return_x": "variance", "ticker": "Ticker"}, inplace=True)
-beta = beta[['Ticker', 'variance', 'covariance']]
-beta.head()
-beta['beta'] = beta['covariance'] / beta['variance']
-# Risk free rate
-beta['rf'] = 0.1
-# Equity risk premium from here: https://ceqef.fgv.br/node/594
-beta['erp'] = 0.16
-# expected return
-beta['ep'] = beta['rf'] + beta['beta'] * beta['erp']
-
-plt.close()
-plt.figure(figsize=(20,10))
-beta = beta.sort_values('beta', ascending=True)
-fig, ax = plt.subplots(figsize=(20,10))
-ax.barh(beta['Ticker'], beta['beta'], color='#268bd2')
-ax.set_title('Betas Brazilian companies, monthly data (2018-2023)', fontsize=25)
-ax.set_xlabel('Beta', fontsize=20)
-ax.set_ylabel('Ticker', fontsize=20)
-plt.xticks(rotation=90, fontsize=7)
-plt.tight_layout()
-ax.tick_params(axis='x', labelsize=14)
-plt.show()
-
-```
-
-
-:::
-
 
 
 
@@ -2858,9 +1891,7 @@ This linear relationship has a name: **Security Market Line (SML)**
 
 ## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
 
-::: {.panel-tabset}
 
-### R
 
 ```{r}
 #| warning: false
@@ -2885,32 +1916,6 @@ p
 
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: false
-plt.close()
-plt.figure(figsize=(10,6))
-plt.scatter(beta['beta'], beta['ep'], c='#268bd2', alpha=0.7, s=8)
-plt.ylabel('Expected Return', fontsize=20)
-plt.xlabel('Beta', fontsize=20)
-plt.title('SML Brazil, monthly data (2018-2023)', fontsize=20)
-plt.suptitle('Rf = 10% per year, Risk premium = 16%', fontsize=15)
-plt.show()
-```
-
-:::
 
 
 
