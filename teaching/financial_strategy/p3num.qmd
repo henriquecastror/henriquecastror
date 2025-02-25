@@ -21,7 +21,6 @@ title: "Part 3 (ch11) Questions Numeric"
 
 ## Question 1
 
-
 ```{r}
 #| eval: true
 #| results: asis
@@ -41,35 +40,64 @@ correl <- rnorm(1, mean = 0.5, sd = 0.2)
 
 ```
 
-**Q:** What is the **expected return** of a portfolio that invests `r round(w1,3)` percent in Asset 1 (expected return = `r round(r1,3)`)  and the remaining `r round(w2,3)` in Asset 2 (expected return = `r round(r2,3)`)? 
-
-`r fitb( round( (w1 * r1 + w2 * r2) * 100 ,3) , tol=0.01)`
+**Q:** What is the **expected return** of a portfolio that invests `r round(w1,3)` percent in Asset 1 (expected return = `r round(r1,3)`)  and the remaining `r round(w2,3)` in Asset 2 (expected return = `r round(r2,3)`)?  `r fitb( round( (w1 * r1 + w2 * r2) * 100 ,3) , tol=0.01)`
 
 
-**Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **variance** of the portfolio above?
-
-`r fitb( round( (w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2)* 100  ,3) , tol=0.01)`
+**Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **variance** of the portfolio above? `r fitb( round( (w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2)* 100  ,3) , tol=0.01)`
 
 
+**Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **standard deviation** of the portfolio above? `r fitb( round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) * 100,3) , tol=0.01)`
 
-**Q:** Assuming that the correlation between these assets is `r round(correl,3)`, and that the standard deviation of Asset 1 is `r round(sigma1,3)` while the standard deviation of Asset 2 is `r round(sigma2,3)`, what is the **standard deviation** of the portfolio above?
 
-`r fitb( round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) * 100,3) , tol=0.01)`
+**Answer**
+
+1) `r round( (w1 * r1 + w2 * r2) * 100 ,3) `, 2) `r round( (w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2) * 100  ,3) `, 3) `r round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 )* 100 ,3) `.
 
 
 ___
 
 
-**Answer**
+## Question 2
 
-1) `r round( (w1 * r1 + w2 * r2) * 100 ,3) `
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
 
-2) `r round( (w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2) * 100  ,3) `
+# Randomizing share prices
+price_abt <- rnorm(1, mean = 50, sd = 10)
+price_low <- rnorm(1, mean = 30, sd = 5)
+price_bll <- rnorm(1, mean = 40, sd = 8)
 
-3) `r round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 )* 100 ,3) `
+# Randomizing number of shares while ensuring total investment is consistent
+investment <- 20000
+shares_abt <- sample(100:300, 1)
+shares_low <- sample(100:300, 1)
+remaining_investment <- investment - (shares_abt * price_abt) - (shares_low * price_low)
+shares_bll <- round(remaining_investment / price_bll)
+
+# Compute values
+value_abt <- shares_abt * price_abt
+value_low <- shares_low * price_low
+value_bll <- shares_bll * price_bll
+
+total_value <- value_abt + value_low + value_bll
+
+# Ensure weights sum to 1
+weight_abt <- value_abt / total_value
+weight_low <- value_low / total_value
+weight_bll <- value_bll / total_value
+```
 
 
+Q: Suppose you purchase `r shares_abt ` shares of Company A at `r round(price_abt,2)` per share, `r shares_low ` shares of Company B at `r round(price_low,2)` per share, and `r shares_bll` shares of Company C at `r round(price_bll,2)` per share.
 
+What is the weight on Company A in your portfolio (in %)? `r fitb( round(weight_abt * 100 ,2) , tol=0.01)`
+
+
+**Answer**: `r round(weight_abt * 100 ,2) `
 
 
 
