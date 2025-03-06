@@ -1,0 +1,200 @@
+---
+title: 'RAE Reviewer Development Program'
+author:
+  - name: ' Henrique C. Martins'
+    affiliation: '**[![](background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+date: 2025-03-06
+title-block-banner: true
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    multiplex: true
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## RAE &  Open Science   {.smaller background="#D6EAF8"}
+
+- Open Data, Open Code, Open Peer Review....
+
+- Editorials:
+
+  - [Mendes-da-Silva (2024)](https://periodicos.fgv.br/rae/article/view/89765): Discuss OS  within the business community.
+
+  - [Martins e Mendes-da-Silva (2024)](https://periodicos.fgv.br/rae/article/view/91163): Define some guidelines.
+
+
+
+
+
+## RAE &  Open Science   {.smaller background="#D6EAF8"}
+
+**Authors fill a form**
+
+![](operae.png){fig-align="center"}
+
+
+
+
+
+
+
+## Open Peer Review (OPR) {.smaller background="#ead1dc"}
+
+_Open peer review (OPR) is an umbrella term for a **number of overlapping ways** that peer review models can be adapted in line with the ethos of Open Science, including making reviewer and author identities open, publishing review reports and enabling greater participation in the peer review process._ ([Ross-Hellauer et al., 2017](https://doi.org/10.1371/journal.pone.0189311))
+
+. . . 
+
+
+![](ross.png){fig-align="center" }
+
+
+
+
+
+
+
+
+## Open Peer Review (OPR) {.smaller background="#ead1dc"}
+
+::: {.callout-note}
+**It is a peer review process that, unlike the traditional approach, aims to bring transparency to: 1) the content of reviews for articles submitted to academic journals, 2) the identity of reviewers, and 3) written responses from authors.**
+:::
+
+. . . 
+
+
+- Typically, it is a **voluntary** process for reviewers.
+
+- For authors, it is mandatory if reviewers agree to participate.
+
+- The review remains blinded, and transparency is implemented after the article is accepted.
+
+. . . 
+
+**In practice, three "levels":**
+
+- No sharing of identity or content.
+
+- Sharing of content.
+
+- Sharing of both content and identity.
+
+
+
+
+## Open Peer Review (OPR) {.smaller background="#ead1dc"}
+
+::: {.incremental}
+
+- Authors must adhere to OPR at the **time of submission**.
+
+- **After the article is accepted**, reviewers are invited to choose one of the levels.
+
+- **RAE does not alter the content** of the reviews under any circumstances (even typographical errors are maintained).
+  
+    - Only comments that violate ethical standards (e.g., derogatory or defamatory remarks) may be edited (omitted) from the report.
+    - In such cases, it will be explicitly stated that parts of the report have been edited.
+    - So far, no such cases have occurred.
+
+:::
+
+
+
+
+
+
+
+## Open Peer Review (OPR) {.smaller background="#ead1dc"}
+
+![](rae.png){fig-align="center" }
+
+## Open Peer Review (OPR) {.smaller background="#ead1dc"}
+
+<iframe width="910" height="690" src="https://periodicos.fgv.br/rae/article/view/91195/85837" title="Webpage example"></iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# **THANK YOU!** {background="#b1cafa" visibility="hidden"}
+
+## **THANK YOU!** {background="#b1cafa"}
+
+::: columns
+::: {.column width="60%"}
+**QUESTIONS?**
+
+![](qa2.png){width="150%" heigth="150%"}
+:::
+
+::: {.column width="40%"}
+**Henrique C. Martins**
+
+-   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
+-   [Personal Website](https://henriquemartins.net/)
+-   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
+-   [Lattes](http://lattes.cnpq.br/6076997472159785)
+-   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)\
+:::
+:::
+
+::: footer
+:::
