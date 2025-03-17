@@ -360,10 +360,6 @@ SP500 and Ibov are not considered as **the market portfolio**, they are **proxie
 
 ## {.smaller  background="#cff5ce"}
 
-::: panel-tabset
-
-### R
-
 
 ```{r}
 #| warning: false
@@ -403,39 +399,8 @@ ggplotly(p)
 ```
 
  
-### Python
 
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import yfinance as yf
-stocks = ['SPY', 'IVV', 'VOO', 'SPLG', '^GSPC']
-start = '2010-01-01'
-end = pd.Timestamp.now()
-data = yf.download(stocks, start=start, end=end)['Close']
-data2 = (data / data.iloc[0]) * 100
-plt.close()
-plt.plot(data2)
-plt.xlabel('')
-plt.ylabel('Closing prices')
-plt.title('SP500 against 4 ETFs, Initial price = 100\nBegin 01/01/2010')
-plt.legend(data2.columns)
-plt.show()
-```
 
-:::
 
 
 
@@ -453,9 +418,7 @@ plt.show()
 
 ## {.smaller  background="#cff5ce"}
 
-::: panel-tabset
 
-### R
 
 
 ```{r}
@@ -488,36 +451,6 @@ p<- ggplot(data2, aes(ref_date , price_close2, color=ticker))+
              subtitle = "Begin 01/01/2010") +   theme_solarized(base_size = 12) 
 ggplotly(p)
 ```
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-stocks = ['BOVA11.SA', '^BVSP']
-start = '2010-01-01'
-end = pd.Timestamp.now()
-data = yf.download(stocks, start=start, end=end)['Close']
-data2 = (data / data.iloc[0]) * 100
-plt.close()
-plt.plot(data2)
-plt.xlabel('')
-plt.ylabel('Closing prices')
-plt.title('Ibov against 2 ETFs, Initial price = 100')
-plt.legend(data2.columns)
-plt.show()
-```
-
-:::
 
 
 
@@ -576,81 +509,6 @@ Another key ingredient of CAPM is **The Market Risk Premium**
 
 
 
-
-
-
-
-## {.smaller  background="#cff5ce"}
-
-::: panel-tabset
-
-### R 
-
-```{r}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-url <- "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
-download(url, dest="files/epr.xlsx", mode="wb") 
-data <- read_excel("files/epr.xlsx", col_types = c("date","numeric") )
-data <- data[2:nrow(data),1:2]
-colnames(data) <- c("month", "erp")
-
-p<-ggplot(data, aes(x=month, y = erp)) + geom_line() + theme_solarized()+
-  labs(y = "Equity Risk Premium (ERP)", 
-       x = "", 
-       title = "Equity Risk Premium (ERP) in Brazil" , 
-       caption = "Source: https://ceqef.fgv.br/node/594" )
-ggplotly(p)
-```
-
-
-
-
-
-
-
-
-
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-import pandas as pd
-import matplotlib.pyplot as plt
-url = "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
-data = pd.read_excel(url, header=2)
-data = data.iloc[:, 0:2]
-data.columns = ["month", "erp"]
-fig, ax = plt.subplots(figsize=(20, 10))
-ax.plot(data["month"], data["erp"])
-ax.set_xlabel("Time", fontsize=20)
-ax.set_ylabel("Equity Risk Premium (ERP)", fontsize=20)
-ax.set_title("Equity Risk Premium (ERP) in Brazil", fontsize=25)
-ax.text(0.5, -0.1, "Source: https://ceqef.fgv.br/node/594", transform=ax.transAxes, ha="center")
-plt.show()
-```
-
-
-:::
 
 
 
@@ -728,9 +586,6 @@ Finally, we need to estimate Beta
 ##  {.smaller  background="#ced8f5"}
 
 
-::: panel-tabset
-
-### R 
 
 ```{r}
 #| warning: false
@@ -780,40 +635,6 @@ ggplotly(p)
 ```
 
 
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-stocks = ['PETR4.SA', '^BVSP']
-start = '2010-01-01'
-end = pd.Timestamp.now()
-data = yf.download(stocks, start=start, end=end)['Close']
-returns = data.pct_change().dropna()
-plt.close()
-fig, ax = plt.subplots(figsize=(20, 10))
-ax.scatter(returns["^BVSP"], returns["PETR4.SA"], alpha=0.5, color='black')
-m, b = np.polyfit(returns["^BVSP"], returns["PETR4.SA"], 1)
-ax.plot(returns["^BVSP"], m*returns["^BVSP"] + b, color='darkblue')
-ax.set_xlabel("Daily returns IBOV")
-ax.set_ylabel("Daily returns PETR4")
-ax.set_title("Beta PETR4")
-ax.set_xlim(-0.2, 0.2)
-ax.set_ylim(-0.2, 0.2)
-plt.show()
-```
-
-:::
 
 
 
@@ -828,9 +649,7 @@ plt.show()
 ##  {.smaller  background="#ced8f5"}
 
 
-::: panel-tabset
 
-### R 
 
 ```{r}
 #| warning: false
@@ -878,42 +697,6 @@ ggplotly(p)
 
 
 
-
-### Python
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| results: false
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-stocks = ['WEGE3.SA', '^BVSP']
-start = '2010-01-01'
-end = pd.Timestamp.now()
-data = yf.download(stocks, start=start, end=end)['Close']
-returns = data.pct_change().dropna()
-plt.close()
-fig, ax = plt.subplots(figsize=(20, 10))
-ax.scatter(returns["^BVSP"], returns["WEGE3.SA"], alpha=0.5, color='black')
-m, b = np.polyfit(returns["^BVSP"], returns["WEGE3.SA"], 1)
-ax.plot(returns["^BVSP"], m*returns["^BVSP"] + b, color='darkblue')
-ax.set_xlabel("Daily returns IBOV")
-ax.set_ylabel("Daily returns WEGE3")
-ax.set_title("Beta WEGE3.SA")
-ax.set_xlim(-0.2, 0.2)
-ax.set_ylim(-0.2, 0.2)
-plt.show()
-```
-
-
-:::
 
 
 
