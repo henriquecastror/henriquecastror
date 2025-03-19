@@ -97,7 +97,6 @@ CAPM: `r fitb( round(rf + beta * mrp ,3), tol=0.01)`
 
 Expected default method: `r fitb( round(yield - default/100 * loss   ,3), tol=0.01)`
 
-___
 
 
 
@@ -109,14 +108,79 @@ Expected default method: `r round(yield - default/100 * loss   ,3)`
 
 
 
+___
 
 
 
+### Q3: Cost of Capital 
 
 
 
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+
+# Randomizing company beta and volatility
+beta_A <- rnorm(1, mean = 0.5, sd = 0.1)
+beta_B <- rnorm(1, mean = 0.8, sd = 0.1)
+beta_C <- rnorm(1, mean = 1.1, sd = 0.1)
+beta_D <- rnorm(1, mean = 1.3, sd = 0.1)
+
+vol_A <- rnorm(1, mean = 22, sd = 2)
+vol_B <- rnorm(1, mean = 19, sd = 2)
+vol_C <- rnorm(1, mean = 33, sd = 2)
+vol_D <- rnorm(1, mean = 27, sd = 2)
+
+# Randomizing risk-free rate and market return
+rf <- rnorm(1, mean = 3, sd = 0.5)
+market_return <- rnorm(1, mean = 9, sd = 1)
+
+# Computing cost of capital for company A
+cost_of_capital_A <- round(rf,2) + round(beta_A,2) * (round(market_return,2) - round(rf,2))
+cost_of_capital_B <- round(rf,2) + round(beta_B,2) * (round(market_return,2) - round(rf,2))
+cost_of_capital_C <- round(rf,2) + round(beta_C,2) * (round(market_return,2) - round(rf,2))
+cost_of_capital_D <- round(rf,2) + round(beta_D,2) * (round(market_return,2) - round(rf,2))
+
+
+```
+
+
+
+**Q**: Use the following information to answer the question(s) below:
+
+| Company | Beta | Volatility (%) |
+|---------|------|---------------|
+| A       | `r round(beta_A,2)` | `r round(vol_A,2)` |
+| B       | `r round(beta_B,2)` | `r round(vol_B,2)` |
+| C       | `r round(beta_C,2)` | `r round(vol_C,2)` |
+| D       | `r round(beta_D,2)` | `r round(vol_D,2)` |
+
+Assume that the risk-free rate of interest is `r round(rf,2)`% and you estimate the market's expected return to be `r round(market_return,2)`%.
+
+- What is the cost of capital of Company A?  `r fitb( round(cost_of_capital_A,2) , tol=0.01)`
+
+- What is the cost of capital of Company B?  `r fitb( round(cost_of_capital_B,2) , tol=0.01)`
+
+- What is the cost of capital of Company C?  `r fitb( round(cost_of_capital_C,2) , tol=0.01)`
+
+- What is the cost of capital of Company D?  `r fitb( round(cost_of_capital_D,2) , tol=0.01)`
+
+
+**Answer**:
+
+A)  `r round(cost_of_capital_A,2)`
+
+B)  `r round(cost_of_capital_B,2)`
+
+C)  `r round(cost_of_capital_C,2)`
+
+D)  `r round(cost_of_capital_D,2)`
 
 ___
+
 
 
 <script src="https://giscus.app/client.js"
