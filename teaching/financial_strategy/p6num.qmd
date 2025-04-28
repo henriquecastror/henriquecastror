@@ -1,0 +1,76 @@
+---
+title: "Part 6 (ch24)  Questions Numeric"
+---
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p5num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+:::
+
+
+::: {.callout-note}
+### For students
+
+**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
+
+**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+
+:::
+
+
+___
+
+
+## Q1
+
+```{r, setup}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+face_value <- 1000
+conversion_ratio <- rnorm(1, mean = 40, sd = 3)
+conversion_price <- face_value / conversion_ratio
+```
+
+**Q**: You own a bond with a face value of $`r face_value` and a conversion ratio of `r round(conversion_ratio, 2)`.
+What is the the conversion price? `r fitb( round(conversion_price, 0), tol = 1)`
+
+**Answer**:
+
+1) `r round(conversion_price, 2)`
+
+___
+
+## Q2
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+face_value <- 1000
+conversion_ratio <- rnorm(1, mean = 40, sd = 3)
+conversion_price <- face_value / conversion_ratio
+
+```
+
+**Q**: You own a bond with a face value of $`r face_value` and a conversion price of $`r round(conversion_price, 2)`.
+What is the the conversion ratio? `r fitb( round(conversion_ratio, 0), tol = 1)`
+
+**Answer**:
+
+1) `r round(conversion_ratio, 2)`
+
+
+
+___
+
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p5num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+:::
