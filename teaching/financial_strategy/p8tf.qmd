@@ -74,6 +74,28 @@ cat("27", fitb("F", num = FALSE, ignore_case = TRUE), "All companies, regardless
 cat("28", fitb("T", num = FALSE, ignore_case = TRUE), "A high debt ratio can increase a company's financial risk and affect its stock price volatility.", "\n\n")
 cat("29", fitb("T", num = FALSE, ignore_case = TRUE), "Companies in highly cyclical industries might use less debt to avoid financial distress during downturns.", "\n\n")
 cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "The value of a firm's tax shield is independent of the corporate tax rate.", "\n\n")
+cat("31", fitb("T", num = FALSE, ignore_case = TRUE), "In the presence of taxes, issuing debt can be value-enhancing for firms with consistent profits.", "\n\n")
+cat("32", fitb("F", num = FALSE, ignore_case = TRUE), "Tax shields are equally valuable regardless of a firm's ability to generate taxable income.", "\n\n")
+cat("33", fitb("T", num = FALSE, ignore_case = TRUE), "The more predictable a firm's earnings, the more it can benefit from the tax shield provided by debt.", "\n\n")
+cat("34", fitb("F", num = FALSE, ignore_case = TRUE), "A firm with negative earnings can still benefit from an interest tax shield in the current year.", "\n\n")
+cat("35", fitb("T", num = FALSE, ignore_case = TRUE), "In a world with corporate taxes, the WACC initially declines as leverage increases, due to the tax shield of debt.", "\n\n")
+cat("36", fitb("F", num = FALSE, ignore_case = TRUE), "If a firm uses 100% equity financing, it still benefits from an interest tax shield.", "\n\n")
+cat("37", fitb("T", num = FALSE, ignore_case = TRUE), "Interest payments reduce taxable income, which in turn reduces taxes paid by the firm.", "\n\n")
+cat("38", fitb("T", num = FALSE, ignore_case = TRUE), "If a firm expects to have taxable income in the future, it may choose to increase leverage to take advantage of tax shields.", "\n\n")
+cat("39", fitb("F", num = FALSE, ignore_case = TRUE), "The benefit of the tax shield is unaffected by how much interest a company actually pays.", "\n\n")
+cat("40", fitb("T", num = FALSE, ignore_case = TRUE), "The MM Proposition with taxes implies that the tax shield increases firm value by the present value of future tax savings.", "\n\n")
+cat("41", fitb("F", num = FALSE, ignore_case = TRUE), "The personal tax rate on debt and equity returns has no impact on the optimal capital structure.", "\n\n")
+cat("42", fitb("T", num = FALSE, ignore_case = TRUE), "Firms with stable cash flows are generally more suited to benefit from the tax shield of debt.", "\n\n")
+cat("43", fitb("F", num = FALSE, ignore_case = TRUE), "The value of the firm decreases as the present value of the interest tax shield increases.", "\n\n")
+cat("44", fitb("T", num = FALSE, ignore_case = TRUE), "Debt creates value in the presence of corporate taxes because it generates a tax shield.", "\n\n")
+cat("45", fitb("T", num = FALSE, ignore_case = TRUE), "The benefit from the tax shield is realized only if the firm has positive taxable income.", "\n\n")
+cat("46", fitb("F", num = FALSE, ignore_case = TRUE), "A firm that does not pay taxes benefits from the same tax shield as a profitable firm.", "\n\n")
+cat("47", fitb("T", num = FALSE, ignore_case = TRUE), "As leverage increases, the marginal benefit of the interest tax shield eventually declines.", "\n\n")
+cat("48", fitb("F", num = FALSE, ignore_case = TRUE), "The interest tax shield increases firm value only in theory and has no effect on actual market value.", "\n\n")
+cat("49", fitb("T", num = FALSE, ignore_case = TRUE), "Firms that anticipate future losses may avoid taking on more debt despite the tax benefits.", "\n\n")
+cat("50", fitb("T", num = FALSE, ignore_case = TRUE), "Debt becomes less attractive if the corporate tax rate is reduced.", "\n\n")
+
+
 
 ```
 

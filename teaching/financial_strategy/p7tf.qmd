@@ -51,9 +51,6 @@ cat("10", fitb("T", num = FALSE, ignore_case = TRUE), "The premium that investor
 cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "Leverage refers to the practice of using debt or other financial instruments to magnify returns on equity investments, while unlevered equity means using only equity capital without debt.",  "\n\n")
 cat("12", fitb("T", num = FALSE, ignore_case = TRUE), "According to Modigliani-Miller and the Law of One Price, in a world of perfect capital markets, two identical firms with the same cash flows should have the same market value, regardless of their capital structures.",  "\n\n")
 cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Debt financing is a less expensive source of capital for a firm compared to equity financing.",  "\n\n")
-
-
-
 cat("14", fitb("T", num = FALSE, ignore_case = TRUE), "With perfect capital markets, the risk of bankruptcy does not affect the value of the firm.", "\n\n")
 cat("15", fitb("F", num = FALSE, ignore_case = TRUE), "According to MM Proposition II, the cost of equity decreases as the firm's debt-to-equity ratio increases.", "\n\n")
 cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "In perfect capital markets, all investors can borrow and lend at the same risk-free rate.", "\n\n")
@@ -71,6 +68,31 @@ cat("27", fitb("T", num = FALSE, ignore_case = TRUE), "In a perfect capital mark
 cat("28", fitb("F", num = FALSE, ignore_case = TRUE), "According to MM Proposition II, with perfect capital markets, the firm's weighted average cost of capital (WACC) decreases as more debt is added to the capital structure.", "\n\n")
 cat("29", fitb("T", num = FALSE, ignore_case = TRUE), "In perfect capital markets, changes in capital structure affect the risk and return of the equity but do not affect the total value of the firm.", "\n\n")
 cat("30", fitb("T", num = FALSE, ignore_case = TRUE), "The Modigliani-Miller propositions assume that all investors have access to the same set of investment opportunities.", "\n\n")
+cat("31", fitb("T", num = FALSE, ignore_case = TRUE), "With perfect capital markets, capital structure decisions do not influence firm value.",  "\n\n")
+cat("32", fitb("F", num = FALSE, ignore_case = TRUE), "In perfect capital markets, the value of a firm increases with more debt.",  "\n\n")
+cat("33", fitb("T", num = FALSE, ignore_case = TRUE), "The MM Proposition I relies on the assumption of no taxes and no bankruptcy costs.",  "\n\n")
+cat("34", fitb("F", num = FALSE, ignore_case = TRUE), "Firms in perfect capital markets can benefit from tax shields on debt.",  "\n\n")
+cat("35", fitb("T", num = FALSE, ignore_case = TRUE), "Capital structure irrelevance assumes that investors can replicate firm leverage on their own.",  "\n\n")
+cat("36", fitb("T", num = FALSE, ignore_case = TRUE), "The firm's investment decision should be independent of its financing decision in perfect capital markets.",  "\n\n")
+cat("37", fitb("F", num = FALSE, ignore_case = TRUE), "Perfect capital markets require bankruptcy to be a real and costly risk.",  "\n\n")
+cat("38", fitb("T", num = FALSE, ignore_case = TRUE), "Perfect capital markets assume no asymmetric information between managers and investors.",  "\n\n")
+cat("39", fitb("T", num = FALSE, ignore_case = TRUE), "Investors are rational and price securities according to their risk in perfect capital markets.",  "\n\n")
+cat("40", fitb("F", num = FALSE, ignore_case = TRUE), "MM Proposition II implies that the cost of debt increases with leverage.",  "\n\n")
+cat("41", fitb("T", num = FALSE, ignore_case = TRUE), "In perfect capital markets, issuing debt does not change the total value of the firm.",  "\n\n")
+cat("42", fitb("F", num = FALSE, ignore_case = TRUE), "Firms in perfect markets should always prefer debt over equity.",  "\n\n")
+cat("43", fitb("T", num = FALSE, ignore_case = TRUE), "Homemade leverage allows investors to adjust their personal leverage regardless of the firm’s capital structure.",  "\n\n")
+cat("44", fitb("T", num = FALSE, ignore_case = TRUE), "Perfect capital markets allow investors to undo the firm's financial choices.",  "\n\n")
+cat("45", fitb("F", num = FALSE, ignore_case = TRUE), "The WACC of a firm declines as more low-cost debt is used in perfect capital markets.",  "\n\n")
+cat("46", fitb("T", num = FALSE, ignore_case = TRUE), "Perfect capital markets do not include agency conflicts between equity holders and debt holders.",  "\n\n")
+cat("47", fitb("T", num = FALSE, ignore_case = TRUE), "In MM Proposition I, leverage only reallocates returns between debt and equity.",  "\n\n")
+cat("48", fitb("F", num = FALSE, ignore_case = TRUE), "MM Proposition II implies that total firm value increases as debt is added.",  "\n\n")
+cat("49", fitb("T", num = FALSE, ignore_case = TRUE), "The risk premium on equity rises with leverage in perfect capital markets.",  "\n\n")
+cat("50", fitb("T", num = FALSE, ignore_case = TRUE), "Capital structure does not impact the total cash flows to investors under MM Proposition I.",  "\n\n")
+cat("51", fitb("T", num = FALSE, ignore_case = TRUE), "Debt increases the risk borne by equity holders, even if total firm risk remains unchanged.",  "\n\n")
+cat("52", fitb("F", num = FALSE, ignore_case = TRUE), "Equity becomes less risky as a firm increases leverage in perfect capital markets.",  "\n\n")
+cat("53", fitb("T", num = FALSE, ignore_case = TRUE), "Firms with identical future cash flows must have the same value, regardless of leverage.",  "\n\n")
+cat("54", fitb("F", num = FALSE, ignore_case = TRUE), "The cost of capital of a firm can be lowered through financial engineering in perfect markets.",  "\n\n")
+cat("55", fitb("T", num = FALSE, ignore_case = TRUE), "In perfect capital markets, capital structure does not alter the present value of free cash flows.",  "\n\n")
 
 ```
 
