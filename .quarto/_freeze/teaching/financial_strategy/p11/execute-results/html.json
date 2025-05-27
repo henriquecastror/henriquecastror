@@ -1,0 +1,19 @@
+{
+  "hash": "f636e60d52dce838c23ef114120446b0",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: 'Estrat??gia Financeira'\nsubtitle: ' **Part 10 - Ch 17 Payout Policy** '\nauthor:\n  - name: ' **Henrique C. Martins** '\n    affiliation: '**[![](figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'\ndate: last-modified\ndate-format: \"DD-MM-YYYY\"\ntitle-block-banner: true\nformat:\n  revealjs: \n    touch: true\n    controls: true\n    slide-number: true\n    theme: simple\n    chalkboard: true\n    preview-links: auto\n    logo: figs/background8.png\n    css: logo.css\n    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Practice [T/F](https://henriquemartins.net/teaching/financial_strategy/p10tf.html) & [Numeric](https://henriquemartins.net/teaching/financial_strategy/p10num.html)] [[Interact](https://henriquemartins.net/teaching/financial_strategy/p10.html#/interact)][Do not use without permission]**  '\n    multiplex: true\n    scrollable: true\ntitle-slide-attributes:\n    data-background-color: \"#b1cafa\"\ninclude-after: |\n  <script type=\"text/javascript\">\n    Reveal.on('ready', event => {\n      if (event.indexh === 0) {\n        document.querySelector(\"div.has-logo > img.slide-logo\").style.display = \"none\";\n      }\n    });\n    Reveal.addEventListener('slidechanged', (event) => {\n      if (event.indexh === 0) {\n        Reveal.configure({ slideNumber: null });\n        document.querySelector(\"div.has-logo > img.slide-logo\").style.display = \"none\";\n      }\n      if (event.indexh === 1) { \n        Reveal.configure({ slideNumber: 'c' });\n        document.querySelector(\"div.has-logo > img.slide-logo\").style.display = null;\n      }\n    });\n  </script>\nruntime: shiny\n      \n---\n\n\n\n# Intro {visibility=\"hidden\"}\n\n\n## Exerc??cio Simples\n\n\n`<iframe data-deferred-src=\"appea307360ca88e16737a753048c9a5027/?w=&amp;__subapp__=1\" width=\"100%\" height=\"400\" class=\"shiny-frame shiny-frame-deferred\"></iframe>`{=html}\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-after-body": [
+        "\n<script>\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\n  // slide changes (different for each slide format).\n  (function () {\n    // dispatch for htmlwidgets\n    function fireSlideEnter() {\n      const event = window.document.createEvent(\"Event\");\n      event.initEvent(\"slideenter\", true, true);\n      window.document.dispatchEvent(event);\n    }\n\n    function fireSlideChanged(previousSlide, currentSlide) {\n      fireSlideEnter();\n\n      // dispatch for shiny\n      if (window.jQuery) {\n        if (previousSlide) {\n          window.jQuery(previousSlide).trigger(\"hidden\");\n        }\n        if (currentSlide) {\n          window.jQuery(currentSlide).trigger(\"shown\");\n        }\n      }\n    }\n\n    // hookup for slidy\n    if (window.w3c_slidy) {\n      window.w3c_slidy.add_observer(function (slide_num) {\n        // slide_num starts at position 1\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\n      });\n    }\n\n  })();\n</script>\n\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
