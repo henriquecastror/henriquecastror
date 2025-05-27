@@ -1,0 +1,62 @@
+---
+title: "Part 9 (ch16)  Questions Numeric"
+---
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p8num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p10num.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+:::
+
+
+::: {.callout-note}
+### For students
+
+**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
+
+**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
+
+:::
+___
+
+
+## Q1
+
+```{r, setup}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+# Randomized parameters for future firm values
+value_low <- round(rnorm(1, mean = 100, sd = 3), 0)
+value_mid <- round(rnorm(1, mean = 150, sd = 3), 0)
+value_high <- round(rnorm(1, mean = 191, sd = 3), 0)
+
+# Risk-free rate
+rf <- 0.05
+
+# Probability (equally likely outcomes)
+prob <- 1/3
+
+# Expected future value
+expected_future_value <- prob * (value_low + value_mid + value_high)
+
+# Present value (firm value today under perfect capital markets)
+present_value <- expected_future_value / (1 + rf)
+
+
+```
+
+**Q1**: Assuming that in the event of default, 20% of Monsters Incorporated’s (MI) asset value is lost to bankruptcy costs, what is the initial value of MI as an all-equity (unlevered) firm (in million dollars)? `r fitb(round(present_value, 0), tol = 1)`
+
+Answer: `r round(present_value, 0)` million dollars
+
+
+
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p8num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p10num.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+:::
