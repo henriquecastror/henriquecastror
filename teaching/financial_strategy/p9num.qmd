@@ -49,10 +49,11 @@ present_value <- expected_future_value / (1 + rf)
 
 ```
 
-**Q1**: Assuming that in the event of default, 20% of Monsters Incorporated’s (MI) asset value is lost to bankruptcy costs, what is the initial value of MI as an all-equity (unlevered) firm (in million dollars)? `r fitb(round(present_value, 0), tol = 1)`
+**Q**: Aurora Labs is ready to launch a new product. Depending on the success of this product, Aurora will have a value of either $`r value_low` million, $`r value_mid` million, or $`r value_high` million in one year, with each outcome being equally likely. Because the project risk is fully diversifiable (beta = 0), the appropriate discount rate is the risk-free rate, currently `r rf * 100`%.
+
+What is the present value of Aurora Labs today (in million dollars), assuming perfect capital markets and no bankruptcy costs? `r fitb(round(present_value, 0), tol = 1)`
 
 Answer: `r round(present_value, 0)` million dollars
-
 
 
 
