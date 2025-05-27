@@ -30,12 +30,12 @@ ___
 library(webexercises)
 
 # Randomized parameters for future firm values
-value_low <- round(rnorm(1, mean = 100, sd = 3), 0)
-value_mid <- round(rnorm(1, mean = 150, sd = 3), 0)
-value_high <- round(rnorm(1, mean = 191, sd = 3), 0)
+value_low <- round(rnorm(10, mean = 100, sd = 3), 0)
+value_mid <- round(rnorm(10, mean = 150, sd = 3), 0)
+value_high <- round(rnorm(10, mean = 191, sd = 3), 0)
 
 # Risk-free rate
-rf <- 0.05
+rf <- 0.07
 
 # Probability (equally likely outcomes)
 prob <- 1/3
@@ -49,14 +49,24 @@ present_value <- expected_future_value / (1 + rf)
 
 ```
 
-**Q**: Aurora Labs is ready to launch a new product. Depending on the success of this product, Aurora will have a value of either $`r value_low` million, $`r value_mid` million, or $`r value_high` million in one year, with each outcome being equally likely. Because the project risk is fully diversifiable (beta = 0), the appropriate discount rate is the risk-free rate, currently `r rf * 100`%.
+**Q**: Aurora Labs is ready to launch a new product. Depending on the success of this product, Aurora will have a value of either \$`r value_low` million, \$`r value_mid` million, or $`r value_high` million in one year, with each outcome being equally likely. Because the project risk is fully diversifiable (beta = 0), the appropriate discount rate is the risk-free rate, currently `r rf * 100`%.
+
 
 What is the present value of Aurora Labs today (in million dollars), assuming perfect capital markets and no bankruptcy costs? `r fitb(round(present_value, 0), tol = 1)`
 
 Answer: `r round(present_value, 0)` million dollars
 
 
+___
 
+Q2
+
+Assume that in the event of default, 20% of Aurora Labs’ asset value is lost to bankruptcy costs, and suppose that Aurora has zero-coupon debt with a $125 million face value due in one year. What is the initial value of Aurora’s debt (in million dollars)? `r fitb( round(prob * value_low*(1-0.2) + prob * value_mid + prob * value_high), tol = 1)`
+
+Answer: `r (prob * value_low*(1-0.2) +prob * value_mid + prob * value_high)`
+
+
+___
 ::: {style="display: flex; justify-content: space-between; width: 100%;"}
 [Go to previous chapter](p8num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
 [Go to next chapter](p10num.qmd){.btn .btn-primary role="button" data-toggle="tool"}
