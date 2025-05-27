@@ -4,7 +4,7 @@ title: "Part 8 (ch15)  Questions Numeric"
 
 ::: {style="display: flex; justify-content: space-between; width: 100%;"}
 [Go to previous chapter](p7num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p9num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p9num.qmd){.btn .btn-primary role="button" data-toggle="tool"}
 :::
 
 
@@ -114,14 +114,14 @@ after_tax_wacc <- pre_tax_wacc - (debt_to_value * corporate_tax_rate * pre_tax_c
 
 **Answer**: $After-tax WACC =  \frac{E}{D+E} \times re +  \frac{D}{D+E} \times rd - (\frac{D}{D+E} \times rd \times Tc )$ = `r round(after_tax_wacc*100, 2)`%
 
-___
-
-
-
-
 
 ___
+
+
+
+
+
 ::: {style="display: flex; justify-content: space-between; width: 100%;"}
 [Go to previous chapter](p7num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p9num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p9num.qmd){.btn .btn-primary role="button" data-toggle="tool"}
 :::
