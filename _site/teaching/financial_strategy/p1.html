@@ -356,7 +356,7 @@
     </div>
 </div>
 
-  <p class="date">06-02-2025</p>
+  <p class="date">22-07-2025</p>
 </section>
 <section>
 
@@ -371,6 +371,56 @@
 <p>23.3 IPO Puzzles</p>
 <p>23.4 The Seasoned Equity Offering</p>
 </section></section>
+<section id="section-1" class="title-slide slide level1 smaller center" data-background="#ead1dc">
+<h1></h1>
+<div class="question-block">
+<p><strong>1. An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.</strong></p>
+<form>
+<input type="radio" name="q1" value="T" onclick="checkAnswer('q1','T')"> True<br> <input type="radio" name="q1" value="F" onclick="checkAnswer('q1','T')"> False<br>
+</form>
+<div id="feedback-q1" class="feedback" style="display:none; color: green;">
+<p>✅ Correct: This is the definition of an underwriter.</p>
+</div>
+</div>
+<div class="question-block">
+<p><strong>1. An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.</strong></p>
+<form>
+<input type="radio" name="q1" value="T" onclick="checkAnswer('q1','T')"> True<br> <input type="radio" name="q1" value="F" onclick="checkAnswer('q1','T')"> False<br>
+</form>
+<div id="feedback-q1" class="feedback" style="display:none; color: green;">
+<p>✅ Correct: This is the definition of an underwriter.</p>
+</div>
+</div>
+<!-- quiz-utils.html -->
+<button onclick="
+  document.querySelectorAll('.feedback').forEach(f => {
+    f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
+  });
+" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+Show/Hide Feedback
+</button>
+<script>
+function checkAnswer(questionId, correctAnswer) {
+  const radios = document.getElementsByName(questionId);
+  let selected = "";
+  for (let i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      selected = radios[i].value;
+      break;
+    }
+  }
+  const feedbackDiv = document.getElementById('feedback-' + questionId);
+  if (selected === correctAnswer) {
+    feedbackDiv.style.color = "green";
+    feedbackDiv.innerHTML = "✅ Correct!";
+  } else {
+    feedbackDiv.style.color = "red";
+    feedbackDiv.innerHTML = "❌ Incorrect!";
+  }
+}
+</script>
+</section>
+
 <section>
 <section id="equity-financing-for-private-comp." class="title-slide slide level1 smaller center" data-background="#ead1dc">
 <h1>23.1 Equity Financing for Private Comp.</h1>
@@ -413,7 +463,7 @@
 </ul>
 </div>
 </section>
-<section id="section-1" class="slide level2 smaller" data-background="#ead1dc">
+<section id="section-2" class="slide level2 smaller" data-background="#ead1dc">
 <h2></h2>
 
 <img data-src="figs/bm_23_1.jpg" class="r-stretch"></section>
@@ -428,7 +478,7 @@
 <li>Market value of PE firms greater than VC.</li>
 </ul>
 </section>
-<section id="section-2" class="slide level2 smaller" data-background="#ead1dc">
+<section id="section-3" class="slide level2 smaller" data-background="#ead1dc">
 <h2></h2>
 
 <img data-src="figs/bm_23_2.jpg" class="r-stretch"></section>
@@ -638,7 +688,7 @@
 <li>Another striking feature of the data in the following figure is that while the average dollar volume of IPOs since 2000 has been similar to that in the 1990s, the average number of IPOs per year has fallen significantly.</li>
 </ul>
 </section>
-<section id="section-3" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-4" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="figs/bm_23_5.jpg" class="r-stretch"></section>
@@ -652,7 +702,7 @@
 <li>One possible explanation is that by charging lower fees, an underwriter may risk signaling that it is not the same quality as its higher priced competitors.</li>
 </ul>
 </section>
-<section id="section-4" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-5" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="figs/bm_23_6.jpg" class="r-stretch"></section>

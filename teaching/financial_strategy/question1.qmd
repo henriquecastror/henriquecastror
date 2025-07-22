@@ -1,0 +1,14 @@
+::: {.question-block}
+
+**1. An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.**
+
+<form>
+  <input type="radio" name="q1" value="T" onclick="checkAnswer('q1','T')"> True<br>
+  <input type="radio" name="q1" value="F" onclick="checkAnswer('q1','T')"> False<br>
+</form>
+
+<div id="feedback-q1" class="feedback" style="display:none; color: green;">
+  ✅ Correct: This is the definition of an underwriter.
+</div>
+
+:::

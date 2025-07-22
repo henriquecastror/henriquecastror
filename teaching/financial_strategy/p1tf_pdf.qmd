@@ -1,0 +1,35 @@
+---
+title: "Part 1 (ch23) Questions T/F & Multiple Choice"
+format: pdf
+author: "Author: Henrique C. Martins (henrique.martins@fgv.br)"
+date: today
+output: pdf_document
+---
+
+::: {.callout-warning}
+### For students
+
+**Last updated: `r format(Sys.time(), '%d/%m/%Y')`**
+
+This quiz covers concepts from Chapter 23.
+
+*Use `Ctrl + P` or export as PDF to save your answers.*
+
+:::
+
+## True or False
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(webexercises)
+
+cat("1.", fitb("T", num = FALSE), "An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.\n\n")
+cat("2.", fitb("F", num = FALSE), "An initial public offering (IPO) is not necessarily the first time a company sells its stock to the public.\n\n")
+cat("3.", fitb("F", num = FALSE), "Underwriters face no risk during an IPO, so that a greenshoe provision is usually not necessary.\n\n")
+cat("4.", fitb("T", num = FALSE), "New issues are highly cyclical.\n\n")
+cat("5.", fitb("F", num = FALSE), "The transaction costs of an IPO are usually low.\n\n")
+```
