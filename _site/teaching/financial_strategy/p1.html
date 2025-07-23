@@ -392,10 +392,18 @@
 </div>
 </div>
 <script>
-function collectAnswers() {
+async function submitAnswers() {
+  const studentId = document.getElementById("student-id")?.value.trim();
+  const password = document.getElementById("student-password")?.value.trim();
+
+  if (!studentId || !password) {
+    alert("❗Please enter both your student ID and password.");
+    return;
+  }
+
   const answers = {};
 
-  // Respostas de caixas de texto
+  // T/F input boxes
   document.querySelectorAll('input[type="text"]').forEach(input => {
     const name = input.name || input.id;
     if (name && name.startsWith('q')) {
@@ -403,7 +411,7 @@ function collectAnswers() {
     }
   });
 
-  // Respostas de múltipla escolha (radio)
+  // Radio buttons
   const radioNames = new Set();
   document.querySelectorAll('input[type="radio"]').forEach(input => {
     if (input.name && input.name.startsWith('q')) {
@@ -415,20 +423,6 @@ function collectAnswers() {
     const selected = document.querySelector(`input[name="${name}"]:checked`);
     answers[name] = selected ? selected.value : "";
   });
-
-  return answers;
-}
-
-async function submitAnswers() {
-  const studentId = document.getElementById("student-id")?.value.trim();
-  const password = document.getElementById("student-password")?.value.trim();
-
-  if (!studentId || !password) {
-    alert("⚠️ Please enter both your student ID and password.");
-    return;
-  }
-
-  const answers = collectAnswers();
 
   const payload = {
     studentId,
@@ -455,14 +449,14 @@ async function submitAnswers() {
   }
 }
 </script>
-<!-- Campos de Login -->
+<!-- Login Fields -->
 <div style="margin-bottom: 10px;">
 <p><label><strong>Student ID:</strong></label> <input type="text" id="student-id" placeholder="Enter your ID"></p>
 </div>
 <div style="margin-bottom: 20px;">
 <p><label><strong>Password:</strong></label> <input type="password" id="student-password" placeholder="Enter your password"></p>
 </div>
-<!-- Botão para Enviar -->
+<!-- Submit Button -->
 <button onclick="submitAnswers()" style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
 Submit Answers
 </button>
