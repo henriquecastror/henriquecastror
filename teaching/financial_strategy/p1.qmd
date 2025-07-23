@@ -66,13 +66,16 @@ include-after: |
 
 
 
-# {.smaller background="#ead1dc"}
+# {.smaller .scrollable background="#ead1dc" }
 
-{{< include question1.qmd >}}
+{{< include "_questions/question1.qmd" >}}
 
-{{< include question1.qmd >}}
+{{< include "_questions/question2.qmd" >}}
 
-{{< include quiz-utils.html >}}
+
+
+{{< include "submit-to-sheets.html" >}}
+
 
 
 

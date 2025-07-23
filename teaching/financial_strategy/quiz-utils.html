@@ -1,29 +1,57 @@
-<!-- quiz-utils.html -->
-<button onclick="
-  document.querySelectorAll('.feedback').forEach(f => {
-    f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
-  });
-" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
-  Show/Hide Feedback
-</button>
-
 <script>
-function checkAnswer(questionId, correctAnswer) {
-  const radios = document.getElementsByName(questionId);
-  let selected = "";
-  for (let i = 0; i < radios.length; i++) {
-    if (radios[i].checked) {
-      selected = radios[i].value;
-      break;
-    }
-  }
+function checkAnswerBox(questionId, correctAnswer) {
+  const input = document.getElementById(questionId);
   const feedbackDiv = document.getElementById('feedback-' + questionId);
-  if (selected === correctAnswer) {
-    feedbackDiv.style.color = "green";
-    feedbackDiv.innerHTML = "✅ Correct!";
+
+  if (!input || !feedbackDiv) return;
+
+  const response = input.value.trim().toUpperCase();
+  if (response === correctAnswer.toUpperCase()) {
+    feedbackDiv.dataset.status = "correct";
   } else {
-    feedbackDiv.style.color = "red";
-    feedbackDiv.innerHTML = "❌ Incorrect!";
+    feedbackDiv.dataset.status = "incorrect";
+  }
+  feedbackDiv.style.display = "none"; // Always hide initially
+}
+
+function toggleFeedback() {
+  const inputs = document.querySelectorAll("input[type='text']");
+  inputs.forEach(input => {
+    const questionId = input.id;
+    const correctAnswer = input.dataset.correct;
+    checkAnswerBox(questionId, correctAnswer);  // Run check on each input
+  });
+
+  const feedbacks = document.querySelectorAll('.feedback');
+  const scoreDiv = document.getElementById('score-summary');
+  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
+
+  if (showing) {
+    feedbacks.forEach(f => f.style.display = 'none');
+    scoreDiv.textContent = '';
+    document.getElementById('toggle-feedback-btn').textContent = 'Show Feedback';
+  } else {
+    let correctCount = 0;
+    feedbacks.forEach(f => {
+      if (f.dataset.status === 'correct') {
+        f.style.color = 'green';
+        correctCount++;
+      } else if (f.dataset.status === 'incorrect') {
+        f.style.color = 'red';
+      } else {
+        f.style.color = 'black'; // unanswered
+      }
+      f.style.display = 'block';
+    });
+    scoreDiv.textContent = `✅ You answered ${correctCount} out of ${feedbacks.length} correctly.`;
+    document.getElementById('toggle-feedback-btn').textContent = 'Hide Feedback';
   }
 }
 </script>
+
+<button id="toggle-feedback-btn" onclick="toggleFeedback()"
+  style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+  Show Feedback
+</button>
+
+<div id="score-summary" style="margin-top: 15px; font-weight: bold;"></div>

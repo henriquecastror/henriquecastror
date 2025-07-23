@@ -1,0 +1,14 @@
+::: {.question-block}
+
+**Underwriters face no risk during an IPO, so that a greenshoe provision is usually not necessary.**
+
+<form>
+  <input type="radio" name="q3" value="T" onclick="checkAnswer('q3','F')"> True<br>
+  <input type="radio" name="q3" value="F" onclick="checkAnswer('q3','F')"> False<br>
+</form>
+
+<div id="feedback-q3" class="feedback" data-status="" style="display:none;">
+  The sentence is FALSE: Underwriters *do* face risk, which is why a greenshoe provision exists.
+</div>
+
+:::

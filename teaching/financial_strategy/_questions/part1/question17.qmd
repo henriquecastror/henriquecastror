@@ -1,0 +1,14 @@
+::: {.question-block}
+
+**Quiet period is a term used to describe the period after an IPO when company executives cannot communicate with the public.**
+
+<form>
+  <input type="radio" name="q17" value="T" onclick="checkAnswer('q17','F')"> True<br>
+  <input type="radio" name="q17" value="F" onclick="checkAnswer('q17','F')"> False<br>
+</form>
+
+<div id="feedback-q17" class="feedback" data-status="" style="display:none;">
+  The sentence is FALSE: The quiet period applies *before* the IPO.
+</div>
+
+:::

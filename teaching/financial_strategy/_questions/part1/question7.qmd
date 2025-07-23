@@ -1,0 +1,14 @@
+::: {.question-block}
+
+**A seasoned equity offering (SEO) is the sale of stock by a company that is already publicly traded.**
+
+<form>
+  <input type="radio" name="q7" value="T" onclick="checkAnswer('q7','T')"> True<br>
+  <input type="radio" name="q7" value="F" onclick="checkAnswer('q7','T')"> False<br>
+</form>
+
+<div id="feedback-q7" class="feedback" data-status="" style="display:none;">
+  The sentence is TRUE: SEOs follow an IPO by an already public company.
+</div>
+
+:::
