@@ -371,101 +371,6 @@
 <p>23.3 IPO Puzzles</p>
 <p>23.4 The Seasoned Equity Offering</p>
 </section></section>
-<section id="section-1" class="title-slide slide level1 smaller scrollable center" data-background="#ead1dc">
-<h1></h1>
-<div class="question-block">
-<p><strong>An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.</strong></p>
-<form>
-<input type="radio" name="q1" value="T" onclick="checkAnswer('q1','T')"> True<br> <input type="radio" name="q1" value="F" onclick="checkAnswer('q1','T')"> False<br>
-</form>
-<div id="feedback-q1" class="feedback" data-status="" style="display:none;">
-<p>The sentence is TRUE: The sentence contains the definition of an underwriter.</p>
-</div>
-</div>
-<div class="question-block">
-<p><strong>An IPO is not necessarily the first time a company sells its stock to the public.</strong></p>
-<form>
-<input type="radio" name="q2" value="T" onclick="checkAnswer('q2','F')"> True<br> <input type="radio" name="q2" value="F" onclick="checkAnswer('q2','F')"> False<br>
-</form>
-<div id="feedback-q2" class="feedback" data-status="" style="display:none;">
-<p>The sentence is FALSE: An IPO <em>is</em> the first time a company sells its shares to the public.</p>
-</div>
-</div>
-<p><input type="hidden" id="slide-id" value="slide1-temaA"></p>
-<script>
-async function submitAnswers() {
-  const studentId = document.getElementById("student-id")?.value.trim();
-  const password = document.getElementById("student-password")?.value.trim();
-
-  if (!studentId || !password) {
-    alert("❗Please enter both your student ID and password.");
-    return;
-  }
-
-  const answers = {};
-
-  // T/F input boxes
-  document.querySelectorAll('input[type="text"]').forEach(input => {
-    const name = input.name || input.id;
-    if (name && name.startsWith('q')) {
-      answers[name] = input.value.trim();
-    }
-  });
-
-  // Radio buttons
-  const radioNames = new Set();
-  document.querySelectorAll('input[type="radio"]').forEach(input => {
-    if (input.name && input.name.startsWith('q')) {
-      radioNames.add(input.name);
-    }
-  });
-
-  radioNames.forEach(name => {
-    const selected = document.querySelector(`input[name="${name}"]:checked`);
-    answers[name] = selected ? selected.value : "";
-  });
-
-  const slideId = document.getElementById("slide-id")?.value || "unknown";
-
-const payload = {
-  studentId,
-  password,
-  timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-  slide: slideId,
-  answers
-};
-
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "text/plain" }
-    });
-
-    const result = await response.json();
-    if (result.success) {
-      alert("✅ Your answers were submitted successfully!");
-    } else {
-      alert("❌ Submission failed: " + (result.message || "Unknown error."));
-    }
-  } catch (error) {
-    alert("❌ Submission error: " + error.message);
-  }
-}
-</script>
-<!-- Login Fields -->
-<div style="margin-bottom: 10px;">
-<p><label><strong>Student ID:</strong></label> <input type="text" id="student-id" placeholder="Enter your ID"></p>
-</div>
-<div style="margin-bottom: 20px;">
-<p><label><strong>Password:</strong></label> <input type="password" id="student-password" placeholder="Enter your password"></p>
-</div>
-<!-- Submit Button -->
-<button onclick="submitAnswers()" style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
-Submit Answers
-</button>
-</section>
-
 <section>
 <section id="equity-financing-for-private-comp." class="title-slide slide level1 smaller center" data-background="#ead1dc">
 <h1>23.1 Equity Financing for Private Comp.</h1>
@@ -508,7 +413,7 @@ Submit Answers
 </ul>
 </div>
 </section>
-<section id="section-2" class="slide level2 smaller" data-background="#ead1dc">
+<section id="section-1" class="slide level2 smaller" data-background="#ead1dc">
 <h2></h2>
 
 <img data-src="figs/bm_23_1.jpg" class="r-stretch"></section>
@@ -523,7 +428,7 @@ Submit Answers
 <li>Market value of PE firms greater than VC.</li>
 </ul>
 </section>
-<section id="section-3" class="slide level2 smaller" data-background="#ead1dc">
+<section id="section-2" class="slide level2 smaller" data-background="#ead1dc">
 <h2></h2>
 
 <img data-src="figs/bm_23_2.jpg" class="r-stretch"></section>
@@ -733,7 +638,7 @@ Submit Answers
 <li>Another striking feature of the data in the following figure is that while the average dollar volume of IPOs since 2000 has been similar to that in the 1990s, the average number of IPOs per year has fallen significantly.</li>
 </ul>
 </section>
-<section id="section-4" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-3" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="figs/bm_23_5.jpg" class="r-stretch"></section>
@@ -747,7 +652,7 @@ Submit Answers
 <li>One possible explanation is that by charging lower fees, an underwriter may risk signaling that it is not the same quality as its higher priced competitors.</li>
 </ul>
 </section>
-<section id="section-5" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-4" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="figs/bm_23_6.jpg" class="r-stretch"></section>

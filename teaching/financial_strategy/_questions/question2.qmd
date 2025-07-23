@@ -1,14 +1,14 @@
 ::: {.question-block}
 
-**An IPO is not necessarily the first time a company sells its stock to the public.**
-
-<form>
-  <input type="radio" name="q2" value="T" onclick="checkAnswer('q2','F')"> True<br>
-  <input type="radio" name="q2" value="F" onclick="checkAnswer('q2','F')"> False<br>
+<form onsubmit="event.preventDefault(); checkAnswer('q2','C')">
+  <strong style="display: block;">Which of the following best defines an IPO?</strong>
+  <label><input type="radio" name="q2" value="A"> A. A debt offering by a private company</label><br>
+  <label><input type="radio" name="q2" value="B"> B. A secondary stock sale by investors</label><br>
+  <label><input type="radio" name="q2" value="C"> C. The first time a company offers shares to the public</label><br>
 </form>
 
 <div id="feedback-q2" class="feedback" data-status="" style="display:none;">
-   The sentence is FALSE: An IPO *is* the first time a company sells its shares to the public.
+  ✅ Correct: An IPO is the first time a company offers its shares to the public.
 </div>
 
 :::
