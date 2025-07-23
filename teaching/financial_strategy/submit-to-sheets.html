@@ -44,7 +44,7 @@ async function submitAnswers() {
   };
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxjObfOwokQPZ-HfsGCarhfo0rbia-E_vWOTaIVxNzgxqJlA5x2XUBOWz_ufXfzQJwKzQ/exec", {
+    const response = await fetch("https://script.google.com/macros/library/d/1MtcBK9jaqGQS341fCH4xlAEl2sNwYGu_TJy8EpoLInYOvCK4VyNINsFA/1", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: { "Content-Type": "application/json" }
