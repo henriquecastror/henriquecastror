@@ -72,6 +72,8 @@ include-after: |
 
 {{< include "_questions/question2.qmd" >}}
 
+<input type="hidden" id="slide-id" value="slide1-temaA">
+
 {{< include "submit-to-sheets.html" >}}
 
 

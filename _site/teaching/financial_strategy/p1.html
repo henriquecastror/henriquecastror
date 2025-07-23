@@ -391,6 +391,7 @@
 <p>The sentence is FALSE: An IPO <em>is</em> the first time a company sells its shares to the public.</p>
 </div>
 </div>
+<p><input type="hidden" id="slide-id" value="slide1-temaA"></p>
 <script>
 async function submitAnswers() {
   const studentId = document.getElementById("student-id")?.value.trim();
@@ -424,12 +425,15 @@ async function submitAnswers() {
     answers[name] = selected ? selected.value : "";
   });
 
-  const payload = {
-    studentId,
-    password,
-    timestamp: new Date().toISOString(),
-    answers
-  };
+  const slideId = document.getElementById("slide-id")?.value || "unknown";
+
+const payload = {
+  studentId,
+  password,
+  timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+  slide: slideId,
+  answers
+};
 
   try {
     const response = await fetch("https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec", {
