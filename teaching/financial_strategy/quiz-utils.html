@@ -2,30 +2,20 @@
 function checkAnswerBox(questionId, correctAnswer) {
   const input = document.getElementById(questionId);
   const feedbackDiv = document.getElementById('feedback-' + questionId);
-
   if (!input || !feedbackDiv) return;
-
   const response = input.value.trim().toUpperCase();
   if (response === correctAnswer.toUpperCase()) {
     feedbackDiv.dataset.status = "correct";
   } else {
     feedbackDiv.dataset.status = "incorrect";
   }
-  feedbackDiv.style.display = "none"; // Always hide initially
+  feedbackDiv.style.display = "none";
 }
 
 function toggleFeedback() {
-  const inputs = document.querySelectorAll("input[type='text']");
-  inputs.forEach(input => {
-    const questionId = input.id;
-    const correctAnswer = input.dataset.correct;
-    checkAnswerBox(questionId, correctAnswer);  // Run check on each input
-  });
-
   const feedbacks = document.querySelectorAll('.feedback');
   const scoreDiv = document.getElementById('score-summary');
   let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
-
   if (showing) {
     feedbacks.forEach(f => f.style.display = 'none');
     scoreDiv.textContent = '';
@@ -39,7 +29,7 @@ function toggleFeedback() {
       } else if (f.dataset.status === 'incorrect') {
         f.style.color = 'red';
       } else {
-        f.style.color = 'black'; // unanswered
+        f.style.color = 'black';
       }
       f.style.display = 'block';
     });
@@ -53,5 +43,5 @@ function toggleFeedback() {
   style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
   Show Feedback
 </button>
-
 <div id="score-summary" style="margin-top: 15px; font-weight: bold;"></div>
+
