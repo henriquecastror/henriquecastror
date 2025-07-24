@@ -1,0 +1,54 @@
+<script>
+async function checkLogin() {
+  const id = document.getElementById("login-id").value.trim();
+  const password = document.getElementById("login-password").value.trim();
+  const errorBox = document.getElementById("login-error");
+
+  if (!id || !password) {
+    errorBox.innerText = "Please enter both ID and password.";
+    errorBox.style.display = "block";
+    return;
+  }
+
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxEwMZ16lWpbZXmbJal2J0MfYlexHkmu6zOs9eluXKThpMivqrGAKQk63n2kvbWF9yoJQ/exec", {
+      method: "POST",
+      body: JSON.stringify({ id, password }),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("protected-content").style.display = "block";
+    } else {
+      errorBox.innerText = "❌ Invalid login. Please try again.";
+      errorBox.style.display = "block";
+    }
+  } catch (error) {
+    errorBox.innerText = "❌ Login error: " + error.message;
+    errorBox.style.display = "block";
+  }
+}
+</script>
+
+<!-- Login Box -->
+<div id="login-box" style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+  <h3>🔒 Login Required</h3>
+  <div>
+    <label for="login-id"><strong>Student ID:</strong></label><br>
+    <input type="text" id="login-id" placeholder="Enter your ID" style="width: 100%; max-width: 300px;" />
+  </div>
+  <div style="margin-top: 10px;">
+    <label for="login-password"><strong>Password:</strong></label><br>
+    <input type="password" id="login-password" placeholder="Enter your password" style="width: 100%; max-width: 300px;" />
+  </div>
+  <div id="login-error" style="color: red; margin-top: 10px; display: none;"></div>
+  <button onclick="checkLogin()" style="margin-top: 15px; background-color: #007BFF; color: white; padding: 8px 16px; border: none; border-radius: 4px;">
+    ▶ Access Exercises
+  </button>
+</div>
+
+<!-- Protected Content -->
+<div id="protected-content" style="display: none;">
+  <!-- Your exercise content will be shown here -->

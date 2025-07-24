@@ -1,0 +1,13 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q4','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="q4" name="q4" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" />
+  <label for="q4"><strong>The 'lock-up' period prevents company insiders from selling their shares in the secondary market for a certain time after the IPO.</strong></label>
+</form>
+
+<div id="feedback-q4" class="feedback" data-status="" style="display:none;">
+  The sentence is TRUE: The sentence is true.
+</div>
+
+:::

@@ -1,12 +1,13 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswerBox('q5', '42')" style="display: flex; align-items: center; gap: 8px;">
-  <span><strong>What is 6 multiplied by 7?</strong></span>
-  <input type="text" id="q5" name="q5" maxlength="5" placeholder="Type numeric" style="width: 90px;" />
+<form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
+    <label for="q3"><strong>What is the typical average annual return of the stock market (e.g., S&P 500) over long periods?</strong></label>
+    <input type="number" id="q3" name="q3" placeholder="Enter a number" style="width: 100px;"
+           data-correct-answer="10"    data-tolerance="1"          />
 </form>
 
-<div id="feedback-q5" class="feedback" data-status="" style="display:none;">
-  The correct answer is <strong>42</strong>: 6 times 7 equals 42.
+<div id="feedback-q3" class="feedback" data-status="" style="display:none;">
+    The typical average annual return of the S&P 500 over long periods is around 10% (historically, between 9% and 12% is often cited).
 </div>
 
 :::

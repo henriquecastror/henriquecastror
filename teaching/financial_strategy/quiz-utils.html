@@ -1,40 +1,119 @@
 <script>
-function checkAnswerBox(questionId, correctAnswer) {
-  const input = document.getElementById(questionId);
-  const feedbackDiv = document.getElementById('feedback-' + questionId);
-  if (!input || !feedbackDiv) return;
-  const response = input.value.trim().toUpperCase();
-  if (response === correctAnswer.toUpperCase()) {
+// Função auxiliar para verificar e definir o status de uma questão.
+function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance = 0) {
+  const feedbackDiv = document.getElementById(feedbackDivId);
+  if (!feedbackDiv) return;
+
+  let isCorrect = false;
+
+  // Trata respostas numéricas com tolerância
+  if (typeof correctAnswer === 'number' && typeof userAnswer === 'number') {
+    const lowerBound = correctAnswer - tolerance;
+    const upperBound = correctAnswer + tolerance;
+    isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
+  } else if (typeof userAnswer === 'string') {
+    // Para respostas de texto (T/F, Múltipla Escolha)
+    isCorrect = (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase());
+  }
+  // Adicione outras lógicas de comparação aqui se necessário (ex: arrays para múltiplos checkboxes)
+
+  if (isCorrect) {
     feedbackDiv.dataset.status = "correct";
   } else {
     feedbackDiv.dataset.status = "incorrect";
   }
-  feedbackDiv.style.display = "none";
+  feedbackDiv.style.display = "none"; // Mantém o feedback oculto
+}
+
+// Função para obter a resposta de um grupo de radio buttons
+function getSelectedRadioValue(name) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
+    if (radios.length > 0) {
+        return radios[0].value;
+    }
+    return ''; // Retorna string vazia se nada for selecionado
 }
 
 function toggleFeedback() {
+  const questionBlocks = document.querySelectorAll('.question-block');
   const feedbacks = document.querySelectorAll('.feedback');
   const scoreDiv = document.getElementById('score-summary');
+  const toggleButton = document.getElementById('toggle-feedback-btn');
+
   let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
+
   if (showing) {
-    feedbacks.forEach(f => f.style.display = 'none');
-    scoreDiv.textContent = '';
-    document.getElementById('toggle-feedback-btn').textContent = 'Show Feedback';
-  } else {
-    let correctCount = 0;
+    // Esconder feedback
     feedbacks.forEach(f => {
-      if (f.dataset.status === 'correct') {
-        f.style.color = 'green';
-        correctCount++;
-      } else if (f.dataset.status === 'incorrect') {
-        f.style.color = 'red';
-      } else {
-        f.style.color = 'black';
-      }
-      f.style.display = 'block';
+      f.style.display = 'none';
+      f.style.color = 'black'; // Reseta a cor ao esconder
     });
-    scoreDiv.textContent = `✅ You answered ${correctCount} out of ${feedbacks.length} correctly.`;
-    document.getElementById('toggle-feedback-btn').textContent = 'Hide Feedback';
+    scoreDiv.textContent = '';
+    toggleButton.textContent = 'Show Feedback';
+  } else {
+    // Mostrar feedback
+    let correctCount = 0;
+    let totalQuestions = 0;
+
+    questionBlocks.forEach(block => {
+      totalQuestions++;
+      const textInput = block.querySelector('input[type="text"]');
+      const numberInput = block.querySelector('input[type="number"]'); // Novo: input numérico
+      const form = block.querySelector('form');
+
+      let questionId, userAnswer, correctAnswer, tolerance = 0;
+      let feedbackDivId;
+
+      if (textInput && textInput.dataset.correctAnswer) {
+        // Questão de texto (T/F)
+        questionId = textInput.id;
+        userAnswer = textInput.value;
+        correctAnswer = textInput.dataset.correctAnswer;
+      } else if (numberInput && numberInput.dataset.correctAnswer) {
+        // Questão numérica
+        questionId = numberInput.id;
+        // Converte para número. Se não for um número válido, NaN.
+        userAnswer = parseFloat(numberInput.value);
+        correctAnswer = parseFloat(numberInput.dataset.correctAnswer);
+        if (numberInput.dataset.tolerance) {
+          tolerance = parseFloat(numberInput.dataset.tolerance);
+        }
+        // Se a resposta do usuário não for um número válido, trate como incorreta
+        if (isNaN(userAnswer)) {
+            userAnswer = ''; // Ou algum valor que garanta que não vai bater com a resposta correta
+        }
+      } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
+        // Questão de múltipla escolha (radio)
+        questionId = form.querySelector('input[type="radio"]').name;
+        userAnswer = getSelectedRadioValue(questionId);
+        correctAnswer = form.dataset.correctAnswer;
+      } else {
+        // Se não for um tipo de questão reconhecido ou não tem resposta correta
+        totalQuestions--; // Não conta esta questão no total se não puder ser avaliada
+        return; // Pula para a próxima questão
+      }
+
+      feedbackDivId = 'feedback-' + questionId;
+      const feedbackDiv = document.getElementById(feedbackDivId);
+
+      if (feedbackDiv) { // Apenas processa se há um feedback div
+        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance);
+
+        // Agora, exibe e colore o feedback após a verificação
+        if (feedbackDiv.dataset.status === 'correct') {
+          feedbackDiv.style.color = 'green';
+          correctCount++;
+        } else if (feedbackDiv.dataset.status === 'incorrect') {
+          feedbackDiv.style.color = 'red';
+        } else {
+          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
+        }
+        feedbackDiv.style.display = 'block'; // Exibe o feedback
+      }
+    });
+
+    scoreDiv.textContent = `✅  You answered ${correctCount} out of  ${totalQuestions}  correctly.`;
+    toggleButton.textContent = 'Hide Feedback';
   }
 }
 </script>
@@ -44,4 +123,3 @@ function toggleFeedback() {
   Show Feedback
 </button>
 <div id="score-summary" style="margin-top: 15px; font-weight: bold;"></div>
-

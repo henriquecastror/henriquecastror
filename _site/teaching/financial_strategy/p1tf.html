@@ -168,7 +168,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 
 <div style="text-align: right">
-<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="&quot;tool">Go to next Chapter</a></p>
+<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="tool">Go to next Chapter</a></p>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -180,7 +180,6 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated: 22/07/2025 </strong></p>
 <p>Below you find many questions to this chapter.</p>
 <p><em>As this link is continuously updated with new questions, you might expect some changes from time to time.</em></p>
 <p>The Questions are based or inspired on either <a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;2020</strong></a> or <a href="https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&amp;s=books&amp;sr=1-3"><strong>Brealey &amp; Myers, Principles of Corporate Finance, 13th ed.&nbsp;2020</strong></a>.</p>
@@ -189,71 +188,248 @@ For students
 </div>
 <hr>
 <p><strong>Mark T (True) or F (False) in each of the following sentences.</strong></p>
-<div id="quiz-container">
-<p>
-<strong>1.</strong> An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.
-</p>
-<input type="text" id="q1" placeholder="T or F">
-<div id="f1" class="feedback" style="display:none; color: green;">
-✅ Correct: This is the definition of an underwriter.
+<!-- LOGIN FORM -->
+<div id="login-container" style="border: 1px solid #ccc; padding: 15px; background-color: #f8f8f8; border-radius: 6px;">
+<h3 class="anchored">
+🔒 Login Required
+</h3>
+<p><label for="login-id"><strong>Student ID:</strong></label><br> <input type="text" id="login-id" placeholder="Enter your ID" style="width: 100%; margin-bottom: 10px;"><br> <label for="login-password"><strong>Password:</strong></label><br> <input type="password" id="login-password" placeholder="Enter your password" style="width: 100%; margin-bottom: 10px;"><br> <button onclick="verifyLogin()" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">Access Exercises</button></p>
 </div>
-<p>
-<strong>2.</strong> An IPO is not necessarily the first time a company sells its stock to the public.
-</p>
-<input type="text" id="q2" placeholder="T or F">
-<div id="f2" class="feedback" style="display:none; color: red;">
-❌ Incorrect: An IPO <em>is</em> the first time shares are sold to the public.
+<!-- PROTECTED CONTENT (only shown if login is valid) -->
+<div id="protected-content" style="display:none; margin-top: 20px;">
+<p>::: {.webex-box} ::: {.question-block}</p>
+<form onsubmit="event.preventDefault(); checkAnswerBox('q1','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q1" name="q1" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q1"><strong>Public companies typically have access to much larger amounts of capital through the public markets.</strong></label>
+</form>
+<div id="feedback-q1" class="feedback" data-status="" style="display:none;">
+<p>The sentence is TRUE: The sentence is true.</p>
 </div>
-<p><br><br> <button onclick="checkAnswers()" style="background-color:#28a745; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;"> Check Answers </button></p>
-<p id="score" style="font-weight: bold;">
-</p>
+<p>:::</p>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q2','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q2" name="q2" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q2"><strong>New issues are highly cyclical.</strong></label>
+</form>
+<div id="feedback-q2" class="feedback" data-status="" style="display:none;">
+<p>The sentence is TRUE: The sentence is true.</p>
 </div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q3','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q3" name="q3" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q3"><strong>The ‘fees’ paid to underwriters are a significant part of the transaction costs of an IPO.</strong></label>
+</form>
+<div id="feedback-q3" class="feedback" data-status="" style="display:none;">
+<p>The sentence is TRUE: The sentence is true.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q4','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q4" name="q4" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q4"><strong>The ‘lock-up’ period prevents company insiders from selling their shares in the secondary market for a certain time after the IPO.</strong></label>
+</form>
+<div id="feedback-q4" class="feedback" data-status="" style="display:none;">
+<p>The sentence is TRUE: The sentence is true.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q5','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q5" name="q5" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F"> <label for="q5"><strong>Investors in an IPO are guaranteed to receive shares at the offering price.</strong></label>
+</form>
+<div id="feedback-q5" class="feedback" data-status="" style="display:none;">
+<p>The sentence is FALSE: The sentence is false.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q6','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q6" name="q6" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q6"><strong>One of the disadvantages of being a public company is the increased reporting and regulatory compliance requirements.</strong></label>
+</form>
+<div id="feedback-q6" class="feedback" data-status="" style="display:none;">
+<p>The sentence is TRUE: The sentence is true.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q7','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q7" name="q7" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F"> <label for="q7"><strong>A controlling shareholder completely loses control of the company after an IPO.</strong></label>
+</form>
+<div id="feedback-q7" class="feedback" data-status="" style="display:none;">
+<p>The sentence is FALSE: The sentence is false.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q8','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q8" name="q8" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q8"><strong>The Dutch auction method allows investors to bid for shares in an IPO, determining the final offer price.</strong></label>
+</form>
+<div id="feedback-q8" class="feedback" data-status="" style="display:none;">
+<p>The sentence is TRUE: The sentence is true.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q9','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q9" name="q9" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q9"><strong>The secondary market involves the trading of existing shares among investors.</strong></label>
+</form>
+<div id="feedback-q9" class="feedback" data-status="" style="display:none;">
+<p>The sentence is TRUE: The sentence is true.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('q10','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q10" name="q10" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F"> <label for="q10"><strong>A cash offer occurs when new shares are offered only to existing shareholders.</strong></label>
+</form>
+<div id="feedback-q10" class="feedback" data-status="" style="display:none;">
+<p>The sentence is FALSE: The sentence is false.</p>
+</div>
+</div>
+<div style="text-align: right;">
 <script>
-function checkAnswers() {
-  let correct = 0;
+// Função auxiliar para verificar e definir o status de uma questão.
+function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance = 0) {
+  const feedbackDiv = document.getElementById(feedbackDivId);
+  if (!feedbackDiv) return;
 
-  // Q1
-  const a1 = document.getElementById("q1").value.trim().toUpperCase();
-  if (a1 === "T") {
-    correct++;
-    document.getElementById("f1").style.color = "green";
-  } else {
-    document.getElementById("f1").style.color = "red";
+  let isCorrect = false;
+
+  // Trata respostas numéricas com tolerância
+  if (typeof correctAnswer === 'number' && typeof userAnswer === 'number') {
+    const lowerBound = correctAnswer - tolerance;
+    const upperBound = correctAnswer + tolerance;
+    isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
+  } else if (typeof userAnswer === 'string') {
+    // Para respostas de texto (T/F, Múltipla Escolha)
+    isCorrect = (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase());
   }
-  document.getElementById("f1").style.display = "block";
+  // Adicione outras lógicas de comparação aqui se necessário (ex: arrays para múltiplos checkboxes)
 
-  // Q2
-  const a2 = document.getElementById("q2").value.trim().toUpperCase();
-  if (a2 === "F") {
-    correct++;
-    document.getElementById("f2").style.color = "green";
+  if (isCorrect) {
+    feedbackDiv.dataset.status = "correct";
   } else {
-    document.getElementById("f2").style.color = "red";
+    feedbackDiv.dataset.status = "incorrect";
   }
-  document.getElementById("f2").style.display = "block";
+  feedbackDiv.style.display = "none"; // Mantém o feedback oculto
+}
 
-  document.getElementById("score").textContent = "You got " + correct + " out of 2 correct.";
+// Função para obter a resposta de um grupo de radio buttons
+function getSelectedRadioValue(name) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
+    if (radios.length > 0) {
+        return radios[0].value;
+    }
+    return ''; // Retorna string vazia se nada for selecionado
+}
+
+function toggleFeedback() {
+  const questionBlocks = document.querySelectorAll('.question-block');
+  const feedbacks = document.querySelectorAll('.feedback');
+  const scoreDiv = document.getElementById('score-summary');
+  const toggleButton = document.getElementById('toggle-feedback-btn');
+
+  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
+
+  if (showing) {
+    // Esconder feedback
+    feedbacks.forEach(f => {
+      f.style.display = 'none';
+      f.style.color = 'black'; // Reseta a cor ao esconder
+    });
+    scoreDiv.textContent = '';
+    toggleButton.textContent = 'Show Feedback';
+  } else {
+    // Mostrar feedback
+    let correctCount = 0;
+    let totalQuestions = 0;
+
+    questionBlocks.forEach(block => {
+      totalQuestions++;
+      const textInput = block.querySelector('input[type="text"]');
+      const numberInput = block.querySelector('input[type="number"]'); // Novo: input numérico
+      const form = block.querySelector('form');
+
+      let questionId, userAnswer, correctAnswer, tolerance = 0;
+      let feedbackDivId;
+
+      if (textInput && textInput.dataset.correctAnswer) {
+        // Questão de texto (T/F)
+        questionId = textInput.id;
+        userAnswer = textInput.value;
+        correctAnswer = textInput.dataset.correctAnswer;
+      } else if (numberInput && numberInput.dataset.correctAnswer) {
+        // Questão numérica
+        questionId = numberInput.id;
+        // Converte para número. Se não for um número válido, NaN.
+        userAnswer = parseFloat(numberInput.value);
+        correctAnswer = parseFloat(numberInput.dataset.correctAnswer);
+        if (numberInput.dataset.tolerance) {
+          tolerance = parseFloat(numberInput.dataset.tolerance);
+        }
+        // Se a resposta do usuário não for um número válido, trate como incorreta
+        if (isNaN(userAnswer)) {
+            userAnswer = ''; // Ou algum valor que garanta que não vai bater com a resposta correta
+        }
+      } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
+        // Questão de múltipla escolha (radio)
+        questionId = form.querySelector('input[type="radio"]').name;
+        userAnswer = getSelectedRadioValue(questionId);
+        correctAnswer = form.dataset.correctAnswer;
+      } else {
+        // Se não for um tipo de questão reconhecido ou não tem resposta correta
+        totalQuestions--; // Não conta esta questão no total se não puder ser avaliada
+        return; // Pula para a próxima questão
+      }
+
+      feedbackDivId = 'feedback-' + questionId;
+      const feedbackDiv = document.getElementById(feedbackDivId);
+
+      if (feedbackDiv) { // Apenas processa se há um feedback div
+        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance);
+
+        // Agora, exibe e colore o feedback após a verificação
+        if (feedbackDiv.dataset.status === 'correct') {
+          feedbackDiv.style.color = 'green';
+          correctCount++;
+        } else if (feedbackDiv.dataset.status === 'incorrect') {
+          feedbackDiv.style.color = 'red';
+        } else {
+          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
+        }
+        feedbackDiv.style.display = 'block'; // Exibe o feedback
+      }
+    });
+
+    scoreDiv.textContent = `✅  You answered ${correctCount} out of  ${totalQuestions}  correctly.`;
+    toggleButton.textContent = 'Hide Feedback';
+  }
 }
 </script>
-<hr>
-<p><strong>And here are some additional multiple choice problems.</strong></p>
-<div class="webex-check webex-box">
-<strong>Q1: Which of the following issues have the expected highest total direct costs of issuing as a percentage of gross proceeds?</strong>
-<div id="radio_XWTOTKSBXP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XWTOTKSBXP" value="answer"> <span>Initial public offerings (IPOs)</span></label><label><input type="radio" autocomplete="off" name="radio_XWTOTKSBXP" value=""> <span>Seasoned equity offerings (SEOs)</span></label><label><input type="radio" autocomplete="off" name="radio_XWTOTKSBXP" value=""> <span>Convertible bonds</span></label><label><input type="radio" autocomplete="off" name="radio_XWTOTKSBXP" value=""> <span>Straight bonds</span></label>
-</div>
-<strong>Q2: Which of the following factors is typically considered in determining the timing of an initial public offering (IPO)?</strong>
-<div id="radio_AINOIHZQTV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AINOIHZQTV" value=""> <span>Market conditions and investor sentiment</span></label><label><input type="radio" autocomplete="off" name="radio_AINOIHZQTV" value=""> <span>Firm's capital needs</span></label><label><input type="radio" autocomplete="off" name="radio_AINOIHZQTV" value=""> <span>Industry regulations and compliance requirements</span></label><label><input type="radio" autocomplete="off" name="radio_AINOIHZQTV" value="answer"> <span>All of the above</span></label>
+<button id="toggle-feedback-btn" onclick="toggleFeedback()" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+Show Feedback
+</button>
+<div id="score-summary" style="margin-top: 15px; font-weight: bold;">
+
 </div>
 </div>
-<hr>
-<script src="https://giscus.app/client.js" data-repo="henriquecastror/EF_permanent" data-repo-id="R_kgDOLMIejg" data-category="General" data-category-id="DIC_kwDOLMIejs4Cc1yS" data-mapping="number" data-term="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+<p>:::</p>
+</div>
+<script>
+  async function verifyLogin() {
+    const id = document.getElementById("login-id").value.trim();
+    const password = document.getElementById("login-password").value.trim();
+    
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxEwMZ16lWpbZXmbJal2J0MfYlexHkmu6zOs9eluXKThpMivqrGAKQk63n2kvbWF9yoJQ/exec", {
+      method: "POST",
+      body: JSON.stringify({ id, password }),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      document.getElementById("login-container").style.display = "none";
+      document.getElementById("protected-content").style.display = "block";
+    } else {
+      alert("Invalid ID or password. Please try again.");
+    }
+  }
 </script>
 <div style="text-align: right">
-<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="&quot;tool">Go to next Chapter</a></p>
+<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="tool">Go to next Chapter</a></p>
 </div>
-<p>cat(“1”, fitb(“T”, num = FALSE, ignore_case = TRUE), “An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.”, “”) cat(“2”, fitb(“F”, num = FALSE, ignore_case = TRUE), “An initial public offering (IPO) is not necessarily the first time a company sells its stock to the public.”, “”) cat(“3”, fitb(“F”, num = FALSE, ignore_case = TRUE), “Underwriters face no risk during an IPO, so that a greenshoe provision is usually not necessary.”, “”) cat(“4”, fitb(“T”, num = FALSE, ignore_case = TRUE), “New issues are highly cyclical.”, “”) cat(“5”, fitb(“F”, num = FALSE, ignore_case = TRUE), “The transaction costs of an IPO are usually low.”, “”) cat(“6”, fitb(“T”, num = FALSE, ignore_case = TRUE), “IPOs are underpriced on average.”, “”) cat(“7”, fitb(“T”, num = FALSE, ignore_case = TRUE), “A seasoned equity offering (SEO) is the sale of stock by a company that is already publicly traded.”, “”) cat(“8”, fitb(“F”, num = FALSE, ignore_case = TRUE), “A cash offer occurs when new shares are offered only to existing shareholders.”, “”) cat(“9”, fitb(“F”, num = FALSE, ignore_case = TRUE), “A rights offer occurs when new shares are sold to investors at large.”, “”) cat(“10”, fitb(“F”, num = FALSE, ignore_case = TRUE), “The stock price reaction to an SEO is positive on average.”, “”) cat(“11”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Bookbuilding is a common method used by underwriters to determine the IPO price.”, “”) cat(“12”, fitb(“F”, num = FALSE, ignore_case = TRUE), “Investors in an IPO are guaranteed to receive shares at the offering price.”, “”) cat(“13”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Lock-up periods restrict company insiders from selling their shares immediately after an IPO.”, “”) cat(“14”, fitb(“T”, num = FALSE, ignore_case = TRUE), “A roadshow is a series of presentations made by company executives to potential investors.”, “”) cat(“15”, fitb(“F”, num = FALSE, ignore_case = TRUE), “In a greenshoe option, underwriters buy shares back from the market to stabilize the stock price.”, “”) cat(“16”, fitb(“T”, num = FALSE, ignore_case = TRUE), “IPO allocation refers to the process of distributing shares to various investors.”, “”) cat(“17”, fitb(“F”, num = FALSE, ignore_case = TRUE), “Quiet period is a term used to describe the period after an IPO when company executives cannot communicate with the public.”, “”) cat(“18”, fitb(“T”, num = FALSE, ignore_case = TRUE), “The secondary market involves the trading of existing shares among investors.”, “”) cat(“19”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Market capitalization is a measure of a company’s value, calculated by multiplying its stock price by the number of outstanding shares.”, “”) cat(“20”, fitb(“F”, num = FALSE, ignore_case = TRUE), “The lock-up period for insiders typically lasts for a short duration, usually a week.”, “”) cat(“21”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Dilution occurs when a company issues additional shares, reducing the ownership percentage of existing shareholders.”, “”) cat(“22”, fitb(“F”, num = FALSE, ignore_case = TRUE), “The primary market involves the buying and selling of existing shares among investors.”, “”) cat(“23”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Underwriters in an IPO often form a syndicate to share the responsibility of selling the new issue.”, “”) cat(“24”, fitb(“F”, num = FALSE, ignore_case = TRUE), “The process of selling stock to the public for the first time is called a seasoned equity offering (SEO)”, “”) cat(“25”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Public companies typically have access to much larger amounts of capital through the public markets.”, “”) cat(“26”, fitb(“T”, num = FALSE, ignore_case = TRUE), “By going public, companies give their private equity investors the ability to diversify.”, “”) cat(“27”, fitb(“T”, num = FALSE, ignore_case = TRUE), “The two advantages of going public are greater liquidity and better access to capital.”, “”) cat(“28”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Before an IPO, the company prepares the final registration statement and final prospectus containing all the details of the IPO, including the number of shares offered and the offer price.”, “”) cat(“29”, fitb(“F”, num = FALSE, ignore_case = TRUE), “A common practice of early investors in private companies is to stay for a long time, i.e., years after the company’s IPO.”, “”) cat(“30”, fitb(“F”, num = FALSE, ignore_case = TRUE), “Institutional investors, like big Banks, who buy equity in small private firms are called angel investors.”, “”) cat(“31”, fitb(“T”, num = FALSE, ignore_case = TRUE), “A follow-on offering occurs when a publicly traded company issues additional shares after its IPO.”, “”) cat(“32”, fitb(“F”, num = FALSE, ignore_case = TRUE), “An IPO always increases the wealth of existing shareholders.”, “”) cat(“33”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Investment banks play a crucial role in pricing and marketing new stock issues.”, “”) cat(“34”, fitb(“T”, num = FALSE, ignore_case = TRUE), “The aftermarket performance of an IPO is often unpredictable and subject to market conditions (but many IPOs have a positive first-day return).”, “”) cat(“35”, fitb(“F”, num = FALSE, ignore_case = TRUE), “A company must always conduct an IPO to raise equity capital.”, “”) cat(“36”, fitb(“T”, num = FALSE, ignore_case = TRUE), “The Dutch auction method allows investors to bid for shares in an IPO, determining the final offer price.”, “”) cat(“37”, fitb(“T”, num = FALSE, ignore_case = TRUE), “A dual-class share structure allows company founders to maintain control even after going public.”, “”) cat(“38”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Regulatory filings must be submitted before an IPO.”, “”) cat(“39”, fitb(“F”, num = FALSE, ignore_case = TRUE), “IPOs eliminate financial risk for company founders and early investors.”, “”) cat(“40”, fitb(“T”, num = FALSE, ignore_case = TRUE), “The CVM requires full disclosure of financials and risks in an IPO prospectus.”, “”) cat(“41”, fitb(“F”, num = FALSE, ignore_case = TRUE), “The stock price of a newly public company is always stable in the first year post-IPO.”, “”) cat(“42”, fitb(“T”, num = FALSE, ignore_case = TRUE), “Liquidity risk is one of the major concerns for investors in newly public companies.”, “”)</p>
 
 
 
