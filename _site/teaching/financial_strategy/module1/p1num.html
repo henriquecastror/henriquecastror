@@ -172,7 +172,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 28/07/2025 13:27</p>
+<p><strong>Last updated:</strong> 28/07/2025 15:46</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -210,6 +210,9 @@ For students
 </table>
 <hr>
 <p><strong>Answer the following questions based on the discussions in class.</strong></p>
+<script>
+  const SLIDE_ID = "module1_p1num";
+</script>
 <style>
   #login-form {
     max-width: 300px;
@@ -272,9 +275,42 @@ Login
 <div id="after-login-content" style="display: none;">
 <h4 id="welcome-message" style="text-align: center; display: none; margin-top: 10px; font-size: 1.8em; color: #333;" class="anchored">
 </h4>
+<script>
+  async function validateLogin() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorBox = document.getElementById("login-error");
+    const loadingBox = document.getElementById("loading-msg");
+    const welcomeMsg = document.getElementById("welcome-message");
+
+    errorBox.textContent = "";
+    loadingBox.textContent = "Authenticating your credentials. This may take a few seconds...";
+    loadingBox.style.display = "block";
+
+    // 🚨 Aqui você obtém a URL da página
+    const currentPage = window.location.pathname;
+
+    const response = await fetch(`https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&page=${encodeURIComponent(currentPage)}`);
+    const text = await response.text();
+
+    loadingBox.style.display = "none";
+
+    if (text === "OK") {
+      welcomeMsg.textContent = `Welcome, ${username}!`;
+      welcomeMsg.style.display = "block";
+      document.getElementById("login-form").style.display = "none";
+      document.getElementById("after-login-content").style.display = "block";
+      document.documentElement.classList.remove("locked");
+    } else if (text === "FAIL") {
+      errorBox.textContent = "Invalid username or password.";
+    } else {
+      errorBox.textContent = "Missing credentials.";
+    }
+  }
+</script>
 <section id="post-money-valuation-and-ownership" class="level3 webex-box">
 <h3 class="anchored" data-anchor-id="post-money-valuation-and-ownership">Post-money valuation and ownership</h3>
-<p>You founded your company with <strong>0.06 million</strong> and received <strong>1 million shares</strong>.<br>
+<p>You founded your company with <strong>0.055 million</strong> and received <strong>1 million shares</strong>.<br>
 You later sold <strong>0.75 million shares</strong> to angel investors.<br>
 Now a VC wants to invest <strong>3 million</strong> in exchange for <strong>2 million shares</strong>.</p>
 <div class="question-block">
@@ -360,33 +396,33 @@ Now a VC wants to invest <strong>3 million</strong> in exchange for <strong>2 mi
 </section>
 <section id="post-money-valuation-and-vc-ownership" class="level3 webex-box">
 <h3 class="anchored" data-anchor-id="post-money-valuation-and-vc-ownership">Post-money valuation and VC ownership</h3>
-<p>You founded a firm three years ago. You started with $0.226 million, which gave you 1.005 million shares. You later sold 1.918 million shares to angel investors. Now, a VC firm wants to invest $5.401 million in exchange for 2.16 million new shares.</p>
+<p>You founded a firm three years ago. You started with $0.293 million, which gave you 1.308 million shares. You later sold 1.146 million shares to angel investors. Now, a VC firm wants to invest $5.574 million in exchange for 2.804 million new shares.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-<label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q3a" name="module1_num_q3a" placeholder="Enter value" style="width: 120px;" data-correct-answer="12.71" data-tolerance="0.01">
+<label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q3a" name="module1_num_q3a" placeholder="Enter value" style="width: 120px;" data-correct-answer="10.452" data-tolerance="0.01">
 </form>
 <div id="feedback-module1_num_q3a" class="feedback" data-status="" style="display:none;">
-<p>✅ Post-money = Total shares × Price per share = (5.083) × (2.5) = <strong>12.71 million</strong></p>
+<p>✅ Post-money = Total shares × Price per share = (5.258) × (1.988) = <strong>10.452 million</strong></p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-<label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label> <input type="number" id="module1_num_q3b" name="module1_num_q3b" placeholder="Enter %" style="width: 100px;" data-correct-answer="42.495" data-tolerance="0.01">
+<label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label> <input type="number" id="module1_num_q3b" name="module1_num_q3b" placeholder="Enter %" style="width: 100px;" data-correct-answer="53.328" data-tolerance="0.01">
 </form>
 <div id="feedback-module1_num_q3b" class="feedback" data-status="" style="display:none;">
-<p>✅ VC Ownership = 2.16 / (5.083) × 100 = <strong>42.495%</strong></p>
+<p>✅ VC Ownership = 2.804 / (5.258) × 100 = <strong>53.328%</strong></p>
 </div>
 </div>
 </section>
 <section id="valuation-and-ownership-after-equity-issuance" class="level3 webex-box">
 <h3 class="anchored" data-anchor-id="valuation-and-ownership-after-equity-issuance">Valuation and Ownership After Equity Issuance</h3>
-<p>Erica owns all <strong>4 million shares</strong> of her company, CoralTech. A new partner is offering to invest <strong>2.008 million</strong> in exchange for <strong>1.5 million shares</strong>.</p>
+<p>Erica owns all <strong>4 million shares</strong> of her company, CoralTech. A new partner is offering to invest <strong>1.631 million</strong> in exchange for <strong>1.5 million shares</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-<label for="module1_num_q4a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q4a" name="module1_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="7.364" data-tolerance="0.01">
+<label for="module1_num_q4a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q4a" name="module1_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="5.978" data-tolerance="0.01">
 </form>
 <div id="feedback-module1_num_q4a" class="feedback" data-status="" style="display:none;">
-<p>✅ Post-money = (5.5) shares × $1.339 (2.008/ 1.5) = <strong>7.364 million</strong></p>
+<p>✅ Post-money = (5.5) shares × $1.087 (1.631/ 1.5) = <strong>5.978 million</strong></p>
 </div>
 </div>
 <div class="question-block">
@@ -400,36 +436,36 @@ Now a VC wants to invest <strong>3 million</strong> in exchange for <strong>2 mi
 </section>
 <section id="ownership-after-two-funding-rounds" class="level3 webex-box">
 <h3 class="anchored" data-anchor-id="ownership-after-two-funding-rounds">Ownership After Two Funding Rounds</h3>
-<p>After a Series A round, the founders owned <strong>68.2%</strong> of BetaVision.<br>
-Then, Series B investors contributed <strong>5.724 million</strong> and received <strong>21.6%</strong> of the company.</p>
+<p>After a Series A round, the founders owned <strong>63.3%</strong> of BetaVision.<br>
+Then, Series B investors contributed <strong>4.04 million</strong> and received <strong>27.9%</strong> of the company.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-<label for="module1_num_q5a"><strong>1. What is the founders’ final ownership (%)?</strong></label> <input type="number" id="module1_num_q5a" name="module1_num_q5a" placeholder="%" style="width: 120px;" data-correct-answer="53.5" data-tolerance="0.1">
+<label for="module1_num_q5a"><strong>1. What is the founders’ final ownership (%)?</strong></label> <input type="number" id="module1_num_q5a" name="module1_num_q5a" placeholder="%" style="width: 120px;" data-correct-answer="45.6" data-tolerance="0.1">
 </form>
 <div id="feedback-module1_num_q5a" class="feedback" data-status="" style="display:none;">
-<p>✅ Founders’ final ownership = (1 - 21.6%) × 68.2% = <strong>53.5%</strong></p>
+<p>✅ Founders’ final ownership = (1 - 27.9%) × 63.3% = <strong>45.6%</strong></p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-<label for="module1_num_q5b"><strong>2. What is the Series A investors’ final ownership (%)?</strong></label> <input type="number" id="module1_num_q5b" name="module1_num_q5b" placeholder="%" style="width: 120px;" data-correct-answer="24.9" data-tolerance="0.1">
+<label for="module1_num_q5b"><strong>2. What is the Series A investors’ final ownership (%)?</strong></label> <input type="number" id="module1_num_q5b" name="module1_num_q5b" placeholder="%" style="width: 120px;" data-correct-answer="26.5" data-tolerance="0.1">
 </form>
 <div id="feedback-module1_num_q5b" class="feedback" data-status="" style="display:none;">
-<p>✅ Series A ownership = (1 - 21.6%) × 31.8% = <strong>24.9%</strong></p>
+<p>✅ Series A ownership = (1 - 27.9%) × 36.7% = <strong>26.5%</strong></p>
 </div>
 </div>
 </section>
 <section id="convertible-note-with-discount" class="level2 webex-box">
 <h2 class="anchored" data-anchor-id="convertible-note-with-discount">Convertible Note with Discount</h2>
 <p><strong>Context:</strong><br>
-Yara invested in a startup using a convertible note of <strong>$1.586 million</strong>, with a <strong>20% discount</strong>.<br>
-When the company raised Series A at <strong>$1.71 per share</strong>, her note converted at the discounted price.</p>
+Yara invested in a startup using a convertible note of <strong>$1.501 million</strong>, with a <strong>20% discount</strong>.<br>
+When the company raised Series A at <strong>$1.32 per share</strong>, her note converted at the discounted price.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-<label for="module1_num_q6a"><strong>1. How many shares did Yara receive upon conversion?</strong></label> <input type="number" id="module1_num_q6a" name="module1_num_q6a" placeholder="Shares" style="width: 100px;" data-correct-answer="1.1593567\times 10^{6}" data-tolerance="0.01">
+<label for="module1_num_q6a"><strong>1. How many shares did Yara receive upon conversion?</strong></label> <input type="number" id="module1_num_q6a" name="module1_num_q6a" placeholder="Shares" style="width: 100px;" data-correct-answer="1.4214015\times 10^{6}" data-tolerance="0.01">
 </form>
 <div id="feedback-module1_num_q6a" class="feedback" data-status="" style="display:none;">
-<p>✅ Shares = Note / Discounted Price = 1.586 million / 1.368 = <strong>1.159 million shares</strong></p>
+<p>✅ Shares = Note / Discounted Price = 1.501 million / 1.056 = <strong>1.421 million shares</strong></p>
 </div>
 </div>
 </section>
@@ -561,60 +597,10 @@ Show Feedback
 </div>
 </div>
 </div>
-<p><!-- Fecha content --></p>
+<p><!-- Fecha #after-login-content --></p>
 <script>
-  const LOGIN_URL = "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec";
-
-  // Ao carregar a página, tenta preencher o login salvo
-  document.addEventListener("DOMContentLoaded", () => {
-    const savedId = localStorage.getItem("studentId");
-    if (savedId) {
-      document.getElementById("username").value = savedId;
-    }
-  });
-
-  function validateLogin() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const errorBox = document.getElementById("login-error");
-    const loadingMsg = document.getElementById("loading-msg");
-    const button = document.querySelector("#login-form button");
-
-    // Feedback imediato
-    errorBox.textContent = "";
-    loadingMsg.textContent = "🔄 Authenticating your credentials. This may take a few seconds...";
-    loadingMsg.style.display = "block";
-    button.disabled = true;
-    button.textContent = "Validating...";
-
-    // Envia requisição para o Apps Script
-    fetch(`${LOGIN_URL}?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
-      .then(response => response.text())
-      .then(result => {
-        loadingMsg.style.display = "none";
-        button.disabled = false;
-        button.textContent = "Enter";
-
-        if (result === "OK") {
-          localStorage.setItem("studentId", username);
-          document.getElementById("login-form").style.display = "none";
-          document.getElementById("after-login-content").style.display = "block";
-          document.getElementById("welcome-message").textContent = `✅ Welcome ${username}!`;
-          document.getElementById("welcome-message").style.display = "block";
-        } else {
-          errorBox.textContent = "❌  User or password incorrect";
-        }
-      })
-      .catch(() => {
-        loadingMsg.style.display = "none";
-        button.disabled = false;
-        button.textContent = "Login";
-        errorBox.textContent = "❌ Connection error with the server";
-      });
-  }
-  
-  
-document.documentElement.classList.remove("locked");
+  // Garante que o conteúdo protegido apareça após login
+  document.documentElement.classList.remove("locked");
 </script>
 <div style="text-align: center; margin-top: 2rem;">
 <p><a href="../../../teaching/financial_strategy/" class="btn btn-outline-primary btn-lg"> 🔙 </a></p>

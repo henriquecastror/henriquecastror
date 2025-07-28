@@ -172,7 +172,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 28/07/2025 13:27</p>
+<p><strong>Last updated:</strong> 28/07/2025 15:47</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -210,6 +210,9 @@ For students
 </table>
 <hr>
 <p><strong>Answer the following questions based on the discussions in class.</strong></p>
+<script>
+  const SLIDE_ID = "module1_p1mcq";
+</script>
 <style>
   #login-form {
     max-width: 300px;
@@ -272,6 +275,39 @@ Login
 <div id="after-login-content" style="display: none;">
 <h4 id="welcome-message" style="text-align: center; display: none; margin-top: 10px; font-size: 1.8em; color: #333;" class="anchored">
 </h4>
+<script>
+  async function validateLogin() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorBox = document.getElementById("login-error");
+    const loadingBox = document.getElementById("loading-msg");
+    const welcomeMsg = document.getElementById("welcome-message");
+
+    errorBox.textContent = "";
+    loadingBox.textContent = "Authenticating your credentials. This may take a few seconds...";
+    loadingBox.style.display = "block";
+
+    // 🚨 Aqui você obtém a URL da página
+    const currentPage = window.location.pathname;
+
+    const response = await fetch(`https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&page=${encodeURIComponent(currentPage)}`);
+    const text = await response.text();
+
+    loadingBox.style.display = "none";
+
+    if (text === "OK") {
+      welcomeMsg.textContent = `Welcome, ${username}!`;
+      welcomeMsg.style.display = "block";
+      document.getElementById("login-form").style.display = "none";
+      document.getElementById("after-login-content").style.display = "block";
+      document.documentElement.classList.remove("locked");
+    } else if (text === "FAIL") {
+      errorBox.textContent = "Invalid username or password.";
+    } else {
+      errorBox.textContent = "Missing credentials.";
+    }
+  }
+</script>
 <div class="webex-box card border-info mb-4 p-3">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
@@ -562,60 +598,10 @@ Show Feedback
 </div>
 </div>
 </div>
-<p><!-- Fecha content --></p>
+<p><!-- Fecha #after-login-content --></p>
 <script>
-  const LOGIN_URL = "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec";
-
-  // Ao carregar a página, tenta preencher o login salvo
-  document.addEventListener("DOMContentLoaded", () => {
-    const savedId = localStorage.getItem("studentId");
-    if (savedId) {
-      document.getElementById("username").value = savedId;
-    }
-  });
-
-  function validateLogin() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const errorBox = document.getElementById("login-error");
-    const loadingMsg = document.getElementById("loading-msg");
-    const button = document.querySelector("#login-form button");
-
-    // Feedback imediato
-    errorBox.textContent = "";
-    loadingMsg.textContent = "🔄 Authenticating your credentials. This may take a few seconds...";
-    loadingMsg.style.display = "block";
-    button.disabled = true;
-    button.textContent = "Validating...";
-
-    // Envia requisição para o Apps Script
-    fetch(`${LOGIN_URL}?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
-      .then(response => response.text())
-      .then(result => {
-        loadingMsg.style.display = "none";
-        button.disabled = false;
-        button.textContent = "Enter";
-
-        if (result === "OK") {
-          localStorage.setItem("studentId", username);
-          document.getElementById("login-form").style.display = "none";
-          document.getElementById("after-login-content").style.display = "block";
-          document.getElementById("welcome-message").textContent = `✅ Welcome ${username}!`;
-          document.getElementById("welcome-message").style.display = "block";
-        } else {
-          errorBox.textContent = "❌  User or password incorrect";
-        }
-      })
-      .catch(() => {
-        loadingMsg.style.display = "none";
-        button.disabled = false;
-        button.textContent = "Login";
-        errorBox.textContent = "❌ Connection error with the server";
-      });
-  }
-  
-  
-document.documentElement.classList.remove("locked");
+  // Garante que o conteúdo protegido apareça após login
+  document.documentElement.classList.remove("locked");
 </script>
 <div style="text-align: center; margin-top: 2rem;">
 <p><a href="../../../teaching/financial_strategy/" class="btn btn-outline-primary btn-lg"> 🔙 </a></p>

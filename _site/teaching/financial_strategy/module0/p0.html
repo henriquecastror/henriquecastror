@@ -614,7 +614,7 @@ async function submitAnswers() {
   // T/F and numeric inputs
   document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
     const name = input.name || input.id;
-    if (name && name.startsWith('q')) {
+      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
       const value = input.value.trim();
       const correct = input.dataset.correctAnswer;
       answers[name] = correct !== undefined ? { value, correct } : value;
@@ -624,7 +624,7 @@ async function submitAnswers() {
 // Radio buttons (MCQ)
 const radioNames = new Set();
 document.querySelectorAll('input[type="radio"]').forEach(input => {
-  if (input.name && input.name.startsWith('q')) {
+  if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
     radioNames.add(input.name);
   }
 });
@@ -749,36 +749,37 @@ Submit Answers
 <h2>Now it is your turn…</h2>
 <p>This is an introductory part. You can start preparing yourself by checking the following lists of problems of the next chapter.</p>
 <div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/p1tf.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> ✅ True / False Questions </a></p>
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/p1num.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> 🔢 Numeric Questions </a></p>
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/p1mcq.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> 📝 Multiple Choice </a></p>
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/p1long.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> ✍️ Long-form Answers </a></p>
+<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1tf.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> ✅ True / False Questions </a></p>
+<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1num.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> 🔢 Numeric Questions </a></p>
+<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1mcq.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> 📝 Multiple Choice </a></p>
+<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1long.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> ✍️ Long-form Answers </a></p>
 </div>
 <div class="footer">
 
 </div>
 </section>
 
-<section id="thank-you" class="slide level2" data-background="#b1cafa">
-<h2><strong>THANK YOU!</strong></h2>
+<section id="any-questions" class="slide level2" data-background="#b1cafa">
+<h2>🙋‍♂️ <strong>Any Questions?</strong></h2>
 <div class="columns">
-<div class="column" style="width:60%;">
-<p><strong>QUESTIONS?</strong></p>
-<p><img data-src="../figs/qa2.png" style="width:150.0%" data-heigth="150%"></p>
-</div><div class="column" style="width:40%;">
-<p><strong>Henrique C. Martins</strong></p>
+<div class="column" style="width:50%;">
+<h3 id="thank-you">Thank You!</h3>
+<p><img data-src="../figs/qa2.png" style="margin-top: 10px;;width:110.0%"></p>
+</div><div class="column" style="width:50%;">
+<h3 id="henrique-c.-martins">👤 <strong>Henrique C. Martins</strong></h3>
 <ul>
-<li><a href="https://eaesp.fgv.br/en/people/henrique-castro-martins">FGV/EAESP</a></li>
-<li><a href="https://henriquemartins.net/">Personal Website</a></li>
-<li><a href="https://www.linkedin.com/in/henriquecastror/">LinkedIn</a></li>
-<li><a href="http://lattes.cnpq.br/6076997472159785">Lattes</a></li>
-<li><a href="https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&amp;hl=pt-BR&amp;oi=ao">Scholar</a><br>
+<li>🌐 <a href="https://eaesp.fgv.br/en/people/henrique-castro-martins">FGV/EAESP</a><br>
+</li>
+<li>💼 <a href="https://www.linkedin.com/in/henriquecastror/">LinkedIn</a><br>
+</li>
+<li>🧠 <a href="https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&amp;hl=pt-BR&amp;oi=ao">Google Scholar</a><br>
+</li>
+<li>📄 <a href="http://lattes.cnpq.br/6076997472159785">Lattes CV</a><br>
+</li>
+<li>🏠 <a href="https://henriquemartins.net/">Personal Website</a><br>
 </li>
 </ul>
 </div>
-</div>
-<div class="footer">
-
 </div>
 
 <div class="quarto-auto-generated-content">

@@ -13,7 +13,7 @@ async function submitAnswers() {
   // T/F and numeric inputs
   document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
     const name = input.name || input.id;
-    if (name && name.startsWith('q')) {
+      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
       const value = input.value.trim();
       const correct = input.dataset.correctAnswer;
       answers[name] = correct !== undefined ? { value, correct } : value;
@@ -23,7 +23,7 @@ async function submitAnswers() {
 // Radio buttons (MCQ)
 const radioNames = new Set();
 document.querySelectorAll('input[type="radio"]').forEach(input => {
-  if (input.name && input.name.startsWith('q')) {
+  if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
     radioNames.add(input.name);
   }
 });
