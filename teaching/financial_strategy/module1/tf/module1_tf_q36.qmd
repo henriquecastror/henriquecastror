@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q36','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q36" name="q36" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q36"><strong>A 'rights offer' is the sale of new shares to the general public in the market.</strong></label>
+</form>
+
+<div id="feedback-q36" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  A rights offer is a sale of new shares offered specifically to existing shareholders, giving them the "right" to purchase new shares to maintain their proportional ownership.
+</div>
+:::

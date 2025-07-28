@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q20','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q20" name="q20" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q20"><strong>The primary market is where investors buy and sell shares of companies already listed on the stock exchange.</strong></label>
+</form>
+
+<div id="feedback-q20" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The primary market is where newly issued securities are sold for the first time (e.g., in an IPO), while existing shares are traded in the secondary market.
+</div>
+:::

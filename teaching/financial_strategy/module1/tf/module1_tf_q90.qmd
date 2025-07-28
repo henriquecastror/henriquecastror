@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q90','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q90" name="q90" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q90"><strong>Share dilution occurs when new shares are issued, reducing the ownership percentage of existing shareholders.</strong></label>
+</form>
+
+<div id="feedback-q90" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

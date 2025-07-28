@@ -1,0 +1,32 @@
+## Convertible Note with Discount
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+
+note_value <- round(runif(1, 1.4, 1.6), 3)        # Valor da nota
+discount <- 0.2                                   # Desconto de 20%
+series_price <- round(runif(1, 1.0, 2.0), 2)       # Preço por ação na série
+conv_price <- round(series_price * (1 - discount), 3)  # Preço com desconto
+new_shares <- round(note_value * 1000000 / conv_price, 3)
+```
+
+**Context:**  
+Yara invested in a startup using a convertible note of **$`r note_value` million**, with a **20% discount**.  
+When the company raised Series A at **$`r series_price` per share**, her note converted at the discounted price.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
+  <label for="module1_num_q6a"><strong>1. How many shares did Yara receive upon conversion?</strong></label>
+  <input type="number" id="module1_num_q6a" name="module1_num_q6a" placeholder="Shares" style="width: 100px;"
+         data-correct-answer="`r new_shares`" data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module1_num_q6a" class="feedback" data-status="" style="display:none;">
+✅ Shares = Note / Discounted Price = `r note_value` million  / `r conv_price` = **`r  round(new_shares  / 1000000,3)` million shares**
+</div>
+
+:::

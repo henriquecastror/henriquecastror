@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q72','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q72" name="q72" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q72"><strong>The 'roadshow' phase in an IPO aims to generate demand and educate potential investors about the company.</strong></label>
+</form>
+
+<div id="feedback-q72" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

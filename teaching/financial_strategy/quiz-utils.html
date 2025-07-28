@@ -7,7 +7,7 @@ function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedback
   let isCorrect = false;
 
   // Trata respostas numéricas com tolerância
-  if (typeof correctAnswer === 'number' && typeof userAnswer === 'number') {
+ if (typeof correctAnswer === 'number' && typeof userAnswer === 'number' && !isNaN(userAnswer)) {
     const lowerBound = correctAnswer - tolerance;
     const upperBound = correctAnswer + tolerance;
     isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
@@ -80,7 +80,7 @@ function toggleFeedback() {
         }
         // Se a resposta do usuário não for um número válido, trate como incorreta
         if (isNaN(userAnswer)) {
-            userAnswer = ''; // Ou algum valor que garanta que não vai bater com a resposta correta
+             userAnswer = null; // Mantém como valor numérico inválido
         }
       } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
         // Questão de múltipla escolha (radio)

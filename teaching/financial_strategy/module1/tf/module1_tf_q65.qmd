@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q65','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q65" name="q65" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q65"><strong>An IPO always increases the wealth of existing shareholders.</strong></label>
+</form>
+
+<div id="feedback-q65" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  While IPOs often provide liquidity and can increase wealth, they do not always guarantee an increase in wealth for existing shareholders, as the stock price can fall below the offering price or even its pre-IPO valuation.
+</div>
+:::

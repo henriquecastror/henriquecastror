@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q19','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q19" name="q19" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q19"><strong>A company's corporate governance tends to become more complex after an IPO due to new regulatory requirements.</strong></label>
+</form>
+
+<div id="feedback-q19" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

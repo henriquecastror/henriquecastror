@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q49','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q49" name="q49" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q49"><strong>A 'dual-class share structure' allows founders to maintain disproportionate voting power.</strong></label>
+</form>
+
+<div id="feedback-q49" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q34','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q34" name="q34" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q34"><strong>Venture capital investors are typically the main target audience in a rights offer.</strong></label>
+</form>
+
+<div id="feedback-q34" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  Venture capital investors are typically involved in private equity financing of young, growing companies, while a rights offer targets existing shareholders.
+</div>
+:::

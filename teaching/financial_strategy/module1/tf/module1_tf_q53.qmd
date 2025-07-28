@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q53','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q53" name="q53" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q53"><strong>The stock price of a newly public company is always stable in the first year post-IPO.</strong></label>
+</form>
+
+<div id="feedback-q53" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The stock price of a newly public company is often highly volatile in the first year post-IPO, subject to market fluctuations, earnings reports, and analyst coverage.
+</div>
+:::

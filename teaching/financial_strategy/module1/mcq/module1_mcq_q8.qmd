@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q8')" data-correct-answer="B">
+  <strong style="display: block;">What does underpricing in an IPO refer to?</strong>
+
+  <label><input type="radio" name="module1_mcq_q8" value="A"> A. Selling shares only to insiders</label><br>
+  <label><input type="radio" name="module1_mcq_q8" value="B"> B. Offering shares below the market value at IPO</label><br>
+  <label><input type="radio" name="module1_mcq_q8" value="C"> C. Issuing shares at par value only</label><br>
+  <label><input type="radio" name="module1_mcq_q8" value="D"> D. Discounting shares during a buyback</label><br>
+  <label><input type="radio" name="module1_mcq_q8" value="E"> E. Selling shares without a prospectus</label><br>
+</form>
+
+<div id="feedback-module1_mcq_q8" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Underpricing means the IPO share price is set below expected market value, often leading to a first-day stock price increase.
+</div>
+
+:::

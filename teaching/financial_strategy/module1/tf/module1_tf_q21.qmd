@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q21','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q21" name="q21" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q21"><strong>A 'greenshoe option' (over-allotment option) is used by underwriters to sell fewer shares than initially planned.</strong></label>
+</form>
+
+<div id="feedback-q21" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: A greenshoe option allows underwriters to sell more shares than initially planned to cover over-allotments and stabilize the stock price, not fewer.
+</div>
+:::

@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q29','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q29" name="q29" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q29"><strong>A seasoned equity offering (SEO) is the sale of stock by a company that is already publicly traded.</strong></label>
+</form>
+
+<div id="feedback-q29" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

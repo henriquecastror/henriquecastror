@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q99','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q99" name="q99" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q99"><strong>Venture capital firms prefer to invest in mature companies with established revenue streams and low growth potential, as these present less risk.</strong></label>
+</form>
+
+<div id="feedback-q99" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: Venture capital firms specifically target early-stage, high-growth potential companies, even if they are pre-revenue, seeking significant returns on innovative but higher-risk ventures.
+</div>
+:::

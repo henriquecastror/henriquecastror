@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q11','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q11" name="q11" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q11"><strong>An IPO prospectus is a confidential document only accessible to investment banks.</strong></label>
+</form>
+
+<div id="feedback-q11" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  An IPO prospectus is a public document filed with regulatory bodies (like the SEC or CVM) and made available to potential investors.
+</div>
+:::

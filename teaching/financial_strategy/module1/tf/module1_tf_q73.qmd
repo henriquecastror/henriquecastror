@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q73','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q73" name="q73" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q73"><strong>The issuing company receives all the money from a secondary market stock sale.</strong></label>
+</form>
+
+<div id="feedback-q73" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The issuing company does not receive money from a secondary market stock sale; the proceeds go to the selling shareholder, as it involves trading existing shares among investors.
+</div>
+:::

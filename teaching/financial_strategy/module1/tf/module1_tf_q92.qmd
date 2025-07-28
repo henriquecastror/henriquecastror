@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q92','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q92" name="q92" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q92"><strong>A Simple Agreement for Future Equity (SAFE) is a debt instrument that always requires regular interest payments before conversion to equity.</strong></label>
+</form>
+
+<div id="feedback-q92" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  A SAFE is an investment contract, not a debt instrument, and it typically does not accrue interest or require regular payments; its purpose is to convert into equity at a future financing round.
+</div>
+:::

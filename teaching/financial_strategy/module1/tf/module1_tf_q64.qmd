@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q64','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q64" name="q64" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q64"><strong>Quiet period is a term used to describe the period after an IPO when company executives cannot communicate with the public.</strong></label>
+</form>
+
+<div id="feedback-q64" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: The quiet period generally refers to the time before and immediately after an IPO when the company and underwriters are restricted from making public statements that could improperly influence the market for the new shares.
+</div>
+:::

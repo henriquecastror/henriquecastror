@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q13','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q13" name="q13" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q13"><strong>The stock price reaction to an SEO is positive on average.</strong></label>
+</form>
+
+<div id="feedback-q13" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  The stock price reaction to an SEO (Seasoned Equity Offering) is, on average, negative, as it often signals potential dilution or a need for capital that can be interpreted negatively by the market.
+</div>
+:::

@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q51','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q51" name="q51" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q51"><strong>In a greenshoe option, underwriters buy shares back from the market to stabilize the stock price.</strong></label>
+</form>
+
+<div id="feedback-q51" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. In a greenshoe option, underwriters sell additional shares to cover over-allotments and can buy shares back from the market only if the price falls below the offer price to stabilize it, but their primary function is to manage over-allotment.
+</div>
+:::

@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q2','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q2" name="q2" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q2"><strong>The 'fees' paid to underwriters are a significant part of the transaction costs of an IPO.</strong></label>
+</form>
+
+<div id="feedback-q2" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

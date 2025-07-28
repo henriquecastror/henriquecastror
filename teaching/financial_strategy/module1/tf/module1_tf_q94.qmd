@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q94','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q94" name="q94" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q94"><strong>The main purpose of a stock exchange listing after an IPO is to directly provide additional capital to the issuing company through continuous share sales.</strong></label>
+</form>
+
+<div id="feedback-q94" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  While an IPO raises capital for the issuing company, the main purpose of a stock exchange listing is to provide a public market for the secondary trading of existing shares among investors, offering liquidity to shareholders.
+</div>
+:::

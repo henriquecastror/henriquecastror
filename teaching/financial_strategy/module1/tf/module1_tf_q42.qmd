@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q42','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q42" name="q42" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q42"><strong>A 'cash offer' always ensures that shares are sold to existing shareholders.</strong></label>
+</form>
+
+<div id="feedback-q42" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  A cash offer is a type of seasoned equity offering where shares are sold to the general public or institutional investors, not exclusively to existing shareholders.
+</div>
+:::

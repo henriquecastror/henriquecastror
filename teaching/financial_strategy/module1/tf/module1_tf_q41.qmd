@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q41','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q41" name="q41" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q41"><strong>The transaction costs of an IPO are generally insignificant compared to the total value raised.</strong></label>
+</form>
+
+<div id="feedback-q41" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: The transaction costs of an IPO are typically significant, representing a considerable percentage of the gross proceeds raised.
+</div>
+:::

@@ -1,0 +1,102 @@
+
+### Capital raised and founder dilution
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+# Valores aleatórios fixos (gerados via Python)
+seriesapre <- 3.368
+seriesapost <- 6.287
+seriesbpre <- 38.243
+seriesbpost <- 77.473
+seriescpre <- 132.115
+seriescpost <- 184.012
+
+raise_a <- 2.919
+raise_b <- 39.23
+raise_c <- 51.897
+
+pct_a <- 53.571
+pct_b <- 26.444
+pct_c <- 18.986
+
+```
+
+
+A company raised capital in three rounds (values in millions USD):
+
+Series A: Pre = `r seriesapre`, Post = `r seriesapost` 
+
+Series B: Pre = `r seriesbpre`, Post = `r seriesbpost`
+
+Series C: Pre = `r seriescpre`, Post = `r seriescpost`
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module1_num_q2a"><strong>1. How much did the company raise in Series A?</strong></label>
+  <input type="number" id="module1_num_q2a" name="module1_num_q2a" placeholder="in million" style="width: 150px;"
+         data-correct-answer="2.919" data-tolerance="0.01" />
+</form>
+<div id="feedback-module1_num_q2a" class="feedback" data-status="" style="display:none;">
+✅ Raised = Post - Pre = `r seriesapost` - `r seriesapre` = **`r raise_a` million**
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module1_num_q2b"><strong>2. How much did the company raise in Series B?</strong></label>
+  <input type="number" id="module1_num_q2b" name="module1_num_q2b" placeholder="in million" style="width: 150px;"
+         data-correct-answer="39.23" data-tolerance="0.01" />
+</form>
+<div id="feedback-module1_num_q2b" class="feedback" data-status="" style="display:none;">
+✅ Raised = Post - Pre = `r seriesbpost` - `r seriesbpre` = **`r raise_b` million**
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module1_num_q2c"><strong>3. How much did the company raise in Series C?</strong></label>
+  <input type="number" id="module1_num_q2c" name="module1_num_q2c" placeholder="in million" style="width: 150px;"
+         data-correct-answer="51.897" data-tolerance="0.01" />
+</form>
+<div id="feedback-module1_num_q2c" class="feedback" data-status="" style="display:none;">
+✅ Raised = Post - Pre = `r seriescpost` - `r seriescpre` = **`r raise_c` million**
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module1_num_q2d"><strong>4. What % of shares did founders keep after Series A?</strong></label>
+  <input type="number" id="module1_num_q2d" name="module1_num_q2d" placeholder="%" style="width: 150px;"
+         data-correct-answer="53.571" data-tolerance="0.01" />
+</form>
+<div id="feedback-module1_num_q2d" class="feedback" data-status="" style="display:none;">
+✅ % kept = Pre / Post = `r seriesapre` / `r seriesapost` = **`r pct_a`%**
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module1_num_q2e"><strong>5. What % of shares did founders keep after Series B?</strong></label>
+  <input type="number" id="module1_num_q2e" name="module1_num_q2e" placeholder="%" style="width: 150px;"
+         data-correct-answer="26.444" data-tolerance="0.01" />
+</form>
+<div id="feedback-module1_num_q2e" class="feedback" data-status="" style="display:none;">
+✅ % kept = A × B = (`r pct_a`%) × (`r round(seriesbpre / seriesbpost * 100,3)`%) = **`r pct_b`%**
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module1_num_q2f"><strong>6. What % of shares did founders keep after Series C?</strong></label>
+  <input type="number" id="module1_num_q2f" name="module1_num_q2f" placeholder="%" style="width: 150px;"
+         data-correct-answer="18.986" data-tolerance="0.01" />
+</form>
+<div id="feedback-module1_num_q2f" class="feedback" data-status="" style="display:none;">
+✅ % kept = A × B × C = (`r pct_a`%) × ... = **`r pct_c`%**
+</div>
+:::

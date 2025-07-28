@@ -1,0 +1,94 @@
+<style>
+  #login-form {
+    max-width: 300px;
+    margin: 100px auto 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-family: sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  #login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #login-form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #login-error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* NOVO: protege todo o conteúdo da página */
+  body.locked #after-login-content {
+    display: none !important;
+  }
+</style>
+
+<!-- Adiciona a classe 'locked' assim que a página carrega -->
+<script>
+  document.documentElement.classList.add("locked");
+</script>
+
+<!-- Formulário de login -->
+<form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
+  <h3 style="text-align: center;">Login</h3>
+  <input type="text" id="username" placeholder="Username" required />
+  <input type="password" id="password" placeholder="Password" required />
+  <button type="submit">Enter</button>
+  <div id="loading-msg" style="display:none; text-align:center; margin-top:10px; color:gray;"></div>
+  <div id="login-error" style="color:red; text-align:center; margin-top:10px;"></div>
+</form>
+
+<!-- CONTEÚDO PROTEGIDO COMEÇA AQUI -->
+<div id="after-login-content" style="display: none;">
+  <h4 id="welcome-message" style="text-align: center; display: none; margin-top: 10px; font-size: 1.8em; color: #333;"></h4>
+
+<script>
+  async function validateLogin() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorBox = document.getElementById("login-error");
+    const loadingBox = document.getElementById("loading-msg");
+    const welcomeMsg = document.getElementById("welcome-message");
+
+    errorBox.textContent = "";
+    loadingBox.textContent = "Authenticating your credentials. This may take a few seconds...";
+    loadingBox.style.display = "block";
+
+    // 🚨 Aqui você obtém a URL da página
+    const currentPage = window.location.pathname;
+
+    const response = await fetch(`https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&page=${encodeURIComponent(currentPage)}`);
+    const text = await response.text();
+
+    loadingBox.style.display = "none";
+
+    if (text === "OK") {
+      welcomeMsg.textContent = `Welcome, ${username}!`;
+      welcomeMsg.style.display = "block";
+      document.getElementById("login-form").style.display = "none";
+      document.getElementById("after-login-content").style.display = "block";
+      document.documentElement.classList.remove("locked");
+    } else if (text === "FAIL") {
+      errorBox.textContent = "Invalid username or password.";
+    } else {
+      errorBox.textContent = "Missing credentials.";
+    }
+  }
+</script>

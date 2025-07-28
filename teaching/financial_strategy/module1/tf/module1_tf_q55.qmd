@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q55','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q55" name="q55" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q55"><strong>A 'preliminary prospectus' guarantees that all information contained within is final and complete.</strong></label>
+</form>
+
+<div id="feedback-q55" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A preliminary prospectus is an initial draft and states that the information is not yet final or complete, as it awaits regulatory approval and final pricing.
+</div>
+:::

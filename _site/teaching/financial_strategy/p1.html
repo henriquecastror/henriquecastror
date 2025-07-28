@@ -356,7 +356,7 @@
     </div>
 </div>
 
-  <p class="date">23-07-2025</p>
+  <p class="date">24-07-2025</p>
 </section>
 <section>
 
@@ -371,138 +371,7 @@
 <p>23.3 IPO Puzzles</p>
 <p>23.4 The Seasoned Equity Offering</p>
 </section></section>
-<section id="section-1" class="title-slide slide level1 smaller scrollable center" data-background="#ead1dc">
-<h1></h1>
-<div style="font-size: 40%; text-align: right;">
-<p>Key: <em>slide1-temaA</em> <input type="hidden" id="slide-id" value="slide1-temaA"></p>
-</div>
-<div class="question-block">
-<form onsubmit="event.preventDefault(); checkAnswerBox('q1','T')" style="display: flex; align-items: center; gap: 8px;">
-<input type="text" id="q1" name="q1" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q1"><strong>An underwriter is an investment bank that manages the IPO process and helps the company sell its stock.</strong></label>
-</form>
-<div id="feedback-q1" class="feedback" data-status="" style="display:none;">
-<p>The sentence is TRUE: The sentence contains the definition of an underwriter.</p>
-</div>
-</div>
-<hr style="border: none; border-top: 2px dashed #999; margin: 20px 0;">
-<div class="question-block">
-<form onsubmit="event.preventDefault(); checkAnswer('q2','C')" data-correct-answer="C">
-<strong style="display: block;">Which of the following best defines an IPO?</strong> <label><input type="radio" name="q2" value="A"> A. A debt offering by a private company</label><br> <label><input type="radio" name="q2" value="B"> B. A secondary stock sale by investors</label><br> <label><input type="radio" name="q2" value="C"> C. The first time a company offers shares to the public</label><br>
-</form>
-<div id="feedback-q2" class="feedback" data-status="" style="display:none;">
-<p>✅ Correct: An IPO is the first time a company offers its shares to the public.</p>
-</div>
-</div>
-<hr style="border: none; border-top: 2px dashed #999; margin: 20px 0;">
-<div class="question-block">
-<form onsubmit="event.preventDefault(); checkAnswerBox('q5', '42')" style="display: flex; align-items: center; gap: 8px;">
-<span><strong>What is 6 multiplied by 7?</strong></span> <input type="text" id="q5" name="q5" maxlength="5" placeholder="Type numeric" style="width: 90px;">
-</form>
-<div id="feedback-q5" class="feedback" data-status="" style="display:none;">
-<p>The correct answer is <strong>42</strong>: 6 times 7 equals 42.</p>
-</div>
-</div>
-<hr style="border: none; border-top: 2px dashed #999; margin: 20px 0;">
-<div style="text-align: right;">
-<script>
-// Função auxiliar para verificar e definir o status de uma questão.
-// Esta função é interna e não é chamada diretamente pelo usuário.
-function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId) {
-  const feedbackDiv = document.getElementById(feedbackDivId);
-  if (!feedbackDiv) return;
 
-  if (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase()) {
-    feedbackDiv.dataset.status = "correct";
-  } else {
-    feedbackDiv.dataset.status = "incorrect";
-  }
-  feedbackDiv.style.display = "none"; // Mantém o feedback oculto até toggleFeedback ser chamado
-}
-
-// Função para obter a resposta de um grupo de radio buttons
-function getSelectedRadioValue(name) {
-    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
-    if (radios.length > 0) {
-        return radios[0].value;
-    }
-    return ''; // Retorna string vazia se nada for selecionado
-}
-
-function toggleFeedback() {
-  const questionBlocks = document.querySelectorAll('.question-block');
-  const feedbacks = document.querySelectorAll('.feedback');
-  const scoreDiv = document.getElementById('score-summary');
-  const toggleButton = document.getElementById('toggle-feedback-btn');
-
-  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
-
-  if (showing) {
-    // Esconder feedback
-    feedbacks.forEach(f => {
-      f.style.display = 'none';
-      f.style.color = 'black'; // Reseta a cor ao esconder
-    });
-    scoreDiv.textContent = '';
-    toggleButton.textContent = 'Show Feedback';
-  } else {
-    // Mostrar feedback
-    let correctCount = 0;
-    let totalQuestions = 0;
-
-    questionBlocks.forEach(block => {
-      totalQuestions++;
-      const textInput = block.querySelector('input[type="text"]');
-      const form = block.querySelector('form');
-      const questionId = textInput ? textInput.id : form.querySelector('input[type="radio"]').name; // Usa o 'name' do radio como ID lógico
-      const feedbackDivId = 'feedback-' + questionId;
-      const feedbackDiv = document.getElementById(feedbackDivId);
-
-      let userAnswer = '';
-      let correctAnswer = '';
-
-      if (textInput && textInput.dataset.correctAnswer) {
-        // Questão de texto
-        userAnswer = textInput.value;
-        correctAnswer = textInput.dataset.correctAnswer;
-      } else if (form && form.dataset.correctAnswer) {
-        // Questão de múltipla escolha (radio)
-        userAnswer = getSelectedRadioValue(questionId); // Usa o 'name' do radio group
-        correctAnswer = form.dataset.correctAnswer;
-      }
-
-      if (feedbackDiv && correctAnswer) { // Apenas processa se há um feedback div e uma resposta correta definida
-        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId); // Passa o feedbackDivId
-        // Agora, exibe e colore o feedback após a verificação
-        if (feedbackDiv.dataset.status === 'correct') {
-          feedbackDiv.style.color = 'green';
-          correctCount++;
-        } else if (feedbackDiv.dataset.status === 'incorrect') {
-          feedbackDiv.style.color = 'red';
-        } else {
-          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
-        }
-        feedbackDiv.style.display = 'block'; // Exibe o feedback
-      } else if (feedbackDiv) {
-         // Se não há uma resposta correta definida ou a questão não foi respondida,
-         // apenas mostra o feedback em preto (ou outro estilo neutro)
-         feedbackDiv.style.color = 'black';
-         feedbackDiv.style.display = 'block';
-      }
-    });
-
-    scoreDiv.textContent = `✅ Você acertou ${correctCount} de ${totalQuestions} questões.`;
-    toggleButton.textContent = 'Hide Feedback';
-  }
-}
-</script>
-<button id="toggle-feedback-btn" onclick="toggleFeedback()" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
-Show Feedback
-</button>
-<div id="score-summary" style="margin-top: 15px; font-weight: bold;">
-
-</div>
-</div>
-</section>
 
 <section>
 <section id="equity-financing-for-private-comp." class="title-slide slide level1 smaller center" data-background="#ead1dc">

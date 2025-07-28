@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q91','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q91" name="q91" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q91"><strong>Venture capitalists typically do not seek board representation, as their primary interest is solely financial returns.</strong></label>
+</form>
+
+<div id="feedback-q91" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  Venture capitalists often demand board seats and significant control rights to protect their investment and guide the company's strategic direction.
+</div>
+:::

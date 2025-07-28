@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q67','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q67" name="q67" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q67"><strong>The lock-up period for insiders typically lasts for a short duration, usually a week.</strong></label>
+</form>
+
+<div id="feedback-q67" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: The lock-up period for insiders typically lasts for a longer duration, commonly 90 to 180 days (3 to 6 months), to prevent an immediate flood of shares onto the market.
+</div>
+:::

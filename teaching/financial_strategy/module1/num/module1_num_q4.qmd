@@ -1,0 +1,47 @@
+### Valuation and Ownership After Equity Issuance
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+
+# Valores aleatórios
+founder_shares <- 4
+partner_investment <- round(runif(1, 1.5, 2.5), 3)
+partner_shares <- 1.5
+share_price <- round(partner_investment / partner_shares, 3)
+total_shares <- founder_shares + partner_shares
+post_money <- round(total_shares * share_price, 3)
+partner_pct <- round((partner_shares / total_shares) * 100, 3)
+```
+
+Erica owns all **`r founder_shares` million shares** of her company, CoralTech. A new partner is offering to invest **`r partner_investment` million** in exchange for **`r partner_shares` million shares**.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
+  <label for="module1_num_q4a"><strong>1. What is the post-money valuation (in million)?</strong></label>
+  <input type="number" id="module1_num_q4a" name="module1_num_q4a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer="`r post_money`" data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module1_num_q4a" class="feedback" data-status="" style="display:none;">
+✅ Post-money = (`r founder_shares + partner_shares`) shares × $`r share_price` (`r partner_investment  `/ `r partner_shares`) = **`r post_money` million**
+</div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
+  <label for="module1_num_q4b"><strong>2. What percentage of the company will the new partner own?</strong></label>
+  <input type="number" id="module1_num_q4b" name="module1_num_q4b" placeholder="Enter %" style="width: 150px;"
+         data-correct-answer="`r partner_pct`" data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module1_num_q4b" class="feedback" data-status="" style="display:none;">
+✅ Partner Ownership = `r partner_shares` / `r founder_shares + partner_shares` × 100 = **`r partner_pct`%**
+</div>
+
+:::

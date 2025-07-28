@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q24','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q24" name="q24" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q24"><strong>Due diligence is a critical process in an IPO to verify the company's financial and legal information.</strong></label>
+</form>
+
+<div id="feedback-q24" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

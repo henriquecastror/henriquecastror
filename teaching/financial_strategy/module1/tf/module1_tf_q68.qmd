@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q68','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q68" name="q68" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q68"><strong>The volatility of newly issued stock prices is always lower in developed markets than in emerging markets.</strong></label>
+</form>
+
+<div id="feedback-q68" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  While developed markets might have more stable overall conditions, the volatility of newly issued stock prices in IPOs can be high in any market, regardless of development status, due to novelty and speculative interest.
+</div>
+:::

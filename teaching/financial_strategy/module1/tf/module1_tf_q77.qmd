@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q77','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q77" name="q77" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q77"><strong>Listing on a stock exchange is optional for companies conducting an IPO.</strong></label>
+</form>
+
+<div id="feedback-q77" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Listing on a stock exchange is not optional for companies conducting an IPO, as it is the primary venue for public trading and liquidity for the shares.
+</div>
+:::

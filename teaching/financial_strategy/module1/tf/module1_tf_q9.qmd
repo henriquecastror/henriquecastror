@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q9','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q9" name="q9" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q9"><strong>A cash offer occurs when new shares are offered only to existing shareholders.</strong></label>
+</form>
+
+<div id="feedback-q9" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A cash offer typically involves selling new shares to the general public or institutional investors, not exclusively to existing shareholders (that would be a rights offer).
+</div>
+:::

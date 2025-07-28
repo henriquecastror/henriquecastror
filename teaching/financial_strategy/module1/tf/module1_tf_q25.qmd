@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q25','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q25" name="q25" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q25"><strong>A privately held company can raise equity capital by selling shares publicly without conducting an IPO.</strong></label>
+</form>
+
+<div id="feedback-q25" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A privately held company must conduct an IPO (or a direct listing) to sell its shares publicly on a stock exchange.
+</div>
+:::

@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q35','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q35" name="q35" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q35"><strong>An IPO guarantees that the company will achieve its long-term financial goals.</strong></label>
+</form>
+
+<div id="feedback-q35" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  An IPO provides capital and visibility but does not guarantee the achievement of long-term financial goals, which depend on various factors including management, market conditions, and competition.
+</div>
+:::

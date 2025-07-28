@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q50','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q50" name="q50" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q50"><strong>A company's decision to go public is generally a long-term strategic decision.</strong></label>
+</form>
+
+<div id="feedback-q50" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

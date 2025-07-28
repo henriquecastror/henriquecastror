@@ -1,0 +1,104 @@
+<!-- login-slides-start.html -->
+
+<style>
+  #login-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(240, 240, 240, 0.98);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+  }
+
+  #login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    max-width: 350px;
+    width: 90%;
+    text-align: center;
+  }
+
+  #login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #login-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #login-error {
+    color: red;
+    margin-top: 10px;
+  }
+
+  .reveal {
+    visibility: hidden;
+  }
+</style>
+
+<div id="login-modal">
+  <div id="login-box">
+    <h3>Please log in</h3>
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button onclick="validateLoginSlides()">Enter</button>
+    <div id="login-error"></div>
+  </div>
+</div>
+
+<script>
+  function validateLoginSlides() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorDiv = document.getElementById("login-error");
+
+    errorDiv.textContent = "Validating...";
+
+    fetch("https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: { "Content-Type": "application/json" },
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        document.getElementById("login-modal").style.display = "none";
+        document.querySelector(".reveal").style.visibility = "visible";
+        if (typeof Reveal !== "undefined") {
+          Reveal.sync();
+        }
+      } else {
+        errorDiv.textContent = "❌ Invalid credentials.";
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      errorDiv.textContent = "⚠️ Connection error.";
+    });
+  }
+
+  // Prevent keyboard shortcuts before login
+  document.addEventListener("keydown", function(e) {
+    if (document.getElementById("login-modal").style.display !== "none") {
+      e.stopPropagation();
+    }
+  }, true);
+</script>
+

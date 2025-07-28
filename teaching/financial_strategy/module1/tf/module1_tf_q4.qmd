@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q4','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q4" name="q4" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q4"><strong>Investors in an IPO are guaranteed to receive shares at the offering price.</strong></label>
+</form>
+
+<div id="feedback-q4" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Investors in an IPO are not guaranteed to receive shares at the offering price; allocation depends on demand, and the market price can fluctuate immediately after listing.
+</div>
+:::

@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q39','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q39" name="q39" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q39"><strong>The liquidity of a private company's shares is typically higher than that of a publicly traded company.</strong></label>
+</form>
+
+<div id="feedback-q39" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: The liquidity of a private company's shares is typically much lower than that of a publicly traded company, as there is no organized market for their frequent trading.
+</div>
+:::

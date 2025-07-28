@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q62','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q62" name="q62" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q62"><strong>The final offer price of an IPO is always determined exclusively by the issuing company.</strong></label>
+</form>
+
+<div id="feedback-q62" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: The final offer price of an IPO is typically determined through negotiation between the issuing company and the lead underwriters, often informed by the bookbuilding process and market conditions.
+</div>
+:::

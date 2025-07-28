@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q66','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q66" name="q66" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q66"><strong>IPO allocation refers to the process of distributing shares to interested investors.</strong></label>
+</form>
+
+<div id="feedback-q66" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

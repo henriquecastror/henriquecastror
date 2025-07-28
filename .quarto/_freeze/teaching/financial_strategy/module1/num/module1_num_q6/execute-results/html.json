@@ -1,0 +1,15 @@
+{
+  "hash": "4d50a0d35d1d1a051ec159ecb279f8d2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Convertible Note with Discount\n\n\n\n\n\n**Context:**  \nYara invested in a startup using a convertible note of **$1.442 million**, with a **20% discount**.  \nWhen the company raised Series A at **$1.31 per share**, her note converted at the discounted price.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <label for=\"module1_num_q6a\"><strong>1. How many shares did Yara receive upon conversion?</strong></label>\n  <input type=\"number\" id=\"module1_num_q6a\" name=\"module1_num_q6a\" placeholder=\"Shares\" style=\"width: 100px;\"\n         data-correct-answer=\"1.3759542\\times 10^{6}\" data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q6a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Shares = Note / Discounted Price = 1.442 million  / 1.048 = **1.376 million shares**\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

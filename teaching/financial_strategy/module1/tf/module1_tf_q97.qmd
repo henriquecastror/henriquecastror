@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q97','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q97" name="q97" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F." /> <label for="q97"><strong>A "seed round" of funding, typically led by angel investors, always involves the issuance of common stock with full voting rights.</strong></label>
+</form>
+
+<div id="feedback-q97" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  A seed round, especially with angel investors, often involves convertible notes or SAFEs (Simple Agreements for Future Equity) rather than immediate common stock, or preferred stock without full voting rights.
+</div>
+:::

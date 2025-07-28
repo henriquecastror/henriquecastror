@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q75','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q75" name="q75" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q75"><strong>Underwriters in an IPO often form a syndicate to share the responsibility of selling the new issue.</strong></label>
+</form>
+
+<div id="feedback-q75" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

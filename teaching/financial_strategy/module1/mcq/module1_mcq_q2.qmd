@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q2')" data-correct-answer="C">
+  <strong style="display: block;">What is the primary feature of an IPO?</strong>
+
+  <label><input type="radio" name="module1_mcq_q2" value="A"> A. The issuance of bonds by a private company</label><br>
+  <label><input type="radio" name="module1_mcq_q2" value="B"> B. The buyback of shares by the firm</label><br>
+  <label><input type="radio" name="module1_mcq_q2" value="C"> C. The first time a company offers shares to the public</label><br>
+  <label><input type="radio" name="module1_mcq_q2" value="D"> D. The distribution of dividends to shareholders</label><br>
+  <label><input type="radio" name="module1_mcq_q2" value="E"> E. The offering of preferred stock to employees</label><br>
+</form>
+
+<div id="feedback-module1_mcq_q2" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. An IPO is the first time a company sells equity shares to the public.
+</div>
+
+:::

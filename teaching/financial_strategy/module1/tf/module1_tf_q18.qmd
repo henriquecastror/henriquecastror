@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q18','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q18" name="q18" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q18"><strong>A roadshow is a series of presentations made by company executives to potential investors.</strong></label>
+</form>
+
+<div id="feedback-q18" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

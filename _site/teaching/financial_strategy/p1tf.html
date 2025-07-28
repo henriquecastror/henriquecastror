@@ -123,11 +123,6 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/henriquecastror"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
     <a class="nav-link" href="https://www.linkedin.com/in/henriquecastror/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
@@ -168,7 +163,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 
 <div style="text-align: right">
-<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="tool">Go to next Chapter</a></p>
+<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="&quot;tool">Go to next Chapter</a></p>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -188,23 +183,15 @@ For students
 </div>
 <hr>
 <p><strong>Mark T (True) or F (False) in each of the following sentences.</strong></p>
-<!-- LOGIN FORM -->
-<div id="login-container" style="border: 1px solid #ccc; padding: 15px; background-color: #f8f8f8; border-radius: 6px;">
-<h3 class="anchored">
-🔒 Login Required
-</h3>
-<p><label for="login-id"><strong>Student ID:</strong></label><br> <input type="text" id="login-id" placeholder="Enter your ID" style="width: 100%; margin-bottom: 10px;"><br> <label for="login-password"><strong>Password:</strong></label><br> <input type="password" id="login-password" placeholder="Enter your password" style="width: 100%; margin-bottom: 10px;"><br> <button onclick="verifyLogin()" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">Access Exercises</button></p>
-</div>
-<!-- PROTECTED CONTENT (only shown if login is valid) -->
-<div id="protected-content" style="display:none; margin-top: 20px;">
-<p>::: {.webex-box} ::: {.question-block}</p>
+<div class="webex-box">
+<div class="question-block">
 <form onsubmit="event.preventDefault(); checkAnswerBox('q1','T')" style="display: flex; align-items: center; gap: 8px;">
 <input type="text" id="q1" name="q1" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q1"><strong>Public companies typically have access to much larger amounts of capital through the public markets.</strong></label>
 </form>
 <div id="feedback-q1" class="feedback" data-status="" style="display:none;">
 <p>The sentence is TRUE: The sentence is true.</p>
 </div>
-<p>:::</p>
+</div>
 <div class="question-block">
 <form onsubmit="event.preventDefault(); checkAnswerBox('q2','T')" style="display: flex; align-items: center; gap: 8px;">
 <input type="text" id="q2" name="q2" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="q2"><strong>New issues are highly cyclical.</strong></label>
@@ -404,31 +391,9 @@ Show Feedback
 
 </div>
 </div>
-<p>:::</p>
 </div>
-<script>
-  async function verifyLogin() {
-    const id = document.getElementById("login-id").value.trim();
-    const password = document.getElementById("login-password").value.trim();
-    
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxEwMZ16lWpbZXmbJal2J0MfYlexHkmu6zOs9eluXKThpMivqrGAKQk63n2kvbWF9yoJQ/exec", {
-      method: "POST",
-      body: JSON.stringify({ id, password }),
-      headers: { "Content-Type": "application/json" }
-    });
-
-    const result = await response.json();
-
-    if (result.status === "success") {
-      document.getElementById("login-container").style.display = "none";
-      document.getElementById("protected-content").style.display = "block";
-    } else {
-      alert("Invalid ID or password. Please try again.");
-    }
-  }
-</script>
 <div style="text-align: right">
-<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="tool">Go to next Chapter</a></p>
+<p><a href="../../teaching/financial_strategy/p2tf.html" class="btn btn-primary" role="button" data-toggle="&quot;tool">Go to next Chapter</a></p>
 </div>
 
 

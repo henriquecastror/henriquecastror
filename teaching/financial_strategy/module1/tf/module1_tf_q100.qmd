@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q100','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q100" name="q100" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q100"><strong>Corporate investors, such as large companies, invest in private firms solely for financial returns, with no interest in strategic objectives.</strong></label>
+</form>
+
+<div id="feedback-q100" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE: While corporate investors seek financial returns, they often invest in private companies for corporate strategic objectives (e.g., access to new technology, markets, or talent), in addition to or sometimes even prioritized over purely financial returns.
+</div>
+:::

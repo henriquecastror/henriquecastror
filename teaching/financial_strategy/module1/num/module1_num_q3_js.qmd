@@ -1,0 +1,96 @@
+<div id="exercise-js-module1-num-q3" style="display: none;">
+
+<h3>Q. Post-money valuation and VC ownership</h3>
+
+<p>
+You founded a firm three years ago. You started with <strong>$<span id="v1-q3"></span> million</strong>, which gave you 
+<strong><span id="v2-q3"></span> million shares</strong>.<br>
+You later sold <strong><span id="v3-q3"></span> million shares</strong> to angel investors.<br>
+Now, a VC wants to invest <strong>$<span id="v4-q3"></span> million</strong> in exchange for 
+<strong><span id="v5-q3"></span> million new shares</strong>.
+</p>
+
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswerQ3('module1_num_q3a', postMoneyQ3, feedbackTextQ3a);">
+  <label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label>
+  <input type="number" id="module1_num_q3a" placeholder="Enter value" step="any" style="width: 150px;" />
+  <button type="submit">Check</button>
+</form>
+<div id="feedback-module1_num_q3a" class="feedback" style="display: none;"></div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswerQ3('module1_num_q3b', vcPctQ3, feedbackTextQ3b);">
+  <label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label>
+  <input type="number" id="module1_num_q3b" placeholder="Enter %" step="any" style="width: 150px;" />
+  <button type="submit">Check</button>
+</form>
+<div id="feedback-module1_num_q3b" class="feedback" style="display: none;"></div>
+:::
+
+</div>
+
+<script>
+// Variables for Q3
+let postMoneyQ3, vcPctQ3;
+let feedbackTextQ3a, feedbackTextQ3b;
+
+function generateExerciseQ3() {
+  const v1 = (Math.random() * 0.1 + 0.2).toFixed(3);    // Founder money
+  const v2 = (Math.random() + 1).toFixed(3);             // Founder shares
+  const v3 = (Math.random() + 1).toFixed(3);             // Angel shares
+  const v4 = (Math.random() + 5).toFixed(3);             // VC investment
+  const v5 = (Math.random() + 2).toFixed(3);             // VC shares
+
+  const totalShares = parseFloat(v2) + parseFloat(v3) + parseFloat(v5);
+  const sharePrice = parseFloat(v4) / parseFloat(v5);
+  postMoneyQ3 = (totalShares * sharePrice).toFixed(3);
+  vcPctQ3 = ((parseFloat(v5) / totalShares) * 100).toFixed(3);
+
+  feedbackTextQ3a = `✅ Post-money = Total shares × Price per share = (${v2} + ${v3} + ${v5}) × ${sharePrice.toFixed(3)} = <strong>${postMoneyQ3}</strong> million.`;
+  feedbackTextQ3b = `✅ VC Ownership = ${v5} / (${v2} + ${v3} + ${v5}) × 100 = <strong>${vcPctQ3}%</strong>.`;
+
+  // Inject values
+  document.getElementById("v1-q3").textContent = v1;
+  document.getElementById("v2-q3").textContent = v2;
+  document.getElementById("v3-q3").textContent = v3;
+  document.getElementById("v4-q3").textContent = v4;
+  document.getElementById("v5-q3").textContent = v5;
+
+  document.getElementById("exercise-js-module1-num-q3").style.display = "block";
+}
+
+function checkAnswerQ3(inputId, correctValue, explanation) {
+  const input = document.getElementById(inputId);
+  const feedback = document.getElementById("feedback-" + inputId);
+  const userAnswer = parseFloat(input.value);
+  const correct = parseFloat(correctValue);
+  const tolerance = 0.01;
+
+  if (isNaN(userAnswer)) {
+    feedback.textContent = "⚠️ Please enter a number.";
+    feedback.style.color = "orange";
+  } else if (Math.abs(userAnswer - correct) <= tolerance) {
+    feedback.innerHTML = explanation;
+    feedback.style.color = "green";
+  } else {
+    feedback.innerHTML = `❌ Incorrect. ${explanation}`;
+    feedback.style.color = "red";
+  }
+
+  feedback.style.display = "block";
+}
+
+// Run after login
+document.addEventListener("DOMContentLoaded", () => {
+  const observer = new MutationObserver(() => {
+    const afterLogin = document.getElementById("after-login-content");
+    if (afterLogin && afterLogin.style.display === "block") {
+      generateExerciseQ3();
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+});
+</script>

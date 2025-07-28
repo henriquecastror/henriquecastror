@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q3')" data-correct-answer="B">
+  <strong style="display: block;">Why might a firm choose a rights offering over a cash offering in an SEO?</strong>
+
+  <label><input type="radio" name="module1_mcq_q3" value="A"> A. To reduce underwriting fees to zero</label><br>
+  <label><input type="radio" name="module1_mcq_q3" value="B"> B. To avoid diluting current shareholders</label><br>
+  <label><input type="radio" name="module1_mcq_q3" value="C"> C. To raise debt instead of equity</label><br>
+  <label><input type="radio" name="module1_mcq_q3" value="D"> D. To eliminate voting rights of new investors</label><br>
+  <label><input type="radio" name="module1_mcq_q3" value="E"> E. To bypass SEC registration requirements</label><br>
+</form>
+
+<div id="feedback-module1_mcq_q3" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Rights offerings give current shareholders the opportunity to maintain their ownership percentage.
+</div>
+
+:::

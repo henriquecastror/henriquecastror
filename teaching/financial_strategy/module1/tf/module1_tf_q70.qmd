@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q70','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q70" name="q70" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="q70"><strong>IPO pricing is a delicate balance between maximizing capital raised and ensuring good performance in the secondary market.</strong></label>
+</form>
+
+<div id="feedback-q70" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE.
+</div>
+:::

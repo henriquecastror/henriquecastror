@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('q93','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="q93" name="q93" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="q93"><strong>Private equity firms primarily focus on investing in early-stage startup companies, similar to angel investors.</strong></label>
+</form>
+
+<div id="feedback-q93" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE:  Private equity firms primarily invest in existing, more mature privately held firms or take publicly traded companies private through leveraged buyouts (LBOs), differing from the early-stage focus of angel investors or venture capitalists.
+</div>
+:::
