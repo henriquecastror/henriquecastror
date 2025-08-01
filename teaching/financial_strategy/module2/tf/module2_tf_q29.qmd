@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q29','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q29" name="module2_tf_q29" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q29"><strong>Unsystematic risk affects all companies in the market equally.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q29" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Unsystematic risk is, by definition, specific to individual companies or a small group of them; it does not affect all companies.
+</div>
+:::

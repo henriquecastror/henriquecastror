@@ -1,0 +1,43 @@
+## Arithmetic vs. Geometric Average Return
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+library(webexercises)
+r1 <- rnorm(1, mean = 8, sd = 3)
+r2 <- rnorm(1, mean = 12, sd = 4)
+arith_mean <- (r1 + r2) / 2
+geo_mean   <- ((1 + r1/100) * (1 + r2/100))^(1/2) - 1
+```
+
+A stock yielded returns of **`r round(r1,2)`%** and **`r round(r2,2)`%** over two consecutive years.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q9a"><strong>1. What is the arithmetic average return (in %)?</strong></label>
+  <input type="number" id="module2_num_q9a" name="module2_num_q9a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( arith_mean , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module2_num_q9a" class="feedback" data-status="" style="display:none;">
+✅ Arithmetic average return = (r1 + r2)/2 = **`r round(arith_mean, 2)`**%.
+</div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q9b"><strong>2. What is the geometric average return (in %)?</strong></label>
+  <input type="number" id="module2_num_q9b" name="module2_num_q9b" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( geo_mean * 100 , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module2_num_q9b" class="feedback" data-status="" style="display:none;">
+✅ Geometric average return = [(1 + r1/100) × (1 + r2/100)]¹ᐟ² − 1 = **`r round(geo_mean * 100, 2)`**%.
+</div>
+
+:::

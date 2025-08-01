@@ -1,0 +1,28 @@
+## Expected Return of a Mixed Portfolio
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+library(webexercises)
+rf <- rnorm(1, mean = 3, sd = 0.5)
+rm <- rnorm(1, mean = 9, sd = 1)
+w  <- runif(1, 0, 1)
+```
+
+Suppose you invest **`r round(w*100,1)`%** of your wealth in the market portfolio, which has an expected return of **`r round(rm,2)`%**, and the remainder in the risk‑free asset, which has a return of **`r round(rf,2)`%**.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q6a"><strong>1. What is the expected return of your portfolio (in %)?</strong></label>
+  <input type="number" id="module2_num_q6a" name="module2_num_q6a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( rf + w * (rm - rf), 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module2_num_q6a" class="feedback" data-status="" style="display:none;">
+✅ Expected portfolio return = rm * w +  rf * (1-w)= **`r round(rf + w * (rm - rf), 2)`**%.
+</div>
+
+:::

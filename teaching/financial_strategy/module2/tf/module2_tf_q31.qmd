@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q31','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q31" name="module2_tf_q31" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q31"><strong>Examples of unsystematic risk include management decisions, product recalls, and labor strikes.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q31" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. These are all classic examples of events that are specific to a single company and represent unsystematic risk.
+</div>
+:::

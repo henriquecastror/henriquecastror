@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q99','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q99" name="module2_tf_q99" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q99"><strong>A key reason to calculate the standard error of a historical average return is to get an indication of how far that sample average might deviate from the true expected return.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q99" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. The standard error measures the degree of estimation error, showing how reliable the historical average is as a predictor of the true, underlying expected return.
+</div>
+:::

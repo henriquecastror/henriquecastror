@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q44','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q44" name="module2_tf_q44" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q44"><strong>Investors with different risk preferences will choose different combinations of the market portfolio and the risk-free asset.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q44" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. This is how investors tailor their overall portfolio risk: more risk-averse investors hold more of the risk-free asset, while less risk-averse investors may even borrow at the risk-free rate to invest more in the market portfolio.
+</div>
+:::

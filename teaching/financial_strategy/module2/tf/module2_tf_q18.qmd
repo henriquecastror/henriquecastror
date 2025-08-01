@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q18','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q18" name="module2_tf_q18" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q18"><strong>The following risk is an example of firm-specific risk: The risk that a product design is faulty and the product must be recalled.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q18" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. A product recall is a problem specific to one company and is a classic example of unsystematic (firm-specific) risk.
+</div>
+:::

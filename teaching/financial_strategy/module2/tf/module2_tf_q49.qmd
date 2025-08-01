@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q49','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q49" name="module2_tf_q49" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q49"><strong>Two assets with zero correlation provide no diversification benefits.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q49" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Combining two assets with zero correlation still provides significant diversification benefits by reducing portfolio variance. The only case with no benefit is a perfect positive correlation of +1.
+</div>
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q10')" data-correct-answer="B">
+  <strong style="display: block;">Why do investors demand a risk premium for systematic risk but not for unsystematic risk?</strong>
+
+  <label><input type="radio" name="module2_mcq_q10" value="A"> A. Because systematic risk is easier to measure and therefore to price.</label><br>
+  <label><input type="radio" name="module2_mcq_q10" value="B"> B. Because unsystematic risk can be eliminated for "free" through diversification.</label><br>
+  <label><input type="radio" name="module2_mcq_q10" value="C"> C. Because only systematic risk affects the cash flows of companies.</label><br>
+  <label><input type="radio" name="module2_mcq_q10" value="D"> D. Because unsystematic risk is, on average, always positive for returns.</label><br>
+  <label><input type="radio" name="module2_mcq_q10" value="E"> E. Because systematic risk is insured by government agencies.</label><br>
+</form>
+
+<div id="feedback-module2_mcq_q10" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The fundamental logic is that the market does not reward investors for bearing a risk that they can eliminate on their own. Since unsystematic risk can be diversified away, there is no premium associated with it.
+</div>
+
+:::

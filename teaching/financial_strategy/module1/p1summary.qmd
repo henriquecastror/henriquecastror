@@ -1,5 +1,5 @@
 ---
-title: "Module 1 – Raising Equity Capital"
+title: "Module 1 – (ch23) Raising Equity Capital"
 author: "Henrique C. Martins - henrique.martins@fgv.br"
 format: pdf
 fontsize: 11pt
@@ -9,24 +9,37 @@ header-includes: |
   \usepackage{graphicx}
   \usepackage{fancyhdr}
   \pagestyle{fancy}
-  \fancyhead[L]{Module 1 – Raising Equity Capital}
+  \fancyhead[L]{Module 1 – (ch23) Raising Equity Capital}
   \fancyhead[R]{\includegraphics[height=1.2cm]{../figs/background6.png}}
   \fancyfoot[C]{}
-
+  \fancypagestyle{firstpage}{
+    \fancyhf{}
+    \fancyhead[L]{Module 1 – (ch23) Raising Equity Capital}
+    \fancyhead[R]{\includegraphics[height=1.2cm]{../figs/background6.png}}
+    \fancyfoot[C]{}
+  }
+  \usepackage{tcolorbox}
+  \tcbset{colback=blue!5!white, colframe=blue!75!black, boxrule=0.6pt, arc=4pt, left=6pt, right=6pt, top=4pt, bottom=4pt}
 ---
+
+\thispagestyle{firstpage}
+
+\begin{tcolorbox}
+\textbf{Note:} This summary will be delivered \textbf{in printed form only}. No PDF version is available.
+\end{tcolorbox}
 
 # Overview
 
 This summary covers the key points from Chapter 23 of *Berk & DeMarzo* – Raising Equity Capital.
 
 1)  **Early-stage funding sources**  
-Angels, VCs, private equity, and corporate investors – who they are and why they invest
+Angels, VCs, private equity, institutional and corporate investors: who they are and why they invest
 
 2) **How deals are structured**  
 Preferred stock, convertible terms, funding rounds, and investor protections
 
 3) **Ownership and valuation**  
-Pre- and post-money valuation, dilution, and cap table analysis
+Pre- and post-money valuation, dilution, and types of stocks
 
 4) **Going public**  
 IPO mechanics, underwriters, pricing strategies, and regulatory steps
@@ -34,12 +47,40 @@ IPO mechanics, underwriters, pricing strategies, and regulatory steps
 5) **Puzzles and market reactions**  
 Underpricing, long-run underperformance, SEO choices, and investor behavior
 
-
 ---
 
-# Scan to Access Online Materials
+# Scan to Access Online Class Resources
 
 |![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module1/p1.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module1/p1tf.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module1/p1num.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module1/p1mcq.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module1/p1long.html) |
 |:--:|:--:|:--:|:--:|:--:|
 | Slides | T/F | Numeric | MCQ | Long-form |
 
+\newpage
+
+# Notes
+
+\newcommand{\drawline}{\noindent\rule{\linewidth}{0.4pt}\vspace{14pt}}
+
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline

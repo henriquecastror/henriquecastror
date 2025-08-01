@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q73','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q73" name="module2_tf_q73" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q73"><strong>When calculating the variance from a sample of historical returns, we use (T-1) in the denominator to obtain an unbiased estimate of the population variance.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q73" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. The slides mention the use of (T-1) in the variance formula for historical data samples, which is the standard statistical practice to correct for bias.
+</div>
+:::

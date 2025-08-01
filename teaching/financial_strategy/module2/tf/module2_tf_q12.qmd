@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q12','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q12" name="module2_tf_q12" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q12"><strong>In finance, risk refers to the uncertainty that an investment's actual return will differ from its expected return.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q12" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. This is a core definition of financial risk, often measured by variance or standard deviation.
+</div>
+:::

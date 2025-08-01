@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q5')" data-correct-answer="C">
+  <strong style="display: block;">An investor's realized return over a period is composed of which two key components?</strong>
+
+  <label><input type="radio" name="module2_mcq_q5" value="A"> A. Systematic return and unsystematic return.</label><br>
+  <label><input type="radio" name="module2_mcq_q5" value="B"> B. The risk-free rate and the risk premium.</label><br>
+  <label><input type="radio" name="module2_mcq_q5" value="C"> C. The dividend yield and the capital gain rate.</label><br>
+  <label><input type="radio" name="module2_mcq_q5" value="D"> D. The arithmetic average and the geometric average.</label><br>
+  <label><input type="radio" name="module2_mcq_q5" value="E"> E. Beta and volatility.</label><br>
+</form>
+
+<div id="feedback-module2_mcq_q5" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The total realized return is the sum of income received from dividends (dividend yield) and the appreciation in the asset's price (capital gain rate).
+</div>
+
+:::

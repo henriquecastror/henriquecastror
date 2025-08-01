@@ -2,10 +2,10 @@
 
 <form onsubmit="event.preventDefault(); checkAnswerBox('q26','T')" style="display: flex; align-items: center; gap: 8px;">
 <input type="text" id="q26" name="q26" maxlength="1" placeholder="T or F"
-         style="width: 55px;" data-correct-answer="T" /> <label for="q26"><strong>IPO price stabilization is an activity that underwriters can undertake to prevent sharp drops in the price of newly issued shares.</strong></label>
+         style="width: 55px;" data-correct-answer="T" /> <label for="q26"><strong>Greenshoe stabilization is an activity that underwriters can undertake to prevent sharp drops in the price of newly issued shares.</strong></label>
 </form>
 
 <div id="feedback-q26" class="feedback" data-status="" style="display:none;">
-The sentence is TRUE.
+The sentence is FALSE. Underwriters can use mechanisms like the greenshoe option to sell more shares in the open market if the demand is higher.
 </div>
 :::

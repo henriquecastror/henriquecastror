@@ -1,0 +1,40 @@
+## Average and Standard Deviation of Returns
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+returns <- rnorm(5, mean = 8, sd = 3)
+std_dev <- sd(returns)
+```
+
+The past five annual returns of a stock were (in %): **`r round(returns, 2)`**
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q5a"><strong>1. What was the average return (in %)?</strong></label>
+  <input type="number" id="module2_num_q5a" name="module2_num_q5a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round(mean(returns), 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module2_num_q5a" class="feedback" data-status="" style="display:none;">
+✅ Average return = mean(returns) = **`r round(mean(returns), 2)`**%.
+</div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q5b"><strong>2. What was the standard deviation of the returns (in %)?</strong></label>
+  <input type="number" id="module2_num_q5b" name="module2_num_q5b" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round(std_dev, 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module2_num_q5b" class="feedback" data-status="" style="display:none;">
+✅ Standard deviation = sd(returns) = **`r round(std_dev, 2)`**%.
+</div>
+
+:::

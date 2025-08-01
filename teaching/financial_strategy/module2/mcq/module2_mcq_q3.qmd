@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q3')" data-correct-answer="B">
+  <strong style="display: block;">Which of the following events is an example of systematic (non-diversifiable) risk?</strong>
+
+  <label><input type="radio" name="module2_mcq_q3" value="A"> A. A pharmaceutical firm fails to get regulatory approval for a new drug.</label><br>
+  <label><input type="radio" name="module2_mcq_q3" value="B"> B. An unexpected increase in the benchmark interest rate by the Central Bank.</label><br>
+  <label><input type="radio" name="module2_mcq_q3" value="C"> C. A competitor launches an innovative product that captures market share.</label><br>
+  <label><input type="radio" name="module2_mcq_q3" value="D"> D. A labor strike halts production at a single factory.</label><br>
+  <label><input type="radio" name="module2_mcq_q3" value="E"> E. The CEO of a major tech company unexpectedly resigns.</label><br>
+</form>
+
+<div id="feedback-module2_mcq_q3" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Changes in the interest rate affect the cost of capital and valuations for nearly all companies in the market, making it a systematic risk.
+</div>
+
+:::

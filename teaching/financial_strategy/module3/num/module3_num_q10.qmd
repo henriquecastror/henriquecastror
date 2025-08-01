@@ -1,0 +1,61 @@
+## Risk‑Free Combination and Sharpe Ratio
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+library(webexercises)
+rf        <- rnorm(1, mean = 4, sd = 0.5)      # risk‑free rate (%)
+ret_tan   <- rnorm(1, mean = 12, sd = 2)       # expected return of tangent portfolio (%)
+sd_tan    <- rnorm(1, mean = 18, sd = 3)       # volatility of tangent portfolio (%)
+w         <- runif(1, 0, 1.5)                  # weight in tangent portfolio (allow >1 for leverage)
+ret_port  <- w * ret_tan + (1 - w) * rf        # expected return of combined portfolio
+sd_port   <- abs(w) * sd_tan                   # standard deviation (risk‑free asset has zero volatility)
+risk_prem <- ret_port - rf                     # risk premium of combined portfolio
+sharpe    <- ifelse(sd_port > 0, risk_prem / sd_port, NA)
+```
+
+You build a portfolio by combining the risk‑free asset (rate = **`r round(rf,2)`%**) with a tangent portfolio (expected return = **`r round(ret_tan,2)`%**, volatility = **`r round(sd_tan,2)`%**) using a weight of **`r round(w*100,2)`%** in the tangent portfolio (weights greater than 100% imply leverage).
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q10a"><strong>1. What is the expected return of your combined portfolio (in %)?</strong></label>
+  <input type="number" id="module3_num_q10a" name="module3_num_q10a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( ret_port , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q10a" class="feedback" data-status="" style="display:none;">
+✅ Expected return = w×ret_tan + (1−w)×Rf = **`r round(ret_port, 2)`**%.
+</div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q10b"><strong>2. What is the standard deviation of your combined portfolio (in %)?</strong></label>
+  <input type="number" id="module3_num_q10b" name="module3_num_q10b" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( sd_port , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q10b" class="feedback" data-status="" style="display:none;">
+✅ Standard deviation = |w|×σ_tan = **`r round(sd_port, 2)`**%.
+</div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q10c"><strong>3. What is the Sharpe ratio of your combined portfolio?</strong></label>
+  <input type="number" id="module3_num_q10c" name="module3_num_q10c" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( sharpe , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q10c" class="feedback" data-status="" style="display:none;">
+✅ Sharpe ratio = risk premium / volatility = **`r round(sharpe, 2)`**.
+</div>
+
+:::

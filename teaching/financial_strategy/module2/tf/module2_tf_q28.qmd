@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q28','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q28" name="module2_tf_q28" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q28"><strong>Unsystematic risk is also known as firm-specific or idiosyncratic risk.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q28" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. These three terms are synonyms for the type of risk that is unique to a specific company or industry.
+</div>
+:::

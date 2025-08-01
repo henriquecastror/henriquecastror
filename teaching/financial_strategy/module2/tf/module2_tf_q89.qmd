@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q89','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q89" name="module2_tf_q89" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q89"><strong>The analysis of historical return and risk data assumes that the future will behave similarly to the past.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q89" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. The slides highlight the assumption that "the past is good enough to teach us about the future" when using historical data to estimate expected returns and risks.
+</div>
+:::

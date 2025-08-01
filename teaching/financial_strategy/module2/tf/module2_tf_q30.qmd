@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q30','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q30" name="module2_tf_q30" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q30"><strong>Unsystematic risk can be reduced or eliminated through portfolio diversification.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q30" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. This is the primary benefit of diversification—spreading investments cancels out the unique, random risks of individual firms.
+</div>
+:::

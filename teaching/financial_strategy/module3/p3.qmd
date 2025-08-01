@@ -1,0 +1,2228 @@
+---
+title: 'Estratégia Financeira'
+subtitle: ' **Part 3 - ch.11 Optimal Portfolio Choice and the Capital Asset Pricing Model** '
+author:
+  - name: ' **Henrique C. Martins** '
+    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: true
+format:
+  revealjs: 
+    touch: true
+    controls: true
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: ../figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Do not use without permission]**  '
+    scrollable: true
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+      
+---
+
+
+```{r setup}
+#| include: false
+#| warning: false
+api_key <- "kfqxH5NsN8Nhe_U1NADB"
+# library(reticulate)
+# use_python("C:/Users/hcmrt/AppData/Local/Programs/Python/Python310/python.exe")
+library(reticulate)
+#reticulate::py_install("matplotlib")
+#reticulate::py_install("seaborn")
+library(dplyr)
+library(ggplot2)
+library(gganimate)
+library(ggthemes)
+library(PerformanceAnalytics)
+library(tidyr)
+library(tidyquant)
+library(roll)
+library(plotly)
+library(yfR)
+```
+
+
+
+
+
+
+# Intro {visibility="hidden"}
+
+## {background-image="../figs/ch11.png" background-size="1300px"}
+
+
+
+
+
+
+## Chapter Outline  
+
+11.1 The Expected Return of a Portfolio
+
+11.2 The Volatility of a Two-Stock Portfolio
+
+11.3 The Volatility of a Large Portfolio
+
+11.4 Risk Versus Return: Choosing an Efficient Portfolio
+
+11.5 Risk-Free Saving and Borrowing
+
+11.6 The Efficient Portfolio and Required Returns
+
+11.7 The Capital Asset Pricing Model
+
+11.8 Determining the Risk Premium
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 11.1 Expected return of a portfolio  {.smaller background="#c9f7ba"}
+
+## 11.1 Expected return of a portfolio  {.smaller background="#c9f7ba"}
+
+**Suppose you have two stocks:**
+
+**Amazon:** $x_1$: 40%, **Return**: 10%, **Risk**: 26.6%
+
+**Southwest:** $x_2$: 60%, **Return**: 15%, **Risk**: 27.9%
+
+. . .
+
+If your portfolio is 40% Amazon + 60% Southwest, then your return is:
+
+
+$$(0.4 \times 10\%) +(0.6 \times 15\%) = 13\%$$
+
+**There is no secret here, the return of a portfolio is the weighted average of returns.**
+
+**The weights are selected by the investors and, obviously, if prices change, the weights change over time.**
+
+
+
+
+
+
+
+
+
+
+
+# 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+**To compute the standard deviation of a portfolio, we cannot rely on the weighted average. We have to look to the covariances.** 
+
+![](../figs/bre13901_0712.jpg){.absolute bottom="1" right="1" width="700"}
+
+- $\sigma^2_1$ = variance of asset 1. 
+- $\sigma^2_2$ = variance of asset 2
+- $\sigma_{12}$ = covariance between assets 1 and 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+Covariance is the product of the assets' Sd and their correlation.
+
+$$\sigma_{12} = \sigma_1 \times \sigma_2 \times \rho_{12}$$
+
+Covariance is the expected product of the deviations of two returns from their means.
+
+$$Cov(R_i,R_j) = E[(R_i-E[R_i]) \times (R_j-E[R_j]) ]$$
+
+
+When using historical data:
+
+$$Cov(R_i,R_j) = \frac{1}{T-1} (R_i-\tilde{R_i} ) \times (R_j-\tilde{R_j} )$$
+
+. . . 
+
+Correlation:
+
+$$Corr(R_i,R_j) = \frac{Cov(R_i,R_j)}{Sd(R_i)\times  Sd(R_j)  }$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+Therefore, the portfolio variance is:
+
+$$var = (x_1^2 \times \sigma_1^2)  + (x_2^2 \times \sigma_2^2) + 2(x_1 \times x_2 \times \sigma_1 \times \sigma_2 \times \rho_{12})$$
+
+. . . 
+
+If $\rho_{12} = 0.26$ 
+
+$$(0.4^2 \times 26.6^2)  + (0.6^2 \times 27.9^2) + 2(0.4 \times 0.6 \times 26.6 \times 27.9 \times 0.26) = 486.1$$
+
+The standard deviation of the portfolio is $\sqrt{486.1}= 22\%$, which is lower than 26.6% and 27.9%.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+**Covariance and Correlation**
+
+Let's remember the basics about correlation.
+
+![](../figs/bm_11_1.png)
+
+
+
+
+
+
+
+
+
+
+## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+**Covariance and Correlation**
+
+These assets have the same historical return and volatility, **but they 'move' very differently**: 
+
+- For example, when North Air performed well, Text Oil tended to do poorly, and when North Air did poorly, Text oil  tended to do well
+
+- **North Air is not positively correlated with  Text Oil.**
+
+- Consider the portfolio which consists of equal investments in West Air and Tex Oil. The average return of the portfolio is equal to the average return of the two stocks...
+
+- ...**However, the volatility of 5.1% is much less than the volatility of the two individual stocks.**
+
+**The amount of risk that is eliminated in a portfolio depends on the degree to which the stocks face common risks and their prices move together.**
+
+
+
+
+
+
+
+
+
+## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(PerformanceAnalytics)
+library(yfR)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ggthemes)
+library(tidyquant)
+library(roll)
+library(plotly)
+library(ggthemes)
+stocks <-c('BBDC3.SA', 'PETR3.SA') 
+start <-'2010-01-01' 
+end   <-Sys.Date()  
+data <- yf_get(tickers = stocks, 
+                         first_date = start,
+                         last_date = end)
+data<-data[complete.cases(data),] 
+p<-ggplot(data, aes(ref_date , price_close, group=ticker , color=ticker))+
+        geom_line() +
+        labs(x = "",
+             y='Closing prices', 
+             title="Two assets returns", 
+             subtitle = "Begin 01/01/2010") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+## {.smaller background="#f2f7ba"}
+
+**Same graph using prices in day 1 = $100.**
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+stock1 <- subset(data, ticker == stocks[1])
+stock2 <- subset(data, ticker == stocks[2])
+stock1$price_close2 <- stock1$price_close  / stock1$price_close[1] * 100
+stock2$price_close2 <- stock2$price_close  / stock2$price_close[1] * 100
+p<-ggplot(stock1, aes(ref_date , price_close2, color=ticker))+
+        geom_line() +
+        geom_line(data=stock2) +
+        labs(x = "",
+             y='Closing prices', 
+             title="Two assets returns, Initial price = 100", 
+             subtitle = "Begin 01/01/2010") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## {.smaller background="#f2f7ba"}
+
+Let's compute the average return of a portfolio with 40% invested in A and 60% in B. **The portfolio return is the average return of the assets**.
+
+ 
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# Defining weights and calculating portfolio return (daily)
+w <- c(0.40, 0.60)
+# Creating a df with stocks and weights
+w_tbl <- tibble(ticker = stocks,w = w)
+# Including the weights in the df prices (which contains the prices)
+prices  <- left_join(data ,w_tbl, by = 'ticker')
+# calculating the product of return times the portfolio weights for all days (this is necessary to calculate average return)
+prices$w_ret <- prices$ret_closing_prices * prices$w
+# Creating a dataframe with portfolio returns 
+port_ret <- prices %>%
+  group_by(ref_date) %>%
+  summarise(port_ret = sum(w_ret))
+# Creating prices from the vector of returns
+port_ret$price_close2 <- cumprod(1+port_ret$port_ret) * 100
+# Graph with all returns
+port_ret$ticker <- 'Portfolio'
+p <- ggplot(stock1, aes(ref_date , price_close2, color = ticker))+
+        geom_line() +geom_line(data=stock2) +geom_line(data=port_ret) +
+        labs(x = "",
+             y='Closing prices', 
+             title="Two assets and Portfolio returns, Initial price = 100", 
+             subtitle = "Begin 01/01/2010") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+
+**Covariance and Correlation**
+
+If you don't remember how to calculate manually the correlation, please take a look at the notes of your statistics lectures.
+
+![](../figs/bm_11_2.png)
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+# 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+![](../figs/bre13901_0713.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+The variance of a three-asset portfolio can be built using a previous slide...
+
+$$var = (x_1^2 \times \sigma_1^2)  + (x_2^2 \times \sigma_2^2) + 2(x_1 \times x_2 \times \sigma_1 \times \sigma_2 \times \rho_{12})$$
+
+... plus the following terms.
+
+$$+ (x_3^2 \times \sigma_3^2) + 2(x_1 \times x_3 \times \sigma_1 \times \sigma_3 \times \rho_{13}) +  2(x_2 \times x_3 \times \sigma_2 \times \sigma_3 \times \rho_{23})$$
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+Note in the previous figure: **as the number N of assets increases**, the number of **terms outside the main diagonal** increases more than the main diagonal.
+
+. . .
+
+Therefore, the **variance of a well-diversified portfolio mostly contains covariances**.
+
+. . . 
+
+For a portfolio with equal weights to all assets, We can write that:
+
+
+$$Var(R_p) = \frac{1}{N} \times average\;variance + (1-\frac{1}{N}) \times average \; covariance$$
+
+. . .
+
+As N grows to infinite, only the average covariance lasts.
+
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+So, if you **increase the size of your portfolio, the risk decreases** (until to a certain amount). 
+
+**Usually, you can diversify about half of the initial variance.** 
+
+![](../figs/bm_fig_11_2.jpg) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+You can also write that
+
+$$Var(R_p) = \sum_i x_i \times Cov(R_i,R_p)$$
+
+This equation indicates that the variance of a portfolio is equal to the weighted average covariance of each stock **with the portfolio**.
+
+**This expression reveals that the risk of a portfolio depends on how each stock’s return moves in relation to it.**
+
+Additionally, notice that stocks can have different weights in this equation (the previous example assumed equal weights).
+
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+**Final equation**
+
+The equation in the previous slide can also be written as (remember that $Cov = sd \times sd \times corr$):
+
+$$Var(R_p) = \sum_i x_i \times Sd(R_i) \times Sd(R_p) \times Corr(R_i,R_p)$$
+
+If we divide both sides of this equation by $Sd(R_p)$, we find:
+
+$$Sd(R_p) = \sum_i x_i \times Sd(R_i)  \times Corr(R_i,R_p)$$
+
+This equation shows the amount of risk that each security brings to portfolio.
+
+Each asset *i* contributes to the portfolio's volatility according to its Sd scaled by its correlation with the portfolio.
+
+**Keep this equation in mind, we will use it in the future.**
+
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+**More about correlation**. 
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+corr12 = -0.50
+ret1 = 0.175
+sd1 = 0.258
+var1 = sd1^2
+ret2 = 0.055
+sd2 = 0.115
+var2 = sd2^2
+covar12 = corr12*sd1*sd2
+w1 = seq(from=-0.4, to=1.4, by=0.05)
+w2 = 1 - w1
+retp = w1*ret1 + w2*ret2
+varp = w1^2 * var1 + w2^2 * var2 + 2*w1*w2*covar12
+sdp = sqrt(varp)
+port.names = paste("portfolio", 1:length(w1), sep=" ")
+df <- data.frame(port.names, w1, w2, retp, sdp)
+df <- df %>%  mutate(Condition = case_when(w1<0 ~ "W1<0" , w1>1 ~ "W1>1"  , 0<w1 | w1<1 ~ "0<w1<1" ))
+d1 <- df[df$w1 == 1, ]
+d2 <- df[df$w2 == 1, ]
+p<-ggplot(df, aes(sdp, retp, color= Condition) ) + 
+        geom_point(size=3)  +
+        labs(x = "Standard deviation",y='Expected return') +
+        xlim(0, max(sdp)) + ylim(0, max(retp) ) +
+      geom_text(data = d1, aes(x=sd1+0.01, y=ret1-0.01, label = "Asset 1") , color = "black", hjust=0.2, vjust=0.75, size=4) +
+      geom_text(data = d2, aes(x=sd2-0.02, y=ret2-0.01, label = "Asset 2") , color = "black", hjust=0.1, vjust=0.75, size=4) +
+      ggtitle(paste("Correlation = " , corr12)) +theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(ggpubr)
+library(dplyr)
+# Create a vector of correlation values to loop through
+corrs <- c(0.9, 0.5, 0, -0.5, -0.9, - 1)
+# Initialize an empty list to store plots
+plot_list <- list()
+# Loop through each correlation value and create a plot
+for (corr12 in corrs) {
+  ret1 <- 0.175
+  sd1 <- 0.258
+  var1 <- sd1^2
+  ret2 <- 0.055
+  sd2 <- 0.115
+  var2 <- sd2^2
+  covar12 <- corr12*sd1*sd2
+  w1 <- seq(from=-0.4, to=1.4, by=0.05)
+  w2 <- 1 - w1
+  retp <- w1*ret1 + w2*ret2
+  varp <- w1^2 * var1 + w2^2 * var2 + 2*w1*w2*covar12
+  sdp <- sqrt(varp)
+  port.names <- paste("portfolio", 1:length(w1), sep=" ")
+  df <- data.frame(port.names, w1, w2, retp, sdp)
+  df <- df %>%  mutate(Condition = case_when(w1<0 ~ "W1<0" , w1>1 ~ "W1>1"  , 0<w1 | w1<1 ~ "0<w1<1" ))
+  d1 <- df[df$w1 == 1, ]
+  d2 <- df[df$w2 == 1, ]
+  plot <- ggplot(df, aes(sdp, retp, color= Condition) ) + 
+    geom_point(size=2) +
+    labs(x = "",y="")+
+    xlim(0, max(sdp)) + ylim(0, max(retp)) +
+    theme(legend.position = "none") +
+    theme()+
+    ggtitle(paste("Correlation = " , corr12))
+  plot_list[[length(plot_list) + 1]] <- plot
+}
+# Arrange the plots in a 3x2 grid using ggarrange
+ggarrange(plot_list[[1]], plot_list[[2]], plot_list[[3]],
+          plot_list[[4]], plot_list[[5]], plot_list[[6]],
+          nrow = 3, ncol = 2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+**More about correlation**
+
+In these graphs, I am assuming that you can invest a negative amount in a stock. This is called a **short position**. When you buy, you have a **long position**.
+
+**Short sales** are usually allowed if you provide enough security and collateral to the market. 
+
+The idea is that you think that a stock's price will go down so you sell it. Later, you buy it back (but if the price goes up, you lose part of your investment).
+
+**Notice that if you can short sale, you amplify the pairs return-risk available**.
+
+
+
+
+
+
+
+
+
+
+## 11.3 Volatility of a large  portfolio {.smaller background="#f5d5d5"}
+
+**Correlations usually positive**.
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+stocks <-c("ITUB3.SA", "WEGE3.SA", "PETR3.SA", "VALE3.SA", "ITSA3.SA" , "BBAS3.SA", "ABEV3.SA", "GGBR4.SA", "LREN3.SA", "B3SA3.SA", "UGPA3.SA", "CSMG3.SA", "HYPE3.SA") 
+start <-'2010-01-01' 
+end   <- Sys.Date() 
+df <- yf_get(tickers = stocks[[1]], 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = "monthly")
+df <- df %>%  select(ref_date)
+
+for (i in 1:length(stocks)) {
+data <- yf_get(tickers = stocks[[i]], 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = "monthly")
+data<-data[complete.cases(data),] 
+data<- data %>%  select(ref_date, ret_adjusted_prices)
+colnames(data) <- c("ref_date",  stocks[[i]]  )
+df <- merge(df,data,by="ref_date")
+}
+df$ref_date <-NULL
+cor<- cor(df, method = c("pearson"))
+library(corrplot)
+corrplot(cor,method = 'number' ,  tl.col = "black",   tl.cex = 0.9,  col = COL1('Reds') , number.cex = 0.8)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+Now, you can understand what an **efficient portfolio** is.
+
+- It is the portfolio that brings the **higher return for any given level of risk**
+- or a portfolio that brings the **lower risk for any given return**.
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+corr12 = -0.164
+ret1 = 0.175
+sd1 = 0.258
+var1 = sd1^2
+ret2 = 0.055
+sd2 = 0.115
+var2 = sd2^2
+covar12 = corr12*sd1*sd2
+w1 = seq(from=-0.4, to=1.4, by=0.01)
+w2 = 1 - w1
+retp = w1*ret1 + w2*ret2
+varp = w1^2 * var1 + w2^2 * var2 + 2*w1*w2*covar12
+sdp = sqrt(varp)
+port.names = paste("portfolio", 1:length(w1), sep=" ")
+df <- data.frame(port.names, w1, w2, retp, sdp)
+w1_min = round((var2 - covar12)/(var1 + var2 - 2*covar12), digits = 1)
+w2_min = 1 - w1_min
+d_min <- df[w2_min <= df$w2, ]
+d_min <- data.frame(d_min[ nrow(d_min) ,])
+df <- df %>%  mutate(Efficient = case_when(w2<=w2_min ~ "Efficient" , w2>w2_min ~ "Not Efficient" ))
+p<-ggplot(df, aes(sdp, retp, color = Efficient) ) + 
+        geom_point(size=1)  +
+        labs(x = "Standard deviation",y='Expected return') +
+        xlim(0, max(sdp)) + ylim(0, max(retp) ) +
+      geom_text(data = d_min, aes(x=sd1+0.01, y=ret1-0.01, label = "Asset 1") , hjust = -0.1, color = "black", size=4)  +   
+      geom_text(data = d_min, aes(x=sd2-0.02, y=ret2-0.01, label = "Asset 2") , hjust = -0.1, color = "black", size=4)  +   
+      geom_text(data = d_min, aes(x=sdp+0.06, y=retp, label = "Minimum variance portfolio") , hjust = -0.1, color = "black", size=4)  +   
+      theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+**Example with real data**
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(yfR)
+library(kableExtra)
+start <-'2010-01-01' 
+end   <-Sys.Date()  
+freq_data <-  'monthly'
+ticker1 <- 'BBDC3.SA'
+ticker2 <- 'PETR3.SA'
+asset1 <- yf_get(tickers = ticker1, first_date = start,last_date = end,freq_data = freq_data)
+asset2 <- yf_get(tickers = ticker2, first_date = start,last_date = end,freq_data = freq_data)
+asset1<-asset1[complete.cases(asset1),] 
+asset2<-asset2[complete.cases(asset2),] 
+er_1 <- mean(asset1$ret_adjusted_prices) 
+er_2 <- mean(asset2$ret_adjusted_prices)
+sd_1 <- sd(asset1$ret_adjusted_prices) 
+sd_2 <- sd(asset2$ret_adjusted_prices) 
+table <- data.frame("Ticker" = c(ticker1 , ticker2), 
+                 "ER" = c(er_1* 100 , er_2* 100), 
+                 "SD" = c(sd_1* 100, sd_2* 100)) 
+kable(table,col.names = c("Ticker", "Expected Return", "Standard Deviation"), 
+            align = c("l", "r", "r"), 
+            format.args = list(big.mark = ",", decimal.mark = ".", scientific = FALSE), 
+            caption = "Summary statistics (monthly returns since 2010)") %>%
+  kable_styling(bootstrap_options = "striped")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+library(data.table)
+cov_12 <- cov(asset1$ret_adjusted_prices, asset2$ret_adjusted_prices)
+corr_12 <- cor(asset1$ret_adjusted_prices, asset2$ret_adjusted_prices)
+weights <- seq(from = 0, to = 1, length.out = 1000)
+two_assets <- data.table(w1 = weights ,w2 = 1 - weights)
+# calculate the expected returns and standard deviations for the 1000 possible portfolios
+two_assets[, ':=' (er_p = w1 * er_1 + w2 * er_2,
+                   sd_p = sqrt(w1^2 * sd_1^2 +w2^2 * sd_2^2 +2 * w1 * w2 * cov_12))]
+p<-ggplot() +
+geom_point(data = two_assets, aes(x = sd_p, y = er_p, color = w1)) +
+geom_point(data = data.table(sd = c(sd_1, sd_2), mean = c(er_1, er_2)),
+aes(x = sd, y = mean), color = "red", size = 3, shape = 18) +
+theme_bw() + ggtitle("Possible Portfolios with Two Risky Assets") +
+xlab("Standard deviation") + ylab("Expected Return") +
+      scale_y_continuous( limits = c(min(two_assets$er_p)*0.99, max(two_assets$er_p)*1.01)) +
+      scale_x_continuous( limits = c(min(two_assets$sd_p)*0.9, max(two_assets$sd_p)*1.1)) +   theme_solarized() +scale_color_continuous(name = "W. Asset 1")
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+As a financial manager, one crucial job you have is to find the **efficient portfolios** and the **minimum variance portfolio**.
+
+![](../figs/bm_11_4.png)
+
+
+
+
+
+
+
+## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+**If you add stocks you improve the frontier**
+
+When you combine several assets, you will have what is called **efficient frontier**.
+
+![](../figs/bm_11_8.png)
+
+
+
+
+
+
+
+## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+
+**The frontier is not so clear here**
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+start <-'2010-01-01' 
+end   <- '2023-01-01'
+freq_data <- "yearly"
+df <- yf_collection_get("IBOV", 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = freq_data)
+stocks <- unique(df$ticker)
+df <- df %>%  select(ref_date)
+
+for (i in 1:length(stocks)) {
+data <- yf_get(tickers = stocks[[i]], 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = freq_data)
+data<-data[complete.cases(data),] 
+data<- data %>%  select(ref_date, ret_closing_prices)
+colnames(data) <- c("ref_date",  stocks[[i]]  )
+df <- merge(df,data,by="ref_date")
+}
+
+dup <- duplicated(df)
+df <- unique(df[!dup,])
+
+df$ref_date <-NULL
+ret <- as.vector(colMeans(df))
+cov <- cov(df)
+
+# Random numbers to create the frontier
+set.seed(100)
+int <- 10000
+w<- data.frame((replicate(length(stocks),sample(int,rep=TRUE)) / int ))
+w$sum <-  rowSums(w)
+colnames(w) <- c(stocks, 'Sum')
+for (i in 1:int) {
+w[i, 1:length(stocks)] <- w[i, 1:length(stocks)] / w[i, ncol(w)]
+}
+
+w$Sum <- NULL
+# creating final dataframe
+port <- data.frame(matrix(NA,nrow = int,ncol = 2))
+colnames(port) <- c("Return", "Sd")
+for (i in 1:int) {
+port[i,1] <- sum(  w[i, ] * ret)
+port[i,2] <- sqrt( as.matrix(w[i, ]) %*% as.matrix(cov) %*% as.matrix(t(w[i, ]) )) 
+}
+#ggplot
+p<-ggplot(port, aes(x=Sd, y=Return)) +
+        geom_point(alpha=0.2) +
+        theme_solarized() + 
+        xlab("Standard deviation") + ylab("Expected Return") + 
+        labs(title = paste(int , "random portfolios - All Ibov (2010-2023, yearly returns)") )
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+# 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+Thus far, we have considered the risk and return possibilities that result from combining risky investments into portfolios. 
+
+By including all risky investments in the construction of the efficient frontier, we achieve **the maximum diversification possible with risky assets**.
+
+Now, let's see what happens when you **combine a portfolio of risky assets with the risk free asset.**
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+The return is:
+
+$$E[R_{px}] =  x \times E[R_p] + (1-x) \times R_f $$
+
+$x$ is the weight invested in the portfolio:
+
+. . .
+
+Which leads to:
+
+$$E[R_{px}] =  x \times E[R_p] + R_f - x \times R_f $$
+
+$$E[R_{px}] =  R_f + x \times ( E[R_p] - R_f ) $$
+
+The second equation shows that: **The expected return is equal to the risk-free rate plus a fraction of the portfolio’s risk premium, $E[R_p] - R_f$, based on the fraction x that we invest in it.**
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+Remember that the risk free rate is assumed to have no risk, thus no variance. The standard deviation is:
+
+- $$Sd(R_{px}) = \sqrt{(1-x)^2 \times Var(R_f) + x^2 \times Var(R_p)  + 2 \times(1-x) \times x \times Cov(R_f, R_p)}$$
+
+Which leads to
+
+$$Sd(R_{px}) = \sqrt{x^2 \times Var(R_p)}$$
+
+$$Sd(R_{px}) = x \times Sd(R_p)$$
+
+That is, the volatility is only a fraction of the volatility of the portfolio, based on the amount we invest in it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+**Combine an asset with the Rf rate**
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+ret1 = 0.175
+sd1 = 0.258
+var1 = sd1^2
+ret2 = 0.055
+sd2 = 0.115
+var2 = sd2^2
+rf = 0.03
+#asset 1
+w1    = seq(from=0, to=1.4, by=0.01)
+wrf1   = 1 - w1
+retp1 = wrf1 * rf + w1 * ret1
+sdp1  = w1*sd1
+#asset2 
+w2    = seq(from=0, to=1.4, by=0.02)
+wrf2   = 1 - w2
+retp2 = wrf2 * rf + w2 * ret2
+sdp2  = w2*sd2
+#dfs
+df1 <- data.frame(w1, retp1, sdp1)
+df2 <- data.frame(w2, retp2, sdp2)
+d1 <- df1[df1$w1 == 1, ]
+d2 <- df2[df2$w2 == 1, ]
+#ggplot
+p<-ggplot() +  
+  geom_point(data=df1, aes(x=sdp1, y=retp1, color=ifelse(w1>1,"blue","lightblue")), size=1, show.legend = FALSE) +
+  geom_point(data=df2, aes(x=sdp2, y=retp2, color=ifelse(w2>1,"red","pink")), size=1, show.legend = FALSE) +
+  labs(x = "Standard deviation",y='Expected return', title = "Risk and Return of two assets combined with the Risk-Free Rate" ) +
+  xlim(0, max(sdp1)) + ylim(0, max(retp1) ) +
+  geom_text(data = d1, aes(x=sdp1, y=retp1-0.01, label = "Asset 1") , color = "black", hjust=0.2, vjust=0.75, size=4) +
+  geom_text(data = d2, aes(x=sdp2, y=retp2-0.01, label = "Asset 2") , color = "black", hjust=0.1, vjust=0.75, size=4) +
+  geom_text(data = as.data.frame(rf), aes(x=0.02, y=rf-0.01, label = "Risk-free") , color = "black", hjust=-0.2, vjust=0.75, size=4) +   
+  scale_color_identity() + 
+  theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+Remember that **we have several potential combinations between Assets 1 and 2**. 
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+corr12 = -0.164
+ret1 = 0.175
+sd1 = 0.258
+var1 = sd1^2
+ret2 = 0.055
+sd2 = 0.115
+var2 = sd2^2
+covar12 = corr12*sd1*sd2
+w1 = seq(from=-0.4, to=1.4, by=0.01)
+w2 = 1 - w1
+retp = w1*ret1 + w2*ret2
+varp = w1^2 * var1 + w2^2 * var2 + 2*w1*w2*covar12
+sdp = sqrt(varp)
+port.names = paste("portfolio", 1:length(w1), sep=" ")
+df <- data.frame(port.names, w1, w2, retp, sdp)
+d1 <- df[df$w1 == 1, ]
+d2 <- df[df$w2 == 1, ]
+df1 <- data.frame(w1, retp, sdp)
+rf = 0.03
+wrf1   = 1 - w1
+wrf2   = 1 - w2
+retp1  = wrf1 * rf + w1 * ret1
+sdp1   = w1*sd1
+retp2  = wrf2 * rf + w2 * ret2
+sdp2   = w2*sd2
+
+p <- ggplot() +
+  geom_point(data=df, aes(x=sdp, y=retp, color=ifelse(w1>1,"red" ,ifelse(w1<0,"grey","pink"))), size=1, show.legend = FALSE) +
+  geom_point(data=df1,aes(x=sdp1,y=retp1,color=ifelse(w1>1,'blue','lightblue')), size=1, show.legend = FALSE) +
+            geom_point()  +
+            labs(x = "Standard deviation",y='Expected return', title = "Combinations of Risk and Return of two assets and the Risk-Free Rate" ) +
+            xlim(0, max(sdp)) + ylim(0, max(retp) ) +
+            geom_text(data = d1, aes(x=sdp+0.015, y=retp-0.01, label = "Asset 1") , color = "black", hjust=-0.2, vjust=0.75, size=4) +
+            geom_text(data = d2, aes(x=sdp+0.035, y=retp, label = "Asset 2") , color = "black", hjust=-0.2, vjust=0.75, size=4) +
+            geom_text(data = as.data.frame(rf), aes(x=0.02, y=rf-0.01, label = "Risk-free") , color = "black", hjust=-0.2, vjust=0.75, size=4) +            theme_solarized()+scale_color_identity()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+In this situation, we are better off investing in the **Tangent portfolio**, then "moving" to adjust the level of risk.
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+corr12 = -0.164
+ret1 = 0.175
+sd1 = 0.258
+var1 = sd1^2
+ret2 = 0.055
+sd2 = 0.115
+var2 = sd2^2
+covar12 = corr12*sd1*sd2
+w1 = seq(from=-0.4, to=1.4, by=0.01)
+w2 = 1 - w1
+retp = w1*ret1 + w2*ret2
+varp = w1^2 * var1 + w2^2 * var2 + 2*w1*w2*covar12
+sdp = sqrt(varp)
+port.names = paste("portfolio", 1:length(w1), sep=" ")
+df <- data.frame(port.names, w1, w2, retp, sdp)
+d1 <- df[df$w1 == 1, ]
+d2 <- df[df$w2 == 1, ]
+df1 <- data.frame(w1, retp, sdp)
+# Including risk free rate
+rf = 0.03
+wrf1   = 1 - w1
+wrf2   = 1 - w2
+retp1  = wrf1 * rf + w1 * ret1
+sdp1   = w1*sd1
+retp2  = wrf2 * rf + w2 * ret2
+sdp2   = w2*sd2
+dfrf1 <- data.frame(w1, retp1, sdp1)
+# Tangent portfolio
+top = (ret1 - rf)*var2 - (ret2 - rf)*covar12
+bot = (ret1 - rf)*var2 + (ret2 - rf)*var1 - (ret1 - rf + ret2 - rf)*covar12
+w1_t = top/bot
+w2_t = 1 - w1_t
+retp_t = w1_t*ret1 + w2_t*ret2
+varp_t = w1_t^2 * var1 + w2_t^2 * var2 + 2*w1_t*w2_t*covar12
+sdp_t = sqrt(varp_t)
+tan = (retp_t - rf)/sdp_t
+dft <- data.frame(w1_t, retp_t, sdp_t)
+# exploding tangent line
+wt    = seq(from=0, to=2, by=0.01)
+wrft   = 1 - wt
+retpt = wrft * rf + wt * retp_t
+sdpt  = wt*sdp_t
+dft <- data.frame(wt, retpt, sdpt)
+dft1 <- dft[dft$w1 == 1, ]
+
+p <- ggplot() +
+  geom_point(data=df, aes(x=sdp, y=retp, color=ifelse(w1>1,"red" ,ifelse(w1<0,"grey","pink"))), size=1, show.legend = FALSE) +
+            geom_point(data=dfrf1,aes(x=sdp1,y=retp1,color=ifelse(w1>1,'blue','lightblue')), size=1, show.legend = FALSE) +
+            geom_point(data=dft  ,aes(x=sdpt,y=retpt,color=ifelse(wt>1,'darkgreen','lightgreen')), size=1, show.legend = FALSE) +
+            geom_point(size=1)  +
+            labs(x = "Standard deviation",y='Expected return', title = "Efficient frontier and the tanget portfolio" ) +
+            xlim(0, max(sdp)) + ylim(0, max(retp) ) +
+            geom_text(data = d1, aes(x=sdp+0.015, y=retp-0.01, label = "Asset 1") , color = "black", hjust=-0.2, vjust=0.75, size=4) +
+            geom_text(data = d2, aes(x=sdp+0.035, y=retp, label = "Asset 2") , color = "black", hjust=-0.2, vjust=0.75, size=4) +
+            geom_text(data = dft, aes(x=sdp_t-0.04, y=retp_t, label = "Tanget Port.") , color = "black", hjust=-0.2, vjust=0.75, size=4) +
+            geom_text(data = as.data.frame(rf), aes(x=0.02, y=rf-0.01, label = "Risk-free") , color = "black", hjust=-0.2, vjust=0.75, size=4) +            theme_solarized()+
+        scale_color_identity()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+Remember that you can have **short positions**:
+
+If you borrow at the Rf to invest in a portfolio, you have a levered position. 
+
+You are investing more than 100% of your funds in the portolio. The weight is higher than 1.
+
+The book calls this **buying stocks on margin**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+To identify the tangent portfolio, we compute the Sharpe ratio. 
+
+$$Sharpe\;ratio = \frac{E[R_p]-R_f}{Sd(R_p)}$$
+
+To earn the highest possible expected return for any level of volatility we must find the portfolio that generates the steepest (highest inclination) possible line when combined with the risk-free investment.
+
+. . .
+
+The **optimal portfolio to combine with the risk-free asset will be the one with the highest Sharpe ratio**, where the line with the risk-free investment **just touches, and so is tangent** to, the efficient frontier of risky investments
+
+. . .
+
+The Sharpe ratio measures the ratio of **reward-to-volatility** provided by a portfolio. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+**Fact 1:** The tangent portfolio is **efficient**.
+
+. . .
+
+**Fact 2:** Once we include the risk-free investment, all efficient portfolios are combinations of the risk-free investment and the tangent portfolio.
+
+. . .
+
+All investors should have the tangent portfolio. All investors should combine the tangent portfolio with the risk free asset to adjust the level of risk.
+
+. . .
+
+If you ignore the risk free asset, you have several efficient portfolios (**efficient frontier**). **But once you combine with the risk free rate, there is only one.** 
+
+
+
+
+
+
+
+
+
+
+
+## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+
+**What is a good Sharpe Ratio?**
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+port$rf <- 0.1
+port$sharpe <- (port$Return - port$rf) / port$Sd
+p<-ggplot(port, aes(x=sharpe)) + 
+        geom_histogram(alpha=0.2) + 
+        theme_solarized() + 
+        xlab("Sharpe") + ylab("Number of portfolios") + 
+        labs(title = paste(int , "random portfolios - All Ibov (2010-2023, yearly returns, Rf = 0.10)") )
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+
+## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+
+Let's now consider how much **return we will demand from a risky asset** in order to make its inclusion in our portfolio worthy.
+
+Let's say that **you hold an arbitrary portfolio P** (it does not matter what is inside P for the moment).
+
+You only include an additional asset if it **excess return to the level of risk**, right? That is, if it **increases the Sharpe ratio** of the resulting portfolio (Portfolio P + New asset)
+
+. . . 
+
+What is the excess return that this asset *i* brings to your portfolio P?
+
+- $E[R_i] - R_f$ (quite simple!)
+
+. . .
+
+What is the risk that this asset *i* brings to your portfolio P?
+
+- It is $Sd(R_i) \times corr(R_i,R_p)$
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+
+So now our question is: **Is the gain in return from investing in *i* adequate to make up for the increase in risk?**
+
+. . .
+
+To see that, we have to test if (because the right-hand part is the level of return-to-risk we already have in P). 
+
+$$\frac{E[R_i] - R_f}{Sd(R_i) \times corr(R_i,R_p)} > \frac{E[R_p] - R_f}{Sd(R_p)}$$
+
+Moving the denominator to the right-hand side:  
+
+$$E[R_i] - R_f > Sd(R_i) \times corr(R_i,R_p) \times \frac{E[R_p] - R_f}{Sd(R_p)}$$
+
+
+
+
+
+
+
+
+
+## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+
+Which is: 
+
+$$E[R_i] - R_f > \frac{Sd(R_i) \times corr(R_i,R_p)}{Sd(R_p)}  \times (E[R_p] - R_f)$$
+
+
+Using a Beta notation:
+
+
+$$E[R_i] - R_f > \beta_i^P  \times (E[R_p] - R_f)$$
+
+
+Then:
+
+$$E[R_i]  >  R_f + \beta_i^P  \times (E[R_p] - R_f)$$
+
+
+
+
+
+
+
+
+
+
+## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+
+That is, increasing the amount invested in i will increase the Sharpe ratio of portfolio P if its expected return $E[R_i]$ exceeds its required return given portfolio P, defined as
+
+$$R_i =  R_f + \beta_i^P  \times (E[R_p] - R_f)$$
+
+
+
+
+
+
+
+
+
+## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+
+The required return is the **expected return that is necessary to compensate for the risk investment i will contribute to the portfolio**. 
+
+. . .
+
+The required return for an investment *i* is equal to the **risk-free interest rate plus the risk premium of the current portfolio, P, scaled by *i*’s sensitivity to P, which is $\beta_i^P$**. 
+
+If *i*’s expected return exceeds this required return, then adding more of it will improve the performance of the portfolio.
+
+
+
+
+
+
+
+
+
+
+## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+
+**To emphasize** 
+
+This equation establishes the relation between an investment’s risk and its expected return.
+
+It states that we can determine the appropriate risk premium for an investment from its beta with the efficient portfolio.
+
+$$R_i =  R_f + \beta_i^P  \times (E[R_p] - R_f)$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 11.7 The CAPM {.smaller background="#c9f7ba"}
+
+## 11.7 The CAPM {.smaller background="#c9f7ba"}
+
+This is perhaps the most important model in Finance.
+
+**Three main assumptions:**
+
+- **Investors can buy and sell all securities** at competitive market prices (**without incurring taxes or transactions costs**) and **can borrow and lend at the risk-free interest rate**. 
+  
+- **Investors hold only efficient portfolios** of traded securities.
+
+- Investors have **homogeneous expectations** regarding the volatilities, correlations, and expected returns of securities. There is no information asymmetry. 
+
+. . .
+
+**If investors have homogeneous expectations, they will identify the same efficient portfolio (the highest Sharpe).**
+
+**Under the CAPM assumptions, we can identify the efficient portfolio: It is equal to the market portfolio.**
+
+A Market portfolio contains all traded securities in a economy.
+
+
+
+
+
+
+
+
+
+
+## 11.7 The CAPM {.smaller background="#c9f7ba"}
+
+If investors identify the same market portfolio (the highest Sharpe), then we can identify the **Capital Market Line (CML)**. 
+
+All investors will have a combination of the Market Portfolio and the Rf rate.
+
+<img src="../figs/bm_11_11.png" width="90%" />
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.7 The CAPM {.smaller background="#c9f7ba"}
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+p<-ggplot(port, aes(x=Sd, y=Return)) +
+        geom_point(alpha=0.2) +
+        xlab("Standard deviation") + ylab("Expected Return") + 
+        labs(title = paste(int ,  "random portfolios - All Ibov (2010-2023, yearly returns)") ) + 
+        geom_abline(intercept = 0.1, slope = max(port$sharpe), color="red", size=1) +
+        xlim(0, 0.4) + ylim(0.075, 0.25) +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+## 11.7 The CAPM {.smaller background="#c9f7ba"}
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+p<-ggplot(port, aes(x=Sd, y=Return)) +
+        geom_point(alpha=0.2) +
+        theme_solarized() + 
+        xlab("Standard deviation") + ylab("Expected Return") + 
+        labs(title = paste(int ,  "random portfolios - All Ibov (2010-2023, yearly returns)") ) + 
+        geom_abline(intercept = max(port$rf), slope = max(port$sharpe), color="red", size=1)
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+
+## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+
+**Under the CAPM assumptions, we can identify the efficient portfolio: It is equal to the market portfolio.**
+
+Thus, we can change $R_p$ to $R_m$
+
+$$E[R_i] =  R_f + \beta_i  \times (E[R_m] - R_f)$$
+
+The beta of a security measures its volatility due to market risk relative to the market as a whole, and thus captures the security’s sensitivity to market risk.
+
+**This is the CAPM!**
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+
+List of Betas of Brazilian Companies.
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+start <-'2018-06-01' 
+end   <- Sys.Date()
+freq_data <-  'monthly'
+ibov <- yf_get(tickers = "^BVSP",
+                        first_date = start,
+                        last_date = end,
+                        thresh_bad_data = 0.5,
+                        freq_data = freq_data )
+asset <- yf_collection_get("IBOV", 
+                         first_date = start,
+                         last_date = end,
+                         thresh_bad_data = 0.5,
+                         freq_data = freq_data )
+ret_ibov <- ibov  %>%tq_transmute(select = price_adjusted,
+                                  mutate_fun = periodReturn,
+                                  period = 'monthly',
+                                  col_rename = 'return')
+ret_asset <- asset %>%    
+            group_by(ticker) %>%
+            tq_transmute(select = price_adjusted,
+                                  mutate_fun = periodReturn,
+                                  period = 'monthly',
+                                  col_rename = 'return')
+ret <- left_join(ret_ibov, ret_asset, by = c("ref_date" = "ref_date"))
+#To compute beta
+var <- ret %>% group_by(ticker) %>% summarise(var = var(return.x, return.x)) # Computing the variance of the market
+cov <- ret %>% group_by(ticker) %>% summarise(cov = cov(return.x, return.y))
+beta <- merge(cov, var, by ="ticker" )
+beta$beta <- beta$cov/beta$var
+# Risk free rate
+beta$rf  <- 0.1 
+# Equity risk premium from here: https://ceqef.fgv.br/node/594
+beta$erp <- 0.16 
+# expected return
+beta$ep <- beta$rf + beta$beta * beta$erp
+p<-ggplot(beta, aes(x = reorder(ticker, beta ), y = beta, fill=beta) ) +
+  geom_bar(aes(fill = -beta), position = "dodge", stat="identity")+
+  theme(legend.position="none", 
+        axis.text.y = element_blank() )+
+  coord_flip()+
+  labs(y = "Beta", x = "Stocks", title = "Betas Brazilian companies, monthly data (2018-2023)") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+
+**The Security Market Line**
+
+The CAPM implies there is a linear relationship between a stock's Beta and its expected return.
+
+This linear relationship has a name: **Security Market Line (SML)**
+
+
+
+
+
+
+
+
+
+
+
+## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+
+![](../figs/bm_11_12.png){width="90%"}
+
+
+
+
+
+
+
+
+
+## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+#Security Market Line
+p<-ggplot(data=beta, aes(x = beta, y = ep  )  ) + geom_point() +
+ggrepel::geom_text_repel(data=beta, aes(label = ticker) , size = 2.5 ,  max.overlaps = Inf)+
+  theme(legend.position="none",  axis.text.y = element_blank() )+
+  labs(y = "Expected return", 
+       x = "Beta", 
+       title = "SML Brazil, monthly data (2018-2023)" , 
+       subtitle = "Rf = 10% per year, Risk premium = 16%" )+   theme_solarized()
+p
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Questions and Final comments {.smaller background="#34B3B9"}
+
+## Question {.smaller background="#34B3B9"}
+
+Imagine that you find the SML in the economy, and you find that two assets lies below it. **Would you buy these assets?**
+
+<img src="../figs/bre13901_0807.jpg" width="100%" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Question {.smaller background="#34B3B9"}
+
+**Both assets are expensive.** They are offering less return than they are expected to offer according to the CAPM.
+
+Because they are expensive, **investors are expected to sell them. So prices are expected to drop.**
+
+
+
+
+
+
+
+
+
+## Final comments I {.smaller background="#61D5DA"}
+
+**The beta of a portfolio is the weighted average beta of the assets in the portfolio.**
+
+$$\beta_p = \sum_i x_i \times \beta_i$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Final comments II {.smaller background="#61D5DA"}
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+freq.data   <- 'daily'
+start <-'2000-01-01' 
+end   <-Sys.Date() 
+ibov <- yf_get(tickers = "^BVSP",
+                        first_date = start,
+                        last_date = end,
+                        thresh_bad_data = 0.5,
+                        freq_data = freq.data )
+asset <- yf_get(tickers = "WEGE3.SA",
+                        first_date = start,
+                        last_date = end,
+                        thresh_bad_data = 0.5,
+                        freq_data = freq.data )
+ret_ibov <- ibov  %>%tq_transmute(select = price_adjusted,
+                                  mutate_fun = periodReturn,
+                                  period = 'daily',
+                                  col_rename = 'return',
+                                  type = 'log')
+ret_asset <- asset %>%tq_transmute(select = price_adjusted,
+                                  mutate_fun = periodReturn,
+                                  period = 'daily',
+                                  col_rename = 'return',
+                                  type = 'log')
+ret <- left_join(ret_ibov, ret_asset, by = c("ref_date" = "ref_date"))
+window <-252
+ret$var <- roll_cov(ret$return.x, ret$return.x, width = window)
+ret$cov <- roll_cov(ret$return.x, ret$return.y, width = window)
+ret$beta <- ret$cov / ret$var
+ret <- subset(ret, ret$beta != "NA" )
+
+bweg<- ggplot(ret, aes(x= return.x, y=return.y)) + 
+  geom_point()+
+  geom_smooth(method=lm, se=FALSE)+
+  labs( y = "Daily returns WEGE3", x="Daily returns IBOV",title = "Beta WEGE3")+
+  theme(plot.title = element_text(color="darkgreen", size=18, face="bold"),
+        panel.background = element_rect(fill = "grey95", colour = "grey95"),
+        axis.title=element_text(size=12,face="bold"),
+        title=element_text(size=10,face="bold", color="darkgreen"),
+        axis.text.y = element_text(face = "bold", color = "darkgreen", size = 12),
+        axis.text.x = element_text(face = "bold", color = "darkgreen", size = 12))+
+  xlim(-0.2, 0.2) + ylim(-0.2, 0.2) +   theme_solarized()
+
+p<-ret %>%
+    ggplot(aes(x = ref_date, y = beta)) +
+    labs( y = "", x="",title = "Beta WEGE3 through time")+
+    geom_line()+   theme_solarized()  + transition_reveal(ref_date) 
+#ggplotly(p)
+animate(p, fps = 10, duration = 10)
+```
+
+
+
+## Final comments II {.smaller background="#61D5DA" visibility="hidden"}
+
+```{python}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| results: false
+#| output: true
+#| code-fold: true
+#| code-line-numbers: true	
+#| output-location: default
+#| code-summary: "Python"
+#| collapse: true
+#| eval: false
+freq_data = '1d'
+start = '2000-01-01'
+end = pd.Timestamp.now()
+ibov = yf.download('^BVSP', start=start, end=end, interval=freq_data)
+asset = yf.download('WEGE3.SA', start=start, end=end, interval=freq_data)
+ret_ibov = np.log(ibov['Adj Close']).diff()
+ret_asset = np.log(asset['Adj Close']).diff()
+ret = pd.concat([ret_ibov, ret_asset], axis=1).dropna()
+window = 252
+var = ret.iloc[:, 0].rolling(window).cov(ret.iloc[:, 0])
+cov = ret.iloc[:, 0].rolling(window).cov(ret.iloc[:, 1])
+beta = cov / var
+ret['beta'] = beta.values
+ret.dropna(inplace=True)
+plt.close()
+plt.figure(figsize=(20, 10))
+plt.plot(ret.index, ret['beta'],c='#268bd2')
+plt.title('Beta WEGE3 through time', fontsize=25)
+plt.xlabel('Time', fontsize=18)
+plt.ylabel('Beta', fontsize=18)
+ax.tick_params(axis='both', which='major', labelsize=18)
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+## Final comments III {.smaller background="#61D5DA"}
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+# rf = 3%
+port1 <- port
+port1$rf <- 0.03
+port1$sharpe <- (port1$Return - port1$rf) / port1$Sd
+# rf = 7.5%
+port2 <- port
+port2$rf <- 0.075
+port2$sharpe <- (port2$Return - port2$rf) / port2$Sd
+# rf = 15%
+port3 <- port
+port3$rf <- 0.15
+port3$sharpe <- (port3$Return - port3$rf) / port3$Sd
+#ggplot
+p<-ggplot(port, aes(x=Sd, y=Return)) +
+        geom_point(alpha=0.2) +
+        xlab("Standard deviation") + ylab("Expected Return") + 
+        labs(title = paste(int ,  "random portfolios - All Ibov (2010-2023, yearly returns)") ) + 
+        geom_abline(intercept = max(port$rf) , slope = max(port$sharpe) , color="red",  size=1)  +
+        geom_abline(intercept = max(port1$rf), slope = max(port1$sharpe), color="blue", size=1) +
+        geom_abline(intercept = max(port2$rf), slope = max(port2$sharpe), color="green", size=1) +
+        geom_abline(intercept = max(port3$rf), slope = max(port3$sharpe), color="orange", size=1) +
+        xlim(0, 0.4) + ylim(0, 0.25) +   theme_solarized() +
+        geom_text( aes(x=0, y= max(port$rf)-0.02 , label = "Rf = 10%") , color = "red", hjust=-0.2, vjust=0.75, size=3.5) +
+        geom_text( aes(x=0, y= max(port1$rf)-0.02, label = "Rf = 3%") , color = "blue", hjust=-0.2, vjust=0.75, size=3.5)  +
+        geom_text( aes(x=0, y= max(port2$rf)-0.02, label = "Rf = 7.5%") , color = "green", hjust=-0.2, vjust=0.75, size=3.5)+
+        geom_text( aes(x=0, y= max(port3$rf)-0.02, label = "Rf = 15%") , color = "orange", hjust=-0.2, vjust=0.75, size=3.5)
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Now it is your turn... {.smaller background="#191f36"}
+
+
+
+
+
+
+
+
+
+
+## 🙋‍♂️ **Any Questions?** { background="#b1cafa"}
+
+::: columns
+::: {.column width="50%"}
+### Thank You!
+
+![](../figs/qa2.png){width="110%" style="margin-top: 10px;"}
+:::
+
+::: {.column width="50%"}
+### 👤 **Henrique C. Martins**
+
+- 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
+- 🧠 [Google Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
+- 📄 [Lattes CV](http://lattes.cnpq.br/6076997472159785)  
+- 🏠 [Personal Website](https://henriquemartins.net/)  
+:::
+:::
+
+
+
+
+
+
+
+
+
+
+
+## Interact {.smaller background="#8091d1" visibility="hidden"}
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF202401"
+        data-repo-id="R_kgDOLJQ8yQ"
+        data-mapping="number"
+        data-term="9"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+::: footer
+:::
+
+

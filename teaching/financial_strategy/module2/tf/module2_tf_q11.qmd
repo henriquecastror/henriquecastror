@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q11','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q11" name="module2_tf_q11" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q11"><strong>Investors always prefer investments with lower risk, even if it means sacrificing potential returns.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q11" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Investor preference depends on their individual risk aversion. While many are risk-averse, they will accept higher risk if they are sufficiently compensated with higher potential returns.
+</div>
+:::

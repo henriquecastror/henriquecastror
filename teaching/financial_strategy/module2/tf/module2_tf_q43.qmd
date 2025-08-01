@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q43','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q43" name="module2_tf_q43" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q43"><strong>The expected return of a zero-beta asset equals the risk-free rate.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q43" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. According to the CAPM formula, if beta is zero, the term for the risk premium becomes zero, and the expected return is simply the risk-free rate.
+</div>
+:::

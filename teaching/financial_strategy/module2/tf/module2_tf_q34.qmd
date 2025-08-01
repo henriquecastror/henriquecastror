@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q34','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q34" name="module2_tf_q34" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q34"><strong>Investors holding a single stock are more exposed to unsystematic risk compared to those holding a diversified portfolio.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q34" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. A single stock carries the full weight of its own unsystematic risk, which is diluted in a diversified portfolio.
+</div>
+:::

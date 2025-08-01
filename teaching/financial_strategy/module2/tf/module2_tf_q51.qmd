@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q51','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q51" name="module2_tf_q51" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q51"><strong>A portfolio of two stocks with a large positive covariance will have lower risk than a portfolio of two stocks with a covariance near zero.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q51" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A large positive covariance indicates that the two stocks tend to move strongly in the same direction, which reduces the benefits of diversification. A covariance near zero (or negative) is more effective at reducing portfolio risk, as the stocks' movements are less related.
+</div>
+:::

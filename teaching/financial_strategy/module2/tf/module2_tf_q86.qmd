@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q86','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q86" name="module2_tf_q86" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q86"><strong>If a stock pays no dividends, its total realized return over a period is equal to its capital gain rate.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q86" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Without dividends, the return formula R=(Divt+1+Pt+1)/Pt−1 simplifies to R=Pt+1/Pt−1, which is the capital gain rate.
+</div>
+:::

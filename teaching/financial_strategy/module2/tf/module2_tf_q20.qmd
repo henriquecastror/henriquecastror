@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q20','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q20" name="module2_tf_q20" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q20"><strong>A value-weighted portfolio is an equal-ownership portfolio: the investors holds an equal fraction of the total number of shares outstanding of each security in the portfolio.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q20" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. This correctly defines a value-weighted portfolio. Holding the same fraction of the total shares of every company means the investment's value is proportional to the company's market capitalization.
+</div>
+:::

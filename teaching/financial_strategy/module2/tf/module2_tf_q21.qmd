@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q21','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q21" name="module2_tf_q21" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q21"><strong>A stock with a beta of zero has the same expected return as the market portfolio.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q21" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. According to the CAPM, a stock with a beta of zero has an expected return equal to the risk-free rate, not the market portfolio.
+</div>
+:::

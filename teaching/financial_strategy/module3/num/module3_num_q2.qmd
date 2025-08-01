@@ -1,0 +1,49 @@
+## Portfolio Weight Calculation for Multiple Stocks
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+# Randomizing share prices
+price_abt <- rnorm(1, mean = 60, sd = 8)
+price_low <- rnorm(1, mean = 40, sd = 3)
+price_bll <- rnorm(1, mean = 50, sd = 4)
+
+# Randomizing number of shares while ensuring total investment is consistent
+investment <- 20000
+shares_abt <- sample(100:300, 1)
+shares_low <- sample(100:300, 1)
+remaining_investment <- investment - (shares_abt * price_abt) - (shares_low * price_low)
+shares_bll <- round(remaining_investment / price_bll)
+
+# Compute values
+value_abt <- shares_abt * price_abt
+value_low <- shares_low * price_low
+value_bll <- shares_bll * price_bll
+
+total_value <- value_abt + value_low + value_bll
+
+# Ensure weights sum to 1
+weight_abt <- value_abt / total_value
+weight_low <- value_low / total_value
+weight_bll <- value_bll / total_value
+```
+
+Suppose you purchase **`r shares_abt`** shares of Company&nbsp;A at \$**`r round(price_abt,2)`** per share, **`r shares_low`** shares of Company&nbsp;B at \$**`r round(price_low,2)`** per share, and **`r shares_bll`** shares of Company&nbsp;C at \$**`r round(price_bll,2)`** per share.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q2a"><strong>1. What is the weight on Company&nbsp;A in your portfolio (in %)?</strong></label>
+  <input type="number" id="module3_num_q2a" name="module3_num_q2a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( weight_abt * 100 , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q2a" class="feedback" data-status="" style="display:none;">
+✅ Weight on Company A = value_A / total_value × 100 = **`r round(weight_abt * 100, 2)`**%.
+</div>
+
+:::

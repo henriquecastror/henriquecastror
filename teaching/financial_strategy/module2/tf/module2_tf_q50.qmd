@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q50','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q50" name="module2_tf_q50" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q50"><strong>The variance of a portfolio depends on the variances of individual assets and their correlations.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q50" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. The formula for portfolio variance includes the variance (or standard deviation) of each asset and the covariance (or correlation) between each pair of assets.
+</div>
+:::

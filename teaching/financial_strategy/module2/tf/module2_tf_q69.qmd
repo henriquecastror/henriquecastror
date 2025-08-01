@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q69','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q69" name="module2_tf_q69" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q69"><strong>As per the examples in the slides, during certain periods in Brazil (such as 2010-2018), the cumulative return of the SELIC rate (a lower-risk asset) surpassed that of the Ibovespa, demonstrating that higher risk does not always guarantee higher returns over shorter time horizons.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q69" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. The graphs in the slides clearly show periods where the SELIC rate, a safer investment, had a superior cumulative performance compared to the more volatile Ibovespa.
+</div>
+:::

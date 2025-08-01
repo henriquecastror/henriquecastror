@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q53','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q53" name="module2_tf_q53" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q53"><strong>Risk-seeking investors prefer portfolios with higher risk, all else equal.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q53" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. A risk-seeking (or risk-loving) investor enjoys risk and may even accept a lower expected return to take on a riskier investment.
+</div>
+:::

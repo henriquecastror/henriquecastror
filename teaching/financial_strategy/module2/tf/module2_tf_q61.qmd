@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q61','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q61" name="module2_tf_q61" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q61"><strong>Systematic risk is measured using standard deviation, which indicates how a stock moves relative to the market.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q61" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Systematic risk is measured using beta.
+</div>
+:::

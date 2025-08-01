@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q60','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q60" name="module2_tf_q60" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q60"><strong>The risk-free rate is the return of an investment with very low, but not zero, risk.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q60" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The risk-free rate is the theoretical return of an investment with absolutely zero risk.
+</div>
+:::

@@ -1,0 +1,70 @@
+## Expected Return, Variance, and Standard Deviation of a Portfolio
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+w1 <- rnorm(1, mean = 0.40, sd = 0.1)
+w2 <- 1 - w1
+
+r1 <- rnorm(1, mean = 0.11, sd = 0.07)
+r2 <- rnorm(1, mean = 0.09, sd = 0.07)
+
+sigma1 <- rnorm(1, mean = 0.29, sd = 0.03)
+sigma2 <- rnorm(1, mean = 0.19, sd = 0.02)
+
+correl <- rnorm(1, mean = 0.5, sd = 0.2)
+```
+
+What is the **expected return** of a portfolio that invests **`r round(w1*100,2)`**% in Asset&nbsp;1 (expected return = **`r round(r1*100,2)`**%) and the remaining **`r round(w2*100,2)`**% in Asset&nbsp;2 (expected return = **`r round(r2*100,2)`**%   )?
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q1a"><strong>1. What is the expected return of the portfolio (in %)?</strong></label>
+  <!-- Only two decimal places in the answer -->
+  <input type="number" id="module3_num_q1a" name="module3_num_q1a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( (w1 * r1 + w2 * r2) * 100 , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q1a" class="feedback" data-status="" style="display:none;">
+✅ Expected return = w₁×r₁ + w₂×r₂ = **`r round((w1 * r1 + w2 * r2) * 100, 2)`**%.
+</div>
+
+:::
+
+What is the **variance** of the portfolio above, given correlation **`r round(correl,2)`**, standard deviation of Asset&nbsp;1 = **`r round(sigma1*100,2)`**% and of Asset&nbsp;2 = **`r round(sigma2*100,2)`**%?
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q1b"><strong>2. What is the variance of the portfolio (in squared %)?</strong></label>
+  <!-- Only two decimal places in the answer -->
+  <input type="number" id="module3_num_q1b" name="module3_num_q1b" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( (w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2) * 100 , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q1b" class="feedback" data-status="" style="display:none;">
+✅ Variance = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂ = **`r round((w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2) * 100, 2)`**.
+</div>
+
+:::
+
+What is the **standard deviation** of the portfolio above?
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q1c"><strong>3. What is the standard deviation of the portfolio (in %)?</strong></label>
+  <!-- Only two decimal places in the answer -->
+  <input type="number" id="module3_num_q1c" name="module3_num_q1c" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2 * w1 * w2 * correl * sigma1 * sigma2 ) * 100 , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q1c" class="feedback" data-status="" style="display:none;">
+✅ Standard deviation = √(variance) = **`r round(sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2*w1*w2*correl*sigma1*sigma2) * 100, 2)`**%.
+</div>
+
+:::

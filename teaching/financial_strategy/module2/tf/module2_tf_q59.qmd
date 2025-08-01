@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q59','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q59" name="module2_tf_q59" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q59"><strong>Beta measures a stock’s total volatility, including firm-specific news.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q59" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Beta measures a stock's sensitivity only to market movements (systematic risk), not its total volatility.
+</div>
+:::

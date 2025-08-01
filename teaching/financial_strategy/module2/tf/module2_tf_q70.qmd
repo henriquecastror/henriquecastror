@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q70','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q70" name="module2_tf_q70" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q70"><strong>The volatility of a market index, such as the IBOV, tends to remain constant over time.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q70" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The "Standard deviation through time" chart in the slides explicitly shows that the volatility (measured by the rolling standard deviation) of the IBOV varies considerably, with peaks and troughs over time.
+</div>
+:::

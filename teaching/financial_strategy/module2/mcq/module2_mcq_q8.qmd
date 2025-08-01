@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q8')" data-correct-answer="E">
+  <strong style="display: block;">If a stock has a beta of 0.7, what can be expected of its behavior?</strong>
+
+  <label><input type="radio" name="module2_mcq_q8" value="A"> A. The stock is 30% more volatile than the market.</label><br>
+  <label><input type="radio" name="module2_mcq_q8" value="B"> B. The stock will move in the opposite direction of the market.</label><br>
+  <label><input type="radio" name="module2_mcq_q8" value="C"> C. The stock is completely independent of market movements.</label><br>
+  <label><input type="radio" name="module2_mcq_q8" value="D"> D. The stock has 70% systematic risk and 30% unsystematic risk.</label><br>
+  <label><input type="radio" name="module2_mcq_q8" value="E"> E. The stock tends to be 30% less volatile than the market.</label><br>
+</form>
+
+<div id="feedback-module2_mcq_q8" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. A beta of less than 1 indicates that the stock is, on average, less sensitive to market movements. A beta of 0.7 suggests that for every 1% move in the market, the stock tends to move 0.7% in the same direction.
+</div>
+
+:::

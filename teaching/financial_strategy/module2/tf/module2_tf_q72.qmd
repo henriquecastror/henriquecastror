@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q72','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q72" name="module2_tf_q72" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q72"><strong>An investment's geometric average return (CAGR) will always be equal to or greater than its arithmetic average return.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q72" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The geometric average return is almost always lower than the arithmetic average, and the difference between the two increases with the volatility of the returns.
+</div>
+:::

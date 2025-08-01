@@ -1,0 +1,29 @@
+## Portfolio Return from Two Stocks
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+library(webexercises)
+w1 <- runif(1, 0, 1)
+rA <- rnorm(1, mean = 8, sd = 3)
+rB <- rnorm(1, mean = 6, sd = 2)
+port_return <- w1 * rA + (1 - w1) * rB
+```
+
+You invested **`r round(w1*100,1)`%** of your capital in Stock&nbsp;A, which returned **`r round(rA,2)`%**, and the remainder in Stock&nbsp;B, which returned **`r round(rB,2)`%**.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q7a"><strong>1. What is your portfolio's return (in %)?</strong></label>
+  <input type="number" id="module2_num_q7a" name="module2_num_q7a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( port_return , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module2_num_q7a" class="feedback" data-status="" style="display:none;">
+✅ Portfolio return = w×rA + (1 − w)×rB = **`r round(port_return, 2)`**%.
+</div>
+
+:::

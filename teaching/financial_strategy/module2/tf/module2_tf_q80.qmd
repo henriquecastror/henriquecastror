@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q80','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q80" name="module2_tf_q80" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q80"><strong>A stock with a beta of 1.0 has only systematic risk.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q80" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A beta of 1.0 means the stock's systematic risk is equal to that of the market. The stock still has its own unsystematic (firm-specific) risk.
+</div>
+:::

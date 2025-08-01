@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q54','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q54" name="module2_tf_q54" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="T" /> <label for="module2_tf_q54"><strong>Systematic risk is priced, while idiosyncratic risk is not.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q54" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. This is a central tenet of modern finance. The market only rewards investors for bearing risk that cannot be diversified away (systematic risk).
+</div>
+:::

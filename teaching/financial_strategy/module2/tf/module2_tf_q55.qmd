@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module2_tf_q55','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module2_tf_q55" name="module2_tf_q55" maxlength="1" placeholder="T or F"
+         style="width: 55px;" data-correct-answer="F" /> <label for="module2_tf_q55"><strong>The expected return on a risk-free asset is always positive.</strong></label>
+</form>
+
+<div id="feedback-module2_tf_q55" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. While highly unusual, in certain economic environments with strong deflationary pressures or central bank policies, nominal risk-free rates can be zero or even slightly negative.
+</div>
+:::

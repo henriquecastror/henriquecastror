@@ -1,0 +1,56 @@
+## Realized Return and Return Breakdown
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+library(webexercises)
+p1 <- rnorm(1, mean = 10, sd = 2)
+p2 <- rnorm(1, mean = 10, sd = 2)
+div <- rnorm(1, mean = 1, sd = 0.1)
+```
+
+You bought a stock one year ago for \$**`r round(p1,2)` per share** and sold it today for \$**`r round(p2,2)`**. It paid a \$**`r round(div,2)` per share** dividend today.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q1a"><strong>1. What was your realized return (in %)?</strong></label>
+  <input type="number" id="module2_num_q1a" name="module2_num_q1a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( (p2 - p1 + div)/p1 * 100 , 2 )` data-tolerance="0.1" />
+</form>
+
+<div id="feedback-module2_num_q1a" class="feedback" data-status="" style="display:none;">
+✅ Realized return = (p2 − p1 + div)/p1 × 100 = **`r round((p2 - p1 + div)/p1 * 100, 2)`**%.
+</div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q1b"><strong>2. What percentage of the return came from dividend yield?</strong></label>
+  <input type="number" id="module2_num_q1b" name="module2_num_q1b" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( (div)/p1 * 100 ,2 )` data-tolerance="0.001" />
+</form>
+
+<div id="feedback-module2_num_q1b" class="feedback" data-status="" style="display:none;">
+✅ Dividend yield = div/p1 × 100 = **`r round(div/p1 * 100, 2)`**%.
+</div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module2_num_q1c"><strong>3. What percentage of the return came from capital gain?</strong></label>
+  <input type="number" id="module2_num_q1c" name="module2_num_q1c" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( (p2 - p1)/p1 * 100 , 2 )` data-tolerance="0.001" />
+</form>
+
+<div id="feedback-module2_num_q1c" class="feedback" data-status="" style="display:none;">
+✅ Capital gain = (p2 − p1)/p1 × 100 = **`r round((p2 - p1)/p1 * 100, 2)`**%.
+</div>
+
+:::

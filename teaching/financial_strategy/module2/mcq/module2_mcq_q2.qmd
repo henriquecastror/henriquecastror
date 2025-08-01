@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q2')" data-correct-answer="C">
+  <strong style="display: block;">Which of the following statements correctly distinguishes between variance and standard deviation as measures of risk?</strong>
+
+  <label><input type="radio" name="module2_mcq_q2" value="A"> A. Variance is the square root of the standard deviation.</label><br>
+  <label><input type="radio" name="module2_mcq_q2" value="B"> B. Variance is generally easier to interpret because its units are squared percentage points.</label><br>
+  <label><input type="radio" name="module2_mcq_q2" value="C"> C. Standard deviation is generally easier to interpret because it is in the same units as the expected return.</label><br>
+  <label><input type="radio" name="module2_mcq_q2" value="D"> D. Both measures are identical and can be used interchangeably to describe total risk.</label><br>
+  <label><input type="radio" name="module2_mcq_q2" value="E"> E. Variance measures systematic risk, while standard deviation measures unsystematic risk.</label><br>
+</form>
+
+<div id="feedback-module2_mcq_q2" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The primary reason standard deviation is often preferred for interpretation is that its units (e.g., %) are the same as the return itself, unlike variance, which is in squared units.
+</div>
+
+:::
