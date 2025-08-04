@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q87','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q87" name="module3_tf_q87" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q87"><strong>If an asset has a negative beta, it is expected to have a return below the risk free rate.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q87" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A negative beta asset may still have an expected return above or below Rf depending on the market risk premium and its magnitude.
+</div>
+:::

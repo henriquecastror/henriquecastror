@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q94','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q94" name="module3_tf_q94" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q94"><strong>The global minimum variance portfolio consists only of the risk-free asset.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q94" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The minimum variance portfolio is the combination of risky assets with the lowest possible volatility, not necessarily involving the risk-free asset.
+</div>
+:::

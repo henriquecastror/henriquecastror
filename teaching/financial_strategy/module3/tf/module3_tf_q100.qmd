@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q100','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q100" name="module3_tf_q100" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q100"><strong>Investors who are risk-averse will prefer portfolios below the Capital Market Line (CML).</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q100" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Rational investors will only choose portfolios on the CML, as portfolios below it are inefficient and offer lower returns for the same risk.
+</div>
+:::

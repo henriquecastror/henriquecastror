@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q84','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q84" name="module3_tf_q84" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q84"><strong>Two portfolios with the same beta must have the same expected return under CAPM.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q84" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. In CAPM, E[R] = Rf + β(E[R_m] – Rf); equal betas imply equal expected returns.
+</div>
+:::

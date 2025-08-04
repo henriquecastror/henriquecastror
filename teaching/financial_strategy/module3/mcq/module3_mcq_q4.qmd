@@ -1,0 +1,19 @@
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q4')" data-correct-answer="C">
+  <strong style="display: block;">Which measure captures only the systematic risk of a stock?</strong>
+
+  <label><input type="radio" name="module3_mcq_q4" value="A"> A. Standard deviation</label><br>
+  <label><input type="radio" name="module3_mcq_q4" value="B"> B. Variance</label><br>
+  <label><input type="radio" name="module3_mcq_q4" value="C"> C. Beta</label><br>
+  <label><input type="radio" name="module3_mcq_q4" value="D"> D. Arithmetic mean</label><br>
+  <label><input type="radio" name="module3_mcq_q4" value="E"> E. Sharpe ratio</label><br>
+</form>
+
+<div id="feedback-module3_mcq_q4" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Beta measures an asset’s sensitivity to market movements and therefore captures only systematic risk.
+</div>
+
+:::

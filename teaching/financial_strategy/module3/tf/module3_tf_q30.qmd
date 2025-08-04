@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q30','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q30" name="module3_tf_q30" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q30"><strong>The risk free asset has a beta of 1.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q30" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A risk free asset has no covariance with the market, so its beta is zero.
+</div>
+:::

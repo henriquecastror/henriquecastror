@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q42','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q42" name="module3_tf_q42" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q42"><strong>Investors with different risk preferences will choose different points along the Capital Market Line.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q42" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. More risk averse investors select combinations with more of the risk free asset; less risk averse may leverage the market portfolio.
+</div>
+:::

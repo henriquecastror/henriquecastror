@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q71','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q71" name="module3_tf_q71" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q71"><strong>Portfolios that lie below the efficient frontier are considered inefficient.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q71" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. They offer lower return for the same risk or higher risk for the same return.
+</div>
+:::

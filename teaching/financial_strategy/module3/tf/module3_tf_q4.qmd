@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q4','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q4" name="module3_tf_q4" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q4"><strong>Short selling extends the set of possible portfolios.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q4" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Allowing short positions (negative weights) expands the range of achievable risk–return combinations.
+</div>
+:::

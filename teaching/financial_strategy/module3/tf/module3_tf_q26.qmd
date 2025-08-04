@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q26','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q26" name="module3_tf_q26" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q26"><strong>Adding assets with low or negative correlations to a portfolio generally reduces overall risk.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q26" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Lower correlation lowers the covariance terms in portfolio variance, reducing overall risk.
+</div>
+:::

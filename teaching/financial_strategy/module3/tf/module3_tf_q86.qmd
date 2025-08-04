@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q86','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q86" name="module3_tf_q86" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q86"><strong>CAPM implies that all securities plot exactly on the Security Market Line in equilibrium.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q86" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. In equilibrium, securities have zero alpha and lie on the SML.
+</div>
+:::

@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q70','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q70" name="module3_tf_q70" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q70"><strong>Stocks with higher betas should yield lower expected returns to be priced fairly.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q70" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Higher betas imply greater systematic risk and therefore require higher expected returns.
+</div>
+:::

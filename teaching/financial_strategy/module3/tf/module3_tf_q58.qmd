@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q58','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q58" name="module3_tf_q58" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q58"><strong>A stock with a beta of 0 is expected to have an expected return equal to the risk free rate.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q58" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. With β = 0, CAPM gives E[R] = Rf.
+</div>
+:::

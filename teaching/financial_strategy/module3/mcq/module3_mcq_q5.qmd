@@ -1,0 +1,18 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q5')" data-correct-answer="D">
+  <strong style="display: block;">In the Capital Asset Pricing Model (CAPM), the expected return of a security is:</strong>
+
+  <label><input type="radio" name="module3_mcq_q5" value="A"> A. Equal to the risk‑free rate</label><br>
+  <label><input type="radio" name="module3_mcq_q5" value="B"> B. Inversely proportional to its beta</label><br>
+  <label><input type="radio" name="module3_mcq_q5" value="C"> C. Equal to the average return of the market portfolio</label><br>
+  <label><input type="radio" name="module3_mcq_q5" value="D"> D. A linear function of the security’s beta and the market risk premium</label><br>
+  <label><input type="radio" name="module3_mcq_q5" value="E"> E. Independent of the security’s beta</label><br>
+</form>
+
+<div id="feedback-module3_mcq_q5" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. The CAPM states that E[R] = Rf + β × (E[Rm] − Rf), a linear function of beta and the market risk premium.
+</div>
+
+:::

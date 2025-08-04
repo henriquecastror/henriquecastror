@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q16','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q16" name="module3_tf_q16" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q16"><strong>The Sharpe ratio is a measure of risk adjusted return, calculated by dividing the excess return of an investment by its standard deviation.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q16" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Sharpe ratio = (expected return – risk free rate) / standard deviation.
+</div>
+:::

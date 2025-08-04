@@ -1,0 +1,19 @@
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q2')" data-correct-answer="C">
+  <strong style="display: block;">The variance of a two‑asset portfolio depends on:</strong>
+
+  <label><input type="radio" name="module3_mcq_q2" value="A"> A. Only the variances of the individual assets</label><br>
+  <label><input type="radio" name="module3_mcq_q2" value="B"> B. Only the covariance between the assets</label><br>
+  <label><input type="radio" name="module3_mcq_q2" value="C"> C. Both the variances of the individual assets and the covariance between them</label><br>
+  <label><input type="radio" name="module3_mcq_q2" value="D"> D. The average return of the portfolio</label><br>
+  <label><input type="radio" name="module3_mcq_q2" value="E"> E. None of the above</label><br>
+</form>
+
+<div id="feedback-module3_mcq_q2" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Portfolio variance combines the individual asset variances and their covariance (or correlation).
+</div>
+
+:::

@@ -1,0 +1,19 @@
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q8')" data-correct-answer="B">
+  <strong style="display: block;">The Security Market Line (SML) depicts the relationship between:</strong>
+
+  <label><input type="radio" name="module3_mcq_q8" value="A"> A. Standard deviation and expected return for individual assets</label><br>
+  <label><input type="radio" name="module3_mcq_q8" value="B"> B. Beta and expected return for individual assets</label><br>
+  <label><input type="radio" name="module3_mcq_q8" value="C"> C. Weight and variance for portfolios</label><br>
+  <label><input type="radio" name="module3_mcq_q8" value="D"> D. Correlation and covariance for portfolios</label><br>
+  <label><input type="radio" name="module3_mcq_q8" value="E"> E. Price and earnings per share</label><br>
+</form>
+
+<div id="feedback-module3_mcq_q8" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The SML shows the linear relationship between a security’s beta and its expected return under the CAPM.
+</div>
+
+:::

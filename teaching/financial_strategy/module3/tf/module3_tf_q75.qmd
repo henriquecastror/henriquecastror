@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q75','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q75" name="module3_tf_q75" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q75"><strong>The CAPM assumes that investors can borrow and lend unlimited amounts at the risk free rate.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q75" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Unlimited borrowing and lending at Rf is one of the CAPM’s simplifying assumptions.
+</div>
+:::

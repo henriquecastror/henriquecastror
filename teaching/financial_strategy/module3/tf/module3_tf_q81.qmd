@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q81','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q81" name="module3_tf_q81" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q81"><strong>Adding a risk free asset to the portfolio cannot lower the overall portfolio variance.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q81" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Including a risk free asset can reduce portfolio variance in proportion to its weight.
+</div>
+:::

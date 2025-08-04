@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q33','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q33" name="module3_tf_q33" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q33"><strong>A stock with a beta greater than 1 is considered less risky than the market.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q33" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Beta > 1 means the stock amplifies market movements and is more volatile than the market.
+</div>
+:::

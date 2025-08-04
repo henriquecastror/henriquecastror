@@ -1,0 +1,19 @@
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q9')" data-correct-answer="B">
+  <strong style="display: block;">If an asset lies above the Security Market Line, it is considered:</strong>
+
+  <label><input type="radio" name="module3_mcq_q9" value="A"> A. Overpriced and should be sold</label><br>
+  <label><input type="radio" name="module3_mcq_q9" value="B"> B. Underpriced and offers a higher return for its level of risk</label><br>
+  <label><input type="radio" name="module3_mcq_q9" value="C"> C. Efficient and lies on the efficient frontier</label><br>
+  <label><input type="radio" name="module3_mcq_q9" value="D"> D. A risk‑free asset</label><br>
+  <label><input type="radio" name="module3_mcq_q9" value="E"> E. A candidate for short selling only</label><br>
+</form>
+
+<div id="feedback-module3_mcq_q9" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Being above the SML means the asset delivers more expected return than justified by its beta and is therefore underpriced.
+</div>
+
+:::

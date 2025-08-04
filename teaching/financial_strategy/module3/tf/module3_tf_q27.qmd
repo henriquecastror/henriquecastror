@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q27','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q27" name="module3_tf_q27" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q27"><strong>In equilibrium, it is possible to earn a return that is above the efficient frontier without the existence of a risk free asset or some other asset that is uncorrelated with your portfolio assets.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q27" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Without a risk free or uncorrelated asset, all feasible portfolios lie on or below the efficient frontier; one cannot surpass it.
+</div>
+:::

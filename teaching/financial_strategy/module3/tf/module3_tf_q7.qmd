@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q7','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q7" name="module3_tf_q7" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q7"><strong>To find the risk of a portfolio, we need to know the degree to which stock returns move together. Covariance and correlation measure the co movement of returns.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q7" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Covariance and correlation quantify how asset returns co move and are essential inputs to portfolio risk calculations.
+</div>
+:::

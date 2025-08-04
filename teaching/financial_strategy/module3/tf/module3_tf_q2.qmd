@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q2','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q2" name="module3_tf_q2" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q2"><strong>The expected variance of a portfolio is the weighted average of the expected variances of the investments within it, using the portfolio weights.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q2" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Portfolio variance also includes covariance terms between assets; it is not simply the weighted average of individual variances.
+</div>
+:::

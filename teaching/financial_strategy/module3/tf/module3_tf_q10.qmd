@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q10','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q10" name="module3_tf_q10" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q10"><strong>The variance of a portfolio depends on the covariance of the stocks within it.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q10" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. The portfolio variance formula includes a 2 × w₁ w₂ covariance term, so co movement affects total risk.
+</div>
+:::

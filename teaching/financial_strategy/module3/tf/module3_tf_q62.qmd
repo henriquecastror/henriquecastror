@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q62','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q62" name="module3_tf_q62" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q62"><strong>A minimum variance portfolio has the highest possible Sharpe ratio.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q62" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The minimum variance portfolio minimizes volatility but may not have the highest ratio of excess return to risk.
+</div>
+:::

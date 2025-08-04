@@ -28,7 +28,7 @@ You invest **`r round(w1*100,2)`%**, **`r round(w2*100,2)`%**, and **`r round(w3
 ::: {.question-block}
 
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module3_num_q9a"><strong>1. What is the variance of the portfolio (in squared %)?</strong></label>
+  <label for="module3_num_q9a"><strong>1. What is the variance of the portfolio?</strong></label>
   <input type="number" id="module3_num_q9a" name="module3_num_q9a" placeholder="Enter value" style="width: 150px;"
          data-correct-answer=`r round( var_port , 2 )` data-tolerance="0.01" />
 </form>

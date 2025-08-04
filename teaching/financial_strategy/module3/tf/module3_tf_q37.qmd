@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q37','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q37" name="module3_tf_q37" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q37"><strong>The global minimum variance portfolio has the lowest possible volatility among all feasible portfolios.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q37" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. It is the point of minimum variance on the efficient frontier.
+</div>
+:::

@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q25','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q25" name="module3_tf_q25" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q25"><strong>A stock's alpha is the difference between the expected return and the required return according to the CAPM.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q25" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Alpha measures performance relative to the return predicted by beta.
+</div>
+:::

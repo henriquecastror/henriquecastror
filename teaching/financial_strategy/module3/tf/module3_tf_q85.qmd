@@ -1,0 +1,12 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q85','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q85" name="module3_tf_q85" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q85"><strong>The variance of a portfolio is equal to the sum of the variances of each asset when correlations are zero.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q85" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. When correlation is zero, portfolio variance equals the sum of squared weights times the variances (Σ wᵢ²σᵢ²), not simply Σ σᵢ².
+</div>
+:::

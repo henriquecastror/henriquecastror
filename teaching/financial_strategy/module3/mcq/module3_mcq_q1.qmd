@@ -1,0 +1,19 @@
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q1')" data-correct-answer="A">
+  <strong style="display: block;">Which of the following statements best describes an efficient portfolio?</strong>
+
+  <label><input type="radio" name="module3_mcq_q1" value="A"> A. A portfolio that maximizes return for a given level of risk</label><br>
+  <label><input type="radio" name="module3_mcq_q1" value="B"> B. A portfolio with the lowest variance regardless of return</label><br>
+  <label><input type="radio" name="module3_mcq_q1" value="C"> C. A portfolio that holds only a single risky asset</label><br>
+  <label><input type="radio" name="module3_mcq_q1" value="D"> D. A portfolio that invests equal amounts in all available assets</label><br>
+  <label><input type="radio" name="module3_mcq_q1" value="E"> E. A portfolio that minimizes beta</label><br>
+</form>
+
+<div id="feedback-module3_mcq_q1" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. An efficient portfolio is one that offers the highest expected return for a given level of risk.
+</div>
+
+:::

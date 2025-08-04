@@ -1,0 +1,18 @@
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q3')" data-correct-answer="A">
+  <strong style="display: block;">If the correlation between two assets is −1, combining them in a portfolio:</strong>
+
+  <label><input type="radio" name="module3_mcq_q3" value="A"> A. Eliminates all risk if the weights are properly chosen</label><br>
+  <label><input type="radio" name="module3_mcq_q3" value="B"> B. Has no effect on the portfolio’s risk</label><br>
+  <label><input type="radio" name="module3_mcq_q3" value="C"> C. Doubles the portfolio’s expected return</label><br>
+  <label><input type="radio" name="module3_mcq_q3" value="D"> D. Increases the portfolio’s variance above either asset’s variance</label><br>
+  <label><input type="radio" name="module3_mcq_q3" value="E"> E. Makes the assets perfectly positively correlated</label><br>
+</form>
+
+<div id="feedback-module3_mcq_q3" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. A correlation of −1 means the assets move perfectly in opposite directions, allowing risk to be eliminated with the right weights.
+</div>
+
+:::
