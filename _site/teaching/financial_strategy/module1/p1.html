@@ -522,21 +522,21 @@
 <p>Key: <em>module1_slide2</em> <input type="hidden" id="slide-id" value="module1_slide2"></p>
 </div>
 <h3 id="post-money-valuation-and-vc-ownership">Post-money valuation and VC ownership</h3>
-<p>You founded a firm three years ago. You started with $0.269 million, which gave you 1.294 million shares. You later sold 1.637 million shares to angel investors. Now, a VC firm wants to invest $5.015 million in exchange for 2.318 million new shares.</p>
+<p>You founded a firm three years ago. You started with $0.208 million, which gave you 1.452 million shares. You later sold 1.989 million shares to angel investors. Now, a VC firm wants to invest $5.357 million in exchange for 2.509 million new shares.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-<label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q3a" name="module1_num_q3a" placeholder="Enter value" style="width: 120px;" data-correct-answer="11.356" data-tolerance="0.1">
+<label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q3a" name="module1_num_q3a" placeholder="Enter value" style="width: 120px;" data-correct-answer="12.704" data-tolerance="0.1">
 </form>
 <div id="feedback-module1_num_q3a" class="feedback" data-status="" style="display:none;">
-<p>✅ Post-money = Total shares × Price per share = (5.25) × (2.16) = <strong>11.356 million</strong></p>
+<p>✅ Post-money = Total shares × Price per share = (5.95) × (2.14) = <strong>12.704 million</strong></p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-<label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label> <input type="number" id="module1_num_q3b" name="module1_num_q3b" placeholder="Enter %" style="width: 100px;" data-correct-answer="44.161" data-tolerance="0.1">
+<label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label> <input type="number" id="module1_num_q3b" name="module1_num_q3b" placeholder="Enter %" style="width: 100px;" data-correct-answer="42.168" data-tolerance="0.1">
 </form>
 <div id="feedback-module1_num_q3b" class="feedback" data-status="" style="display:none;">
-<p>✅ VC Ownership = 2.318 / (5.249) × 100 = <strong>44.161%</strong></p>
+<p>✅ VC Ownership = 2.509 / (5.95) × 100 = <strong>42.168%</strong></p>
 </div>
 </div>
 <script>
@@ -668,8 +668,134 @@ Submit Answers
 <button onclick="downloadAnswersAsText()" style="background-color:#007bff; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer; margin-left: 10px;">
 📄 Download My Answers (TXT)
 </button>
-</section>
-</section>
+<div style="text-align: right;">
+<script>
+// Função auxiliar para verificar e definir o status de uma questão.
+function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance = 0) {
+  const feedbackDiv = document.getElementById(feedbackDivId);
+  if (!feedbackDiv) return;
+
+  let isCorrect = false;
+
+  // Trata respostas numéricas com tolerância
+ if (typeof correctAnswer === 'number' && typeof userAnswer === 'number' && !isNaN(userAnswer)) {
+    const lowerBound = correctAnswer - tolerance;
+    const upperBound = correctAnswer + tolerance;
+    isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
+  } else if (typeof userAnswer === 'string') {
+    // Para respostas de texto (T/F, Múltipla Escolha)
+    isCorrect = (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase());
+  }
+  // Adicione outras lógicas de comparação aqui se necessário (ex: arrays para múltiplos checkboxes)
+
+  if (isCorrect) {
+    feedbackDiv.dataset.status = "correct";
+  } else {
+    feedbackDiv.dataset.status = "incorrect";
+  }
+  feedbackDiv.style.display = "none"; // Mantém o feedback oculto
+}
+
+// Função para obter a resposta de um grupo de radio buttons
+function getSelectedRadioValue(name) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
+    if (radios.length > 0) {
+        return radios[0].value;
+    }
+    return ''; // Retorna string vazia se nada for selecionado
+}
+
+function toggleFeedback() {
+  const questionBlocks = document.querySelectorAll('.question-block');
+  const feedbacks = document.querySelectorAll('.feedback');
+  const scoreDiv = document.getElementById('score-summary');
+  const toggleButton = document.getElementById('toggle-feedback-btn');
+
+  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
+
+  if (showing) {
+    // Esconder feedback
+    feedbacks.forEach(f => {
+      f.style.display = 'none';
+      f.style.color = 'black'; // Reseta a cor ao esconder
+    });
+    scoreDiv.textContent = '';
+    toggleButton.textContent = 'Show Feedback';
+  } else {
+    // Mostrar feedback
+    let correctCount = 0;
+    let totalQuestions = 0;
+
+    questionBlocks.forEach(block => {
+      totalQuestions++;
+      const textInput = block.querySelector('input[type="text"]');
+      const numberInput = block.querySelector('input[type="number"]'); // Novo: input numérico
+      const form = block.querySelector('form');
+
+      let questionId, userAnswer, correctAnswer, tolerance = 0;
+      let feedbackDivId;
+
+      if (textInput && textInput.dataset.correctAnswer) {
+        // Questão de texto (T/F)
+        questionId = textInput.id;
+        userAnswer = textInput.value;
+        correctAnswer = textInput.dataset.correctAnswer;
+      } else if (numberInput && numberInput.dataset.correctAnswer) {
+        // Questão numérica
+        questionId = numberInput.id;
+        // Converte para número. Se não for um número válido, NaN.
+        userAnswer = parseFloat(numberInput.value);
+        correctAnswer = parseFloat(numberInput.dataset.correctAnswer);
+        if (numberInput.dataset.tolerance) {
+          tolerance = parseFloat(numberInput.dataset.tolerance);
+        }
+        // Se a resposta do usuário não for um número válido, trate como incorreta
+        if (isNaN(userAnswer)) {
+             userAnswer = null; // Mantém como valor numérico inválido
+        }
+      } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
+        // Questão de múltipla escolha (radio)
+        questionId = form.querySelector('input[type="radio"]').name;
+        userAnswer = getSelectedRadioValue(questionId);
+        correctAnswer = form.dataset.correctAnswer;
+      } else {
+        // Se não for um tipo de questão reconhecido ou não tem resposta correta
+        totalQuestions--; // Não conta esta questão no total se não puder ser avaliada
+        return; // Pula para a próxima questão
+      }
+
+      feedbackDivId = 'feedback-' + questionId;
+      const feedbackDiv = document.getElementById(feedbackDivId);
+
+      if (feedbackDiv) { // Apenas processa se há um feedback div
+        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance);
+
+        // Agora, exibe e colore o feedback após a verificação
+        if (feedbackDiv.dataset.status === 'correct') {
+          feedbackDiv.style.color = 'green';
+          correctCount++;
+        } else if (feedbackDiv.dataset.status === 'incorrect') {
+          feedbackDiv.style.color = 'red';
+        } else {
+          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
+        }
+        feedbackDiv.style.display = 'block'; // Exibe o feedback
+      }
+    });
+
+    scoreDiv.textContent = `✅  You answered ${correctCount} out of  ${totalQuestions}  correctly.`;
+    toggleButton.textContent = 'Hide Feedback';
+  }
+}
+</script>
+<button id="toggle-feedback-btn" onclick="toggleFeedback()" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+Show Feedback
+</button>
+<div id="score-summary" style="margin-top: 15px; font-weight: bold;">
+
+</div>
+</div>
+</section></section>
 <section>
 <section id="the-initial-public-offering" class="title-slide slide level1 smaller center" data-background="#d9ead3">
 <h1>23.2 The Initial Public Offering</h1>
@@ -794,7 +920,7 @@ Submit Answers
 <li>Another striking feature of the data in the following figure is that while the average dollar volume of IPOs since 2000 has been similar to that in the 1990s, the average number of IPOs per year has fallen significantly.</li>
 </ul>
 </section>
-<section id="section-6" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-5" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="../figs/bm_23_5.jpg" class="r-stretch"></section>
@@ -808,7 +934,7 @@ Submit Answers
 <li>One possible explanation is that by charging lower fees, an underwriter may risk signaling that it is not the same quality as its higher priced competitors.</li>
 </ul>
 </section>
-<section id="section-7" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-6" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="../figs/bm_23_6.jpg" class="r-stretch"></section>
