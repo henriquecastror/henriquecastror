@@ -407,14 +407,11 @@ Key: *module1_slide2*
 <input type="hidden" id="slide-id" value="module1_slide2">
 :::
 
-{{< include "num/module1_num_q3.qmd" >}}
+{{< include "num/module1_num_q3_class.qmd" >}}
 
 {{< include "../submit-to-sheets.html" >}}
 
 
-<div style="text-align: right;">
-{{< include "../quiz-utils.html" >}}
-</div>
 
 
 
