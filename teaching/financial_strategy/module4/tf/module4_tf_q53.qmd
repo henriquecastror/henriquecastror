@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q53','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q53" name="module4_tf_q53" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q53"><strong>A firm's unlevered beta is always lower than its levered equity beta.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q53" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Leverage adds financial risk, increasing the equity beta.
+</div>
+
+:::

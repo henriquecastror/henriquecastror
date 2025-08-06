@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q82','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q82" name="module4_tf_q82" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module4_tf_q82"><strong>The SML represents the relationship between expected return and standard deviation.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q82" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The SML plots expected return against beta, not standard deviation.
+</div>
+
+:::

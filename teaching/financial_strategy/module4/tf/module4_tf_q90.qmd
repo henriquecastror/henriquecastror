@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q90','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q90" name="module4_tf_q90" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q90"><strong>A firm’s cost of capital should reflect the time value of money and the risk associated with its cash flows.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q90" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. These are fundamental principles of valuation.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q42','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q42" name="module4_tf_q42" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q42"><strong>Asset beta measures the systematic risk of a firm’s assets and is independent of the firm’s capital structure.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q42" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Asset beta reflects only business risk.
+</div>
+
+:::

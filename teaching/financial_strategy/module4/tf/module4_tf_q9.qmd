@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q9','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q9" name="module4_tf_q9" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q9"><strong>Firm or industry asset betas reflect the market risk of the average project in that firm or industry while individual projects may be more or less sensitive to the overall market.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q9" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Asset betas measure average systematic risk; individual projects can deviate from this average.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q60','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q60" name="module4_tf_q60" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q60"><strong>A decrease in the equity risk premium will reduce a firm’s cost of equity under CAPM.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q60" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Lower ERP reduces the risk premium component in the CAPM formula.
+</div>
+
+:::

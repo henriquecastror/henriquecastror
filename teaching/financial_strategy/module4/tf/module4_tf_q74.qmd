@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q74','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q74" name="module4_tf_q74" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q74"><strong>When estimating the cost of equity for private firms, it is acceptable to use betas of similar public firms.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q74" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Industry comparables provide a basis for estimating private firm betas.
+</div>
+
+:::

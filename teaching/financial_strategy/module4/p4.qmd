@@ -3,7 +3,7 @@ title: 'Estratégia Financeira'
 subtitle: ' **Part 4 - ch.12 Estimating the Cost of Capital** '
 author:
   - name: ' **Henrique C. Martins** '
-    affiliation: '**[![](figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
 date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
@@ -15,10 +15,9 @@ format:
     theme: simple
     chalkboard: true
     preview-links: auto
-    logo: figs/background8.png
+    logo: ../figs/background8.png
     css: logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Practice [T/F](https://henriquemartins.net/teaching/financial_strategy/p4tf.html) & [Numeric](https://henriquemartins.net/teaching/financial_strategy/p4num.html)] [[Interact](https://henriquemartins.net/teaching/financial_strategy/p4.html#/interact)][Do not use without permission]**  '
-    multiplex: true
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Do not use without permission]**  '
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
@@ -71,7 +70,7 @@ library(yfR)
 
 
 
-## {background-image="figs/ch12.png" background-size="1300px"}
+## {background-image="../figs/ch12.png" background-size="1300px"}
 
 
 
@@ -499,7 +498,7 @@ Another key ingredient of CAPM is **The Market Risk Premium**
 . . .
 
 <center>
-![](figs/bm_12_1.png){width=80%}
+![](../figs/bm_12_1.png){width=80%}
 </center>
 
 
@@ -856,7 +855,7 @@ Let's discuss now how to calculate the **cost of debt**.
 
 Table 12.2 shows average annual default rates by debt rating, as well as the peak default rates experienced during recessionary periods.
 
-![](figs/bm_12_2.png)
+![](../figs/bm_12_2.png)
 
 
 
@@ -900,7 +899,7 @@ $$R_d = YTM - default \;rate \times average\; loss\; rate $$
 
 ## 12.4 The Debt Cost of Capital {.smaller  background="#f5d5d5" }
 
-![](figs/bm_12_3.png)
+![](../figs/bm_12_3.png)
 
 
 
@@ -972,7 +971,7 @@ Also, the decision to invest in projects using the firm's cost of capital might 
 
 ## 12.5 A Project’s Cost of Capital {.smaller background="#f7e1ba" }
 
-![](figs/bre13901_0901.jpg)
+![](../figs/bre13901_0901.jpg)
 
 
 
@@ -1092,7 +1091,7 @@ Things get more complex in levered firms.
 
 ## 12.5 A Project’s Cost of Capital {.smaller background="#f7e1ba" }
 
-![](figs/bmfig12_3.png)
+![](../figs/bmfig12_3.png)
 
 
 
@@ -1432,32 +1431,51 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
 
 
 
+
+
+
+
+
+
+
 # Now it is your turn... {.smaller background="#191f36"}
 
-::: footer
+
+
+
+
+
+
+
+
+
+## 🙋‍♂️ **Any Questions?** { background="#b1cafa"}
+
+::: columns
+::: {.column width="50%"}
+### Thank You!
+
+![](../figs/qa2.png){width="110%" style="margin-top: 10px;"}
+:::
+
+::: {.column width="50%"}
+### 👤 **Henrique C. Martins**
+
+- 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
+- 🧠 [Google Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
+- 📄 [Lattes CV](http://lattes.cnpq.br/6076997472159785)  
+- 🏠 [Personal Website](https://henriquemartins.net/)  
+:::
 :::
 
 
 
-## Practice {.smaller background="#465280"}
-
-
-::: {.callout}
-Remember to solve:
-
-- [Questions T/F](https://henriquemartins.net/teaching/financial_strategy/p4tf.html){preview-link="true"} 
-- [Questions Numeric](https://henriquemartins.net/teaching/financial_strategy/p4num.html){preview-link="true"} 
-
-:::
-
-::: footer
-:::
 
 
 
 
-
-## Interact {.smaller background="#8091d1"}
+## Interact {.smaller background="#8091d1" visibility="hidden"}
 
 <script src="https://giscus.app/client.js"
         data-repo="henriquecastror/EF202401"
@@ -1479,30 +1497,3 @@ Remember to solve:
 
 
 
-
-
-
-
-## **THANK YOU!** {background="#b1cafa"}
-
-::: columns
-
-::: {.column width="60%"}
-
-**QUESTIONS?**
-
-![](figs/qa2.png){width=150% heigth=150%}
-:::
-::: {.column width="40%"}
-**Henrique C. Martins**
-
--   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
--   [Personal Website](https://henriquemartins.net/)
--   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
--   [Lattes](http://lattes.cnpq.br/6076997472159785)
--   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
-:::
-:::
-
-::: footer
-:::

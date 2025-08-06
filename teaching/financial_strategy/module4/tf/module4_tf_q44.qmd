@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q44','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q44" name="module4_tf_q44" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q44"><strong>A firm’s equity beta is generally higher than its asset beta due to financial leverage.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q44" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Leverage amplifies equity risk.
+</div>
+
+:::

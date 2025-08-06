@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q39','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q39" name="module4_tf_q39" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q39"><strong>WACC can be used as the discount rate for evaluating new investment projects if the project has similar risk to the firm’s overall business.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q39" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. WACC is applicable when project risk aligns with firm risk.
+</div>
+
+:::

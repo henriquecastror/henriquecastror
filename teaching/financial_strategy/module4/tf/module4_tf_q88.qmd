@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q88','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q88" name="module4_tf_q88" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module4_tf_q88"><strong>CAPM assumes that investors hold only one security in their portfolios.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q88" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. CAPM assumes investors hold the market portfolio, which is fully diversified.
+</div>
+
+:::

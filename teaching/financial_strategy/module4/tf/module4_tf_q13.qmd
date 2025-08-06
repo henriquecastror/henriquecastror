@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q13','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q13" name="module4_tf_q13" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q13"><strong>The cost of debt is the effective rate that a company pays on its borrowed funds, including interest and other fees.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q13" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. The cost of debt includes all financing costs associated with borrowing.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q1')" data-correct-answer="C">
+  <strong style="display: block;">In the CAPM formula, which component captures the asset's sensitivity to market movements?</strong>
+
+  <label><input type="radio" name="module4_mcq_q1" value="A"> A. Risk-free rate</label><br>
+<label><input type="radio" name="module4_mcq_q1" value="B"> B. Market risk premium</label><br>
+<label><input type="radio" name="module4_mcq_q1" value="C"> C. Beta</label><br>
+<label><input type="radio" name="module4_mcq_q1" value="D"> D. Standard deviation</label><br>
+<label><input type="radio" name="module4_mcq_q1" value="E"> E. Alpha</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q1" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Beta measures the sensitivity of an asset's returns to movements in the market portfolio.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q56','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q56" name="module4_tf_q56" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q56"><strong>Asset betas can be estimated by de-levering the equity beta of comparable firms.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q56" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Unlevering removes the effects of financial leverage, isolating business risk.
+</div>
+
+:::

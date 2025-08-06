@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q78','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q78" name="module4_tf_q78" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module4_tf_q78"><strong>Investors require compensation for idiosyncratic risk according to the CAPM.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q78" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. CAPM assumes idiosyncratic risk is diversified away and not priced.
+</div>
+
+:::

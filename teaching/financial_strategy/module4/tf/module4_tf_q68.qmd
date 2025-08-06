@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q68','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q68" name="module4_tf_q68" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q68"><strong>According to CAPM, an asset with a beta of zero should have an expected return equal to the risk-free rate.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q68" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. A beta of zero implies no exposure to market risk.
+</div>
+
+:::

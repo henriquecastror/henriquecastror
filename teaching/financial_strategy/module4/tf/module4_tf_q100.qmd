@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q100','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q100" name="module4_tf_q100" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q100"><strong>According to CAPM, a security with a negative beta is expected to have a return lower than the risk-free rate.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q100" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. A negative beta indicates that the security moves inversely with the market, resulting in a lower expected return than the risk-free rate as compensation.
+</div>
+
+:::

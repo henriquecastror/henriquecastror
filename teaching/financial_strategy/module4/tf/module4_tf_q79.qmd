@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q79','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q79" name="module4_tf_q79" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module4_tf_q79"><strong>Financial leverage magnifies the returns and losses to equity holders.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q79" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Leverage increases the variability of equity returns.
+</div>
+
+:::

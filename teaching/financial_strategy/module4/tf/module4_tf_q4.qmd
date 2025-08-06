@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q4','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q4" name="module4_tf_q4" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module4_tf_q4"><strong>Because cash holdings will reduce a firm’s equity beta, when unlevering betas we can use the firm’s net debt, which is debt plus excess cash.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q4" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Net debt is calculated as debt minus excess cash because cash reduces firm risk.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q1','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q1" name="module4_tf_q1" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module4_tf_q1"><strong>A value-weighted portfolio is an equal-ownership portfolio.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q1" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. A value-weighted portfolio holds assets in proportion to their market capitalization, not in equal ownership shares.
+</div>
+
+:::

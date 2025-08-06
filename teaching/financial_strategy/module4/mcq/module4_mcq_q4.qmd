@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q4')" data-correct-answer="E">
+  <strong style="display: block;">Which of the following is a drawback of using historical averages to estimate the market risk premium?</strong>
+
+  <label><input type="radio" name="module4_mcq_q4" value="A"> A. They do not consider dividends</label><br>
+<label><input type="radio" name="module4_mcq_q4" value="B"> B. They ignore risk-free rates</label><br>
+<label><input type="radio" name="module4_mcq_q4" value="C"> C. They are based on forward-looking estimates</label><br>
+<label><input type="radio" name="module4_mcq_q4" value="D"> D. They cannot be used for long-term projects</label><br>
+<label><input type="radio" name="module4_mcq_q4" value="E"> E. They often come with large standard errors and are backward-looking</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q4" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Historical averages may not accurately reflect future expectations and often have large estimation errors.
+</div>
+
+:::

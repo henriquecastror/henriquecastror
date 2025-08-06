@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q6')" data-correct-answer="C">
+  <strong style="display: block;">When estimating a project's cost of capital using comparable firms, which of the following adjustments is essential if the firm has significant leverage?</strong>
+
+  <label><input type="radio" name="module4_mcq_q6" value="A"> A. Adjusting the firm's dividend payout ratio</label><br>
+<label><input type="radio" name="module4_mcq_q6" value="B"> B. Adjusting the firm's tax rate</label><br>
+<label><input type="radio" name="module4_mcq_q6" value="C"> C. Unlevering the comparable firm’s beta</label><br>
+<label><input type="radio" name="module4_mcq_q6" value="D"> D. Using the comparable firm’s historical average return</label><br>
+<label><input type="radio" name="module4_mcq_q6" value="E"> E. Applying the comparable firm’s WACC directly</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q6" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. You must unlever the comparable firm's beta to estimate the project's asset beta, isolating the effect of financial leverage.
+</div>
+
+:::

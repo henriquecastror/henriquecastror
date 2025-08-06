@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q96','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module4_tf_q96" name="module4_tf_q96" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module4_tf_q96"><strong>CAPM assumes that investors can diversify away all market (systematic) risk by holding a well-diversified portfolio.</strong></label>
+</form>
+
+<div id="feedback-module4_tf_q96" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. Market risk is non-diversifiable; CAPM assumes only idiosyncratic risk can be eliminated through diversification.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q5')" data-correct-answer="C">
+  <strong style="display: block;">Which of the following is the primary reason why increasing leverage  amplifies a firm's equity beta?</strong>
+
+  <label><input type="radio" name="module4_mcq_q5" value="A"> A. Because debt increases the firm's total assets</label><br>
+<label><input type="radio" name="module4_mcq_q5" value="B"> B. Because bondholders demand higher returns as leverage increases</label><br>
+<label><input type="radio" name="module4_mcq_q5" value="C"> C. Because equity holders face greater variability in returns as debt obligations increase</label><br>
+<label><input type="radio" name="module4_mcq_q5" value="D"> D. Because higher leverage decreases the market risk premium</label><br>
+<label><input type="radio" name="module4_mcq_q5" value="E"> E. Because leverage increases firm-specific risk, which is fully priced by the market</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q5" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Higher leverage magnifies the impact of asset volatility on equity returns, increasing equity beta.
+</div>
+
+:::
