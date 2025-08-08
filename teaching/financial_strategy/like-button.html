@@ -1,0 +1,89 @@
+<div class="like-container">
+  <button class="like-btn">
+    ❤️ <span class="like-count">0</span> <span class="label">Curtir</span>
+  </button>
+</div>
+
+<script>
+(function() {
+  if (typeof pageId === "undefined") return;
+
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwWDC5z9I0qQumGxe1j3x1ztJ1aIRTrpq7Uzj518usWE806P4xjkkTA00b3TU_u3vhMSg/exec";
+  const btn = document.querySelector(".like-container .like-btn");
+  const countSpan = btn.querySelector(".like-count");
+  const labelSpan = btn.querySelector(".label");
+
+  if (!btn || !countSpan || !labelSpan) return;
+
+  if (localStorage.getItem(`liked_${pageId}`)) {
+    btn.disabled = true;
+    btn.classList.add("liked");
+    labelSpan.textContent = "Curtiu";
+  }
+
+  btn.addEventListener("click", () => {
+    if (!localStorage.getItem(`liked_${pageId}`)) {
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify({ page: pageId }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "liked") {
+          localStorage.setItem(`liked_${pageId}`, "true");
+          btn.disabled = true;
+          btn.classList.add("liked");
+          labelSpan.textContent = "Curtiu";
+          updateCount();
+        }
+      });
+    }
+  });
+
+  function updateCount() {
+    fetch(`${scriptURL}?getLikes=true&page=${pageId}`)
+      .then(res => res.json())
+      .then(data => {
+        const count = data.count || 0;
+        countSpan.textContent = count;
+      });
+  }
+
+  updateCount();
+})();
+</script>
+
+<style>
+.like-container {
+  margin: 20px 0;
+  font-family: sans-serif;
+}
+
+.like-btn {
+  background-color: #f5f5f5;
+  border: 2px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.like-btn:hover {
+  background-color: #eaeaea;
+}
+
+.like-btn:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.like-btn.liked {
+  border-color: #ff4081;
+  background-color: #ffeaf3;
+}
+</style>

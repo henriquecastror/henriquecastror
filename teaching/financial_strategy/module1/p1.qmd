@@ -45,9 +45,13 @@ include-after: |
 
 # Intro {visibility="hidden"}
 
-##  {background-image="../figs/cha23.png" background-size="1300px"}
 
-<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_ca9c2dc33cb8ed14993600aeb1a3c1"></script>
+
+##  {background-image="../figs/cha23.png" background-size="1300px" }
+
+
+
+
 
 
 
@@ -89,15 +93,34 @@ Key: *module1_slide1*
 
 
 
-# 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+# 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" }
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" }
 
--   The initial capital that is required to start a business is usually provided by the entrepreneur.
 
--   Often, a private company must seek outside sources that can provide additional capital for growth.
 
--   It is important to understand how the infusion of outside capital will affect the control of the company.
+- The initial capital that is required to start a business is usually provided by the entrepreneur.
+- Often, a private company must seek outside sources that can provide additional capital for growth.
+- It is important to understand how the infusion of outside capital will affect the control of the company.
+
+<div class="like-float">
+  <script>
+    const pageId = "mod3_slide4";
+  </script>
+  {{< include ../like-button.html >}}
+</div>
+
+<style>
+.like-float {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  z-index: 9999;
+}
+</style>
+
+
+
 
 
 
@@ -846,3 +869,7 @@ Although shares of IPOs generally perform very well immediately following the pu
 - 🏠 [Personal Website](https://henriquemartins.net/)  
 :::
 :::
+
+
+
+

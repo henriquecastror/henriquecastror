@@ -1,9 +1,9 @@
 ---
 title: 'Estratégia Financeira'
-subtitle: ' **Part 5 - ch.13 Investor Behavior and Capital Market Efficiency** '
+subtitle: ' **Module 5 - ch.13 Investor Behavior and Capital Market Efficiency** '
 author:
   - name: ' **Henrique C. Martins** '
-    affiliation: '**[![](figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
 date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
@@ -15,10 +15,9 @@ format:
     theme: simple
     chalkboard: true
     preview-links: auto
-    logo: figs/background8.png
+    logo: ../figs/background8.png
     css: logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Practice [T/F](https://henriquemartins.net/teaching/financial_strategy/p5tf.html) & [Numeric](https://henriquemartins.net/teaching/financial_strategy/p5num.html)] [[Interact](https://henriquemartins.net/teaching/financial_strategy/p5.html#/interact)][Do not use without permission]**  '
-    multiplex: true
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Do not use without permission]**  '
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
@@ -48,7 +47,7 @@ include-after: |
 
 
 
-## {background-image="figs/ch13.png" background-size="1300px"}
+## {background-image="../figs/ch13.png" background-size="1300px"}
 
 
 
@@ -145,7 +144,7 @@ You have to remember:
 
 ## 13.1 Competition and Capital Markets {.smaller background="#c9f7ba"}
 
-![](figs/bm_13_1.png)
+![](../figs/bm_13_1.png)
 
 
 
@@ -193,7 +192,7 @@ That is, **alpha is the difference between a stock’s expected return and its r
 ## 13.1 Competition and Capital Markets {.smaller background="#c9f7ba"}
 
 
-![](figs/bm_13_2.png)
+![](../figs/bm_13_2.png)
 
 
 
@@ -309,7 +308,7 @@ If naive investors trade too often, they should get lower returns due to trading
 
 ## 13.3 The Behavior of Individual Investors {.smaller background="#f5d5d5"}
 
-![](figs/bm_13_4.png)
+![](../figs/bm_13_4.png)
 
 
 
@@ -320,7 +319,7 @@ If naive investors trade too often, they should get lower returns due to trading
 ## 13.3 Day-trading stocks for a living? {.smaller background="#f5d5d5"}
 
 
-![](figs/daytrade_en.png)
+![](../figs/daytrade_en.png)
 
 
 
@@ -420,7 +419,7 @@ In this section, we explore this question.
 
 ## {.smaller  background="#cff5ce"  visibility="hidden"}
 
-![](figs/bm_13_5.png)
+![](../figs/bm_13_5.png)
 
 **You would only make money if you predicted correctly which firms are ultimately acquired.**
 
@@ -431,7 +430,7 @@ In this section, we explore this question.
 ## Mad Money Jim [Cramer effect](https://www.youtube.com/watch?v=b1HVnWin6O4) {background="#cff5ce" .smaller visibility="hidden"} 
 
 
-![](figs/bm_13_6.png)
+![](../figs/bm_13_6.png)
 
 Investors pay attention on the news of such a TV show. Weird result for firms with no news, but notice the market correct in the days after the news. 
 
@@ -446,7 +445,7 @@ Investors pay attention on the news of such a TV show. Weird result for firms wi
 
 The performance of fund managers. **The average mutual fund manager can provide value (before computing trading costs and fees, i.e., gross alpha). The median destroys value.** Only a small portion of managers are skilled enough to add value (i.e., gross alpha), according to this reference.
 
-![](figs/bm_13_7.png)
+![](../figs/bm_13_7.png)
 
 
 
@@ -510,14 +509,14 @@ In this section, we will look at possible trading strategies, disregarding one's
 
 ##  {.smaller background="#f2f5ce"} 
 
-![](figs/bm_13_9.png)
+![](../figs/bm_13_9.png)
 
 This cannot be estimation error since there is a pattern in the tendency (9 of 10 above).
 
 
 ##  {.smaller background="#f2f5ce"} 
 
-![](figs/bm_13_10.png)
+![](../figs/bm_13_10.png)
 
 Stocks with high book-to-market ratios are value stocks, and those with low book-to-market ratios are growth stocks
 
@@ -934,7 +933,7 @@ plt.show()
 
 **Prices adjust immediately.** 
 
-![](figs/bre13901_1302.jpg)
+![](../figs/bre13901_1302.jpg)
 
 
 
@@ -973,7 +972,7 @@ Examples of evidence that suggest semistrong efficiency:
 - About which type of efficiency is he talking here? [Link](https://dilbert.com/strip/1997-10-14)
 
 
-![](figs/dogbert.png)
+![](../figs/dogbert.png)
 
 
 
@@ -994,7 +993,7 @@ It means that investors will earn a return that is appropriate for the risk unde
 
 ## Are markets efficient? [Video](https://www.youtube.com/watch?v=bM9bYOBuKF4) {.smaller background="#FFFA9A" visibility="hidden"}
 
-![](figs/are_markets_efficient.png)
+![](../figs/are_markets_efficient.png)
 
 
 
@@ -1006,7 +1005,7 @@ It means that investors will earn a return that is appropriate for the risk unde
 
 **How can we explain bubbles?** [Link](https://historyofyesterday.com/the-1636-tulip-mania-defines-the-present-economic-bubble-641b70fb8980)
 
-![](figs/tulip.jpg)
+![](../figs/tulip.jpg)
 
 
 
@@ -1016,7 +1015,7 @@ It means that investors will earn a return that is appropriate for the risk unde
 
 ## Bubbles {.smaller background="#FFFA9A" visibility="hidden"}
 
-![](figs/buysell.jpg)
+![](../figs/buysell.jpg)
 
 
 
@@ -1055,13 +1054,13 @@ So, given the evidence against and for the CAPM, and market efficiency, is the c
 
 ##  {.smaller  background="#ced8f5" }
 
-![](figs/bm_13_11.png)
+![](../figs/bm_13_11.png)
 
 
 
 ##  {.smaller  background="#ced8f5" visibility="hidden"}
 
-![](figs/bm_13_12.png)
+![](../figs/bm_13_12.png)
 
 
 
@@ -1100,7 +1099,7 @@ Remember to solve:
 
 
 
-## Interact {.smaller background="#8091d1"}
+## Interact {.smaller background="#8091d1" visbility="hidden"}
 
 <script src="https://giscus.app/client.js"
         data-repo="henriquecastror/EF202401"
@@ -1126,26 +1125,24 @@ Remember to solve:
 
 
 
-## **THANK YOU!** {background="#b1cafa"}
+
+
+## 🙋‍♂️ **Any Questions?** { background="#b1cafa"}
 
 ::: columns
+::: {.column width="50%"}
+### Thank You!
 
-::: {.column width="60%"}
-
-**QUESTIONS?**
-
-![](figs/qa2.png){width=150% heigth=150%}
-:::
-::: {.column width="40%"}
-**Henrique C. Martins**
-
--   [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)
--   [Personal Website](https://henriquemartins.net/)
--   [LinkedIn](https://www.linkedin.com/in/henriquecastror/)
--   [Lattes](http://lattes.cnpq.br/6076997472159785)
--   [Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
-:::
+![](../figs/qa2.png){width="110%" style="margin-top: 10px;"}
 :::
 
-::: footer
+::: {.column width="50%"}
+### 👤 **Henrique C. Martins**
+
+- 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
+- 🧠 [Google Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
+- 📄 [Lattes CV](http://lattes.cnpq.br/6076997472159785)  
+- 🏠 [Personal Website](https://henriquemartins.net/)  
+:::
 :::

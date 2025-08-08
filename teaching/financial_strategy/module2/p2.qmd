@@ -1,6 +1,6 @@
 ---
 title: 'Estratégia Financeira'
-subtitle: ' **Part 2 - ch.10 Capital Markets and the Pricing of Risk** '
+subtitle: ' **Module 2 - ch.10 Capital Markets and the Pricing of Risk** '
 author:
   - name: ' **Henrique C. Martins** '
     affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
@@ -785,7 +785,7 @@ ggplotly(p)
 
 
 
-## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce"}
+## 10.2 Measures of Risk and Return {.smaller  background="#cff5ce" visibility="hidden"}
 
 **Keep in mind:** There is variation (heterogeneity) in the level of **standard deviation** across countries.
 
@@ -822,7 +822,26 @@ This is:
 
 
 
+##  {.smaller  background="#ced8f5"}
 
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module2_slide1*
+<input type="hidden" id="slide-id" value="module2_slide1">
+:::
+
+
+{{< include "num/module2_num_q1_class.qmd" >}}
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
+
+
+
+
+
+
+## 10.3 Historical Returns {.smaller  background="#ced8f5" visibility="hidden"}
 
 
 
@@ -834,6 +853,8 @@ This is:
 **Calculating realized annual returns**
 
 If a stock pays dividends at the end of each quarter (with realized returns RQ1, RQ2, RQ3, and RQ4 each quarter), then its annual realized return, $R_{annual}$, is computed as follows:
+
+
 
 $$(1 + 𝑅_{annual})   = (1+𝑅_{Q1})\times(1+𝑅_{Q2})\times(1+ 𝑅_{Q3})\times (1+𝑅_{Q4})$$
 
@@ -1061,7 +1082,7 @@ Remember the (arithmetic) average was 12% (in previous slide).
 
 ##  {.smaller  background="#f5d5d5" }
 
-**Risk vs return of selected Brazilian stocks.** There is a line, but not really...
+**Risk vs return of selected Brazilian stocks.** There seems to be line, but not really...
 
 
 
@@ -1219,17 +1240,15 @@ The volatility will therefore decline until only the systematic risk remains.
 ![](../figs/grafico_animado_US24m.gif){width="90%"}
 
 
+##  {.smaller background="#f7e1ba" }
 
 
-
-
+![](../figs/bm_div_p379.png){ width="95%"}
 
 
 
 
 ##  {.smaller background="#f7e1ba" }
-
-**That is why the standard deviation of a portfolio (like Ibov) is lower than the weighted average standard deviation of the stocks in it.** It is like free lunch.
 
 ```{r}
 #| warning: false
@@ -1505,7 +1524,7 @@ Again: in a diversified portfolio, investors are diversified so they only worry 
 
 
 
-##  Market Risk Premium {.smaller background="#f2f7ba" }
+##  Market Risk Premium {.smaller background="#f2f7ba" visibility="hidden"}
 
 There is some heterogeneity in the **risk premium** across countries.
 
@@ -1522,7 +1541,9 @@ Source: Brealey, Myers and Allen (13ed)
 
 
 
-## Equity Risk Premium ([ERP](https://ceqef.fgv.br/node/594)) {.smaller background="#f2f7ba" }
+## {.smaller background="#f2f7ba" }
+
+Equity Risk Premium ([ERP](https://ceqef.fgv.br/banco-de-dados)) 
 
 ::: panel-tabset
 
@@ -1538,7 +1559,7 @@ Source: Brealey, Myers and Allen (13ed)
 #| code-summary: "R"
 #| code-line-numbers: true
 #| eval: true
-url <- "https://ceqef.fgv.br/sites/default/files/2025-01/Serie%20de%20Equity%20Risk%20Premium%20Dezembro%202024.xlsx"
+url <- "https://ceqef.fgv.br/sites/default/files/2025-07/Serie%20de%20Equity%20Risk%20Premium%20Junho.xlsx"
 download(url, dest="../files/epr.xlsx", mode="wb") 
 data <- read_excel("../files/epr.xlsx", col_types = c("date","numeric") )
 data <- data[2:nrow(data),1:2]
@@ -1570,7 +1591,7 @@ ggplotly(p)
 #| eval: true
 import pandas as pd
 import matplotlib.pyplot as plt
-url = "https://ceqef.fgv.br/sites/default/files/2023-12/Serie%20de%20Equity%20Risk%20Premium%20Novembro%20de%202023.xlsx"
+url = "https://ceqef.fgv.br/sites/default/files/2025-07/Serie%20de%20Equity%20Risk%20Premium%20Junho.xlsx"
 data = pd.read_excel(url, header=2)
 data = data.iloc[:, 0:2]
 data.columns = ["month", "erp"]
@@ -1579,7 +1600,7 @@ ax.plot(data["month"], data["erp"])
 ax.set_xlabel("Time", fontsize=20)
 ax.set_ylabel("Equity Risk Premium (ERP)", fontsize=20)
 ax.set_title("Equity Risk Premium (ERP) in Brazil", fontsize=25)
-ax.text(0.5, -0.1, "Source: https://ceqef.fgv.br/node/594", transform=ax.transAxes, ha="center")
+ax.text(0.5, -0.1, "Source:  https://ceqef.fgv.br/banco-de-dados", transform=ax.transAxes, ha="center")
 plt.show()
 ```
 

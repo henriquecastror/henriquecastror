@@ -1,0 +1,78 @@
+
+
+
+
+<!-- Template de Botão de Like -->
+<div class="like-container">
+  <button id="like-btn-UNIQUE_ID">👍 Like</button>
+  <span id="like-count-UNIQUE_ID">0 Liked</span>
+</div>
+
+<script>
+  (function() {
+    const pageId = "UNIQUE_ID";  // EX: "mod1", "quiz_final", "aula2_slide5"
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwWDC5z9I0qQumGxe1j3x1ztJ1aIRTrpq7Uzj518usWE806P4xjkkTA00b3TU_u3vhMSg/exec"; 
+    const btn = document.getElementById(`like-btn-${pageId}`);
+    const span = document.getElementById(`like-count-${pageId}`);
+
+    // Desativar se já curtiu neste navegador
+    if (localStorage.getItem(`liked_${pageId}`)) {
+      btn.disabled = true;
+      btn.innerText = "✅ Curtido";
+    }
+
+    btn.addEventListener("click", () => {
+      if (!localStorage.getItem(`liked_${pageId}`)) {
+        fetch(scriptURL, {
+          method: "POST",
+          body: JSON.stringify({ page: pageId }),
+          headers: { "Content-Type": "application/json" }
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === "liked") {
+            localStorage.setItem(`liked_${pageId}`, "true");
+            btn.disabled = true;
+            btn.innerText = "✅ Curtido";
+            updateCount();
+          }
+        });
+      }
+    });
+
+    function updateCount() {
+      fetch(`${scriptURL}?getLikes=true&page=${pageId}`)
+        .then(res => res.json())
+        .then(data => {
+          const count = data.count || 0;
+          span.textContent = `${count} curtida${count !== 1 ? "s" : ""}`;
+        });
+    }
+
+    // Inicializa contagem ao carregar
+    updateCount();
+  })();
+</script>
+
+<style>
+.like-container {
+  margin: 10px 0;
+}
+.like-container button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.like-container button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+.like-container span {
+  margin-left: 10px;
+  font-size: 16px;
+}
+</style>

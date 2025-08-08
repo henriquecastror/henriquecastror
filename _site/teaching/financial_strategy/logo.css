@@ -1,7 +1,23 @@
+<style>
+/* Botão de like fixo */
+.like-float {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  z-index: 9999;
+}
+
+/* Ajuste do logo nos slides */
 .reveal .slide-logo {
-  height: 140px !important;
-  width: 250px !important;
-  max-width: unset !important;
-  max-height: unset !important;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  height: 90px !important;
+  width: auto !important;
+  max-width: 200px !important;
+  max-height: 90px !important;
   z-index: 2;
 }
+</style>
+
+

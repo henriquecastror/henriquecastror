@@ -11,7 +11,7 @@ rf <- rnorm(1, mean = 5, sd = 0.01)
 beta <- rnorm(1, mean = 0.9, sd = 0.2)
 ```
 
-Suppose the market risk premium is **`r round(mrp,2)`** /% and the risk‑free interest rate is **`r round(rf,2)`**/%.
+Suppose the market risk premium is **`r round(mrp,2)`**% and the risk‑free interest rate is **`r round(rf,2)`**%.
 
 ::: {.question-block}
 
