@@ -1,0 +1,221 @@
+<!-- slide-timer.html — Timer por slide (funciona sem alterar os .qmd de questões) -->
+<div class="timex-header" style="display:flex;gap:.75rem;align-items:center;margin:.6rem 0;position:relative;z-index:2;">
+  <button class="timex-start" type="button"
+          style="padding:.5rem .9rem;border:1px solid #cbd5e1;border-radius:.6rem;cursor:pointer;">
+    Liberar
+  </button>
+  <input class="timex-pin-input" type="password" inputmode="numeric" autocomplete="one-time-code"
+         placeholder="PIN (opcional)"
+         style="padding:.45rem .6rem;border:1px solid #cbd5e1;border-radius:.5rem;min-width:120px;display:none;">
+  <span class="timex-countdown" aria-live="polite" style="font-weight:600;"></span>
+  <span class="timex-status" style="margin-left:auto;font-size:.9rem;color:#475569;"></span>
+</div>
+
+<script>
+(function(){
+  // Âmbito do slide atual
+  const scriptEl = document.currentScript;
+  const slideEl  = scriptEl.closest('section') || scriptEl.parentElement || document.body;
+
+  // Elemento de configuração explicitamente suportado:
+  // <div class="enable-timer" data-timer="600" data-pin="1234"></div>
+  const cfgEl = slideEl.querySelector('.enable-timer') || slideEl;
+
+  // Lê config
+  const durationAttr = (cfgEl.getAttribute('data-timer') || '').trim();
+  const pinAttr      = (cfgEl.getAttribute('data-pin')   || '').trim();
+  const DURATION     = Number.isFinite(parseInt(durationAttr,10)) ? parseInt(durationAttr,10) : 60;
+  const PIN_REQUIRED = pinAttr;
+
+  // Cabeçalho (já existe no HTML acima)
+  const header    = slideEl.querySelector('.timex-header');
+  const startBtn  = slideEl.querySelector('.timex-start');
+  const pinInput  = slideEl.querySelector('.timex-pin-input');
+  const countdown = slideEl.querySelector('.timex-countdown');
+  const status    = slideEl.querySelector('.timex-status');
+
+  // Mostra campo PIN se necessário
+  if (PIN_REQUIRED) {
+    pinInput.style.display = 'inline-block';
+    pinInput.placeholder = 'PIN';
+  }
+
+  // Seletores a controlar
+  const CONTROL_SELECTOR = [
+    'input','select','textarea','button'
+  ].join(',');
+
+  function isTimerControl(el){
+    return el.classList?.contains('timex-start') ||
+           el.classList?.contains('timex-pin-input');
+  }
+  function isAllowlisted(el){
+    const id = (el.id || '').toLowerCase();
+    // Ajuste aqui se tiver mais exceções que devem ficar livres
+    return id === 'student-id' || id === 'student-password' ||
+           id === 'download-btn';
+  }
+
+  function setEnabled(enabled){
+    const nodes = Array.from(slideEl.querySelectorAll(CONTROL_SELECTOR));
+    nodes.forEach(el=>{
+      if (isTimerControl(el) || isAllowlisted(el)) return;
+      el.disabled = !enabled;
+      if (!enabled) el.blur?.();
+    });
+  }
+
+  // Overlay opaco para ocultar conteúdo (antes e depois)
+  let overlay = slideEl.querySelector('.timex-overlay');
+  if (!overlay){
+    overlay = document.createElement('div');
+    overlay.className = 'timex-overlay';
+    Object.assign(overlay.style, {
+      position:'absolute', inset:'0', background:'#ffffff',
+      opacity:'1', display:'none', zIndex:'1',
+      alignItems:'center', justifyContent:'center',
+      textAlign:'center', padding:'1rem'
+    });
+    // Mensagem no overlay
+    const msg = document.createElement('div');
+    msg.className = 'timex-overlay-msg';
+    msg.style.maxWidth = '720px';
+    msg.style.margin = '0 auto';
+    msg.style.fontSize = '1rem';
+    msg.style.lineHeight = '1.4';
+    msg.style.color = '#0f172a';
+    msg.style.border = '1px dashed #cbd5e1';
+    msg.style.borderRadius = '10px';
+    msg.style.padding = '.9rem 1rem';
+    msg.textContent = 'Exercício bloqueado. Clique em “Liberar” para iniciar.';
+    overlay.appendChild(msg);
+
+    // Garante que o section é posicionável
+    const cs = getComputedStyle(slideEl);
+    if (cs.position === 'static') slideEl.style.position = 'relative';
+
+    slideEl.appendChild(overlay);
+  }
+  function setOverlay(mode){
+    // mode: 'await' | 'running' | 'ended'
+    overlay.style.display = (mode === 'running') ? 'none' : 'flex';
+    const msg = overlay.querySelector('.timex-overlay-msg');
+    if (mode === 'await') {
+      msg.textContent = 'Exercício bloqueado. Clique em “Liberar” para iniciar.';
+    } else if (mode === 'ended') {
+      msg.textContent = 'Tempo esgotado. Este exercício está encerrado.';
+    }
+  }
+
+  // Estado
+  let remaining = DURATION;
+  let ticking   = false;
+  let finished  = false;  // impede reliberar
+  let tHandle   = null;
+
+  function fmt(s){
+    const m = Math.floor(s/60), r = s%60;
+    return `${m}:${String(r).padStart(2,'0')}`;
+  }
+
+  function stopTimer(finalMsg){
+    ticking = false;
+    if (tHandle) { clearInterval(tHandle); tHandle = null; }
+    setEnabled(false);
+    setOverlay('ended');
+    countdown.textContent = '0:00';
+    status.textContent = finalMsg || 'Tempo esgotado';
+    finished = true;
+    startBtn.disabled = true;
+    startBtn.textContent = 'Encerrado';
+  }
+
+  function tick(){
+    remaining = Math.max(remaining - 1, 0);
+    countdown.textContent = fmt(remaining);
+    if (remaining <= 0) stopTimer('Tempo esgotado');
+  }
+
+  function startTimer(){
+    if (ticking || finished) return;
+    ticking = true;
+    remaining = DURATION;
+    setEnabled(true);
+    setOverlay('running');
+    startBtn.disabled = true;
+    status.textContent = 'Respondendo…';
+    countdown.textContent = fmt(remaining);
+    tHandle = setInterval(tick, 1000);
+  }
+
+  // Inicialmente bloqueado e oculto
+  setEnabled(false);
+  setOverlay('await');
+  status.textContent = `Aguardando liberação (${DURATION}s)`;
+  countdown.textContent = '';
+
+  // Clique no "Liberar"
+  startBtn.addEventListener('click', ()=>{
+    if (finished) return; // não permite reliberar
+    if (PIN_REQUIRED){
+      const val = (pinInput.value || '').trim();
+      if (val !== PIN_REQUIRED){
+        status.textContent = 'PIN incorreto';
+        slideEl.animate(
+          [{transform:'translateX(0)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],
+          {duration:180,iterations:1}
+        );
+        pinInput.focus();
+        return;
+      }
+    }
+    startTimer();
+  });
+
+  // Bloqueia envios de forms quando não está ativo
+  slideEl.addEventListener('submit', (ev)=>{
+    if (!ticking || finished) {
+      ev.preventDefault();
+      status.textContent = finished ? 'Tempo esgotado' : 'Exercício bloqueado';
+    }
+  }, true);
+
+  // Defesa extra: bloqueia cliques quando não ativo (além do disabled)
+  slideEl.addEventListener('click', (ev)=>{
+    if (!ticking || finished) {
+      const t = ev.target;
+      if (!isTimerControl(t) && !isAllowlisted(t)) {
+        ev.stopPropagation();
+        ev.preventDefault();
+      }
+    }
+  }, true);
+
+  // Reaplica ao mudar de slide (Reveal)
+  if (window.Reveal && typeof window.Reveal.on === 'function'){
+    window.Reveal.on('slidechanged', (e)=>{
+      if (!e || !e.currentSlide || e.currentSlide !== slideEl) return;
+      if (finished){
+        // Se já acabou, mantém encerrado e oculto
+        setEnabled(false);
+        setOverlay('ended');
+        status.textContent = 'Tempo esgotado';
+        countdown.textContent = '0:00';
+        startBtn.disabled = true;
+        startBtn.textContent = 'Encerrado';
+        if (tHandle){ clearInterval(tHandle); tHandle = null; }
+        ticking = false;
+        return;
+      }
+      // Se ainda não começou, mantém bloqueado/oculto
+      setEnabled(false);
+      setOverlay('await');
+      status.textContent = `Aguardando liberação (${DURATION}s)`;
+      countdown.textContent = '';
+      startBtn.disabled = false;
+      if (tHandle){ clearInterval(tHandle); tHandle = null; }
+      ticking = false;
+    });
+  }
+})();
+</script>

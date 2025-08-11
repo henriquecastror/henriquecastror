@@ -1,0 +1,61 @@
+
+### Net Proceeds in an SEO
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+#| warning: false
+
+# -------- Randomização (valores em "milhões de ações" e USD por ação) --------
+set.seed(NULL)
+total_shares <- sample(8:16, 1)                        # milhões (total no SEO)
+price_per_share <- round(runif(1, 28, 55), 2)          # USD por ação
+fee_rate <- sample(c(0.03, 0.035, 0.04, 0.045, 0.05, 0.055, 0.06), 1)
+
+primary_share_frac <- round(runif(1, 0.35, 0.65), 2)   # 35%–65% primárias
+primary_shares <- round(total_shares * primary_share_frac, 1)   # milhões
+secondary_shares <- round(total_shares - primary_shares, 1)     # milhões
+if (secondary_shares <= 0) {
+  primary_shares <- round(total_shares * 0.6, 1)
+  secondary_shares <- round(total_shares - primary_shares, 1)
+}
+
+# -------- Cálculos (em milhões de USD) ---------------------------------------
+gross_primary   <- primary_shares   * price_per_share     # milhões USD
+fee_primary     <- round(gross_primary   * fee_rate, 2)
+net_proceeds    <- round(gross_primary   - fee_primary, 2)
+
+gross_secondary <- secondary_shares * price_per_share     # milhões USD
+fee_secondary   <- round(gross_secondary * fee_rate, 2)
+net_vc_proceeds <- round(gross_secondary - fee_secondary, 2)
+
+gross_total     <- total_shares * price_per_share
+total_fee       <- round(gross_total * fee_rate, 2)
+
+# Para exibição
+fee_rate_pct <- round(fee_rate * 100, 1)
+```
+
+
+Orion AutoTech executed a seasoned equity offering (SEO) of `r total_shares` million shares at $`r price_per_share` per share.
+Of these, `r primary_shares` million were primary (new shares issued by the company) and `r secondary_shares` million were secondary (sold by existing investors).
+Assume the underwriter charges `r fee_rate_pct`% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;"> <label for="module1_num_q7a"><strong>1. The amount of money raised by the company (in million USD) is:</strong></label> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width:110px;" data-correct-answer="`r round(net_proceeds, 1)`" data-tolerance="0.5" /> </form> <div id="feedback-module1_num_q7a" class="feedback" data-status="" style="display:none;"> ✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (`r primary_shares` × $`r price_per_share`) − (`r fee_rate_pct`% × $`r round(gross_primary, 2)` million) = $`r round(gross_primary, 2)` million − $`r fee_primary` million = **$`r round(net_proceeds, 1)` million**. </div> 
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;"> <label for="module1_num_q7b"><strong>2. The amount of money raised by the VC (in million USD) is:</strong></label> <input type="number" id="module1_num_q7b" name="module1_num_q7b" placeholder="Value" style="width:110px;" data-correct-answer="`r round(net_vc_proceeds, 1)`" data-tolerance="0.5" /> </form> <div id="feedback-module1_num_q7b" class="feedback" data-status="" style="display:none;"> ✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (`r secondary_shares` × $`r price_per_share`) − (`r fee_rate_pct`% × $`r round(gross_secondary, 2)` million) = $`r round(gross_secondary, 2)` million − $`r fee_secondary` million = **$`r round(net_vc_proceeds, 1)` million**. </div> 
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;"> <label for="module1_num_q7c"><strong>3. The amount of money the underwriter will earn  (in million USD) is:</strong></label> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="`r round(total_fee, 1)`" data-tolerance="0.5" /> </form> <div id="feedback-module1_num_q7c" class="feedback" data-status="" style="display:none;"> ✅ Fee = (Total Shares × Price) × Fee Rate = (`r total_shares` × $`r price_per_share`) × `r fee_rate_pct`% = $`r round(gross_total, 2)` million × `r fee_rate_pct`% = **$`r round(total_fee, 1)` million**. </div> 
+
+:::

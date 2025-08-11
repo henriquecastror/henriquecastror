@@ -3,26 +3,35 @@ title: 'Estratégia Financeira'
 subtitle: ' **Module 2 - ch.10 Capital Markets and the Pricing of Risk** '
 author:
   - name: ' **Henrique C. Martins** '
-    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+    affiliation: '**[![](../figs/background6.png){width=300px style="box-shadow: none;"}](https://eaesp.fgv.br/en)**'
 date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
 format:
   revealjs: 
+    include-in-header: ../login-start.html
+    include-after-body: 
+      - ../chat-widget.html
+#      - ../comnents.html
+#      - ../ranking-widget.html
     touch: true
     controls: true
     slide-number: true
     theme: simple
-    chalkboard: true
+    chalkboard: false
+    menu: false
     preview-links: auto
     logo: ../figs/background8.png
-    css: logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)][Do not use without permission]**  '
+    css: ../logo.css
+    footer: '<span style="font-size:10px"> [[Henrique C. Martins](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]**[Do not use without permission]**</span>'
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
 include-after: |
-  <script type="text/javascript">
+  <script>
+    window.VHCM = window.VHCM || {};
+    window.VHCM.module = "module2";   // <<< define o módulo AQUI
+
     Reveal.on('ready', event => {
       if (event.indexh === 0) {
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
@@ -38,7 +47,8 @@ include-after: |
         document.querySelector("div.has-logo > img.slide-logo").style.display = null;
       }
     });
-  </script>   
+  </script>
+
 ---
 
 
@@ -73,6 +83,29 @@ library(yfR)
 
 # Intro {visibility="hidden"}
 
+
+
+
+
+##  { background="#A91B0D"}
+
+::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
+
+The **Virtual HCM** is powered by **AI** to assist you with course materials.  
+While it is trained on the course's content, **it may occasionally**:
+
+- Misinterpret the question or context.  
+- Generate **inaccurate or incomplete** information.  
+- Provide answers **not explicitly included** in the materials.
+
+**Your responsibility:**  
+Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.
+
+💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
+
+:::
+
+
 ## {background-image="../figs/ch10.png" background-size="1300px"}
 
 
@@ -80,7 +113,7 @@ library(yfR)
 
 
 
-## Chapter outline 
+## Chapter outline {style="color: #000;"}
 
 10.1 Risk and Return: Insights from History
 
@@ -105,9 +138,9 @@ library(yfR)
 
 
 
-# 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+# 10.1 Risk & Return: Insights  {.smaller background="#f2f5ce"} 
 
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+## 10.1 Risk & Return: Insights {.smaller background="#f2f5ce"} 
 
 ![](../figs/bm_10_1.png){width="105%"}
 
@@ -118,7 +151,7 @@ library(yfR)
 
 
 
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+## 10.1 Risk & Return: Insights   {.smaller background="#f2f5ce"} 
 
 **Some Insights:**
 
@@ -143,7 +176,7 @@ Notice the volatility next slide.
 
 
 
-## 10.1 Risk & Return: Insights from History {.smaller background="#f2f5ce"} 
+## 10.1 Risk & Return: Insights   {.smaller background="#f2f5ce"} 
 
 ![](../figs/bm_10_2.png){width="105%"}
 
@@ -822,26 +855,42 @@ This is:
 
 
 
-##  {.smaller  background="#ced8f5"}
+##  {.smaller  background="#FFFFFF" visibility="hidden"}
 
 ::: {style="font-size: 40%; text-align: right;"}
 Key: *module2_slide1*
 <input type="hidden" id="slide-id" value="module2_slide1">
 :::
 
-
 {{< include "num/module2_num_q1_class.qmd" >}}
+
+
+{{< include "../submit-to-sheets.html" >}}
+
+
+```{=html}
+<!-- <div style="text-align: right;">
 
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
 </div>
 
 
+</div> -->
+```
+
+
+<script>
+  const pageId = "mod2_like2"; 
+</script>
+
+{{< include ../like-button.html >}}
 
 
 
 
-## 10.3 Historical Returns {.smaller  background="#ced8f5" visibility="hidden"}
+
+
 
 
 
@@ -1758,7 +1807,8 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 ::: {.column width="50%"}
 ### Thank You!
 
-![](../figs/qa2.png){width="110%" style="margin-top: 10px;"}
+![](../figs/qa2.png){width="110%" style="box-shadow: none;"}
+
 :::
 
 ::: {.column width="50%"}

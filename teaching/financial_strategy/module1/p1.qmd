@@ -1,28 +1,37 @@
 ---
 title: 'Estratégia Financeira'
-subtitle: ' **Part 1 - ch.23 Raising Equity Capital** '
+subtitle: ' **Module 1 - ch.23 Raising Equity Capital** '
 author:
   - name: ' **Henrique C. Martins** '
-    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+    affiliation: '**[![](../figs/background6.png){width=300px style="box-shadow: none;" }](https://eaesp.fgv.br/en)**'
 date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
 format:
   revealjs: 
+    include-in-header: ../login-start.html
+    include-after-body: 
+      - ../chat-widget.html
+#      - ../comnents.html
+#      - ../ranking-widget.html
     touch: true
     controls: true
     slide-number: true
     theme: simple
-    chalkboard: true
+    chalkboard: false
+    menu: false
     preview-links: auto
     logo: ../figs/background8.png
     css: ../logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)][Do not use without permission]**  '
+    footer: '<span style="font-size:10px"> [[Henrique C. Martins](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]**[Do not use without permission]**</span>'
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
 include-after: |
-  <script type="text/javascript">
+  <script>
+    window.VHCM = window.VHCM || {};
+    window.VHCM.module = "module1";   // <<< define o módulo AQUI
+
     Reveal.on('ready', event => {
       if (event.indexh === 0) {
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
@@ -39,11 +48,40 @@ include-after: |
       }
     });
   </script>
+
 ---
  
 
 
 # Intro {visibility="hidden"}
+
+
+
+##  { background="#A91B0D"}
+
+::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
+
+The **Virtual HCM** is powered by **AI** to assist you with course materials.  
+While it is trained on the course's content, **it may occasionally**:
+
+- Misinterpret the question or context.  
+- Generate **inaccurate or incomplete** information.  
+- Provide answers **not explicitly included** in the materials.
+
+**Your responsibility:**  
+Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.
+
+💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
+
+{{< include ../like-button.html >}}
+
+:::
+
+
+
+
+
+
 
 
 
@@ -57,8 +95,8 @@ include-after: |
 
 
 
-## Chapter Outline
-
+## Chapter Outline {style="color: #000;"}
+ 
 23.1 Equity Financing for Private Companies
 
 23.2 The Initial Public Offering
@@ -85,7 +123,9 @@ Key: *module1_slide1*
 
 <hr style="border: none; border-top: 2px dashed #999; margin: 20px 0;">
 
-{{< include "../submit-to-sheets.html" >}}
+{{< include "long/module1_long_q1.qmd" >}}
+
+<hr style="border: none; border-top: 2px dashed #999; margin: 20px 0;">
 
 
 
@@ -93,31 +133,19 @@ Key: *module1_slide1*
 
 
 
-# 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" }
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" }
 
+
+# 23.1 Equity Financing for Private {.smaller background="#ead1dc" }
+
+## 23.1 Equity Financing for Private {.smaller background="#ead1dc" }
 
 
 - The initial capital that is required to start a business is usually provided by the entrepreneur.
 - Often, a private company must seek outside sources that can provide additional capital for growth.
 - It is important to understand how the infusion of outside capital will affect the control of the company.
 
-<div class="like-float">
-  <script>
-    const pageId = "mod3_slide4";
-  </script>
-  {{< include ../like-button.html >}}
-</div>
-
-<style>
-.like-float {
-  position: absolute;
-  bottom: 20px;
-  right: 30px;
-  z-index: 9999;
-}
-</style>
+<!-- Define unique ID for this slide -->
 
 
 
@@ -125,7 +153,10 @@ Key: *module1_slide1*
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+
+
+
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Sources of funding: Angel Investors**
 
@@ -140,7 +171,7 @@ Key: *module1_slide1*
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Venture Capital Firm**
 
@@ -176,7 +207,7 @@ VC firms offer limited partners advantages over investing directly in start-ups 
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Private Equity Firms**
 
@@ -200,7 +231,7 @@ VC firms offer limited partners advantages over investing directly in start-ups 
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Institutional Investors**
 
@@ -215,7 +246,7 @@ Ex. Blackrock funds, Vanguard funds.
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Corporate Investors**
 
@@ -232,7 +263,7 @@ Ex. Google.
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Venture capital investing**
 
@@ -256,7 +287,7 @@ Preferred stock that gives the owner an option to convert it into common stock o
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 -   Each time the firm raises money is referred to as a funding round, and each round will have its own set of securities with special terms and provisions.
 
@@ -271,7 +302,7 @@ Preferred stock that gives the owner an option to convert it into common stock o
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Book's example.**
 
@@ -298,7 +329,7 @@ Preferred stock that gives the owner an option to convert it into common stock o
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 **Pre-Money Valuation**
 
@@ -315,7 +346,7 @@ Preferred stock that gives the owner an option to convert it into common stock o
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc"}
 
 Over the next few years, Real Networks raised three more rounds of outside equity in addition to the Series B funding round
 
@@ -326,7 +357,7 @@ Over the next few years, Real Networks raised three more rounds of outside equit
 
 
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" visibility="hidden"}
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc" visibility="hidden"}
 
 **Problem**
 
@@ -356,7 +387,14 @@ Thus, the V C will receive 3 million shares for her investment, and after this f
 
 You will own $\frac{1,5000,000}{3,000,000} = 30\%$ of the firm and the post-transaction valuation of your shares is \$3 million.
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" visibility="hidden"}
+
+
+
+
+
+
+
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc" visibility="hidden"}
 
 **Problem**
 
@@ -385,7 +423,14 @@ You will own $\frac{1,5000,000}{3,000,000} = 30\%$ of the firm and the post-tran
 -   Thus, the post-money valuation is \$3,750,000.
 -   You will own 26.67% of the firm, and the post-money valuation of your shares is \$1,000,000.
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" visibility="hidden"}
+
+
+
+
+
+
+
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc" visibility="hidden"}
 
 **Venture Capital Financing Terms**
 
@@ -403,7 +448,14 @@ You will own $\frac{1,5000,000}{3,000,000} = 30\%$ of the firm and the post-tran
 
 **Exit Strategy**: It details how investors will eventually realize the return from their investment
 
-## 23.1 Equity Financing for Private Comp. {.smaller background="#ead1dc" visibility="hidden"}
+
+
+
+
+
+
+
+## 23.1 Equity Financing for Private  {.smaller background="#ead1dc" visibility="hidden"}
 
 **Problem**
 
@@ -423,7 +475,7 @@ In addition to common shares, your firm raised 10 million in Series A financing 
 
 
 
-##  {.smaller background="#ead1dc" }
+##  {.smaller background="#FFFFFF" }
 
 ::: {style="font-size: 40%; text-align: right;"}
 Key: *module1_slide2*
@@ -432,15 +484,15 @@ Key: *module1_slide2*
 
 {{< include "num/module1_num_q3_class.qmd" >}}
 
-{{< include "../submit-to-sheets.html" >}}
-
+```{=html}
+<!-- <div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div> -->
+```
 
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
 </div>
-
-
-
 
 
 
@@ -480,6 +532,11 @@ An investment banking firm that manages a security issuance and designs its stru
 . . .
 
 **Auction IPO**: A method of selling new issues directly to the public rather than setting a price itself and then allocating shares to buyers, the underwriter in an auction IPO takes bids from investors and then sets the price that clears the market.
+
+
+
+
+
 
 ## 23.2 The Initial Public Offering {.smaller background="#d9ead3"}
 
@@ -695,9 +752,9 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 
 
-# 23.4 The Seasoned Equity Offering {.smaller background="#f1f2c9"}
+# 23.4  Seasoned Equity Offering {.smaller background="#f1f2c9"}
 
-## 23.4 The Seasoned Equity Offering {.smaller background="#f1f2c9"}
+## 23.4  Seasoned Equity Offering {.smaller background="#f1f2c9"}
 
 **Seasoned Equity Offering (SEO)**
 
@@ -723,7 +780,7 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 
 
-## 23.4 The Seasoned Equity Offering {.smaller background="#f1f2c9"}
+## 23.4  Seasoned Equity Offering {.smaller background="#f1f2c9"}
 
 **There are two types of seasoned equity offerings.**
 
@@ -740,7 +797,7 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 
 
-## 23.4 The Seasoned Equity Offering {.smaller background="#f1f2c9"}
+## 23.4  Seasoned Equity Offering {.smaller background="#f1f2c9"}
 
 **Rights offers protect existing shareholders from underpricing.**
 
@@ -759,7 +816,7 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 
 
-## 23.4 The Seasoned Equity Offering {.smaller background="#f1f2c9"}
+## 23.4  Seasoned Equity Offering {.smaller background="#f1f2c9"}
 
 **Price Reaction**
 
@@ -773,6 +830,38 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 
 
+## {.smaller background="#FFFFFF" }
+
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module1_question3*
+<input type="hidden" id="slide-id" value="module1_question3">
+:::
+
+{{< include "num/module1_num_q7.qmd" >}}
+
+{{< include "../submit-to-sheets.html" >}}
+
+
+```{=html}
+<!-- <div style="text-align: right;">
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
+
+
+<div class="enable-timer" data-timer="60" data-pin="1234"></div>
+
+
+</div> -->
+```
+
+
+
+
+
+ 
 
 
 
@@ -781,12 +870,7 @@ Although shares of IPOs generally perform very well immediately following the pu
 
 
 
-
-
-
-
-
-## Now it is your turn... {.smaller background="#191f36"}
+## Now it is your turn... { background="#191f36"}
 
 
 <div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
@@ -856,7 +940,8 @@ Although shares of IPOs generally perform very well immediately following the pu
 ::: {.column width="50%"}
 ### Thank You!
 
-![](../figs/qa2.png){width="110%" style="margin-top: 10px;"}
+![](../figs/qa2.png){width="110%" style="box-shadow: none;"}
+
 :::
 
 ::: {.column width="50%"}
@@ -869,7 +954,6 @@ Although shares of IPOs generally perform very well immediately following the pu
 - 🏠 [Personal Website](https://henriquemartins.net/)  
 :::
 :::
-
 
 
 

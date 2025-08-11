@@ -1,4 +1,129 @@
 <style>
+/* -------------------------------
+   Identidade visual & tipografia
+---------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Lora:wght@400;600&display=swap');
+
+:root{
+  --brand: #1e3d59;      /* títulos */
+  --text:  #2a2a2a;      /* corpo */
+  --muted: #6b7280;      /* texto fraco */
+  --bg-soft: #f6f9ff;    /* fundos suaves */
+  --accent: #4f46e5;     /* links e detalhes */
+  --shadow: 0 6px 18px rgba(20,20,40,.08);
+  --radius: 14px;
+}
+
+/* Base Reveal */
+.reveal {
+  font-family: 'Lora', serif;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.reveal h1, .reveal h2, .reveal h3{
+  font-family: 'Montserrat', sans-serif;
+  color: var(--brand);
+  letter-spacing: .2px;
+}
+.reveal h1{ font-weight: 700; }
+.reveal h2, .reveal h3{ font-weight: 600; }
+
+/* Tamanho confortável para sala de aula */
+.reveal p, .reveal li{ font-size: 28px; }
+.reveal h1{ font-size: 58px; }
+.reveal h2{ font-size: 44px; }
+.reveal h3{ font-size: 36px; }
+
+/* Links discretos */
+.reveal a{ color: var(--accent); text-decoration: none; }
+.reveal a:hover{ text-decoration: underline; }
+
+/* -------------------------------
+   Imagens & separadores
+---------------------------------*/
+.reveal section img{
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.reveal hr{
+  border: none;
+  border-top: 2px dashed rgba(0,0,0,.18);
+  margin: 22px 0;
+}
+
+/* -------------------------------
+   Callouts do Quarto
+---------------------------------*/
+.callout, .callout-note, .callout-tip, .callout-warning {
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow);
+  padding: 16px !important;
+}
+.callout-note    { background: #eef4ff !important; border-left: 6px solid #3b82f6 !important; }
+.callout-tip     { background: #effdf4 !important; border-left: 6px solid #22c55e !important; }
+.callout-warning { background: #fff7ed !important; border-left: 6px solid #f97316 !important; }
+
+/* Um “card” leve para listas/definições (opcional: use class="card") */
+.reveal .card{
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 22px;
+}
+
+/* Destaque em <mark> para palavras-chave */
+.reveal mark{
+  background: linear-gradient(transparent 60%, #ffeeb3 60%);
+  padding: 0 .1em;
+}
+
+/* Tabelas mais limpas */
+.reveal table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 24px;
+}
+.reveal table th,
+.reveal table td{
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.reveal table th{
+  background: #f3f6ff;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--brand);
+}
+
+/* -------------------------------
+   Barra de progresso e números
+---------------------------------*/
+.reveal .progress{
+  height: 6px;
+  background: rgba(0,0,0,.06);
+}
+.reveal .progress span{
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+}
+
+/* Número do slide mais sutil */
+.reveal .slide-number{
+  background: rgba(255,255,255,.9);
+  color: var(--brand);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 6px 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* -------------------------------
+   Logo & botão de like (mantidos)
+---------------------------------*/
 /* Botão de like fixo */
 .like-float {
   position: absolute;
@@ -7,17 +132,60 @@
   z-index: 9999;
 }
 
+/* Efeito de hover suave no botão de like, se for um <button> */
+.like-float button{
+  transition: transform .12s ease, box-shadow .12s ease;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+.like-float button:hover{
+  transform: translateY(-1px) scale(1.02);
+}
+
 /* Ajuste do logo nos slides */
 .reveal .slide-logo {
   position: absolute;
-  top: 15px;
-  left: 20px;
-  height: 90px !important;
+  top: 16px;
+  left: 22px;
+  height: 86px !important;
   width: auto !important;
   max-width: 200px !important;
   max-height: 90px !important;
   z-index: 2;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.08));
 }
+
+/* Esconder o logo especificamente no título (se preferir, complementa com seu JS) */
+.reveal section[data-state="title-slide"] .slide-logo{ display: none !important; }
+
+/* -------------------------------
+   Pequenos refinamentos
+---------------------------------*/
+/* Lista com respiro maior */
+.reveal ul li, .reveal ol li{ margin: 10px 0; }
+
+/* “Key takeaways” (use class="keytake") */
+.reveal .keytake{
+  background: var(--bg-soft);
+  border-left: 6px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+/* Botões de chamada para ação (seus links finais) */
+.reveal a.cta {
+  display: block;
+  text-align: center; 
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  background: #ffffff;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  margin: 8px 0;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.reveal a.cta:hover{ transform: translateY(-1px); }
 </style>
 
 

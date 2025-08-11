@@ -18,8 +18,8 @@ v5 <- 3
 # Cálculos
 total_shares <- v2 + v3 + v5
 price_per_share <- v4 / v5
-post_money <- round(total_shares * price_per_share, 3)
-vc_pct <- round(v5 / total_shares * 100, 3)
+post_money <- round(total_shares * price_per_share, 2)
+vc_pct <- round(v5 / total_shares * 100, 2)
 
 ```
 

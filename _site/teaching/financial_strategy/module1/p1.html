@@ -44,8 +44,6 @@
   <link href="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -333,17 +331,352 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
-<meta name="twitter:description" content="Part 1 - ch.23 Raising Equity Capital">
+  <!-- === login-start.html (com proteção para páginas e slides + turbo) === -->
+
+  <style>
+    /* Card padrão (páginas normais) */
+    #login-form {
+      max-width: 300px;
+      margin: 100px auto 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-family: sans-serif;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      box-sizing: border-box;
+    }
+    #login-form input {
+      width: 100%; padding: 10px; margin: 6px 0;
+      border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;
+    }
+    #login-form button {
+      width: 100%; padding: 10px; margin-top: 10px;
+      background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
+    }
+    #login-error { color: red; text-align: center; margin-top: 10px; }
+    #loading-msg{ display:none; text-align:center; margin-top:10px; color:gray; }
+
+    /* Conteúdo de páginas normais (fica atrás do login até destravar) */
+    html.locked #after-login-content,
+    body.locked #after-login-content { display: none !important; }
+
+    /* Slides (Reveal.js): desfoca deck e bloqueia interação */
+    html.locked.reveal-page .reveal,
+    body.locked.reveal-page .reveal { filter: blur(4px); pointer-events: none; user-select: none; }
+
+    #login-scrim { display:none; }
+    html.locked.reveal-page #login-scrim,
+    body.locked.reveal-page #login-scrim{
+      display:block; position:fixed; inset:0; background:rgba(255,255,255,.92); z-index:9998;
+    }
+    html.locked.reveal-page #login-form,
+    body.locked.reveal-page #login-form{
+      position: fixed; top:50%; left:50%; transform: translate(-50%,-50%);
+      margin:0; max-width:340px; width:min(340px,92vw); z-index:9999;
+    }
+
+    /* (Opcional) Para ocultar totalmente os slides em vez de só blur, descomente: */
+    /* html.locked.reveal-page .reveal .slides,
+       body.locked.reveal-page .reveal .slides { visibility: hidden; } */
+
+    /* Oculta o "Welcome" nos slides */
+    .reveal-page #welcome-message { display: none !important; }
+
+    /* Remember me */
+    .remember-row{
+      display:flex; align-items:center; gap:8px; margin-top:6px; font-size:.95rem; color:#444; white-space:nowrap;
+    }
+    .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
+  </style>
+  <style>
+    /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim
+       enquanto locked. Evita vazamentos quando o Quarto cria contêineres intermediários. */
+    html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
+      display: none !important;
+    }
+
+    /* Garante que o form fique acima de qualquer layout do tema */
+    #login-form { position: relative; z-index: 10000; }
+    #login-scrim { z-index: 9998; }
+  </style>
+
+  <style>
+    /* Scrim e formulário fixos também em páginas NÃO-reveal enquanto locked */
+    html.locked #login-scrim,
+    body.locked #login-scrim {
+      display: block !important;
+      position: fixed !important;
+      inset: 0 !important;
+      background: #ffffff !important;   /* pode usar rgba(255,255,255,.96) se quiser só "lavar" */
+      z-index: 2147483646 !important;    /* bem acima de qualquer layout do tema */
+    }
+
+    html.locked #login-form,
+    body.locked #login-form {
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      margin: 0 !important;
+      max-width: 340px !important;
+      width: min(340px, 92vw) !important;
+      z-index: 2147483647 !important;    /* acima do scrim */
+    }
+
+    /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
+    html.locked, body.locked { overflow: hidden !important; }
+  </style>
+
+  <!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
+  <script>
+    (function(){
+      const addLocked = el => { if (el && !el.classList.contains('locked')) el.classList.add('locked'); };
+      // aplica de imediato no <html>
+      addLocked(document.documentElement);
+      // aplica no <body> assim que estiver disponível
+      if (document.body) { addLocked(document.body); }
+      else { document.addEventListener('DOMContentLoaded', () => addLocked(document.body)); }
+
+      // preconnect para acelerar a 1ª chamada ao GAS
+      const l=document.createElement('link'); l.rel='preconnect'; l.href='https://script.google.com'; document.head.appendChild(l);
+    })();
+  </script>
+
+  <!-- shim seguro: define onLoginSuccess se ainda não existir -->
+  <script>
+    if (typeof window.onLoginSuccess !== 'function') {
+      window.onLoginSuccess = function(studentId){
+        try {
+          window.studentId = String(studentId || '').trim();
+          localStorage.setItem('studentId', window.studentId);
+          document.dispatchEvent(new CustomEvent('auth:login', { detail: { studentId: window.studentId } }));
+          console.debug('[Login] onLoginSuccess →', window.studentId);
+        } catch(e) {
+          console.warn('onLoginSuccess shim warn:', e);
+        }
+      };
+    }
+  </script>
+
+  <meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
+<meta name="twitter:description" content="Module 1 - ch.23 Raising Equity Capital">
 <meta name="twitter:card" content="summary">
-</head>
-<body class="quarto-light">
+</head><body class="quarto-light"><form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
+    <h3 style="text-align:center;">Login</h3>
+    <input type="text" id="username" placeholder="Username" required="">
+    <input type="password" id="password" placeholder="Password" required="">
+    <button type="submit" id="login-submit">Enter</button>
+    <div id="loading-msg"></div>
+    <div id="login-error"></div>
+  </form>
+
+  <div id="login-scrim" aria-hidden="true"></div>
+
+  <div id="after-login-content" style="display:none;">
+    <h4 id="welcome-message" style="text-align:center; display:none; margin-top:10px; font-size:1.8em; color:#333;"></h4>
+  </div>
+
+  <script>
+    /***** CONFIG *****/
+    const REMEMBER_PASSWORD  = true;
+    const GAS_URL            = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
+    const SESSION_MAX_HOURS  = 8;     // validade do "lembrado"
+    const FAST_WINDOW_HOURS  = 2;     // turbo: libera instantâneo
+    const VALIDATE_TIMEOUTMS = 900;   // timeout da validação
+
+    /***** Marca slides (se houver Reveal) *****/
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.querySelector('.reveal')) document.body.classList.add('reveal-page');
+    });
+
+    /***** Injeta Remember me (default marcado) *****/
+    document.addEventListener('DOMContentLoaded', () => {
+      const submitBtn = document.getElementById('login-submit');
+      if (submitBtn && !document.querySelector('.remember-row')){
+        const row = document.createElement('div');
+        row.className = 'remember-row';
+        const label = document.createElement('label');
+        const cb = document.createElement('input');
+        cb.type='checkbox'; cb.id='remember-me'; cb.checked=true;
+        label.appendChild(cb); label.appendChild(document.createTextNode('Remember me'));
+        row.appendChild(label);
+        submitBtn.parentNode.insertBefore(row, submitBtn);
+      }
+      // pré-preenche
+      try{
+        const u = localStorage.getItem('fs_user');
+        const p = localStorage.getItem('fs_pass');
+        if (u) document.getElementById('username').value = u;
+        if (REMEMBER_PASSWORD && p) document.getElementById('password').value = p;
+      }catch(_){}
+    });
+
+    /***** Storage helpers *****/
+    function saveRemember(u,p,checked){
+      try{
+        if(checked){
+          localStorage.setItem('fs_user', u);
+          localStorage.setItem('fs_last_login_at', Date.now().toString());
+          if(REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
+        }else{
+          localStorage.removeItem('fs_user'); localStorage.removeItem('fs_pass'); localStorage.removeItem('fs_last_login_at');
+        }
+      }catch(_){}
+    }
+    function getRemember(){
+      try{
+        const u=localStorage.getItem('fs_user');
+        const p=localStorage.getItem('fs_pass');
+        const t=parseInt(localStorage.getItem('fs_last_login_at')||'0',10);
+        if(!u||!t) return null; return {u,p,t};
+      }catch(_){ return null; }
+    }
+    const within=(ts,h)=> (Date.now()-ts) < h*3600*1000;
+
+    /***** GAS helpers *****/
+    function logWithImage(u,p,page){
+      const img=new Image(); img.referrerPolicy='no-referrer';
+      img.src=`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}&t=${Date.now()}`;
+    }
+    async function gasAuth(u,p,page,timeoutMs){
+      const ctrl=new AbortController(); const timer=setTimeout(()=>ctrl.abort('timeout'), timeoutMs||0);
+      try{
+        const res=await fetch(`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}`, {signal:ctrl.signal, cache:'no-store'});
+        return (await res.text()||'').trim();
+      } finally { clearTimeout(timer); }
+    }
+
+    /***** UI helpers *****/
+    function unlockAs(u){
+      const welcome=document.getElementById('welcome-message');
+      if (welcome && !document.body.classList.contains('reveal-page')){
+        welcome.textContent=`Welcome, ${u}!`; welcome.style.display='block';
+      }
+      document.getElementById('login-form').style.display='none';
+      const after=document.getElementById('after-login-content'); if(after) after.style.display='block';
+
+      // Remover 'locked' de html e body
+      document.documentElement.classList.remove('locked');
+      if (document.body) document.body.classList.remove('locked');
+
+      const scrim=document.getElementById('login-scrim'); if(scrim) scrim.style.display='none';
+    }
+
+    /***** Auto-login com janela turbo (também nos slides) *****/
+    document.addEventListener('DOMContentLoaded', async () => {
+      const saved=getRemember(); if(!saved) return;
+      const page=location.pathname;
+
+      if (within(saved.t, FAST_WINDOW_HOURS)) {
+        // libera já e registra em background
+        unlockAs(saved.u);
+        onLoginSuccess(saved.u); // mantém studentId para outros scripts
+
+        saveRemember(saved.u, saved.p, true);
+        logWithImage(saved.u, saved.p, page);
+
+        // checagem silenciosa (opcional)
+        try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 3000); if(r!=='OK'){ /* se quiser, pode relockar */ } } catch(_) {}
+        return;
+      }
+
+      if (within(saved.t, SESSION_MAX_HOURS)) {
+        const loading=document.getElementById('loading-msg');
+        loading.textContent='Checking saved login...'; loading.style.display='block';
+        try{
+          const r=await gasAuth(saved.u, saved.p, page, VALIDATE_TIMEOUTMS);
+          loading.style.display='none';
+          if(r==='OK'){ unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); }
+        }catch(_){
+          // timeout: libera e registra em background
+          loading.style.display='none';
+          unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); logWithImage(saved.u, saved.p, page);
+        }
+      }
+    });
+
+    /***** Login manual *****/
+    async function validateLogin(rememberOverride){
+      const u=document.getElementById('username').value.trim();
+      const p=document.getElementById('password').value.trim();
+      const cb=document.getElementById('remember-me');
+      const remember = (rememberOverride!==undefined) ? rememberOverride : (cb? cb.checked : true);
+
+      const err=document.getElementById('login-error');
+      const load=document.getElementById('loading-msg');
+      err.textContent=''; load.textContent='Authenticating your credentials. This may take a few seconds...'; load.style.display='block';
+
+      const page=location.pathname;
+      try{
+        const r=await gasAuth(u,p,page,8000);
+        load.style.display='none';
+        if (r==='OK'){ saveRemember(u,p,remember); unlockAs(u); onLoginSuccess(u); }
+        else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
+        else { err.textContent='Missing credentials.'; }
+      }catch(_){
+        load.style.display='none'; err.textContent='Network error. Please try again.';
+      }
+    }
+
+    // Auto preenche e tenta login se já houver credenciais (garante remember=true)
+    document.addEventListener('DOMContentLoaded', ()=>{
+      try{
+        const u=localStorage.getItem('fs_user'); const p=localStorage.getItem('fs_pass');
+        if(u&&p){
+          document.getElementById('username').value=u;
+          document.getElementById('password').value=p;
+          const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
+        }
+      }catch(_){}
+    });
+  </script>
+  <script>
+    // Auto-wrap robusto — apenas para páginas NÃO-Reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        // Se for slide (Reveal), NÃO faz auto-wrap
+        if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) {
+          return;
+        }
+
+        const wrapper = document.getElementById('after-login-content');
+        if (!wrapper) return;
+
+        // Trabalha no contêiner pai (ex.: <main> / .quarto-container)
+        const root = wrapper.parentElement || document.body;
+
+        const loginForm  = document.getElementById('login-form');
+        const loginScrim = document.getElementById('login-scrim');
+
+        const isKeep = (el) =>
+          el === wrapper ||
+          el === loginForm ||
+          el === loginScrim ||
+          el.tagName === 'SCRIPT' ||
+          el.tagName === 'STYLE' ||
+          el.tagName === 'LINK';
+
+        // Move somente os irmãos do wrapper dentro do mesmo contêiner
+        Array.from(root.children).forEach(el => {
+          if (!isKeep(el) && !wrapper.contains(el)) {
+            wrapper.appendChild(el);
+          }
+        });
+      } catch (e) {
+        console.warn('auto-wrap (non-reveal) warn:', e);
+      }
+    });
+  </script>
+
+
+
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" data-background-color="#b1cafa" class="quarto-title-block center">
   <h1 class="title">Estratégia Financeira</h1>
-  <p class="subtitle"><strong>Part 1 - ch.23 Raising Equity Capital</strong></p>
+  <p class="subtitle"><strong>Module 1 - ch.23 Raising Equity Capital</strong></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -351,19 +684,156 @@
 <strong>Henrique C. Martins</strong> 
 </div>
         <p class="quarto-title-affiliation">
-            <strong><a href="https://eaesp.fgv.br/en"><img data-src="../figs/background6.png" width="300"></a></strong>
+            <strong><a href="https://eaesp.fgv.br/en"><img data-src="../figs/background6.png" style="box-shadow: none;" width="300"></a></strong>
           </p>
     </div>
 </div>
 
-  <p class="date">08-08-2025</p>
+  <p class="date">11-08-2025</p>
 </section>
 <section>
 
-<section id="section" class="slide level2" data-background-image="../figs/cha23.png" data-background-size="1300px">
+<section id="section" class="slide level2" data-background="#A91B0D">
+<h2></h2>
+<div title="⚠️ Disclaimer – Virtual HCM Responses">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>⚠️ Disclaimer – Virtual HCM Responses</strong></p>
+</div>
+<div class="callout-content">
+<p>The <strong>Virtual HCM</strong> is powered by <strong>AI</strong> to assist you with course materials.<br>
+While it is trained on the course’s content, <strong>it may occasionally</strong>:</p>
+<ul>
+<li>Misinterpret the question or context.<br>
+</li>
+<li>Generate <strong>inaccurate or incomplete</strong> information.<br>
+</li>
+<li>Provide answers <strong>not explicitly included</strong> in the materials.</li>
+</ul>
+<p><strong>Your responsibility:</strong><br>
+Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.</p>
+<p>💡 <em>Use Virtual HCM as a <strong>learning aid</strong>, not as the sole source of truth.</em></p>
+<div class="like-container">
+<p><button class="like-btn" title="Click if you got this"> ✅ <span class="like-text">Got it</span> <span class="like-count">(0)</span> </button></p>
+</div>
+<script>
+(function() {
+  const root = document.currentScript && document.currentScript.previousElementSibling;
+  if (!root || !root.matches('.like-container')) return;
+  const btn = root.querySelector('.like-btn');
+  const textSpan = btn && btn.querySelector('.like-text');
+  const countSpan = btn && btn.querySelector('.like-count');
+  if (!btn || !textSpan || !countSpan) return;
+
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxfBAS6Bhm9CwTH8OKjSwPuffvcm7DkdfAc0EeatJBHSSzStLWv-6U7-W4ZgvGdmusoeA/exec";
+
+  function getSlideHashForSection(sec) {
+    if (sec && sec.id) return `#/${sec.id}`;
+    if (window.Reveal && Reveal.getIndices) {
+      const idx = Reveal.getIndices(sec || Reveal.getCurrentSlide());
+      if (idx && typeof idx.h === 'number') {
+        return typeof idx.v === 'number' && idx.v > 0 ? `#/${idx.h}/${idx.v}` : `#/${idx.h}`;
+      }
+    }
+    return location.hash || '#';
+  }
+
+  function getSlideURLForThisButton() {
+    const sec = root.closest('section');
+    const hash = getSlideHashForSection(sec);
+    return location.origin + location.pathname + location.search + hash;
+  }
+
+  function pageId() {
+    return getSlideURLForThisButton();
+  }
+
+  function setGotItState() {
+    textSpan.textContent = "Got it ✔";
+    btn.classList.add("liked");
+    btn.title = "You have already confirmed";
+  }
+
+  if (localStorage.getItem(`liked_${pageId()}`)) setGotItState();
+
+  btn.addEventListener("click", () => {
+    const pid = pageId();
+    if (localStorage.getItem(`liked_${pid}`)) return;
+
+    localStorage.setItem(`liked_${pid}`, "true");
+    setGotItState();
+    btn.classList.add("pulse");
+    setTimeout(() => btn.classList.remove("pulse"), 300);
+
+    const currentCount = parseInt(countSpan.textContent.replace(/[^\d]/g, '')) || 0;
+    countSpan.textContent = `(${currentCount + 1})`;
+
+    fetch(`${scriptURL}?like=1&page=${encodeURIComponent(pid)}`)
+      .then(res => res.json())
+      .then(() => updateCount())
+      .catch(err => console.error("Error marking got it:", err));
+  });
+
+  function updateCount() {
+    const pid = pageId();
+    fetch(`${scriptURL}?getLikes=1&page=${encodeURIComponent(pid)}`)
+      .then(res => res.json())
+      .then(data => {
+        const count = data && typeof data.count === 'number' ? data.count : 0;
+        countSpan.textContent = `(${count})`;
+        if (localStorage.getItem(`liked_${pid}`)) setGotItState();
+      })
+      .catch(() => {});
+  }
+
+  updateCount();
+  const interval = setInterval(updateCount, 3000);
+
+  const obs = new MutationObserver(() => {
+    if (!document.body.contains(root)) {
+      clearInterval(interval);
+      obs.disconnect();
+    }
+  });
+  obs.observe(document.body, { childList: true, subtree: true });
+
+  if (window.Reveal && Reveal.addEventListener) {
+    Reveal.addEventListener('slidechanged', updateCount);
+  }
+})();
+</script>
+<style>
+.like-container { position: relative; margin-top: 20px; text-align: right; }
+.like-btn {
+  background-color: #f0fdf4; border: 2px solid #86efac; color: #15803d;
+  padding: 8px 16px; font-size: 16px; border-radius: 25px;
+  display: inline-flex; align-items: center; gap: 8px; font-weight: 500;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.08);
+  transition: background-color 0.2s, color 0.2s, opacity 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+.like-btn:hover { background-color: #dcfce7; border-color: #4ade80; color: #166534; }
+.like-btn.liked { background-color: #f0f0f0; color: #888; border-color: #ddd; opacity: 0.6; cursor: default; }
+.like-btn .like-count {
+  background-color: #86efac; color: #064e3b; padding: 2px 8px; border-radius: 12px;
+  font-size: 14px; font-weight: bold;
+}
+@keyframes pulse { 0% {transform:scale(1)} 50% {transform:scale(1.08)} 100% {transform:scale(1)} }
+.pulse { animation: pulse 0.3s ease; }
+</style>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="slide level2" data-background-image="../figs/cha23.png" data-background-size="1300px">
 <h2></h2>
 </section>
-<section id="chapter-outline" class="slide level2">
+<section id="chapter-outline" class="slide level2" style="color: #000;">
 <h2>Chapter Outline</h2>
 <p>23.1 Equity Financing for Private Companies</p>
 <p>23.2 The Initial Public Offering</p>
@@ -373,118 +843,21 @@
 
 
 <section>
-<section id="equity-financing-for-private-comp." class="title-slide slide level1 smaller center" data-background="#ead1dc">
-<h1>23.1 Equity Financing for Private Comp.</h1>
+<section id="equity-financing-for-private" class="title-slide slide level1 smaller center" data-background="#ead1dc">
+<h1>23.1 Equity Financing for Private</h1>
 
 </section>
-<section id="equity-financing-for-private-comp.-1" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-1" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <ul>
 <li>The initial capital that is required to start a business is usually provided by the entrepreneur.</li>
 <li>Often, a private company must seek outside sources that can provide additional capital for growth.</li>
 <li>It is important to understand how the infusion of outside capital will affect the control of the company.</li>
 </ul>
-<div class="like-float">
-<script>
-    const pageId = "mod3_slide4";
-  </script>
-<div class="like-container">
-<p><button class="like-btn"> ❤️ <span class="like-count">0</span> <span class="label">Curtir</span> </button></p>
-</div>
-<script>
-(function() {
-  if (typeof pageId === "undefined") return;
-
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxfBAS6Bhm9CwTH8OKjSwPuffvcm7DkdfAc0EeatJBHSSzStLWv-6U7-W4ZgvGdmusoeA/exec";
-  const btn = document.querySelector(".like-container .like-btn");
-  const countSpan = btn.querySelector(".like-count");
-  const labelSpan = btn.querySelector(".label");
-
-  if (!btn || !countSpan || !labelSpan) return;
-
-  if (localStorage.getItem(`liked_${pageId}`)) {
-    btn.disabled = true;
-    btn.classList.add("liked");
-    labelSpan.textContent = "Curtiu";
-  }
-
-  btn.addEventListener("click", () => {
-    if (!localStorage.getItem(`liked_${pageId}`)) {
-      fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify({ page: pageId }),
-        headers: { "Content-Type": "application/json" }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === "liked") {
-          localStorage.setItem(`liked_${pageId}`, "true");
-          btn.disabled = true;
-          btn.classList.add("liked");
-          labelSpan.textContent = "Curtiu";
-          updateCount();
-        }
-      });
-    }
-  });
-
-  function updateCount() {
-    fetch(`${scriptURL}?getLikes=true&page=${pageId}`)
-      .then(res => res.json())
-      .then(data => {
-        const count = data.count || 0;
-        countSpan.textContent = count;
-      });
-  }
-
-  updateCount();
-})();
-</script>
-<style>
-.like-container {
-  margin: 20px 0;
-  font-family: sans-serif;
-}
-
-.like-btn {
-  background-color: #f5f5f5;
-  border: 2px solid #ccc;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.3s ease;
-}
-
-.like-btn:hover {
-  background-color: #eaeaea;
-}
-
-.like-btn:disabled {
-  cursor: default;
-  opacity: 0.75;
-}
-
-.like-btn.liked {
-  border-color: #ff4081;
-  background-color: #ffeaf3;
-}
-</style>
-</div>
-<style>
-.like-float {
-  position: absolute;
-  bottom: 20px;
-  right: 30px;
-  z-index: 9999;
-}
-</style>
+<!-- Define unique ID for this slide -->
 </section>
-<section id="equity-financing-for-private-comp.-2" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-2" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Sources of funding: Angel Investors</strong></p>
 <ul>
 <li>Individual Investors who buy equity in small private firms. Angel investors are often rich, successful entrepreneurs themselves who are willing to help new companies get started in exchange for a share of the business.</li>
@@ -496,8 +869,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="equity-financing-for-private-comp.-3" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-3" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Venture Capital Firm</strong></p>
 <p>A limited partnership that specializes in raising money to invest in the private equity of young firms.</p>
 <p><strong>Venture Capitalists</strong></p>
@@ -512,12 +885,12 @@
 </ul>
 </div>
 </section>
-<section id="section-2" class="slide level2 smaller" data-background="#ead1dc">
+<section id="section-3" class="slide level2 smaller" data-background="#ead1dc">
 <h2></h2>
 
 <img data-src="../figs/bm_23_1.jpg" class="r-stretch"></section>
-<section id="equity-financing-for-private-comp.-4" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-4" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Private Equity Firms</strong></p>
 <ul>
 <li>Organized very much like a venture capital firm, but it <strong>invests in the equity of existing privately held firms</strong> rather than start-up companies.</li>
@@ -527,12 +900,12 @@
 <li>Market value of PE firms greater than VC.</li>
 </ul>
 </section>
-<section id="section-3" class="slide level2 smaller" data-background="#ead1dc">
+<section id="section-4" class="slide level2 smaller" data-background="#ead1dc">
 <h2></h2>
 
 <img data-src="../figs/bm_23_2.jpg" class="r-stretch"></section>
-<section id="equity-financing-for-private-comp.-5" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-5" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Institutional Investors</strong></p>
 <ul>
 <li>Institutional investors, such as pension funds, insurance companies, endowments, and foundations, are <strong>active investors in private companies</strong>.</li>
@@ -540,8 +913,8 @@
 </ul>
 <p>Ex. Blackrock funds, Vanguard funds.</p>
 </section>
-<section id="equity-financing-for-private-comp.-6" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-6" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Corporate Investors</strong></p>
 <ul>
 <li>A corporation that invests in private companies.</li>
@@ -550,8 +923,8 @@
 </ul>
 <p>Ex. Google.</p>
 </section>
-<section id="equity-financing-for-private-comp.-7" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-7" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Venture capital investing</strong></p>
 <p>When a company founder decides to sell equity to outside investors for the first time, <strong>it is common practice for private companies to issue preferred stock rather than common stock to raise capital</strong>.</p>
 <p><strong>Preferred Stock</strong></p>
@@ -564,16 +937,16 @@
 <p>Preferred stock that gives the owner an option to convert it into common stock on some future date.</p>
 </div>
 </section>
-<section id="equity-financing-for-private-comp.-8" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-8" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <ul>
 <li><p>Each time the firm raises money is referred to as a funding round, and each round will have its own set of securities with special terms and provisions.</p></li>
 <li><p>After a potential initial “seed round,” it is common to name the securities alphabetically, starting with Series A, Series B, etc</p></li>
 <li><p>Only then, the company has a market value.</p></li>
 </ul>
 </section>
-<section id="equity-financing-for-private-comp.-9" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-9" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Book’s example.</strong></p>
 <ul>
 <li>Real Networks, which was founded by Robert Glaser in 1993, with an investment of approximately 1 million by Glaser.</li>
@@ -585,8 +958,8 @@
 <p><img data-src="../figs/bm_23_ex.png"></p>
 </center>
 </section>
-<section id="equity-financing-for-private-comp.-10" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-10" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p><strong>Pre-Money Valuation</strong></p>
 <ul>
 <li>At the issuance of new equity, the value of the firm’s prior shares outstanding at the price in the funding round
@@ -602,8 +975,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="equity-financing-for-private-comp.-11" class="slide level2 smaller" data-background="#ead1dc">
-<h2>23.1 Equity Financing for Private Comp.</h2>
+<section id="equity-financing-for-private-11" class="slide level2 smaller" data-background="#ead1dc">
+<h2>23.1 Equity Financing for Private</h2>
 <p>Over the next few years, Real Networks raised three more rounds of outside equity in addition to the Series B funding round</p>
 
 <img data-src="../figs/bm_23_ex2.png" class="r-stretch"></section>
@@ -613,7 +986,7 @@
 
 
 
-<section id="section-4" class="slide level2 smaller" data-background="#ead1dc">
+<section id="section-5" class="slide level2 smaller" data-background="#FFFFFF">
 <h2></h2>
 <div style="font-size: 40%; text-align: right;">
 <p>Key: <em>module1_slide2</em> <input type="hidden" id="slide-id" value="module1_slide2"></p>
@@ -622,149 +995,148 @@
 <p>You founded a firm three years ago. You started with $0.3 million, which gave you 1.5 million shares. You later sold 1 million shares to angel investors. Now, a VC firm wants to invest $6.7 million in exchange for 3 million new shares.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-<label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q3a" name="module1_num_q3a" placeholder="Enter value" style="width: 120px;" data-correct-answer="12.283" data-tolerance="0.1">
+<label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="module1_num_q3a" name="module1_num_q3a" placeholder="Enter value" style="width: 120px;" data-correct-answer="12.28" data-tolerance="0.1">
 </form>
 <div id="feedback-module1_num_q3a" class="feedback" data-status="" style="display:none;">
-<p>✅ Post-money = Total shares × Price per share = (5.5) × (2.23) = <strong>12.283 million</strong></p>
+<p>✅ Post-money = Total shares × Price per share = (5.5) × (2.23) = <strong>12.28 million</strong></p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-<label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label> <input type="number" id="module1_num_q3b" name="module1_num_q3b" placeholder="Enter %" style="width: 100px;" data-correct-answer="54.545" data-tolerance="0.1">
+<label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label> <input type="number" id="module1_num_q3b" name="module1_num_q3b" placeholder="Enter %" style="width: 100px;" data-correct-answer="54.55" data-tolerance="0.1">
 </form>
 <div id="feedback-module1_num_q3b" class="feedback" data-status="" style="display:none;">
-<p>✅ VC Ownership = 3 / (5.5) × 100 = <strong>54.545%</strong></p>
+<p>✅ VC Ownership = 3 / (5.5) × 100 = <strong>54.55%</strong></p>
 </div>
 </div>
+<!-- <div style="text-align: right;">
 <script>
-async function submitAnswers() {
-  const studentId = document.getElementById("student-id")?.value.trim();
-  const password = document.getElementById("student-password")?.value.trim();
+// Função auxiliar para verificar e definir o status de uma questão.
+function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance = 0) {
+  const feedbackDiv = document.getElementById(feedbackDivId);
+  if (!feedbackDiv) return;
 
-  if (!studentId || !password) {
-    alert("❗Please enter both your student ID and password.");
-    return;
+  let isCorrect = false;
+
+  // Trata respostas numéricas com tolerância
+ if (typeof correctAnswer === 'number' && typeof userAnswer === 'number' && !isNaN(userAnswer)) {
+    const lowerBound = correctAnswer - tolerance;
+    const upperBound = correctAnswer + tolerance;
+    isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
+  } else if (typeof userAnswer === 'string') {
+    // Para respostas de texto (T/F, Múltipla Escolha)
+    isCorrect = (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase());
   }
+  // Adicione outras lógicas de comparação aqui se necessário (ex: arrays para múltiplos checkboxes)
 
-  const answers = {};
-
-  // T/F and numeric inputs
-  document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
-    const name = input.name || input.id;
-      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
-      const value = input.value.trim();
-      const correct = input.dataset.correctAnswer;
-      answers[name] = correct !== undefined ? { value, correct } : value;
-    }
-  });
-
-// Radio buttons (MCQ)
-const radioNames = new Set();
-document.querySelectorAll('input[type="radio"]').forEach(input => {
-  if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
-    radioNames.add(input.name);
-  }
-});
-
-radioNames.forEach(name => {
-  const selected = document.querySelector(`input[name="${name}"]:checked`);
-  const form = document.querySelector(`form input[name="${name}"]`)?.closest("form");
-  const correct = form?.dataset.correctAnswer;
-
-  if (selected) {
-    answers[name] = correct !== undefined ? { value: selected.value, correct } : selected.value;
+  if (isCorrect) {
+    feedbackDiv.dataset.status = "correct";
   } else {
-    answers[name] = "";
+    feedbackDiv.dataset.status = "incorrect";
   }
-});
+  feedbackDiv.style.display = "none"; // Mantém o feedback oculto
+}
 
-
-  // Long answer questions
-  document.querySelectorAll('textarea[id^="module"]').forEach(textarea => {
-    const name = textarea.id;
-    if (name) {
-      answers[name] = textarea.value.trim();
+// Função para obter a resposta de um grupo de radio buttons
+function getSelectedRadioValue(name) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
+    if (radios.length > 0) {
+        return radios[0].value;
     }
-  });
+    return ''; // Retorna string vazia se nada for selecionado
+}
 
-  const slideId = document.getElementById("slide-id")?.value || "unknown";
+function toggleFeedback() {
+  const questionBlocks = document.querySelectorAll('.question-block');
+  const feedbacks = document.querySelectorAll('.feedback');
+  const scoreDiv = document.getElementById('score-summary');
+  const toggleButton = document.getElementById('toggle-feedback-btn');
 
-  const payload = {
-    studentId,
-    password,
-    timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-    slide: slideId,
-    answers
-  };
+  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
 
-  // Save in memory to allow download
-  window.lastSubmittedAnswers = payload;
+  if (showing) {
+    // Esconder feedback
+    feedbacks.forEach(f => {
+      f.style.display = 'none';
+      f.style.color = 'black'; // Reseta a cor ao esconder
+    });
+    scoreDiv.textContent = '';
+    toggleButton.textContent = 'Show Feedback';
+  } else {
+    // Mostrar feedback
+    let correctCount = 0;
+    let totalQuestions = 0;
 
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "text/plain" }
+    questionBlocks.forEach(block => {
+      totalQuestions++;
+      const textInput = block.querySelector('input[type="text"]');
+      const numberInput = block.querySelector('input[type="number"]'); // Novo: input numérico
+      const form = block.querySelector('form');
+
+      let questionId, userAnswer, correctAnswer, tolerance = 0;
+      let feedbackDivId;
+
+      if (textInput && textInput.dataset.correctAnswer) {
+        // Questão de texto (T/F)
+        questionId = textInput.id;
+        userAnswer = textInput.value;
+        correctAnswer = textInput.dataset.correctAnswer;
+      } else if (numberInput && numberInput.dataset.correctAnswer) {
+        // Questão numérica
+        questionId = numberInput.id;
+        // Converte para número. Se não for um número válido, NaN.
+        userAnswer = parseFloat(numberInput.value);
+        correctAnswer = parseFloat(numberInput.dataset.correctAnswer);
+        if (numberInput.dataset.tolerance) {
+          tolerance = parseFloat(numberInput.dataset.tolerance);
+        }
+        // Se a resposta do usuário não for um número válido, trate como incorreta
+        if (isNaN(userAnswer)) {
+             userAnswer = null; // Mantém como valor numérico inválido
+        }
+      } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
+        // Questão de múltipla escolha (radio)
+        questionId = form.querySelector('input[type="radio"]').name;
+        userAnswer = getSelectedRadioValue(questionId);
+        correctAnswer = form.dataset.correctAnswer;
+      } else {
+        // Se não for um tipo de questão reconhecido ou não tem resposta correta
+        totalQuestions--; // Não conta esta questão no total se não puder ser avaliada
+        return; // Pula para a próxima questão
+      }
+
+      feedbackDivId = 'feedback-' + questionId;
+      const feedbackDiv = document.getElementById(feedbackDivId);
+
+      if (feedbackDiv) { // Apenas processa se há um feedback div
+        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance);
+
+        // Agora, exibe e colore o feedback após a verificação
+        if (feedbackDiv.dataset.status === 'correct') {
+          feedbackDiv.style.color = 'green';
+          correctCount++;
+        } else if (feedbackDiv.dataset.status === 'incorrect') {
+          feedbackDiv.style.color = 'red';
+        } else {
+          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
+        }
+        feedbackDiv.style.display = 'block'; // Exibe o feedback
+      }
     });
 
-    const result = await response.json();
-    if (result.success) {
-      alert("✅ Your answers were submitted successfully!");
-    } else {
-      alert("❌ Submission failed: " + (result.message || "Unknown error."));
-    }
-  } catch (error) {
-    alert("❌ Submission error: " + error.message);
+    scoreDiv.textContent = `✅  You answered ${correctCount} out of  ${totalQuestions}  correctly.`;
+    toggleButton.textContent = 'Hide Feedback';
   }
-}
-
-
-function downloadAnswersAsText() {
-  if (!window.lastSubmittedAnswers) {
-    alert("⚠️ No answers available to download yet.");
-    return;
-  }
-
-  const payload = window.lastSubmittedAnswers;
-  let text = "📝 Student Answers Summary\n\n";
-  text += `Student ID: ${payload.studentId}\n`;
-  text += `Slide: ${payload.slide}\n`;
-  text += `Timestamp: ${payload.timestamp}\n\n`;
-  text += "Answers:\n";
-
-  for (const [questionId, entry] of Object.entries(payload.answers)) {
-    if (typeof entry === 'object' && entry !== null) {
-      text += `- ${questionId}: ${entry.value}\n`; // omit correct answer
-    } else {
-      text += `- ${questionId}: ${entry}\n`;
-    }
-  }
-
-  const blob = new Blob([text], { type: "text/plain" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-const safeTimestamp = payload.timestamp.replace(/[/:\s]/g, "-");
-link.download = `${payload.studentId}_${payload.slide}_${safeTimestamp}_answers.txt`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
 }
 </script>
-<!-- Login Fields -->
-<div style="margin-bottom: 10px;">
-<p><label><strong>Student ID:</strong></label> <input type="text" id="student-id" placeholder="Enter your ID"></p>
-</div>
-<div style="margin-bottom: 20px;">
-<p><label><strong>Password:</strong></label> <input type="password" id="student-password" placeholder="Enter your password"></p>
-</div>
-<!-- Submit Button -->
-<button onclick="submitAnswers()" style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
-Submit Answers
+
+<button id="toggle-feedback-btn" onclick="toggleFeedback()"
+  style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+  Show Feedback
 </button>
-<!-- Download Button -->
-<button onclick="downloadAnswersAsText()" style="background-color:#007bff; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer; margin-left: 10px;">
-📄 Download My Answers (TXT)
-</button>
+<div id="score-summary" style="margin-top: 15px; font-weight: bold;"></div>
+
+</div> -->
 <div style="text-align: right;">
 <script>
 // Função auxiliar para verificar e definir o status de uma questão.
@@ -1017,7 +1389,7 @@ Show Feedback
 <li>Another striking feature of the data in the following figure is that while the average dollar volume of IPOs since 2000 has been similar to that in the 1990s, the average number of IPOs per year has fallen significantly.</li>
 </ul>
 </section>
-<section id="section-5" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-6" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="../figs/bm_23_5.jpg" class="r-stretch"></section>
@@ -1031,7 +1403,7 @@ Show Feedback
 <li>One possible explanation is that by charging lower fees, an underwriter may risk signaling that it is not the same quality as its higher priced competitors.</li>
 </ul>
 </section>
-<section id="section-6" class="slide level2 smaller" data-background="#FFD6A4">
+<section id="section-7" class="slide level2 smaller" data-background="#FFD6A4">
 <h2></h2>
 
 <img data-src="../figs/bm_23_6.jpg" class="r-stretch"></section>
@@ -1041,12 +1413,12 @@ Show Feedback
 <p>Although shares of IPOs generally perform very well immediately following the public offering, it has been shown that newly listed firms subsequently appear to perform relatively poorly over the following three to five years after their IPOs.</p>
 </section></section>
 <section>
-<section id="the-seasoned-equity-offering" class="title-slide slide level1 smaller center" data-background="#f1f2c9">
-<h1>23.4 The Seasoned Equity Offering</h1>
+<section id="seasoned-equity-offering" class="title-slide slide level1 smaller center" data-background="#f1f2c9">
+<h1>23.4 Seasoned Equity Offering</h1>
 
 </section>
-<section id="the-seasoned-equity-offering-1" class="slide level2 smaller" data-background="#f1f2c9">
-<h2>23.4 The Seasoned Equity Offering</h2>
+<section id="seasoned-equity-offering-1" class="slide level2 smaller" data-background="#f1f2c9">
+<h2>23.4 Seasoned Equity Offering</h2>
 <p><strong>Seasoned Equity Offering (SEO)</strong></p>
 <ul>
 <li>When a public company offers new shares for sale</li>
@@ -1059,8 +1431,8 @@ Show Feedback
 <p><strong>Secondary Shares</strong>: Shares sold by existing shareholders in an equity offering.</p>
 </div>
 </section>
-<section id="the-seasoned-equity-offering-2" class="slide level2 smaller" data-background="#f1f2c9">
-<h2>23.4 The Seasoned Equity Offering</h2>
+<section id="seasoned-equity-offering-2" class="slide level2 smaller" data-background="#f1f2c9">
+<h2>23.4 Seasoned Equity Offering</h2>
 <p><strong>There are two types of seasoned equity offerings.</strong></p>
 <p><strong>Cash Offer</strong>: A type of SEO in which a firm offers the new shares to investors at large.</p>
 <p><strong>Rights Offer</strong>: A type of SEO in which a firm offers the new shares only to existing shareholders.</p>
@@ -1068,8 +1440,8 @@ Show Feedback
 <li>Rights offers protect existing shareholders from underpricing.</li>
 </ul>
 </section>
-<section id="the-seasoned-equity-offering-3" class="slide level2 smaller" data-background="#f1f2c9">
-<h2>23.4 The Seasoned Equity Offering</h2>
+<section id="seasoned-equity-offering-3" class="slide level2 smaller" data-background="#f1f2c9">
+<h2>23.4 Seasoned Equity Offering</h2>
 <p><strong>Rights offers protect existing shareholders from underpricing.</strong></p>
 <ul>
 <li>Suppose a firm holds 100 in cash and has 50 shares out. Each share is worth 2.</li>
@@ -1078,8 +1450,8 @@ Show Feedback
 <li>By using a <strong>rights offering</strong> the firm can continue to issue equity without imposing a loss on its current shareholders.</li>
 </ul>
 </section>
-<section id="the-seasoned-equity-offering-4" class="slide level2 smaller" data-background="#f1f2c9">
-<h2>23.4 The Seasoned Equity Offering</h2>
+<section id="seasoned-equity-offering-4" class="slide level2 smaller" data-background="#f1f2c9">
+<h2>23.4 Seasoned Equity Offering</h2>
 <p><strong>Price Reaction</strong></p>
 <ul>
 <li>Researchers have found that, on average, the market greets the news of an SEO with a price decline. This is consistent with the adverse selection discussed in Chapter 16.</li>
@@ -1089,7 +1461,537 @@ Show Feedback
 <li>Although not as costly as IPOs, seasoned offerings are still expensive. Underwriting fees amount to 5% of the proceeds of the issue. Rights offers have lower costs than cash offers.</li>
 </ul>
 </section>
-<section id="now-it-is-your-turn" class="slide level2 smaller" data-background="#191f36">
+<section id="section-8" class="slide level2 smaller" data-background="#FFFFFF">
+<h2></h2>
+<div style="font-size: 40%; text-align: right;">
+<p>Key: <em>module1_question3</em> <input type="hidden" id="slide-id" value="module1_question3"></p>
+</div>
+<h3 id="net-proceeds-in-an-seo">Net Proceeds in an SEO</h3>
+<p>Orion AutoTech executed a seasoned equity offering (SEO) of 12 million shares at $51.94 per share. Of these, 5.8 million were primary (new shares issued by the company) and 6.2 million were secondary (sold by existing investors). Assume the underwriter charges 5.5% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.</p>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
+<label for="module1_num_q7a"><strong>1. The amount of money raised by the company (in million USD) is:</strong></label> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width:110px;" data-correct-answer="284.7" data-tolerance="0.5">
+</form>
+<div id="feedback-module1_num_q7a" class="feedback" data-status="" style="display:none;">
+✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (5.8 × $51.94) − (5.5% × $301.25 million) = $301.25 million − $16.57 million = <strong>$284.7 million</strong>.
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
+<label for="module1_num_q7b"><strong>2. The amount of money raised by the VC (in million USD) is:</strong></label> <input type="number" id="module1_num_q7b" name="module1_num_q7b" placeholder="Value" style="width:110px;" data-correct-answer="304.3" data-tolerance="0.5">
+</form>
+<div id="feedback-module1_num_q7b" class="feedback" data-status="" style="display:none;">
+✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (6.2 × $51.94) − (5.5% × $322.03 million) = $322.03 million − $17.71 million = <strong>$304.3 million</strong>.
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
+<label for="module1_num_q7c"><strong>3. The amount of money the underwriter will earn (in million USD) is:</strong></label> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="34.3" data-tolerance="0.5">
+</form>
+<div id="feedback-module1_num_q7c" class="feedback" data-status="" style="display:none;">
+✅ Fee = (Total Shares × Price) × Fee Rate = (12 × $51.94) × 5.5% = $623.28 million × 5.5% = <strong>$34.3 million</strong>.
+</div>
+</div>
+<!-- =========================================
+     EXERCÍCIO + SUBMIT-TO-SHEETS + RANKING
+     (escopo: somente o slide onde este arquivo
+      está incluído)
+     ========================================= -->
+<!-- (opcional) Inclua o widget do ranking em algum lugar do layout global -->
+<!--  -->
+<!-- Login Fields (locais a este slide) -->
+<div style="margin-bottom: 10px;">
+<p><label><strong>Student ID:</strong></label> <input type="text" id="student-id" placeholder="Enter your ID"></p>
+</div>
+<div style="margin-bottom: 20px;">
+<p><label><strong>Password:</strong></label> <input type="password" id="student-password" placeholder="Enter your password"></p>
+</div>
+<!-- Botões (IDs locais, sem onclick) -->
+<button id="submit-btn" style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+Submit Answers
+</button>
+<button id="download-btn" style="background-color:#007bff; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer; margin-left: 10px;">
+📄 Download My Answers (TXT)
+</button>
+<script>
+// ===== CONFIG DO ENDPOINT (global, sem redeclarar) =====
+window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec";
+</script>
+<script>
+(function(){
+  // Este script está DEPOIS dos botões — os elementos já existem.
+  const scriptEl = document.currentScript;
+  const slideEl  = scriptEl.closest('section') || scriptEl.parentElement || document.body;
+
+  // ===== CONFIG LOCAL =====
+  const ENDPOINT = window.SUBMIT_ENDPOINT;
+  const SUBMIT_LOCK_HOURS = 24;
+
+  // ===== UTIL =====
+  const $qAll = (sel, root=slideEl) => Array.from(root.querySelectorAll(sel));
+  const trim  = (s) => (s||'').toString().trim();
+
+  function getIds() {
+    const studentId = trim(slideEl.querySelector("#student-id")?.value) || "unknown";
+    const slideIdEl = slideEl.querySelector("#slide-id");
+    const slideId   = slideIdEl ? slideIdEl.value : (slideEl.getAttribute('data-slide-key') || "unknown");
+    return { studentId, slideId };
+  }
+  const lockKey = ids => `submit_lock_${ids.studentId}_${ids.slideId}`;
+  function getLockMsLeft(ids){
+    const t = localStorage.getItem(lockKey(ids));
+    if (!t) return 0;
+    const until = parseInt(t,10) + SUBMIT_LOCK_HOURS*60*60*1000;
+    return Math.max(0, until - Date.now());
+  }
+  function isSubmitLocked(ids){ return getLockMsLeft(ids) > 0; }
+  function setSubmitLock(ids){ localStorage.setItem(lockKey(ids), Date.now().toString()); }
+
+  // ===== [GUARD + DEBOUNCE] =====
+  let isSubmittingNow = false;
+  const DEBOUNCE_MS = 3000;
+  const debounceKey = ids => `submit_debounce_${ids.studentId}_${ids.slideId}`;
+  function inDebounce(ids){
+    const t = localStorage.getItem(debounceKey(ids));
+    return t ? (Date.now() - parseInt(t,10)) < DEBOUNCE_MS : false;
+  }
+  function setDebounce(ids){ localStorage.setItem(debounceKey(ids), Date.now().toString()); }
+
+  // ===== UI helpers =====
+  function fmtMMSS(ms){
+    const s = Math.ceil(ms/1000);
+    const mm = String(Math.floor(s/60)).padStart(2,'0');
+    const ss = String(s%60).padStart(2,'0');
+    return `${mm}:${ss}`;
+  }
+
+  let lockTimer = null;
+  let btnSubmit, btnDownload;
+
+  function setBtnLoading(on){
+    if (!btnSubmit) return;
+    if (on){
+      btnSubmit.disabled = true;
+      btnSubmit.dataset.state = 'loading';
+      btnSubmit.textContent = '⏳ Sending…';
+      btnSubmit.style.opacity = '0.7';
+      btnSubmit.style.cursor = 'not-allowed';
+    } else {
+      btnSubmit.disabled = false;
+      btnSubmit.dataset.state = '';
+      btnSubmit.textContent = 'Submit Answers';
+      btnSubmit.style.opacity = '';
+      btnSubmit.style.cursor = 'pointer';
+    }
+  }
+
+  function updateSubmitBtnState(){
+    if (!btnSubmit) return;
+    const ids = getIds();
+    const left = getLockMsLeft(ids);
+    if (left > 0){
+      btnSubmit.disabled = true;
+      btnSubmit.dataset.state = 'locked';
+      btnSubmit.textContent = `🔒 Wait ${fmtMMSS(left)}`;
+      btnSubmit.style.opacity = '0.7';
+      btnSubmit.style.cursor = 'not-allowed';
+    } else if (btnSubmit.dataset.state !== 'loading'){
+      btnSubmit.disabled = false;
+      btnSubmit.dataset.state = '';
+      btnSubmit.textContent = 'Submit Answers';
+      btnSubmit.style.opacity = '';
+      btnSubmit.style.cursor = 'pointer';
+    }
+  }
+
+  /* ============ INTEGRAÇÃO COM RANKING ============ */
+  async function sendLB(event_type, { details='', fingerprint='' } = {}) {
+    if (!window.leaderboardLogEvent) return;
+    try {
+      return await window.leaderboardLogEvent(event_type, { details, fingerprint });
+    } catch(e) {
+      console.warn('LB error:', e);
+    }
+  }
+  /* ================================================ */
+
+  // ===== Coleta SOMENTE deste slide e IGNORA vazios =====
+  function collectAnswersFromThisSlide(){
+    const out = {};
+
+    // text/number (TF e numéricas no seu padrão)
+    $qAll('input[type="text"], input[type="number"]').forEach(input => {
+      const nameOrId = input.name || input.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+
+      const value = trim(input.value);
+      if (value === '') return;
+
+      const correct   = input.dataset.correctAnswer;
+      const tolerance = input.dataset.tolerance; /* <<< MUDANÇA: captura tolerância */
+
+      out[nameOrId] = (correct !== undefined)
+        ? { value, correct, tolerance }          /* <<< MUDANÇA: inclui tolerance */
+        : value;
+    });
+
+    // Radio (MCQ): apenas selecionados
+    const radioNames = new Set();
+    $qAll('input[type="radio"]').forEach(input => {
+      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
+        radioNames.add(input.name);
+      }
+    });
+    radioNames.forEach(name => {
+      const selected = slideEl.querySelector(`input[type="radio"][name="${CSS.escape(name)}"]:checked`);
+      if (!selected) return;
+      const form     = selected.closest("form");
+      const correct  = form?.dataset.correctAnswer;
+      out[name]      = (correct !== undefined) ? { value: selected.value, correct } : selected.value;
+    });
+
+    // Checkboxes marcados
+    $qAll('input[type="checkbox"]').forEach(chk => {
+      const nameOrId = chk.name || chk.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+      if (!chk.checked) return;
+      out[nameOrId] = chk.value || 'on';
+    });
+
+    // Long (textarea)
+    $qAll('textarea').forEach(textarea => {
+      const nameOrId = textarea.name || textarea.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+      const value = trim(textarea.value);
+      if (value === '') return;
+      out[nameOrId] = value;
+    });
+
+    // Selects
+    $qAll('select').forEach(sel => {
+      const nameOrId = sel.name || sel.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+      const value = trim(sel.value);
+      if (value === '') return;
+      out[nameOrId] = value;
+    });
+
+    return out;
+  }
+
+  async function submitAnswers(){
+    const ids = getIds();
+
+    if (isSubmitLocked(ids)) { updateSubmitBtnState(); return; }
+    if (isSubmittingNow || inDebounce(ids)) return;
+    isSubmittingNow = true;
+    setDebounce(ids);
+    setBtnLoading(true);
+
+    const studentId = ids.studentId;
+    const password  = trim(slideEl.querySelector("#student-password")?.value);
+
+    if (!studentId || !password) {
+      isSubmittingNow = false;
+      setBtnLoading(false);
+      alert("❗Please enter both your student ID and password.");
+      return;
+    }
+
+    const answers = collectAnswersFromThisSlide();
+
+    if (!Object.keys(answers).length) {
+      isSubmittingNow = false;
+      setBtnLoading(false);
+      alert("⚠️ No filled answers on this slide.");
+      return;
+    }
+
+    const payload = {
+      studentId,
+      password,
+      timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+      slide: ids.slideId,
+      answers
+    };
+
+    // armazena local para o botão de download
+    slideEl.__lastSubmittedAnswers = payload;
+
+    try {
+      const response = await fetch(ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "text/plain" }
+      });
+
+      const result = await response.json().catch(()=>({success:false, message:'Invalid JSON'}));
+      if (result.success) {
+        alert("✅ Your answers were submitted successfully!");
+        setSubmitLock(ids);
+        if (lockTimer) clearInterval(lockTimer);
+        lockTimer = setInterval(updateSubmitBtnState, 1000);
+        updateSubmitBtnState();
+
+        // ===== PATCH RANKING =====
+        window.studentId = ids.studentId;
+        window.moduleId  = window.moduleId || (ids.slideId.split('_')[0] || 'module');
+        window.pageId    = ids.slideId;
+
+        await sendLB('flash_quiz_participate', {
+          details: `slide=${ids.slideId}&n=${Object.keys(answers).length}`,
+          fingerprint: `${ids.studentId}-flash_quiz_participate-${ids.slideId}-${Date.now()}`
+        });
+
+        /* <<< MUDANÇA: usa tolerância para numéricas >>> */
+        for (const [qid, entry] of Object.entries(answers)) {
+          const hasCorrect = typeof entry === 'object' && entry !== null && 'correct' in entry;
+          if (!hasCorrect) continue;
+
+          const valStr = String(entry.value ?? '').trim();
+          const corStr = String(entry.correct ?? '').trim();
+
+          const isBool = (v) => ['true','false'].includes(String(v).toLowerCase());
+          const isNum  = (v) => !isNaN(Number(v)) && v !== '';
+
+          let ok = false;
+
+          if (isBool(valStr) || isBool(corStr)) {
+            // T/F: comparação direta (case-insensitive)
+            ok = valStr.toLowerCase() === corStr.toLowerCase();
+
+          } else if (isNum(valStr) && isNum(corStr)) {
+            // Numérica: aplica tolerância (padrão 0.2 se não vier no input)
+            const val = parseFloat(valStr);
+            const cor = parseFloat(corStr);
+            const tol = (entry.tolerance !== undefined && entry.tolerance !== null && entry.tolerance !== '')
+                        ? Math.abs(parseFloat(entry.tolerance))
+                        : 0.2;
+            ok = isFinite(val) && isFinite(cor) && Math.abs(val - cor) <= tol;
+
+          } else {
+            // MCQ: string exata (p.ex., "A", "B", "C", ...)
+            ok = valStr !== '' && corStr !== '' && valStr === corStr;
+          }
+
+          let ev;
+          if (isBool(valStr) || isBool(corStr)) {
+            ev = ok ? 'answer_correct_tf' : 'answer_wrong_tf';
+          } else if (isNum(valStr) && isNum(corStr)) {
+            ev = ok ? 'answer_correct_numeric' : 'answer_wrong_numeric';
+          } else {
+            ev = ok ? 'answer_correct_mcq' : 'answer_wrong_mcq';
+          }
+
+          await sendLB(ev, {
+            details: `slide=${ids.slideId}&qid=${qid}&ok=${ok}`,
+            fingerprint: `${ids.studentId}-${ev}-${ids.slideId}-${qid}`
+          });
+        }
+        // ===== FIM PATCH RANKING =====
+
+      } else {
+        alert("❌ Submission failed: " + (result.message || "Unknown error."));
+      }
+    } catch (error) {
+      alert("❌ Submission error: " + error.message);
+    } finally {
+      isSubmittingNow = false;
+      setBtnLoading(false);
+      updateSubmitBtnState();
+    }
+  }
+
+  function downloadAnswersAsText() {
+    const payload = slideEl.__lastSubmittedAnswers;
+    if (!payload) {
+      alert("⚠️ No answers available to download yet.");
+      return;
+    }
+    let text = "📝 Student Answers Summary\n\n";
+    text += `Student ID: ${payload.studentId}\n`;
+    text += `Slide: ${payload.slide}\n`;
+    text += `Timestamp: ${payload.timestamp}\n\n`;
+    text += "Answers:\n";
+    for (const [questionId, entry] of Object.entries(payload.answers)) {
+      if (typeof entry === 'object' && entry !== null) {
+        text += `- ${questionId}: ${entry.value}\n`;
+      } else {
+        text += `- ${questionId}: ${entry}\n`;
+      }
+    }
+    const blob = new Blob([text], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    const safeTimestamp = payload.timestamp.replace(/[/:\s]/g, "-");
+    link.download = `${payload.studentId}_${payload.slide}_${safeTimestamp}_answers.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // ===== INIT (agora com elementos presentes) =====
+  function init(){
+    btnSubmit   = slideEl.querySelector('#submit-btn');
+    btnDownload = slideEl.querySelector('#download-btn');
+
+    if (btnSubmit)   btnSubmit.addEventListener('click', submitAnswers);
+    if (btnDownload) btnDownload.addEventListener('click', downloadAnswersAsText);
+
+    updateSubmitBtnState();
+    if (lockTimer) clearInterval(lockTimer);
+    lockTimer = setInterval(updateSubmitBtnState, 1000);
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init, { once:true });
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- <div style="text-align: right;">
+
+<div style="text-align: right;">
+<script>
+// Função auxiliar para verificar e definir o status de uma questão.
+function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance = 0) {
+  const feedbackDiv = document.getElementById(feedbackDivId);
+  if (!feedbackDiv) return;
+
+  let isCorrect = false;
+
+  // Trata respostas numéricas com tolerância
+ if (typeof correctAnswer === 'number' && typeof userAnswer === 'number' && !isNaN(userAnswer)) {
+    const lowerBound = correctAnswer - tolerance;
+    const upperBound = correctAnswer + tolerance;
+    isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
+  } else if (typeof userAnswer === 'string') {
+    // Para respostas de texto (T/F, Múltipla Escolha)
+    isCorrect = (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase());
+  }
+  // Adicione outras lógicas de comparação aqui se necessário (ex: arrays para múltiplos checkboxes)
+
+  if (isCorrect) {
+    feedbackDiv.dataset.status = "correct";
+  } else {
+    feedbackDiv.dataset.status = "incorrect";
+  }
+  feedbackDiv.style.display = "none"; // Mantém o feedback oculto
+}
+
+// Função para obter a resposta de um grupo de radio buttons
+function getSelectedRadioValue(name) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
+    if (radios.length > 0) {
+        return radios[0].value;
+    }
+    return ''; // Retorna string vazia se nada for selecionado
+}
+
+function toggleFeedback() {
+  const questionBlocks = document.querySelectorAll('.question-block');
+  const feedbacks = document.querySelectorAll('.feedback');
+  const scoreDiv = document.getElementById('score-summary');
+  const toggleButton = document.getElementById('toggle-feedback-btn');
+
+  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
+
+  if (showing) {
+    // Esconder feedback
+    feedbacks.forEach(f => {
+      f.style.display = 'none';
+      f.style.color = 'black'; // Reseta a cor ao esconder
+    });
+    scoreDiv.textContent = '';
+    toggleButton.textContent = 'Show Feedback';
+  } else {
+    // Mostrar feedback
+    let correctCount = 0;
+    let totalQuestions = 0;
+
+    questionBlocks.forEach(block => {
+      totalQuestions++;
+      const textInput = block.querySelector('input[type="text"]');
+      const numberInput = block.querySelector('input[type="number"]'); // Novo: input numérico
+      const form = block.querySelector('form');
+
+      let questionId, userAnswer, correctAnswer, tolerance = 0;
+      let feedbackDivId;
+
+      if (textInput && textInput.dataset.correctAnswer) {
+        // Questão de texto (T/F)
+        questionId = textInput.id;
+        userAnswer = textInput.value;
+        correctAnswer = textInput.dataset.correctAnswer;
+      } else if (numberInput && numberInput.dataset.correctAnswer) {
+        // Questão numérica
+        questionId = numberInput.id;
+        // Converte para número. Se não for um número válido, NaN.
+        userAnswer = parseFloat(numberInput.value);
+        correctAnswer = parseFloat(numberInput.dataset.correctAnswer);
+        if (numberInput.dataset.tolerance) {
+          tolerance = parseFloat(numberInput.dataset.tolerance);
+        }
+        // Se a resposta do usuário não for um número válido, trate como incorreta
+        if (isNaN(userAnswer)) {
+             userAnswer = null; // Mantém como valor numérico inválido
+        }
+      } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
+        // Questão de múltipla escolha (radio)
+        questionId = form.querySelector('input[type="radio"]').name;
+        userAnswer = getSelectedRadioValue(questionId);
+        correctAnswer = form.dataset.correctAnswer;
+      } else {
+        // Se não for um tipo de questão reconhecido ou não tem resposta correta
+        totalQuestions--; // Não conta esta questão no total se não puder ser avaliada
+        return; // Pula para a próxima questão
+      }
+
+      feedbackDivId = 'feedback-' + questionId;
+      const feedbackDiv = document.getElementById(feedbackDivId);
+
+      if (feedbackDiv) { // Apenas processa se há um feedback div
+        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance);
+
+        // Agora, exibe e colore o feedback após a verificação
+        if (feedbackDiv.dataset.status === 'correct') {
+          feedbackDiv.style.color = 'green';
+          correctCount++;
+        } else if (feedbackDiv.dataset.status === 'incorrect') {
+          feedbackDiv.style.color = 'red';
+        } else {
+          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
+        }
+        feedbackDiv.style.display = 'block'; // Exibe o feedback
+      }
+    });
+
+    scoreDiv.textContent = `✅  You answered ${correctCount} out of  ${totalQuestions}  correctly.`;
+    toggleButton.textContent = 'Hide Feedback';
+  }
+}
+</script>
+
+<button id="toggle-feedback-btn" onclick="toggleFeedback()"
+  style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+  Show Feedback
+</button>
+<div id="score-summary" style="margin-top: 15px; font-weight: bold;"></div>
+
+</div>
+
+
+<div class="enable-timer" data-timer="60" data-pin="1234"></div>
+
+
+</div> -->
+</section>
+<section id="now-it-is-your-turn" class="slide level2" data-background="#191f36">
 <h2>Now it is your turn…</h2>
 <div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
 <p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1tf.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> ✅ True / False Questions </a></p>
@@ -1107,7 +2009,7 @@ Show Feedback
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3 id="thank-you">Thank You!</h3>
-<p><img data-src="../figs/qa2.png" style="margin-top: 10px;;width:110.0%"></p>
+<p><img data-src="../figs/qa2.png" style="box-shadow: none;;width:110.0%"></p>
 </div><div class="column" style="width:50%;">
 <h3 id="henrique-c.-martins">👤 <strong>Henrique C. Martins</strong></h3>
 <ul>
@@ -1128,7 +2030,7 @@ Show Feedback
 <div class="quarto-auto-generated-content">
 <p><img src="../figs/background8.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><strong>[<strong>Henrique C. Martins</strong>] [<a href="mailto:henrique.martins@fgv.br">henrique.martins@fgv.br</a>] [<a href="https://henriquemartins.net/teaching/financial_strategy/">Teaching Resources</a>][Do not use without permission]</strong></p>
+<p><span style="font-size:10px"> [<a href="mailto:henrique.martins@fgv.br">Henrique C. Martins</a>] [<a href="https://henriquemartins.net/teaching/financial_strategy/">Teaching Resources</a>]<strong>[Do not use without permission]</strong></span></p>
 </div>
 </div>
 </section></section>
@@ -1142,7 +2044,6 @@ Show Feedback
   <script src="../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1163,8 +2064,7 @@ Show Feedback
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1335,7 +2235,7 @@ Show Feedback
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,
@@ -1343,6 +2243,374 @@ Show Feedback
           RevealZoom
         ]
       });
+    </script>
+    <!-- chat-widget-deluxe.html : Floating chat for all slides (Quarto + revealjs) -->
+    <style>
+      :root{
+        /* Fundo geral claro e elegante */
+        --bg: rgba(255,255,255,.88);
+        --border: rgba(15,23,42,.12);
+        --shadow: 0 12px 40px rgba(20,20,40,.18);
+
+        --brand1: #4f46e5; /* indigo */
+        --brand2: #06b6d4; /* cyan */
+        --brand-weak: rgba(79,70,229,.10);
+
+        --text: #0f172a;
+        --muted: #475569;
+        --danger: #b91c1c;
+
+        --bubble-user: #ffffff;
+        --bubble-ai:   #fbfdff;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg: rgba(19,26,42,.72);
+          --border: rgba(255,255,255,.10);
+          --shadow: 0 18px 50px rgba(0,0,0,.55);
+          --text: #e6e9ef;
+          --muted: #b6bfca;
+          --brand-weak: rgba(79,70,229,.20);
+
+          --bubble-user: rgba(255,255,255,.08);
+          --bubble-ai:   rgba(255,255,255,.06);
+        }
+      }
+
+      .vhcm-panel, .vhcm-input textarea, .vhcm-bubble {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: "liga" 1, "kern" 1;
+      }
+
+      /* FAB button */
+      .vhcm-fab{position:fixed; right:18px; bottom:18px; z-index:9999; display:flex; align-items:center; gap:10px}
+      .vhcm-fab button{border:none; border-radius:16px; padding:12px 14px; cursor:pointer; background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; box-shadow:var(--shadow); display:flex; align-items:center; gap:10px; font-weight:600}
+      .vhcm-fab svg{width:20px; height:20px}
+
+      /* Panel (redimensionável) */
+      .vhcm-panel{
+        position:fixed; right:18px; bottom:78px;
+        width:325px; height:600px;
+        min-width:280px; min-height:360px;
+        max-width:94vw; max-height:84vh;
+
+        display:none; flex-direction:column; border:1px solid var(--border);
+        border-radius:18px; box-shadow:var(--shadow); overflow:hidden; z-index:9999;
+        backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);
+        background: var(--bg); animation:vslide .25s ease-out;
+
+        /* permite redimensionar pelo canto inferior direito */
+        resize: both;
+      }
+      @keyframes vslide{from{transform: translateY(8px); opacity:0} to{transform:none; opacity:1}}
+
+      .vhcm-header{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--border); background:linear-gradient(135deg, rgba(79,70,229,.10), rgba(6,182,212,.08));}
+      .vhcm-brand{display:flex; align-items:center; gap:10px}
+      .vhcm-logo{width:28px; height:28px; border-radius:10px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; box-shadow:0 4px 16px var(--brand-weak)}
+      .vhcm-title{font-weight:700; letter-spacing:.2px; color:var(--text)}
+      .vhcm-status{display:flex; align-items:center; gap:6px; color:var(--muted); font-size:12px}
+      .vhcm-dot{width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 2px rgba(34,197,94,.25)}
+      .vhcm-close{border:none; background:transparent; font-size:18px; cursor:pointer; color:var(--muted)}
+
+      /* Botão meia tela */
+      .vhcm-half{
+        border:none; background:transparent; cursor:pointer;
+        font-size:16px; color:var(--muted); margin-right:6px;
+      }
+      .vhcm-half:hover{ color: var(--text); }
+
+      /* Painel em meia tela (50vw x 50vh) */
+      .vhcm-panel.vhcm--half{
+        width: 50vw !important;
+        height: 50vh !important;
+        max-width: 95vw;
+        max-height: 95vh;
+        border-radius: 12px;
+      }
+
+      .vhcm-body{flex:1; overflow:auto; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));}
+      .vhcm-typing{font-size:12px; color:var(--muted); display:none; padding:6px 2px}
+      .vhcm-dots{display:inline-flex; gap:3px; margin-left:4px}
+      .vhcm-dots span{width:6px; height:6px; border-radius:50%; background:var(--muted); opacity:.6; animation:blink 1.2s infinite}
+      .vhcm-dots span:nth-child(2){animation-delay:.2s}
+      .vhcm-dots span:nth-child(3){animation-delay:.4s}
+      @keyframes blink{0%,80%,100%{opacity:.2; transform:translateY(0)} 40%{opacity:.9; transform:translateY(-2px)}}
+
+      .vhcm-input{
+        display:flex; align-items:flex-end; gap:8px; padding:12px;
+        border-top:1px solid var(--border);
+        background:linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,.20));
+      }
+      .vhcm-input textarea{
+        flex:1;
+        resize:none;
+        min-height:44px;
+        max-height:140px;
+        padding:12px 14px;
+        border:1px solid var(--border);
+        border-radius:14px;
+        background:#ffffff;
+        color:#0f172a;
+        font: 500 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        caret-color: var(--brand1);
+        box-shadow: 0 1px 0 rgba(0,0,0,.02) inset;
+      }
+      .vhcm-input textarea::placeholder{ color:#475569; }
+
+      .vhcm-send{background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; border:none; border-radius:12px; padding:10px 14px; cursor:pointer; display:flex; align-items:center; gap:8px; font-weight:600}
+      .vhcm-send svg{width:18px; height:18px}
+
+      .vhcm-msg{display:flex; gap:10px; margin-bottom:12px; align-items:flex-end}
+      .vhcm-avatar{width:28px; height:28px; border-radius:10px; background:var(--brand-weak); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--text)}
+      .vhcm-bubble{
+        max-width:78%; padding:12px 14px; border-radius:14px; border:1px solid var(--border);
+        box-shadow: 0 6px 18px rgba(0,0,0,.06);
+        line-height:1.48; font-weight:500;
+      }
+      .vhcm-msg.user{justify-content:flex-end}
+      .vhcm-msg.user .vhcm-bubble{
+        background: var(--bubble-user);
+        color: var(--text);
+        border-color: rgba(15,23,42,.10);
+      }
+      .vhcm-msg.user .vhcm-avatar{display:none}
+      .vhcm-msg.ai .vhcm-bubble{
+        background: var(--bubble-ai);
+        color: var(--text);
+        border-color: rgba(15,23,42,.10);
+      }
+
+      .vhcm-error{color:var(--danger); font-size:12px; margin:6px 2px}
+    </style>
+
+    <div class="vhcm-fab">
+      <button id="vhcm-open" title="Virtual HCM">
+        <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c4.97 0 9-3.582 9-8 0-1.93-.71-3.706-1.92-5.126l.86-3.006-3.01.847C15.87 5.6 14 5 12 5 7.03 5 3 8.582 3 13s4.03 9 9 9Z" stroke="currentColor" stroke-width="1.2"></path></svg>
+        Virtual HCM
+      </button>
+    </div>
+
+    <div class="vhcm-panel" id="vhcm-panel" role="dialog" aria-label="Virtual HCM chat">
+      <div class="vhcm-header">
+        <div class="vhcm-brand">
+          <div class="vhcm-logo">VH</div>
+          <div>
+            <div class="vhcm-title">Virtual HCM</div>
+            <div class="vhcm-status"><span class="vhcm-dot"></span><span id="vhcm-module-label">module1</span></div>
+          </div>
+        </div>
+        <div>
+          <button id="vhcm-half" class="vhcm-half" aria-label="Half screen" title="Half screen">⤢</button>
+          <button id="vhcm-close" class="vhcm-close" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="vhcm-body" id="vhcm-body"></div>
+      <div class="vhcm-typing" id="vhcm-typing">Virtual HCM is typing <span class="vhcm-dots"><span></span><span></span><span></span></span></div>
+      <div class="vhcm-input">
+        <textarea id="vhcm-text" placeholder="Ask anything about this module…"></textarea>
+        <button class="vhcm-send" id="vhcm-send" title="Send">
+          <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11l17-8-8 17-1-7-8-2Z" stroke="#fff" stroke-width="1.6"></path></svg>
+          Send
+        </button>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      // ====== CONFIG ======
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbza4kInsudyRFK_62VL8eULh3TiF_zMdleq4N0OpX4QunuU2rEryBnbE4S9zDHQkvB_/exec"; // troque se necessário
+      const DEFAULT_MODULE = "module1";
+      const STORAGE_OPEN   = "vhcm_open";
+      const STORAGE_SIZE   = "vhcm_size";
+      const STORAGE_HALF   = "vhcm_half_mode";
+      const STORAGE_SIZE_PREV = "vhcm_size_prev";
+
+      // ====== Elements ======
+      const btnOpen = document.getElementById('vhcm-open');
+      const btnClose = document.getElementById('vhcm-close');
+      const btnHalf = document.getElementById('vhcm-half');
+      const panel = document.getElementById('vhcm-panel');
+      const body = document.getElementById('vhcm-body');
+      const typing = document.getElementById('vhcm-typing');
+      const text = document.getElementById('vhcm-text');
+      const send = document.getElementById('vhcm-send');
+      const moduleLabel = document.getElementById('vhcm-module-label');
+
+      // ====== Module detection (robusta, sem quebrar compatibilidade) ======
+      function detectModule(){
+        try {
+          // 1) Override explícito via window.VHCM.module
+          if (window.VHCM && window.VHCM.module) {
+            const v = String(window.VHCM.module).trim();
+            if (v) return v;
+          }
+          // 2) Reveal slide atual com data-module
+          if (window.Reveal && typeof Reveal.getCurrentSlide === 'function') {
+            const s = Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+            const v = (s && (s.dataset.module || s.getAttribute('data-module'))) || '';
+            if (v && String(v).trim()) return String(v).trim();
+          }
+          // 3) <meta name="vhcm-module" content="moduleX">
+          const meta = document.querySelector('meta[name="vhcm-module"]');
+          if (meta && meta.content && meta.content.trim()) return meta.content.trim();
+          // 4) atributo data-module no <body>
+          const dm = document.body && document.body.getAttribute && document.body.getAttribute('data-module');
+          if (dm && dm.trim()) return dm.trim();
+          // 5) querystring ?module=moduleX
+          const qs = new URLSearchParams(location.search).get('module');
+          if (qs && qs.trim()) return qs.trim();
+          // 6) regex no caminho (module2, m2, p2.html)
+          const path = (location.pathname || '').toLowerCase();
+          let m = path.match(/module(\d+)/); if (m) return `module${m[1]}`;
+          m = path.match(/\/m(\d+)\b/);     if (m) return `module${m[1]}`;
+          m = path.match(/\/p(\d+)\.html/); if (m) return `module${m[1]}`;
+          // 7) compat: window.CURRENT_MODULE (caso você já defina em algum lugar)
+          if (window.CURRENT_MODULE) return String(window.CURRENT_MODULE).trim();
+        } catch(_){}
+        // 8) fallback
+        return DEFAULT_MODULE;
+      }
+
+      // ====== Helpers ======
+      // (ÚNICA MUDANÇA) → pega o aluno logado do localStorage, priorizando o ID salvo no login
+      function getStudent(){
+        try{
+          const u = (localStorage.getItem('fs_user')
+                  || localStorage.getItem('studentId')
+                  || localStorage.getItem('studentName')
+                  || 'Anonimo').trim();
+          return u || 'Anonimo';
+        }catch(_){
+          return 'Anonimo';
+        }
+      }
+      function currentModule(){ return detectModule(); }
+
+      function bubble(author, textHtml, isUser=false){
+        const wrap = document.createElement('div');
+        wrap.className = 'vhcm-msg' + (isUser ? ' user' : ' ai');
+        const avatar = document.createElement('div');
+        avatar.className = 'vhcm-avatar';
+        avatar.textContent = isUser ? 'You' : 'VH';
+        const bub = document.createElement('div');
+        bub.className = 'vhcm-bubble';
+        bub.innerHTML = String(textHtml || '').replace(/\n/g,'<br>');
+        if (isUser){ wrap.appendChild(bub); wrap.appendChild(avatar); }
+        else { wrap.appendChild(avatar); wrap.appendChild(bub); }
+        body.appendChild(wrap); body.scrollTop = body.scrollHeight;
+      }
+      function setOpen(open){ panel.style.display = open ? 'flex' : 'none'; localStorage.setItem(STORAGE_OPEN, open ? '1' : '0'); }
+
+      // ====== Restaurar tamanho salvo ======
+      (function restoreSize(){
+        try{
+          const saved = JSON.parse(localStorage.getItem(STORAGE_SIZE) || 'null');
+          if (saved?.w && saved?.h) {
+            panel.style.width = saved.w;
+            panel.style.height = saved.h;
+          }
+        }catch(_){}
+      })();
+
+      // ====== Observar e salvar mudanças de tamanho ======
+      (function watchSize(){
+        if (!('ResizeObserver' in window)) return;
+        const ro = new ResizeObserver(entries => {
+          for (const e of entries) {
+            const { width, height } = e.contentRect || {};
+            if (!width || !height) continue;
+            localStorage.setItem(STORAGE_SIZE, JSON.stringify({
+              w: Math.round(width) + 'px',
+              h: Math.round(height) + 'px'
+            }));
+          }
+        });
+        ro.observe(panel);
+      })();
+
+      // ====== Open/Close & persist state ======
+      btnOpen.addEventListener('click', ()=> setOpen(panel.style.display !== 'flex'));
+      btnClose.addEventListener('click', ()=> setOpen(false));
+      if (localStorage.getItem(STORAGE_OPEN) === '1') setOpen(true);
+
+      // ====== Module label sync ======
+      function updateModuleLabel(){ moduleLabel.textContent = currentModule(); }
+      updateModuleLabel();
+      if (window.Reveal && typeof Reveal.on === 'function'){ Reveal.on('slidechanged', updateModuleLabel); }
+      window.addEventListener('hashchange', updateModuleLabel); // caso mude via URL/anchor
+
+      // ====== Meia tela (toggle) ======
+      function readSize(){ try { return JSON.parse(localStorage.getItem(STORAGE_SIZE) || 'null'); } catch(_){ return null; } }
+      function savePrevSize(){
+        const rect = panel.getBoundingClientRect();
+        localStorage.setItem(STORAGE_SIZE_PREV, JSON.stringify({
+          w: Math.round(rect.width) + 'px',
+          h: Math.round(rect.height) + 'px'
+        }));
+      }
+      function readPrevSize(){ try { return JSON.parse(localStorage.getItem(STORAGE_SIZE_PREV) || 'null'); } catch(_){ return null; } }
+
+      function setHalfMode(on){
+        if (on){
+          // guarda tamanho atual antes de mudar
+          savePrevSize();
+          panel.classList.add('vhcm--half');
+          panel.style.width  = '50vw';
+          panel.style.height = '50vh';
+          localStorage.setItem(STORAGE_HALF, '1');
+          btnHalf.title = 'Exit half screen';
+        } else {
+          panel.classList.remove('vhcm--half');
+          localStorage.setItem(STORAGE_HALF, '0');
+          btnHalf.title = 'Half screen';
+          const prev = readPrevSize() || readSize();
+          if (prev?.w && prev?.h){
+            panel.style.width  = prev.w;
+            panel.style.height = prev.h;
+          } else {
+            panel.style.width  = '';
+            panel.style.height = '';
+          }
+        }
+      }
+
+      btnHalf.addEventListener('click', ()=>{
+        const isOn = panel.classList.contains('vhcm--half');
+        setHalfMode(!isOn);
+      });
+
+      // Restaurar modo meia tela se estava ativo
+      if (localStorage.getItem(STORAGE_HALF) === '1') {
+        setHalfMode(true);
+      }
+
+      // ====== Send logic ======
+      async function sendQuestion(){
+        const q = text.value.trim(); if (!q) return;
+        const mod = currentModule(); updateModuleLabel();
+        bubble('You', q, true); text.value=''; typing.style.display='block';
+        try{
+          const resp = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            // sem headers pra evitar preflight; servidor já aceita JSON puro
+            body: JSON.stringify({ question: q, student: getStudent(), module: mod })
+          });
+          const raw = await resp.text();
+          let data = {}; try { data = JSON.parse(raw); } catch(_){ data = { answer: 'Server returned an invalid response.' }; }
+          typing.style.display='none';
+          bubble('Virtual HCM', data.answer || 'No answer received.', false);
+        } catch(e){
+          typing.style.display='none';
+          bubble('Error', 'Could not contact the server.', false);
+        }
+      }
+
+      send.addEventListener('click', sendQuestion);
+      text.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendQuestion(); }
+      });
+    })();
     </script>
     
     <script>
@@ -1536,7 +2804,10 @@ Show Feedback
       }
     });
     </script>
-    <script type="text/javascript">
+    <script>
+      window.VHCM = window.VHCM || {};
+      window.VHCM.module = "module1";   // <<< define o módulo AQUI
+
       Reveal.on('ready', event => {
         if (event.indexh === 0) {
           document.querySelector("div.has-logo > img.slide-logo").style.display = "none";

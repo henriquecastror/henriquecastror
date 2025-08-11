@@ -1,6 +1,6 @@
 ---
 title: 'Estratégia Financeira'
-subtitle: ' **Part 3 - ch.11 Optimal Portfolio Choice and the Capital Asset Pricing Model** '
+subtitle: ' **Module 3 - ch.11 Optimal Portfolio Choice and the Capital Asset Pricing Model** '
 author:
   - name: ' **Henrique C. Martins** '
     affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
@@ -9,6 +9,8 @@ date-format: "DD-MM-YYYY"
 title-block-banner: true
 format:
   revealjs: 
+    include-in-header: ../login-start.html
+    include-after-body: ../chat-widget.html
     touch: true
     controls: true
     slide-number: true
@@ -17,12 +19,15 @@ format:
     preview-links: auto
     logo: ../figs/background8.png
     css: logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Do not use without permission]**  '
+    footer: '<span style="font-size:16px">**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)][Do not use without permission]**</span>'
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
 include-after: |
-  <script type="text/javascript">
+  <script>
+    window.VHCM = window.VHCM || {};
+    window.VHCM.module = "module3";   // <<< define o módulo AQUI
+
     Reveal.on('ready', event => {
       if (event.indexh === 0) {
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";

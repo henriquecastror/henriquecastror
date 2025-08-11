@@ -1,0 +1,256 @@
+<!-- rankings-widget.html : Botão-ícone minimal + painel sofisticado -->
+<style>
+  :root{
+    --chatbot-gap: 350px;
+
+    /* meio-termo: mais escuro que o claro, mais claro que o grafite */
+    --lb-bg: rgba(46, 58, 78, 0.72);         /* slate-700 ~ 72% */
+    --lb-border: rgba(255,255,255,0.10);
+    --lb-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.18);
+    --lb-radius: 18px;
+
+    /* acentos (lilás/azul) */
+    --lb-accent: #a78bfa;                    /* lilás */
+    --lb-accent-weak: rgba(167,139,250,0.18);
+
+    /* degradê do botão, combinando com seu tema */
+    --pill-start: #6d5df5;  /* violeta */
+    --pill-end:   #2ec5ff;  /* azul-ciano */
+  }
+
+  .lb-panel{
+    position: fixed;
+    bottom: 20px;
+    right: var(--chatbot-gap);
+    z-index: 2147483647;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+
+  /* Botão só-ícone, circular (mesmo tom do chat/comentários) */
+  .lb-toggle{
+    width: 40px; height: 40px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: none;
+    background: linear-gradient(135deg, var(--pill-start), var(--pill-end));
+    color: white;           /* ícone branco */
+    box-shadow: 0 10px 28px rgba(2,6,23,.30), inset 0 0 0 1px rgba(255,255,255,.14);
+    cursor: pointer; user-select: none;
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  }
+  .lb-toggle:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+  .lb-toggle:active{ transform: translateY(0); filter: brightness(.98); }
+  .lb-icon{ font-size: 20px; line-height: 1; }
+
+  /* Cartão do ranking (glass) */
+  .lb-card{
+    margin-top: 10px;
+    width: 360px; max-height: 62vh; overflow: auto;
+    border: 1px solid var(--lb-border); background: var(--lb-bg);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    backdrop-filter: saturate(160%) blur(10px);
+    border-radius: var(--lb-radius);
+    box-shadow: var(--lb-shadow);
+    display: none;
+    position: absolute; bottom: 52px; right: 0; /* abre acima do botão */
+    transform-origin: bottom right;
+    color: #e5e7eb; /* texto claro */
+  }
+  .lb-card.open{ display:block; animation: lbPop .18s cubic-bezier(.2,.9,.2,1); }
+  @keyframes lbPop { from { transform: scale(.98); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+
+  .lb-header{
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    display:flex; justify-content:space-between; align-items:center;
+    background: linear-gradient(180deg, rgba(167,139,250,.12), transparent 60%);
+    border-top-left-radius: var(--lb-radius);
+    border-top-right-radius: var(--lb-radius);
+    position: sticky; top: 0; backdrop-filter: blur(6px);
+  }
+  .lb-title{
+    font-weight: 800; letter-spacing:.2px; color:#f3f4f6;
+  }
+  .lb-refresh{
+    font-size: 12px; color: #d1d5db; display:flex; align-items:center; gap: 6px;
+  }
+  .lb-dot{
+    width:8px;height:8px;border-radius:999px;background:var(--lb-accent);
+    box-shadow: 0 0 0 4px var(--lb-accent-weak);
+  }
+
+  .lb-list{ list-style:none; margin:0; padding: 6px 0 8px; }
+  .lb-item{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 10px 14px;
+    border-bottom: 1px dashed rgba(255,255,255,.06);
+  }
+  .lb-item:last-child{ border-bottom: 0; }
+
+  .lb-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .lb-rank{
+    width: 28px; text-align:right; font-variant-numeric: tabular-nums;
+    color:#fde68a; font-weight:700; /* dourado p/ 1º */
+  }
+  .lb-item.top-2 .lb-rank{ color:#cbd5e1; } /* prata */
+  .lb-item.top-3 .lb-rank{ color:#d8b4fe; } /* lilás */
+
+  .lb-name{
+    flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e5e7eb;
+  }
+  .lb-points{ font-variant-numeric: tabular-nums; font-weight:600; color:#f3f4f6; }
+
+  .lb-footer{
+    padding: 10px 14px;
+    display:flex; justify-content:space-between; align-items:center; gap:8px;
+    border-top: 1px solid rgba(255,255,255,.06);
+    background: linear-gradient(0deg, rgba(167,139,250,.10), transparent 60%);
+    border-bottom-left-radius: var(--lb-radius);
+    border-bottom-right-radius: var(--lb-radius);
+    position: sticky; bottom: 0; backdrop-filter: blur(6px);
+  }
+  .lb-badge-me{
+    background: var(--lb-accent-weak);
+    padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight:600;
+    color: #f5f3ff;
+  }
+
+  /* Mobile: bottom sheet */
+  @media (max-width: 820px){
+    .lb-panel{ right: 12px; bottom: 88px; }
+    .lb-card{
+      position: fixed; left: 12px; right: 12px; bottom: 88px;
+      width: auto; height: 58vh; max-height: none; transform-origin: bottom center;
+    }
+  }
+  @media (max-width: 380px){
+    .lb-card{ height: 62vh; }
+  }
+</style>
+
+<div class="lb-panel" id="lbPanel">
+  <button class="lb-toggle" id="lbToggle" title="Leaderboard" aria-label="Open leaderboard">
+    <span class="lb-icon">🏆</span>
+  </button>
+  <div class="lb-card" id="lbCard" role="dialog" aria-modal="false" aria-label="Leaderboard">
+    <div class="lb-header">
+      <div class="lb-title">Top <span id="lbTopN">10</span></div>
+      <div class="lb-refresh"><span class="lb-dot" aria-hidden="true"></span><span id="lbUpdated">Refresh —</span></div>
+    </div>
+
+    <ul class="lb-list" id="lbList"></ul>
+
+    <div class="lb-footer">
+      <span id="lbMe"></span>
+      <!-- (sem botões de fechar/refresh) -->
+    </div>
+  </div>
+</div>
+
+<script>
+  /************ CONFIG ************/
+  const LB_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxtIy2KebICuURKPz2htpnhI3czz6GqJ-uVh55DeyxwRSniS_WnqoqByYvt451fcUpXow/exec';
+  const LB_TOP = 10;
+  const LB_POLL_MS = 3000;
+  const LB_STUDENT = (window.studentId || '').toString() || 'anonymous';
+  const LB_MODULE  = (window.moduleId   || '').toString() || 'module1';
+  const LB_PAGE    = (window.pageId     || '').toString() || (location.pathname + location.hash);
+  /********************************/
+
+  const lbToggle  = document.getElementById('lbToggle');
+  const lbCard    = document.getElementById('lbCard');
+  const lbList    = document.getElementById('lbList');
+  const lbTopNEl  = document.getElementById('lbTopN');
+  const lbMeEl    = document.getElementById('lbMe');
+  const lbUpdated = document.getElementById('lbUpdated');
+  lbTopNEl.textContent = LB_TOP;
+
+  // Toggle abrir/fechar
+  lbToggle.addEventListener('click', () => {
+    const open = lbCard.classList.contains('open');
+    if (open) lbCard.classList.remove('open');
+    else { lbCard.classList.add('open'); fetchLeaderboard(); }
+  });
+  // Fechar com Esc
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lbCard.classList.remove('open'); });
+
+  // Atualiza "Refresh HH:MM:SS"
+  function setUpdated(ts){
+    const d = ts ? new Date(ts) : new Date();
+    const hh = String(d.getHours()).padStart(2,'0');
+    const mm = String(d.getMinutes()).padStart(2,'0');
+    const ss = String(d.getSeconds()).padStart(2,'0');
+    lbUpdated.textContent = `Refresh ${hh}:${mm}:${ss}`;
+  }
+
+  // Carregar Top
+  async function fetchLeaderboard() {
+    try {
+      const url = `${LB_ENDPOINT}?action=leaderboard_top&top=${LB_TOP}&who=${encodeURIComponent(LB_STUDENT)}`;
+      const res = await fetch(url, { method: 'GET' });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'Failed');
+      renderTop(data.top, data.me, data.updated_at);
+      setUpdated(data.updated_at);
+    } catch (e) {
+      console.error('Leaderboard error:', e);
+      lbList.innerHTML = '<li class="lb-item"><div class="lb-name">Não foi possível carregar o ranking.</div></li>';
+      setUpdated();
+    }
+  }
+
+  // Renderizar lista
+  function renderTop(top, me, updatedAt) {
+    lbList.innerHTML = '';
+    if (!top || !top.length){
+      lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">Ainda sem pontos por aqui.</div></li>';
+    } else {
+      for (const row of top) {
+        const li = document.createElement('li'); li.className = 'lb-item';
+        if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
+        const left = document.createElement('div'); left.className='lb-left';
+        const rk = document.createElement('div'); rk.className='lb-rank'; rk.textContent = row.rank;
+        const nm = document.createElement('div'); nm.className='lb-name'; nm.textContent = row.name || row.studentId;
+        left.appendChild(rk); left.appendChild(nm);
+        const pts = document.createElement('div'); pts.className='lb-points'; pts.textContent = row.total_points + ' pts';
+        li.appendChild(left); li.appendChild(pts);
+        lbList.appendChild(li);
+      }
+    }
+    lbMeEl.innerHTML = me ? `<span class="lb-badge-me">Você: #${me.rank} · ${me.total_points} pts</span>` : '';
+    setUpdated(updatedAt);
+  }
+  // expõe para uso externo se precisar
+  window.renderTop = renderTop;
+
+  // Auto-refresh
+  if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchLeaderboard, LB_POLL_MS);
+
+  // Logger de eventos (exponho global para uso em outras partes)
+  async function leaderboardLogEvent(event_type, { points=null, details='' } = {}) {
+    try {
+      const payload = {
+        action: 'leaderboard_log',
+        studentId: LB_STUDENT,
+        event_type,
+        module: LB_MODULE,
+        page: LB_PAGE,
+        details,
+        points,
+        fingerprint: `${LB_STUDENT}-${event_type}-${LB_MODULE}-${LB_PAGE}`
+      };
+    const res = await fetch(LB_ENDPOINT, {
+     method: 'POST',
+     body: JSON.stringify(payload) // sem headers
+      });
+
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'failed');
+      fetchLeaderboard();
+      return data;
+    } catch (e) {
+      console.error('logEvent error:', e);
+      return { ok:false, error: String(e) };
+    }
+  }
+  window.leaderboardLogEvent = leaderboardLogEvent;
+</script>

@@ -1,120 +1,13 @@
-<script>
-async function submitAnswers() {
-  const studentId = document.getElementById("student-id")?.value.trim();
-  const password = document.getElementById("student-password")?.value.trim();
+<!-- =========================================
+     EXERCÍCIO + SUBMIT-TO-SHEETS + RANKING
+     (escopo: somente o slide onde este arquivo
+      está incluído)
+     ========================================= -->
 
-  if (!studentId || !password) {
-    alert("❗Please enter both your student ID and password.");
-    return;
-  }
+<!-- (opcional) Inclua o widget do ranking em algum lugar do layout global -->
+<!-- {{< include "rankings-widget.html" >}} -->
 
-  const answers = {};
-
-  // T/F and numeric inputs
-  document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
-    const name = input.name || input.id;
-      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
-      const value = input.value.trim();
-      const correct = input.dataset.correctAnswer;
-      answers[name] = correct !== undefined ? { value, correct } : value;
-    }
-  });
-
-// Radio buttons (MCQ)
-const radioNames = new Set();
-document.querySelectorAll('input[type="radio"]').forEach(input => {
-  if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
-    radioNames.add(input.name);
-  }
-});
-
-radioNames.forEach(name => {
-  const selected = document.querySelector(`input[name="${name}"]:checked`);
-  const form = document.querySelector(`form input[name="${name}"]`)?.closest("form");
-  const correct = form?.dataset.correctAnswer;
-
-  if (selected) {
-    answers[name] = correct !== undefined ? { value: selected.value, correct } : selected.value;
-  } else {
-    answers[name] = "";
-  }
-});
-
-
-  // Long answer questions
-  document.querySelectorAll('textarea[id^="module"]').forEach(textarea => {
-    const name = textarea.id;
-    if (name) {
-      answers[name] = textarea.value.trim();
-    }
-  });
-
-  const slideId = document.getElementById("slide-id")?.value || "unknown";
-
-  const payload = {
-    studentId,
-    password,
-    timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-    slide: slideId,
-    answers
-  };
-
-  // Save in memory to allow download
-  window.lastSubmittedAnswers = payload;
-
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "text/plain" }
-    });
-
-    const result = await response.json();
-    if (result.success) {
-      alert("✅ Your answers were submitted successfully!");
-    } else {
-      alert("❌ Submission failed: " + (result.message || "Unknown error."));
-    }
-  } catch (error) {
-    alert("❌ Submission error: " + error.message);
-  }
-}
-
-
-function downloadAnswersAsText() {
-  if (!window.lastSubmittedAnswers) {
-    alert("⚠️ No answers available to download yet.");
-    return;
-  }
-
-  const payload = window.lastSubmittedAnswers;
-  let text = "📝 Student Answers Summary\n\n";
-  text += `Student ID: ${payload.studentId}\n`;
-  text += `Slide: ${payload.slide}\n`;
-  text += `Timestamp: ${payload.timestamp}\n\n`;
-  text += "Answers:\n";
-
-  for (const [questionId, entry] of Object.entries(payload.answers)) {
-    if (typeof entry === 'object' && entry !== null) {
-      text += `- ${questionId}: ${entry.value}\n`; // omit correct answer
-    } else {
-      text += `- ${questionId}: ${entry}\n`;
-    }
-  }
-
-  const blob = new Blob([text], { type: "text/plain" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-const safeTimestamp = payload.timestamp.replace(/[/:\s]/g, "-");
-link.download = `${payload.studentId}_${payload.slide}_${safeTimestamp}_answers.txt`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-</script>
-
-
-<!-- Login Fields -->
+<!-- Login Fields (locais a este slide) -->
 <div style="margin-bottom: 10px;">
   <label><strong>Student ID:</strong></label>
   <input type="text" id="student-id" placeholder="Enter your ID">
@@ -125,17 +18,356 @@ link.download = `${payload.studentId}_${payload.slide}_${safeTimestamp}_answers.
   <input type="password" id="student-password" placeholder="Enter your password">
 </div>
 
-<!-- Submit Button -->
-<button onclick="submitAnswers()"
+<!-- Botões (IDs locais, sem onclick) -->
+<button id="submit-btn"
   style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
   Submit Answers
 </button>
 
-<!-- Download Button -->
-<button onclick="downloadAnswersAsText()"
+<button id="download-btn"
   style="background-color:#007bff; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer; margin-left: 10px;">
   📄 Download My Answers (TXT)
 </button>
 
+<script>
+// ===== CONFIG DO ENDPOINT (global, sem redeclarar) =====
+window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec";
+</script>
 
+<script>
+(function(){
+  // Este script está DEPOIS dos botões — os elementos já existem.
+  const scriptEl = document.currentScript;
+  const slideEl  = scriptEl.closest('section') || scriptEl.parentElement || document.body;
 
+  // ===== CONFIG LOCAL =====
+  const ENDPOINT = window.SUBMIT_ENDPOINT;
+  const SUBMIT_LOCK_HOURS = 24;
+
+  // ===== UTIL =====
+  const $qAll = (sel, root=slideEl) => Array.from(root.querySelectorAll(sel));
+  const trim  = (s) => (s||'').toString().trim();
+
+  function getIds() {
+    const studentId = trim(slideEl.querySelector("#student-id")?.value) || "unknown";
+    const slideIdEl = slideEl.querySelector("#slide-id");
+    const slideId   = slideIdEl ? slideIdEl.value : (slideEl.getAttribute('data-slide-key') || "unknown");
+    return { studentId, slideId };
+  }
+  const lockKey = ids => `submit_lock_${ids.studentId}_${ids.slideId}`;
+  function getLockMsLeft(ids){
+    const t = localStorage.getItem(lockKey(ids));
+    if (!t) return 0;
+    const until = parseInt(t,10) + SUBMIT_LOCK_HOURS*60*60*1000;
+    return Math.max(0, until - Date.now());
+  }
+  function isSubmitLocked(ids){ return getLockMsLeft(ids) > 0; }
+  function setSubmitLock(ids){ localStorage.setItem(lockKey(ids), Date.now().toString()); }
+
+  // ===== [GUARD + DEBOUNCE] =====
+  let isSubmittingNow = false;
+  const DEBOUNCE_MS = 3000;
+  const debounceKey = ids => `submit_debounce_${ids.studentId}_${ids.slideId}`;
+  function inDebounce(ids){
+    const t = localStorage.getItem(debounceKey(ids));
+    return t ? (Date.now() - parseInt(t,10)) < DEBOUNCE_MS : false;
+  }
+  function setDebounce(ids){ localStorage.setItem(debounceKey(ids), Date.now().toString()); }
+
+  // ===== UI helpers =====
+  function fmtMMSS(ms){
+    const s = Math.ceil(ms/1000);
+    const mm = String(Math.floor(s/60)).padStart(2,'0');
+    const ss = String(s%60).padStart(2,'0');
+    return `${mm}:${ss}`;
+  }
+
+  let lockTimer = null;
+  let btnSubmit, btnDownload;
+
+  function setBtnLoading(on){
+    if (!btnSubmit) return;
+    if (on){
+      btnSubmit.disabled = true;
+      btnSubmit.dataset.state = 'loading';
+      btnSubmit.textContent = '⏳ Sending…';
+      btnSubmit.style.opacity = '0.7';
+      btnSubmit.style.cursor = 'not-allowed';
+    } else {
+      btnSubmit.disabled = false;
+      btnSubmit.dataset.state = '';
+      btnSubmit.textContent = 'Submit Answers';
+      btnSubmit.style.opacity = '';
+      btnSubmit.style.cursor = 'pointer';
+    }
+  }
+
+  function updateSubmitBtnState(){
+    if (!btnSubmit) return;
+    const ids = getIds();
+    const left = getLockMsLeft(ids);
+    if (left > 0){
+      btnSubmit.disabled = true;
+      btnSubmit.dataset.state = 'locked';
+      btnSubmit.textContent = `🔒 Wait ${fmtMMSS(left)}`;
+      btnSubmit.style.opacity = '0.7';
+      btnSubmit.style.cursor = 'not-allowed';
+    } else if (btnSubmit.dataset.state !== 'loading'){
+      btnSubmit.disabled = false;
+      btnSubmit.dataset.state = '';
+      btnSubmit.textContent = 'Submit Answers';
+      btnSubmit.style.opacity = '';
+      btnSubmit.style.cursor = 'pointer';
+    }
+  }
+
+  /* ============ INTEGRAÇÃO COM RANKING ============ */
+  async function sendLB(event_type, { details='', fingerprint='' } = {}) {
+    if (!window.leaderboardLogEvent) return;
+    try {
+      return await window.leaderboardLogEvent(event_type, { details, fingerprint });
+    } catch(e) {
+      console.warn('LB error:', e);
+    }
+  }
+  /* ================================================ */
+
+  // ===== Coleta SOMENTE deste slide e IGNORA vazios =====
+  function collectAnswersFromThisSlide(){
+    const out = {};
+
+    // text/number (TF e numéricas no seu padrão)
+    $qAll('input[type="text"], input[type="number"]').forEach(input => {
+      const nameOrId = input.name || input.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+
+      const value = trim(input.value);
+      if (value === '') return;
+
+      const correct   = input.dataset.correctAnswer;
+      const tolerance = input.dataset.tolerance; /* <<< MUDANÇA: captura tolerância */
+
+      out[nameOrId] = (correct !== undefined)
+        ? { value, correct, tolerance }          /* <<< MUDANÇA: inclui tolerance */
+        : value;
+    });
+
+    // Radio (MCQ): apenas selecionados
+    const radioNames = new Set();
+    $qAll('input[type="radio"]').forEach(input => {
+      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
+        radioNames.add(input.name);
+      }
+    });
+    radioNames.forEach(name => {
+      const selected = slideEl.querySelector(`input[type="radio"][name="${CSS.escape(name)}"]:checked`);
+      if (!selected) return;
+      const form     = selected.closest("form");
+      const correct  = form?.dataset.correctAnswer;
+      out[name]      = (correct !== undefined) ? { value: selected.value, correct } : selected.value;
+    });
+
+    // Checkboxes marcados
+    $qAll('input[type="checkbox"]').forEach(chk => {
+      const nameOrId = chk.name || chk.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+      if (!chk.checked) return;
+      out[nameOrId] = chk.value || 'on';
+    });
+
+    // Long (textarea)
+    $qAll('textarea').forEach(textarea => {
+      const nameOrId = textarea.name || textarea.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+      const value = trim(textarea.value);
+      if (value === '') return;
+      out[nameOrId] = value;
+    });
+
+    // Selects
+    $qAll('select').forEach(sel => {
+      const nameOrId = sel.name || sel.id || '';
+      if (!nameOrId) return;
+      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
+      const value = trim(sel.value);
+      if (value === '') return;
+      out[nameOrId] = value;
+    });
+
+    return out;
+  }
+
+  async function submitAnswers(){
+    const ids = getIds();
+
+    if (isSubmitLocked(ids)) { updateSubmitBtnState(); return; }
+    if (isSubmittingNow || inDebounce(ids)) return;
+    isSubmittingNow = true;
+    setDebounce(ids);
+    setBtnLoading(true);
+
+    const studentId = ids.studentId;
+    const password  = trim(slideEl.querySelector("#student-password")?.value);
+
+    if (!studentId || !password) {
+      isSubmittingNow = false;
+      setBtnLoading(false);
+      alert("❗Please enter both your student ID and password.");
+      return;
+    }
+
+    const answers = collectAnswersFromThisSlide();
+
+    if (!Object.keys(answers).length) {
+      isSubmittingNow = false;
+      setBtnLoading(false);
+      alert("⚠️ No filled answers on this slide.");
+      return;
+    }
+
+    const payload = {
+      studentId,
+      password,
+      timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+      slide: ids.slideId,
+      answers
+    };
+
+    // armazena local para o botão de download
+    slideEl.__lastSubmittedAnswers = payload;
+
+    try {
+      const response = await fetch(ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "text/plain" }
+      });
+
+      const result = await response.json().catch(()=>({success:false, message:'Invalid JSON'}));
+      if (result.success) {
+        alert("✅ Your answers were submitted successfully!");
+        setSubmitLock(ids);
+        if (lockTimer) clearInterval(lockTimer);
+        lockTimer = setInterval(updateSubmitBtnState, 1000);
+        updateSubmitBtnState();
+
+        // ===== PATCH RANKING =====
+        window.studentId = ids.studentId;
+        window.moduleId  = window.moduleId || (ids.slideId.split('_')[0] || 'module');
+        window.pageId    = ids.slideId;
+
+        await sendLB('flash_quiz_participate', {
+          details: `slide=${ids.slideId}&n=${Object.keys(answers).length}`,
+          fingerprint: `${ids.studentId}-flash_quiz_participate-${ids.slideId}-${Date.now()}`
+        });
+
+        /* <<< MUDANÇA: usa tolerância para numéricas >>> */
+        for (const [qid, entry] of Object.entries(answers)) {
+          const hasCorrect = typeof entry === 'object' && entry !== null && 'correct' in entry;
+          if (!hasCorrect) continue;
+
+          const valStr = String(entry.value ?? '').trim();
+          const corStr = String(entry.correct ?? '').trim();
+
+          const isBool = (v) => ['true','false'].includes(String(v).toLowerCase());
+          const isNum  = (v) => !isNaN(Number(v)) && v !== '';
+
+          let ok = false;
+
+          if (isBool(valStr) || isBool(corStr)) {
+            // T/F: comparação direta (case-insensitive)
+            ok = valStr.toLowerCase() === corStr.toLowerCase();
+
+          } else if (isNum(valStr) && isNum(corStr)) {
+            // Numérica: aplica tolerância (padrão 0.2 se não vier no input)
+            const val = parseFloat(valStr);
+            const cor = parseFloat(corStr);
+            const tol = (entry.tolerance !== undefined && entry.tolerance !== null && entry.tolerance !== '')
+                        ? Math.abs(parseFloat(entry.tolerance))
+                        : 0.2;
+            ok = isFinite(val) && isFinite(cor) && Math.abs(val - cor) <= tol;
+
+          } else {
+            // MCQ: string exata (p.ex., "A", "B", "C", ...)
+            ok = valStr !== '' && corStr !== '' && valStr === corStr;
+          }
+
+          let ev;
+          if (isBool(valStr) || isBool(corStr)) {
+            ev = ok ? 'answer_correct_tf' : 'answer_wrong_tf';
+          } else if (isNum(valStr) && isNum(corStr)) {
+            ev = ok ? 'answer_correct_numeric' : 'answer_wrong_numeric';
+          } else {
+            ev = ok ? 'answer_correct_mcq' : 'answer_wrong_mcq';
+          }
+
+          await sendLB(ev, {
+            details: `slide=${ids.slideId}&qid=${qid}&ok=${ok}`,
+            fingerprint: `${ids.studentId}-${ev}-${ids.slideId}-${qid}`
+          });
+        }
+        // ===== FIM PATCH RANKING =====
+
+      } else {
+        alert("❌ Submission failed: " + (result.message || "Unknown error."));
+      }
+    } catch (error) {
+      alert("❌ Submission error: " + error.message);
+    } finally {
+      isSubmittingNow = false;
+      setBtnLoading(false);
+      updateSubmitBtnState();
+    }
+  }
+
+  function downloadAnswersAsText() {
+    const payload = slideEl.__lastSubmittedAnswers;
+    if (!payload) {
+      alert("⚠️ No answers available to download yet.");
+      return;
+    }
+    let text = "📝 Student Answers Summary\n\n";
+    text += `Student ID: ${payload.studentId}\n`;
+    text += `Slide: ${payload.slide}\n`;
+    text += `Timestamp: ${payload.timestamp}\n\n`;
+    text += "Answers:\n";
+    for (const [questionId, entry] of Object.entries(payload.answers)) {
+      if (typeof entry === 'object' && entry !== null) {
+        text += `- ${questionId}: ${entry.value}\n`;
+      } else {
+        text += `- ${questionId}: ${entry}\n`;
+      }
+    }
+    const blob = new Blob([text], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    const safeTimestamp = payload.timestamp.replace(/[/:\s]/g, "-");
+    link.download = `${payload.studentId}_${payload.slide}_${safeTimestamp}_answers.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // ===== INIT (agora com elementos presentes) =====
+  function init(){
+    btnSubmit   = slideEl.querySelector('#submit-btn');
+    btnDownload = slideEl.querySelector('#download-btn');
+
+    if (btnSubmit)   btnSubmit.addEventListener('click', submitAnswers);
+    if (btnDownload) btnDownload.addEventListener('click', downloadAnswersAsText);
+
+    updateSubmitBtnState();
+    if (lockTimer) clearInterval(lockTimer);
+    lockTimer = setInterval(updateSubmitBtnState, 1000);
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init, { once:true });
+  } else {
+    init();
+  }
+})();
+</script>
