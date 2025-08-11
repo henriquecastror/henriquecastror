@@ -1467,393 +1467,158 @@ Show Feedback
 <p>Key: <em>module1_question3</em> <input type="hidden" id="slide-id" value="module1_question3"></p>
 </div>
 <h3 id="net-proceeds-in-an-seo">Net Proceeds in an SEO</h3>
-<p>Orion AutoTech executed a seasoned equity offering (SEO) of 12 million shares at $51.94 per share. Of these, 5.8 million were primary (new shares issued by the company) and 6.2 million were secondary (sold by existing investors). Assume the underwriter charges 5.5% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.</p>
+<p>Orion AutoTech executed a seasoned equity offering (SEO) of 8 million shares at $50.69 per share. Of these, 4.2 million were primary (new shares issued by the company) and 3.8 million were secondary (sold by existing investors). Assume the underwriter charges 6% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
-<label for="module1_num_q7a"><strong>1. The amount of money raised by the company (in million USD) is:</strong></label> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width:110px;" data-correct-answer="284.7" data-tolerance="0.5">
+<label for="module1_num_q7a"><strong>1. The amount of money raised by the company (in million USD) is:</strong></label> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width:110px;" data-correct-answer="200.1" data-tolerance="0.5">
 </form>
 <div id="feedback-module1_num_q7a" class="feedback" data-status="" style="display:none;">
-✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (5.8 × $51.94) − (5.5% × $301.25 million) = $301.25 million − $16.57 million = <strong>$284.7 million</strong>.
+✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (4.2 × $50.69) − (6% × $212.9 million) = $212.9 million − $12.77 million = <strong>$200.1 million</strong>.
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
-<label for="module1_num_q7b"><strong>2. The amount of money raised by the VC (in million USD) is:</strong></label> <input type="number" id="module1_num_q7b" name="module1_num_q7b" placeholder="Value" style="width:110px;" data-correct-answer="304.3" data-tolerance="0.5">
+<label for="module1_num_q7b"><strong>2. The amount of money raised by the VC (in million USD) is:</strong></label> <input type="number" id="module1_num_q7b" name="module1_num_q7b" placeholder="Value" style="width:110px;" data-correct-answer="181.1" data-tolerance="0.5">
 </form>
 <div id="feedback-module1_num_q7b" class="feedback" data-status="" style="display:none;">
-✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (6.2 × $51.94) − (5.5% × $322.03 million) = $322.03 million − $17.71 million = <strong>$304.3 million</strong>.
+✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (3.8 × $50.69) − (6% × $192.62 million) = $192.62 million − $11.56 million = <strong>$181.1 million</strong>.
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
-<label for="module1_num_q7c"><strong>3. The amount of money the underwriter will earn (in million USD) is:</strong></label> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="34.3" data-tolerance="0.5">
+<label for="module1_num_q7c"><strong>3. The amount of money the underwriter will earn (in million USD) is:</strong></label> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="24.3" data-tolerance="0.5">
 </form>
 <div id="feedback-module1_num_q7c" class="feedback" data-status="" style="display:none;">
-✅ Fee = (Total Shares × Price) × Fee Rate = (12 × $51.94) × 5.5% = $623.28 million × 5.5% = <strong>$34.3 million</strong>.
+✅ Fee = (Total Shares × Price) × Fee Rate = (8 × $50.69) × 6% = $405.52 million × 6% = <strong>$24.3 million</strong>.
 </div>
 </div>
-<!-- =========================================
-     EXERCÍCIO + SUBMIT-TO-SHEETS + RANKING
-     (escopo: somente o slide onde este arquivo
-      está incluído)
-     ========================================= -->
-<!-- (opcional) Inclua o widget do ranking em algum lugar do layout global -->
-<!--  -->
-<!-- Login Fields (locais a este slide) -->
-<div style="margin-bottom: 10px;">
-<p><label><strong>Student ID:</strong></label> <input type="text" id="student-id" placeholder="Enter your ID"></p>
-</div>
-<div style="margin-bottom: 20px;">
-<p><label><strong>Password:</strong></label> <input type="password" id="student-password" placeholder="Enter your password"></p>
-</div>
-<!-- Botões (IDs locais, sem onclick) -->
-<button id="submit-btn" style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
-Submit Answers
-</button>
-<button id="download-btn" style="background-color:#007bff; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer; margin-left: 10px;">
-📄 Download My Answers (TXT)
-</button>
+<div style="text-align: right;">
 <script>
-// ===== CONFIG DO ENDPOINT (global, sem redeclarar) =====
-window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec";
-</script>
-<script>
-(function(){
-  // Este script está DEPOIS dos botões — os elementos já existem.
-  const scriptEl = document.currentScript;
-  const slideEl  = scriptEl.closest('section') || scriptEl.parentElement || document.body;
+// Função auxiliar para verificar e definir o status de uma questão.
+function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance = 0) {
+  const feedbackDiv = document.getElementById(feedbackDivId);
+  if (!feedbackDiv) return;
 
-  // ===== CONFIG LOCAL =====
-  const ENDPOINT = window.SUBMIT_ENDPOINT;
-  const SUBMIT_LOCK_HOURS = 24;
+  let isCorrect = false;
 
-  // ===== UTIL =====
-  const $qAll = (sel, root=slideEl) => Array.from(root.querySelectorAll(sel));
-  const trim  = (s) => (s||'').toString().trim();
-
-  function getIds() {
-    const studentId = trim(slideEl.querySelector("#student-id")?.value) || "unknown";
-    const slideIdEl = slideEl.querySelector("#slide-id");
-    const slideId   = slideIdEl ? slideIdEl.value : (slideEl.getAttribute('data-slide-key') || "unknown");
-    return { studentId, slideId };
+  // Trata respostas numéricas com tolerância
+ if (typeof correctAnswer === 'number' && typeof userAnswer === 'number' && !isNaN(userAnswer)) {
+    const lowerBound = correctAnswer - tolerance;
+    const upperBound = correctAnswer + tolerance;
+    isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
+  } else if (typeof userAnswer === 'string') {
+    // Para respostas de texto (T/F, Múltipla Escolha)
+    isCorrect = (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase());
   }
-  const lockKey = ids => `submit_lock_${ids.studentId}_${ids.slideId}`;
-  function getLockMsLeft(ids){
-    const t = localStorage.getItem(lockKey(ids));
-    if (!t) return 0;
-    const until = parseInt(t,10) + SUBMIT_LOCK_HOURS*60*60*1000;
-    return Math.max(0, until - Date.now());
-  }
-  function isSubmitLocked(ids){ return getLockMsLeft(ids) > 0; }
-  function setSubmitLock(ids){ localStorage.setItem(lockKey(ids), Date.now().toString()); }
+  // Adicione outras lógicas de comparação aqui se necessário (ex: arrays para múltiplos checkboxes)
 
-  // ===== [GUARD + DEBOUNCE] =====
-  let isSubmittingNow = false;
-  const DEBOUNCE_MS = 3000;
-  const debounceKey = ids => `submit_debounce_${ids.studentId}_${ids.slideId}`;
-  function inDebounce(ids){
-    const t = localStorage.getItem(debounceKey(ids));
-    return t ? (Date.now() - parseInt(t,10)) < DEBOUNCE_MS : false;
-  }
-  function setDebounce(ids){ localStorage.setItem(debounceKey(ids), Date.now().toString()); }
-
-  // ===== UI helpers =====
-  function fmtMMSS(ms){
-    const s = Math.ceil(ms/1000);
-    const mm = String(Math.floor(s/60)).padStart(2,'0');
-    const ss = String(s%60).padStart(2,'0');
-    return `${mm}:${ss}`;
-  }
-
-  let lockTimer = null;
-  let btnSubmit, btnDownload;
-
-  function setBtnLoading(on){
-    if (!btnSubmit) return;
-    if (on){
-      btnSubmit.disabled = true;
-      btnSubmit.dataset.state = 'loading';
-      btnSubmit.textContent = '⏳ Sending…';
-      btnSubmit.style.opacity = '0.7';
-      btnSubmit.style.cursor = 'not-allowed';
-    } else {
-      btnSubmit.disabled = false;
-      btnSubmit.dataset.state = '';
-      btnSubmit.textContent = 'Submit Answers';
-      btnSubmit.style.opacity = '';
-      btnSubmit.style.cursor = 'pointer';
-    }
-  }
-
-  function updateSubmitBtnState(){
-    if (!btnSubmit) return;
-    const ids = getIds();
-    const left = getLockMsLeft(ids);
-    if (left > 0){
-      btnSubmit.disabled = true;
-      btnSubmit.dataset.state = 'locked';
-      btnSubmit.textContent = `🔒 Wait ${fmtMMSS(left)}`;
-      btnSubmit.style.opacity = '0.7';
-      btnSubmit.style.cursor = 'not-allowed';
-    } else if (btnSubmit.dataset.state !== 'loading'){
-      btnSubmit.disabled = false;
-      btnSubmit.dataset.state = '';
-      btnSubmit.textContent = 'Submit Answers';
-      btnSubmit.style.opacity = '';
-      btnSubmit.style.cursor = 'pointer';
-    }
-  }
-
-  /* ============ INTEGRAÇÃO COM RANKING ============ */
-  async function sendLB(event_type, { details='', fingerprint='' } = {}) {
-    if (!window.leaderboardLogEvent) return;
-    try {
-      return await window.leaderboardLogEvent(event_type, { details, fingerprint });
-    } catch(e) {
-      console.warn('LB error:', e);
-    }
-  }
-  /* ================================================ */
-
-  // ===== Coleta SOMENTE deste slide e IGNORA vazios =====
-  function collectAnswersFromThisSlide(){
-    const out = {};
-
-    // text/number (TF e numéricas no seu padrão)
-    $qAll('input[type="text"], input[type="number"]').forEach(input => {
-      const nameOrId = input.name || input.id || '';
-      if (!nameOrId) return;
-      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
-
-      const value = trim(input.value);
-      if (value === '') return;
-
-      const correct   = input.dataset.correctAnswer;
-      const tolerance = input.dataset.tolerance; /* <<< MUDANÇA: captura tolerância */
-
-      out[nameOrId] = (correct !== undefined)
-        ? { value, correct, tolerance }          /* <<< MUDANÇA: inclui tolerance */
-        : value;
-    });
-
-    // Radio (MCQ): apenas selecionados
-    const radioNames = new Set();
-    $qAll('input[type="radio"]').forEach(input => {
-      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
-        radioNames.add(input.name);
-      }
-    });
-    radioNames.forEach(name => {
-      const selected = slideEl.querySelector(`input[type="radio"][name="${CSS.escape(name)}"]:checked`);
-      if (!selected) return;
-      const form     = selected.closest("form");
-      const correct  = form?.dataset.correctAnswer;
-      out[name]      = (correct !== undefined) ? { value: selected.value, correct } : selected.value;
-    });
-
-    // Checkboxes marcados
-    $qAll('input[type="checkbox"]').forEach(chk => {
-      const nameOrId = chk.name || chk.id || '';
-      if (!nameOrId) return;
-      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
-      if (!chk.checked) return;
-      out[nameOrId] = chk.value || 'on';
-    });
-
-    // Long (textarea)
-    $qAll('textarea').forEach(textarea => {
-      const nameOrId = textarea.name || textarea.id || '';
-      if (!nameOrId) return;
-      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
-      const value = trim(textarea.value);
-      if (value === '') return;
-      out[nameOrId] = value;
-    });
-
-    // Selects
-    $qAll('select').forEach(sel => {
-      const nameOrId = sel.name || sel.id || '';
-      if (!nameOrId) return;
-      if (!(nameOrId.startsWith('q') || nameOrId.startsWith('module'))) return;
-      const value = trim(sel.value);
-      if (value === '') return;
-      out[nameOrId] = value;
-    });
-
-    return out;
-  }
-
-  async function submitAnswers(){
-    const ids = getIds();
-
-    if (isSubmitLocked(ids)) { updateSubmitBtnState(); return; }
-    if (isSubmittingNow || inDebounce(ids)) return;
-    isSubmittingNow = true;
-    setDebounce(ids);
-    setBtnLoading(true);
-
-    const studentId = ids.studentId;
-    const password  = trim(slideEl.querySelector("#student-password")?.value);
-
-    if (!studentId || !password) {
-      isSubmittingNow = false;
-      setBtnLoading(false);
-      alert("❗Please enter both your student ID and password.");
-      return;
-    }
-
-    const answers = collectAnswersFromThisSlide();
-
-    if (!Object.keys(answers).length) {
-      isSubmittingNow = false;
-      setBtnLoading(false);
-      alert("⚠️ No filled answers on this slide.");
-      return;
-    }
-
-    const payload = {
-      studentId,
-      password,
-      timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-      slide: ids.slideId,
-      answers
-    };
-
-    // armazena local para o botão de download
-    slideEl.__lastSubmittedAnswers = payload;
-
-    try {
-      const response = await fetch(ENDPOINT, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "text/plain" }
-      });
-
-      const result = await response.json().catch(()=>({success:false, message:'Invalid JSON'}));
-      if (result.success) {
-        alert("✅ Your answers were submitted successfully!");
-        setSubmitLock(ids);
-        if (lockTimer) clearInterval(lockTimer);
-        lockTimer = setInterval(updateSubmitBtnState, 1000);
-        updateSubmitBtnState();
-
-        // ===== PATCH RANKING =====
-        window.studentId = ids.studentId;
-        window.moduleId  = window.moduleId || (ids.slideId.split('_')[0] || 'module');
-        window.pageId    = ids.slideId;
-
-        await sendLB('flash_quiz_participate', {
-          details: `slide=${ids.slideId}&n=${Object.keys(answers).length}`,
-          fingerprint: `${ids.studentId}-flash_quiz_participate-${ids.slideId}-${Date.now()}`
-        });
-
-        /* <<< MUDANÇA: usa tolerância para numéricas >>> */
-        for (const [qid, entry] of Object.entries(answers)) {
-          const hasCorrect = typeof entry === 'object' && entry !== null && 'correct' in entry;
-          if (!hasCorrect) continue;
-
-          const valStr = String(entry.value ?? '').trim();
-          const corStr = String(entry.correct ?? '').trim();
-
-          const isBool = (v) => ['true','false'].includes(String(v).toLowerCase());
-          const isNum  = (v) => !isNaN(Number(v)) && v !== '';
-
-          let ok = false;
-
-          if (isBool(valStr) || isBool(corStr)) {
-            // T/F: comparação direta (case-insensitive)
-            ok = valStr.toLowerCase() === corStr.toLowerCase();
-
-          } else if (isNum(valStr) && isNum(corStr)) {
-            // Numérica: aplica tolerância (padrão 0.2 se não vier no input)
-            const val = parseFloat(valStr);
-            const cor = parseFloat(corStr);
-            const tol = (entry.tolerance !== undefined && entry.tolerance !== null && entry.tolerance !== '')
-                        ? Math.abs(parseFloat(entry.tolerance))
-                        : 0.2;
-            ok = isFinite(val) && isFinite(cor) && Math.abs(val - cor) <= tol;
-
-          } else {
-            // MCQ: string exata (p.ex., "A", "B", "C", ...)
-            ok = valStr !== '' && corStr !== '' && valStr === corStr;
-          }
-
-          let ev;
-          if (isBool(valStr) || isBool(corStr)) {
-            ev = ok ? 'answer_correct_tf' : 'answer_wrong_tf';
-          } else if (isNum(valStr) && isNum(corStr)) {
-            ev = ok ? 'answer_correct_numeric' : 'answer_wrong_numeric';
-          } else {
-            ev = ok ? 'answer_correct_mcq' : 'answer_wrong_mcq';
-          }
-
-          await sendLB(ev, {
-            details: `slide=${ids.slideId}&qid=${qid}&ok=${ok}`,
-            fingerprint: `${ids.studentId}-${ev}-${ids.slideId}-${qid}`
-          });
-        }
-        // ===== FIM PATCH RANKING =====
-
-      } else {
-        alert("❌ Submission failed: " + (result.message || "Unknown error."));
-      }
-    } catch (error) {
-      alert("❌ Submission error: " + error.message);
-    } finally {
-      isSubmittingNow = false;
-      setBtnLoading(false);
-      updateSubmitBtnState();
-    }
-  }
-
-  function downloadAnswersAsText() {
-    const payload = slideEl.__lastSubmittedAnswers;
-    if (!payload) {
-      alert("⚠️ No answers available to download yet.");
-      return;
-    }
-    let text = "📝 Student Answers Summary\n\n";
-    text += `Student ID: ${payload.studentId}\n`;
-    text += `Slide: ${payload.slide}\n`;
-    text += `Timestamp: ${payload.timestamp}\n\n`;
-    text += "Answers:\n";
-    for (const [questionId, entry] of Object.entries(payload.answers)) {
-      if (typeof entry === 'object' && entry !== null) {
-        text += `- ${questionId}: ${entry.value}\n`;
-      } else {
-        text += `- ${questionId}: ${entry}\n`;
-      }
-    }
-    const blob = new Blob([text], { type: "text/plain" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    const safeTimestamp = payload.timestamp.replace(/[/:\s]/g, "-");
-    link.download = `${payload.studentId}_${payload.slide}_${safeTimestamp}_answers.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  // ===== INIT (agora com elementos presentes) =====
-  function init(){
-    btnSubmit   = slideEl.querySelector('#submit-btn');
-    btnDownload = slideEl.querySelector('#download-btn');
-
-    if (btnSubmit)   btnSubmit.addEventListener('click', submitAnswers);
-    if (btnDownload) btnDownload.addEventListener('click', downloadAnswersAsText);
-
-    updateSubmitBtnState();
-    if (lockTimer) clearInterval(lockTimer);
-    lockTimer = setInterval(updateSubmitBtnState, 1000);
-  }
-
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init, { once:true });
+  if (isCorrect) {
+    feedbackDiv.dataset.status = "correct";
   } else {
-    init();
+    feedbackDiv.dataset.status = "incorrect";
   }
-})();
+  feedbackDiv.style.display = "none"; // Mantém o feedback oculto
+}
+
+// Função para obter a resposta de um grupo de radio buttons
+function getSelectedRadioValue(name) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
+    if (radios.length > 0) {
+        return radios[0].value;
+    }
+    return ''; // Retorna string vazia se nada for selecionado
+}
+
+function toggleFeedback() {
+  const questionBlocks = document.querySelectorAll('.question-block');
+  const feedbacks = document.querySelectorAll('.feedback');
+  const scoreDiv = document.getElementById('score-summary');
+  const toggleButton = document.getElementById('toggle-feedback-btn');
+
+  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
+
+  if (showing) {
+    // Esconder feedback
+    feedbacks.forEach(f => {
+      f.style.display = 'none';
+      f.style.color = 'black'; // Reseta a cor ao esconder
+    });
+    scoreDiv.textContent = '';
+    toggleButton.textContent = 'Show Feedback';
+  } else {
+    // Mostrar feedback
+    let correctCount = 0;
+    let totalQuestions = 0;
+
+    questionBlocks.forEach(block => {
+      totalQuestions++;
+      const textInput = block.querySelector('input[type="text"]');
+      const numberInput = block.querySelector('input[type="number"]'); // Novo: input numérico
+      const form = block.querySelector('form');
+
+      let questionId, userAnswer, correctAnswer, tolerance = 0;
+      let feedbackDivId;
+
+      if (textInput && textInput.dataset.correctAnswer) {
+        // Questão de texto (T/F)
+        questionId = textInput.id;
+        userAnswer = textInput.value;
+        correctAnswer = textInput.dataset.correctAnswer;
+      } else if (numberInput && numberInput.dataset.correctAnswer) {
+        // Questão numérica
+        questionId = numberInput.id;
+        // Converte para número. Se não for um número válido, NaN.
+        userAnswer = parseFloat(numberInput.value);
+        correctAnswer = parseFloat(numberInput.dataset.correctAnswer);
+        if (numberInput.dataset.tolerance) {
+          tolerance = parseFloat(numberInput.dataset.tolerance);
+        }
+        // Se a resposta do usuário não for um número válido, trate como incorreta
+        if (isNaN(userAnswer)) {
+             userAnswer = null; // Mantém como valor numérico inválido
+        }
+      } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
+        // Questão de múltipla escolha (radio)
+        questionId = form.querySelector('input[type="radio"]').name;
+        userAnswer = getSelectedRadioValue(questionId);
+        correctAnswer = form.dataset.correctAnswer;
+      } else {
+        // Se não for um tipo de questão reconhecido ou não tem resposta correta
+        totalQuestions--; // Não conta esta questão no total se não puder ser avaliada
+        return; // Pula para a próxima questão
+      }
+
+      feedbackDivId = 'feedback-' + questionId;
+      const feedbackDiv = document.getElementById(feedbackDivId);
+
+      if (feedbackDiv) { // Apenas processa se há um feedback div
+        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance);
+
+        // Agora, exibe e colore o feedback após a verificação
+        if (feedbackDiv.dataset.status === 'correct') {
+          feedbackDiv.style.color = 'green';
+          correctCount++;
+        } else if (feedbackDiv.dataset.status === 'incorrect') {
+          feedbackDiv.style.color = 'red';
+        } else {
+          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
+        }
+        feedbackDiv.style.display = 'block'; // Exibe o feedback
+      }
+    });
+
+    scoreDiv.textContent = `✅  You answered ${correctCount} out of  ${totalQuestions}  correctly.`;
+    toggleButton.textContent = 'Hide Feedback';
+  }
+}
 </script>
+<button id="toggle-feedback-btn" onclick="toggleFeedback()" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+Show Feedback
+</button>
+<div id="score-summary" style="margin-top: 15px; font-weight: bold;">
+
+</div>
+</div>
 <!-- <div style="text-align: right;">
 
 <div style="text-align: right;">
@@ -2611,6 +2376,262 @@ function toggleFeedback() {
         if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendQuestion(); }
       });
     })();
+    </script>
+    <!-- rankings-widget.html : Botão-ícone minimal + painel sofisticado -->
+    <style>
+      :root{
+        --chatbot-gap: 350px;
+
+        /* meio-termo: mais escuro que o claro, mais claro que o grafite */
+        --lb-bg: rgba(46, 58, 78, 0.72);         /* slate-700 ~ 72% */
+        --lb-border: rgba(255,255,255,0.10);
+        --lb-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.18);
+        --lb-radius: 18px;
+
+        /* acentos (lilás/azul) */
+        --lb-accent: #a78bfa;                    /* lilás */
+        --lb-accent-weak: rgba(167,139,250,0.18);
+
+        /* degradê do botão, combinando com seu tema */
+        --pill-start: #6d5df5;  /* violeta */
+        --pill-end:   #2ec5ff;  /* azul-ciano */
+      }
+
+      .lb-panel{
+        position: fixed;
+        bottom: 20px;
+        right: var(--chatbot-gap);
+        z-index: 2147483647;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      }
+
+      /* Botão só-ícone, circular (mesmo tom do chat/comentários) */
+      .lb-toggle{
+        width: 40px; height: 40px; border-radius: 999px;
+        display: inline-flex; align-items: center; justify-content: center;
+        border: none;
+        background: linear-gradient(135deg, var(--pill-start), var(--pill-end));
+        color: white;           /* ícone branco */
+        box-shadow: 0 10px 28px rgba(2,6,23,.30), inset 0 0 0 1px rgba(255,255,255,.14);
+        cursor: pointer; user-select: none;
+        transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      }
+      .lb-toggle:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+      .lb-toggle:active{ transform: translateY(0); filter: brightness(.98); }
+      .lb-icon{ font-size: 20px; line-height: 1; }
+
+      /* Cartão do ranking (glass) */
+      .lb-card{
+        margin-top: 10px;
+        width: 360px; max-height: 62vh; overflow: auto;
+        border: 1px solid var(--lb-border); background: var(--lb-bg);
+        -webkit-backdrop-filter: saturate(160%) blur(10px);
+        backdrop-filter: saturate(160%) blur(10px);
+        border-radius: var(--lb-radius);
+        box-shadow: var(--lb-shadow);
+        display: none;
+        position: absolute; bottom: 52px; right: 0; /* abre acima do botão */
+        transform-origin: bottom right;
+        color: #e5e7eb; /* texto claro */
+      }
+      .lb-card.open{ display:block; animation: lbPop .18s cubic-bezier(.2,.9,.2,1); }
+      @keyframes lbPop { from { transform: scale(.98); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+
+      .lb-header{
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        display:flex; justify-content:space-between; align-items:center;
+        background: linear-gradient(180deg, rgba(167,139,250,.12), transparent 60%);
+        border-top-left-radius: var(--lb-radius);
+        border-top-right-radius: var(--lb-radius);
+        position: sticky; top: 0; backdrop-filter: blur(6px);
+      }
+      .lb-title{
+        font-weight: 800; letter-spacing:.2px; color:#f3f4f6;
+      }
+      .lb-refresh{
+        font-size: 12px; color: #d1d5db; display:flex; align-items:center; gap: 6px;
+      }
+      .lb-dot{
+        width:8px;height:8px;border-radius:999px;background:var(--lb-accent);
+        box-shadow: 0 0 0 4px var(--lb-accent-weak);
+      }
+
+      .lb-list{ list-style:none; margin:0; padding: 6px 0 8px; }
+      .lb-item{
+        display:flex; align-items:center; justify-content:space-between;
+        padding: 10px 14px;
+        border-bottom: 1px dashed rgba(255,255,255,.06);
+      }
+      .lb-item:last-child{ border-bottom: 0; }
+
+      .lb-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+      .lb-rank{
+        width: 28px; text-align:right; font-variant-numeric: tabular-nums;
+        color:#fde68a; font-weight:700; /* dourado p/ 1º */
+      }
+      .lb-item.top-2 .lb-rank{ color:#cbd5e1; } /* prata */
+      .lb-item.top-3 .lb-rank{ color:#d8b4fe; } /* lilás */
+
+      .lb-name{
+        flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e5e7eb;
+      }
+      .lb-points{ font-variant-numeric: tabular-nums; font-weight:600; color:#f3f4f6; }
+
+      .lb-footer{
+        padding: 10px 14px;
+        display:flex; justify-content:space-between; align-items:center; gap:8px;
+        border-top: 1px solid rgba(255,255,255,.06);
+        background: linear-gradient(0deg, rgba(167,139,250,.10), transparent 60%);
+        border-bottom-left-radius: var(--lb-radius);
+        border-bottom-right-radius: var(--lb-radius);
+        position: sticky; bottom: 0; backdrop-filter: blur(6px);
+      }
+      .lb-badge-me{
+        background: var(--lb-accent-weak);
+        padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight:600;
+        color: #f5f3ff;
+      }
+
+      /* Mobile: bottom sheet */
+      @media (max-width: 820px){
+        .lb-panel{ right: 12px; bottom: 88px; }
+        .lb-card{
+          position: fixed; left: 12px; right: 12px; bottom: 88px;
+          width: auto; height: 58vh; max-height: none; transform-origin: bottom center;
+        }
+      }
+      @media (max-width: 380px){
+        .lb-card{ height: 62vh; }
+      }
+    </style>
+
+    <div class="lb-panel" id="lbPanel">
+      <button class="lb-toggle" id="lbToggle" title="Leaderboard" aria-label="Open leaderboard">
+        <span class="lb-icon">🏆</span>
+      </button>
+      <div class="lb-card" id="lbCard" role="dialog" aria-modal="false" aria-label="Leaderboard">
+        <div class="lb-header">
+          <div class="lb-title">Top <span id="lbTopN">10</span></div>
+          <div class="lb-refresh"><span class="lb-dot" aria-hidden="true"></span><span id="lbUpdated">Refresh —</span></div>
+        </div>
+
+        <ul class="lb-list" id="lbList"></ul>
+
+        <div class="lb-footer">
+          <span id="lbMe"></span>
+          <!-- (sem botões de fechar/refresh) -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /************ CONFIG ************/
+      const LB_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxtIy2KebICuURKPz2htpnhI3czz6GqJ-uVh55DeyxwRSniS_WnqoqByYvt451fcUpXow/exec';
+      const LB_TOP = 10;
+      const LB_POLL_MS = 3000;
+      const LB_STUDENT = (window.studentId || '').toString() || 'anonymous';
+      const LB_MODULE  = (window.moduleId   || '').toString() || 'module1';
+      const LB_PAGE    = (window.pageId     || '').toString() || (location.pathname + location.hash);
+      /********************************/
+
+      const lbToggle  = document.getElementById('lbToggle');
+      const lbCard    = document.getElementById('lbCard');
+      const lbList    = document.getElementById('lbList');
+      const lbTopNEl  = document.getElementById('lbTopN');
+      const lbMeEl    = document.getElementById('lbMe');
+      const lbUpdated = document.getElementById('lbUpdated');
+      lbTopNEl.textContent = LB_TOP;
+
+      // Toggle abrir/fechar
+      lbToggle.addEventListener('click', () => {
+        const open = lbCard.classList.contains('open');
+        if (open) lbCard.classList.remove('open');
+        else { lbCard.classList.add('open'); fetchLeaderboard(); }
+      });
+      // Fechar com Esc
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lbCard.classList.remove('open'); });
+
+      // Atualiza "Refresh HH:MM:SS"
+      function setUpdated(ts){
+        const d = ts ? new Date(ts) : new Date();
+        const hh = String(d.getHours()).padStart(2,'0');
+        const mm = String(d.getMinutes()).padStart(2,'0');
+        const ss = String(d.getSeconds()).padStart(2,'0');
+        lbUpdated.textContent = `Refresh ${hh}:${mm}:${ss}`;
+      }
+
+      // Carregar Top
+      async function fetchLeaderboard() {
+        try {
+          const url = `${LB_ENDPOINT}?action=leaderboard_top&top=${LB_TOP}&who=${encodeURIComponent(LB_STUDENT)}`;
+          const res = await fetch(url, { method: 'GET' });
+          const data = await res.json();
+          if (!data.ok) throw new Error(data.error || 'Failed');
+          renderTop(data.top, data.me, data.updated_at);
+          setUpdated(data.updated_at);
+        } catch (e) {
+          console.error('Leaderboard error:', e);
+          lbList.innerHTML = '<li class="lb-item"><div class="lb-name">Não foi possível carregar o ranking.</div></li>';
+          setUpdated();
+        }
+      }
+
+      // Renderizar lista
+      function renderTop(top, me, updatedAt) {
+        lbList.innerHTML = '';
+        if (!top || !top.length){
+          lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">Ainda sem pontos por aqui.</div></li>';
+        } else {
+          for (const row of top) {
+            const li = document.createElement('li'); li.className = 'lb-item';
+            if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
+            const left = document.createElement('div'); left.className='lb-left';
+            const rk = document.createElement('div'); rk.className='lb-rank'; rk.textContent = row.rank;
+            const nm = document.createElement('div'); nm.className='lb-name'; nm.textContent = row.name || row.studentId;
+            left.appendChild(rk); left.appendChild(nm);
+            const pts = document.createElement('div'); pts.className='lb-points'; pts.textContent = row.total_points + ' pts';
+            li.appendChild(left); li.appendChild(pts);
+            lbList.appendChild(li);
+          }
+        }
+        lbMeEl.innerHTML = me ? `<span class="lb-badge-me">Você: #${me.rank} · ${me.total_points} pts</span>` : '';
+        setUpdated(updatedAt);
+      }
+      // expõe para uso externo se precisar
+      window.renderTop = renderTop;
+
+      // Auto-refresh
+      if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchLeaderboard, LB_POLL_MS);
+
+      // Logger de eventos (exponho global para uso em outras partes)
+      async function leaderboardLogEvent(event_type, { points=null, details='' } = {}) {
+        try {
+          const payload = {
+            action: 'leaderboard_log',
+            studentId: LB_STUDENT,
+            event_type,
+            module: LB_MODULE,
+            page: LB_PAGE,
+            details,
+            points,
+            fingerprint: `${LB_STUDENT}-${event_type}-${LB_MODULE}-${LB_PAGE}`
+          };
+        const res = await fetch(LB_ENDPOINT, {
+         method: 'POST',
+         body: JSON.stringify(payload) // sem headers
+          });
+
+          const data = await res.json();
+          if (!data.ok) throw new Error(data.error || 'failed');
+          fetchLeaderboard();
+          return data;
+        } catch (e) {
+          console.error('logEvent error:', e);
+          return { ok:false, error: String(e) };
+        }
+      }
+      window.leaderboardLogEvent = leaderboardLogEvent;
     </script>
     
     <script>

@@ -13,7 +13,7 @@ format:
     include-after-body: 
       - ../chat-widget.html
 #      - ../comnents.html
-#      - ../ranking-widget.html
+      - ../ranking-widget.html
     touch: true
     controls: true
     slide-number: true
@@ -840,8 +840,9 @@ Key: *module1_question3*
 
 {{< include "num/module1_num_q7.qmd" >}}
 
-{{< include "../submit-to-sheets.html" >}}
-
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
 
 ```{=html}
 <!-- <div style="text-align: right;">
