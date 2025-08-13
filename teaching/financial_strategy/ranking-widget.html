@@ -1,5 +1,9 @@
 <!-- rankings-widget.html : Botão-ícone minimal + painel sofisticado -->
 <style>
+  /* Esconde tudo que exigir auth enquanto a página estiver bloqueada pelo login-start */
+  html.locked .requires-auth,
+  body.locked .requires-auth { display: none !important; }
+
   :root{
     --chatbot-gap: 350px;
 
@@ -127,31 +131,36 @@
   }
 </style>
 
-<div class="lb-panel" id="lbPanel">
-  <button class="lb-toggle" id="lbToggle" title="Leaderboard" aria-label="Open leaderboard">
-    <span class="lb-icon">🏆</span>
-  </button>
-  <div class="lb-card" id="lbCard" role="dialog" aria-modal="false" aria-label="Leaderboard">
-    <div class="lb-header">
-      <div class="lb-title">Top <span id="lbTopN">10</span></div>
-      <div class="lb-refresh"><span class="lb-dot" aria-hidden="true"></span><span id="lbUpdated">Refresh —</span></div>
-    </div>
+<!-- 🔒 Este wrapper esconde o widget até o login -->
+<div class="requires-auth">
+  <div class="lb-panel" id="lbPanel">
+    <button class="lb-toggle" id="lbToggle" title="Leaderboard" aria-label="Open leaderboard">
+      <span class="lb-icon">🏆</span>
+    </button>
+    <div class="lb-card" id="lbCard" role="dialog" aria-modal="false" aria-label="Leaderboard">
+      <div class="lb-header">
+        <div class="lb-title">Top <span id="lbTopN">10</span></div>
+        <div class="lb-refresh"><span class="lb-dot" aria-hidden="true"></span><span id="lbUpdated">Refresh —</span></div>
+      </div>
 
-    <ul class="lb-list" id="lbList"></ul>
+      <ul class="lb-list" id="lbList"></ul>
 
-    <div class="lb-footer">
-      <span id="lbMe"></span>
-      <!-- (sem botões de fechar/refresh) -->
+      <div class="lb-footer">
+        <span id="lbMe"></span>
+        <!-- (sem botões de fechar/refresh) -->
+      </div>
     </div>
   </div>
 </div>
 
 <script>
   /************ CONFIG ************/
-  const LB_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxtIy2KebICuURKPz2htpnhI3czz6GqJ-uVh55DeyxwRSniS_WnqoqByYvt451fcUpXow/exec';
+  const LB_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
   const LB_TOP = 10;
   const LB_POLL_MS = 3000;
-  const LB_STUDENT = (window.studentId || '').toString() || 'anonymous';
+
+  // student/module/page com fallback, mas permitindo atualizar após login
+  let LB_STUDENT = (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').toString();
   const LB_MODULE  = (window.moduleId   || '').toString() || 'module1';
   const LB_PAGE    = (window.pageId     || '').toString() || (location.pathname + location.hash);
   /********************************/
@@ -163,6 +172,16 @@
   const lbMeEl    = document.getElementById('lbMe');
   const lbUpdated = document.getElementById('lbUpdated');
   lbTopNEl.textContent = LB_TOP;
+
+  // Se o login acontecer depois do load, atualiza student e faz refresh
+  document.addEventListener('auth:login', (ev) => {
+    const sid = (ev && ev.detail && ev.detail.studentId) ? ev.detail.studentId : (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '');
+    if (sid) {
+      LB_STUDENT = String(sid);
+      // Se o card estiver aberto, recarrega; senão, só atualiza timestamp
+      if (lbCard.classList.contains('open')) fetchLeaderboard(); else setUpdated();
+    }
+  });
 
   // Toggle abrir/fechar
   lbToggle.addEventListener('click', () => {
@@ -185,7 +204,8 @@
   // Carregar Top
   async function fetchLeaderboard() {
     try {
-      const url = `${LB_ENDPOINT}?action=leaderboard_top&top=${LB_TOP}&who=${encodeURIComponent(LB_STUDENT)}`;
+      const who = LB_STUDENT || 'anonymous';
+      const url = `${LB_ENDPOINT}?action=leaderboard_top&top=${LB_TOP}&who=${encodeURIComponent(who)}`;
       const res = await fetch(url, { method: 'GET' });
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || 'Failed');
@@ -216,7 +236,7 @@
         lbList.appendChild(li);
       }
     }
-    lbMeEl.innerHTML = me ? `<span class="lb-badge-me">Você: #${me.rank} · ${me.total_points} pts</span>` : '';
+    lbMeEl.innerHTML = me ? `<span class="lb-badge-me">You: #${me.rank} · ${me.total_points} pts</span>` : '';
     setUpdated(updatedAt);
   }
   // expõe para uso externo se precisar
@@ -230,19 +250,15 @@
     try {
       const payload = {
         action: 'leaderboard_log',
-        studentId: LB_STUDENT,
+        studentId: LB_STUDENT || 'anonymous',
         event_type,
         module: LB_MODULE,
         page: LB_PAGE,
         details,
         points,
-        fingerprint: `${LB_STUDENT}-${event_type}-${LB_MODULE}-${LB_PAGE}`
+        fingerprint: `${LB_STUDENT || 'anonymous'}-${event_type}-${LB_MODULE}-${LB_PAGE}`
       };
-    const res = await fetch(LB_ENDPOINT, {
-     method: 'POST',
-     body: JSON.stringify(payload) // sem headers
-      });
-
+      const res = await fetch(LB_ENDPOINT, { method: 'POST', body: JSON.stringify(payload) });
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || 'failed');
       fetchLeaderboard();

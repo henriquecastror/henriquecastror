@@ -87,6 +87,9 @@ library(yfR)
 
 
 
+
+
+
 ##  { background="#A91B0D"}
 
 ::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
@@ -103,13 +106,64 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 
 💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
 
+
+
 :::
 
 
+
+## Ranking tokens {.smaller background="#f7f9fc" }
+
+These actions count toward your participation grade. 
+
+. . . 
+
+- **flash_quiz_participate** — Submitted a quiz attempt on the slide. **(+1)**
+
+. . .
+
+- **answer_correct_numeric** — Correct numeric answer (within tolerance of 0.1). **(+2)**
+- **answer_wrong_numeric** — Incorrect numeric answer. **(0)**
+
+. . .
+
+- **answer_correct_long** — Long-form answer manually graded as correct. **(+5)**
+- **answer_submitted_long** — Submitted a long-form answer (recorded as not correct). **(0)**
+
+. . .
+
+- **answer_correct_tf** — Correct answer to a T/F question. **(+1)**
+- **answer_wrong_tf** — Incorrect answer to a T/F question. **(0)**
+
+. . .
+
+- **answer_correct_mcq** — Correct answer to a MCQ. **(+1)**
+- **answer_wrong_mcq** — Incorrect answer to a MCQ. **(0)**
+
+. . .
+
+- **exit_ticket** — Submitted the end-of-class reflection (Check-out). **(+1)**
+
+. . .
+
+- **got_it** — Reacted with a “Got it” to a slide. **(+1)**
+
+
+
+<script>
+  const pageId = "mod2_like1"; 
+</script>
+
+{{< include ../like-button.html >}}
+
+
+
+
+
+
+
+
 ## {background-image="../figs/ch10.png" background-size="1300px"}
-
-
-
 
 
 
@@ -179,7 +233,6 @@ Notice the volatility next slide.
 ## 10.1 Risk & Return: Insights   {.smaller background="#f2f5ce"} 
 
 ![](../figs/bm_10_2.png){width="105%"}
-
 
 
 
@@ -620,7 +673,6 @@ ggplotly(p)
 
 
 
-
 ##  {.smaller  background="#cff5ce"}
 
 **Standard deviation through time. It changes.**
@@ -739,7 +791,6 @@ ggplotly(p)
 
 
 
-
 ##  {.smaller  background="#cff5ce"}
 
 **Daily returns Americanas.**
@@ -764,7 +815,6 @@ p<-ggplot() +
   theme_solarized()
 ggplotly(p)      
 ```
-
 
 
 
@@ -855,41 +905,6 @@ This is:
 
 
 
-##  {.smaller  background="#FFFFFF" visibility="hidden"}
-
-::: {style="font-size: 40%; text-align: right;"}
-Key: *module2_slide1*
-<input type="hidden" id="slide-id" value="module2_slide1">
-:::
-
-{{< include "num/module2_num_q1_class.qmd" >}}
-
-
-{{< include "../submit-to-sheets.html" >}}
-
-
-```{=html}
-<!-- <div style="text-align: right;">
-
-<div style="text-align: right;">
-{{< include "../quiz-utils.html" >}}
-</div>
-
-
-</div> -->
-```
-
-
-<script>
-  const pageId = "mod2_like2"; 
-</script>
-
-{{< include ../like-button.html >}}
-
-
-
-
-
 
 
 
@@ -914,8 +929,6 @@ $$(1 + 𝑅_{annual})   = (1+𝑅_{Q1})\times(1+𝑅_{Q2})\times(1+ 𝑅_{Q3})\t
 **One important piece of information you need:**
 
 - You should know whether the return is calculated adjusted by dividends (they usually are, but always ask).
-
-
 
 
 
@@ -1068,13 +1081,69 @@ Remember the (arithmetic) average was 12% (in previous slide).
 
 
 
+##  {.smaller  background="#FFFFFF" }
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module2_slide1*
+<input type="hidden" id="slide-id" value="module2_slide1">
+:::
+
+
+
+::: panel-tabset
+
+{{< include "num/module2_num_q1_class.qmd" >}}
+
+{{< include "num/module2_num_q11_class.qmd" >}}
+
+{{< include "num/module2_num_q12_class.qmd" >}}
+
+
+:::
+
+{{< include "../submit-to-sheets.html" >}}
 
 
 
 
-# 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
 
-## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+
+
+
+
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-type="exit"
+     data-endpoint="https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec"
+     data-session="module2-session1"
+     data-open="2025-08-13 16:35"
+     data-close="2025-08-13 16:50"></div>
+{{< include ../ticket.html >}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 10.4 Tradeoff risk vs. return {.smaller  background="#f5d5d5" }
+
+## 10.4 Tradeoff risk vs. return {.smaller  background="#f5d5d5" }
 
 **Investors are assumed to be risk averse:**
 
@@ -1098,7 +1167,7 @@ Remember the (arithmetic) average was 12% (in previous slide).
 
 
 
-## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+## 10.4 Tradeoff risk vs. return {.smaller  background="#f5d5d5" }
 
 **That is why riskier assets are expected to have higher returns.**
 
@@ -1114,7 +1183,7 @@ Remember the (arithmetic) average was 12% (in previous slide).
 
 
 
-## 10.4 Tradeoff between risk and return {.smaller  background="#f5d5d5" }
+## 10.4 Tradeoff risk vs. return {.smaller  background="#f5d5d5" }
 
 **But the association is not linear as one might expect. See stocks below.**
 
@@ -1732,6 +1801,25 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 
 
 
+
+
+
+
+
+
+
+# Exit ticket... { background="#f7f9fc"}
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-type="exit"
+     data-endpoint="https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec"
+     data-session="module2-session2"
+     data-open="2025-08-18 16:35"
+     data-close="2025-08-18 16:50"></div>
+{{< include ../ticket.html >}}
 
 
 

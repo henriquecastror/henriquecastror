@@ -254,62 +254,22 @@ window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/ma
         lockTimer = setInterval(updateSubmitBtnState, 1000);
         updateSubmitBtnState();
 
-        // ===== PATCH RANKING =====
-        window.studentId = ids.studentId;
-        window.moduleId  = window.moduleId || (ids.slideId.split('_')[0] || 'module');
-        window.pageId    = ids.slideId;
+// ===== PATCH RANKING =====
+window.studentId = ids.studentId;
+window.moduleId  = window.moduleId || (ids.slideId.split('_')[0] || 'module');
+window.pageId    = ids.slideId;
 
-        await sendLB('flash_quiz_participate', {
-          details: `slide=${ids.slideId}&n=${Object.keys(answers).length}`,
-          fingerprint: `${ids.studentId}-flash_quiz_participate-${ids.slideId}-${Date.now()}`
-        });
+/* Front logging desativado: o backend (GAS) registra participação e acertos.
+   Mantido só para referência/histórico:
 
-        /* <<< MUDANÇA: usa tolerância para numéricas >>> */
-        for (const [qid, entry] of Object.entries(answers)) {
-          const hasCorrect = typeof entry === 'object' && entry !== null && 'correct' in entry;
-          if (!hasCorrect) continue;
+   // await sendLB('flash_quiz_participate', { ... });
 
-          const valStr = String(entry.value ?? '').trim();
-          const corStr = String(entry.correct ?? '').trim();
-
-          const isBool = (v) => ['true','false'].includes(String(v).toLowerCase());
-          const isNum  = (v) => !isNaN(Number(v)) && v !== '';
-
-          let ok = false;
-
-          if (isBool(valStr) || isBool(corStr)) {
-            // T/F: comparação direta (case-insensitive)
-            ok = valStr.toLowerCase() === corStr.toLowerCase();
-
-          } else if (isNum(valStr) && isNum(corStr)) {
-            // Numérica: aplica tolerância (padrão 0.2 se não vier no input)
-            const val = parseFloat(valStr);
-            const cor = parseFloat(corStr);
-            const tol = (entry.tolerance !== undefined && entry.tolerance !== null && entry.tolerance !== '')
-                        ? Math.abs(parseFloat(entry.tolerance))
-                        : 0.2;
-            ok = isFinite(val) && isFinite(cor) && Math.abs(val - cor) <= tol;
-
-          } else {
-            // MCQ: string exata (p.ex., "A", "B", "C", ...)
-            ok = valStr !== '' && corStr !== '' && valStr === corStr;
-          }
-
-          let ev;
-          if (isBool(valStr) || isBool(corStr)) {
-            ev = ok ? 'answer_correct_tf' : 'answer_wrong_tf';
-          } else if (isNum(valStr) && isNum(corStr)) {
-            ev = ok ? 'answer_correct_numeric' : 'answer_wrong_numeric';
-          } else {
-            ev = ok ? 'answer_correct_mcq' : 'answer_wrong_mcq';
-          }
-
-          await sendLB(ev, {
-            details: `slide=${ids.slideId}&qid=${qid}&ok=${ok}`,
-            fingerprint: `${ids.studentId}-${ev}-${ids.slideId}-${qid}`
-          });
-        }
-        // ===== FIM PATCH RANKING =====
+   // for (const [qid, entry] of Object.entries(answers)) {
+   //   ...
+   //   await sendLB(ev, { ... });
+   // }
+*/
+// ===== FIM PATCH RANKING =====
 
       } else {
         alert("❌ Submission failed: " + (result.message || "Unknown error."));

@@ -1,4 +1,4 @@
-### Realized Return and Return Breakdown
+### Return Breakdown
 
 ```{r}
 #| eval: true
@@ -6,6 +6,9 @@
 #| results: asis
 #| warning: false
 library(webexercises)
+
+set.seed(123)
+
 p1 <- rnorm(1, mean = 10, sd = 2)
 p2 <- rnorm(1, mean = 10, sd = 2)
 div <- rnorm(1, mean = 1, sd = 0.1)

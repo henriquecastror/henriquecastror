@@ -14,7 +14,12 @@
   const countSpan = btn && btn.querySelector('.like-count');
   if (!btn || !textSpan || !countSpan) return;
 
+  // GAS de LIKES/COMMENTS (contagem + persistência do like)
   const scriptURL = "https://script.google.com/macros/s/AKfycbxfBAS6Bhm9CwTH8OKjSwPuffvcm7DkdfAc0EeatJBHSSzStLWv-6U7-W4ZgvGdmusoeA/exec";
+
+  // (opcional) fallback direto para ranking se você NÃO tiver o ranking-widget na página.
+  // Se você usar o widget, deixe vazio que a gente usa window.leaderboardLogEvent.
+  const RANKING_ENDPOINT = ""; // ex.: "https://script.google.com/macros/s/SEU_QUIZZ_RESPONSE_RANKING/exec"
 
   function getSlideHashForSection(sec) {
     if (sec && sec.id) return `#/${sec.id}`;
@@ -37,16 +42,78 @@
     return getSlideURLForThisButton();
   }
 
+  function getStudentId() {
+    return (window.studentId || localStorage.getItem("studentId") || localStorage.getItem("fs_user") || "");
+  }
+
+  function hasLogin() {
+    return !!getStudentId();
+  }
+
   function setGotItState() {
     textSpan.textContent = "Got it ✔";
     btn.classList.add("liked");
     btn.title = "You have already confirmed";
   }
 
+  // 🔒 Desabilita se ainda não há login
+  function syncButtonLock() {
+    if (!hasLogin()) {
+      btn.setAttribute('disabled', 'disabled');
+      btn.style.opacity = 0.6;
+      btn.title = "Please log in to confirm";
+    } else {
+      btn.removeAttribute('disabled');
+      btn.style.opacity = "";
+      btn.title = "Click if you got this";
+    }
+  }
+  syncButtonLock();
+
+  // 🔔 Reabilita após login
+  document.addEventListener('auth:login', () => {
+    syncButtonLock();
+    updateCount();
+  });
+
   if (localStorage.getItem(`liked_${pageId()}`)) setGotItState();
+
+  // 👉 envia +1 ponto no ranking (só quando o like foi aceito pelo GAS)
+  async function awardLikePoint(student, pid){
+    try {
+      // 1) Preferência: usar o ranking-widget (já tem endpoint e fingerprint ok)
+      if (typeof window.leaderboardLogEvent === 'function') {
+        await window.leaderboardLogEvent('like', { details: 'source=like_button' });
+        return;
+      }
+      // 2) Fallback direto ao endpoint (se você preencher RANKING_ENDPOINT)
+      if (RANKING_ENDPOINT) {
+        const payload = {
+          action: 'leaderboard_log',
+          studentId: student,
+          event_type: 'like',
+          module: (window.moduleId || 'module'),
+          page: pid,
+          details: 'source=like_button',
+          // fingerprint para garantir 1 ponto por página/slide:
+          fingerprint: `${student}-like-${pid}`
+        };
+        await fetch(RANKING_ENDPOINT, { method: 'POST', body: JSON.stringify(payload) });
+      } else {
+        console.warn('[Like] Sem ranking-widget e sem RANKING_ENDPOINT — ponto não enviado.');
+      }
+    } catch (e) {
+      console.warn('[Like] Falha ao enviar ponto ao ranking:', e);
+    }
+  }
 
   btn.addEventListener("click", () => {
     const pid = pageId();
+
+    if (!hasLogin()) {
+      alert("Please log in first.");
+      return;
+    }
     if (localStorage.getItem(`liked_${pid}`)) return;
 
     localStorage.setItem(`liked_${pid}`, "true");
@@ -57,9 +124,18 @@
     const currentCount = parseInt(countSpan.textContent.replace(/[^\d]/g, '')) || 0;
     countSpan.textContent = `(${currentCount + 1})`;
 
-    fetch(`${scriptURL}?like=1&page=${encodeURIComponent(pid)}`)
+    const student = getStudentId();
+    console.debug('[Like] pid=', pid, 'studentId=', student);
+
+    fetch(`${scriptURL}?like=1&page=${encodeURIComponent(pid)}&student=${encodeURIComponent(student)}`)
       .then(res => res.json())
-      .then(() => updateCount())
+      .then(async data => {
+        // Só pontua no ranking se o backend registrou este like como NOVO
+        if (data && data.status === 'liked') {
+          await awardLikePoint(student, pid);
+        }
+        updateCount();
+      })
       .catch(err => console.error("Error marking got it:", err));
   });
 
