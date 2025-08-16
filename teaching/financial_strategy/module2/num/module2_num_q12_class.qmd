@@ -7,7 +7,7 @@
 #| warning: false
 library(webexercises)
 
-set.seed(123456)
+set.seed(125)
 
 Tyears <- sample(3:8, 1)                 # number of years
 initial <- round(runif(1, 80, 150), 0)   # initial value

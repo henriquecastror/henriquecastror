@@ -331,7 +331,7 @@
       margin-right: 0; 
     }
   </style>
-  <!-- === login-start.html (com proteção para páginas e slides + turbo) === -->
+  <!-- === login-start.html (com proteção para páginas e slides + turbo + warmup) === -->
 
   <style>
     /* Card padrão (páginas normais) */
@@ -341,7 +341,7 @@
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 10px;
-      font-family: sans-serif;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       background: #fff;
       box-sizing: border-box;
@@ -380,10 +380,6 @@
       margin:0; max-width:340px; width:min(340px,92vw); z-index:9999;
     }
 
-    /* (Opcional) Para ocultar totalmente os slides em vez de só blur, descomente: */
-    /* html.locked.reveal-page .reveal .slides,
-       body.locked.reveal-page .reveal .slides { visibility: hidden; } */
-
     /* Oculta o "Welcome" nos slides */
     .reveal-page #welcome-message { display: none !important; }
 
@@ -392,10 +388,9 @@
       display:flex; align-items:center; gap:8px; margin-top:6px; font-size:.95rem; color:#444; white-space:nowrap;
     }
     .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
-  </style>
-  <style>
+
     /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim
-       enquanto locked. Evita vazamentos quando o Quarto cria contêineres intermediários. */
+       enquanto locked. Evita vazamentos quando o tema injeta containers. */
     html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
       display: none !important;
     }
@@ -403,19 +398,16 @@
     /* Garante que o form fique acima de qualquer layout do tema */
     #login-form { position: relative; z-index: 10000; }
     #login-scrim { z-index: 9998; }
-  </style>
 
-  <style>
     /* Scrim e formulário fixos também em páginas NÃO-reveal enquanto locked */
     html.locked #login-scrim,
     body.locked #login-scrim {
       display: block !important;
       position: fixed !important;
       inset: 0 !important;
-      background: #ffffff !important;   /* pode usar rgba(255,255,255,.96) se quiser só "lavar" */
-      z-index: 2147483646 !important;    /* bem acima de qualquer layout do tema */
+      background: #ffffff !important;
+      z-index: 2147483646 !important;
     }
-
     html.locked #login-form,
     body.locked #login-form {
       position: fixed !important;
@@ -425,7 +417,7 @@
       margin: 0 !important;
       max-width: 340px !important;
       width: min(340px, 92vw) !important;
-      z-index: 2147483647 !important;    /* acima do scrim */
+      z-index: 2147483647 !important;
     }
 
     /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
@@ -436,14 +428,15 @@
   <script>
     (function(){
       const addLocked = el => { if (el && !el.classList.contains('locked')) el.classList.add('locked'); };
-      // aplica de imediato no <html>
       addLocked(document.documentElement);
-      // aplica no <body> assim que estiver disponível
       if (document.body) { addLocked(document.body); }
       else { document.addEventListener('DOMContentLoaded', () => addLocked(document.body)); }
 
-      // preconnect para acelerar a 1ª chamada ao GAS
-      const l=document.createElement('link'); l.rel='preconnect'; l.href='https://script.google.com'; document.head.appendChild(l);
+      // preconnect/dns-prefetch para acelerar chamadas ao GAS de login
+      try {
+        const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
+        const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
+      } catch(_) {}
     })();
   </script>
 
@@ -452,10 +445,18 @@
     if (typeof window.onLoginSuccess !== 'function') {
       window.onLoginSuccess = function(studentId){
         try {
-          window.studentId = String(studentId || '').trim();
-          localStorage.setItem('studentId', window.studentId);
-          document.dispatchEvent(new CustomEvent('auth:login', { detail: { studentId: window.studentId } }));
-          console.debug('[Login] onLoginSuccess →', window.studentId);
+          const sid = String(studentId || '').trim();
+          window.studentId = sid;
+          localStorage.setItem('studentId', sid);
+          // compat com widgets antigos
+          document.dispatchEvent(new CustomEvent('auth:login',   { detail: { studentId: sid } }));
+          setTimeout(() => window.dispatchEvent(new CustomEvent('login:success', { detail:{ studentId: sid } })), 0);
+          // hook imediato para o notice center (se já carregado)
+          if (window.noticeCenter && typeof window.noticeCenter.onLogin === 'function') {
+            window.noticeCenter.onLogin(sid);
+          }
+          if (window.VHCM) window.VHCM.lastLoginAt = Date.now();
+          console.debug('[Login] onLoginSuccess →', sid);
         } catch(e) {
           console.warn('onLoginSuccess shim warn:', e);
         }
@@ -468,8 +469,11 @@
 <meta name="twitter:card" content="summary">
 </head><body class="quarto-light"><form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
     <h3 style="text-align:center;">Login</h3>
-    <input type="text" id="username" placeholder="Username" required="">
-    <input type="password" id="password" placeholder="Password" required="">
+    <input type="text" id="username" placeholder="Username" autocomplete="username" required="">
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" required="">
+    <div class="remember-row">
+      <label><input type="checkbox" id="remember-me" checked=""> Remember me</label>
+    </div>
     <button type="submit" id="login-submit">Enter</button>
     <div id="loading-msg"></div>
     <div id="login-error"></div>
@@ -489,25 +493,22 @@
     const FAST_WINDOW_HOURS  = 2;     // turbo: libera instantâneo
     const VALIDATE_TIMEOUTMS = 3000;  // timeout da validação
 
+    /* 🔥 Warm-up silencioso do GAS: acorda a função antes do 1º login real */
+    window.addEventListener('load', () => {
+      try {
+        const warm = new Image();
+        warm.referrerPolicy = 'no-referrer';
+        warm.src = `${GAS_URL}?username=&password=&page=WARMUP&t=${Date.now()}`;
+      } catch(_) {}
+    });
+
     /***** Marca slides (se houver Reveal) *****/
     document.addEventListener('DOMContentLoaded', () => {
       if (document.querySelector('.reveal')) document.body.classList.add('reveal-page');
     });
 
-    /***** Injeta Remember me (default marcado) *****/
+    /***** Pré-preenche campos com Remember (se houver) *****/
     document.addEventListener('DOMContentLoaded', () => {
-      const submitBtn = document.getElementById('login-submit');
-      if (submitBtn && !document.querySelector('.remember-row')){
-        const row = document.createElement('div');
-        row.className = 'remember-row';
-        const label = document.createElement('label');
-        const cb = document.createElement('input');
-        cb.type='checkbox'; cb.id='remember-me'; cb.checked=true;
-        label.appendChild(cb); label.appendChild(document.createTextNode('Remember me'));
-        row.appendChild(label);
-        submitBtn.parentNode.insertBefore(row, submitBtn);
-      }
-      // pré-preenche
       try{
         const u = localStorage.getItem('fs_user');
         const p = localStorage.getItem('fs_pass');
@@ -522,7 +523,7 @@
         if(checked){
           localStorage.setItem('fs_user', u);
           localStorage.setItem('fs_last_login_at', Date.now().toString());
-          if(REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
+          if (REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
         }else{
           localStorage.removeItem('fs_user'); localStorage.removeItem('fs_pass'); localStorage.removeItem('fs_last_login_at');
         }
@@ -572,15 +573,6 @@
       }
     }
 
-    /* 🌡️ Warm-up silencioso: acorda o GAS para quem NÃO tem remember */
-    window.addEventListener('load', () => {
-      try {
-        if (!getRemember()) {
-          logWithImage('', '', 'WARMUP');
-        }
-      } catch(_) {}
-    });
-
     /***** UI helpers *****/
     function unlockAs(u){
       const welcome=document.getElementById('welcome-message');
@@ -611,7 +603,7 @@
         logWithImage(saved.u, saved.p, page);
 
         // checagem silenciosa (opcional)
-        try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* se quiser, pode relockar */ } } catch(_) {}
+        try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* opcional: relock */ } } catch(_) {}
         return;
       }
 
@@ -642,11 +634,11 @@
       err.textContent='';
       load.textContent='Authenticating your credentials. This may take a few seconds...';
       load.style.display='block';
-      setAuthLoading(true);                           // 🔒 desativa
+      setAuthLoading(true);
 
       const page=location.pathname;
       try{
-        const r=await gasAuth(u,p,page,12000);
+        const r=await gasAuth(u,p,page,VALIDATE_TIMEOUTMS);
         load.style.display='none';
         if (r==='OK'){ saveRemember(u,p,remember); unlockAs(u); onLoginSuccess(u); }
         else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
@@ -654,53 +646,38 @@
       }catch(_){
         load.style.display='none'; err.textContent='Network error. Please try again.';
       }finally{
-        // se o form ainda estiver visível, reabilita
         if (document.getElementById('login-form').style.display !== 'none') {
-          setAuthLoading(false);                      // 🔓 reativa
+          setAuthLoading(false);
         }
       }
     }
 
-    // Auto preenche e tenta login se já houver credenciais (garante remember=true)
+    // Auto preenche (se já houver credenciais lembradas)
     document.addEventListener('DOMContentLoaded', ()=>{
       try{
         const u=localStorage.getItem('fs_user'); const p=localStorage.getItem('fs_pass');
-        if(u&&p){
-          document.getElementById('username').value=u;
-          document.getElementById('password').value=p;
-          const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
-        }
+        if(u){ document.getElementById('username').value=u; }
+        if(p && REMEMBER_PASSWORD){ document.getElementById('password').value=p; }
+        const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
       }catch(_){}
     });
-  </script>
 
-  <script>
-    // Auto-wrap robusto — apenas para páginas NÃO-Reveal
+    /* Auto-wrap robusto — apenas para páginas NÃO-Reveal */
     document.addEventListener('DOMContentLoaded', () => {
       try {
-        // Se for slide (Reveal), NÃO faz auto-wrap
-        if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) {
-          return;
-        }
+        if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) return;
 
         const wrapper = document.getElementById('after-login-content');
         if (!wrapper) return;
 
-        // Trabalha no contêiner pai (ex.: <main> / .quarto-container)
         const root = wrapper.parentElement || document.body;
-
         const loginForm  = document.getElementById('login-form');
         const loginScrim = document.getElementById('login-scrim');
 
         const isKeep = (el) =>
-          el === wrapper ||
-          el === loginForm ||
-          el === loginScrim ||
-          el.tagName === 'SCRIPT' ||
-          el.tagName === 'STYLE' ||
-          el.tagName === 'LINK';
+          el === wrapper || el === loginForm || el === loginScrim ||
+          el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'LINK';
 
-        // Move somente os irmãos do wrapper dentro do mesmo contêiner
         Array.from(root.children).forEach(el => {
           if (!isKeep(el) && !wrapper.contains(el)) {
             wrapper.appendChild(el);
@@ -731,7 +708,7 @@
     </div>
 </div>
 
-  <p class="date">12-08-2025</p>
+  <p class="date">15-08-2025</p>
 </section>
 <section>
 
@@ -1585,29 +1562,29 @@ Show Feedback
 <p>Key: <em>module1_question3</em> <input type="hidden" id="slide-id" value="module1_question3"></p>
 </div>
 <h3 id="net-proceeds-in-an-seo">Net Proceeds in an SEO</h3>
-<p>Orion AutoTech executed a seasoned equity offering (SEO) of 16 million shares at $34.19 per share. Of these, 10.1 million were primary (new shares issued by the company) and 5.9 million were secondary (sold by existing investors). Assume the underwriter charges 4% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.</p>
+<p>Orion AutoTech executed a seasoned equity offering (SEO) of 8 million shares at $44.54 per share. Of these, 5.1 million were primary (new shares issued by the company) and 2.9 million were secondary (sold by existing investors). Assume the underwriter charges 5.5% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
-<label for="module1_num_q7a"><strong>1. The amount of money raised by the company (in million USD) is:</strong></label> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width:110px;" data-correct-answer="331.5" data-tolerance="0.5">
+<label for="module1_num_q7a"><strong>1. The amount of money raised by the company (in million USD) is:</strong></label> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width:110px;" data-correct-answer="214.7" data-tolerance="0.5">
 </form>
 <div id="feedback-module1_num_q7a" class="feedback" data-status="" style="display:none;">
-✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (10.1 × $34.19) − (4% × $345.32 million) = $345.32 million − $13.81 million = <strong>$331.5 million</strong>.
+✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (5.1 × $44.54) − (5.5% × $227.15 million) = $227.15 million − $12.49 million = <strong>$214.7 million</strong>.
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
-<label for="module1_num_q7b"><strong>2. The amount of money raised by the VC (in million USD) is:</strong></label> <input type="number" id="module1_num_q7b" name="module1_num_q7b" placeholder="Value" style="width:110px;" data-correct-answer="193.7" data-tolerance="0.5">
+<label for="module1_num_q7b"><strong>2. The amount of money raised by the VC (in million USD) is:</strong></label> <input type="number" id="module1_num_q7b" name="module1_num_q7b" placeholder="Value" style="width:110px;" data-correct-answer="122.1" data-tolerance="0.5">
 </form>
 <div id="feedback-module1_num_q7b" class="feedback" data-status="" style="display:none;">
-✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (5.9 × $34.19) − (4% × $201.72 million) = $201.72 million − $8.07 million = <strong>$193.7 million</strong>.
+✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (2.9 × $44.54) − (5.5% × $129.17 million) = $129.17 million − $7.1 million = <strong>$122.1 million</strong>.
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
-<label for="module1_num_q7c"><strong>3. The amount of money the underwriter will earn (in million USD) is:</strong></label> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="21.9" data-tolerance="0.5">
+<label for="module1_num_q7c"><strong>3. The amount of money the underwriter will earn (in million USD) is:</strong></label> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="19.6" data-tolerance="0.5">
 </form>
 <div id="feedback-module1_num_q7c" class="feedback" data-status="" style="display:none;">
-✅ Fee = (Total Shares × Price) × Fee Rate = (16 × $34.19) × 4% = $547.04 million × 4% = <strong>$21.9 million</strong>.
+✅ Fee = (Total Shares × Price) × Fee Rate = (8 × $44.54) × 5.5% = $356.32 million × 5.5% = <strong>$19.6 million</strong>.
 </div>
 </div>
 <div style="text-align: right;">
@@ -2769,6 +2746,318 @@ function toggleFeedback() {
       }
       window.leaderboardLogEvent = leaderboardLogEvent;
     </script>
+    <!-- notices-on-login.html -->
+    <style>
+      .notice-modal-backdrop{
+        position:fixed; inset:0; background:rgba(15,23,42,.35);
+        display:none; align-items:center; justify-content:center;
+        z-index:2147483647; /* topo de tudo */
+      }
+      .notice-modal{
+        width:min(92vw, 680px); background:#fff; border-radius:16px;
+        box-shadow:0 18px 50px rgba(0,0,0,.25);
+        padding:18px 18px 12px; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+        border:1px solid rgba(0,0,0,.08);
+      }
+      .notice-title{ font-size:1.1rem; font-weight:700; margin:0 0 6px; color:#0f172a; }
+      .notice-body{ color:#334155; line-height:1.5; }
+      .notice-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+      .notice-btn{
+        padding:10px 14px; border-radius:10px;
+        border:1px solid rgba(0,0,0,.1); background:#0ea5e9; color:#fff; cursor:pointer;
+      }
+
+      /* Botões das opções */
+      .notice-choice{
+        padding:10px 14px; border-radius:999px;
+        border:1px solid rgba(15,23,42,.08);
+        background: linear-gradient(180deg,#3b82f6,#2563eb);
+        color:#fff; cursor:pointer; box-shadow: 0 2px 0 rgba(0,0,0,.06);
+        transition: transform .12s ease, filter .12s ease, opacity .12s ease;
+      }
+      .notice-choice:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+      .notice-choice:disabled{ opacity:.7; cursor:default; transform:none; }
+
+      /* Estado visual após clique */
+      .notice-choice.is-selected{
+        background: linear-gradient(180deg,#2563eb,#1d4ed8);
+        border-color: rgba(37,99,235,.35);
+      }
+      .notice-choice.is-correct{
+        background: linear-gradient(180deg,#16a34a,#15803d);
+        border-color: rgba(22,163,74,.35);
+      }
+      .notice-choice.is-wrong{
+        background: linear-gradient(180deg,#dc2626,#b91c1c);
+        border-color: rgba(220,38,38,.35);
+      }
+    </style>
+
+    <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
+      <div class="notice-modal" role="dialog" aria-modal="true">
+        <div class="notice-title" id="noticeTitle">Notice</div>
+        <div class="notice-body" id="noticeBody"></div>
+        <div class="notice-actions">
+          <button class="notice-btn" id="noticeOkBtn" type="button">Ok, got it</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      const ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1stXhHVbcinNcagloc6XNr3MYW9zn8EctaxxLuOJ086ODpCBvNCPwdfzbJxwl1XgDfw/exec';
+      const SESSION_FLAG = 'notice_shown_this_load';
+      const FEEDBACK_AUTO_CLOSE_MS = 15000; // V/F: tempo p/ ler feedback (0 = fecha só no "Ok, got it")
+      const DEBUG = false;
+
+      /* Preconnect + dns-prefetch */
+      try {
+        const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
+        const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
+      } catch(_) {}
+
+      /* 🔥 Warm-up imediato do GAS */
+      try {
+        const warm = new Image();
+        warm.referrerPolicy = 'no-referrer';
+        warm.src = `${ENDPOINT}?action=ping&t=${Date.now()}`;
+      } catch(_) {}
+
+      /* Helpers básicos */
+      function ensureModal(){
+        let backdrop = document.getElementById('noticeBackdrop');
+        if (!backdrop) {
+          const tpl = document.createElement('div');
+          tpl.innerHTML = `
+            <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
+              <div class="notice-modal" role="dialog" aria-modal="true">
+                <div class="notice-title" id="noticeTitle">Notice</div>
+                <div class="notice-body" id="noticeBody"></div>
+                <div class="notice-actions">
+                  <button class="notice-btn" id="noticeOkBtn" type="button">Ok, got it</button>
+                </div>
+              </div>
+            </div>`;
+          document.body.appendChild(tpl.firstElementChild);
+          if (DEBUG) console.log('[notice] backdrop injected');
+        }
+      }
+      function getStudentId(){
+        try { return (localStorage.getItem('studentId') || sessionStorage.getItem('studentId') || window.__lastLoginStudentId || '').trim(); }
+        catch(e){ return ''; }
+      }
+      function normalizeModule(m){
+        if (!m) return '';
+        const s = String(m).trim().toLowerCase();
+        const m1 = s.match(/^module(\d+)$/); if (m1) return `mod${m1[1]}`;
+        return s;
+      }
+      function getModule(){
+        try {
+          const el = document.getElementById('current-module'); if (el && el.value) return normalizeModule(el.value);
+          const byStorage = localStorage.getItem('module') || sessionStorage.getItem('module'); if (byStorage) return normalizeModule(byStorage);
+          const dm = document.body && document.body.getAttribute('data-module'); if (dm) return normalizeModule(dm);
+          if (window.VHCM && window.VHCM.module) return normalizeModule(window.VHCM.module);
+          return '';
+        } catch(e){ return ''; }
+      }
+      function fetchJSON(url){
+        return fetch(url, { credentials:'omit', cache:'no-store' })
+          .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+      }
+      function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+      function personalize(s, studentId, module){
+        return String(s || '')
+          .replace(/\{\{\s*studentId\s*\}\}/gi, escapeHtml(studentId || ''))
+          .replace(/\{\{\s*module\s*\}\}/gi, escapeHtml(module || ''));
+      }
+      function fireAndForget(url){
+        try { const img = new Image(); img.referrerPolicy='no-referrer'; img.src = url; } catch(_) {}
+      }
+      function ackAndClose(studentId, notice_id){
+        const modal = document.getElementById('noticeBackdrop');
+        if (modal) modal.style.display = 'none';
+        const qs2 = new URLSearchParams({ action:'ack', studentId, notice_id, t: Date.now().toString() });
+        fireAndForget(`${ENDPOINT}?${qs2.toString()}`);
+      }
+
+      /* Normaliza rótulos T/F em vários formatos */
+      function normalizeTF(x){
+        const s = String(x || '').trim().toLowerCase();
+        if (['true','t','verdadeiro','v','yes','y','sim','✅','✔️'].includes(s)) return 'true';
+        if (['false','f','falso','no','n','nao','não','❌','✖️'].includes(s)) return 'false';
+        if (s.startsWith('true'))  return 'true';
+        if (s.startsWith('false')) return 'false';
+        return '';
+      }
+
+      /* Render de poll (normal e T/F) */
+      function renderPoll(notice, studentId, module){
+        const body = document.getElementById('noticeBody');
+        const okBtn = document.getElementById('noticeOkBtn');
+        const opts = Array.isArray(notice.poll_options) ? notice.poll_options : [];
+        const q    = notice.poll_question || 'Vote:';
+
+        const correctKey = normalizeTF(notice.poll_correct);
+        const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
+        let autoTimer = null;
+
+        const pollWrap = document.createElement('div');
+        pollWrap.innerHTML = `
+          <div style="margin:8px 0 12px 0;"><strong>${escapeHtml(q)}</strong></div>
+          <div id="pollBtns" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+          <div id="pollFeedback" style="margin-top:10px;"></div>
+        `;
+        body.appendChild(pollWrap);
+
+        const btns = pollWrap.querySelector('#pollBtns');
+        const fb   = pollWrap.querySelector('#pollFeedback');
+
+        // T/F: deixa "Ok, got it" para leitura do feedback
+        if (isQuizTF && okBtn) {
+          okBtn.style.display = '';
+          okBtn.onclick = (ev) => {
+            ev.preventDefault(); ev.stopPropagation();
+            if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+            ackAndClose(studentId, notice.notice_id);
+          };
+        }
+
+        opts.forEach((label) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'notice-choice';
+          b.textContent = label;
+
+          b.addEventListener('click', () => {
+            // desabilita todos imediatamente
+            const all = [...btns.querySelectorAll('button')];
+            all.forEach(x => x.disabled = true);
+
+            // envia voto (fire-and-forget)
+            const qs = new URLSearchParams({
+              action: 'poll_vote',
+              studentId,
+              module: module || '',
+              poll_id: notice.poll_id || '',
+              choice: label,
+              t: Date.now().toString()
+            });
+            fireAndForget(`${ENDPOINT}?${qs.toString()}`);
+
+            if (!isQuizTF) {
+              // Poll "opinião": só marca seleção e fecha já
+              b.classList.add('is-selected');
+              ackAndClose(studentId, notice.notice_id);
+              return;
+            }
+
+            // T/F: decide correto/errado usando normalização
+            const choiceKey = normalizeTF(label);
+            const isCorrect = (choiceKey && choiceKey === correctKey);
+
+            b.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+
+            // Feedback amigável
+            fb.style.color = isCorrect ? '#065f46' : '#b91c1c';
+            fb.innerHTML = isCorrect
+              ? (notice.feedback_correct_html || '<p><strong>✅ Correct.</strong></p>')
+              : (notice.feedback_wrong_html  || '<p><strong>❌ Not quite.</strong></p>');
+
+            // Auto-fecha após leitura (se configurado)
+            if (FEEDBACK_AUTO_CLOSE_MS > 0) {
+              autoTimer = setTimeout(() => {
+                autoTimer = null;
+                ackAndClose(studentId, notice.notice_id);
+              }, FEEDBACK_AUTO_CLOSE_MS);
+            }
+          });
+
+          btns.appendChild(b);
+        });
+      }
+
+      /* Mostra aviso/poll */
+      async function showNotice(studentId){
+        try { if (sessionStorage.getItem(SESSION_FLAG)) return false; } catch(e){}
+
+        const module = getModule();
+        const qs = new URLSearchParams({ action:'get', studentId });
+        if (module) qs.set('module', module);
+
+        const data = await fetchJSON(`${ENDPOINT}?${qs.toString()}`);
+        if (!data.ok || !data.hasNotice || !data.notice) return false;
+
+        ensureModal();
+
+        const notice = data.notice;
+        const titleEl = document.getElementById('noticeTitle');
+        const bodyEl  = document.getElementById('noticeBody');
+        const okBtn   = document.getElementById('noticeOkBtn');
+        const modal   = document.getElementById('noticeBackdrop');
+        if (!titleEl || !bodyEl || !okBtn || !modal) return false;
+
+        titleEl.textContent = personalize(notice.title || (notice.type === 'poll' ? 'Quick poll' : 'Notice'), studentId, module);
+        bodyEl.innerHTML = personalize(notice.message_html || '', studentId, module);
+        modal.style.display = 'flex';
+
+        if (notice.type === 'poll' && !notice.already_voted) {
+          const correctKey = normalizeTF(notice.poll_correct);
+          const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
+
+          // Para poll de opinião: esconda o "Ok, got it"
+          okBtn.style.display = isQuizTF ? '' : 'none';
+          if (!isQuizTF) {
+            okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
+          }
+
+          renderPoll(notice, studentId, module);
+        } else {
+          // Aviso HTML simples
+          okBtn.style.display = '';
+          okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
+        }
+
+        try { sessionStorage.setItem(SESSION_FLAG, notice.notice_id); } catch(e){}
+        return true;
+      }
+
+      /* API global opcional */
+      window.noticeCenter = {
+        onLogin: (studentId) => { try { window.__lastLoginStudentId = studentId; } catch(e){}; showNotice(String(studentId || '').trim()); },
+        showNow: () => { try{ sessionStorage.removeItem(SESSION_FLAG); }catch(_){};
+          const sid = getStudentId(); if (sid) showNotice(sid);
+        }
+      };
+
+      /* Espera login e mostra (fallback) */
+      async function waitForLoginAndShow(maxMs=20000){
+        const start = Date.now();
+        while (Date.now() - start < maxMs) {
+          const sid = getStudentId();
+          if (sid) { await showNotice(sid); return; }
+          await new Promise(r => setTimeout(r, 150));
+        }
+      }
+
+      /* Gatilhos */
+      document.addEventListener('auth:login', (ev) => {
+        const sid = (ev && ev.detail && ev.detail.studentId) ? String(ev.detail.studentId).trim() : getStudentId();
+        if (sid) window.noticeCenter.onLogin(sid);
+      });
+      window.addEventListener('login:success', (ev) => {
+        const sid = (ev && ev.detail && ev.detail.studentId) ? String(ev.detail.studentId).trim() : getStudentId();
+        if (sid) window.noticeCenter.onLogin(sid);
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => { waitForLoginAndShow(); });
+      } else {
+        waitForLoginAndShow();
+      }
+    })();
+    </script>
     
     <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
@@ -2962,8 +3251,14 @@ function toggleFeedback() {
     });
     </script>
     <script>
+      // Redundância leve: também define o módulo via JS neste deck
+      // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
       window.VHCM = window.VHCM || {};
-      window.VHCM.module = "module1";   // <<< define o módulo AQUI
+      window.VHCM.module = "mod1";
+
+      document.addEventListener('DOMContentLoaded', () => {
+        try { localStorage.setItem('mod1','mod1'); } catch(_) {}
+      });
 
       Reveal.on('ready', event => {
         if (event.indexh === 0) {

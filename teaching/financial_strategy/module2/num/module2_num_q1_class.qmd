@@ -7,7 +7,7 @@
 #| warning: false
 library(webexercises)
 
-set.seed(123)
+set.seed(1232)
 
 p1 <- rnorm(1, mean = 10, sd = 2)
 p2 <- rnorm(1, mean = 10, sd = 2)

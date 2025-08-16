@@ -1,4 +1,4 @@
-<!-- === login-start.html (com proteção para páginas e slides + turbo) === -->
+<!-- === login-start.html (com proteção para páginas e slides + turbo + warmup) === -->
 
 <style>
   /* Card padrão (páginas normais) */
@@ -8,7 +8,7 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    font-family: sans-serif;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background: #fff;
     box-sizing: border-box;
@@ -47,10 +47,6 @@
     margin:0; max-width:340px; width:min(340px,92vw); z-index:9999;
   }
 
-  /* (Opcional) Para ocultar totalmente os slides em vez de só blur, descomente: */
-  /* html.locked.reveal-page .reveal .slides,
-     body.locked.reveal-page .reveal .slides { visibility: hidden; } */
-
   /* Oculta o "Welcome" nos slides */
   .reveal-page #welcome-message { display: none !important; }
 
@@ -59,10 +55,9 @@
     display:flex; align-items:center; gap:8px; margin-top:6px; font-size:.95rem; color:#444; white-space:nowrap;
   }
   .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
-</style>
-<style>
+
   /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim
-     enquanto locked. Evita vazamentos quando o Quarto cria contêineres intermediários. */
+     enquanto locked. Evita vazamentos quando o tema injeta containers. */
   html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
     display: none !important;
   }
@@ -70,19 +65,16 @@
   /* Garante que o form fique acima de qualquer layout do tema */
   #login-form { position: relative; z-index: 10000; }
   #login-scrim { z-index: 9998; }
-</style>
 
-<style>
   /* Scrim e formulário fixos também em páginas NÃO-reveal enquanto locked */
   html.locked #login-scrim,
   body.locked #login-scrim {
     display: block !important;
     position: fixed !important;
     inset: 0 !important;
-    background: #ffffff !important;   /* pode usar rgba(255,255,255,.96) se quiser só "lavar" */
-    z-index: 2147483646 !important;    /* bem acima de qualquer layout do tema */
+    background: #ffffff !important;
+    z-index: 2147483646 !important;
   }
-
   html.locked #login-form,
   body.locked #login-form {
     position: fixed !important;
@@ -92,7 +84,7 @@
     margin: 0 !important;
     max-width: 340px !important;
     width: min(340px, 92vw) !important;
-    z-index: 2147483647 !important;    /* acima do scrim */
+    z-index: 2147483647 !important;
   }
 
   /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
@@ -103,14 +95,15 @@
 <script>
   (function(){
     const addLocked = el => { if (el && !el.classList.contains('locked')) el.classList.add('locked'); };
-    // aplica de imediato no <html>
     addLocked(document.documentElement);
-    // aplica no <body> assim que estiver disponível
     if (document.body) { addLocked(document.body); }
     else { document.addEventListener('DOMContentLoaded', () => addLocked(document.body)); }
 
-    // preconnect para acelerar a 1ª chamada ao GAS
-    const l=document.createElement('link'); l.rel='preconnect'; l.href='https://script.google.com'; document.head.appendChild(l);
+    // preconnect/dns-prefetch para acelerar chamadas ao GAS de login
+    try {
+      const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
+      const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
+    } catch(_) {}
   })();
 </script>
 
@@ -119,10 +112,18 @@
   if (typeof window.onLoginSuccess !== 'function') {
     window.onLoginSuccess = function(studentId){
       try {
-        window.studentId = String(studentId || '').trim();
-        localStorage.setItem('studentId', window.studentId);
-        document.dispatchEvent(new CustomEvent('auth:login', { detail: { studentId: window.studentId } }));
-        console.debug('[Login] onLoginSuccess →', window.studentId);
+        const sid = String(studentId || '').trim();
+        window.studentId = sid;
+        localStorage.setItem('studentId', sid);
+        // compat com widgets antigos
+        document.dispatchEvent(new CustomEvent('auth:login',   { detail: { studentId: sid } }));
+        setTimeout(() => window.dispatchEvent(new CustomEvent('login:success', { detail:{ studentId: sid } })), 0);
+        // hook imediato para o notice center (se já carregado)
+        if (window.noticeCenter && typeof window.noticeCenter.onLogin === 'function') {
+          window.noticeCenter.onLogin(sid);
+        }
+        if (window.VHCM) window.VHCM.lastLoginAt = Date.now();
+        console.debug('[Login] onLoginSuccess →', sid);
       } catch(e) {
         console.warn('onLoginSuccess shim warn:', e);
       }
@@ -132,8 +133,11 @@
 
 <form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
   <h3 style="text-align:center;">Login</h3>
-  <input type="text" id="username" placeholder="Username" required />
-  <input type="password" id="password" placeholder="Password" required />
+  <input type="text" id="username" placeholder="Username" autocomplete="username" required />
+  <input type="password" id="password" placeholder="Password" autocomplete="current-password" required />
+  <div class="remember-row">
+    <label><input type="checkbox" id="remember-me" checked /> Remember me</label>
+  </div>
   <button type="submit" id="login-submit">Enter</button>
   <div id="loading-msg"></div>
   <div id="login-error"></div>
@@ -153,25 +157,22 @@
   const FAST_WINDOW_HOURS  = 2;     // turbo: libera instantâneo
   const VALIDATE_TIMEOUTMS = 3000;  // timeout da validação
 
+  /* 🔥 Warm-up silencioso do GAS: acorda a função antes do 1º login real */
+  window.addEventListener('load', () => {
+    try {
+      const warm = new Image();
+      warm.referrerPolicy = 'no-referrer';
+      warm.src = `${GAS_URL}?username=&password=&page=WARMUP&t=${Date.now()}`;
+    } catch(_) {}
+  });
+
   /***** Marca slides (se houver Reveal) *****/
   document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.reveal')) document.body.classList.add('reveal-page');
   });
 
-  /***** Injeta Remember me (default marcado) *****/
+  /***** Pré-preenche campos com Remember (se houver) *****/
   document.addEventListener('DOMContentLoaded', () => {
-    const submitBtn = document.getElementById('login-submit');
-    if (submitBtn && !document.querySelector('.remember-row')){
-      const row = document.createElement('div');
-      row.className = 'remember-row';
-      const label = document.createElement('label');
-      const cb = document.createElement('input');
-      cb.type='checkbox'; cb.id='remember-me'; cb.checked=true;
-      label.appendChild(cb); label.appendChild(document.createTextNode('Remember me'));
-      row.appendChild(label);
-      submitBtn.parentNode.insertBefore(row, submitBtn);
-    }
-    // pré-preenche
     try{
       const u = localStorage.getItem('fs_user');
       const p = localStorage.getItem('fs_pass');
@@ -186,7 +187,7 @@
       if(checked){
         localStorage.setItem('fs_user', u);
         localStorage.setItem('fs_last_login_at', Date.now().toString());
-        if(REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
+        if (REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
       }else{
         localStorage.removeItem('fs_user'); localStorage.removeItem('fs_pass'); localStorage.removeItem('fs_last_login_at');
       }
@@ -236,15 +237,6 @@
     }
   }
 
-  /* 🌡️ Warm-up silencioso: acorda o GAS para quem NÃO tem remember */
-  window.addEventListener('load', () => {
-    try {
-      if (!getRemember()) {
-        logWithImage('', '', 'WARMUP');
-      }
-    } catch(_) {}
-  });
-
   /***** UI helpers *****/
   function unlockAs(u){
     const welcome=document.getElementById('welcome-message');
@@ -275,7 +267,7 @@
       logWithImage(saved.u, saved.p, page);
 
       // checagem silenciosa (opcional)
-      try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* se quiser, pode relockar */ } } catch(_) {}
+      try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* opcional: relock */ } } catch(_) {}
       return;
     }
 
@@ -306,11 +298,11 @@
     err.textContent='';
     load.textContent='Authenticating your credentials. This may take a few seconds...';
     load.style.display='block';
-    setAuthLoading(true);                           // 🔒 desativa
+    setAuthLoading(true);
 
     const page=location.pathname;
     try{
-      const r=await gasAuth(u,p,page,12000);
+      const r=await gasAuth(u,p,page,VALIDATE_TIMEOUTMS);
       load.style.display='none';
       if (r==='OK'){ saveRemember(u,p,remember); unlockAs(u); onLoginSuccess(u); }
       else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
@@ -318,53 +310,38 @@
     }catch(_){
       load.style.display='none'; err.textContent='Network error. Please try again.';
     }finally{
-      // se o form ainda estiver visível, reabilita
       if (document.getElementById('login-form').style.display !== 'none') {
-        setAuthLoading(false);                      // 🔓 reativa
+        setAuthLoading(false);
       }
     }
   }
 
-  // Auto preenche e tenta login se já houver credenciais (garante remember=true)
+  // Auto preenche (se já houver credenciais lembradas)
   document.addEventListener('DOMContentLoaded', ()=>{
     try{
       const u=localStorage.getItem('fs_user'); const p=localStorage.getItem('fs_pass');
-      if(u&&p){
-        document.getElementById('username').value=u;
-        document.getElementById('password').value=p;
-        const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
-      }
+      if(u){ document.getElementById('username').value=u; }
+      if(p && REMEMBER_PASSWORD){ document.getElementById('password').value=p; }
+      const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
     }catch(_){}
   });
-</script>
 
-<script>
-  // Auto-wrap robusto — apenas para páginas NÃO-Reveal
+  /* Auto-wrap robusto — apenas para páginas NÃO-Reveal */
   document.addEventListener('DOMContentLoaded', () => {
     try {
-      // Se for slide (Reveal), NÃO faz auto-wrap
-      if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) {
-        return;
-      }
+      if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) return;
 
       const wrapper = document.getElementById('after-login-content');
       if (!wrapper) return;
 
-      // Trabalha no contêiner pai (ex.: <main> / .quarto-container)
       const root = wrapper.parentElement || document.body;
-
       const loginForm  = document.getElementById('login-form');
       const loginScrim = document.getElementById('login-scrim');
 
       const isKeep = (el) =>
-        el === wrapper ||
-        el === loginForm ||
-        el === loginScrim ||
-        el.tagName === 'SCRIPT' ||
-        el.tagName === 'STYLE' ||
-        el.tagName === 'LINK';
+        el === wrapper || el === loginForm || el === loginScrim ||
+        el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'LINK';
 
-      // Move somente os irmãos do wrapper dentro do mesmo contêiner
       Array.from(root.children).forEach(el => {
         if (!isKeep(el) && !wrapper.contains(el)) {
           wrapper.appendChild(el);

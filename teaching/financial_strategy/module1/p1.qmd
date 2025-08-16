@@ -8,12 +8,15 @@ date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
 format:
-  revealjs: 
+  revealjs:
+    body-attributes:
+      data-module: mod1
     include-in-header: ../login-start.html
-    include-after-body: 
+    include-after-body:
       - ../chat-widget.html
 #      - ../comnents.html
       - ../ranking-widget.html
+      - ../notices-on-login.html
     touch: true
     controls: true
     slide-number: true
@@ -26,11 +29,17 @@ format:
     footer: '<span style="font-size:10px"> [[Henrique C. Martins](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]**[Do not use without permission]**</span>'
     scrollable: true
 title-slide-attributes:
-    data-background-color: "#b1cafa"
+  data-background-color: "#b1cafa"
 include-after: |
   <script>
+    // Redundância leve: também define o módulo via JS neste deck
+    // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
     window.VHCM = window.VHCM || {};
-    window.VHCM.module = "module1";   // <<< define o módulo AQUI
+    window.VHCM.module = "mod1";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try { localStorage.setItem('mod1','mod1'); } catch(_) {}
+    });
 
     Reveal.on('ready', event => {
       if (event.indexh === 0) {
@@ -42,14 +51,15 @@ include-after: |
         Reveal.configure({ slideNumber: null });
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
       }
-      if (event.indexh === 1) { 
+      if (event.indexh === 1) {
         Reveal.configure({ slideNumber: 'c' });
         document.querySelector("div.has-logo > img.slide-logo").style.display = null;
       }
     });
   </script>
-
 ---
+
+
  
 
 

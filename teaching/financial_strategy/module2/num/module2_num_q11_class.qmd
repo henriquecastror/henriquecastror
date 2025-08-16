@@ -7,7 +7,7 @@
 #| warning: false
 library(webexercises)
 
-set.seed(1234)
+set.seed(12345)
 
 RQ1 <- rnorm(1, mean = 0.02, sd = 0.01)  # Q1 return
 RQ2 <- rnorm(1, mean = 0.015, sd = 0.01) # Q2 return
