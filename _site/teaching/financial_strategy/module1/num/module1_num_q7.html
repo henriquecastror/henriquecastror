@@ -35,12 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,40 +76,15 @@ gtag('js', new Date());
 gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../../include/webex.css">
+<meta property="og:title" content="Henrique Castro Martins">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Henrique Castro Martins">
 <meta name="twitter:title" content="Henrique Castro Martins">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://henriquemartins.net/">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -159,7 +132,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -175,29 +147,31 @@ window.Quarto = {
 
 
 
-<section id="orion-autotech-net-proceeds-in-an-seo" class="level2">
-<h2 class="anchored" data-anchor-id="orion-autotech-net-proceeds-in-an-seo">Orion AutoTech – Net Proceeds in an SEO</h2>
-<p>#| eval: true #| echo: false #| results: asis #| warning: false</p>
-</section>
-<section id="randomização-valores-em-milhões-de-ações-e-usd-por-ação" class="level1">
-<h1>——– Randomização (valores em “milhões de ações” e USD por ação) ——–</h1>
-<p>set.seed(NULL) total_shares &lt;- sample(8:16, 1) # milhões de ações no SEO (total) price_per_share &lt;- round(runif(1, 28, 55), 2) # preço de mercado por ação (USD) fee_rate &lt;- sample(c(0.03, 0.035, 0.04, 0.045, 0.05, 0.055, 0.06), 1) # taxa do underwriter</p>
-<p>primary_share_frac &lt;- round(runif(1, 0.35, 0.65), 2) # fração primária do total (35%–65%) primary_shares &lt;- round(total_shares * primary_share_frac, 1) # milhões secondary_shares &lt;- round(total_shares - primary_shares, 1) # milhões</p>
-</section>
-<section id="garantia-simples-evitar-secundária-0-por-arredondamento-extremo" class="level1">
-<h1>Garantia simples (evitar secundária = 0 por arredondamento extremo)</h1>
-<p>if (secondary_shares &lt;= 0) { primary_shares &lt;- round(total_shares * 0.6, 1) secondary_shares &lt;- round(total_shares - primary_shares, 1) }</p>
-</section>
-<section id="cálculos-em-milhões-de-usd" class="level1">
-<h1>——– Cálculos (em milhões de USD) ————————————–</h1>
-<p>gross_primary &lt;- primary_shares * price_per_share # milhões USD fee_primary &lt;- round(gross_primary * fee_rate, 3) # milhões USD net_proceeds &lt;- round(gross_primary - fee_primary, 3) # milhões USD # Para exibição bonita fee_rate_pct &lt;- round(fee_rate * 100, 1) ````</p>
-<p>Orion AutoTech conducted a follow-on equity offering (SEO) totaling <code>r total_shares</code> million shares at $<code>r price_per_share</code> per share. Out of the total, <code>r primary_shares</code> million shares were primary (new shares issued by the company) and <code>r secondary_shares</code> million were secondary (sold by existing investors). The underwriter charges <code>r fee_rate_pct</code>% of the gross proceeds, allocated pro rata between the primary and secondary tranches.</p>
+<section id="net-proceeds-in-an-seo" class="level3">
+<h3 class="anchored" data-anchor-id="net-proceeds-in-an-seo">Net Proceeds in an SEO</h3>
+<p>Orion AutoTech executed a seasoned equity offering (SEO) of 15 million shares at $31.05 per share. Of these, 8 million were primary (new shares issued by the company) and 7 million were secondary (sold by existing investors). Assume the underwriter charges 4.5% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.</p>
 <div class="question-block">
-<form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-<label for="module1_num_q7a"><strong>1. How much (in million USD) did Orion AutoTech actually raise from the SEO (net to the company)?</strong></label> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width: 110px;" data-correct-answer="`r round(net_proceeds, 1)`" data-tolerance="0.5">
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
+<span><strong>1. The amount of money raised by the company (in million USD) is:</strong></span> <input type="number" id="module1_num_q7a" name="module1_num_q7a" placeholder="Value" style="width:110px;" data-correct-answer="237.2" data-tolerance="0.5">
 </form>
 <div id="feedback-module1_num_q7a" class="feedback" data-status="" style="display:none;">
-✅ <em>Net to issuer</em> = (Primary Shares × Price) − Underwriter fee on the primary tranche = (<code>r primary_shares</code> × $<code>r price_per_share</code>) − (<code>r fee_rate_pct</code>% × $<code>r round(gross_primary, 3)</code> million) = $<code>r round(gross_primary, 3)</code> million − <span class="math inline">\(`r fee_primary` million = **\)</span><code>r round(net_proceeds, 1)</code> million**.
+✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (8 × $31.05) − (4.5% × $248.4 million) = $248.4 million − $11.18 million = <strong>$237.2 million</strong>.
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
+<span><strong>2. The amount of money raised by the VC (in million USD) is:</strong></span> <input type="number" id="module1_num_q7b" name="module1_num_q7b" placeholder="Value" style="width:110px;" data-correct-answer="207.6" data-tolerance="0.5">
+</form>
+<div id="feedback-module1_num_q7b" class="feedback" data-status="" style="display:none;">
+✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (7 × $31.05) − (4.5% × $217.35 million) = $217.35 million − $9.78 million = <strong>$207.6 million</strong>.
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;">
+<span><strong>3. The amount of money the underwriter will earn (in million USD) is:</strong></span> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="21" data-tolerance="0.5">
+</form>
+<div id="feedback-module1_num_q7c" class="feedback" data-status="" style="display:none;">
+✅ Fee = (Total Shares × Price) × Fee Rate = (15 × $31.05) × 4.5% = $465.75 million × 4.5% = <strong>$21 million</strong>.
 </div>
 </div>
 
@@ -431,150 +405,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

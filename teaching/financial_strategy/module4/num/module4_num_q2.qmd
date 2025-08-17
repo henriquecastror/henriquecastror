@@ -1,42 +1,59 @@
-## Cost of Debt (CAPM vs Default Method)
+
+## WACC and Value Creation Threshold
 
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
-rf <- rnorm(1, mean = 6.5, sd = 0.01)
-yield <- rnorm(1, mean = 10, sd = 0.01)
-mrp <- rnorm(1, mean = 8, sd = 0.01)
-loss<- rnorm(1, mean = 7, sd = 0.01)
-default <- rnorm(1, mean = 50, sd = 0.01)
-beta <- 0.15
+library(webexercises)
+
+# Randomized parameters
+set.seed(NULL)
+E <- round(runif(1, min = 150, max = 400), 0)    # equity (in $ millions)
+D <- round(runif(1, min = 50, max = 250), 0)     # debt (in $ millions)
+V <- E + D
+Re <- round(runif(1, min = 0.10, max = 0.16), 3)
+Rd <- round(runif(1, min = 0.05, max = 0.09), 3)
+tax <- round(runif(1, min = 0.20, max = 0.35), 2)
+
+WACC <- (E/V)*Re + (D/V)*Rd*(1 - tax)
+WACC_pct <- round(100*WACC, 2)
+
+proj_ret <- round(runif(1, min = WACC + 0.005, max = WACC + 0.04), 3)  # project return a bit above WACC
+proj_ret_pct <- round(100*proj_ret, 2)
+gap_pct <- round(100*(proj_ret - WACC), 2)
 ```
 
-::: {.question-block}
+A firm has **Equity = \$`r E`m**, **Debt = \$`r D`m**, **Re = `r round(100*Re,2)`**%, **Rd = `r round(100*Rd,2)`**%, **Tax = `r round(100*tax,2)`**%.  
+Compute the **WACC** (after tax).
 
-<form onsubmit="event.preventDefault(); checkNumericAnswer('module4_num_q2a')" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module4_num_q2a"><strong>1. Estimate the debt's expected return using CAPM. Yield = `r round(yield,2)`%, Beta = `r round(beta,2)`, Risk-free rate = `r round(rf,2)`%, Market Risk Premium = `r round(mrp,2)`%.</strong></label>
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q2a"><strong>1. WACC (in %):</strong></label>
   <input type="number" id="module4_num_q2a" name="module4_num_q2a" placeholder="Enter value" style="width: 150px;"
-         data-correct-answer=`r round(rf + beta * mrp,2)` data-tolerance="0.01" />
+         data-correct-answer=`r WACC_pct` data-tolerance="0.01" />
 </form>
 
 <div id="feedback-module4_num_q2a" class="feedback" data-status="" style="display:none;">
-✅ Expected Return (CAPM) = r_f + β × MRP = **`r round(rf + beta * mrp,2)`**%.
+✅ **Concept:** WACC is the **blended required return** from shareholders and debtholders, after the **interest tax shield**.  
+Formula: WACC = (E/V)·R<sub>e</sub> + (D/V)·R<sub>d</sub>·(1 − T).  
+**Your numbers:** WACC = (`r E`/`r (E+D)`)×`r round(100*Re,2)`% + (`r D`/`r (E+D)`)×`r round(100*Rd,2)`%×(1−`r round(100*tax,2)`%) = **`r WACC_pct`%**.
 </div>
-
 :::
 
-::: {.question-block}
+Suppose a project in this firm has **expected return = `r proj_ret_pct`%**.  
+By how many **percentage points** does the project’s return **exceed the WACC**? (This gap signals **value creation** if positive.)
 
-<form onsubmit="event.preventDefault(); checkNumericAnswer('module4_num_q2b')" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module4_num_q2b"><strong>2. Estimate the debt's expected return using Default Rate method (Default Prob = `r round(default,2)`%, Loss Rate = `r round(loss,2)`%).</strong></label>
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q2b"><strong>2. Value creation gap (pp):</strong></label>
   <input type="number" id="module4_num_q2b" name="module4_num_q2b" placeholder="Enter value" style="width: 150px;"
-         data-correct-answer=`r round(yield - default/100 * loss,2)` data-tolerance="0.01" />
+         data-correct-answer=`r gap_pct` data-tolerance="0.01" />
 </form>
 
 <div id="feedback-module4_num_q2b" class="feedback" data-status="" style="display:none;">
-✅ Expected Return (Default Method) = Yield - Default × Loss = **`r round(yield - default/100 * loss,2)`**%.
+✅ **Decision rule:** If **Project Return &gt; WACC**, the project **creates value** (positive NPV under proportional scaling).  
+**Your numbers:** Gap = `r proj_ret_pct`% − `r WACC_pct`% = **`r gap_pct` pp**. A positive gap indicates the project clears the firm’s opportunity cost of capital.
 </div>
-
 :::

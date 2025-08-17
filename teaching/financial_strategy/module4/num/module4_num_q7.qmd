@@ -1,0 +1,28 @@
+## Cost of Debt Capital – CAPM and Default Approach
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+rf <- rnorm(1, mean = 4, sd = 0.01)
+mrp <- rnorm(1, mean = 6, sd = 0.01)
+beta_debt <- rnorm(1, mean = 0.10, sd = 0.01)
+ytm <- rnorm(1, mean = 7, sd = 0.1)
+default_prob <- rnorm(1, mean = 0.5, sd = 0.01)
+loss_rate <- rnorm(1, mean = 60, sd = 1)
+```
+
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkNumericAnswer('module4_num_q3')" style="display: flex; flex-direction: row; gap: 6px;"> <label for="module4_num_q3"><strong>A company's bond has a beta of `r round(beta_debt,2)`. The risk-free rate is `r round(rf,2)`% and the market risk premium is `r round(mrp,2)`%. What is the expected return on debt using the CAPM?</strong></label> <input type="number" id="module4_num_q3" name="module4_num_q3" placeholder="Enter value" style="width: 150px;" data-correct-answer=`r round(rf + (beta_debt * mrp),2)` data-tolerance="0.01" /> </form> <div id="feedback-module4_num_q3" class="feedback" data-status="" style="display:none;"> ✅ Expected Return (CAPM) = r_f + β × MRP = **`r round(rf + (beta_debt * mrp),2)`**%. </div>
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkNumericAnswer('module4_num_q3b')" style="display: flex; flex-direction: row; gap: 6px;"> <label for="module4_num_q3b"><strong>The bond has a Yield to Maturity (YTM) of `r round(ytm,2)`%, probability of default of `r round(default_prob,2)`%, and expected loss given default of `r round(loss_rate,1)`%. Estimate the expected return using the default method.</strong></label> <input type="number" id="module4_num_q3b" name="module4_num_q3b" placeholder="Enter value" style="width: 150px;" data-correct-answer=`r round(ytm - (default_prob * loss_rate / 100),2)` data-tolerance="0.01" /> </form> <div id="feedback-module4_num_q3b" class="feedback" data-status="" style="display:none;"> ✅ Expected Return (Default Method) = YTM − Default Probability × Loss Rate = **`r round(ytm - (default_prob * loss_rate / 100),2)`**%. </div>
+:::
+

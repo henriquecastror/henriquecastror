@@ -1,0 +1,15 @@
+{
+  "hash": "2846b7c39b176a47dfb6888077a536e1",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Cost of Equity Capital\n\n\n\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault(); checkNumericAnswer('module4_num_q1a')\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q1a\"><strong>Suppose a security's beta is 1.26. If the risk-free rate is 4.99% and the market risk premium is 8%, what is the security's cost of equity capital?</strong></label>\n  <input type=\"number\" id=\"module4_num_q1a\" name=\"module4_num_q1a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=15.09 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q1a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Cost of Equity = r_f + β × MRP = **15.09**%.\n</div>\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

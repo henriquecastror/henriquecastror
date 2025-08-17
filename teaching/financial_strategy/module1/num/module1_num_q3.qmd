@@ -28,7 +28,7 @@ You founded a firm three years ago. You started with $`r v1` million, which gave
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-  <label for="module1_num_q3a"><strong>1. What is the post-money valuation (in million)?</strong></label>
+  <span><strong>1. What is the post-money valuation (in million)?</strong></span>
   <input type="number" id="module1_num_q3a" name="module1_num_q3a" placeholder="Enter value" style="width: 120px;"
          data-correct-answer="`r post_money`" data-tolerance="0.1" />
 </form>
@@ -39,7 +39,7 @@ You founded a firm three years ago. You started with $`r v1` million, which gave
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 12px;">
-  <label for="module1_num_q3b"><strong>2. What percentage of the firm will the VC own?</strong></label>
+  <span><strong>2. What percentage of the firm will the VC own?</strong></span>
   <input type="number" id="module1_num_q3b" name="module1_num_q3b" placeholder="Enter %" style="width: 100px;"
          data-correct-answer="`r vc_pct`" data-tolerance="0.1" />
 </form>

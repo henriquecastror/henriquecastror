@@ -1,0 +1,1313 @@
+---
+title: 'Estratégia Financeira'
+subtitle: ' **Part 9 - Ch 16 Financial Distress, Managerial Incentives, and Information** '
+author:
+  - name: ' **Henrique C. Martins** '
+    affiliation: '**[![](../figs/background6.png){width=300px style="box-shadow: none;"}](https://eaesp.fgv.br/en)**'
+date: last-modified
+date-format: "DD-MM-YYYY"
+title-block-banner: true
+format:
+  revealjs:
+    body-attributes:
+      data-module: mod9
+    include-in-header: ../login-start.html
+    include-after-body:
+      - ../chat-widget.html
+#      - ../comnents.html
+      - ../ranking-widget.html
+      - ../notices-on-login.html
+    touch: true
+    controls: true
+    slide-number: true
+    theme: simple
+    chalkboard: false
+    menu: false
+    preview-links: auto
+    logo: ../figs/background8.png
+    css: ../logo.css
+    footer: '<span style="font-size:10px"> [[Henrique C. Martins](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]**[Do not use without permission]**</span>'
+    scrollable: true
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script>
+    // Redundância leve: também define o módulo via JS neste deck
+    // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
+    window.VHCM = window.VHCM || {};
+    window.VHCM.module = "mod9";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try { localStorage.setItem('mod2','mod2'); } catch(_) {}
+    });
+
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) {
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+      
+---
+
+
+
+# Intro {visibility="hidden"}
+
+
+##  { background="#A91B0D"}
+
+::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
+
+The **Virtual HCM** is powered by **AI** to assist you with course materials.  
+While it is trained on the course's content, **it may occasionally**:
+
+- Misinterpret the question or context.  
+- Generate **inaccurate or incomplete** information.  
+- Provide answers **not explicitly included** in the materials.
+
+**Your responsibility:**  
+Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.
+
+💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
+
+:::
+
+
+## {background-image="../figs/cha16.png" background-size="1300px"}
+
+## Chapter Outline {style="color: #000;"}
+
+16.1 Default and Bankruptcy in a Perfect Market
+
+16.2 The Costs of Bankruptcy and Financial Distress
+
+16.3 Financial Distress Costs and Firm Value
+
+16.4 Optimal Capital Structure: The Tradeoff Theory
+
+16.5 Exploiting Debt Holders: The Agency Costs of Leverage
+
+16.6 Motivating Managers: The Agency Benefits of Leverage
+
+16.7 Agency Costs and the Tradeoff Theory
+
+16.8 Asymmetric Information and Capital Structure
+
+16.9 Capital Structure: The Bottom Line
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 16.1 Default and Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+## 16.1 Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+An important consequence of leverage is the **risk of bankruptcy**.
+
+- Equity financing does not carry this risk.
+
+- Although equity holders hope to receive dividends, the firm is not legally obligated to pay them.
+
+**Financial Distress**
+
+- When a firm has difficulty meeting its debt obligations: payment delay or default.
+
+**Default**
+
+- When a firm fails to make the required interest or principal payments on its debt or violates a debt covenant (see next slide).
+
+- After the firm defaults, debt holders are given certain rights to the assets of the firm and may even take legal ownership of the firm’s assets through bankruptcy.
+
+
+
+
+
+
+
+
+
+
+
+## 16.1  Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+- **Debt covenants** are restrictions that lenders (creditors, debt holders, investors) put on lending agreements to limit the actions of the borrower (debtor).
+
+- In other words, debt covenants are agreements between a company and its lenders that the company will operate within certain rules set by the lenders.
+
+- They are also called banking covenants or financial covenants.
+
+**When a debt covenant is violated**, depending on the severity, the lender can do several things:
+
+- Demand penalty payment.
+- Increase the predetermined interest rate.
+- Increase the amount of collateral.
+- Demand full immediate repayment of the loan.
+- Terminate the debt agreement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+**Positive debt covenants** are covenants that state what the borrower **must do**.
+
+- Achieve a certain threshold in certain financial ratios.
+- Ensure facilities and factories are in good working condition.
+- Perform regular maintenance of capital assets.
+- Provide yearly audited financial statements.
+- Ensure accounting practices are in accordance with GAAP (Generally Accepted Accounting Principles).
+
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+**Negative debt covenants** are covenants that state what the borrower **cannot do**.
+
+- Pay cash dividends over a certain amount or predetermined threshold.
+- Sell certain assets.
+- Borrow more debt.
+- Issue debt more senior than the current debt.
+- Enter into certain types of agreements or leases.
+
+
+
+
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+**Example** 
+
+Let's discuss an example of default.
+
+Armin is considering a new project.
+
+- Although the new product represents a significant advance over Armin’s competitors’ products, the **product’s success is uncertain**.
+- If it is a hit, revenues and profits will grow, and Armin will be worth **150 million** at the end of the year.
+- If it fails, Armin will be worth only **80 million**.
+
+. . .
+
+Armin may employ one of two alternative capital structures:
+
+- It can use **all-equity financing**.
+- It can use **debt that matures at the end of the year** with a total of **100 million due**.
+
+
+
+
+
+
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+|                | Without Lev. | Without Lev.  | With Lev. | With Lev. |   
+|----------------|----------------- |-------------------|---------------|---------------|
+|                | **Success**      | **Failure**       | **Success**   | **Failure**   |   
+| Debt Value     | -                | -                 | 100             | 80|
+| Equity value   | 150              | 80                | 50             | 0 |
+| All investors  | 150              | 80                | 150           | 80 |
+|
+
+. . .
+
+Both debt and equity holders are worse off if the product fails rather than succeeds.
+
+- Without leverage, if the product fails equity holders lose $70 million (150 million − 80 million) 
+- With leverage, equity holders lose 50 million, and debt holders lose 20 million, but the total loss is the same, 70 million.
+
+. . .
+
+**The firm is in default** if the project fails with leverage.
+
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+Note, the decline in value **is not caused by bankruptcy:** 
+
+**The decline is the same whether or not the firm has leverage.**
+
+- If the new product fails, Armin will experience **economic distress**, which is a significant decline in the value of a firm’s assets, whether or not it experiences **financial distress** due to leverage.
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+The takeaway of first subsection is:
+
+
+**With perfect capital markets, Modigliani-Miller (MM) Proposition I applies: The total value to all investors does not depend on the firm’s capital structure.**
+
+- There is no disadvantage to debt financing, and a firm will have the same total value and will be able to raise the same amount initially from investors with either choice of capital structure.
+
+
+
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+**Problem**
+
+Consider the following outcomes for the following scenarios both with and without leverage for Moon Industries’ new venture:
+
+|                | Without Lev. | Without Lev.  | With Lev. | With Lev. |   
+|----------------|----------------- |-------------------|---------------|---------------|
+|                | **Success**      | **Failure**       | **Success**   | **Failure**   |   
+| Debt Value     | -                | -                 | 150           | 90            |
+| Equity value   | 250              | 90                | 100           | 0             |
+| All investors  | 250              | 90                | 250           | 90            |
+
+
+- Moon’s new venture is equally likely to succeed or to fail. 
+- The risk-free rate is 4%.
+- The venture has a beta of 0, and the cost of capital is equal to the risk-free rate.
+- Compute the value of Moon’s securities at the beginning of the year with and without leverage.
+
+
+
+
+
+
+
+
+
+
+## 16.1   Bankruptcy in Perf. Mkt {.smaller  background="#cfd5ea"}
+
+**Problem**
+
+$$V^U = \frac{0.5 \times 250 + 0.5 \times 90}{1.04} = 163.46 million$$
+
+. . .
+
+$$V^L = \frac{0.5 \times 100 + 0.5 \times 0}{1.04} = 48.08 million$$
+
+$$Debt = \frac{0.5 \times 150 + 0.5 \times 90}{1.04} = 115.38 million$$
+$$V^L + Debt = 48.08 million + 115.38 million = 163.46 million$$
+
+
+
+
+
+
+
+
+
+# 16.2 Bankruptcy Costs & Fin. Distress {.smaller  background="#eeffff"}
+
+## 16.2 Bankruptcy  & Fin. Distress {.smaller  background="#eeffff"}
+
+With perfect capital markets, the risk of bankruptcy is not a disadvantage of debt; rather, **bankruptcy shifts the ownership of the firm from equity holders to debt holders without changing the total value available to all investors** (this is basically the previous section).
+
+. . .
+
+**In reality, the bankruptcy process is complex, time-consuming, and costly.**
+
+- Costly outside experts are often hired by the firm to assist with the bankruptcy.
+
+- Creditors also incur similar costs during the bankruptcy process. 
+   - They may wait several years to receive payment.
+   - They may hire their own experts for legal and professional advice.
+
+. . .
+
+The **direct costs of bankruptcy** reduce the value of the assets that the firm’s investors will ultimately receive.
+
+- The average direct costs of bankruptcy are approximately **3% to 4% of the pre-bankruptcy market value of total assets**.
+
+
+
+
+
+
+
+
+## 16.2 Bankruptcy  & Fin. Distress {.smaller  background="#eeffff"}
+
+Although the **indirect costs** are difficult to measure accurately, they are often much larger than the direct costs of bankruptcy.
+
+- Loss of Customers
+- Loss of Suppliers
+- Loss of Employees
+- Loss of Receivables
+- Fire Sale of Assets
+- Delayed Liquidation
+- Costs to Creditors
+
+
+It is estimated that the potential loss due to financial distress is **10% to 20% of firm value**. 
+
+
+
+
+
+
+
+
+
+
+# 16.3 Fin. Distress  Costs and Value {.smaller  background="#ead1dc"}
+
+## 16.3 Fin. Distress  Costs and Value {.smaller  background="#ead1dc"}
+
+**Remember previous example**
+
+- With all-equity financing, Armin’s assets will be worth 150 million if its new product succeeds and 80 million if the new product fails.
+- This example assumes there are **no financial distress costs**.
+
+. . .
+
+**Remember previous example**
+
+Assuming **financial distress costs** of 20 million.
+
+- With debt of $100 million, Armin will be forced into bankruptcy if the new product fails.
+- In this case, some of the value of Armin’s assets will be lost to bankruptcy and financial distress costs. As a result, **debt holders will receive less than 80 million.**
+- Let's say debt holders receive only **60 million after accounting for the costs of financial distress**.
+
+
+
+
+
+
+
+
+
+
+
+## 16.3 Fin. Distress  Costs and Value {.smaller  background="#ead1dc"}
+
+That is, the total value to all investors is now less with leverage than it is without leverage when the new product fails.
+
+- The difference of $20 million is due to financial distress costs.
+- These costs will lower the total value of the firm with leverage, and MM’s Proposition I will no longer hold.
+
+
+|                | Without Lev. | Without Lev.  | With Lev. | With Lev. |   
+|----------------|----------------- |-------------------|---------------|---------------|
+|                | **Success**      | **Failure**       | **Success**   | **Failure**   |   
+| Debt Value     | -                | -                 | 100             | 60|
+| Equity value   | 150              | 80                | 50             | 0 |
+| All investors  | 150              | 80                | 150           | 60 |
+
+
+
+
+
+
+
+
+
+
+
+
+## 16.3 Fin. Distress  Costs and Value {.smaller  background="#ead1dc"}
+
+**Problem**
+
+Extending the previous example, assume now that the costs of financial distress are $15 million:
+
+|                | Without Lev. | Without Lev.  | With Lev. | With Lev. |   
+|----------------|----------------- |-------------------|---------------|---------------|
+|                | **Success**      | **Failure**       | **Success**   | **Failure**   |   
+| Debt Value     | -                | -                 | 150           | 75|
+| Equity value   | 250              | 90                | 100           | 0 |
+| All investors  | 250              | 90                | 250           | 75 |
+
+
+- Compute the value of Moon’s securities at the beginning of the year with and without leverage, given that financial distress is costly.
+
+
+
+
+
+
+
+
+## 16.3 Fin. Distress  Costs and Value {.smaller  background="#ead1dc"}
+
+**Problem**
+
+$$V^U = \frac{0.5 \times 250 + 0.5 \times 90}{1.04} = 163.46 million$$
+
+$$V^L = \frac{0.5 \times 100 + 0.5 \times 0}{1.04} = 48.08 million$$
+
+$$Debt = \frac{0.5 \times 150 + 0.5 \times 75}{1.04} = 108.17 million$$
+
+$$V^L + Debt = 48.08 million + 108.17 million = 156.25 million$$
+
+
+
+The difference, ($163.46 − 156.25 = 7.21$), is the present value of the 15 million in financial distress costs
+
+
+$$PV(FDC) = \frac{0.5\times 0 + 0.5 \times 15}{1.04} = 7.21$$
+
+
+
+
+
+
+## 16.3 Fin. Distress  Costs and Value {.smaller  background="#ead1dc"}
+
+**Who Pays for Financial Distress Costs?**
+
+- For Armin, if the new product fails, equity holders lose their investment in the firm and will not care about bankruptcy costs.
+- However, debt holders recognize that if the new product fails and the firm defaults, they will not be able to get the full value of the assets.
+- As a result, they will pay less for the debt initially (the present value of the bankruptcy costs less).
+- If the debt holders initially pay less for the debt, less money is available for the firm to pay dividends, repurchase shares, and make investments.
+- This difference comes out of the equity holders’ pockets.
+
+**When securities are fairly priced, the original shareholders of a firm pay the present value of the costs associated with bankruptcy and financial distress.**
+
+
+
+
+
+
+
+
+
+
+
+
+# 16.4 The Tradeoff Theory {.smaller  background="#FFF3A6"}
+
+## 16.4 The Tradeoff Theory {.smaller  background="#FFF3A6"}
+
+**Tradeoff Theory**
+
+The firm picks its capital structure by **trading off the benefits of the tax shield from debt against the costs of financial distress and agency costs**.
+
+According to the Tradeoff theory, the total value of a levered firm equals the value of the firm without leverage plus the present value of the tax savings from debt, less the present value of financial distress costs:
+
+$$V^L = V^U + PV(Interest\;tax\;shield) - PV(Financial\;distress\;costs)$$
+
+
+
+
+
+
+
+
+
+## 16.4 The Tradeoff Theory {.smaller  background="#FFF3A6"}
+
+**Three key factors determine the present value of financial distress costs:**
+
+**1) The probability of financial distress**
+
+  - The probability of financial distress increases with the **amount of a firm’s liabilities** (relative to its assets).
+  - The probability of financial distress increases with the **volatility of a firm’s cash flows** and asset values.
+
+. . .
+
+**2) The magnitude of the costs after a firm is in distress**
+
+  - Financial distress costs will vary by **industry**.
+
+. . .
+
+**3) The appropriate discount rate for the distress costs**
+
+  - Depends on the **firm’s market risk**
+  - The present value of distress costs will be higher for **high beta firms**.
+
+
+
+
+
+
+
+##  {.smaller  background="#FFF3A6"}
+
+![](../figs/berk_demarzo_tradeoff_1.jpg)
+
+
+
+
+
+
+## 16.4 The Tradeoff Theory {.smaller  background="#FFF3A6"}
+
+It is easy to see that each firm will have an **optimal leverage level**
+
+- For low levels of debt, the risk of default remains low, and the main effect of an increase in leverage is an increase in the interest tax shield.
+- As the level of debt increases, the probability of default increases. Then, the costs of financial distress increase, reducing the value of the levered firm.
+
+. . .
+
+::: {layout-ncol=2}
+
+**The Tradeoff theory states that firms should increase their leverage until it reaches the level for which the firm value is maximized.**  At this point, the tax savings that result from increasing leverage are perfectly offset by the increased probability of incurring the costs of financial distress.
+
+
+![](../figs/thanos.png) 
+:::
+
+
+
+
+
+
+
+## 16.4 The Tradeoff Theory {.smaller  background="#FFF3A6"}
+
+**Problem**
+
+Holland, Inc. is considering adding leverage to its capital structure. Holland’s managers believe they can add as much as **50 million in debt** and exploit the benefits of the tax shield. They estimate $T_c = 39\%$. However, they also recognize that higher debt increases the risk of financial distress. Based on simulations of the firm’s future cash flows, the CFO has made the following estimates (in millions of dollars):
+
+. . .
+
+|Debt                   | 0 | 10  | 20  | 30   |  40  | 50|  
+|-----------------------|---|---- |-----|------|------|----|
+| PV(Int. Tax. Shield)  | 0 | 3.9 | 7.8 | 11.7 | 15.6  | 19.5 |
+| PV(Fin. Dis. Costs)   | 0 | 0   | 0   | 3.38 | 19.23 | 23.47 |
+| Net Benefit           | 0 | 3.9 | 7.8 | 8.32 | -3.63 | -3.97 |
+
+The level of debt that leads to the highest net benefit is 30 million. Holland will gain 11.7 million due to tax shields and lose 3.38 million due to the present value of financial distress costs, for a net gain of 8.32 million.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Agency Costs**
+
+- Costs that arise when there are **conflicts of interest** between the firm’s stakeholders
+- Management will generally make decisions that increase the value of the firm’s equity.
+- However, **when a firm has leverage, managers may make decisions that benefit shareholders but harm the firm’s creditors** and lower the total value of the firm.
+
+. . .
+
+- Risk-taking & Asset substitution
+- Debt overhang & Under-investment
+- Cashing out
+- Leverage Ratchet effect
+
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Consider Baxter, Inc., which is facing financial distress**
+
+- Baxter has a loan of **1 million due at the end of the year**.
+- Without a change in its strategy, **the market value of its assets will be only 900,000 at that time**, and Baxter will default on its debt.
+
+. . .
+
+Baxter is considering a new strategy
+
+- The new strategy requires no upfront investment, but it has only a 50% chance of success.
+- If the new strategy **succeeds**, it will increase the value of the **firm’s asset to $1.3 million**.
+- If the new strategy **fails**, the value of the **firm’s assets will fall to $300,000**.
+
+. . .
+
+**Should Baxter execute this strategy?**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Certainly not!**
+
+The expected value of the firm’s assets under the new strategy is 800,000, a **decline of 100,000** from the old strategy
+ 
+$$50\% \times 1.3 million + 50\% \times 0,3 million = 0,8 million$$ 
+
+. . . 
+ 
+However, despite the negative expected payoff, some within the firm have suggested that Baxter should go ahead with the new strategy
+
+**Can shareholders benefit from this decision? What would be the rationale?**
+
+
+
+
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+If Baxter does nothing, it will ultimately default and equity holders will get nothing with certainty.
+
+- **Equity holders have nothing to lose** if Baxter tries the risky strategy.
+- If the strategy succeeds, equity holders will receive $300,000 after paying off the debt.
+- Given a 50% chance of success, the **equity holders’ expected payoff is 150,000**.
+
+$$50\% \times 0 + 50\% \times 300.000 = 150.000$$
+
+
+
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+|                  | Old Strat. | New  Success  | New failure  | New Expected   |
+|------------------|-----|---- |-----|------|
+| Value of assets  | 900 | 1300| 300 | 800 | 
+| Debt             | 900 | 1000| 300 | 650 | 
+| Equity           | 0   | 300 | 0   | 150 | 
+
+- If project succeeds, debt holders receive 1 mil. If fails, debt holders receive 300,000. 
+- The debt holders’ expected payoff is 650,000, a loss of 250,000 compared to the old strategy. 
+  - $50\% \times 1 million + 50\% \times 300,000 = 650,000$
+- The debt holders 250,000 loss corresponds to the 100,000 expected decline in firm value due to the risky strategy and the equity holder’s 150,000 gain.
+- Effectively, the equity holders are **gambling with the debt holders’ money**.
+
+
+
+
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Asset Substitution Problem**
+
+- When a firm faces financial distress, **shareholders can gain at the expense of debt holders** by taking a negative-NPV project, if it is sufficiently risky.
+    - Also called **risk-shifting** problem
+- Shareholders have an **incentive to invest in negative-NPV projects that are risky**, even though a negative-NPV project destroys value for the firm overall.
+- Anticipating this bad behavior, **security holders will pay less for the firm initially**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Debt Overhang and Under-Investment**
+
+Now assume Baxter does not pursue the risky strategy, but instead the firm is considering an investment opportunity that requires an **initial investment of $100,000** and will generate a risk-free return of **50%**.
+
+If the current risk-free rate is 5%, this investment clearly has a **positive NPV**.
+
+- **What if Baxter does not have the cash on hand to make the investment?**
+- Could Baxter raise **$100,000** in new equity to make the investment?
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Debt Overhang and Under-Investment**
+
+|                  | Without project | With new project  |
+|------------------|-----|---- |
+| Existing assets  | 900 | 900 | 
+| New project      |     | 150 | 
+| Total firm value | 900 | 1050| 
+| Debt             | 900 | 1000| 
+| Equity           | 0   | 50 | 
+
+. . .
+
+- If equity holders contribute 100,000 to fund the project, **they get back only 50,000.**
+- The other 100,000 from the project goes to the debt holders, whose payoff increases from 900,000 to 1 million.
+- Debt holders receive most of the benefit, thus **this project is a negative-NPV investment opportunity for equity holders, even though it offers a positive NPV for the firm**.
+
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Debt Overhang and Under-Investment**
+
+A situation in which **equity holders choose not to invest in a positive NPV project** because the firm is in financial distress and the value of undertaking the investment opportunity **will accrue to bondholders rather than themselves**.
+
+When a firm faces financial distress, it may choose not to finance new, positive-NPV projects.
+
+- This is also called a **debt overhang** problem.
+
+
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**Cashing Out**
+
+When a firm faces financial distress, shareholders have an **incentive to withdraw money from the firm**, if possible.
+
+For example, if it is likely the company will default, **the firm may sell assets below market value ** and use the funds to pay an immediate cash dividend to the shareholders.
+
+- **Covenants** may prevent this type of strategy.
+
+
+
+
+
+  
+
+
+
+
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff"}
+
+**These are examples of Agency costs of Leverage**
+
+Leverage can encourage managers and shareholders to act in ways that reduce value.
+
+- It appears that the equity holders benefit at the expense of the debt holders.
+- However, ultimately, **it is the shareholders of the firm who bear these agency costs.**
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+## 16.5  Agency Costs of Leverage {.smaller  background="#eeffff" visibility="hidden"}
+
+**The Leverage Ratchet Effect**
+
+This is also an agency problem.
+
+Captures the observations that, once existing debt is in place,
+
+1) Shareholders may have an incentive to increase leverage even if it decreases the value of the firm, and 
+
+2) Shareholders will not have an incentive to decrease leverage by buying back debt, even if it will increase the value of the firm.
+
+*While it will induce firms to borrow less initially in order to avoid these costs, over time it may lead to excessive leverage as shareholders prefer to increase, but not decrease, the firm’s debt*
+
+*For instance, by reducing debt, equity holders lose their incentive to take on a risky negative NPV investment. While this effect increases the value of the firm, equity holders would not gain as they would be forced to pay a price for the debt (that reflects the value of eliminating the incentives for excessive risk-taking).*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc"}
+
+## 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc"}
+
+**Management Entrenchment**
+
+- A situation arising as the result of the separation of ownership and control in which managers may make decisions that benefit themselves at investors’ expenses.
+
+Entrenchment may allow managers to run the firm in their own best interests, rather than in the best interests of the shareholders. For instance, spending on **perks**.
+
+**Leverage can reduce the degree of managerial entrenchment** because managers are more likely to be fired when a firm faces financial distress.
+
+- In addition, when the firm is highly levered, **creditors themselves will closely monitor the actions of managers**, providing an additional layer of management oversight.
+
+
+
+
+
+
+
+
+## 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc"}
+
+**Concentration of Ownership**
+
+- One advantage of using leverage is that it allows the **original owners of the firm to maintain their equity stake**.
+- They will likely have a strong interest in doing what is best for the firm.
+
+
+
+
+
+
+
+
+
+
+## 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc" visibility="hidden"}
+
+**Concentration of Ownership**
+
+- Assume Ross is the owner of a firm and he plans to expand. **He can either borrow** the funds needed for expansion or raise the money by **selling shares** in the firm.
+- If he issues equity, he will need to sell 40% of the firm to raise the necessary funds.
+- Suppose the value of the firm depends largely on **Ross’s personal effort**. 
+- **By financing the expansion with borrowed funds**, Ross retains 100% ownership in the firm. Therefore, Ross is likely to work harder, and the firm will be worth more because he will receive 100% of the increase in firm value.
+
+- However, **if Ross sells new shares**, he will only retain 60% ownership and only receive 60% of the increase in firm value.
+- With leverage, Ross retains 100% ownership and will bear the full cost of any “perks,” like country club memberships or private jets.
+- **By selling equity, Ross bears only 60% of the perks cost**; the other 40% will be paid for by the new equity holders.
+
+
+
+
+
+
+
+## 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc"}
+
+**Reduction of Wasteful Investment**
+
+- Another concern for large corporations is that managers may make large, **unprofitable investments**.
+- Managers may engage in **empire building**.
+- Managers often prefer to run larger firms rather than smaller ones, so they will take on investments that increase the size, but not necessarily the profitability, of the firm. 
+- Thus, managers may **expand unprofitable divisions**, **pay too much for acquisitions**, make **unnecessary capital expenditures**, or hire **unnecessary employees**.
+
+
+
+
+
+
+
+## 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc"}
+
+**Managerial Overconfidence**
+
+- Managers may over-invest because they are **overconfident**. 
+- Managers tend to be bullish on the firm’s prospects and may believe that new opportunities are better than they actually are.
+- **Debt forces managers to be more realistic** with the true prospects of the firm because they have the commitment to pay back debtholders.
+
+
+
+
+
+
+
+## 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc"}
+
+**Free Cash Flow Hypothesis**
+
+- The view that **wasteful spending is more likely to occur when firms have high levels of cash flow in excess** of what is needed after making all positive-NPV investments and payments to debt holders.
+- **When cash is tight, managers will be motivated to run the firm as efficiently as possible**.
+- **Leverage increases firm value because it commits the firm to making future interest payments**, thereby reducing excess cash flows and wasteful investment by managers.
+
+
+
+
+
+
+
+## 16.6  Agency Benefits of Leverage {.smaller  background="#ead1dc"}
+
+The takeaway of this section is:
+
+**Leverage also has benefits that might increase firm value.**
+
+**The net effect is an empirical matter and is not trivial to find.**
+
+. . .
+
+**Firms would pursue an optimal debt level.**
+
+
+
+
+
+
+
+
+
+
+
+# 16.7 Agency Costs and the TT {.smaller  background="#cfd5ea"}
+
+## 16.7 Agency Costs and the TT {.smaller  background="#cfd5ea"}
+
+We can now write that:
+
+$$V^L = V^U + PV(Interest\;tax\;shield) - PV(Financial\;distress\;costs)$$ 
+$$- PV(Agency\;costs\;of\;debt) + PV(Agency\;benefits\;of\;debt)$$
+
+
+
+
+
+
+
+##  {.smaller  background="#cfd5ea"}
+
+![](../figs/bm_16_2.png)
+
+
+
+
+
+
+
+## 16.7 Agency Costs and the TT {.smaller  background="#cfd5ea"}
+
+**The Optimal Debt Level**
+
+Again, the optimal level is not the same to all firms.
+
+**R&D-Intensive Firms**
+
+- Firms with high R&D costs and future growth opportunities typically maintain low debt levels.
+- These firms tend to have low current free cash flows and risky business strategies.
+
+**Low-Growth, Mature Firms**
+
+- Mature, low-growth firms with stable cash flows and tangible assets often carry a high-debt load. 
+- These firms tend to have high free cash flows with few good investment opportunities.
+
+
+
+
+
+
+
+
+# 16.8 Asymmetric Info. & Cap. Struc. {.smaller  background="#eeffff"}
+
+## 16.8 Asymmetry & Cap. Struc. {.smaller  background="#eeffff"}
+
+**Asymmetric Information**
+
+- A situation in which parties have different information. For example, when managers have superior information to investors regarding the firm’s future cash flows.
+
+. . .
+
+**Signaling Theory of Debt**
+
+- The use of leverage as a way to signal information to investors.
+- Thus a firm can use leverage as a way to convince investors that it does have information that the firm will grow, even if it cannot provide verifiable details about the sources of growth.
+
+
+
+
+
+
+
+
+
+## 16.8 Asymmetry & Cap. Struc. {.smaller  background="#eeffff"}
+
+**Adverse Selection** : The idea that when the buyers and sellers have different information, the average quality of assets in the market will differ from the average quality overall.
+
+**Lemons Principle**
+
+- When a seller has private information about the value of a good, buyers will discount the price they are willing to pay due to adverse selection.
+
+
+
+
+
+
+
+
+
+
+- An example of adverse selection and the lemons principle is the **used car market**.
+
+- If the seller has private information about the quality of the car, then **her desire to sell reveals the car is probably of low quality**.
+
+- Buyers are therefore reluctant to buy except at heavily discounted prices.
+
+- **Owners of high-quality cars are reluctant to sell** because they know buyers will think they are selling a lemon and offer only a low price.
+
+- Consequently, **the quality and prices of cars sold in the market are both low**.
+
+
+
+
+## 16.8 Asymmetry & Cap. Struc. {.smaller  background="#eeffff"}
+
+This same principle can be applied to **the market for equity**.
+
+- Firms that sell new equity have **private information about the quality of the future projects**.
+- However, due to the lemons principle, **buyers are reluctant to believe management’s assessment** of the new projects and are only willing to buy the new equity at heavily discounted prices.
+
+. . . 
+
+In other words,
+
+**If the firm is issuing equity at market prices, it must be that managers think the stock is expensive.**
+
+**If the firm is buying back shares at market prices, it must be that managers think the stock is cheap.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 16.8 Asymmetry & Cap. Struc. {.smaller  background="#eeffff"}
+
+**Problem**
+
+You are an analyst who follows Great Windows’ stock. Although the current stock price is 37.50, you believe the stock is worth either 25 or 50, depending on the success of a new product launch. 
+
+If Great Windows’ CEO announces that she plans to buy 10,000 additional shares in the company, how will the share price change?
+
+. . .
+
+**Solution**
+
+If the CEO knows the new product launch is a failure, she would sell the stock at 37.50 given that the she knows true value is 25. 
+
+If the CEO announces that she is buying 10,000 additional shares, she must know that the new product launch is a success and the true value is 50 per share. Thus, the stock price should rise to 50. 
+
+
+
+
+
+
+
+
+
+
+## 16.8 Asymmetry & Cap. Struc. {.smaller  background="#eeffff"}
+
+**The Pecking Order of Financing Choices**
+
+- Firms prefer to finance investments with internally-generated funds.
+- If external finance is required, firms issue the safest security first.
+- They start with debt, then possibly hybrid securities, such as convertible bonds, then equity as a last resort.
+
+
+
+
+
+
+
+
+
+## 16.8 Asymmetry & Cap. Struc. {.smaller  background="#eeffff"}
+
+**Problem**
+
+- Nesbat Industries needs to raise 25 million for a new investment project. If the firm issues one year debt, it may have to pay an interest rate of 10%, although Nesbat’s managers believe that 8% would be a fair rate given the level of risk. 
+
+- However, if the firm issues equity, they believe the equity may be underpriced by 7.5%. 
+
+- What is the cost to current shareholders of financing the project out of retained earnings, debt, and equity?
+
+
+
+
+
+
+
+
+
+
+## 16.8 Asymmetry & Cap. Struc. {.smaller  background="#eeffff"}
+
+**Solution**
+
+- If the firm spends 25 million out of retained earnings, rather than paying that money out to shareholders as a dividend, the cost to shareholders is 25 million. 
+
+. . .
+
+- Using debt costs the firm $25 \times 1.10 = 27.5$  million in one year, which has a present value based on management’s view of the firm’s risk of $\frac{27.5}{1.08} = 25.46$
+
+. . .
+
+- Finally, if equity is underpriced by 7.5%, then to raise 25 million, the firm will need to issue $\frac{25}{1-0.075} = 27.03$ million of new equity. Thus, the cost to existing shareholders will be 27.03 million. 
+
+
+
+
+
+
+
+
+
+
+
+#  16.9 The Bottom Line {.smaller  background="#ead1dc"}
+
+## 16.9 The Bottom Line {.smaller  background="#ead1dc"}
+
+::: {.incremental}
+
+1) With **perfect capital markets**, a firm’s security choice alters the risk of the firm’s equity, but it does not change its value or the amount it can raise from outside investors
+
+2) The optimal capital structure depends on **market imperfections**, such as taxes, financial distress costs, agency costs, and asymmetric information.
+   - the most clear-cut, and possibly the most significant, is **taxes**
+
+3) **Financial distress** may lead to other consequences that reduce the value of the firm
+
+4) **Agency costs and benefits** of leverage are also important determinants of capital structure.
+
+5) A firm must also consider the potential **signaling and adverse selection**  consequences of its financing choice
+
+6) Actively changing a firm’s capital structure entails **transactions costs**.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Now it is your turn... {.smaller background="#191f36"}
+
+::: footer
+:::
+
+
+
+
+
+
+
+
+
+
+
+## 🙋‍♂️ **Any Questions?** { background="#fdf6e3"}
+
+::: columns
+::: {.column width="50%"}
+### Thank You!
+
+![](../figs/qa2.png){width="110%" style="box-shadow: none;"}
+
+:::
+
+::: {.column width="50%"}
+<div style="text-align:right;">
+  <img src="../figs/avatar.jpg" width="120px" style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,.25);" />
+</div>
+
+### **Henrique C. Martins**
+
+- 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
+- 🧠 [Google Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
+- 📄 [Lattes CV](http://lattes.cnpq.br/6076997472159785)  
+- 🏠 [Personal Website](https://henriquemartins.net/)  
+:::
+:::
+

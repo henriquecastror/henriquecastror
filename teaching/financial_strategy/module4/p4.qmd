@@ -3,26 +3,44 @@ title: 'Estratégia Financeira'
 subtitle: ' **Part 4 - ch.12 Estimating the Cost of Capital** '
 author:
   - name: ' **Henrique C. Martins** '
-    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+    affiliation: '**[![](../figs/background6.png){width=300px style="box-shadow: none;"}](https://eaesp.fgv.br/en)**'
 date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
 format:
-  revealjs: 
+  revealjs:
+    body-attributes:
+      data-module: mod4
+    include-in-header: ../login-start.html
+    include-after-body:
+      - ../chat-widget.html
+#      - ../comnents.html
+      - ../ranking-widget.html
+      - ../notices-on-login.html
     touch: true
     controls: true
     slide-number: true
     theme: simple
-    chalkboard: true
+    chalkboard: false
+    menu: false
     preview-links: auto
     logo: ../figs/background8.png
-    css: logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)] [Do not use without permission]**  '
+    css:  ../logo.css
+    footer: '<span style="font-size:10px"> [[Henrique C. Martins](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]**[Do not use without permission]**</span>'
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
 include-after: |
-  <script type="text/javascript">
+  <script>
+    // Redundância leve: também define o módulo via JS neste deck
+    // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
+    window.VHCM = window.VHCM || {};
+    window.VHCM.module = "mod4";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try { localStorage.setItem('mod4','mod4'); } catch(_) {}
+    });
+
     Reveal.on('ready', event => {
       if (event.indexh === 0) {
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
@@ -33,7 +51,7 @@ include-after: |
         Reveal.configure({ slideNumber: null });
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
       }
-      if (event.indexh === 1) { 
+      if (event.indexh === 1) {
         Reveal.configure({ slideNumber: 'c' });
         document.querySelector("div.has-logo > img.slide-logo").style.display = null;
       }
@@ -68,6 +86,25 @@ library(yfR)
 
 
 
+##  { background="#A91B0D"}
+
+::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
+
+The **Virtual HCM** is powered by **AI** to assist you with course materials.  
+While it is trained on the course's content, **it may occasionally**:
+
+- Misinterpret the question or context.  
+- Generate **inaccurate or incomplete** information.  
+- Provide answers **not explicitly included** in the materials.
+
+**Your responsibility:**  
+Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.
+
+💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
+
+:::
+
+
 
 
 ## {background-image="../figs/ch12.png" background-size="1300px"}
@@ -79,7 +116,7 @@ library(yfR)
 
 
 
-## Chapter Outline  
+## Chapter Outline   {style="color: #000;"}
 
 12.1 The Equity Cost of Capital
 
@@ -1407,9 +1444,9 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
 
 
 
-# 12.7 Final thoughts on using CAPM {.smaller background="#c9f7ba"}
+# 12.7 Final thoughts on  CAPM {.smaller background="#c9f7ba"}
 
-## 12.7 Final thoughts on using CAPM {.smaller background="#c9f7ba"}
+## 12.7 Final thoughts on  CAPM {.smaller background="#c9f7ba"}
 
 1) CAPM is very practical and straightforward to implement, the CAPM-based approach is very robust
 
@@ -1448,18 +1485,22 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
 
 
 
-
-## 🙋‍♂️ **Any Questions?** { background="#b1cafa"}
+## 🙋‍♂️ **Any Questions?** { background="#fdf6e3"}
 
 ::: columns
 ::: {.column width="50%"}
 ### Thank You!
 
-![](../figs/qa2.png){width="110%" style="margin-top: 10px;"}
+![](../figs/qa2.png){width="110%" style="box-shadow: none;"}
+
 :::
 
 ::: {.column width="50%"}
-### 👤 **Henrique C. Martins**
+<div style="text-align:right;">
+  <img src="../figs/avatar.jpg" width="120px" style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,.25);" />
+</div>
+
+### **Henrique C. Martins**
 
 - 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
 - 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
@@ -1468,32 +1509,4 @@ $$R_{wacc} =  \frac{250}{250+100}\times 15\% + \frac{100}{250+100} \times 7\% \t
 - 🏠 [Personal Website](https://henriquemartins.net/)  
 :::
 :::
-
-
-
-
-
-
-
-## Interact {.smaller background="#8091d1" visibility="hidden"}
-
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/EF202401"
-        data-repo-id="R_kgDOLJQ8yQ"
-        data-mapping="number"
-        data-term="10"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-
-
-::: footer
-:::
-
-
 

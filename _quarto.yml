@@ -2,6 +2,7 @@ project:
   type: website
 website:
   title: Henrique Castro Martins
+  open-graph: true
   site-url: https://henriquemartins.net/
   google-analytics: G-771J5563G0
   navbar:
@@ -24,11 +25,10 @@ website:
 freeze: false
 format:
   html:
-    theme:
-      light: litera
-      dark: darkly
+    theme: litera
     css: include/webex.css
     include-after-body: include/webex.js
+    canonical-url: https://henriquemartins.net/
 html:
   css: webex.css
   include-after-body: webex.js

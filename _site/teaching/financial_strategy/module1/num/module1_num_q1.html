@@ -35,12 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,8 +78,13 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../../../include/webex.css">
+<meta property="og:title" content="Henrique Castro Martins">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Henrique Castro Martins">
 <meta name="twitter:title" content="Henrique Castro Martins">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://henriquemartins.net/">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -129,7 +132,6 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -145,98 +147,39 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 
 
-<div id="exercise-js-q1" style="display: none;">
-<section id="q.-post-money-valuation-and-ownership" class="level3">
-<h3 class="anchored" data-anchor-id="q.-post-money-valuation-and-ownership">Q. Post-money valuation and ownership</h3>
-<p>
-You founded your company with <strong><span id="iinvest-q1"></span> million</strong> and received <strong><span id="ishares1-q1"></span> million shares</strong>.<br> You later sold <strong><span id="ishares2-q1"></span> million shares</strong> to angel investors.<br> Now a VC wants to invest <strong><span id="ainvest-q1"></span> million</strong> in exchange for <strong><span id="ishares3-q1"></span> million shares</strong>.
-</p>
+<section id="post-money-valuation-and-ownership" class="level3">
+<h3 class="anchored" data-anchor-id="post-money-valuation-and-ownership">Post-money valuation and ownership</h3>
+<p>You founded your company with <strong>0.053 million</strong> and received <strong>1 million shares</strong>.<br>
+You later sold <strong>0.75 million shares</strong> to angel investors.<br>
+Now a VC wants to invest <strong>3 million</strong> in exchange for <strong>2 million shares</strong>.</p>
 <div class="question-block">
-<form onsubmit="event.preventDefault(); checkAnswerQ1('q1a', postMoneyQ1);">
-<label for="q1a"><strong>1. What is the post-money valuation (in million)?</strong></label> <input type="number" id="q1a" name="q1a" placeholder="Enter value" style="width: 150px;">
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+<span><strong>1. What is the post-money valuation (in million)?</strong></span> <input type="number" id="module1_num_q1a" name="module1_num_q1a" placeholder="Enter value" style="width: 150px;" data-correct-answer="5.625" data-tolerance="0.01">
 </form>
-<div id="feedback-q1a" class="feedback" style="display: none;">
-
-</div>
-</div>
-<div class="question-block">
-<form onsubmit="event.preventDefault(); checkAnswerQ1('q1b', vcPctQ1);">
-<label for="q1b"><strong>2. What percentage of the firm will the VC own?</strong></label> <input type="number" id="q1b" name="q1b" placeholder="Enter %" style="width: 150px;">
-</form>
-<div id="feedback-q1b" class="feedback" style="display: none;">
-
+<div id="feedback-module1_num_q1a" class="feedback" data-status="" style="display:none;">
+<p>✅ Post-money = (Total shares) × (Price per share)<br>
+= (3.75) × (1.5) = <strong>5.625 million</strong></p>
 </div>
 </div>
 <div class="question-block">
-<form onsubmit="event.preventDefault(); checkAnswerQ1('q1c', yourValueQ1);">
-<label for="q1c"><strong>3. What is the value of your shares (in million)?</strong></label> <input type="number" id="q1c" name="q1c" placeholder="Enter value" style="width: 150px;">
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+<span><strong>2. What percentage of the firm will the VC own?</strong></span> <input type="number" id="module1_num_q1b" name="module1_num_q1b" placeholder="Enter %" style="width: 150px;" data-correct-answer="53.333" data-tolerance="0.01">
 </form>
-<div id="feedback-q1c" class="feedback" style="display: none;">
+<div id="feedback-module1_num_q1b" class="feedback" data-status="" style="display:none;">
+<p>✅ VC Ownership = 2 / (3.75) × 100 = <strong>53.333%</strong></p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+<span><strong>3. What is the value of your shares (in million)?</strong></span> <input type="number" id="module1_num_q1c" name="module1_num_q1c" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.5" data-tolerance="0.01">
+</form>
+<div id="feedback-module1_num_q1c" class="feedback" data-status="" style="display:none;">
+<p>✅ Value = 1 × 1.5 = <strong>1.5 million</strong></p>
+</div>
+</div>
 
-</div>
-</div>
+
 </section>
-</div>
-<script>
-// Variables for question 1
-let postMoneyQ1, vcPctQ1, yourValueQ1;
-
-function generateExerciseQ1() {
-  const iinvest = (0.05 + Math.random() * 0.01).toFixed(3);
-  const ishares1 = 1;
-  const ishares2 = 0.75;
-  const ishares3 = 2;
-  const ainvest = 3;
-  const sharePrice = ainvest / ishares3;
-
-  postMoneyQ1 = ((ishares1 + ishares2 + ishares3) * sharePrice).toFixed(3);
-  vcPctQ1 = ((ishares3 / (ishares1 + ishares2 + ishares3)) * 100).toFixed(3);
-  yourValueQ1 = (ishares1 * sharePrice).toFixed(3);
-
-  document.getElementById("iinvest-q1").textContent = iinvest;
-  document.getElementById("ishares1-q1").textContent = ishares1;
-  document.getElementById("ishares2-q1").textContent = ishares2;
-  document.getElementById("ishares3-q1").textContent = ishares3;
-  document.getElementById("ainvest-q1").textContent = ainvest;
-
-  document.getElementById("exercise-js-q1").style.display = "block";
-}
-
-function checkAnswerQ1(inputId, correctValue) {
-  const input = document.getElementById(inputId);
-  const feedback = document.getElementById("feedback-" + inputId);
-  const userAnswer = parseFloat(input.value);
-  const correct = parseFloat(correctValue);
-  const tolerance = 0.01;
-
-  if (isNaN(userAnswer)) {
-    feedback.textContent = "⚠️ Please enter a number.";
-    feedback.style.color = "orange";
-  } else if (Math.abs(userAnswer - correct) <= tolerance) {
-    feedback.innerHTML = `✅ Correct! Answer: <strong>${correct}</strong>`;
-    feedback.style.color = "green";
-  } else {
-    feedback.innerHTML = `❌ Incorrect. Correct answer: <strong>${correct}</strong>`;
-    feedback.style.color = "red";
-  }
-  feedback.style.display = "block";
-}
-
-// Wait for login to complete
-document.addEventListener("DOMContentLoaded", () => {
-  const observer = new MutationObserver(() => {
-    const afterLogin = document.getElementById("after-login-content");
-    if (afterLogin && afterLogin.style.display === "block") {
-      generateExerciseQ1();
-      observer.disconnect();
-    }
-  });
-
-  observer.observe(document.body, { attributes: true, childList: true, subtree: true });
-});
-</script>
-
-
 
 </main> <!-- /main -->
 <script>
@@ -465,150 +408,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

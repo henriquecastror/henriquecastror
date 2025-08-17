@@ -37,7 +37,7 @@ Series C: Pre = `r seriescpre`, Post = `r seriescpost`
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module1_num_q2a"><strong>1. How much did the company raise in Series A?</strong></label>
+  <span><strong>1. How much did the company raise in Series A?</strong></span>
   <input type="number" id="module1_num_q2a" name="module1_num_q2a" placeholder="in million" style="width: 150px;"
          data-correct-answer="2.919" data-tolerance="0.01" />
 </form>
@@ -48,7 +48,7 @@ Series C: Pre = `r seriescpre`, Post = `r seriescpost`
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module1_num_q2b"><strong>2. How much did the company raise in Series B?</strong></label>
+  <span><strong>2. How much did the company raise in Series B?</strong></span>
   <input type="number" id="module1_num_q2b" name="module1_num_q2b" placeholder="in million" style="width: 150px;"
          data-correct-answer="39.23" data-tolerance="0.01" />
 </form>
@@ -59,7 +59,7 @@ Series C: Pre = `r seriescpre`, Post = `r seriescpost`
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module1_num_q2c"><strong>3. How much did the company raise in Series C?</strong></label>
+  <span><strong>3. How much did the company raise in Series C?</strong></span>
   <input type="number" id="module1_num_q2c" name="module1_num_q2c" placeholder="in million" style="width: 150px;"
          data-correct-answer="51.897" data-tolerance="0.01" />
 </form>
@@ -70,7 +70,7 @@ Series C: Pre = `r seriescpre`, Post = `r seriescpost`
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module1_num_q2d"><strong>4. What % of shares did founders keep after Series A?</strong></label>
+  <span><strong>4. What % of shares did founders keep after Series A?</strong></span>
   <input type="number" id="module1_num_q2d" name="module1_num_q2d" placeholder="%" style="width: 150px;"
          data-correct-answer="53.571" data-tolerance="0.01" />
 </form>
@@ -81,7 +81,7 @@ Series C: Pre = `r seriescpre`, Post = `r seriescpost`
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module1_num_q2e"><strong>5. What % of shares did founders keep after Series B?</strong></label>
+  <span><strong>5. What % of shares did founders keep after Series B?</strong></span>
   <input type="number" id="module1_num_q2e" name="module1_num_q2e" placeholder="%" style="width: 150px;"
          data-correct-answer="26.444" data-tolerance="0.01" />
 </form>
@@ -92,7 +92,7 @@ Series C: Pre = `r seriescpre`, Post = `r seriescpost`
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module1_num_q2f"><strong>6. What % of shares did founders keep after Series C?</strong></label>
+  <span><strong>6. What % of shares did founders keep after Series C?</strong></span>
   <input type="number" id="module1_num_q2f" name="module1_num_q2f" placeholder="%" style="width: 150px;"
          data-correct-answer="18.986" data-tolerance="0.01" />
 </form>

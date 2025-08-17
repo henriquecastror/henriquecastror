@@ -1,0 +1,29 @@
+## Project-specific Discount Rate
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+rf <- rnorm(1, mean = 0.03, sd = 0.005)
+mrp <- rnorm(1, mean = 0.06, sd = 0.005)
+beta_proj <- rnorm(1, mean = 1.4, sd = 0.1)
+```
+
+Aurora Technologies considers investing in a high-risk digital platform.  
+- Risk-free rate = **`r round(rf*100,2)`**%  
+- Market risk premium = **`r round(mrp*100,2)`**%  
+- Project beta = **`r round(beta_proj,2)`**  
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q10a"><strong>1. What is the appropriate discount rate for this project (in %)?</strong></label>
+  <input type="number" id="module4_num_q10a" name="module4_num_q10a" style="width: 150px;"
+         data-correct-answer=`r round((rf + beta_proj*mrp)*100,2)` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module4_num_q10a" class="feedback" style="display:none;">
+✅ Discount Rate = r<sub>f</sub> + β<sub>project</sub> × MRP = **`r round((rf + beta_proj*mrp)*100,2)`**%.  
+Projects with higher betas require higher discount rates to compensate investors for risk.
+</div>
+:::

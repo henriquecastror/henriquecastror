@@ -1,0 +1,26 @@
+## After-tax Cost of Debt
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+rd <- rnorm(1, mean = 0.07, sd = 0.005)
+tax <- rnorm(1, mean = 0.25, sd = 0.02)
+```
+
+Aurora Technologies issues new bonds with a yield to maturity of **`r round(rd*100,2)`**%.  
+The corporate tax rate is **`r round(tax*100,2)`**%.  
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q9a"><strong>1. What is the after-tax cost of debt (in %)?</strong></label>
+  <input type="number" id="module4_num_q9a" name="module4_num_q9a" style="width: 150px;"
+         data-correct-answer=`r round(rd*(1-tax)*100,2)` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module4_num_q9a" class="feedback" style="display:none;">
+✅ After-tax cost of debt = r<sub>D</sub> × (1 – tax) = **`r round(rd*(1-tax)*100,2)`**%.  
+Interest is tax-deductible, so the effective cost of debt is lower than the nominal rate.
+</div>
+:::

@@ -1,31 +1,59 @@
-## Cost of Equity Capital
+
+## Unlevered Beta and CAPM (Using Business Risk Only)
 
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
-mrp <- rnorm(1, mean = 8, sd = 0.01)
-rf <- rnorm(1, mean = 5, sd = 0.01)
-beta <- rnorm(1, mean = 1, sd = 0.2)
-em <- mrp + rf
-mrp2 <- rnorm(1, mean = 8, sd = 0.01)
-rf2 <- rnorm(1, mean = 5, sd = 0.01)
-beta2 <- rnorm(1, mean = 1, sd = 0.2)
-em2 <- mrp + rf
+library(webexercises)
+
+# Randomized parameters
+set.seed(NULL)
+beta_L <- round(rnorm(1, mean = 1.50, sd = 0.20), 2)        # levered beta
+D_over_E <- round(runif(1, min = 0.30, max = 0.80), 2)      # debt-to-equity
+tax <- round(runif(1, min = 0.20, max = 0.35), 2)           # corporate tax rate
+rf <- round(runif(1, min = 0.02, max = 0.05), 2)            # risk-free (decimal)
+rm <- round(runif(1, min = 0.08, max = 0.12), 2)            # market return (decimal)
+
+beta_U <- beta_L / (1 + (1 - tax) * D_over_E)               # unlevered (asset) beta
+Re_unlev <- rf + beta_U * (rm - rf)                         # CAPM with unlevered beta
+
+beta_U_disp <- round(beta_U, 2)
+Re_unlev_pct <- round(100*Re_unlev, 2)
 ```
 
-::: {.question-block}
+A firm has **levered beta = `r beta_L`**, **D/E = `r D_over_E`**, **tax rate = `r round(100*tax,2)`**%.  
+What is its **unlevered (asset) beta**? (Use the standard formula removing leverage.)
 
-<form onsubmit="event.preventDefault(); checkNumericAnswer('module4_num_q1a')" style="display: flex; flex-direction: row; gap: 6px;">
-  <label for="module4_num_q1a"><strong>Suppose a security's beta is `r round(beta,2)`. If the risk-free rate is `r round(rf,2)`% and the market risk premium is `r round(mrp,2)`%, what is the security's cost of equity capital?</strong></label>
-  <input type="number" id="module4_num_q1a" name="module4_num_q1a" placeholder="Enter value" style="width: 150px;"
-         data-correct-answer=`r round(rf + (beta * mrp),2)` data-tolerance="0.01" />
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q1a"><strong>1. Unlevered beta (no units):</strong></label>
+  <input type="number" id="module4_num_q1a" name="module4_num_q1a" placeholder="Enter value" style="width: 160px;"
+         data-correct-answer=`r beta_U_disp` data-tolerance="0.1" />
 </form>
 
 <div id="feedback-module4_num_q1a" class="feedback" data-status="" style="display:none;">
-✅ Cost of Equity = r_f + β × MRP = **`r round(rf + (beta * mrp),2)`**%.
+✅ **Why this is the answer:** Unlevered beta measures **business risk only** (no financial leverage).  
+We “strip out” leverage using: β<sub>U</sub> = β<sub>L</sub> / [1 + (1 – T) × (D/E)].  
+This lets us compare firms **on operating risk**, independent of capital structure.  
+**Your numbers:** β<sub>U</sub> = `r beta_L` / [1 + (1 − `r tax`) × `r D_over_E`] = **`r beta_U_disp`**.
 </div>
-
 :::
 
+If the **risk-free rate** is **`r round(100*rf,2)`**% and the **expected market return** is **`r round(100*rm,2)`**%, what is the **expected return using CAPM with the unlevered beta**?
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q1b"><strong>2. Expected return (in %):</strong></label>
+  <input type="number" id="module4_num_q1b" name="module4_num_q1b" placeholder="Enter value" style="width: 160px;"
+         data-correct-answer=`r Re_unlev_pct` data-tolerance="0.1" />
+</form>
+
+<div id="feedback-module4_num_q1b" class="feedback" data-status="" style="display:none;">
+✅ **CAPM intuition:** Investors require compensation for time value (**Rf**) and for bearing market risk (**β × MRP**).  
+We use the **unlevered beta** to price the **business risk** without leverage:  
+E[R] = R<sub>f</sub> + β<sub>U</sub> × (R<sub>m</sub> − R<sub>f</sub>) = **`r Re_unlev_pct`%**.  
+This gives a **baseline cost of equity** for the project/asset **before** financing effects.
+</div>
+:::

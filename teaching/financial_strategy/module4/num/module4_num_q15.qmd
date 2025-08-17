@@ -1,0 +1,46 @@
+## Portfolio Beta and Required Return
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+beta1 <- rnorm(1, mean = 1.1, sd = 0.1)
+beta2 <- rnorm(1, mean = 0.8, sd = 0.1)
+w1 <- rnorm(1, mean = 0.6, sd = 0.1)
+w2 <- 1 - w1
+rf <- 0.03
+rm <- 0.09
+```
+
+Aurora Technologies considers a portfolio of two divisions: Division A (β = **`r round(beta1,2)`**) with weight **`r round(w1*100,1)`**% and Division B (β = **`r round(beta2,2)`**) with weight **`r round(w2*100,1)`**%. The risk-free rate is **`r round(rf*100,2)`**% and the expected market return is **`r round(rm*100,2)`**%.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;flex-direction:row;gap:6px;">
+  <label for="module4_num_q15a"><strong>1. What is the portfolio beta?</strong></label>
+  <input type="number" id="module4_num_q15a" name="module4_num_q15a" placeholder="Enter value" style="width:150px;"
+    data-correct-answer=`r round(w1*beta1 + w2*beta2,2)` data-tolerance="0.01"/>
+</form>
+
+<div id="feedback-module4_num_q15a" class="feedback" style="display:none;">
+✅ Portfolio beta = w₁β₁ + w₂β₂ = **`r round(w1*beta1 + w2*beta2,2)`**.
+</div>
+
+::: 
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;flex-direction:row;gap:6px;">
+  <label for="module4_num_q15b"><strong>2. What is the required return of this portfolio (in %)?</strong></label>
+  <input type="number" id="module4_num_q15b" name="module4_num_q15b" placeholder="Enter value" style="width:150px;"
+    data-correct-answer=`r round((rf + (w1*beta1 + w2*beta2)*(rm-rf))*100,2)` data-tolerance="0.01"/>
+</form>
+
+<div id="feedback-module4_num_q15b" class="feedback" style="display:none;">
+✅ Required return = r_f + β_p (r_m − r_f) = **`r round((rf + (w1*beta1 + w2*beta2)*(rm-rf))*100,2)`**%.
+</div>
+
+::: 

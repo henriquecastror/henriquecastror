@@ -1,0 +1,57 @@
+
+## Portfolio Beta and Cost of Capital
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+# Randomized two-asset portfolio
+set.seed(NULL)
+wA <- round(runif(1, min = 0.30, max = 0.70), 2)
+wB <- round(1 - wA, 2)
+betaA <- round(rnorm(1, mean = 1.10, sd = 0.15), 2)
+betaB <- round(rnorm(1, mean = 0.90, sd = 0.15), 2)
+rf <- round(runif(1, min = 0.02, max = 0.05), 3)
+rm <- round(runif(1, min = 0.08, max = 0.12), 3)
+
+beta_p <- wA*betaA + wB*betaB
+Re_p <- rf + beta_p*(rm - rf)
+
+beta_p_disp <- round(beta_p, 3)
+Re_p_pct <- round(100*Re_p, 2)
+```
+
+A two-asset portfolio invests **`r round(100*wA,2)`**% in Asset A (β = `r betaA`) and **`r round(100*wB,2)`**% in Asset B (β = `r betaB`).  
+Compute the **portfolio beta**.
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q5a"><strong>1. Portfolio beta (no units):</strong></label>
+  <input type="number" id="module4_num_q5a" name="module4_num_q5a" placeholder="Enter value" style="width: 160px;"
+         data-correct-answer=`r beta_p_disp` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module4_num_q5a" class="feedback" data-status="" style="display:none;">
+✅ **Aggregation rule:** Portfolio beta is the **value-weighted average** of component betas: β<sub>p</sub> = Σ w<sub>i</sub>β<sub>i</sub>.  
+**Your numbers:** `r round(100*wA,2)`%×`r betaA` + `r round(100*wB,2)`%×`r betaB` (scaled to weights) → **`r beta_p_disp`**.
+</div>
+:::
+
+With **Rf = `r round(100*rf,2)`**% and **Rm = `r round(100*rm,2)`**%, compute the portfolio’s **cost of capital via CAPM**.
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q5b"><strong>2. Cost of capital (in %):</strong></label>
+  <input type="number" id="module4_num_q5b" name="module4_num_q5b" placeholder="Enter value" style="width: 160px;"
+         data-correct-answer=`r Re_p_pct` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module4_num_q5b" class="feedback" data-status="" style="display:none;">
+✅ **CAPM logic:** Required return rises with **systematic risk** (β).  
+E[R<sub>p</sub>] = R<sub>f</sub> + β<sub>p</sub>(R<sub>m</sub> − R<sub>f</sub>) = **`r Re_p_pct`%**.  
+Interpretation: this is the portfolio’s **opportunity cost of capital**.
+</div>
+:::

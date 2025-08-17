@@ -1,0 +1,28 @@
+## Relevering Beta – Aurora Technologies
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+beta_asset <- rnorm(1, mean = 0.8, sd = 0.05)
+de_ratio <- rnorm(1, mean = 1.2, sd = 0.2)
+tax_rate <- rnorm(1, mean = 0.30, sd = 0.02)
+```
+
+Aurora Technologies has an asset beta of **`r round(beta_asset,2)`**.  
+Its debt-to-equity ratio is **`r round(de_ratio,2)`**, and the corporate tax rate is **`r round(tax_rate*100,2)`**%.  
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module4_num_q6a"><strong>1. What is the equity beta of Aurora Technologies?</strong></label>
+  <input type="number" id="module4_num_q6a" name="module4_num_q6a" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round(beta_asset*(1+(1-tax_rate)*de_ratio),2)` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module4_num_q6a" class="feedback" style="display:none;">
+✅ Equity Beta = β<sub>A</sub> × [1 + (1 – tax) × D/E] = **`r round(beta_asset*(1+(1-tax_rate)*de_ratio),2)`**.  
+This accounts for financial leverage amplifying the risk borne by equity holders.
+</div>
+:::

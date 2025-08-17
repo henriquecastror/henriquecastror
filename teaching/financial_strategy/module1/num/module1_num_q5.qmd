@@ -24,7 +24,7 @@ Then, Series B investors contributed **`r seriesB_investment` million** and rece
 ::: {.question-block}
 
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-  <label for="module1_num_q5a"><strong>1. What is the founders’ final ownership (%)?</strong></label>
+  <span ><strong>1. What is the founders’ final ownership (%)?</strong></label>
   <input type="number" id="module1_num_q5a" name="module1_num_q5a" placeholder="%" style="width: 120px;"
          data-correct-answer="`r round(final_founders_pct*100, 2)`" data-tolerance="0.1" />
 </form>
@@ -38,7 +38,7 @@ Then, Series B investors contributed **`r seriesB_investment` million** and rece
 ::: {.question-block}
 
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-  <label for="module1_num_q5b"><strong>2. What is the Series A investors’ final ownership (%)?</strong></label>
+  <label ><strong>2. What is the Series A investors’ final ownership (%)?</strong></label>
   <input type="number" id="module1_num_q5b" name="module1_num_q5b" placeholder="%" style="width: 120px;"
          data-correct-answer="`r round(seriesA_pct_final*100, 2)`" data-tolerance="0.1" />
 </form>

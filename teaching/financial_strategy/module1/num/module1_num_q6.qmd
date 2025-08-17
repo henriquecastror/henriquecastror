@@ -20,7 +20,7 @@ When the company raised Series A at **$`r series_price` per share**, her note co
 ::: {.question-block}
 
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-  <label for="module1_num_q6a"><strong>1. How many shares did Yara receive upon conversion?</strong></label>
+  <span ><strong>1. How many shares did Yara receive upon conversion?</strong></span>
   <input type="number" id="module1_num_q6a" name="module1_num_q6a" placeholder="Shares" style="width: 100px;"
          data-correct-answer="`r new_shares`" data-tolerance="0.01" />
 </form>

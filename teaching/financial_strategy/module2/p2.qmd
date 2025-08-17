@@ -38,7 +38,7 @@ include-after: |
     window.VHCM.module = "mod2";
 
     document.addEventListener('DOMContentLoaded', () => {
-      try { localStorage.setItem('mod1','mod1'); } catch(_) {}
+      try { localStorage.setItem('mod2','mod2'); } catch(_) {}
     });
 
     Reveal.on('ready', event => {
@@ -114,8 +114,6 @@ While it is trained on the course's content, **it may occasionally**:
 Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.
 
 💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
-
-
 
 :::
 
@@ -1894,11 +1892,7 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 
 
 
-
-
-
-
-## 🙋‍♂️ **Any Questions?** { background="#b1cafa"}
+## 🙋‍♂️ **Any Questions?** { background="#fdf6e3"}
 
 ::: columns
 ::: {.column width="50%"}
@@ -1909,7 +1903,11 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 :::
 
 ::: {.column width="50%"}
-### 👤 **Henrique C. Martins**
+<div style="text-align:right;">
+  <img src="../figs/avatar.jpg" width="120px" style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,.25);" />
+</div>
+
+### **Henrique C. Martins**
 
 - 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
 - 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
@@ -1918,31 +1916,4 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 - 🏠 [Personal Website](https://henriquemartins.net/)  
 :::
 :::
-
-
-
-
-
-
-
-## Interact {.smaller background="#8091d1" visibility="hidden"}
-
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/EF202401"
-        data-repo-id="R_kgDOLJQ8yQ"
-        data-mapping="number"
-        data-term="8"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-
-
-::: footer
-:::
-
 

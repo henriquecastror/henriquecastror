@@ -21,7 +21,7 @@ Erica owns all **`r founder_shares` million shares** of her company, CoralTech. 
 ::: {.question-block}
 
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-  <label for="module1_num_q4a"><strong>1. What is the post-money valuation (in million)?</strong></label>
+  <span ><strong>1. What is the post-money valuation (in million)?</strong></span>
   <input type="number" id="module1_num_q4a" name="module1_num_q4a" placeholder="Enter value" style="width: 150px;"
          data-correct-answer="`r post_money`" data-tolerance="0.01" />
 </form>
@@ -35,7 +35,7 @@ Erica owns all **`r founder_shares` million shares** of her company, CoralTech. 
 ::: {.question-block}
 
 <form onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 8px;">
-  <label for="module1_num_q4b"><strong>2. What percentage of the company will the new partner own?</strong></label>
+  <span ><strong>2. What percentage of the company will the new partner own?</strong></span>
   <input type="number" id="module1_num_q4b" name="module1_num_q4b" placeholder="Enter %" style="width: 150px;"
          data-correct-answer="`r partner_pct`" data-tolerance="0.01" />
 </form>

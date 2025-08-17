@@ -1,0 +1,2645 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.549">
+
+  <meta name="author" content="Henrique C. Martins">
+  <title>Henrique Castro Martins - Estratégia Financeira</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../logo.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-771J5563G0"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
+  </script>
+  <link href="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <!-- === login-start.html (com proteção para páginas e slides + turbo + warmup) === -->
+
+  <style>
+    /* Card padrão (páginas normais) */
+    #login-form {
+      max-width: 300px;
+      margin: 100px auto 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      box-sizing: border-box;
+    }
+    #login-form input {
+      width: 100%; padding: 10px; margin: 6px 0;
+      border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;
+    }
+    #login-form button {
+      width: 100%; padding: 10px; margin-top: 10px;
+      background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
+    }
+    #login-error { color: red; text-align: center; margin-top: 10px; }
+    #loading-msg{ display:none; text-align:center; margin-top:10px; color:gray; }
+
+    /* Desabilitado durante autenticação */
+    #login-form button:disabled { opacity:.6; cursor:not-allowed; }
+    #login-form input:disabled  { opacity:.7; }
+
+    /* Conteúdo de páginas normais (fica atrás do login até destravar) */
+    html.locked #after-login-content,
+    body.locked #after-login-content { display: none !important; }
+
+    /* Slides (Reveal.js): desfoca deck e bloqueia interação */
+    html.locked.reveal-page .reveal,
+    body.locked.reveal-page .reveal { filter: blur(4px); pointer-events: none; user-select: none; }
+
+    #login-scrim { display:none; }
+    html.locked.reveal-page #login-scrim,
+    body.locked.reveal-page #login-scrim{
+      display:block; position:fixed; inset:0; background:rgba(255,255,255,.92); z-index:9998;
+    }
+    html.locked.reveal-page #login-form,
+    body.locked.reveal-page #login-form{
+      position: fixed; top:50%; left:50%; transform: translate(-50%,-50%);
+      margin:0; max-width:340px; width:min(340px,92vw); z-index:9999;
+    }
+
+    /* Oculta o "Welcome" nos slides */
+    .reveal-page #welcome-message { display: none !important; }
+
+    /* Remember me */
+    .remember-row{
+      display:flex; align-items:center; gap:8px; margin-top:6px; font-size:.95rem; color:#444; white-space:nowrap;
+    }
+    .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
+
+    /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim
+       enquanto locked. Evita vazamentos quando o tema injeta containers. */
+    html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
+      display: none !important;
+    }
+
+    /* Garante que o form fique acima de qualquer layout do tema */
+    #login-form { position: relative; z-index: 10000; }
+    #login-scrim { z-index: 9998; }
+
+    /* Scrim e formulário fixos também em páginas NÃO-reveal enquanto locked */
+    html.locked #login-scrim,
+    body.locked #login-scrim {
+      display: block !important;
+      position: fixed !important;
+      inset: 0 !important;
+      background: #ffffff !important;
+      z-index: 2147483646 !important;
+    }
+    html.locked #login-form,
+    body.locked #login-form {
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      margin: 0 !important;
+      max-width: 340px !important;
+      width: min(340px, 92vw) !important;
+      z-index: 2147483647 !important;
+    }
+
+    /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
+    html.locked, body.locked { overflow: hidden !important; }
+  </style>
+
+  <!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
+  <script>
+    (function(){
+      const addLocked = el => { if (el && !el.classList.contains('locked')) el.classList.add('locked'); };
+      addLocked(document.documentElement);
+      if (document.body) { addLocked(document.body); }
+      else { document.addEventListener('DOMContentLoaded', () => addLocked(document.body)); }
+
+      // preconnect/dns-prefetch para acelerar chamadas ao GAS de login
+      try {
+        const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
+        const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
+      } catch(_) {}
+    })();
+  </script>
+
+  <!-- shim seguro: define onLoginSuccess se ainda não existir -->
+  <script>
+    if (typeof window.onLoginSuccess !== 'function') {
+      window.onLoginSuccess = function(studentId){
+        try {
+          const sid = String(studentId || '').trim();
+          window.studentId = sid;
+          localStorage.setItem('studentId', sid);
+          // compat com widgets antigos
+          document.dispatchEvent(new CustomEvent('auth:login',   { detail: { studentId: sid } }));
+          setTimeout(() => window.dispatchEvent(new CustomEvent('login:success', { detail:{ studentId: sid } })), 0);
+          // hook imediato para o notice center (se já carregado)
+          if (window.noticeCenter && typeof window.noticeCenter.onLogin === 'function') {
+            window.noticeCenter.onLogin(sid);
+          }
+          if (window.VHCM) window.VHCM.lastLoginAt = Date.now();
+          console.debug('[Login] onLoginSuccess →', sid);
+        } catch(e) {
+          console.warn('onLoginSuccess shim warn:', e);
+        }
+      };
+    }
+  </script>
+
+  <meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
+<meta name="twitter:description" content="Module 5 - ch.13 Investor Behavior and Capital Market Efficiency">
+<meta name="twitter:card" content="summary">
+</head><body class="quarto-light"><form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
+    <h3 style="text-align:center;">Login</h3>
+    <input type="text" id="username" placeholder="Username" autocomplete="username" required="">
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" required="">
+    <div class="remember-row">
+      <label><input type="checkbox" id="remember-me" checked=""> Remember me</label>
+    </div>
+    <button type="submit" id="login-submit">Enter</button>
+    <div id="loading-msg"></div>
+    <div id="login-error"></div>
+  </form>
+
+  <div id="login-scrim" aria-hidden="true"></div>
+
+  <div id="after-login-content" style="display:none;">
+    <h4 id="welcome-message" style="text-align:center; display:none; margin-top:10px; font-size:1.8em; color:#333;"></h4>
+  </div>
+
+  <script>
+    /***** CONFIG *****/
+    const REMEMBER_PASSWORD  = true;
+    const GAS_URL            = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
+    const SESSION_MAX_HOURS  = 8;     // validade do "lembrado"
+    const FAST_WINDOW_HOURS  = 2;     // turbo: libera instantâneo
+    const VALIDATE_TIMEOUTMS = 3000;  // timeout da validação
+
+    /* 🔥 Warm-up silencioso do GAS: acorda a função antes do 1º login real */
+    window.addEventListener('load', () => {
+      try {
+        const warm = new Image();
+        warm.referrerPolicy = 'no-referrer';
+        warm.src = `${GAS_URL}?username=&password=&page=WARMUP&t=${Date.now()}`;
+      } catch(_) {}
+    });
+
+    /***** Marca slides (se houver Reveal) *****/
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.querySelector('.reveal')) document.body.classList.add('reveal-page');
+    });
+
+    /***** Pré-preenche campos com Remember (se houver) *****/
+    document.addEventListener('DOMContentLoaded', () => {
+      try{
+        const u = localStorage.getItem('fs_user');
+        const p = localStorage.getItem('fs_pass');
+        if (u) document.getElementById('username').value = u;
+        if (REMEMBER_PASSWORD && p) document.getElementById('password').value = p;
+      }catch(_){}
+    });
+
+    /***** Storage helpers *****/
+    function saveRemember(u,p,checked){
+      try{
+        if(checked){
+          localStorage.setItem('fs_user', u);
+          localStorage.setItem('fs_last_login_at', Date.now().toString());
+          if (REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
+        }else{
+          localStorage.removeItem('fs_user'); localStorage.removeItem('fs_pass'); localStorage.removeItem('fs_last_login_at');
+        }
+      }catch(_){}
+    }
+    function getRemember(){
+      try{
+        const u=localStorage.getItem('fs_user');
+        const p=localStorage.getItem('fs_pass');
+        const t=parseInt(localStorage.getItem('fs_last_login_at')||'0',10);
+        if(!u||!t) return null; return {u,p,t};
+      }catch(_){ return null; }
+    }
+    const within=(ts,h)=> (Date.now()-ts) < h*3600*1000;
+
+    /* 🔒 Desativa/Reativa o form durante autenticação */
+    function setAuthLoading(isLoading){
+      const btn = document.getElementById('login-submit');
+      const u   = document.getElementById('username');
+      const p   = document.getElementById('password');
+      const cb  = document.getElementById('remember-me');
+      if (btn){
+        btn.disabled = isLoading;
+        btn.textContent = isLoading ? 'Signing in...' : 'Enter';
+      }
+      [u,p,cb].forEach(el => { if (el) el.disabled = isLoading; });
+    }
+
+    /***** GAS helpers *****/
+    function logWithImage(u,p,page){
+      const img=new Image(); img.referrerPolicy='no-referrer';
+      img.src=`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}&t=${Date.now()}`;
+    }
+    async function gasAuth(u,p,page,timeoutMs){
+      async function _once(ms){
+        const ctrl=new AbortController();
+        const timer=setTimeout(()=>ctrl.abort('timeout'), ms||0);
+        try{
+          const res=await fetch(`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}`, {signal:ctrl.signal, cache:'no-store'});
+          return (await res.text()||'').trim();
+        } finally { clearTimeout(timer); }
+      }
+      try{
+        return await _once(timeoutMs||12000);   // 1ª tentativa
+      }catch(_){
+        return await _once(15000);              // retry mais folgado
+      }
+    }
+
+    /***** UI helpers *****/
+    function unlockAs(u){
+      const welcome=document.getElementById('welcome-message');
+      if (welcome && !document.body.classList.contains('reveal-page')){
+        welcome.textContent=`Welcome, ${u}!`; welcome.style.display='block';
+      }
+      document.getElementById('login-form').style.display='none';
+      const after=document.getElementById('after-login-content'); if(after) after.style.display='block';
+
+      // Remover 'locked' de html e body
+      document.documentElement.classList.remove('locked');
+      if (document.body) document.body.classList.remove('locked');
+
+      const scrim=document.getElementById('login-scrim'); if(scrim) scrim.style.display='none';
+    }
+
+    /***** Auto-login com janela turbo (também nos slides) *****/
+    document.addEventListener('DOMContentLoaded', async () => {
+      const saved=getRemember(); if(!saved) return;
+      const page=location.pathname;
+
+      if (within(saved.t, FAST_WINDOW_HOURS)) {
+        // libera já e registra em background
+        unlockAs(saved.u);
+        onLoginSuccess(saved.u); // mantém studentId para outros scripts
+
+        saveRemember(saved.u, saved.p, true);
+        logWithImage(saved.u, saved.p, page);
+
+        // checagem silenciosa (opcional)
+        try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* opcional: relock */ } } catch(_) {}
+        return;
+      }
+
+      if (within(saved.t, SESSION_MAX_HOURS)) {
+        const loading=document.getElementById('loading-msg');
+        loading.textContent='Checking saved login...'; loading.style.display='block';
+        try{
+          const r=await gasAuth(saved.u, saved.p, page, VALIDATE_TIMEOUTMS);
+          loading.style.display='none';
+          if(r==='OK'){ unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); }
+        }catch(_){
+          // timeout: libera e registra em background
+          loading.style.display='none';
+          unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); logWithImage(saved.u, saved.p, page);
+        }
+      }
+    });
+
+    /***** Login manual *****/
+    async function validateLogin(rememberOverride){
+      const u=document.getElementById('username').value.trim();
+      const p=document.getElementById('password').value.trim();
+      const cb=document.getElementById('remember-me');
+      const remember = (rememberOverride!==undefined) ? rememberOverride : (cb? cb.checked : true);
+
+      const err=document.getElementById('login-error');
+      const load=document.getElementById('loading-msg');
+      err.textContent='';
+      load.textContent='Authenticating your credentials. This may take a few seconds...';
+      load.style.display='block';
+      setAuthLoading(true);
+
+      const page=location.pathname;
+      try{
+        const r=await gasAuth(u,p,page,VALIDATE_TIMEOUTMS);
+        load.style.display='none';
+        if (r==='OK'){ saveRemember(u,p,remember); unlockAs(u); onLoginSuccess(u); }
+        else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
+        else { err.textContent='Missing credentials.'; }
+      }catch(_){
+        load.style.display='none'; err.textContent='Network error. Please try again.';
+      }finally{
+        if (document.getElementById('login-form').style.display !== 'none') {
+          setAuthLoading(false);
+        }
+      }
+    }
+
+    // Auto preenche (se já houver credenciais lembradas)
+    document.addEventListener('DOMContentLoaded', ()=>{
+      try{
+        const u=localStorage.getItem('fs_user'); const p=localStorage.getItem('fs_pass');
+        if(u){ document.getElementById('username').value=u; }
+        if(p && REMEMBER_PASSWORD){ document.getElementById('password').value=p; }
+        const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
+      }catch(_){}
+    });
+
+    /* Auto-wrap robusto — apenas para páginas NÃO-Reveal */
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) return;
+
+        const wrapper = document.getElementById('after-login-content');
+        if (!wrapper) return;
+
+        const root = wrapper.parentElement || document.body;
+        const loginForm  = document.getElementById('login-form');
+        const loginScrim = document.getElementById('login-scrim');
+
+        const isKeep = (el) =>
+          el === wrapper || el === loginForm || el === loginScrim ||
+          el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'LINK';
+
+        Array.from(root.children).forEach(el => {
+          if (!isKeep(el) && !wrapper.contains(el)) {
+            wrapper.appendChild(el);
+          }
+        });
+      } catch (e) {
+        console.warn('auto-wrap (non-reveal) warn:', e);
+      }
+    });
+  </script>
+  <script src="../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <script src="../../../site_libs/plotly-binding-4.10.3/plotly.js"></script>
+  <script src="../../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="../../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <link href="../../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+  <script src="../../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+  <link href="../../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+  <script src="../../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#b1cafa" class="quarto-title-block center">
+  <h1 class="title">Estratégia Financeira</h1>
+  <p class="subtitle"><strong>Module 5 - ch.13 Investor Behavior and Capital Market Efficiency</strong></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+<strong>Henrique C. Martins</strong> 
+</div>
+        <p class="quarto-title-affiliation">
+            <strong><a href="https://eaesp.fgv.br/en"><img data-src="../figs/background6.png" style="box-shadow: none;" width="300"></a></strong>
+          </p>
+    </div>
+</div>
+
+  <p class="date">16-08-2025</p>
+</section>
+<section>
+
+<section id="section" class="slide level2" data-background="#A91B0D">
+<h2></h2>
+<div title="⚠️ Disclaimer – Virtual HCM Responses">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>⚠️ Disclaimer – Virtual HCM Responses</strong></p>
+</div>
+<div class="callout-content">
+<p>The <strong>Virtual HCM</strong> is powered by <strong>AI</strong> to assist you with course materials.<br>
+While it is trained on the course’s content, <strong>it may occasionally</strong>:</p>
+<ul>
+<li>Misinterpret the question or context.<br>
+</li>
+<li>Generate <strong>inaccurate or incomplete</strong> information.<br>
+</li>
+<li>Provide answers <strong>not explicitly included</strong> in the materials.</li>
+</ul>
+<p><strong>Your responsibility:</strong><br>
+Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.</p>
+<p>💡 <em>Use Virtual HCM as a <strong>learning aid</strong>, not as the sole source of truth.</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-auto-generated-content">
+<p><img src="../figs/background8.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><span style="font-size:10px"> [<a href="mailto:henrique.martins@fgv.br">Henrique C. Martins</a>] [<a href="https://henriquemartins.net/teaching/financial_strategy/">Teaching Resources</a>]<strong>[Do not use without permission]</strong></span></p>
+</div>
+</div></section>
+<section id="section-1" class="slide level2" data-background-image="../figs/ch13.png" data-background-size="1300px">
+<h2></h2>
+</section>
+<section id="chapter-outline" class="slide level2" style="color: #000;">
+<h2>Chapter Outline</h2>
+<p>13.1 Competition and Capital Markets</p>
+<p>13.2 Information and Rational Expectations</p>
+<p>13.3 The Behavior of Individual Investors</p>
+<p>13.4 Systematic Trading Biases</p>
+<p>13.5 The Efficiency of the Market Portfolio</p>
+<p>13.6 Style-Based Techniques and the Market Efficiency Debate</p>
+<p>13.7 Multifactor Models of Risk</p>
+<p>13.8 Methods Used in Practice</p>
+</section>
+</section>
+<section>
+<section id="competition-and-capital-markets" class="title-slide slide level1 smaller center" data-background="#c9f7ba">
+<h1>13.1 Competition and Capital Markets</h1>
+
+</section>
+<section id="competition-cap.-markets" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.1 Competition &amp; Cap. Markets</h2>
+<p>In this chapter, we will discuss several inefficiencies and biases that appear in the stock market.</p>
+<p>The first insight we need is the following:</p>
+<ul>
+<li><p><strong>The market is always getting new information so the prices are always adjusting</strong>.</p></li>
+<li><p>This makes the <strong>efficient portfolio move</strong>.</p></li>
+</ul>
+<div class="fragment">
+<p>You have to remember:</p>
+<p><strong>CAPM is an equilibrium model.</strong> This means that all investors will converge to the same portfolio until new information arrives.</p>
+</div>
+</section>
+<section id="competition-cap.-markets-1" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.1 Competition &amp; Cap. Markets</h2>
+
+<img data-src="../figs/bm_13_1.png" class="r-stretch"></section>
+<section id="competition-cap.-markets-2" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.1 Competition &amp; Cap. Markets</h2>
+<p><strong>Second:</strong></p>
+<ul>
+<li>To improve the performance of their portfolios, investors will compare the expected return of a security with its required return from the security market line.</li>
+</ul>
+<p><span class="math display">\[R_s = R_f + \beta_s \times (E[R_m - R_f])\]</span></p>
+<p>So, if the stock shows a stronger performance than the market, it produces <em>alpha</em>:</p>
+<p><span class="math display">\[\alpha_s = E[R_s] - R_s\]</span></p>
+<p>That is, <strong>alpha is the difference between a stock’s expected return and its required return according to the security market line</strong>.</p>
+</section>
+<section id="competition-cap.-markets-3" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.1 Competition &amp; Cap. Markets</h2>
+<p>That is, <strong>alpha is the difference between a stock’s expected return and its required return according to the security market line</strong>.</p>
+<ul>
+<li><p>A positive alpha means that the stock is above the SML.</p></li>
+<li><p>The Sharpe ratio of a portfolio will increase if we buy stocks whose expected return exceeds their required return—that is, if we buy stocks with positive alphas. Similarly, we can improve the performance of our portfolio by selling stocks with negative alphas.</p></li>
+</ul>
+</section>
+<section id="competition-cap.-markets-4" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.1 Competition &amp; Cap. Markets</h2>
+
+<img data-src="../figs/bm_13_2.png" class="r-stretch"></section>
+<section id="competition-cap.-markets-5" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.1 Competition &amp; Cap. Markets</h2>
+<p>In the previous figure:</p>
+<ul>
+<li><strong>the stocks above the SML are cheap, so the prices should rise (positive alpha)</strong>.</li>
+<li><strong>the stocks below the SML are expensive, so the prices should drop (negative alpha)</strong>.</li>
+</ul>
+<p>In a sense, <strong>CAPM is also a competitive market</strong></p>
+<ul>
+<li>Investors trying to “beat the market” are always looking for stocks with positive alpha (Walmart and Nike) to buy.</li>
+<li>Once they buy them, the prices rise, making the stocks once again on the security market line.</li>
+</ul>
+<p>In other words, there is a competition in the market and that competition brings efficiency to the CAPM.</p>
+</section></section>
+<section>
+<section id="information-rational-expectations" class="title-slide slide level1 smaller center" data-background="#f2f7ba">
+<h1>13.2 Information &amp; Rational Expectations</h1>
+
+</section>
+<section id="info.-rational-expect." class="slide level2 smaller" data-background="#f2f7ba">
+<h2>13.2 Info. &amp; Rational Expect.</h2>
+<p><strong>Informed Versus Uninformed Investors</strong></p>
+<ul>
+<li>In the CAPM world, investors should hold the market portfolio combined with <span class="math inline">\(R_f\)</span>.</li>
+<li>This is because of the <em>Rational Expectations Hypothesis</em>:
+<ul>
+<li>All investors correctly interpret and use their own information, as well as information that can be inferred from market prices or the trades of others.</li>
+</ul></li>
+<li>Regardless of how much information an investor has access to, she can <strong>guarantee a zero alpha</strong> by holding the market portfolio.
+<ul>
+<li>Remember that, the <strong>average alpha of the market is zero</strong>.</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p><strong>The market portfolio can be inefficient</strong> only if a significant number of investors either:</p>
+<ul>
+<li><p>Misinterpret information and believe they are earning a positive alpha when they are actually earning a negative alpha, or</p></li>
+<li><p>Care about aspects of their portfolios other than expected return and volatility, and so are willing to hold inefficient portfolios of securities.</p></li>
+</ul>
+</div>
+</section>
+<section id="info.-rational-expect.-1" class="slide level2 smaller" data-background="#f2f7ba">
+<h2>13.2 Info. &amp; Rational Expect.</h2>
+<p>In the real world, what usually happens is that <strong>informed</strong> investors get the information and trade faster than <strong>naive</strong> investors.</p>
+<p>This unbalance of information makes the market not fully efficient sometimes (especially when new information arrives).</p>
+<p>If all investors have the same information, when new information arrives, the prices adjust right away, often without trade.</p>
+<ul>
+<li>This is the <strong>no-trade theorem</strong></li>
+</ul>
+</section></section>
+<section>
+<section id="the-behavior-of-individual-investors" class="title-slide slide level1 smaller center" data-background="#f5d5d5">
+<h1>13.3 The Behavior of Individual Investors</h1>
+
+</section>
+<section id="behavior-of-indiv.-investors" class="slide level2 smaller" data-background="#f5d5d5">
+<h2>13.3 Behavior of Indiv. Investors</h2>
+<p>In this subsection, we discuss several biases that individual investors have when building their personal portfolio.</p>
+<p>One bias that appears in many countries is the <strong>underdiversification bias</strong></p>
+<ul>
+<li>There is much evidence that individual investors fail to diversify their portfolios adequately.</li>
+</ul>
+<div class="fragment">
+<p>Some potential explanations for the underdiversification bias</p>
+<ul>
+<li><p><strong>Familiarity Bias</strong>: Investors favor investments in companies with which they are familiar.</p></li>
+<li><p><strong>Relative Wealth Concerns</strong>: Investors care more about the performance of their portfolios relative to their peers.</p></li>
+</ul>
+</div>
+</section>
+<section id="behavior-of-indiv.-investors-1" class="slide level2 smaller" data-background="#f5d5d5">
+<h2>13.3 Behavior of Indiv. Investors</h2>
+<p><strong>Excessive Trading and Overconfidence</strong></p>
+<ul>
+<li>Individual investors often trade beyond what is predicted by the CAPM.</li>
+</ul>
+<div class="fragment">
+<p><strong>Potential explanations</strong></p>
+<ul>
+<li><p><strong>Overconfidence Bias</strong>: Investors believe they can pick winners and losers when, in fact, they cannot; this leads them to trade too much</p></li>
+<li><p><strong>Sensation Seeking</strong>: An individual’s desire for novel and intense risk-taking experiences</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>If naive investors trade too often, they should get lower returns due to trading costs.</p>
+</div>
+</section>
+<section id="behavior-of-indiv.-investors-2" class="slide level2 smaller" data-background="#f5d5d5">
+<h2>13.3 Behavior of Indiv. Investors</h2>
+
+<img data-src="../figs/bm_13_4.png" class="r-stretch"></section>
+<section id="day-trading-stocks-for-a-living" class="slide level2 smaller" data-background="#f5d5d5">
+<h2>13.3 Day-trading stocks for a living?</h2>
+
+<img data-src="../figs/daytrade_en.png" class="r-stretch"></section>
+</section>
+<section>
+<section id="systematic-trading-biases" class="title-slide slide level1 smaller center" data-background="#ced8f5">
+<h1>13.4 Systematic Trading Biases</h1>
+
+</section>
+<section id="systematic-trading-biases-1" class="slide level2 smaller" data-background="#ced8f5">
+<h2>13.4 Systematic Trading Biases</h2>
+<p>For the behavior of individual investors to impact market prices, and thus create a profitable opportunity for more sophisticated investors, there must be predictable, systematic patterns in the types of errors individual investors make.</p>
+<div class="fragment">
+<p><strong>One example: </strong></p>
+<ul>
+<li><strong>Disposition Effect</strong> : An investor holds on to stocks that have lost their value and sell stocks that have risen in value since the time of purchase.
+<ul>
+<li>Suggests a reluctance to “admit a mistake” by taking the loss. More common in non-sophisticated investors.</li>
+<li>This behavioral tendency to sell winners and hang on to losers is costly from a tax perspective.
+<ul>
+<li>Because capital gains are taxed only when the asset is sold, it is optimal for tax purposes to postpone taxable gains by continuing to hold profitable investments</li>
+<li>In Brazil, we do not pay taxes if sell less than 20,000 BRL by month.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="systematic-trading-biases-2" class="slide level2 smaller" data-background="#ced8f5">
+<h2>13.4 Systematic Trading Biases</h2>
+<ul>
+<li><p><strong>Attention-grabbing stories</strong></p>
+<ul>
+<li>Studies show that individuals are more likely to buy stocks that have recently been in the news, engaged in advertising, experienced exceptionally high trading volume, or have had extreme returns.</li>
+</ul></li>
+<li><p><strong>Mood</strong></p>
+<ul>
+<li>Sunshine generally has a positive effect on mood, and studies have found that stock returns tend to be higher when it is a sunny day at the location of the stock exchange.</li>
+<li>People who grew up and lived during a time of high stock returns are more likely to invest in stocks than are people who experienced times when stocks performed poorly.</li>
+</ul></li>
+<li><p><strong>Herd Behavior</strong></p>
+<ul>
+<li>When investors make similar trading errors because they are actively trying to follow each other’s behavior.</li>
+</ul></li>
+</ul>
+</section>
+<section id="systematic-trading-biases-3" class="slide level2 smaller" data-background="#ced8f5">
+<h2>13.4 Systematic Trading Biases</h2>
+<p><strong>Implications of Behavioral Biases</strong></p>
+<ul>
+<li><strong>If non-sophisticated individual investors are engaging in strategies that earn negative alphas, it may be possible for more sophisticated investors to take advantage of this behavior and earn positive alphas.</strong></li>
+</ul>
+<p>All these examples are not new.</p>
+<p>The tricky part is that they are avoidable if the investor buys the market portfolio.</p>
+<p>Why (most of) people don’t do it is puzzling.</p>
+</section></section>
+<section>
+<section id="the-efficiency-of-the-market-portfolio" class="title-slide slide level1 smaller center" data-background="#cff5ce">
+<h1>13.5 The Efficiency of the Market Portfolio</h1>
+
+</section>
+<section id="efficiency-of-market-portfolio" class="slide level2 smaller" data-background="#cff5ce">
+<h2>13.5 Efficiency of Market Portfolio</h2>
+<p><strong>When individual investors make mistakes, can sophisticated investors easily profit at their expense?</strong></p>
+<ul>
+<li>That is, are these biases systematic and pervasive enough so that sophisticated investors can profit from them?</li>
+</ul>
+<p>In this section, we explore this question.</p>
+</section>
+
+
+<section id="efficiency-of-market-portfolio-1" class="slide level2 smaller" data-background="#cff5ce">
+<h2>13.5 Efficiency of Market Portfolio</h2>
+<p>The performance of fund managers. <strong>The average mutual fund manager can provide value (before computing trading costs and fees, i.e., gross alpha). The median destroys value.</strong> Only a small portion of managers are skilled enough to add value (i.e., gross alpha), according to this reference.</p>
+
+<img data-src="../figs/bm_13_7.png" class="r-stretch"></section>
+<section id="efficiency-of-market-portfolio-2" class="slide level2 smaller" data-background="#cff5ce">
+<h2>13.5 Efficiency of Market Portfolio</h2>
+<ul>
+<li><p>Because individual investors pay fees to fund managers, the <strong>net alpha</strong> is negative.</p></li>
+<li><p>That is, on average, fund managers do not provide value after fees, comparing to passive index funds.</p></li>
+<li><p>There is a <strong>trap of liquidity</strong></p>
+<ul>
+<li>If a manager is perceived as skilled, the deposits will grow, making harder to find above-average investment opportunities.</li>
+<li>Performance would converge to the mean, at best.</li>
+</ul></li>
+<li><p>At the end of the day, the market is competitive and people profit following the theoretical predictions</p>
+<ul>
+<li>Skilled managers are recompensated for their skills. They capture the economic rents associated with their skills</li>
+<li>Investors are not recompensated for the skills of the managers they select</li>
+</ul></li>
+</ul>
+</section>
+<section id="efficiency-of-market-portfolio-3" class="slide level2 smaller" data-background="#cff5ce">
+<h2>13.5 Efficiency of Market Portfolio</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Final recommendation: the evidence seems to support the CAPM prediction to “hold the market”.</strong></p>
+<p><strong>Beating the market should require special skills or lower trading costs, which individual investors don’t have.</strong></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="style-based-techniques-efficiency" class="title-slide slide level1 smaller center" data-background="#f2f5ce">
+<h1>13.6 Style-Based Techniques &amp; efficiency</h1>
+
+</section>
+<section id="style-based-techniques-efficiency-1" class="slide level2 smaller" data-background="#f2f5ce">
+<h2>13.6 Style-Based Techniques &amp; efficiency</h2>
+<p>In the previous section, we discussed potential biases that individual investors might have.</p>
+<p>In this section, we will look at possible trading strategies, disregarding one’s sophistication.</p>
+<div class="fragment">
+<p><strong>Size effect</strong></p>
+<ul>
+<li>Small market capitalization stocks have historically earned higher average returns than the market portfolio, even after accounting for their higher betas.</li>
+</ul>
+<p><strong>Book-to-Market Ratio</strong></p>
+<ul>
+<li>High book-to-market stocks have historically earned higher average returns than low book-to-market stocks.</li>
+</ul>
+</div>
+</section>
+<section id="section-3" class="slide level2 smaller" data-background="#f2f5ce">
+<h2></h2>
+
+<img data-src="../figs/bm_13_9.png" class="r-stretch"><p>This cannot be estimation error since there is a pattern in the tendency (9 of 10 above).</p>
+</section>
+<section id="section-4" class="slide level2 smaller" data-background="#f2f5ce">
+<h2></h2>
+
+<img data-src="../figs/bm_13_10.png" class="r-stretch"><p>Stocks with high book-to-market ratios are value stocks, and those with low book-to-market ratios are growth stocks</p>
+</section>
+
+
+<section id="style-based-techniques-efficiency-4" class="slide level2 smaller" data-background="#f2f5ce">
+<h2>13.6 Style-Based Techniques &amp; efficiency</h2>
+<p><strong>Momentum</strong></p>
+<p>Professors Narishiman Jegadeesh and Sheridan Titman ranked stocks each month by their realized returns over the prior 6–12 months. They found that the best-performing stocks had positive alphas over the next 3–12 months.</p>
+<ul>
+<li><p>This evidence goes against the CAPM: When the market portfolio is efficient, past returns should not predict alphas.</p></li>
+<li><p>So the strategy is: <strong>Buying stocks that have had past high returns and (short) selling stocks that have had past low returns.</strong></p></li>
+</ul>
+<div class="fragment">
+<p>These three factors (Size, book-to-market, and momentun) are widely famous as the <strong>three Fama-French factors.</strong></p>
+</div>
+</section>
+
+</section>
+<section>
+<section id="multifactor-models-of-risk" class="title-slide slide level1 smaller center" data-background="#c9f7ba">
+<h1>13.7 Multifactor Models of Risk</h1>
+
+</section>
+<section id="multifactor-models-of-risk-1" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.7 Multifactor Models of Risk</h2>
+<p>In previous slides, we used the following equation to compute the expected return of a security.</p>
+<p><span class="math display">\[E[R_s] = R_f + \beta_s \times (E[R_m - R_f])\]</span></p>
+<p>When the market portfolio is not efficient, we have to find a method to identify an efficient portfolio before we can use the above equation.</p>
+<div class="fragment">
+<p>However, it is not actually necessary to identify the efficient portfolio itself, as long as you identify <strong>a collection of portfolios from which the efficient portfolio can be constructed</strong>.</p>
+</div>
+</section>
+<section id="multifactor-models-of-risk-2" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.7 Multifactor Models of Risk</h2>
+<p><strong>Using Factor Portfolios</strong></p>
+<p><strong>Single-Factor Model</strong></p>
+<ul>
+<li>A model that uses <strong>one portfolio</strong></li>
+<li>Example: CAPM</li>
+</ul>
+<p><strong>Multi-Factor Model</strong></p>
+<ul>
+<li>A model that uses <strong>more than one</strong> portfolio in the model</li>
+<li>Example: Arbitrage Pricing Theory (APT)</li>
+<li>Based on the idea of self-financing portfolios: weights sum to 0.
+<ul>
+<li>Short and long at the same time</li>
+<li>Ex: long in market portfolio, short in <span class="math inline">\(R_f\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="fama-french-carhart-ffc" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.7 <strong>Fama-French-Carhart (FFC):</strong></h2>
+<p><span class="math display">\[E[R_s] = R_f + \beta_s^m \times (E[R_m]− R_f)  + \beta_s^{SMB} \times E[R_{SMB}] + \beta_s^{HML} \times E[R_{HML}] + \beta_s^{Mon} \times E[R_{Mom}] \]</span></p>
+<ul>
+<li><strong>SMB</strong>: small-minus-big portfolio
+<ul>
+<li>A strategy that buys a portfolio of small stocks and sells a portfolio of big stocks.</li>
+</ul></li>
+<li><strong>HML</strong>: high-minus-low
+<ul>
+<li>A trading strategy that buys an equally weighted portfolio of stocks with a book-to-market ratio less than the 30th percentile of NYSE firms and finances this position by short selling an equally weighted portfolio of stocks with a book-to-market ratio greater than the 70th percentile of NYSE stocks.</li>
+</ul></li>
+<li><strong>Mom (PR1YR)</strong>: Momentum
+<ul>
+<li>Each year, after ranking stocks by their return over the last one year, a trading strategy that buys the top 30% of stocks and finances this position by short selling bottom 30% of stocks.</li>
+</ul></li>
+</ul>
+</section>
+
+<section id="multifactor-models-of-risk-4" class="slide level2 smaller" data-background="#c9f7ba">
+<h2>13.7 Multifactor Models of Risk</h2>
+<p><strong>Multifactor models</strong></p>
+<ul>
+<li>One advantage: we can build several portfolios to capture systematic risk</li>
+<li>One disadvantage: we need to estimate expected returns to each risk factor (not easy, usually historical return).</li>
+</ul>
+<div class="fragment">
+<p><strong>Smart Beta</strong></p>
+<p>Each of the previous factors are called <strong>risk factors</strong>.</p>
+<p>A smart Beta strategy is the idea that investors can tailor their risk exposures based on specific risk factors.</p>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+</section>
+<section>
+<section id="methods-used-in-practice" class="title-slide slide level1 smaller center" data-background="#ced8f5">
+<h1>13.8 Methods Used in Practice</h1>
+
+</section>
+<section id="methods-used-in-practice-1" class="slide level2 smaller" data-background="#ced8f5">
+<h2>13.8 Methods Used in Practice</h2>
+<p>So, given the evidence against and for the CAPM, and market efficiency, is the cAPM used in real life?</p>
+<div class="fragment">
+<p><strong>Financial Managers</strong></p>
+<ul>
+<li>A survey of CFOs found that 73.5% of the firms used the CAPM to calculate the cost of capital</li>
+<li>40% used historical average returns</li>
+<li>16% used the dividend discount model</li>
+<li>Larger firms were more likely to use the CAPM than were smaller firms</li>
+</ul>
+<p><strong>Investors</strong></p>
+<ul>
+<li>In a recent study of the different risk models examined, <strong>investor behavior</strong> was found to be most consistent with the CAPM.
+<ul>
+<li>The idea of this study is that by observing which investments investors rush into, it is possible to infer the risk model they are using</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="section-7" class="slide level2 smaller" data-background="#ced8f5">
+<h2></h2>
+
+<img data-src="../figs/bm_13_11.png" class="r-stretch"></section>
+</section>
+<section>
+<section id="now-it-is-your-turn" class="title-slide slide level1 smaller center" data-background="#191f36">
+<h1>Now it is your turn…</h1>
+
+</section>
+<section id="any-questions" class="slide level2" data-background="#b1cafa">
+<h2>🙋‍♂️ <strong>Any Questions?</strong></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="thank-you">Thank You!</h3>
+<p><img data-src="../figs/qa2.png" style="box-shadow: none;;width:110.0%"></p>
+</div><div class="column" style="width:50%;">
+<h3 id="henrique-c.-martins">👤 <strong>Henrique C. Martins</strong></h3>
+<ul>
+<li>🌐 <a href="https://eaesp.fgv.br/en/people/henrique-castro-martins">FGV/EAESP</a><br>
+</li>
+<li>💼 <a href="https://www.linkedin.com/in/henriquecastror/">LinkedIn</a><br>
+</li>
+<li>🧠 <a href="https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&amp;hl=pt-BR&amp;oi=ao">Google Scholar</a><br>
+</li>
+<li>📄 <a href="http://lattes.cnpq.br/6076997472159785">Lattes CV</a><br>
+</li>
+<li>🏠 <a href="https://henriquemartins.net/">Personal Website</a><br>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <!-- chat-widget-deluxe.html : Floating chat for all slides (Quarto + revealjs) -->
+    <style>
+      :root{
+        /* Fundo geral claro e elegante */
+        --bg: rgba(255,255,255,.88);
+        --border: rgba(15,23,42,.12);
+        --shadow: 0 12px 40px rgba(20,20,40,.18);
+
+        --brand1: #4f46e5; /* indigo */
+        --brand2: #06b6d4; /* cyan */
+        --brand-weak: rgba(79,70,229,.10);
+
+        --text: #0f172a;
+        --muted: #475569;
+        --danger: #b91c1c;
+
+        --bubble-user: #ffffff;
+        --bubble-ai:   #fbfdff;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg: rgba(19,26,42,.72);
+          --border: rgba(255,255,255,.10);
+          --shadow: 0 18px 50px rgba(0,0,0,.55);
+          --text: #e6e9ef;
+          --muted: #b6bfca;
+          --brand-weak: rgba(79,70,229,.20);
+
+          --bubble-user: rgba(255,255,255,.08);
+          --bubble-ai:   rgba(255,255,255,.06);
+        }
+      }
+
+      .vhcm-panel, .vhcm-input textarea, .vhcm-bubble {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: "liga" 1, "kern" 1;
+      }
+
+      /* FAB button */
+      .vhcm-fab{position:fixed; right:18px; bottom:18px; z-index:9999; display:flex; align-items:center; gap:10px}
+      .vhcm-fab button{border:none; border-radius:16px; padding:12px 14px; cursor:pointer; background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; box-shadow:var(--shadow); display:flex; align-items:center; gap:10px; font-weight:600}
+      .vhcm-fab svg{width:20px; height:20px}
+
+      /* Panel (redimensionável) */
+      .vhcm-panel{
+        position:fixed; right:18px; bottom:78px;
+        width:325px; height:600px;
+        min-width:280px; min-height:360px;
+        max-width:94vw; max-height:84vh;
+
+        display:none; flex-direction:column; border:1px solid var(--border);
+        border-radius:18px; box-shadow:var(--shadow); overflow:hidden; z-index:9999;
+        backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);
+        background: var(--bg); animation:vslide .25s ease-out;
+
+        /* permite redimensionar pelo canto inferior direito */
+        resize: both;
+      }
+      @keyframes vslide{from{transform: translateY(8px); opacity:0} to{transform:none; opacity:1}}
+
+      .vhcm-header{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--border); background:linear-gradient(135deg, rgba(79,70,229,.10), rgba(6,182,212,.08));}
+      .vhcm-brand{display:flex; align-items:center; gap:10px}
+      .vhcm-logo{width:28px; height:28px; border-radius:10px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; box-shadow:0 4px 16px var(--brand-weak)}
+      .vhcm-title{font-weight:700; letter-spacing:.2px; color:var(--text)}
+      .vhcm-status{display:flex; align-items:center; gap:6px; color:var(--muted); font-size:12px}
+      .vhcm-dot{width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 2px rgba(34,197,94,.25)}
+      .vhcm-close{border:none; background:transparent; font-size:18px; cursor:pointer; color:var(--muted)}
+
+      /* Botão meia tela */
+      .vhcm-half{
+        border:none; background:transparent; cursor:pointer;
+        font-size:16px; color:var(--muted); margin-right:6px;
+      }
+      .vhcm-half:hover{ color: var(--text); }
+
+      /* Painel em meia tela (50vw x 50vh) */
+      .vhcm-panel.vhcm--half{
+        width: 50vw !important;
+        height: 50vh !important;
+        max-width: 95vw;
+        max-height: 95vh;
+        border-radius: 12px;
+      }
+
+      .vhcm-body{flex:1; overflow:auto; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));}
+      .vhcm-typing{font-size:12px; color:var(--muted); display:none; padding:6px 2px}
+      .vhcm-dots{display:inline-flex; gap:3px; margin-left:4px}
+      .vhcm-dots span{width:6px; height:6px; border-radius:50%; background:var(--muted); opacity:.6; animation:blink 1.2s infinite}
+      .vhcm-dots span:nth-child(2){animation-delay:.2s}
+      .vhcm-dots span:nth-child(3){animation-delay:.4s}
+      @keyframes blink{0%,80%,100%{opacity:.2; transform:translateY(0)} 40%{opacity:.9; transform:translateY(-2px)}}
+
+      .vhcm-input{
+        display:flex; align-items:flex-end; gap:8px; padding:12px;
+        border-top:1px solid var(--border);
+        background:linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,.20));
+      }
+      .vhcm-input textarea{
+        flex:1;
+        resize:none;
+        min-height:44px;
+        max-height:140px;
+        padding:12px 14px;
+        border:1px solid var(--border);
+        border-radius:14px;
+        background:#ffffff;
+        color:#0f172a;
+        font: 500 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        caret-color: var(--brand1);
+        box-shadow: 0 1px 0 rgba(0,0,0,.02) inset;
+      }
+      .vhcm-input textarea::placeholder{ color:#475569; }
+
+      .vhcm-send{background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; border:none; border-radius:12px; padding:10px 14px; cursor:pointer; display:flex; align-items:center; gap:8px; font-weight:600}
+      .vhcm-send svg{width:18px; height:18px}
+
+      .vhcm-msg{display:flex; gap:10px; margin-bottom:12px; align-items:flex-end}
+      .vhcm-avatar{width:28px; height:28px; border-radius:10px; background:var(--brand-weak); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--text)}
+      .vhcm-bubble{
+        max-width:78%; padding:12px 14px; border-radius:14px; border:1px solid var(--border);
+        box-shadow: 0 6px 18px rgba(0,0,0,.06);
+        line-height:1.48; font-weight:500;
+      }
+      .vhcm-msg.user{justify-content:flex-end}
+      .vhcm-msg.user .vhcm-bubble{
+        background: var(--bubble-user);
+        color: var(--text);
+        border-color: rgba(15,23,42,.10);
+      }
+      .vhcm-msg.user .vhcm-avatar{display:none}
+      .vhcm-msg.ai .vhcm-bubble{
+        background: var(--bubble-ai);
+        color: var(--text);
+        border-color: rgba(15,23,42,.10);
+      }
+
+      .vhcm-error{color:var(--danger); font-size:12px; margin:6px 2px}
+    </style>
+
+    <div class="vhcm-fab">
+      <button id="vhcm-open" title="Virtual HCM">
+        <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c4.97 0 9-3.582 9-8 0-1.93-.71-3.706-1.92-5.126l.86-3.006-3.01.847C15.87 5.6 14 5 12 5 7.03 5 3 8.582 3 13s4.03 9 9 9Z" stroke="currentColor" stroke-width="1.2"></path></svg>
+        Virtual HCM
+      </button>
+    </div>
+
+    <div class="vhcm-panel" id="vhcm-panel" role="dialog" aria-label="Virtual HCM chat">
+      <div class="vhcm-header">
+        <div class="vhcm-brand">
+          <div class="vhcm-logo">VH</div>
+          <div>
+            <div class="vhcm-title">Virtual HCM</div>
+            <div class="vhcm-status"><span class="vhcm-dot"></span><span id="vhcm-module-label">module1</span></div>
+          </div>
+        </div>
+        <div>
+          <button id="vhcm-half" class="vhcm-half" aria-label="Half screen" title="Half screen">⤢</button>
+          <button id="vhcm-close" class="vhcm-close" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="vhcm-body" id="vhcm-body"></div>
+      <div class="vhcm-typing" id="vhcm-typing">Virtual HCM is typing <span class="vhcm-dots"><span></span><span></span><span></span></span></div>
+      <div class="vhcm-input">
+        <textarea id="vhcm-text" placeholder="Ask anything about this module…"></textarea>
+        <button class="vhcm-send" id="vhcm-send" title="Send">
+          <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11l17-8-8 17-1-7-8-2Z" stroke="#fff" stroke-width="1.6"></path></svg>
+          Send
+        </button>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      // ====== CONFIG ======
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbza4kInsudyRFK_62VL8eULh3TiF_zMdleq4N0OpX4QunuU2rEryBnbE4S9zDHQkvB_/exec"; // troque se necessário
+      const DEFAULT_MODULE = "module1";
+      const STORAGE_OPEN   = "vhcm_open";
+      const STORAGE_SIZE   = "vhcm_size";
+      const STORAGE_HALF   = "vhcm_half_mode";
+      const STORAGE_SIZE_PREV = "vhcm_size_prev";
+
+      // ====== Elements ======
+      const btnOpen = document.getElementById('vhcm-open');
+      const btnClose = document.getElementById('vhcm-close');
+      const btnHalf = document.getElementById('vhcm-half');
+      const panel = document.getElementById('vhcm-panel');
+      const body = document.getElementById('vhcm-body');
+      const typing = document.getElementById('vhcm-typing');
+      const text = document.getElementById('vhcm-text');
+      const send = document.getElementById('vhcm-send');
+      const moduleLabel = document.getElementById('vhcm-module-label');
+
+      // ====== Module detection (robusta, sem quebrar compatibilidade) ======
+      function detectModule(){
+        try {
+          // 1) Override explícito via window.VHCM.module
+          if (window.VHCM && window.VHCM.module) {
+            const v = String(window.VHCM.module).trim();
+            if (v) return v;
+          }
+          // 2) Reveal slide atual com data-module
+          if (window.Reveal && typeof Reveal.getCurrentSlide === 'function') {
+            const s = Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+            const v = (s && (s.dataset.module || s.getAttribute('data-module'))) || '';
+            if (v && String(v).trim()) return String(v).trim();
+          }
+          // 3) <meta name="vhcm-module" content="moduleX">
+          const meta = document.querySelector('meta[name="vhcm-module"]');
+          if (meta && meta.content && meta.content.trim()) return meta.content.trim();
+          // 4) atributo data-module no <body>
+          const dm = document.body && document.body.getAttribute && document.body.getAttribute('data-module');
+          if (dm && dm.trim()) return dm.trim();
+          // 5) querystring ?module=moduleX
+          const qs = new URLSearchParams(location.search).get('module');
+          if (qs && qs.trim()) return qs.trim();
+          // 6) regex no caminho (module2, m2, p2.html)
+          const path = (location.pathname || '').toLowerCase();
+          let m = path.match(/module(\d+)/); if (m) return `module${m[1]}`;
+          m = path.match(/\/m(\d+)\b/);     if (m) return `module${m[1]}`;
+          m = path.match(/\/p(\d+)\.html/); if (m) return `module${m[1]}`;
+          // 7) compat: window.CURRENT_MODULE (caso você já defina em algum lugar)
+          if (window.CURRENT_MODULE) return String(window.CURRENT_MODULE).trim();
+        } catch(_){}
+        // 8) fallback
+        return DEFAULT_MODULE;
+      }
+
+      // ====== Helpers ======
+      // (ÚNICA MUDANÇA) → pega o aluno logado do localStorage, priorizando o ID salvo no login
+      function getStudent(){
+        try{
+          const u = (localStorage.getItem('fs_user')
+                  || localStorage.getItem('studentId')
+                  || localStorage.getItem('studentName')
+                  || 'Anonimo').trim();
+          return u || 'Anonimo';
+        }catch(_){
+          return 'Anonimo';
+        }
+      }
+      function currentModule(){ return detectModule(); }
+
+      function bubble(author, textHtml, isUser=false){
+        const wrap = document.createElement('div');
+        wrap.className = 'vhcm-msg' + (isUser ? ' user' : ' ai');
+        const avatar = document.createElement('div');
+        avatar.className = 'vhcm-avatar';
+        avatar.textContent = isUser ? 'You' : 'VH';
+        const bub = document.createElement('div');
+        bub.className = 'vhcm-bubble';
+        bub.innerHTML = String(textHtml || '').replace(/\n/g,'<br>');
+        if (isUser){ wrap.appendChild(bub); wrap.appendChild(avatar); }
+        else { wrap.appendChild(avatar); wrap.appendChild(bub); }
+        body.appendChild(wrap); body.scrollTop = body.scrollHeight;
+      }
+      function setOpen(open){ panel.style.display = open ? 'flex' : 'none'; localStorage.setItem(STORAGE_OPEN, open ? '1' : '0'); }
+
+      // ====== Restaurar tamanho salvo ======
+      (function restoreSize(){
+        try{
+          const saved = JSON.parse(localStorage.getItem(STORAGE_SIZE) || 'null');
+          if (saved?.w && saved?.h) {
+            panel.style.width = saved.w;
+            panel.style.height = saved.h;
+          }
+        }catch(_){}
+      })();
+
+      // ====== Observar e salvar mudanças de tamanho ======
+      (function watchSize(){
+        if (!('ResizeObserver' in window)) return;
+        const ro = new ResizeObserver(entries => {
+          for (const e of entries) {
+            const { width, height } = e.contentRect || {};
+            if (!width || !height) continue;
+            localStorage.setItem(STORAGE_SIZE, JSON.stringify({
+              w: Math.round(width) + 'px',
+              h: Math.round(height) + 'px'
+            }));
+          }
+        });
+        ro.observe(panel);
+      })();
+
+      // ====== Open/Close & persist state ======
+      btnOpen.addEventListener('click', ()=> setOpen(panel.style.display !== 'flex'));
+      btnClose.addEventListener('click', ()=> setOpen(false));
+      if (localStorage.getItem(STORAGE_OPEN) === '1') setOpen(true);
+
+      // ====== Module label sync ======
+      function updateModuleLabel(){ moduleLabel.textContent = currentModule(); }
+      updateModuleLabel();
+      if (window.Reveal && typeof Reveal.on === 'function'){ Reveal.on('slidechanged', updateModuleLabel); }
+      window.addEventListener('hashchange', updateModuleLabel); // caso mude via URL/anchor
+
+      // ====== Meia tela (toggle) ======
+      function readSize(){ try { return JSON.parse(localStorage.getItem(STORAGE_SIZE) || 'null'); } catch(_){ return null; } }
+      function savePrevSize(){
+        const rect = panel.getBoundingClientRect();
+        localStorage.setItem(STORAGE_SIZE_PREV, JSON.stringify({
+          w: Math.round(rect.width) + 'px',
+          h: Math.round(rect.height) + 'px'
+        }));
+      }
+      function readPrevSize(){ try { return JSON.parse(localStorage.getItem(STORAGE_SIZE_PREV) || 'null'); } catch(_){ return null; } }
+
+      function setHalfMode(on){
+        if (on){
+          // guarda tamanho atual antes de mudar
+          savePrevSize();
+          panel.classList.add('vhcm--half');
+          panel.style.width  = '50vw';
+          panel.style.height = '50vh';
+          localStorage.setItem(STORAGE_HALF, '1');
+          btnHalf.title = 'Exit half screen';
+        } else {
+          panel.classList.remove('vhcm--half');
+          localStorage.setItem(STORAGE_HALF, '0');
+          btnHalf.title = 'Half screen';
+          const prev = readPrevSize() || readSize();
+          if (prev?.w && prev?.h){
+            panel.style.width  = prev.w;
+            panel.style.height = prev.h;
+          } else {
+            panel.style.width  = '';
+            panel.style.height = '';
+          }
+        }
+      }
+
+      btnHalf.addEventListener('click', ()=>{
+        const isOn = panel.classList.contains('vhcm--half');
+        setHalfMode(!isOn);
+      });
+
+      // Restaurar modo meia tela se estava ativo
+      if (localStorage.getItem(STORAGE_HALF) === '1') {
+        setHalfMode(true);
+      }
+
+      // ====== Send logic ======
+      async function sendQuestion(){
+        const q = text.value.trim(); if (!q) return;
+        const mod = currentModule(); updateModuleLabel();
+        bubble('You', q, true); text.value=''; typing.style.display='block';
+        try{
+          const resp = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            // sem headers pra evitar preflight; servidor já aceita JSON puro
+            body: JSON.stringify({ question: q, student: getStudent(), module: mod })
+          });
+          const raw = await resp.text();
+          let data = {}; try { data = JSON.parse(raw); } catch(_){ data = { answer: 'Server returned an invalid response.' }; }
+          typing.style.display='none';
+          bubble('Virtual HCM', data.answer || 'No answer received.', false);
+        } catch(e){
+          typing.style.display='none';
+          bubble('Error', 'Could not contact the server.', false);
+        }
+      }
+
+      send.addEventListener('click', sendQuestion);
+      text.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendQuestion(); }
+      });
+    })();
+    </script>
+    <!-- rankings-widget.html : Botão-ícone minimal + painel sofisticado -->
+    <style>
+      /* Esconde tudo que exigir auth enquanto a página estiver bloqueada pelo login-start */
+      html.locked .requires-auth,
+      body.locked .requires-auth { display: none !important; }
+
+      :root{
+        --chatbot-gap: 350px;
+
+        /* meio-termo: mais escuro que o claro, mais claro que o grafite */
+        --lb-bg: rgba(46, 58, 78, 0.72);         /* slate-700 ~ 72% */
+        --lb-border: rgba(255,255,255,0.10);
+        --lb-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.18);
+        --lb-radius: 18px;
+
+        /* acentos (lilás/azul) */
+        --lb-accent: #a78bfa;                    /* lilás */
+        --lb-accent-weak: rgba(167,139,250,0.18);
+
+        /* degradê do botão, combinando com seu tema */
+        --pill-start: #6d5df5;  /* violeta */
+        --pill-end:   #2ec5ff;  /* azul-ciano */
+      }
+
+      .lb-panel{
+        position: fixed;
+        bottom: 20px;
+        right: var(--chatbot-gap);
+        z-index: 2147483647;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      }
+
+      /* Botão só-ícone, circular (mesmo tom do chat/comentários) */
+      .lb-toggle{
+        width: 40px; height: 40px; border-radius: 999px;
+        display: inline-flex; align-items: center; justify-content: center;
+        border: none;
+        background: linear-gradient(135deg, var(--pill-start), var(--pill-end));
+        color: white;           /* ícone branco */
+        box-shadow: 0 10px 28px rgba(2,6,23,.30), inset 0 0 0 1px rgba(255,255,255,.14);
+        cursor: pointer; user-select: none;
+        transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      }
+      .lb-toggle:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+      .lb-toggle:active{ transform: translateY(0); filter: brightness(.98); }
+      .lb-icon{ font-size: 20px; line-height: 1; }
+
+      /* Cartão do ranking (glass) */
+      .lb-card{
+        margin-top: 10px;
+        width: 360px; max-height: 62vh; overflow: auto;
+        border: 1px solid var(--lb-border); background: var(--lb-bg);
+        -webkit-backdrop-filter: saturate(160%) blur(10px);
+        backdrop-filter: saturate(160%) blur(10px);
+        border-radius: var(--lb-radius);
+        box-shadow: var(--lb-shadow);
+        display: none;
+        position: absolute; bottom: 52px; right: 0; /* abre acima do botão */
+        transform-origin: bottom right;
+        color: #e5e7eb; /* texto claro */
+      }
+      .lb-card.open{ display:block; animation: lbPop .18s cubic-bezier(.2,.9,.2,1); }
+      @keyframes lbPop { from { transform: scale(.98); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+
+      .lb-header{
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        display:flex; justify-content:space-between; align-items:center;
+        background: linear-gradient(180deg, rgba(167,139,250,.12), transparent 60%);
+        border-top-left-radius: var(--lb-radius);
+        border-top-right-radius: var(--lb-radius);
+        position: sticky; top: 0; backdrop-filter: blur(6px);
+      }
+      .lb-title{
+        font-weight: 800; letter-spacing:.2px; color:#f3f4f6;
+      }
+      .lb-refresh{
+        font-size: 12px; color: #d1d5db; display:flex; align-items:center; gap: 6px;
+      }
+      .lb-dot{
+        width:8px;height:8px;border-radius:999px;background:var(--lb-accent);
+        box-shadow: 0 0 0 4px var(--lb-accent-weak);
+      }
+
+      .lb-list{ list-style:none; margin:0; padding: 6px 0 8px; }
+      .lb-item{
+        display:flex; align-items:center; justify-content:space-between;
+        padding: 10px 14px;
+        border-bottom: 1px dashed rgba(255,255,255,.06);
+      }
+      .lb-item:last-child{ border-bottom: 0; }
+
+      .lb-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+      .lb-rank{
+        width: 28px; text-align:right; font-variant-numeric: tabular-nums;
+        color:#fde68a; font-weight:700; /* dourado p/ 1º */
+      }
+      .lb-item.top-2 .lb-rank{ color:#cbd5e1; } /* prata */
+      .lb-item.top-3 .lb-rank{ color:#d8b4fe; } /* lilás */
+
+      .lb-name{
+        flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e5e7eb;
+      }
+      .lb-points{ font-variant-numeric: tabular-nums; font-weight:600; color:#f3f4f6; }
+
+      .lb-footer{
+        padding: 10px 14px;
+        display:flex; justify-content:space-between; align-items:center; gap:8px;
+        border-top: 1px solid rgba(255,255,255,.06);
+        background: linear-gradient(0deg, rgba(167,139,250,.10), transparent 60%);
+        border-bottom-left-radius: var(--lb-radius);
+        border-bottom-right-radius: var(--lb-radius);
+        position: sticky; bottom: 0; backdrop-filter: blur(6px);
+      }
+      .lb-badge-me{
+        background: var(--lb-accent-weak);
+        padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight:600;
+        color: #f5f3ff;
+      }
+
+      /* Mobile: bottom sheet */
+      @media (max-width: 820px){
+        .lb-panel{ right: 12px; bottom: 88px; }
+        .lb-card{
+          position: fixed; left: 12px; right: 12px; bottom: 88px;
+          width: auto; height: 58vh; max-height: none; transform-origin: bottom center;
+        }
+      }
+      @media (max-width: 380px){
+        .lb-card{ height: 62vh; }
+      }
+    </style>
+
+    <!-- 🔒 Este wrapper esconde o widget até o login -->
+    <div class="requires-auth">
+      <div class="lb-panel" id="lbPanel">
+        <button class="lb-toggle" id="lbToggle" title="Leaderboard" aria-label="Open leaderboard">
+          <span class="lb-icon">🏆</span>
+        </button>
+        <div class="lb-card" id="lbCard" role="dialog" aria-modal="false" aria-label="Leaderboard">
+          <div class="lb-header">
+            <div class="lb-title">Top <span id="lbTopN">10</span></div>
+            <div class="lb-refresh"><span class="lb-dot" aria-hidden="true"></span><span id="lbUpdated">Refresh —</span></div>
+          </div>
+
+          <ul class="lb-list" id="lbList"></ul>
+
+          <div class="lb-footer">
+            <span id="lbMe"></span>
+            <!-- (sem botões de fechar/refresh) -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /************ CONFIG ************/
+      const LB_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
+      const LB_TOP = 10;
+      const LB_POLL_MS = 3000;
+
+      // student/module/page com fallback, mas permitindo atualizar após login
+      let LB_STUDENT = (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').toString();
+      const LB_MODULE  = (window.moduleId   || '').toString() || 'module1';
+      const LB_PAGE    = (window.pageId     || '').toString() || (location.pathname + location.hash);
+      /********************************/
+
+      const lbToggle  = document.getElementById('lbToggle');
+      const lbCard    = document.getElementById('lbCard');
+      const lbList    = document.getElementById('lbList');
+      const lbTopNEl  = document.getElementById('lbTopN');
+      const lbMeEl    = document.getElementById('lbMe');
+      const lbUpdated = document.getElementById('lbUpdated');
+      lbTopNEl.textContent = LB_TOP;
+
+      // Se o login acontecer depois do load, atualiza student e faz refresh
+      document.addEventListener('auth:login', (ev) => {
+        const sid = (ev && ev.detail && ev.detail.studentId) ? ev.detail.studentId : (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '');
+        if (sid) {
+          LB_STUDENT = String(sid);
+          // Se o card estiver aberto, recarrega; senão, só atualiza timestamp
+          if (lbCard.classList.contains('open')) fetchLeaderboard(); else setUpdated();
+        }
+      });
+
+      // Toggle abrir/fechar
+      lbToggle.addEventListener('click', () => {
+        const open = lbCard.classList.contains('open');
+        if (open) lbCard.classList.remove('open');
+        else { lbCard.classList.add('open'); fetchLeaderboard(); }
+      });
+      // Fechar com Esc
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lbCard.classList.remove('open'); });
+
+      // Atualiza "Refresh HH:MM:SS"
+      function setUpdated(ts){
+        const d = ts ? new Date(ts) : new Date();
+        const hh = String(d.getHours()).padStart(2,'0');
+        const mm = String(d.getMinutes()).padStart(2,'0');
+        const ss = String(d.getSeconds()).padStart(2,'0');
+        lbUpdated.textContent = `Refresh ${hh}:${mm}:${ss}`;
+      }
+
+      // Carregar Top
+      async function fetchLeaderboard() {
+        try {
+          const who = LB_STUDENT || 'anonymous';
+          const url = `${LB_ENDPOINT}?action=leaderboard_top&top=${LB_TOP}&who=${encodeURIComponent(who)}`;
+          const res = await fetch(url, { method: 'GET' });
+          const data = await res.json();
+          if (!data.ok) throw new Error(data.error || 'Failed');
+          renderTop(data.top, data.me, data.updated_at);
+          setUpdated(data.updated_at);
+        } catch (e) {
+          console.error('Leaderboard error:', e);
+          lbList.innerHTML = '<li class="lb-item"><div class="lb-name">Não foi possível carregar o ranking.</div></li>';
+          setUpdated();
+        }
+      }
+
+      // Renderizar lista
+      function renderTop(top, me, updatedAt) {
+        lbList.innerHTML = '';
+        if (!top || !top.length){
+          lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">Ainda sem pontos por aqui.</div></li>';
+        } else {
+          for (const row of top) {
+            const li = document.createElement('li'); li.className = 'lb-item';
+            if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
+            const left = document.createElement('div'); left.className='lb-left';
+            const rk = document.createElement('div'); rk.className='lb-rank'; rk.textContent = row.rank;
+            const nm = document.createElement('div'); nm.className='lb-name'; nm.textContent = row.name || row.studentId;
+            left.appendChild(rk); left.appendChild(nm);
+            const pts = document.createElement('div'); pts.className='lb-points'; pts.textContent = row.total_points + ' pts';
+            li.appendChild(left); li.appendChild(pts);
+            lbList.appendChild(li);
+          }
+        }
+        lbMeEl.innerHTML = me ? `<span class="lb-badge-me">You: #${me.rank} · ${me.total_points} pts</span>` : '';
+        setUpdated(updatedAt);
+      }
+      // expõe para uso externo se precisar
+      window.renderTop = renderTop;
+
+      // Auto-refresh
+      if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchLeaderboard, LB_POLL_MS);
+
+      // Logger de eventos (exponho global para uso em outras partes)
+      async function leaderboardLogEvent(event_type, { points=null, details='' } = {}) {
+        try {
+          const payload = {
+            action: 'leaderboard_log',
+            studentId: LB_STUDENT || 'anonymous',
+            event_type,
+            module: LB_MODULE,
+            page: LB_PAGE,
+            details,
+            points,
+            fingerprint: `${LB_STUDENT || 'anonymous'}-${event_type}-${LB_MODULE}-${LB_PAGE}`
+          };
+          const res = await fetch(LB_ENDPOINT, { method: 'POST', body: JSON.stringify(payload) });
+          const data = await res.json();
+          if (!data.ok) throw new Error(data.error || 'failed');
+          fetchLeaderboard();
+          return data;
+        } catch (e) {
+          console.error('logEvent error:', e);
+          return { ok:false, error: String(e) };
+        }
+      }
+      window.leaderboardLogEvent = leaderboardLogEvent;
+    </script>
+    <!-- notices-on-login.html -->
+    <style>
+      .notice-modal-backdrop{
+        position:fixed; inset:0; background:rgba(15,23,42,.35);
+        display:none; align-items:center; justify-content:center;
+        z-index:2147483647; /* topo de tudo */
+      }
+      .notice-modal{
+        width:min(92vw, 680px); background:#fff; border-radius:16px;
+        box-shadow:0 18px 50px rgba(0,0,0,.25);
+        padding:18px 18px 12px; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+        border:1px solid rgba(0,0,0,.08);
+      }
+      .notice-title{ font-size:1.1rem; font-weight:700; margin:0 0 6px; color:#0f172a; }
+      .notice-body{ color:#334155; line-height:1.5; }
+      .notice-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+      .notice-btn{
+        padding:10px 14px; border-radius:10px;
+        border:1px solid rgba(0,0,0,.1); background:#0ea5e9; color:#fff; cursor:pointer;
+      }
+
+      /* Botões das opções */
+      .notice-choice{
+        padding:10px 14px; border-radius:999px;
+        border:1px solid rgba(15,23,42,.08);
+        background: linear-gradient(180deg,#3b82f6,#2563eb);
+        color:#fff; cursor:pointer; box-shadow: 0 2px 0 rgba(0,0,0,.06);
+        transition: transform .12s ease, filter .12s ease, opacity .12s ease;
+      }
+      .notice-choice:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+      .notice-choice:disabled{ opacity:.7; cursor:default; transform:none; }
+
+      /* Estado visual após clique */
+      .notice-choice.is-selected{
+        background: linear-gradient(180deg,#2563eb,#1d4ed8);
+        border-color: rgba(37,99,235,.35);
+      }
+      .notice-choice.is-correct{
+        background: linear-gradient(180deg,#16a34a,#15803d);
+        border-color: rgba(22,163,74,.35);
+      }
+      .notice-choice.is-wrong{
+        background: linear-gradient(180deg,#dc2626,#b91c1c);
+        border-color: rgba(220,38,38,.35);
+      }
+    </style>
+
+    <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
+      <div class="notice-modal" role="dialog" aria-modal="true">
+        <div class="notice-title" id="noticeTitle">Notice</div>
+        <div class="notice-body" id="noticeBody"></div>
+        <div class="notice-actions">
+          <button class="notice-btn" id="noticeOkBtn" type="button">Ok, got it</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      const ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1stXhHVbcinNcagloc6XNr3MYW9zn8EctaxxLuOJ086ODpCBvNCPwdfzbJxwl1XgDfw/exec';
+      const SESSION_FLAG = 'notice_shown_this_load';
+      const FEEDBACK_AUTO_CLOSE_MS = 15000; // V/F: tempo p/ ler feedback (0 = fecha só no "Ok, got it")
+      const DEBUG = false;
+
+      /* Preconnect + dns-prefetch */
+      try {
+        const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
+        const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
+      } catch(_) {}
+
+      /* 🔥 Warm-up imediato do GAS */
+      try {
+        const warm = new Image();
+        warm.referrerPolicy = 'no-referrer';
+        warm.src = `${ENDPOINT}?action=ping&t=${Date.now()}`;
+      } catch(_) {}
+
+      /* Helpers básicos */
+      function ensureModal(){
+        let backdrop = document.getElementById('noticeBackdrop');
+        if (!backdrop) {
+          const tpl = document.createElement('div');
+          tpl.innerHTML = `
+            <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
+              <div class="notice-modal" role="dialog" aria-modal="true">
+                <div class="notice-title" id="noticeTitle">Notice</div>
+                <div class="notice-body" id="noticeBody"></div>
+                <div class="notice-actions">
+                  <button class="notice-btn" id="noticeOkBtn" type="button">Ok, got it</button>
+                </div>
+              </div>
+            </div>`;
+          document.body.appendChild(tpl.firstElementChild);
+          if (DEBUG) console.log('[notice] backdrop injected');
+        }
+      }
+      function getStudentId(){
+        try { return (localStorage.getItem('studentId') || sessionStorage.getItem('studentId') || window.__lastLoginStudentId || '').trim(); }
+        catch(e){ return ''; }
+      }
+      function normalizeModule(m){
+        if (!m) return '';
+        const s = String(m).trim().toLowerCase();
+        const m1 = s.match(/^module(\d+)$/); if (m1) return `mod${m1[1]}`;
+        return s;
+      }
+      function getModule(){
+        try {
+          const el = document.getElementById('current-module'); if (el && el.value) return normalizeModule(el.value);
+          const byStorage = localStorage.getItem('module') || sessionStorage.getItem('module'); if (byStorage) return normalizeModule(byStorage);
+          const dm = document.body && document.body.getAttribute('data-module'); if (dm) return normalizeModule(dm);
+          if (window.VHCM && window.VHCM.module) return normalizeModule(window.VHCM.module);
+          return '';
+        } catch(e){ return ''; }
+      }
+      function fetchJSON(url){
+        return fetch(url, { credentials:'omit', cache:'no-store' })
+          .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+      }
+      function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+      function personalize(s, studentId, module){
+        return String(s || '')
+          .replace(/\{\{\s*studentId\s*\}\}/gi, escapeHtml(studentId || ''))
+          .replace(/\{\{\s*module\s*\}\}/gi, escapeHtml(module || ''));
+      }
+      function fireAndForget(url){
+        try { const img = new Image(); img.referrerPolicy='no-referrer'; img.src = url; } catch(_) {}
+      }
+      function ackAndClose(studentId, notice_id){
+        const modal = document.getElementById('noticeBackdrop');
+        if (modal) modal.style.display = 'none';
+        const qs2 = new URLSearchParams({ action:'ack', studentId, notice_id, t: Date.now().toString() });
+        fireAndForget(`${ENDPOINT}?${qs2.toString()}`);
+      }
+
+      /* Normaliza rótulos T/F em vários formatos */
+      function normalizeTF(x){
+        const s = String(x || '').trim().toLowerCase();
+        if (['true','t','verdadeiro','v','yes','y','sim','✅','✔️'].includes(s)) return 'true';
+        if (['false','f','falso','no','n','nao','não','❌','✖️'].includes(s)) return 'false';
+        if (s.startsWith('true'))  return 'true';
+        if (s.startsWith('false')) return 'false';
+        return '';
+      }
+
+      /* Render de poll (normal e T/F) */
+      function renderPoll(notice, studentId, module){
+        const body = document.getElementById('noticeBody');
+        const okBtn = document.getElementById('noticeOkBtn');
+        const opts = Array.isArray(notice.poll_options) ? notice.poll_options : [];
+        const q    = notice.poll_question || 'Vote:';
+
+        const correctKey = normalizeTF(notice.poll_correct);
+        const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
+        let autoTimer = null;
+
+        const pollWrap = document.createElement('div');
+        pollWrap.innerHTML = `
+          <div style="margin:8px 0 12px 0;"><strong>${escapeHtml(q)}</strong></div>
+          <div id="pollBtns" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+          <div id="pollFeedback" style="margin-top:10px;"></div>
+        `;
+        body.appendChild(pollWrap);
+
+        const btns = pollWrap.querySelector('#pollBtns');
+        const fb   = pollWrap.querySelector('#pollFeedback');
+
+        // T/F: deixa "Ok, got it" para leitura do feedback
+        if (isQuizTF && okBtn) {
+          okBtn.style.display = '';
+          okBtn.onclick = (ev) => {
+            ev.preventDefault(); ev.stopPropagation();
+            if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+            ackAndClose(studentId, notice.notice_id);
+          };
+        }
+
+        opts.forEach((label) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'notice-choice';
+          b.textContent = label;
+
+          b.addEventListener('click', () => {
+            // desabilita todos imediatamente
+            const all = [...btns.querySelectorAll('button')];
+            all.forEach(x => x.disabled = true);
+
+            // envia voto (fire-and-forget)
+            const qs = new URLSearchParams({
+              action: 'poll_vote',
+              studentId,
+              module: module || '',
+              poll_id: notice.poll_id || '',
+              choice: label,
+              t: Date.now().toString()
+            });
+            fireAndForget(`${ENDPOINT}?${qs.toString()}`);
+
+            if (!isQuizTF) {
+              // Poll "opinião": só marca seleção e fecha já
+              b.classList.add('is-selected');
+              ackAndClose(studentId, notice.notice_id);
+              return;
+            }
+
+            // T/F: decide correto/errado usando normalização
+            const choiceKey = normalizeTF(label);
+            const isCorrect = (choiceKey && choiceKey === correctKey);
+
+            b.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+
+            // Feedback amigável
+            fb.style.color = isCorrect ? '#065f46' : '#b91c1c';
+            fb.innerHTML = isCorrect
+              ? (notice.feedback_correct_html || '<p><strong>✅ Correct.</strong></p>')
+              : (notice.feedback_wrong_html  || '<p><strong>❌ Not quite.</strong></p>');
+
+            // Auto-fecha após leitura (se configurado)
+            if (FEEDBACK_AUTO_CLOSE_MS > 0) {
+              autoTimer = setTimeout(() => {
+                autoTimer = null;
+                ackAndClose(studentId, notice.notice_id);
+              }, FEEDBACK_AUTO_CLOSE_MS);
+            }
+          });
+
+          btns.appendChild(b);
+        });
+      }
+
+      /* Mostra aviso/poll */
+      async function showNotice(studentId){
+        try { if (sessionStorage.getItem(SESSION_FLAG)) return false; } catch(e){}
+
+        const module = getModule();
+        const qs = new URLSearchParams({ action:'get', studentId });
+        if (module) qs.set('module', module);
+
+        const data = await fetchJSON(`${ENDPOINT}?${qs.toString()}`);
+        if (!data.ok || !data.hasNotice || !data.notice) return false;
+
+        ensureModal();
+
+        const notice = data.notice;
+        const titleEl = document.getElementById('noticeTitle');
+        const bodyEl  = document.getElementById('noticeBody');
+        const okBtn   = document.getElementById('noticeOkBtn');
+        const modal   = document.getElementById('noticeBackdrop');
+        if (!titleEl || !bodyEl || !okBtn || !modal) return false;
+
+        titleEl.textContent = personalize(notice.title || (notice.type === 'poll' ? 'Quick poll' : 'Notice'), studentId, module);
+        bodyEl.innerHTML = personalize(notice.message_html || '', studentId, module);
+        modal.style.display = 'flex';
+
+        if (notice.type === 'poll' && !notice.already_voted) {
+          const correctKey = normalizeTF(notice.poll_correct);
+          const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
+
+          // Para poll de opinião: esconda o "Ok, got it"
+          okBtn.style.display = isQuizTF ? '' : 'none';
+          if (!isQuizTF) {
+            okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
+          }
+
+          renderPoll(notice, studentId, module);
+        } else {
+          // Aviso HTML simples
+          okBtn.style.display = '';
+          okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
+        }
+
+        try { sessionStorage.setItem(SESSION_FLAG, notice.notice_id); } catch(e){}
+        return true;
+      }
+
+      /* API global opcional */
+      window.noticeCenter = {
+        onLogin: (studentId) => { try { window.__lastLoginStudentId = studentId; } catch(e){}; showNotice(String(studentId || '').trim()); },
+        showNow: () => { try{ sessionStorage.removeItem(SESSION_FLAG); }catch(_){};
+          const sid = getStudentId(); if (sid) showNotice(sid);
+        }
+      };
+
+      /* Espera login e mostra (fallback) */
+      async function waitForLoginAndShow(maxMs=20000){
+        const start = Date.now();
+        while (Date.now() - start < maxMs) {
+          const sid = getStudentId();
+          if (sid) { await showNotice(sid); return; }
+          await new Promise(r => setTimeout(r, 150));
+        }
+      }
+
+      /* Gatilhos */
+      document.addEventListener('auth:login', (ev) => {
+        const sid = (ev && ev.detail && ev.detail.studentId) ? String(ev.detail.studentId).trim() : getStudentId();
+        if (sid) window.noticeCenter.onLogin(sid);
+      });
+      window.addEventListener('login:success', (ev) => {
+        const sid = (ev && ev.detail && ev.detail.studentId) ? String(ev.detail.studentId).trim() : getStudentId();
+        if (sid) window.noticeCenter.onLogin(sid);
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => { waitForLoginAndShow(); });
+      } else {
+        waitForLoginAndShow();
+      }
+    })();
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <script>
+      // Redundância leve: também define o módulo via JS neste deck
+      // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
+      window.VHCM = window.VHCM || {};
+      window.VHCM.module = "mod5";
+
+      document.addEventListener('DOMContentLoaded', () => {
+        try { localStorage.setItem('mod5','mod5'); } catch(_) {}
+      });
+
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) {
+          Reveal.configure({ slideNumber: 'c' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
+    </script>
+    
+
+</body></html>

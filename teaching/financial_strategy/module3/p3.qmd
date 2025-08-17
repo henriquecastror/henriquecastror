@@ -3,30 +3,43 @@ title: 'Estratégia Financeira'
 subtitle: ' **Module 3 - ch.11 Optimal Portfolio Choice and the Capital Asset Pricing Model** '
 author:
   - name: ' **Henrique C. Martins** '
-    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+    affiliation: '**[![](../figs/background6.png){width=300px style="box-shadow: none;"}](https://eaesp.fgv.br/en)**'
 date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
 format:
-  revealjs: 
+  revealjs:
+    body-attributes:
+      data-module: mod3
     include-in-header: ../login-start.html
-    include-after-body: ../chat-widget.html
+    include-after-body:
+      - ../chat-widget.html
+#      - ../comnents.html
+      - ../ranking-widget.html
+      - ../notices-on-login.html
     touch: true
     controls: true
     slide-number: true
     theme: simple
-    chalkboard: true
+    chalkboard: false
+    menu: false
     preview-links: auto
     logo: ../figs/background8.png
-    css: logo.css
-    footer: '<span style="font-size:16px">**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)][Do not use without permission]**</span>'
+    css:  ../logo.css
+    footer: '<span style="font-size:10px"> [[Henrique C. Martins](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]**[Do not use without permission]**</span>'
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
 include-after: |
   <script>
+    // Redundância leve: também define o módulo via JS neste deck
+    // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
     window.VHCM = window.VHCM || {};
-    window.VHCM.module = "module3";   // <<< define o módulo AQUI
+    window.VHCM.module = "mod3";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try { localStorage.setItem('mod3','mod3'); } catch(_) {}
+    });
 
     Reveal.on('ready', event => {
       if (event.indexh === 0) {
@@ -38,7 +51,7 @@ include-after: |
         Reveal.configure({ slideNumber: null });
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
       }
-      if (event.indexh === 1) { 
+      if (event.indexh === 1) {
         Reveal.configure({ slideNumber: 'c' });
         document.querySelector("div.has-logo > img.slide-logo").style.display = null;
       }
@@ -76,6 +89,26 @@ library(yfR)
 
 # Intro {visibility="hidden"}
 
+##  { background="#A91B0D"}
+
+::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
+
+The **Virtual HCM** is powered by **AI** to assist you with course materials.  
+While it is trained on the course's content, **it may occasionally**:
+
+- Misinterpret the question or context.  
+- Generate **inaccurate or incomplete** information.  
+- Provide answers **not explicitly included** in the materials.
+
+**Your responsibility:**  
+Always cross-check the answers with the book, slides, readings, and feedback provided in the course. In case you are not sure, ask the instructor.
+
+💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
+
+:::
+
+
+
 ## {background-image="../figs/ch11.png" background-size="1300px"}
 
 
@@ -83,7 +116,7 @@ library(yfR)
 
 
 
-## Chapter Outline  
+## Chapter Outline   {style="color: #000;"}
 
 11.1 The Expected Return of a Portfolio
 
@@ -145,9 +178,9 @@ $$(0.4 \times 10\%) +(0.6 \times 15\%) = 13\%$$
 
 
 
-# 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+# 11.2 Volatility  2-stock portfolio {.smaller background="#f2f7ba"}
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## 11.2 Volatility  2-stock portfolio {.smaller background="#f2f7ba"}
 
 **To compute the standard deviation of a portfolio, we cannot rely on the weighted average. We have to look to the covariances.** 
 
@@ -170,7 +203,7 @@ $$(0.4 \times 10\%) +(0.6 \times 15\%) = 13\%$$
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## 11.2 Volatility  2-stock portfolio {.smaller background="#f2f7ba"}
 
 Covariance is the product of the assets' Sd and their correlation.
 
@@ -205,7 +238,7 @@ $$Corr(R_i,R_j) = \frac{Cov(R_i,R_j)}{Sd(R_i)\times  Sd(R_j)  }$$
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## 11.2 Volatility  2-stock portfolio {.smaller background="#f2f7ba"}
 
 Therefore, the portfolio variance is:
 
@@ -232,7 +265,7 @@ The standard deviation of the portfolio is $\sqrt{486.1}= 22\%$, which is lower 
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## 11.2 Volatility 2-stock portfolio {.smaller background="#f2f7ba"}
 
 **Covariance and Correlation**
 
@@ -249,7 +282,7 @@ Let's remember the basics about correlation.
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## 11.2 Volatility  2-stock portfolio {.smaller background="#f2f7ba"}
 
 **Covariance and Correlation**
 
@@ -273,7 +306,7 @@ These assets have the same historical return and volatility, **but they 'move' v
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## 11.2 Volatility 2-stock portfolio {.smaller background="#f2f7ba"}
 
 
 
@@ -417,7 +450,7 @@ ggplotly(p)
 
 
 
-## 11.2 Volatility of a 2-stock portfolio {.smaller background="#f2f7ba"}
+## 11.2 Volatility 2-stock portfolio {.smaller background="#f2f7ba"}
 
 **Covariance and Correlation**
 
@@ -798,9 +831,9 @@ corrplot(cor,method = 'number' ,  tl.col = "black",   tl.cex = 0.9,  col = COL1(
 
 
 
-# 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+# 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+## 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
 Now, you can understand what an **efficient portfolio** is.
 
@@ -818,7 +851,7 @@ Now, you can understand what an **efficient portfolio** is.
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+## 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
 
 ```{r}
@@ -873,7 +906,7 @@ ggplotly(p)
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+## 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
 **Example with real data**
 
@@ -926,7 +959,7 @@ kable(table,col.names = c("Ticker", "Expected Return", "Standard Deviation"),
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+## 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
 
 
@@ -985,7 +1018,7 @@ ggplotly(p)
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+## 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
 As a financial manager, one crucial job you have is to find the **efficient portfolios** and the **minimum variance portfolio**.
 
@@ -997,7 +1030,7 @@ As a financial manager, one crucial job you have is to find the **efficient port
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+## 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
 **If you add stocks you improve the frontier**
 
@@ -1011,7 +1044,7 @@ When you combine several assets, you will have what is called **efficient fronti
 
 
 
-## 11.4 Choosing an Efficient Portfolio {.smaller  background="#ced8f5" }
+## 11.4 Choosing an Efficient Port. {.smaller  background="#ced8f5" }
 
 **The frontier is not so clear here**
 
@@ -1090,9 +1123,9 @@ ggplotly(p)
 
 
 
-# 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+# 11.5 Risk-Free (RF) Saving and Borrowing {.smaller  background="#cff5ce" }
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 Thus far, we have considered the risk and return possibilities that result from combining risky investments into portfolios. 
 
@@ -1110,7 +1143,7 @@ Now, let's see what happens when you **combine a portfolio of risky assets with 
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 The return is:
 
@@ -1139,7 +1172,7 @@ The second equation shows that: **The expected return is equal to the risk-free 
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 Remember that the risk free rate is assumed to have no risk, thus no variance. The standard deviation is:
 
@@ -1165,7 +1198,7 @@ That is, the volatility is only a fraction of the volatility of the portfolio, b
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 **Combine an asset with the Rf rate**
 
@@ -1225,7 +1258,7 @@ ggplotly(p)
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 Remember that **we have several potential combinations between Assets 1 and 2**. 
 
@@ -1290,7 +1323,7 @@ ggplotly(p)
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 In this situation, we are better off investing in the **Tangent portfolio**, then "moving" to adjust the level of risk.
 
@@ -1383,7 +1416,7 @@ ggplotly(p)
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 Remember that you can have **short positions**:
 
@@ -1406,7 +1439,7 @@ The book calls this **buying stocks on margin**.
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 To identify the tangent portfolio, we compute the Sharpe ratio. 
 
@@ -1434,7 +1467,7 @@ The Sharpe ratio measures the ratio of **reward-to-volatility** provided by a po
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 **Fact 1:** The tangent portfolio is **efficient**.
 
@@ -1460,7 +1493,7 @@ If you ignore the risk free asset, you have several efficient portfolios (**effi
 
 
 
-## 11.5 Risk-Free Saving and Borrowing {.smaller  background="#cff5ce" }
+## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
 
 **What is a good Sharpe Ratio?**
 
@@ -1504,7 +1537,7 @@ ggplotly(p)
 
 # 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
 
-## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+## 11.6 Efficient Port. & Req. Returns {.smaller background="#f2f5ce"} 
 
 Let's now consider how much **return we will demand from a risky asset** in order to make its inclusion in our portfolio worthy.
 
@@ -1535,7 +1568,7 @@ What is the risk that this asset *i* brings to your portfolio P?
 
 
 
-## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+## 11.6 Efficient Port. & Req. Returns {.smaller background="#f2f5ce"} 
 
 So now our question is: **Is the gain in return from investing in *i* adequate to make up for the increase in risk?**
 
@@ -1557,7 +1590,7 @@ $$E[R_i] - R_f > Sd(R_i) \times corr(R_i,R_p) \times \frac{E[R_p] - R_f}{Sd(R_p)
 
 
 
-## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+## 11.6 Efficient Port. & Req. Returns {.smaller background="#f2f5ce"} 
 
 Which is: 
 
@@ -1583,7 +1616,7 @@ $$E[R_i]  >  R_f + \beta_i^P  \times (E[R_p] - R_f)$$
 
 
 
-## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+## 11.6 Efficient Port. & Req. Returns {.smaller background="#f2f5ce"} 
 
 That is, increasing the amount invested in i will increase the Sharpe ratio of portfolio P if its expected return $E[R_i]$ exceeds its required return given portfolio P, defined as
 
@@ -1597,7 +1630,7 @@ $$R_i =  R_f + \beta_i^P  \times (E[R_p] - R_f)$$
 
 
 
-## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+## 11.6 Efficient Port. & Req. Returns {.smaller background="#f2f5ce"} 
 
 The required return is the **expected return that is necessary to compensate for the risk investment i will contribute to the portfolio**. 
 
@@ -1616,7 +1649,7 @@ If *i*’s expected return exceeds this required return, then adding more of it 
 
 
 
-## 11.6 Efficient Port. and Required Returns {.smaller background="#f2f5ce"} 
+## 11.6 Efficient Port. & Req. Returns {.smaller background="#f2f5ce"} 
 
 **To emphasize** 
 
@@ -1763,9 +1796,9 @@ ggplotly(p)
 
 
 
-# 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+# 11.8 Determining  Risk Premium {.smaller background="#FFFA9A"}
 
-## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+## 11.8 Determining  Risk Premium {.smaller background="#FFFA9A"}
 
 **Under the CAPM assumptions, we can identify the efficient portfolio: It is equal to the market portfolio.**
 
@@ -1788,7 +1821,7 @@ The beta of a security measures its volatility due to market risk relative to th
 
 
 
-## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+## 11.8 Determining  Risk Premium {.smaller background="#FFFA9A"}
 
 List of Betas of Brazilian Companies.
 
@@ -1863,7 +1896,7 @@ ggplotly(p)
 
 
 
-## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+## 11.8 Determining  Risk Premium {.smaller background="#FFFA9A"}
 
 **The Security Market Line**
 
@@ -1881,7 +1914,7 @@ This linear relationship has a name: **Security Market Line (SML)**
 
 
 
-## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+## 11.8 Determining  Risk Premium {.smaller background="#FFFA9A"}
 
 ![](../figs/bm_11_12.png){width="90%"}
 
@@ -1893,7 +1926,7 @@ This linear relationship has a name: **Security Market Line (SML)**
 
 
 
-## 11.8 Determining the Risk Premium {.smaller background="#FFFA9A"}
+## 11.8 Determining  Risk Premium {.smaller background="#FFFA9A"}
 
 
 
@@ -2178,19 +2211,22 @@ ggplotly(p)
 
 
 
-
-
-## 🙋‍♂️ **Any Questions?** { background="#b1cafa"}
+## 🙋‍♂️ **Any Questions?** { background="#fdf6e3"}
 
 ::: columns
 ::: {.column width="50%"}
 ### Thank You!
 
-![](../figs/qa2.png){width="110%" style="margin-top: 10px;"}
+![](../figs/qa2.png){width="110%" style="box-shadow: none;"}
+
 :::
 
 ::: {.column width="50%"}
-### 👤 **Henrique C. Martins**
+<div style="text-align:right;">
+  <img src="../figs/avatar.jpg" width="120px" style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,.25);" />
+</div>
+
+### **Henrique C. Martins**
 
 - 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
 - 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
@@ -2199,35 +2235,4 @@ ggplotly(p)
 - 🏠 [Personal Website](https://henriquemartins.net/)  
 :::
 :::
-
-
-
-
-
-
-
-
-
-
-
-## Interact {.smaller background="#8091d1" visibility="hidden"}
-
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/EF202401"
-        data-repo-id="R_kgDOLJQ8yQ"
-        data-mapping="number"
-        data-term="9"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-
-
-::: footer
-:::
-
 
