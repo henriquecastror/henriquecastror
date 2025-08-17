@@ -331,7 +331,7 @@
       margin-right: 0; 
     }
   </style>
-  <!-- === login-start.html (com proteção para páginas e slides + turbo + warmup) === -->
+  <!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
 
   <style>
     /* Card padrão (páginas normais) */
@@ -347,9 +347,23 @@
       box-sizing: border-box;
     }
     #login-form input {
-      width: 100%; padding: 10px; margin: 6px 0;
-      border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
     }
+    /* ✅ FIX layout do checkbox: não herdar width/padding dos inputs de texto */
+    #login-form input[type="checkbox"] {
+      width: auto !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      vertical-align: middle;
+    }
+
     #login-form button {
       width: 100%; padding: 10px; margin-top: 10px;
       background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
@@ -389,8 +403,7 @@
     }
     .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
 
-    /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim
-       enquanto locked. Evita vazamentos quando o tema injeta containers. */
+    /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim) */
     html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
       display: none !important;
     }
@@ -422,6 +435,20 @@
 
     /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
     html.locked, body.locked { overflow: hidden !important; }
+
+    /* 🔒 Blindagem extra contra webexercises esconder a checkbox */
+    #login-form .remember-row { display:flex !important; visibility:visible !important; }
+    #login-form #remember-me { display:inline-block !important; }
+
+    /* 🧼 Esconde imediatamente artefatos escapados (qualquer descendente code/pre/sourceCode etc) DENTRO do form */
+    #login-form pre,
+    #login-form code,
+    #login-form .sourceCode,
+    #login-form .sourcecode,
+    #login-form .quarto-code-cell,
+    #login-form .cell-output,
+    #login-form .cell-output-display,
+    #login-form .cell { display: none !important; }
   </style>
 
   <!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
@@ -464,16 +491,23 @@
     }
   </script>
 
-  <meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
+  <meta property="og:title" content="Henrique Castro Martins - Estratégia Financeira">
+<meta property="og:description" content="Part 6 - ch.24 Debt Financing">
+<meta property="og:site_name" content="Henrique Castro Martins">
+<meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
 <meta name="twitter:description" content="Part 6 - ch.24 Debt Financing">
 <meta name="twitter:card" content="summary">
 </head><body class="quarto-light"><form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
     <h3 style="text-align:center;">Login</h3>
     <input type="text" id="username" placeholder="Username" autocomplete="username" required="">
     <input type="password" id="password" placeholder="Password" autocomplete="current-password" required="">
+
+    <!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
     <div class="remember-row">
-      <label><input type="checkbox" id="remember-me" checked=""> Remember me</label>
+      <input type="checkbox" id="remember-me" checked="">
+      <label for="remember-me">Remember me</label>
     </div>
+
     <button type="submit" id="login-submit">Enter</button>
     <div id="loading-msg"></div>
     <div id="login-error"></div>
@@ -644,7 +678,7 @@
         else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
         else { err.textContent='Missing credentials.'; }
       }catch(_){
-        load.style.display='none'; err.textContent='Network error. Please try again.';
+        load.textContent=''; err.textContent='Network error. Please try again.';
       }finally{
         if (document.getElementById('login-form').style.display !== 'none') {
           setAuthLoading(false);
@@ -687,6 +721,67 @@
         console.warn('auto-wrap (non-reveal) warn:', e);
       }
     });
+
+    /* 🔒 Fallback: recria a checkbox se webexercises a remover (estrutura input+label) */
+    document.addEventListener('DOMContentLoaded', () => {
+      const form=document.getElementById('login-form');
+      if(!form) return;
+      if(!document.getElementById('remember-me')){
+        const row=document.createElement('div');
+        row.className='remember-row';
+
+        const input=document.createElement('input');
+        input.type='checkbox';
+        input.id='remember-me';
+        input.checked=true;
+
+        const label=document.createElement('label');
+        label.htmlFor='remember-me';
+        label.appendChild(document.createTextNode(' Remember me'));
+
+        row.appendChild(input);
+        row.appendChild(label);
+
+        const btn=document.getElementById('login-submit');
+        form.insertBefore(row, btn);
+      }
+    });
+
+    /* 🧹 Sanitizador: remove artefatos (pre/code/sourceCode/cell) do remember dentro do form (em QUALQUER profundidade) */
+    (function(){
+      function looksLikeRememberLine(txt){
+        if(!txt) return false;
+        const t = txt.trim();
+        return /<\s*input[^>]*type=["']checkbox["'][^>]*id=["']remember-me["']/i.test(t) ||
+               /<\s*label[^>]*for=["']remember-me["'][^>]*>/i.test(t);
+      }
+      function cleanRememberArtifacts(){
+        const form = document.getElementById('login-form');
+        if(!form) return;
+
+        // Remove blocos típicos do Quarto/knitr que contêm o HTML escapado
+        form.querySelectorAll('pre, code, .sourceCode, .sourcecode, .quarto-code-cell, .cell-output, .cell-output-display, .cell')
+          .forEach(el => { if(looksLikeRememberLine(el.textContent)) el.remove(); });
+
+        // Remove nós de texto “crus” em qualquer nível
+        const treeWalker = document.createTreeWalker(form, NodeFilter.SHOW_TEXT, null);
+        const toRemove = [];
+        while(treeWalker.nextNode()){
+          const n = treeWalker.currentNode;
+          if(looksLikeRememberLine(n.textContent)) toRemove.push(n);
+        }
+        toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
+      }
+
+      if (document.readyState !== 'loading') cleanRememberArtifacts();
+      else document.addEventListener('DOMContentLoaded', cleanRememberArtifacts);
+
+      // Observa mudanças no form inteiro (subtree) para limpar assim que surgir
+      const formObs = document.getElementById('login-form');
+      if (formObs) new MutationObserver(cleanRememberArtifacts)
+        .observe(formObs, { childList: true, subtree: true });
+    })();
+
   </script>
 
 
@@ -740,12 +835,7 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 </div>
 </div>
 </div>
-<div class="quarto-auto-generated-content">
-<p><img src="../figs/background8.png" class="slide-logo"></p>
-<div class="footer footer-default">
-<p><span style="font-size:10px"> [<a href="mailto:henrique.martins@fgv.br">Henrique C. Martins</a>] [<a href="https://henriquemartins.net/teaching/financial_strategy/">Teaching Resources</a>]<strong>[Do not use without permission]</strong></span></p>
-</div>
-</div></section>
+</section>
 <section id="section-1" class="slide level2" data-background-image="../figs/cha24.png" data-background-size="1300px">
 <h2></h2>
 </section>
@@ -1113,18 +1203,18 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 <div class="footer">
 
 </div>
-<div class="footer">
-
-</div>
 </section>
-<section id="any-questions" class="slide level2" data-background="#b1cafa">
+<section id="any-questions" class="slide level2" data-background="#fdf6e3">
 <h2>🙋‍♂️ <strong>Any Questions?</strong></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3 id="thank-you">Thank You!</h3>
 <p><img data-src="../figs/qa2.png" style="box-shadow: none;;width:110.0%"></p>
 </div><div class="column" style="width:50%;">
-<h3 id="henrique-c.-martins">👤 <strong>Henrique C. Martins</strong></h3>
+<div style="text-align:right;">
+<p><img src="../figs/avatar.jpg" width="120px" style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,.25);"></p>
+</div>
+<h3 id="henrique-c.-martins"><strong>Henrique C. Martins</strong></h3>
 <ul>
 <li>🌐 <a href="https://eaesp.fgv.br/en/people/henrique-castro-martins">FGV/EAESP</a><br>
 </li>
@@ -1139,8 +1229,14 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 </ul>
 </div>
 </div>
-</section>
-</section>
+
+<div class="quarto-auto-generated-content">
+<p><img src="../figs/background8.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><span style="font-size:10px"> [<a href="mailto:henrique.martins@fgv.br">Henrique C. Martins</a>] [<a href="https://henriquemartins.net/teaching/financial_strategy/">Teaching Resources</a>]<strong>[Do not use without permission]</strong></span></p>
+</div>
+</div>
+</section></section>
     </div>
   </div>
 
