@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q28','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q28" name="module5_tf_q28" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q28"><strong>According to the CAPM, an investor’s optimal portfolio should always include only high-beta stocks.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q28" class="feedback" data-status="" style="display:none;">
+This is FALSE. CAPM suggests a combination of the risk-free asset and the market portfolio, regardless of individual stock betas.
+</div>
+
+:::

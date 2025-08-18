@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q35','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q35" name="module5_tf_q35" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q35"><strong>Investors suffering from the disposition effect tend to sell winning stocks too quickly while holding onto losing stocks for too long.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q35" class="feedback" data-status="" style="display:none;">
+This is TRUE. It’s a documented behavioral bias.
+</div>
+
+:::

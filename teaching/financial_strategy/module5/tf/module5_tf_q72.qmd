@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q72','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q72" name="module5_tf_q72" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q72"><strong>Strong-form market efficiency allows for arbitrage opportunities if investors act quickly.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q72" class="feedback" data-status="" style="display:none;">
+This is FALSE. In strong-form efficiency, even private info is reflected in prices, leaving no arbitrage opportunities.
+</div>
+
+:::

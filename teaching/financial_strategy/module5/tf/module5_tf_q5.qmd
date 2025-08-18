@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q5','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q5" name="module5_tf_q5" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q5"><strong>Securities always have zero calculated alphas if the market portfolio that is used is not a good proxy for the true market portfolio.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q5" class="feedback" data-status="" style="display:none;">
+This is FALSE. If the market portfolio proxy is poor, calculated alphas may deviate from zero.
+</div>
+
+:::

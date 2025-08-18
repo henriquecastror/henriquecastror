@@ -1,0 +1,15 @@
+{
+  "hash": "75c25bee26f0e3b1d80bfe1159a2d64f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Beta of a Three‑Asset Portfolio\n\n\n\n\n\nYou hold a portfolio composed of three assets with betas **0.79**, **1.17**, and **0.53**, invested in proportions **27.75%**, **11.04%**, and **61.2%**, respectively.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q7a\"><strong>1. What is the beta of the portfolio?</strong></label>\n  <input type=\"number\" id=\"module3_num_q7a\" name=\"module3_num_q7a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.67 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module3_num_q7a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Portfolio beta = w₁×β₁ + w₂×β₂ + w₃×β₃ = **0.67**.\n</div>\n\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

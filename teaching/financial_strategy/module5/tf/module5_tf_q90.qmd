@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q90','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q90" name="module5_tf_q90" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q90"><strong>Arbitrage pricing theory assumes that arbitrage opportunities will always be immediately eliminated.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q90" class="feedback" data-status="" style="display:none;">
+This is FALSE. APT allows for temporary deviations; arbitrage requires assumptions like frictionless markets.
+</div>
+
+:::

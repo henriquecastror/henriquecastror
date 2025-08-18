@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q95','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q95" name="module5_tf_q95" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q95"><strong>The difference between a stock’s expected return and its required return according to the capital market line (CML) is the stock’s alpha.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q95" class="feedback" data-status="" style="display:none;">
+This is FALSE. Alpha measures abnormal return relative to the Security Market Line (expected return vs. beta). The Capital Market Line relates expected return to total volatility, not alpha.
+</div>
+
+:::

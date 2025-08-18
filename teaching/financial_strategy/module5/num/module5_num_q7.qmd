@@ -1,0 +1,98 @@
+## Disposition Effect and Taxes — Brazilian Threshold 
+
+**Context (read this first):**  
+In Brazil, stock sales are **tax-exempt** if your **total proceeds from stock sales in the month** are **≤ BRL 20,000**. If your monthly proceeds **exceed BRL 20,000**, then **all capital gains realized that month** are taxed at **15%**. (Losses do not trigger tax and can typically be used to offset gains, but here we focus only on **today’s cash** to make the comparison clean.)
+
+This exercise compares two end-of-month choices to raise cash:
+
+- **Sell the winner (a position with a gain)** vs. **Sell the loser (a position with a loss)**  
+- We deliberately set **the same proceeds (S)** for both sales so that any difference in **after-tax cash** comes **only from taxes** (not from different sale sizes).  
+- This connects to the **disposition effect**: investors often prefer selling winners (to “lock in gains”) and holding losers (to avoid realizing losses), but that behaviour can be **tax-inefficient** when the threshold is binding.
+
+You will:
+1) compute **after-tax cash** if you sell the winner,  
+2) compute **after-tax cash** if you sell the loser,  
+3) compute the **advantage** (loser − winner).  
+If **S > 20,000**, selling the winner may incur tax **today**, while selling the loser does **not**.
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+library(webexercises)
+library(knitr)
+
+set.seed(NULL)
+options(scipen = 999)  # avoid scientific notation
+
+# --- Tax rule parameters (Brazil) ---
+threshold <- 20000   # BRL/month proceeds threshold for exemption
+tax_rate  <- 0.15    # 15% capital gains tax when monthly proceeds > threshold
+
+# --- Equal proceeds to isolate the tax effect ---
+S <- round(runif(1, 18000, 26000), 0)  # same gross proceeds for both "winner" and "loser"
+
+# Winner: basis below S to ensure a gain
+basis_w <- round(runif(1, max(1000, floor(S*0.4)), floor(S*0.9)), 0)
+gain_w  <- S - basis_w
+
+# Loser: basis above S to ensure a loss
+basis_l <- round(runif(1, ceiling(S*1.05), ceiling(S*1.6)), 0)
+loss_l  <- S - basis_l  # negative
+
+# Taxes today
+tax_w <- ifelse(S > threshold & gain_w > 0, tax_rate * gain_w, 0)  # only the winner may pay tax now
+tax_l <- 0                                                         # selling a loss does not trigger CGT
+
+# After-tax cash today
+after_tax_w <- S - tax_w
+after_tax_l <- S
+
+# Advantage of selling the loser (cash today): loser - winner
+delta_after_tax <- after_tax_l - after_tax_w
+
+# Safe strings for inline display
+S_s              <- format(S,              scientific = FALSE, trim = TRUE)
+basis_w_s        <- format(basis_w,        scientific = FALSE, trim = TRUE)
+gain_w_s         <- format(gain_w,         scientific = FALSE, trim = TRUE)
+tax_w_s          <- format(tax_w,          scientific = FALSE, trim = TRUE)
+after_tax_w_s    <- format(after_tax_w,    scientific = FALSE, trim = TRUE)
+
+basis_l_s        <- format(basis_l,        scientific = FALSE, trim = TRUE)
+loss_l_s         <- format(loss_l,         scientific = FALSE, trim = TRUE)
+after_tax_l_s    <- format(after_tax_l,    scientific = FALSE, trim = TRUE)
+
+delta_after_tax_s<- format(delta_after_tax,scientific = FALSE, trim = TRUE)
+
+# Small, centered summary table of the scenario
+tbl <- data.frame(
+  Leg = c("Sell winner (gain)", "Sell loser (loss)"),
+  Proceeds = c(S_s, S_s),
+  Basis    = c(basis_w_s, basis_l_s),
+  `Gain/Loss` = c(gain_w_s, loss_l_s),
+  `Tax (15% if S > 20k)` = c(tax_w_s, "0")
+)
+cat('<div style="max-width:520px;margin:12px auto;">')
+print(kable(tbl, align = c('l','r','r','r','r'), format = "html",
+            col.names = c("Leg","Proceeds (BRL)","Basis (BRL)","Gain/Loss (BRL)","Tax (BRL)")))
+cat('</div>')
+
+```
+
+**Assumptions:** One sale in the month, no other offsets, ignore costs; FIFO implicit.  
+**Rule:** If **monthly proceeds** from stock sales **> BRL 20,000**, **all gains** that month are taxed at **15%**; otherwise, **exempt**.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;"> <label for="module5_num_q7tax_a"><strong>a. After-tax proceeds if selling the winner (BRL):</strong></label> <input type="number" id="module5_num_q7tax_a" name="module5_num_q7tax_a" style="width:240px;" data-correct-answer="`r after_tax_w_s`" data-tolerance="1" /> </form> <div id="feedback-module5_num_q7tax_a" class="feedback" data-status="" style="display:none;"> ✅ <strong>Step-by-step (winner leg with a gain)</strong><br> • <em>Check the threshold:</em> Monthly proceeds = <strong>`r S_s`</strong>. Condition: `r ifelse(S > threshold, "S > 20,000 ⇒ gains are taxable at 15%", "S ≤ 20,000 ⇒ gains are exempt (0% tax)")`.<br> • <em>Compute tax on the gain (if taxable):</em> Gain = <code>S − basis</code> = `r S_s` − `r basis_w_s` = <strong>`r gain_w_s`</strong>. Tax = 15% × Gain = 0.15 × `r gain_w_s` = <strong>`r tax_w_s`</strong> BRL. (If the line above shows 0, it means the sale is **exempt** in this scenario.)<br> • <em>After-tax cash today:</em> Proceeds − Tax = `r S_s` − `r tax_w_s` = <strong>`r after_tax_w_s`</strong> BRL.<br><br> <em>Why this matters:</em> If the threshold binds, selling a winner creates **immediate tax outflow**, reducing today’s cash. </div> 
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;"> <label for="module5_num_q7tax_b"><strong>b. After-tax proceeds if selling the loser (BRL):</strong></label> <input type="number" id="module5_num_q7tax_b" name="module5_num_q7tax_b" style="width:240px;" data-correct-answer="`r after_tax_l_s`" data-tolerance="1" /> </form> <div id="feedback-module5_num_q7tax_b" class="feedback" data-status="" style="display:none;"> ✅ <strong>Step-by-step (loser leg with a loss)</strong><br> • <em>Tax on losses:</em> Realizing a loss does <strong>not</strong> trigger capital gains tax now; the tax due on this sale is <strong>0</strong> BRL. • <em>After-tax cash today:</em> Proceeds − Tax = `r S_s` − 0 = <strong>`r after_tax_l_s`</strong> BRL.<br><br> <em>Why this matters:</em> Selling the loser yields the **same gross cash** as selling the winner in this setup, but with **no tax haircut** today. (Separately from this exercise, a realized loss may be used to offset gains in the month/year depending on the rules in force.) </div> 
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;"> <label for="module5_num_q7tax_c"><strong>c. Proceeds advantage (loser − winner) (BRL):</strong></label> <input type="number" id="module5_num_q7tax_c" name="module5_num_q7tax_c" style="width:260px;" data-correct-answer="`r delta_after_tax_s`" data-tolerance="1" /> </form> <div id="feedback-module5_num_q7tax_c" class="feedback" data-status="" style="display:none;"> ✅ <strong>Interpret and connect to investor behavior</strong><br> Because **proceeds are equal** (S for both legs), the difference in after-tax cash is **purely the tax** on the winner (if any):<br> • Advantage = After-tax(loser) − After-tax(winner) = `r after_tax_l_s` − `r after_tax_w_s` = <strong>`r delta_after_tax_s`</strong> BRL.<br> • If `r ifelse(S > threshold, "S > 20,000", "S ≤ 20,000")`, then Advantage = `r ifelse(S > threshold, "the winner’s tax amount", "0")`.<br><br> <em>Key intuition (disposition effect):</em> Many investors feel tempted to **sell winners** and **hold losers**. Under the Brazilian threshold rule, when **S > 20,000**, selling the winner can be **tax-inefficient today** (you pay 15% on the gain), whereas selling the loser gives you the **same cash** without a tax haircut. This illustrates how **tax rules** and **behavioral biases** interact: sticking to “sell what went up” may **reduce** your **net cash today**, even if it feels psychologically rewarding. </div> 
+:::

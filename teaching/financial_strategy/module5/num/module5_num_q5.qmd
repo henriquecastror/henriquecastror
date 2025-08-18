@@ -1,0 +1,71 @@
+## Momentum Long–Short
+
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+library(webexercises)
+
+set.seed(NULL)
+Rw       <- round(runif(1, 0.12, 0.40), 2)  # winners next-period return (decimal)
+Rl       <- round(runif(1, -0.05, 0.18), 2) # losers next-period return (decimal)
+beta_LS  <- round(runif(1, -0.10, 0.20), 2) # beta of the long-short (often near zero)
+rf       <- round(runif(1, 0.02, 0.05), 2)
+mrp      <- round(runif(1, 0.04, 0.08), 2)
+
+spread    <- Rw - Rl
+capm_req  <- rf + beta_LS * mrp
+alpha     <- spread - capm_req
+
+spread_pct <- round(100*spread, 2)
+capm_pct   <- round(100*capm_req, 2)
+alpha_pct  <- round(100*alpha, 2)
+```
+
+A momentum strategy buys past **winners** and shorts **losers** (equal weights). Next period: winners return **`r round(100*Rw,2)`%**, losers return **`r round(100*Rl,2)`%**; the strategy beta is **β = `r beta_LS`**.  
+Assume **R<sub>f</sub> = `r round(100*rf,2)`%**, **MRP = `r round(100*mrp,2)`%**.
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+  <label for="module5_num_q5a"><strong>5a. Long–short return (in %):</strong></label>
+  <input type="number" id="module5_num_q5a" name="module5_num_q5a" style="width:200px;"
+         data-correct-answer=`r spread_pct` data-tolerance="0.05" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q5a" class="feedback" data-status="" style="display:none;">
+✅ <strong>Long–short return</strong><br>
+Spread = E[R]<sub>winners</sub> − E[R]<sub>losers</sub> = `r round(100*Rw,2)`% − `r round(100*Rl,2)`% =
+<strong>`r spread_pct`%</strong>.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+  <label for="module5_num_q5b"><strong>5b. CAPM required return for this portfolio (in %):</strong></label>
+  <input type="number" id="module5_num_q5b" name="module5_num_q5b" style="width:260px;"
+         data-correct-answer=`r capm_pct` data-tolerance="0.05" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q5b" class="feedback" data-status="" style="display:none;">
+✅ <strong>CAPM required return</strong><br>
+E[R]<sub>CAPM</sub> = R<sub>f</sub> + β × MRP = `r round(100*rf,2)`% + (`r beta_LS`) × `r round(100*mrp,2)`% =
+<strong>`r capm_pct`%</strong>.  
+When β is near zero, CAPM says the expected long–short return should be close to the risk‑free rate.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+  <label for="module5_num_q5c"><strong>5c. Alpha (in %):</strong></label>
+  <input type="number" id="module5_num_q5c" name="module5_num_q5c" style="width:200px;"
+         data-correct-answer=`r alpha_pct` data-tolerance="0.05" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q5c" class="feedback" data-status="" style="display:none;">
+✅ <strong>Alpha</strong><br>
+α = Realized long–short return − CAPM required = `r spread_pct`% − `r capm_pct`% =
+<strong>`r alpha_pct`%</strong>.<br>
+If α &gt; 0 with β ≈ 0, momentum delivers returns not explained by market β → evidence of a factor or behavioral effect.
+</div>
+:::

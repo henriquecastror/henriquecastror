@@ -1011,6 +1011,56 @@ $$\frac{2.29}{6.73}-1 = -66\%$$
 
 
 
+## 10.3 Historical Returns {.smaller  background="#ced8f5" }
+
+Some analysts prefer to use a geometric average instead of arithmetic average.
+
+Also called **Compound Annual Growth Rate (CAGR)**.
+
+$$CAGR = [(1+R_1)\times(1+R_2)\times ...\times (1+R_T)]^{\frac{1}{T}}-1$$
+
+$$CAGR = [\frac{Final\;value}{Initial\;value}]^\frac{1}{T}-1$$
+
+Using Figure 10.1 of BM: geometric return of SP500 from 1926-2017 is
+
+$$CAGR = [\frac{664,567}{100}]^\frac{1}{92}-1 = 10.04\%$$
+
+
+
+
+
+
+
+
+
+
+
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module2_slide1*
+<input type="hidden" id="slide-id" value="module2_slide1">
+:::
+
+
+
+::: panel-tabset
+
+{{< include "num/module2_num_q1_class.qmd" >}}
+
+{{< include "num/module2_num_q11_class.qmd" >}}
+
+{{< include "num/module2_num_q12_class.qmd" >}}
+
+
+:::
+
+
+{{< include "../submit-to-sheets.html" >}}
+
+
+
+
 
 
 ## 10.3 Historical Returns {.smaller  background="#ced8f5" }
@@ -1076,59 +1126,6 @@ The longer the period, the more accurate you are. But even with 92 years of data
 
 
 
-
-
-
-
-
-## 10.3 Historical Returns {.smaller  background="#ced8f5" }
-
-Some analysts prefer to use a geometric average instead of arithmetic average.
-
-Also called **Compound Annual Growth Rate (CAGR)**.
-
-$$CAGR = [(1+R_1)\times(1+R_2)\times ...\times (1+R_T)]^{\frac{1}{T}}-1$$
-
-$$CAGR = [\frac{Final\;value}{Initial\;value}]^\frac{1}{T}-1$$
-
-Using Figure 10.1 of BM: geometric return of SP500 from 1926-2017 is
-
-$$CAGR = [\frac{664,567}{100}]^\frac{1}{92}-1 = 10.04\%$$
-
-Remember the (arithmetic) average was 12% (in previous slide).
-
-
-
-
-
-
-
-
-
-
-##  {.smaller  background="#FFFFFF" visibility="hidden"}
-
-::: {style="font-size: 40%; text-align: right;"}
-Key: *module2_slide1*
-<input type="hidden" id="slide-id" value="module2_slide1">
-:::
-
-
-
-::: panel-tabset
-
-{{< include "num/module2_num_q1_class.qmd" >}}
-
-{{< include "num/module2_num_q11_class.qmd" >}}
-
-{{< include "num/module2_num_q12_class.qmd" >}}
-
-
-:::
-
-<div style="text-align: right;">
-{{< include "../quiz-utils.html" >}}
-</div>
 
 
 
@@ -1265,6 +1262,18 @@ p
 
 
 
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module2_slide2*
+<input type="hidden" id="slide-id" value="module2_slide2">
+:::
+
+{{< include "mcq/module2_mcq_q11_class.qmd" >}}
+
+
+{{< include "../submit-to-sheets.html" >}}
+
 
 
 
@@ -1349,6 +1358,23 @@ The volatility will therefore decline until only the systematic risk remains.
 ![](../figs/bm_10_8.png){width="90%"}
 
 
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+An additional comment about diversification:
+
+**1) it occurs only if the risk of the stocks are independent**
+
+  - we will define later what "independent" means to us. 
+  - intuitively, different firms have different risks.
+
+**2) if the risks are independent, more stocks means less risk... **
+
+  - ... until a certain point.
+
+
+
+
+
 
 ##  {.smaller background="#f7e1ba" }
 
@@ -1364,6 +1390,94 @@ The volatility will therefore decline until only the systematic risk remains.
 **United States**
 
 ![](../figs/grafico_animado_US24m.gif){width="90%"}
+
+
+
+
+
+
+
+
+
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+**Consider again type I firms, which are affected only by firm-specific risk. Because each individual type I firm is risky, should investors expect to earn a risk premium when investing in type I firms?**
+
+. . .
+
+**The risk premium for diversifiable risk is zero, so investors are not compensated for holding firm-specific risk.**
+
+- The reason is that they can mitigate this part of risk through  diversification.
+
+- Diversification eliminates this risk for free, implying that all investors should have a diversified portfolio. Otherwise, the investor is not rational.
+
+. . .
+
+**The takeaway is:**
+
+**The risk premium of a security is determined by its systematic risk and does not depend on its diversifiable risk.**
+
+
+
+
+
+
+
+
+
+
+## 10.6 Diversification {.smaller background="#f7e1ba" }
+
+**In a world where diversification exists:**
+
+**Standard deviation is not a good measure for risk anymore.**
+
+- Standard deviation is a measure of **a stock's total risk**
+- But if you are diversified, you are not incurring the total risk, only the systematic risk.
+
+
+_We will need a measure of a stock's systematic risk._
+
+. . .
+
+**This measure is called: Beta**
+
+. . .
+
+**But make no mistake:**
+
+**The standard deviation of the returns of a portfolio is still a good measure for the portfolio's risk!**
+
+- But you will not use the average standard deviation of individual stocks contained in a portfolio.
+
+
+
+
+
+
+
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-type="exit"
+     data-endpoint="https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec"
+     data-session="module2-session2"
+     data-open="2025-08-18 16:35"
+     data-close="2025-08-18 16:50"></div>
+{{< include ../ticket.html >}}
+
+
+
+
+
+
+
+
 
 
 ##  {.smaller background="#f7e1ba" }
@@ -1441,92 +1555,6 @@ p<-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +
              title ="Diversification benefits - Ibov vs. Weighted sd of individual stocks") +   theme_solarized()
 ggplotly(p)
 ```
-
-
-
-
-
-
-
-
-
-## 10.6 Diversification {.smaller background="#f7e1ba" }
-
-An additional comment about diversification:
-
-**1) it occurs only if the risk of the stocks are independent**
-
-  - we will define later what "independent" means to us. 
-  - intuitively, different firms have different risks.
-
-**2) if the risks are independent, more stocks means less risk... **
-
-  - ... until a certain point.
-
-
-
-
-
-
-
-
-## 10.6 Diversification {.smaller background="#f7e1ba" }
-
-**Consider again type I firms, which are affected only by firm-specific risk. Because each individual type I firm is risky, should investors expect to earn a risk premium when investing in type I firms?**
-
-. . .
-
-**The risk premium for diversifiable risk is zero, so investors are not compensated for holding firm-specific risk.**
-
-- The reason is that they can mitigate this part of risk through  diversification.
-
-- Diversification eliminates this risk for free, implying that all investors should have a diversified portfolio. Otherwise, the investor is not rational.
-
-. . .
-
-**The takeaway is:**
-
-**The risk premium of a security is determined by its systematic risk and does not depend on its diversifiable risk.**
-
-
-
-
-
-
-
-
-
-
-## 10.6 Diversification {.smaller background="#f7e1ba" }
-
-**In a world where diversification exists:**
-
-**Standard deviation is not a good measure for risk anymore.**
-
-- Standard deviation is a measure of **a stock's total risk**
-- But if you are diversified, you are not incurring the total risk, only the systematic risk.
-
-
-_We will need a measure of a stock's systematic risk._
-
-. . .
-
-**This measure is called: Beta**
-
-. . .
-
-**But make no mistake:**
-
-**The standard deviation of the returns of a portfolio is still a good measure for the portfolio's risk!**
-
-- But you will not use the average standard deviation of individual stocks contained in a portfolio.
-
-
-
-
-
-
-
 
 
 
@@ -1823,9 +1851,9 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 <div data-ticket
      data-type="exit"
      data-endpoint="https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec"
-     data-session="module2-session2"
-     data-open="2025-08-18 16:35"
-     data-close="2025-08-18 16:50"></div>
+     data-session="module2-session3"
+     data-open="2025-08-20 16:35"
+     data-close="2025-08-20 16:50"></div>
 {{< include ../ticket.html >}}
 
 

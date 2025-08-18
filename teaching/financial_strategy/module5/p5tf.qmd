@@ -1,163 +1,983 @@
 ---
-title: "Part 5 (ch13)  Questions T/F & Multiple Choice"
+title: "Module 5:  True (T) or False (F) Questions"
 ---
 
-::: {style="display: flex; justify-content: space-between; width: 100%;"}
-[Go to previous chapter](p4tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p6tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
-:::
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
+```
 
 ::: {.callout-warning}
 ### For students
 
-**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
+```{r}
+#| echo: false
+#| results: asis
+#| warning: false
+cat(paste0("**Last updated:** ", format(Sys.time(), '%d/%m/%Y %H:%M', tz = 'America/Sao_Paulo')))
+```
+
+The questions are based on or inspired by the following references:
+
+- [**Berk & DeMarzo, Corporate Finance, 5th ed. (2020)**](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154)  
+- [**Brealey & Myers, Principles of Corporate Finance, 13th ed. (2020)**](https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3)
+
+---
+
+💡 *You can also press `Ctrl + P` (or `Cmd + P` on Mac) to print or save your responses as a `.pdf` file.*
+
+---
+
+⚠️ _These exercises are **powered by AI-assisted technologies** and **may contain occasional formatting or logic errors**. Please report any issues you encounter so I can improve the experience._
 
 
-Below you find many questions to this chapter. 
+::: 
 
-*As this link is continuously updated with new questions, you might expect some changes from time to time.*
 
-The Questions are based or inspired on either [**Berk & DeMarzo, Corporate Finance, 5th ed. 2020**](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154) or 
-[**Brealey & Myers, Principles of Corporate Finance, 13th ed. 2020**](https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3).
-
-*If you are interest in getting a `.pdf` version of your answers, hit `Ctrl + P` to print*
-
-:::
 
 ___
 
+ 
+
+
+
+### 📘 Part 1 (until Midterm)
+
+
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|
+| 5 | ch13 | [🎞️](p5.html) | [✅](p5tf.html) | [❓](p5mcq.html) | [🔢](p5num.html) | [📝](p5long.html) |
+
+
+
+___
 
 **Mark T (True) or F (False) in each of the following sentences.**
 
-::: {.webex-check .webex-box}
-
-```{r}
-#| eval: true
-#| results: asis
-#| echo: false
-#| warning: false
-library(webexercises)
-
-cat("1", fitb("T", num = FALSE, ignore_case = TRUE), "Competition among savvy investors who try to “beat the market” and earn a positive alpha should keep their portfolio close to the market portfolio much of the time.",  "\n\n")
-cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "The difference between a stock’s expected return and its required return according to the capital market line (CML) is the stock’s alpha.",  "\n\n")
-cat("3", fitb("T", num = FALSE, ignore_case = TRUE), "Because beating the market requires enough trading skill to overcome transaction costs as well as behavioral biases, CAPM wisdom that investors should “hold the market” is probably the best advice for most people.",  "\n\n")
-cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "If all investors have homogeneous expectations, which states that all investors have the same information, all investors would be aware that the stock had a positive alpha and none would be willing to sell.",  "\n\n")
-cat("5", fitb("F", num = FALSE, ignore_case = TRUE), "An important conclusion of the CAPM is that investors should never hold the market portfolio combined with risk-free investments.", "\n\n")
-cat("6", fitb("F", num = FALSE, ignore_case = TRUE), "Securities always have zero alphas if the market portfolio that is used is not a good proxy for the true market portfolio.", "\n\n")
-cat("7", fitb("T", num = FALSE, ignore_case = TRUE), "There is evidence that individual investors fail to diversify their portfolios adequately (underdiversification bias) and favor investments in companies they are familiar with (familiarity bias).", "\n\n")
-cat("8", fitb("F", num = FALSE, ignore_case = TRUE),"An alternative reason why investors make similar trading errors is that they are actively trying to follow each other’s behavior. This phenomenon, in which individuals imitate each other’s actions, is referred to as disposition effect.","\n\n")
-cat("9", fitb("T", num = FALSE, ignore_case = TRUE),"The idea that investors can tailor their risk exposures based on common risk factors has become  known amongst as a smart beta strategy.","\n\n")
-cat("10", fitb("F", num = FALSE, ignore_case = TRUE),"We call the tendency to hang on to losers and sell winners the herd behavior.","\n\n")
-cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "The relative wealth concerns bias suggests that investors care most about the performance of their portfolio relative to that of their peers.","\n\n")
-cat("12", fitb("F", num = FALSE, ignore_case = TRUE), "The disposition effect refers to investors' tendency to sell winning investments too early and hold onto losing investments for too long due to their preference for realizing losses.", "\n\n")
-cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Herd behavior occurs when investors follow the actions of others rather than relying on their own analysis, often leading to market bubbles and crashes.", "\n\n")
-cat("14", fitb("F", num = FALSE, ignore_case = TRUE), "The disposition effect suggests that investors are more likely to sell losing investments too early and hold onto winning investments for too long, driven by a preference for realizing gains.", "\n\n")
-cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "In an efficient market, asset prices fully reflect all available information, making it impossible for investors to consistently outperform the market.",  "\n\n")
-cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Weak form market efficiency implies that past prices and trading volumes cannot be used to predict future price movements, as they are already reflected in
-  current prices.", "\n\n")
-cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "In a semi-strong form efficient market, prices reflect all public information as well as private information known only to a select group of investors.", "\n\n")
-cat("18", fitb("T", num = FALSE, ignore_case = TRUE), "Strong form market efficiency suggests that even insider information cannot be used to consistently achieve abnormal returns, as it is already reflected in asset prices.", "\n\n")
-cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "Market efficiency suggests that it is difficult for investors to consistently identify undervalued or overvalued securities through fundamental or technical analysis.", "\n\n")
-cat("20", fitb("T", num = FALSE, ignore_case = TRUE), "In a perfectly efficient market, prices reflect all information instantaneously, leaving very limited room for arbitrage opportunities.", "\n\n")
-cat("21", fitb("F", num = FALSE, ignore_case = TRUE), "If investors have relative wealth concerns, they care most about their  current portfolio performance relative to their past portfolio performance.", "\n\n")
-cat("22", fitb("T", num = FALSE, ignore_case = TRUE), "Strong-form efficiency implies that professional investors cannot consistently outperform the market.", "\n\n")
-cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "Semi strong-form efficiency implies that professional investors may outperform the market if they acquire private information  prior to the market.", "\n\n")
-cat("24", fitb("F", num = FALSE, ignore_case = TRUE), "Semi strong-form efficiency implies that stock prices reflect all available information.", "\n\n")
-
-cat("25", fitb("F", num = FALSE, ignore_case = TRUE), "If the CAPM holds, the expected return of a security is determined solely by its beta relative to the market portfolio.", "\n\n")
-cat("26", fitb("F", num = FALSE, ignore_case = TRUE), "According to the CAPM, investors can achieve better returns without increasing risk by selecting stocks with lower betas.", "\n\n")
-cat("27", fitb("T", num = FALSE, ignore_case = TRUE), "A zero-beta security is expected to earn the risk-free rate in an efficient market.", "\n\n")
-cat("28", fitb("T", num = FALSE, ignore_case = TRUE), "If a stock has a positive alpha, it suggests that the stock is offering a return 
-higher than predicted by its risk level under the CAPM.", "\n\n")
-
-cat("29", fitb("F", num = FALSE, ignore_case = TRUE), "According to the CAPM, an investor’s optimal portfolio should always include only high-beta stocks.", "\n\n")
-cat("30", fitb("T", num = FALSE, ignore_case = TRUE), "Anomalies, such as the momentum effect, suggest that the CAPM may not fully explain stock returns.", "\n\n")
-cat("31", fitb("F", num = FALSE, ignore_case = TRUE), "Under the CAPM, investors who are more risk-averse will hold only risk-free assets.", "\n\n")
-cat("32", fitb("F", num = FALSE, ignore_case = TRUE), "The small-firm effect states that large-cap stocks consistently outperform small-cap stocks after adjusting for risk.", "\n\n")
-cat("33", fitb("T", num = FALSE, ignore_case = TRUE), "Overconfidence bias can lead investors to trade more frequently than is optimal, often reducing their overall returns.", "\n\n")
-cat("34", fitb("T", num = FALSE, ignore_case = TRUE), "If markets are efficient, it is difficult for actively managed mutual funds to consistently outperform passive index funds after fees.", "\n\n")
-cat("35", fitb("F", num = FALSE, ignore_case = TRUE), "Herding behavior in financial markets often leads to a reduction in price volatility.", "\n\n")
-cat("36", fitb("T", num = FALSE, ignore_case = TRUE), "Investors suffering from the disposition effect tend to sell winning stocks too quickly while holding onto losing stocks for too long.", "\n\n")
-cat("37", fitb("F", num = FALSE, ignore_case = TRUE), "In an efficient market, arbitrage opportunities persist for long periods before being corrected.", "\n\n")
-cat("38", fitb("T", num = FALSE, ignore_case = TRUE), "Liquidity risk can cause deviations from market efficiency, as investors demand a premium for holding less liquid assets.", "\n\n")
-cat("39", fitb("F", num = FALSE, ignore_case = TRUE), "The CAPM predicts that stocks with higher idiosyncratic risk should have higher expected returns.", "\n\n")
-cat("40", fitb("T", num = FALSE, ignore_case = TRUE), "Rational expectations suggest that investors will correctly incorporate all available information into their asset pricing decisions.", "\n\n")
-cat("41", fitb("F", num = FALSE, ignore_case = TRUE), "A major critique of the CAPM is that it accounts for multiple sources of systematic risk beyond market risk.", "\n\n")
-cat("42", fitb("T", num = FALSE, ignore_case = TRUE), "Market anomalies challenge the validity of the efficient market hypothesis and suggest potential mispricing.", "\n\n")
-cat("43", fitb("T", num = FALSE, ignore_case = TRUE), "The Fama-French three-factor model extends the CAPM by including size and value factors in addition to market risk.", "\n\n")
-cat("44", fitb("F", num = FALSE, ignore_case = TRUE), "According to the CAPM, stocks with negative betas should have higher expected returns than the risk-free rate.", "\n\n")
-cat("45", fitb("F", num = FALSE, ignore_case = TRUE), "A stock’s alpha measures its total risk rather than its risk-adjusted return relative to the market.", "\n\n")
-cat("46", fitb("T", num = FALSE, ignore_case = TRUE), "Momentum investing is based on the observation that stocks that have performed well in the past tend to continue performing well in the near future.", "\n\n")
-cat("47", fitb("T", num = FALSE, ignore_case = TRUE), "If market efficiency holds, then insider trading should not yield consistent excess returns over time.", "\n\n")
-cat("48", fitb("F", num = FALSE, ignore_case = TRUE), "The risk-free rate in the CAPM is typically the expected return of the overall stock market.", "\n\n")
-cat("49", fitb("T", num = FALSE, ignore_case = TRUE), "The equity risk premium represents the additional return investors require for holding risky stocks over risk-free assets.", "\n\n")
-cat("50", fitb("T", num = FALSE, ignore_case = TRUE), "The arbitrage pricing theory (APT) suggests that multiple risk factors beyond market beta can influence asset returns.", "\n\n")
-
-```
-
-:::
-
-
-
-___
-
-**And here are some additional multiple choice problems.**
-
-
-::: {.webex-check .webex-box}
-
-```{r}
-#| eval: true
-#| results: asis
-#| echo: false
-#| warning: false
-library(webexercises)
-q1 <- " **Q1: Which of the following is included in the Fama-French three-factor model?**"
-q1_choices <- c("Market factor and Size factor, only.",
-                "Market factor and book-to-market factor, only.",
-                "Market factor, book-to-market factor, and size factor, only.",
-                answer= "Market factor, book-to-market factor, size factor, and momentum factor, only.")
-cat(q1,longmcq(q1_choices))
-
-
-
-
-
-
-```
-
-:::
-
-
-
-
-
-
-
-
-
-
-
-
-___
-
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/EF_permanent"
-        data-repo-id="R_kgDOLMIejg"
-        data-category="General"
-        data-category-id="DIC_kwDOLMIejs4Cc1yS"
-        data-mapping="number"
-        data-term="10"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
+<script>
+  const SLIDE_ID = "module5_p5tf";
 </script>
 
-::: {style="display: flex; justify-content: space-between; width: 100%;"}
-[Go to previous chapter](p4tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p6tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+{{< include ../login-start.html >}}
+
+
+
+<!-- Botões de navegação -->
+<button onclick="showGroup(1)">1–10</button>
+<button onclick="showGroup(2)">11–20</button>
+<button onclick="showGroup(3)">21–30</button>
+<button onclick="showGroup(4)">31–40</button>
+<button onclick="showGroup(5)">41–50</button>
+<button onclick="showGroup(6)">51–60</button>
+<button onclick="showGroup(7)">61–70</button>
+<button onclick="showGroup(8)">71–80</button>
+<button onclick="showGroup(9)">81–90</button>
+<button onclick="showGroup(10)">91–100</button>
+
+
+
+
+:::{.webex-box .card .border-success .mb-4 .p-3}
+
+
+
+<!-- Group 1: Q1–Q10 -->
+<div id="group1" class="question-group">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q1.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q1.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q2.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q2.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q3.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q3.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q4.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q4.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q5.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q5.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q6.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q7.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q7.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q8.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q8.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q9.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q9.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q10.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q10.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+<!-- Group 2: Q11–Q20 -->
+<div id="group2" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q11.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q11.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q12.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q12.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q13.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q13.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q14.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q14.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q15.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q15.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q16.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q16.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q17.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q17.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q18.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q18.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q19.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q19.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q20.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q20.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Group 3: Q21–Q30 -->
+<div id="group3" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q21.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q21.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q22.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q22.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q23.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q23.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q24.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q24.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q25.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q25.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q26.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q26.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q27.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q27.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q28.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q28.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q29.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q29.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q30.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q30.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+<!-- Group 4: Q31–Q40 -->
+<div id="group4" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q31.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q31.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q32.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q32.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q33.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q33.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q34.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q34.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q35.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q35.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q36.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q36.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q37.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q37.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q38.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q38.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q39.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q39.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q40.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q40.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+<!-- Group 5: Q41–Q50 -->
+<div id="group5" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q41.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q41.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q42.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q42.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q43.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q43.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q44.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q44.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q45.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q45.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q46.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q46.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q47.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q47.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q48.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q48.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q49.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q49.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q50.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q50.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+<!-- Group 6: Q51–Q60 -->
+<div id="group6" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q51.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q51.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q52.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q52.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q53.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q53.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q54.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q54.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q55.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q55.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q56.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q56.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q57.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q57.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q58.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q58.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q59.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q59.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q60.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q60.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+<!-- Group 7: Q61–Q70 -->
+<div id="group7" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q61.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q61.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q62.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q62.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q63.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q63.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q64.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q64.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q65.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q65.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q66.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q66.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q67.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q67.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q68.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q68.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q69.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q69.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q70.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q70.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+<!-- Group 8: Q71–Q80 -->
+<div id="group8" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q71.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q71.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q72.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q72.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q73.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q73.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q74.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q74.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q75.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q75.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q76.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q76.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q77.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q77.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q78.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q78.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q79.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q79.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q80.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q80.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Group 9: Q81–Q90 -->
+<div id="group9" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q81.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q81.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q82.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q82.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q83.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q83.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q84.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q84.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q85.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q85.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q86.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q86.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q87.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q87.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q88.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q88.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q89.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q89.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q90.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q90.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+<!-- Group 10: Q91–Q100 -->
+<div id="group10" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q91.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q91.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q92.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q92.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q93.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q93.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q94.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q94.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q95.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q95.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q96.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q96.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q97.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q97.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q98.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q98.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q99.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q99.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q100.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module5_tf_q100.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<<!-- Navegação entre os grupos -->
+<div style="margin-top: 25px; display: flex; justify-content: center; gap: 20px;">
+  <button onclick="prevGroup()" style="padding: 8px 16px;">Previous</button>
+  <span id="group-indicator" style="align-self: center; font-weight: bold;">Group 1 of 10</span>
+  <button onclick="nextGroup()" style="padding: 8px 16px;">Next</button>
+</div>
+
+<script>
+  let currentGroup = 1;
+  const totalGroups = 10;
+
+  function showGroup(index) {
+    for (let i = 1; i <= totalGroups; i++) {
+      const el = document.getElementById(`group${i}`);
+      if (el) el.style.display = (i === index) ? 'block' : 'none';
+    }
+    document.getElementById('group-indicator').textContent = `Group ${index} of ${totalGroups}`;
+    currentGroup = index;
+  }
+
+  function nextGroup() {
+    if (currentGroup < totalGroups) {
+      showGroup(currentGroup + 1);
+    }
+  }
+
+  function prevGroup() {
+    if (currentGroup > 1) {
+      showGroup(currentGroup - 1);
+    }
+  }
+
+  showGroup(currentGroup);
+</script>
+
+
+
+
+
+
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
+
 :::
+
+
+{{< include ../login-end.html >}}
+
+
+
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="/teaching/financial_strategy/" class="btn btn-outline-primary btn-lg">
+    🔙
+  </a>
+</div>
+
+

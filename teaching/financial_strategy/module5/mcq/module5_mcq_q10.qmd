@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q10')" data-correct-answer="D">
+<strong style="display: block;">According to behavioral finance, what is the main cause of excessive volatility in financial markets compared to fundamentals?</strong>
+
+<label><input type="radio" name="module5_mcq_q10" value="A"> A. Rational arbitrage</label><br>
+<label><input type="radio" name="module5_mcq_q10" value="B"> B. Strong-form efficiency</label><br>
+<label><input type="radio" name="module5_mcq_q10" value="C"> C. Lack of trading volume</label><br>
+<label><input type="radio" name="module5_mcq_q10" value="D"> D. Investor sentiment and psychological biases</label><br>
+<label><input type="radio" name="module5_mcq_q10" value="E"> E. Perfect diversification</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q10" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Behavioral finance argues that investor sentiment and biases drive volatility beyond what fundamentals justify.
+</div>
+
+:::

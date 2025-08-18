@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q45','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q45" name="module5_tf_q45" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q45"><strong>Momentum investing is based on the observation that stocks that have performed well in the past tend to continue performing well in the near future.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q45" class="feedback" data-status="" style="display:none;">
+This is TRUE. Momentum strategies exploit return persistence.
+</div>
+
+:::

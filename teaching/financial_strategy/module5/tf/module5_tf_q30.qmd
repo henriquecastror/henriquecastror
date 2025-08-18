@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q30','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q30" name="module5_tf_q30" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q30"><strong>Under the CAPM, investors who are more risk-averse will hold only risk-free assets.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q30" class="feedback" data-status="" style="display:none;">
+This is FALSE. They will combine the risk-free asset with the market, not hold only the risk-free asset.
+</div>
+
+:::

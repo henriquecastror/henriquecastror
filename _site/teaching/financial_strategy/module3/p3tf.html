@@ -35,12 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,9 +78,13 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../../include/webex.css">
+<meta property="og:title" content="Henrique Castro Martins - Module 3: True (T) or False (F) Questions">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Henrique Castro Martins">
 <meta name="twitter:title" content="Henrique Castro Martins - Module 3: True (T) or False (F) Questions">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://henriquemartins.net/">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -130,7 +132,6 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -162,6 +163,55 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </header>
 
 
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -172,7 +222,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 16/08/2025 14:53</p>
+<p><strong>Last updated:</strong> 17/08/2025 11:04</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -191,7 +241,8 @@ For students
 <table class="table">
 <thead>
 <tr class="header">
-<th style="text-align: right;">Chapter</th>
+<th style="text-align: center;">Module</th>
+<th style="text-align: center;">Chapter</th>
 <th style="text-align: center;">Slides</th>
 <th style="text-align: center;">T/F</th>
 <th style="text-align: center;">MCQ</th>
@@ -201,7 +252,8 @@ For students
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">ch11</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">ch11</td>
 <td style="text-align: center;"><a href="p3.html">🎞️</a></td>
 <td style="text-align: center;"><a href="p3tf.html">✅</a></td>
 <td style="text-align: center;"><a href="p3mcq.html">❓</a></td>
@@ -215,7 +267,7 @@ For students
 <script>
   const SLIDE_ID = "module3_p3tf";
 </script>
-<!-- === login-start.html (com proteção para páginas e slides + turbo + warmup) === -->
+<!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
 <style>
   /* Card padrão (páginas normais) */
   #login-form {
@@ -230,9 +282,23 @@ For students
     box-sizing: border-box;
   }
   #login-form input {
-    width: 100%; padding: 10px; margin: 6px 0;
-    border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
   }
+  /* ✅ FIX layout do checkbox: não herdar width/padding dos inputs de texto */
+  #login-form input[type="checkbox"] {
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    vertical-align: middle;
+  }
+
   #login-form button {
     width: 100%; padding: 10px; margin-top: 10px;
     background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
@@ -272,8 +338,7 @@ For students
   }
   .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
 
-  /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim
-     enquanto locked. Evita vazamentos quando o tema injeta containers. */
+  /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim) */
   html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
     display: none !important;
   }
@@ -305,6 +370,20 @@ For students
 
   /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
   html.locked, body.locked { overflow: hidden !important; }
+
+  /* 🔒 Blindagem extra contra webexercises esconder a checkbox */
+  #login-form .remember-row { display:flex !important; visibility:visible !important; }
+  #login-form #remember-me { display:inline-block !important; }
+
+  /* 🧼 Esconde imediatamente artefatos escapados (qualquer descendente code/pre/sourceCode etc) DENTRO do form */
+  #login-form pre,
+  #login-form code,
+  #login-form .sourceCode,
+  #login-form .sourcecode,
+  #login-form .quarto-code-cell,
+  #login-form .cell-output,
+  #login-form .cell-output-display,
+  #login-form .cell { display: none !important; }
 </style>
 <!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
 <script>
@@ -348,9 +427,11 @@ For students
 <h3 style="text-align:center;" class="anchored">
 Login
 </h3>
-<input type="text" id="username" placeholder="Username" autocomplete="username" required=""> <input type="password" id="password" placeholder="Password" autocomplete="current-password" required="">
+<p><input type="text" id="username" placeholder="Username" autocomplete="username" required=""> <input type="password" id="password" placeholder="Password" autocomplete="current-password" required=""></p>
+<!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
 <div class="remember-row">
-<pre><code>&lt;label&gt;&lt;input type="checkbox" id="remember-me" checked /&gt; Remember me&lt;/label&gt;</code></pre>
+<pre><code>&lt;input type="checkbox" id="remember-me" checked /&gt;
+&lt;label for="remember-me"&gt;Remember me&lt;/label&gt;</code></pre>
 </div>
 <button type="submit" id="login-submit">
 Enter
@@ -528,7 +609,7 @@ Enter
       else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
       else { err.textContent='Missing credentials.'; }
     }catch(_){
-      load.style.display='none'; err.textContent='Network error. Please try again.';
+      load.textContent=''; err.textContent='Network error. Please try again.';
     }finally{
       if (document.getElementById('login-form').style.display !== 'none') {
         setAuthLoading(false);
@@ -571,6 +652,67 @@ Enter
       console.warn('auto-wrap (non-reveal) warn:', e);
     }
   });
+
+  /* 🔒 Fallback: recria a checkbox se webexercises a remover (estrutura input+label) */
+  document.addEventListener('DOMContentLoaded', () => {
+    const form=document.getElementById('login-form');
+    if(!form) return;
+    if(!document.getElementById('remember-me')){
+      const row=document.createElement('div');
+      row.className='remember-row';
+
+      const input=document.createElement('input');
+      input.type='checkbox';
+      input.id='remember-me';
+      input.checked=true;
+
+      const label=document.createElement('label');
+      label.htmlFor='remember-me';
+      label.appendChild(document.createTextNode(' Remember me'));
+
+      row.appendChild(input);
+      row.appendChild(label);
+
+      const btn=document.getElementById('login-submit');
+      form.insertBefore(row, btn);
+    }
+  });
+
+  /* 🧹 Sanitizador: remove artefatos (pre/code/sourceCode/cell) do remember dentro do form (em QUALQUER profundidade) */
+  (function(){
+    function looksLikeRememberLine(txt){
+      if(!txt) return false;
+      const t = txt.trim();
+      return /<\s*input[^>]*type=["']checkbox["'][^>]*id=["']remember-me["']/i.test(t) ||
+             /<\s*label[^>]*for=["']remember-me["'][^>]*>/i.test(t);
+    }
+    function cleanRememberArtifacts(){
+      const form = document.getElementById('login-form');
+      if(!form) return;
+
+      // Remove blocos típicos do Quarto/knitr que contêm o HTML escapado
+      form.querySelectorAll('pre, code, .sourceCode, .sourcecode, .quarto-code-cell, .cell-output, .cell-output-display, .cell')
+        .forEach(el => { if(looksLikeRememberLine(el.textContent)) el.remove(); });
+
+      // Remove nós de texto “crus” em qualquer nível
+      const treeWalker = document.createTreeWalker(form, NodeFilter.SHOW_TEXT, null);
+      const toRemove = [];
+      while(treeWalker.nextNode()){
+        const n = treeWalker.currentNode;
+        if(looksLikeRememberLine(n.textContent)) toRemove.push(n);
+      }
+      toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
+    }
+
+    if (document.readyState !== 'loading') cleanRememberArtifacts();
+    else document.addEventListener('DOMContentLoaded', cleanRememberArtifacts);
+
+    // Observa mudanças no form inteiro (subtree) para limpar assim que surgir
+    const formObs = document.getElementById('login-form');
+    if (formObs) new MutationObserver(cleanRememberArtifacts)
+      .observe(formObs, { childList: true, subtree: true });
+  })();
+
 </script>
 <!-- Botões de navegação -->
 <button onclick="showGroup(1)">
@@ -2533,150 +2675,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

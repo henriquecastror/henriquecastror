@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q87','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q87" name="module5_tf_q87" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q87"><strong>Portfolio alpha can be improved by buying assets above the SML and avoiding those below it.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q87" class="feedback" data-status="" style="display:none;">
+This is TRUE. Assets above the SML have positive alpha and improve Sharpe ratio.
+</div>
+
+:::

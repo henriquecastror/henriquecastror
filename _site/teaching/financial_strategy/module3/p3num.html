@@ -35,12 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,9 +78,13 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../../include/webex.css">
+<meta property="og:title" content="Henrique Castro Martins - Module 3: Numeric Questions">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Henrique Castro Martins">
 <meta name="twitter:title" content="Henrique Castro Martins - Module 3: Numeric Questions">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://henriquemartins.net/">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -130,7 +132,6 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -162,6 +163,55 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 </header>
 
 
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -172,7 +222,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 16/08/2025 21:26</p>
+<p><strong>Last updated:</strong> 17/08/2025 19:52</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -191,7 +241,8 @@ For students
 <table class="table">
 <thead>
 <tr class="header">
-<th style="text-align: right;">Chapter</th>
+<th style="text-align: center;">Module</th>
+<th style="text-align: center;">Chapter</th>
 <th style="text-align: center;">Slides</th>
 <th style="text-align: center;">T/F</th>
 <th style="text-align: center;">MCQ</th>
@@ -201,10 +252,11 @@ For students
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">ch11</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">ch11</td>
 <td style="text-align: center;"><a href="p3.html">🎞️</a></td>
 <td style="text-align: center;"><a href="p3tf.html">✅</a></td>
-<td style="text-align: center;"><a href="p1m3q.html">❓</a></td>
+<td style="text-align: center;"><a href="p3mcq.html">❓</a></td>
 <td style="text-align: center;"><a href="p3num.html">🔢</a></td>
 <td style="text-align: center;"><a href="p3long.html">📝</a></td>
 </tr>
@@ -665,35 +717,35 @@ Enter
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q1.
 </div>
 <section id="expected-return-variance-and-standard-deviation-of-a-portfolio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="expected-return-variance-and-standard-deviation-of-a-portfolio">Expected Return, Variance, and Standard Deviation of a Portfolio</h2>
-<p>What is the <strong>expected return</strong> of a portfolio that invests <strong>24.26</strong>% in Asset&nbsp;1 (expected return = <strong>3.82</strong>%) and the remaining <strong>75.74</strong>% in Asset&nbsp;2 (expected return = <strong>8.81</strong>% )?</p>
+<p>What is the <strong>expected return</strong> of a portfolio that invests <strong>56.16</strong>% in Asset&nbsp;1 (expected return = <strong>19.2</strong>%) and the remaining <strong>43.84</strong>% in Asset&nbsp;2 (expected return = <strong>21.3</strong>% )?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q1a"><strong>1. What is the expected return of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1a" name="module3_num_q1a" placeholder="Enter value" style="width: 150px;" data-correct-answer="7.6" data-tolerance="0.01">
+<label for="module3_num_q1a"><strong>1. What is the expected return of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1a" name="module3_num_q1a" placeholder="Enter value" style="width: 150px;" data-correct-answer="20.12" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q1a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = w₁×r₁ + w₂×r₂ = <strong>7.6</strong>%.</p>
+<p>✅ Expected return = w₁×r₁ + w₂×r₂ = <strong>20.12</strong>%.</p>
 </div>
 </div>
-<p>What is the <strong>variance</strong> of the portfolio above, given correlation <strong>0.37</strong>, standard deviation of Asset&nbsp;1 = <strong>33.15</strong>% and of Asset&nbsp;2 = <strong>18.78</strong>%?</p>
+<p>What is the <strong>variance</strong> of the portfolio above, given correlation <strong>0.84</strong>, standard deviation of Asset&nbsp;1 = <strong>24.23</strong>% and of Asset&nbsp;2 = <strong>15.77</strong>%?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q1b"><strong>2. What is the variance of the portfolio (in squared %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1b" name="module3_num_q1b" placeholder="Enter value" style="width: 150px;" data-correct-answer="3.53" data-tolerance="0.01">
+<label for="module3_num_q1b"><strong>2. What is the variance of the portfolio (in squared %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1b" name="module3_num_q1b" placeholder="Enter value" style="width: 150px;" data-correct-answer="3.91" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q1b" class="feedback" data-status="" style="display:none;">
-<p>✅ Variance = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂ = <strong>3.53</strong>.</p>
+<p>✅ Variance = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂ = <strong>3.91</strong>.</p>
 </div>
 </div>
 <p>What is the <strong>standard deviation</strong> of the portfolio above?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q1c"><strong>3. What is the standard deviation of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1c" name="module3_num_q1c" placeholder="Enter value" style="width: 150px;" data-correct-answer="18.78" data-tolerance="0.01">
+<label for="module3_num_q1c"><strong>3. What is the standard deviation of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1c" name="module3_num_q1c" placeholder="Enter value" style="width: 150px;" data-correct-answer="19.77" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q1c" class="feedback" data-status="" style="display:none;">
-<p>✅ Standard deviation = √(variance) = <strong>18.78</strong>%.</p>
+<p>✅ Standard deviation = √(variance) = <strong>19.77</strong>%.</p>
 </div>
 </div>
 </section>
@@ -702,17 +754,17 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q2.
 </div>
 <section id="portfolio-weight-calculation-for-multiple-stocks" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="portfolio-weight-calculation-for-multiple-stocks">Portfolio Weight Calculation for Multiple Stocks</h2>
-<p>Suppose you purchase <strong>208</strong> shares of Company&nbsp;A at $<strong>57.13</strong> per share, <strong>202</strong> shares of Company&nbsp;B at $<strong>43.82</strong> per share, and <strong>-15</strong> shares of Company&nbsp;C at $<strong>49.32</strong> per share.</p>
+<p>Suppose you purchase <strong>155</strong> shares of Company&nbsp;A at $<strong>63.81</strong> per share, <strong>164</strong> shares of Company&nbsp;B at $<strong>36.44</strong> per share, and <strong>73</strong> shares of Company&nbsp;C at $<strong>56.25</strong> per share.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q2a"><strong>1. What is the weight on Company&nbsp;A in your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q2a" name="module3_num_q2a" placeholder="Enter value" style="width: 150px;" data-correct-answer="59.43" data-tolerance="0.01">
+<label for="module3_num_q2a"><strong>1. What is the weight on Company&nbsp;A in your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q2a" name="module3_num_q2a" placeholder="Enter value" style="width: 150px;" data-correct-answer="49.52" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q2a" class="feedback" data-status="" style="display:none;">
-<p>✅ Weight on Company A = value_A / total_value × 100 = <strong>59.43</strong>%.</p>
+<p>✅ Weight on Company A = value_A / total_value × 100 = <strong>49.52</strong>%.</p>
 </div>
 </div>
 </section>
@@ -721,25 +773,25 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q3.
 </div>
 <section id="portfolio-variance-and-standard-deviation-calculation" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="portfolio-variance-and-standard-deviation-calculation">Portfolio Variance and Standard Deviation Calculation</h2>
-<p>You invest <strong>99.77%</strong> of your funds in Asset A (volatility = <strong>19.68%</strong>) and <strong>0.23%</strong> in Asset B (volatility = <strong>25.17%</strong>). The correlation between the two assets is <strong>-0.07</strong>.</p>
+<p>You invest <strong>5.17%</strong> of your funds in Asset A (volatility = <strong>11.31%</strong>) and <strong>94.83%</strong> in Asset B (volatility = <strong>22.93%</strong>). The correlation between the two assets is <strong>0.77</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q3a"><strong>1. What is the variance of your portfolio (in squared %)?</strong></label> <input type="number" id="module3_num_q3a" name="module3_num_q3a" placeholder="Enter value" style="width: 150px;" data-correct-answer="385.17" data-tolerance="0.01">
+<label for="module3_num_q3a"><strong>1. What is the variance of your portfolio (in squared %)?</strong></label> <input type="number" id="module3_num_q3a" name="module3_num_q3a" placeholder="Enter value" style="width: 150px;" data-correct-answer="492.71" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q3a" class="feedback" data-status="" style="display:none;">
-<p>✅ Portfolio variance = w²×sd₁² + (1−w)²×sd₂² + 2×w×(1−w)×sd₁×sd₂×ρ = <strong>385.17</strong>.</p>
+<p>✅ Portfolio variance = w²×sd₁² + (1−w)²×sd₂² + 2×w×(1−w)×sd₁×sd₂×ρ = <strong>492.71</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q3b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q3b" name="module3_num_q3b" placeholder="Enter value" style="width: 150px;" data-correct-answer="19.63" data-tolerance="0.01">
+<label for="module3_num_q3b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q3b" name="module3_num_q3b" placeholder="Enter value" style="width: 150px;" data-correct-answer="22.2" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q3b" class="feedback" data-status="" style="display:none;">
-<p>✅ Portfolio standard deviation = √(variance) = <strong>19.63</strong>%.</p>
+<p>✅ Portfolio standard deviation = √(variance) = <strong>22.2</strong>%.</p>
 </div>
 </div>
 </section>
@@ -748,17 +800,17 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q4.
 </div>
 <section id="calculating-beta-using-covariance-and-market-variance" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="calculating-beta-using-covariance-and-market-variance">Calculating Beta Using Covariance and Market Variance</h2>
-<p>Given that the covariance between a stock and the market is <strong>2.4</strong> and the variance of the market is <strong>6.18</strong>,</p>
+<p>Given that the covariance between a stock and the market is <strong>4.74</strong> and the variance of the market is <strong>4.28</strong>,</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q4a"><strong>1. What is the beta of the stock?</strong></label> <!-- Two decimal places for the beta --> <input type="number" id="module3_num_q4a" name="module3_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.39" data-tolerance="0.01">
+<label for="module3_num_q4a"><strong>1. What is the beta of the stock?</strong></label> <!-- Two decimal places for the beta --> <input type="number" id="module3_num_q4a" name="module3_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.11" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q4a" class="feedback" data-status="" style="display:none;">
-<p>✅ Beta = Cov(asset, market) / Var(market) = <strong>0.39</strong>.</p>
+<p>✅ Beta = Cov(asset, market) / Var(market) = <strong>1.11</strong>.</p>
 </div>
 </div>
 </section>
@@ -767,25 +819,25 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q5.
 </div>
 <section id="risk-premium-and-sharpe-ratio-calculation" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="risk-premium-and-sharpe-ratio-calculation">Risk Premium and Sharpe Ratio Calculation</h2>
-<p>An investment has an expected return of <strong>7.32%</strong>, a risk‑free rate of <strong>1.97%</strong>, and a volatility (standard deviation) of <strong>16.54%</strong>.</p>
+<p>An investment has an expected return of <strong>9.81%</strong>, a risk‑free rate of <strong>2.02%</strong>, and a volatility (standard deviation) of <strong>15.52%</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q5a"><strong>1. What is the risk premium (in %)?</strong></label> <!-- Two decimal places for the risk premium --> <input type="number" id="module3_num_q5a" name="module3_num_q5a" placeholder="Enter value" style="width: 150px;" data-correct-answer="5.36" data-tolerance="0.01">
+<label for="module3_num_q5a"><strong>1. What is the risk premium (in %)?</strong></label> <!-- Two decimal places for the risk premium --> <input type="number" id="module3_num_q5a" name="module3_num_q5a" placeholder="Enter value" style="width: 150px;" data-correct-answer="7.79" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q5a" class="feedback" data-status="" style="display:none;">
-<p>✅ Risk premium = expected return − risk‑free rate = <strong>5.36</strong>%.</p>
+<p>✅ Risk premium = expected return − risk‑free rate = <strong>7.79</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q5b"><strong>2. What is the Sharpe ratio (return per unit of risk)?</strong></label> <!-- Two decimal places for the Sharpe ratio --> <input type="number" id="module3_num_q5b" name="module3_num_q5b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.32" data-tolerance="0.01">
+<label for="module3_num_q5b"><strong>2. What is the Sharpe ratio (return per unit of risk)?</strong></label> <!-- Two decimal places for the Sharpe ratio --> <input type="number" id="module3_num_q5b" name="module3_num_q5b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.5" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q5b" class="feedback" data-status="" style="display:none;">
-<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.32</strong>.</p>
+<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.5</strong>.</p>
 </div>
 </div>
 </section>
@@ -798,21 +850,21 @@ Q6.
 </div>
 <section id="combining-risky-asset-and-riskfree-rate" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="combining-risky-asset-and-riskfree-rate">Combining Risky Asset and Risk‑Free Rate</h2>
-<p>You invest <strong>43.43%</strong> of your funds in a risky portfolio (expected return = <strong>8.56%</strong>, volatility = <strong>28.85%</strong>) and the remainder <strong>56.57%</strong> in the risk‑free asset (rate = <strong>2.76%</strong>).</p>
+<p>You invest <strong>7.51%</strong> of your funds in a risky portfolio (expected return = <strong>11.76%</strong>, volatility = <strong>17.77%</strong>) and the remainder <strong>92.49%</strong> in the risk‑free asset (rate = <strong>3.12%</strong>).</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q6a"><strong>1. What is the expected return of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6a" name="module3_num_q6a" placeholder="Enter value" style="width: 150px;" data-correct-answer="5.27" data-tolerance="0.01">
+<label for="module3_num_q6a"><strong>1. What is the expected return of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6a" name="module3_num_q6a" placeholder="Enter value" style="width: 150px;" data-correct-answer="3.77" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q6a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = w×ret_risky + (1−w)×Rf = <strong>5.27</strong>%.</p>
+<p>✅ Expected return = w×ret_risky + (1−w)×Rf = <strong>3.77</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q6b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6b" name="module3_num_q6b" placeholder="Enter value" style="width: 150px;" data-correct-answer="12.53" data-tolerance="0.01">
+<label for="module3_num_q6b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6b" name="module3_num_q6b" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.33" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q6b" class="feedback" data-status="" style="display:none;">
-<p>✅ Since the risk‑free asset has zero volatility, the portfolio’s volatility equals w×σ_risky = <strong>12.53</strong>%.</p>
+<p>✅ Since the risk‑free asset has zero volatility, the portfolio’s volatility equals w×σ_risky = <strong>1.33</strong>%.</p>
 </div>
 </div>
 </section>
@@ -821,17 +873,17 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q7.
 </div>
 <section id="beta-of-a-threeasset-portfolio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="beta-of-a-threeasset-portfolio">Beta of a Three‑Asset Portfolio</h2>
-<p>You hold a portfolio composed of three assets with betas <strong>1.01</strong>, <strong>1.68</strong>, and <strong>0.34</strong>, invested in proportions <strong>10.14%</strong>, <strong>20.26%</strong>, and <strong>69.61%</strong>, respectively.</p>
+<p>You hold a portfolio composed of three assets with betas <strong>0.52</strong>, <strong>1.7</strong>, and <strong>0.47</strong>, invested in proportions <strong>36.99%</strong>, <strong>26.48%</strong>, and <strong>36.52%</strong>, respectively.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q7a"><strong>1. What is the beta of the portfolio?</strong></label> <input type="number" id="module3_num_q7a" name="module3_num_q7a" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.68" data-tolerance="0.1">
+<label for="module3_num_q7a"><strong>1. What is the beta of the portfolio?</strong></label> <input type="number" id="module3_num_q7a" name="module3_num_q7a" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.81" data-tolerance="0.1">
 </form>
 <div id="feedback-module3_num_q7a" class="feedback" data-status="" style="display:none;">
-<p>✅ Portfolio beta = w₁×β₁ + w₂×β₂ + w₃×β₃ = <strong>0.68</strong>.</p>
+<p>✅ Portfolio beta = w₁×β₁ + w₂×β₂ + w₃×β₃ = <strong>0.81</strong>.</p>
 </div>
 </div>
 </section>
@@ -840,17 +892,17 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q8.
 </div>
 <section id="expected-return-via-capm" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="expected-return-via-capm">Expected Return via CAPM</h2>
-<p>The risk‑free rate is <strong>3.5%</strong>, the market risk premium is <strong>5.84%</strong>, and the beta of the investment is <strong>1.19</strong>.</p>
+<p>The risk‑free rate is <strong>4.03%</strong>, the market risk premium is <strong>6.04%</strong>, and the beta of the investment is <strong>1.06</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q8a"><strong>1. What is the expected return of the investment according to the CAPM (in %)?</strong></label> <input type="number" id="module3_num_q8a" name="module3_num_q8a" placeholder="Enter value" style="width: 150px;" data-correct-answer="10.46" data-tolerance="0.01">
+<label for="module3_num_q8a"><strong>1. What is the expected return of the investment according to the CAPM (in %)?</strong></label> <input type="number" id="module3_num_q8a" name="module3_num_q8a" placeholder="Enter value" style="width: 150px;" data-correct-answer="10.43" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q8a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = Rf + β × (market risk premium) = <strong>10.46</strong>%.</p>
+<p>✅ Expected return = Rf + β × (market risk premium) = <strong>10.43</strong>%.</p>
 </div>
 </div>
 </section>
@@ -859,25 +911,25 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q9.
 </div>
 <section id="variance-and-volatility-of-a-threeasset-portfolio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="variance-and-volatility-of-a-threeasset-portfolio">Variance and Volatility of a Three‑Asset Portfolio</h2>
-<p>You invest <strong>11.06%</strong>, <strong>24.23%</strong>, and <strong>64.71%</strong> of your funds in three assets with volatilities <strong>13.18%</strong>, <strong>19.12%</strong>, and <strong>21.88%</strong>, respectively. The pairwise correlations are ρ₁₂ = <strong>-0.14</strong>, ρ₁₃ = <strong>0.2</strong>, and ρ₂₃ = <strong>0.46</strong>.</p>
+<p>You invest <strong>20.44%</strong>, <strong>29.79%</strong>, and <strong>49.77%</strong> of your funds in three assets with volatilities <strong>12.37%</strong>, <strong>19.47%</strong>, and <strong>18.22%</strong>, respectively. The pairwise correlations are ρ₁₂ = <strong>0.3</strong>, ρ₁₃ = <strong>0.48</strong>, and ρ₂₃ = <strong>0.75</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q9a"><strong>1. What is the variance of the portfolio?</strong></label> <input type="number" id="module3_num_q9a" name="module3_num_q9a" placeholder="Enter value" style="width: 150px;" data-correct-answer="290.27" data-tolerance="0.01">
+<label for="module3_num_q9a"><strong>1. What is the variance of the portfolio?</strong></label> <input type="number" id="module3_num_q9a" name="module3_num_q9a" placeholder="Enter value" style="width: 150px;" data-correct-answer="231.84" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q9a" class="feedback" data-status="" style="display:none;">
-<p>✅ Variance = Σwᵢ²σᵢ² + 2Σ wᵢwⱼσᵢσⱼρᵢⱼ = <strong>290.27</strong>.</p>
+<p>✅ Variance = Σwᵢ²σᵢ² + 2Σ wᵢwⱼσᵢσⱼρᵢⱼ = <strong>231.84</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q9b"><strong>2. What is the standard deviation of the portfolio (in %)?</strong></label> <input type="number" id="module3_num_q9b" name="module3_num_q9b" placeholder="Enter value" style="width: 150px;" data-correct-answer="17.04" data-tolerance="0.01">
+<label for="module3_num_q9b"><strong>2. What is the standard deviation of the portfolio (in %)?</strong></label> <input type="number" id="module3_num_q9b" name="module3_num_q9b" placeholder="Enter value" style="width: 150px;" data-correct-answer="15.23" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q9b" class="feedback" data-status="" style="display:none;">
-<p>✅ Standard deviation = √(variance) = <strong>17.04</strong>%.</p>
+<p>✅ Standard deviation = √(variance) = <strong>15.23</strong>%.</p>
 </div>
 </div>
 </section>
@@ -886,33 +938,33 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q10.
 </div>
 <section id="riskfree-combination-and-sharpe-ratio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="riskfree-combination-and-sharpe-ratio">Risk‑Free Combination and Sharpe Ratio</h2>
-<p>You build a portfolio by combining the risk‑free asset (rate = <strong>4.21%</strong>) with a tangent portfolio (expected return = <strong>14.64%</strong>, volatility = <strong>15.9%</strong>) using a weight of <strong>47.01%</strong> in the tangent portfolio (weights greater than 100% imply leverage).</p>
+<p>You build a portfolio by combining the risk‑free asset (rate = <strong>3.4%</strong>) with a tangent portfolio (expected return = <strong>9.04%</strong>, volatility = <strong>19.81%</strong>) using a weight of <strong>137.86%</strong> in the tangent portfolio (weights greater than 100% imply leverage).</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q10a"><strong>1. What is the expected return of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10a" name="module3_num_q10a" placeholder="Enter value" style="width: 150px;" data-correct-answer="9.11" data-tolerance="0.01">
+<label for="module3_num_q10a"><strong>1. What is the expected return of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10a" name="module3_num_q10a" placeholder="Enter value" style="width: 150px;" data-correct-answer="11.18" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q10a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = w×ret_tan + (1−w)×Rf = <strong>9.11</strong>%.</p>
+<p>✅ Expected return = w×ret_tan + (1−w)×Rf = <strong>11.18</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q10b"><strong>2. What is the standard deviation of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10b" name="module3_num_q10b" placeholder="Enter value" style="width: 150px;" data-correct-answer="7.48" data-tolerance="0.01">
+<label for="module3_num_q10b"><strong>2. What is the standard deviation of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10b" name="module3_num_q10b" placeholder="Enter value" style="width: 150px;" data-correct-answer="27.31" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q10b" class="feedback" data-status="" style="display:none;">
-<p>✅ Standard deviation = |w|×σ_tan = <strong>7.48</strong>%.</p>
+<p>✅ Standard deviation = |w|×σ_tan = <strong>27.31</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q10c"><strong>3. What is the Sharpe ratio of your combined portfolio?</strong></label> <input type="number" id="module3_num_q10c" name="module3_num_q10c" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.66" data-tolerance="0.01">
+<label for="module3_num_q10c"><strong>3. What is the Sharpe ratio of your combined portfolio?</strong></label> <input type="number" id="module3_num_q10c" name="module3_num_q10c" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.28" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q10c" class="feedback" data-status="" style="display:none;">
-<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.66</strong>.</p>
+<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.28</strong>.</p>
 </div>
 </div>
 </section>
@@ -921,25 +973,25 @@ Q6.
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
-Q6.
+Q11.
 </div>
 <section id="sharpe-calculation" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="sharpe-calculation">Sharpe Calculation</h2>
-<p>An investment has an expected return of <strong>8.36%</strong>, a risk‑free rate of <strong>2.13%</strong>, and a volatility (standard deviation) of <strong>19.21%</strong>.</p>
+<p>An investment has an expected return of <strong>8.37%</strong>, a risk‑free rate of <strong>2.03%</strong>, and a volatility (standard deviation) of <strong>11.47%</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module2_num_q11a"><strong>1. What is the risk premium (in %)?</strong></label> <input type="number" id="module2_num_q11a" name="module2_num_q11a" placeholder="Enter value" style="width: 150px;" data-correct-answer="6.24" data-tolerance="0.1">
+<label for="module2_num_q11a"><strong>1. What is the risk premium (in %)?</strong></label> <input type="number" id="module2_num_q11a" name="module2_num_q11a" placeholder="Enter value" style="width: 150px;" data-correct-answer="6.34" data-tolerance="0.1">
 </form>
 <div id="feedback-module2_num_q11a" class="feedback" data-status="" style="display:none;">
-<p>✅ Risk premium = expected return − risk‑free rate = <strong>6.24</strong>%.</p>
+<p>✅ Risk premium = expected return − risk‑free rate = <strong>6.34</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module2_num_q11b"><strong>2. What is the Sharpe ratio?</strong></label> <input type="number" id="module2_num_q11b" name="module2_num_q11b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.325" data-tolerance="0.01">
+<label for="module2_num_q11b"><strong>2. What is the Sharpe ratio?</strong></label> <input type="number" id="module2_num_q11b" name="module2_num_q11b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.553" data-tolerance="0.01">
 </form>
 <div id="feedback-module2_num_q11b" class="feedback" data-status="" style="display:none;">
-<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.325</strong>.</p>
+<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.553</strong>.</p>
 </div>
 </div>
 </section>
@@ -1312,150 +1364,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

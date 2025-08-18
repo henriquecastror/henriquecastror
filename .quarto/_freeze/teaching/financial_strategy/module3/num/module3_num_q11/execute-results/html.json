@@ -1,0 +1,15 @@
+{
+  "hash": "aa45f40857e9ef63b164f6786cb01d28",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Sharpe Calculation\n\n\n\n\n\nAn investment has an expected return of **7.99%**, a risk‑free rate of **2.32%**, and a volatility (standard deviation) of **15.21%**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q11a\"><strong>1. What is the risk premium (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q11a\" name=\"module2_num_q11a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=5.67 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module2_num_q11a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Risk premium = expected return − risk‑free rate = **5.67**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q11b\"><strong>2. What is the Sharpe ratio?</strong></label>\n  <input type=\"number\" id=\"module2_num_q11b\" name=\"module2_num_q11b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.373 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q11b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Sharpe ratio = risk premium / volatility = **0.373**.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

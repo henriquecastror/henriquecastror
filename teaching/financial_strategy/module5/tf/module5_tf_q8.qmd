@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q8','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q8" name="module5_tf_q8" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q8"><strong>The idea that investors can tailor their risk exposures based on common risk factors has become known amongst as a smart beta strategy.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q8" class="feedback" data-status="" style="display:none;">
+This is TRUE. Smart beta strategies target systematic risk factors like value or momentum.
+</div>
+
+:::

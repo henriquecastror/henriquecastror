@@ -264,7 +264,7 @@
       '<div class="tw-body"></div>'+
       '<div class="tw-footer">'+
         '<button class="tw-btn tw-send">Send</button>'+
-        (type==='exit'?'<div class="tw-count">0/280</div>':'')+
+        (type==='exit'?'<div class="tw-count">0/500</div>':'')+
       '</div>'+
       '<div class="tw-msg"></div>';
     host.appendChild(card);
@@ -282,11 +282,11 @@
     var ta = null;
     if (type === 'exit'){
       ta = document.createElement('textarea');
-      ta.className = 'tw-text'; ta.maxLength = 280;
-      ta.placeholder = 'Your check-out (max 280): one thing you learned + one question…';
+      ta.className = 'tw-text'; ta.maxLength = 500;
+      ta.placeholder = 'Your check-out (max 500): one thing you learned + one question…';
       body.appendChild(ta);
       ta.addEventListener('input', function(){
-        if (count) count.textContent = ta.value.length + '/280';
+        if (count) count.textContent = ta.value.length + '/500';
         syncEnabled();
       });
     } else if (count) { count.parentNode.removeChild(count); }
@@ -330,7 +330,7 @@
     btn.addEventListener('click', function(){
       var sid = getStudentId();
       if (requireLogin && !sid){ setMsg(msg,'Please log in to submit.', false); return; }
-      var details = (type==='start') ? 'start=1' : (ta.value || '').trim().slice(0,280);
+      var details = (type==='start') ? 'start=1' : (ta.value || '').trim().slice(0,500);
 
       btn.classList.add('spin'); btn.disabled = true; setMsg(msg,'', true);
       fetch(endpoint, {
@@ -365,7 +365,7 @@
           setMsg(msg, dupMsg, true);
         } else {
           setMsg(msg, successMsg, true);
-          if (ta){ ta.value=''; if (count) count.textContent='0/280'; }
+          if (ta){ ta.value=''; if (count) count.textContent='0/500'; }
         }
         markDone();
       })

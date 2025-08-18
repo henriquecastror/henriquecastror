@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q4')" data-correct-answer="A">
+<strong style="display: block;">Which form of EMH implies that even insider (private) information is reflected in stock prices?</strong>
+
+<label><input type="radio" name="module5_mcq_q4" value="A"> A. Strong form</label><br>
+<label><input type="radio" name="module5_mcq_q4" value="B"> B. Semi-strong form</label><br>
+<label><input type="radio" name="module5_mcq_q4" value="C"> C. Weak form</label><br>
+<label><input type="radio" name="module5_mcq_q4" value="D"> D. Rational expectations form</label><br>
+<label><input type="radio" name="module5_mcq_q4" value="E"> E. Adaptive markets hypothesis</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q4" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Strong-form efficiency assumes even insider information is incorporated into prices.
+</div>
+
+:::

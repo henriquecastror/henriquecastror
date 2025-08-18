@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q100','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q100" name="module5_tf_q100" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q100"><strong>Momentum strategies, such as buying recent winners and selling losers, are inconsistent with CAPM predictions.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q100" class="feedback" data-status="" style="display:none;">
+This is TRUE. CAPM assumes past returns should not predict future returns, so momentum is an anomaly that challenges the model.
+</div>
+
+:::

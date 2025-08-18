@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q14','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q14" name="module5_tf_q14" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q14"><strong>In an efficient market, asset prices fully reflect all available information, making it impossible for investors to consistently outperform the market.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q14" class="feedback" data-status="" style="display:none;">
+This is TRUE. This is the foundation of the Efficient Market Hypothesis (EMH).
+</div>
+
+:::

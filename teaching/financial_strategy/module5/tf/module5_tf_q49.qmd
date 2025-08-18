@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q49','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q49" name="module5_tf_q49" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q49"><strong>The arbitrage pricing theory (APT) suggests that multiple risk factors beyond market beta can influence asset returns.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q49" class="feedback" data-status="" style="display:none;">
+This is TRUE. APT is a multifactor model that generalizes CAPM.
+</div>
+
+:::

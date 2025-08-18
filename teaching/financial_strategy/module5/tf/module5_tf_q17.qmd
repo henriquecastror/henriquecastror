@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q17','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q17" name="module5_tf_q17" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q17"><strong>Strong form market efficiency suggests that even insider information cannot be used to consistently achieve abnormal returns, as it is already reflected in asset prices.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q17" class="feedback" data-status="" style="display:none;">
+This is TRUE. Strong-form implies prices reflect all information, public and private.
+</div>
+
+:::

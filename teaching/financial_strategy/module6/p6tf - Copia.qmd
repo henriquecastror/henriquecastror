@@ -1,0 +1,126 @@
+---
+title: "Part 6 (ch24)  Questions T/F & Multiple Choice"
+---
+
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p5tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p7tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+:::
+
+::: {.callout-warning}
+### For students
+
+**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
+
+
+Below you find many questions to this chapter. 
+
+*As this link is continuously updated with new questions, you might expect some changes from time to time.*
+
+The Questions are based or inspired on either [**Berk & DeMarzo, Corporate Finance, 5th ed. 2020**](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154) or 
+[**Brealey & Myers, Principles of Corporate Finance, 13th ed. 2020**](https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3).
+
+*If you are interest in getting a `.pdf` version of your answers, hit `Ctrl + P` to print*
+
+:::
+
+___
+
+
+**Mark T (True) or F (False) in each of the following sentences.**
+
+::: {.webex-check .webex-box}
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+cat("1", fitb("F", num = FALSE, ignore_case = TRUE), "Corporate debt is typically considered a risk-free investment.",  "\n\n")
+cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "Sovereign debt is a type of corporate debt.",  "\n\n")
+cat("3", fitb("F", num = FALSE, ignore_case = TRUE), "Private placement is a method of raising capital that involves selling securities to the general public.",  "\n\n")
+cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "Collateralized Debt Obligations (CDOs) are financial instruments that are typically backed by a diversified pool of assets, such as mortgages and loans.",  "\n\n")
+cat("5", fitb("F", num = FALSE, ignore_case = TRUE), "Syndicated bank loans are typically provided by a single bank to a borrower.",  "\n\n")
+cat("6", fitb("F", num = FALSE, ignore_case = TRUE), "In a perfect capital market, a firm's market capitalization would change when it borrows to repurchase shares.",  "\n\n")
+cat("7", fitb("T", num = FALSE, ignore_case = TRUE), "Callable bonds give the issuer the right to redeem the bonds before their maturity date, while non-callable bonds cannot be redeemed by the issuer before maturity.",  "\n\n")
+cat("8", fitb("F", num = FALSE, ignore_case = TRUE), "Callable bonds usually offer a lower yield than non-callable bonds, which makes them less attractive to investors.",  "\n\n")
+cat("9", fitb("F", num = FALSE, ignore_case = TRUE), "Bond covenants are legally binding agreements that set specific terms and conditions for bond issuers and bondholders, but they cannot include restrictions on the issuer's activities.",  "\n\n")
+cat("10", fitb("F", num = FALSE, ignore_case = TRUE), "Junk bonds typically offer lower yields compared to investment-grade bonds.",  "\n\n")
+cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "Commercial paper is a short-term debt instrument typically issued by large corporations to meet short-term obligations.",  "\n\n")
+cat("12", fitb("T", num = FALSE, ignore_case = TRUE), "Convertible bonds give bondholders the option to convert their bonds into a predetermined number of the issuer's common shares.",  "\n\n")
+cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Credit ratings provided by agencies like Moody's and Standard & Poor's assess the creditworthiness of corporate debt issuers.",  "\n\n")
+cat("14", fitb("T", num = FALSE, ignore_case = TRUE), "Asset-backed securities (ABS) are financial instruments backed by pools of assets such as credit card receivables, auto loans, or mortgages.",  "\n\n")
+cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The debt-to-equity ratio measures a company's financial leverage by comparing its total debt to its total equity.",  "\n\n")
+cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Bond indenture is a legal document outlining the terms and conditions of a bond issue, including its interest rate, maturity date, and any special features.",  "\n\n")
+cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "Zero-coupon bonds pay periodic interest payments to bondholders.",  "\n\n")
+cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "Treasury bills are long-term debt securities issued by the federal government with maturities typically ranging from 20 to 30 years.",  "\n\n")
+cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "Investment banks often assist corporations in the process of issuing bonds to the public.", "\n\n")
+cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "A sinking fund provision in a bond contract requires the issuer to pay off the entire bond issue at maturity without any intermediate payments.", "\n\n")
+cat("21", fitb("T", num = FALSE, ignore_case = TRUE), "In a private placement, securities are sold directly to a small number of investors rather than through a public offering.", "\n\n")
+cat("22", fitb("T", num = FALSE, ignore_case = TRUE), "An underwriter in a bond offering typically guarantees the purchase of the entire bond issue and resells it to investors.", "\n\n")
+cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "The coupon rate of a bond is the interest rate the issuer agrees to pay each year.", "\n\n")
+cat("24", fitb("T", num = FALSE, ignore_case = TRUE), "The prospectus is a legal document provided to potential investors that describes a bond offering in detail.", "\n\n")
+cat("25", fitb("T", num = FALSE, ignore_case = TRUE), "Subordinated debt has lower priority than senior debt in the event of liquidation.", "\n\n")
+cat("26", fitb("F", num = FALSE, ignore_case = TRUE), "Debentures are secured by collateral such as property or equipment.", "\n\n")
+cat("27", fitb("F", num = FALSE, ignore_case = TRUE), "Bond prices move in the same direction as market interest rates.", "\n\n")
+cat("28", fitb("T", num = FALSE, ignore_case = TRUE), "An indenture may include restrictive covenants to protect bondholders.", "\n\n")
+cat("29", fitb("T", num = FALSE, ignore_case = TRUE), "If a bond is downgraded by a credit rating agency, its yield typically increases.", "\n\n")
+cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "A call provision in a bond increases the value of the bond to investors.", "\n\n")
+cat("31", fitb("T", num = FALSE, ignore_case = TRUE), "Debt issuance costs reduce the net proceeds a firm receives from selling bonds.", "\n\n")
+cat("32", fitb("T", num = FALSE, ignore_case = TRUE), "A company's credit rating can affect the interest rate it must pay when issuing bonds.", "\n\n")
+cat("33", fitb("F", num = FALSE, ignore_case = TRUE), "Public bond offerings are exempt from securities regulations and do not require SEC or CVM registration.", "\n\n")
+cat("34", fitb("F", num = FALSE, ignore_case = TRUE), "Convertible bonds cannot be exchanged for equity under any circumstances.", "\n\n")
+cat("35", fitb("F", num = FALSE, ignore_case = TRUE), "Senior secured bonds have lower claim priority than subordinated bonds in bankruptcy proceedings.", "\n\n")
+cat("36", fitb("T", num = FALSE, ignore_case = TRUE), "The yield to maturity (YTM) is the total return an investor can expect if the bond is held until maturity.", "\n\n")
+cat("37", fitb("F", num = FALSE, ignore_case = TRUE), "High-yield bonds are rated AAA or AA by credit rating agencies.", "\n\n")
+cat("38", fitb("T", num = FALSE, ignore_case = TRUE), "A call provision allows a company to call bonds early but usually requires it to pay bondholders a premium.", "\n\n")
+cat("39", fitb("T", num = FALSE, ignore_case = TRUE), "Debt securities can be either secured or unsecured, depending on whether specific collateral backs them.", "\n\n")
+cat("40", fitb("F", num = FALSE, ignore_case = TRUE), "Debt offerings by corporations are always for terms longer than 10 years.", "\n\n")
+cat("41", fitb("F", num = FALSE, ignore_case = TRUE), "When a company issues public debt, it does not need to disclose financial information to investors.", "\n\n")
+cat("42", fitb("F", num = FALSE, ignore_case = TRUE), "Companies usually prefer issuing debt with restrictive covenants to maximize financial flexibility.", "\n\n")
+cat("43", fitb("F", num = FALSE, ignore_case = TRUE), "In debt financing, principal repayment schedules are always flexible and determined solely by the borrower’s preferences.", "\n\n")
+cat("44", fitb("T", num = FALSE, ignore_case = TRUE), "Syndicated loans help spread the credit risk of lending among several banks or financial institutions.", "\n\n")
+cat("45", fitb("F", num = FALSE, ignore_case = TRUE), "The primary market for debt securities refers to the buying and selling of bonds between investors after issuance.", "\n\n")
+cat("46", fitb("T", num = FALSE, ignore_case = TRUE), "The secondary market for bonds provides liquidity for investors who want to buy or sell debt securities after the initial issuance.", "\n\n")
+
+cat("47", fitb("T", num = FALSE, ignore_case = TRUE), "A bond's credit spread reflects the additional yield over a risk-free rate that compensates investors for credit risk.", "\n\n")
+cat("48", fitb("F", num = FALSE, ignore_case = TRUE), "Debt covenants are optional guidelines that companies can choose to follow but are not legally enforceable.", "\n\n")
+cat("49", fitb("T", num = FALSE, ignore_case = TRUE), "A bond with a higher duration is generally more sensitive to changes in interest rates.", "\n\n")
+cat("50", fitb("T", num = FALSE, ignore_case = TRUE), "Debt financing allows a company to raise capital without diluting ownership of existing shareholders.", "\n\n")
+
+
+```
+
+:::
+
+
+
+
+
+
+___
+
+<script src="https://giscus.app/client.js"
+        data-repo="henriquecastror/EF_permanent"
+        data-repo-id="R_kgDOLMIejg"
+        data-category="General"
+        data-category-id="DIC_kwDOLMIejs4Cc1yS"
+        data-mapping="number"
+        data-term="12"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+::: {style="display: flex; justify-content: space-between; width: 100%;"}
+[Go to previous chapter](p5tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
+[Go to next chapter](p7tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+:::

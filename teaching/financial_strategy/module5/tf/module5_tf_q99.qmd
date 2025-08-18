@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q99','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q99" name="module5_tf_q99" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q99"><strong>Excessive trading by overconfident investors usually improves their net returns after fees.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q99" class="feedback" data-status="" style="display:none;">
+This is FALSE. Overconfidence leads to overtrading, which increases transaction costs and typically reduces overall performance.
+</div>
+
+:::

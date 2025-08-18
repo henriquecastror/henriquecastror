@@ -1,138 +1,191 @@
 ---
-title: "Part 5 (ch13) Questions Numeric"
+title: "Module 5:  Numeric Questions"
 ---
 
-::: {style="display: flex; justify-content: space-between; width: 100%;"}
-[Go to previous chapter](p4num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p6num.qmd){.btn .btn-primary role="button" data-toggle="tool"}
-:::
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
 
+```
 
-::: {.callout-note}
+::: {.callout-warning}
 ### For students
 
-**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
-
-**Type your answers with "." instead of ","! For numerical answers, use 2 decimal places. For instance, if your answer is 0.12345 or 12.345%, type, "12.34" in the box.**
-
-:::
-
-
-___
-
-
-## Q1:  Alpha Calculation
-
-```{r, setup}
-#| eval: true
-#| results: asis
-#| echo: false
-#| warning: false
-
-library(webexercises)
-
-er <- rnorm(1, mean = 11, sd = 0.01)
-mrp <- rnorm(1, mean = 7, sd = 0.01)
-rf <- rnorm(1, mean = 3, sd = 0.01)
-beta <- rnorm(1, mean = 1, sd = 0.2)
-em <- mrp + rf
-
-```
-
-
-
-**Q**: Consider a stock whose expected return is  `r round(er,3)` and beta is  `r round(beta,3)`. The market risk premium is currently  `r round(mrp,3)`% and the return of the risk-free asset is  `r round(rf,3)`. What is the alpha of the stock?
-
-`r fitb( round(   er - (rf+beta*mrp)      ,3) , tol=0.01)`
-
-
-
-**Answer**:
-
-1) `r round(er - (rf+beta*mrp)    ,3)`
-
-
-___
-
-
-## Q2:  Fama-French Portfolio 
-
-
 ```{r}
-#| eval: true
-#| results: asis
 #| echo: false
+#| results: asis
 #| warning: false
-
-library(webexercises)
-
-r1 <- rnorm(1, mean = 5, sd = 0.01)
-r2 <- rnorm(1, mean = 3, sd = 0.01)
-r3 <- rnorm(1, mean = 4, sd = 0.01)
-r4 <- rnorm(1, mean = 2.5, sd = 0.01)
-
-b1a <- rnorm(1, mean = 0.9, sd = 0.01)
-b2a <- rnorm(1, mean = 0.8, sd = 0.01)
-b3a <- rnorm(1, mean = 0.7, sd = 0.01)
-b4a <- rnorm(1, mean = 0.6, sd = 0.01)
-
-b1b <- rnorm(1, mean = 1.0, sd = 0.02)
-b2b <- rnorm(1, mean = 1.1, sd = 0.02)
-b3b <- rnorm(1, mean = 1.2, sd = 0.02)
-b4b <- rnorm(1, mean = 1.3, sd = 0.02)
-
-
+cat(paste0("**Last updated:** ", format(Sys.time(), '%d/%m/%Y %H:%M', tz = 'America/Sao_Paulo')))
 ```
 
-**Q2:** Consider the following information regarding the Fama-French-Carhart four factor model. What is the expected return of Stock A (in %)? And Stock B (in %)? 
+The questions are based on or inspired by the following references:
 
-| Factor Port. | Average  Return (%) | Stock A  Betas | Stock B   Betas | 
-|------------------|---------------------------|------------------|-----------------|
-| Rm - rf          | `r round(r1,3)`              | `r round(b1a,3)`     | `r round(b1b,3)`       |
-| SMB              | `r round(r2,3)`              | `r round(b2a,3)`     | `r round(b2b,3)`       |
-| HML              | `r round(r3,3)`              | `r round(b3a,3)`     | `r round(b3b,3)`       |
-| Mom.             | `r round(r4,3)`              | `r round(b4a,3)`     | `r round(b4b,3)`       | 
+- [**Berk & DeMarzo, Corporate Finance, 5th ed. (2020)**](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154)  
+- [**Brealey & Myers, Principles of Corporate Finance, 13th ed. (2020)**](https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3)
 
+---
 
-**Stock A:** `r fitb( round(  r1*b1a + r2*b2a +  r3*b3a+   r4*b4a      , 3) , tol=0.01)`
-
-**Stock B:** `r fitb( round(  r1*b1b + r2*b2b +  r3*b3b+   r4*b4b      , 3) , tol=0.01)`
-
-
-**Answer**:
-
-A) `r round(r1*b1a + r2*b2a +  r3*b3a+   r4*b4a     ,3)`
-
-B) `r round(r1*b1b + r2*b2b +  r3*b3b+   r4*b4b     ,3)`
+💡 *You can also press `Ctrl + P` (or `Cmd + P` on Mac) to print or save your responses as a `.pdf` file.*
 
 
 
+---
 
+⚠️ _These exercises are **powered by AI-assisted technologies** and **may contain occasional formatting or logic errors**. Please report any issues you encounter so I can improve the experience._
+
+
+::: 
+
+
+___
+
+
+### 📘 Part 1 (until Midterm)
+
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|
+| 5 | ch13 | [🎞️](p5.html) | [✅](p5tf.html) | [❓](p5mcq.html) | [🔢](p5num.html) | [📝](p5long.html) |
 
 
 
 
 ___
 
+**Answer the following questions based on the discussions in class.**
 
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/EF_permanent"
-        data-repo-id="R_kgDOLMIejg"
-        data-category="General"
-        data-category-id="DIC_kwDOLMIejs4Cc1yS"
-        data-mapping="number"
-        data-term="11"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
+<script>
+  const SLIDE_ID = "module5_p5num";
 </script>
 
+{{< include ../login-start.html >}}
 
-::: {style="display: flex; justify-content: space-between; width: 100%;"}
-[Go to previous chapter](p4num.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p6num.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+::: {.webex-box}
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q1.</div>
+  <div style="flex: 1;">
+    {{< include "num/module5_num_q1.qmd" >}}
+  </div>
+</div>
 :::
+
+::: {.webex-box}
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q2.</div>
+  <div style="flex: 1;">
+    {{< include "num/module5_num_q2.qmd" >}}
+  </div>
+</div>
+:::
+
+::: {.webex-box}
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q3.</div>
+  <div style="flex: 1;">
+    {{< include "num/module5_num_q3.qmd" >}}
+  </div>
+</div>
+:::
+
+
+::: {.webex-box}
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q4.</div>
+  <div style="flex: 1;">
+    {{< include "num/module5_num_q4.qmd" >}}
+  </div>
+</div>
+:::
+
+::: {.webex-box}
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q5.</div>
+  <div style="flex: 1;">
+    {{< include "num/module5_num_q5.qmd" >}}
+  </div>
+</div>
+:::
+
+::: {.webex-box}
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="flex: 1;">
+    {{< include "num/module5_num_q6.qmd" >}}
+  </div>
+</div>
+:::
+
+
+
+::: {.webex-box}
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q7.</div>
+  <div style="flex: 1;">
+    {{< include "num/module5_num_q7.qmd" >}}
+  </div>
+</div>
+:::
+
+
+
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
+
+
+
+{{< include ../login-end.html >}}
+
+
+
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="/teaching/financial_strategy/" class="btn btn-outline-primary btn-lg">
+    🔙
+  </a>
+</div>

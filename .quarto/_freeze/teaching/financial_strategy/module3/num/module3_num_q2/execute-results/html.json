@@ -1,0 +1,15 @@
+{
+  "hash": "1ad1359c65eb16a0dc687d7c83341b8a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Portfolio Weight Calculation for Multiple Stocks\n\n\n\n\n\nSuppose you purchase **130** shares of Company&nbsp;A at \\$**67.87** per share, **162** shares of Company&nbsp;B at \\$**38.69** per share, and **105** shares of Company&nbsp;C at \\$**46.77** per share.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q2a\"><strong>1. What is the weight on Company&nbsp;A in your portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q2a\" name=\"module3_num_q2a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=44.11 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q2a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Weight on Company A = value_A / total_value × 100 = **44.11**%.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

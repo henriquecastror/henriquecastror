@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q4','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q4" name="module5_tf_q4" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q4"><strong>An important conclusion of the CAPM is that investors should never hold the market portfolio combined with risk-free investments.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q4" class="feedback" data-status="" style="display:none;">
+This is FALSE. CAPM recommends combining the market portfolio with the risk-free asset based on investor risk preferences.
+</div>
+
+:::

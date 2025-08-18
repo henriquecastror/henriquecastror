@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q46','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q46" name="module5_tf_q46" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q46"><strong>If market efficiency holds, then insider trading should not yield consistent excess returns over time.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q46" class="feedback" data-status="" style="display:none;">
+This is TRUE under strong-form efficiency, though real markets may differ.
+</div>
+
+:::

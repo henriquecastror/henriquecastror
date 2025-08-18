@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q26','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q26" name="module5_tf_q26" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q26"><strong>A zero-beta security is expected to earn the risk-free rate in an efficient market.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q26" class="feedback" data-status="" style="display:none;">
+This is TRUE. Under CAPM, a zero-beta asset has the same expected return as the risk-free asset.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q3','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q3" name="module5_tf_q3" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q3"><strong>If all investors have homogeneous expectations, which states that all investors have the same information, all investors would be aware that the stock had a positive alpha and none would be willing to sell.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q3" class="feedback" data-status="" style="display:none;">
+This is TRUE. Homogeneous expectations imply rapid price adjustments and no arbitrage opportunities.
+</div>
+
+:::

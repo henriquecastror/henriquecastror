@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q69','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q69" name="module5_tf_q69" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module5_tf_q69"><strong>The CAPM explains anomalies like the small-firm and value effects through time-varying betas.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q69" class="feedback" data-status="" style="display:none;">
+This is FALSE. These anomalies suggest limitations of the CAPM and led to the development of multifactor models.
+</div>
+
+:::

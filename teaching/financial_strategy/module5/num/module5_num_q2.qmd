@@ -1,0 +1,95 @@
+## Informed vs. Fad Followers vs. Passive: Who Earns Alpha?
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+library(webexercises)
+library(knitr)
+
+set.seed(NULL)
+rf    <- round(runif(1, 0.03, 0.06), 2)
+rm    <- round(runif(1, 0.09, 0.13), 2)
+beta_I<- round(runif(1, 1.2, 1.8), 2)
+ER_I  <- round(runif(1, 0.14, 0.18), 2)
+
+# population shares
+w_passive  <- round(runif(1, 0.70, 0.85), 2)
+w_informed <- round(runif(1, 0.03, 0.07), 2)
+w_fad      <- round(1 - w_passive - w_informed, 2); if (w_fad <= 0) w_fad <- 0.12
+
+# Informed CAPM & alpha
+capm_I   <- rf + beta_I*(rm - rf)
+alpha_I  <- ER_I - capm_I
+
+# "Traded" side prediction by CAPM (counterparty to informed)
+ER_traded_capm <- rf - beta_I*(rm - rf)
+
+# Weights within the trading segment (normalize to 1)
+wt_I <- w_informed/(w_informed + w_fad)
+wt_F <- w_fad/(w_informed + w_fad)
+
+# Solve fad followers' expected return so traded segment matches CAPM prediction
+ER_F   <- (ER_traded_capm - wt_I*ER_I)/wt_F
+alpha_F<- ER_F - capm_I  # alpha measured vs CAPM using the informed beta (as in textbook example)
+
+# Display-ready numbers
+MRP        <- round(100*(rm - rf),2)
+alpha_I_bp <- round(10000*alpha_I, 1)
+ER_F_pct   <- round(100*ER_F, 2)
+alpha_F_bp <- round(10000*alpha_F, 1)
+```
+
+In a market with **`r round(100*w_passive,0)`% passive**, **`r round(100*w_informed,0)`% informed**, and **`r round(100*w_fad,0)`% fad followers**, the informed trade a portfolio with **β = `r beta_I`** and **E[R] = `r round(100*ER_I,2)`%**.  
+Given **R<sub>f</sub> = `r round(100*rf,2)`%**, **E[R<sub>m</sub>] = `r round(100*rm,2)`%** (**MRP = `r MRP`%**):
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module5_num_q2a"><strong>2a. Informed investors’ alpha (bp):</strong></label>
+  <input type="number" id="module5_num_q2a" name="module5_num_q2a" style="width:180px;"
+         data-correct-answer=`r alpha_I_bp` data-tolerance="1" step="1" />
+</form>
+
+<div id="feedback-module5_num_q2a" class="feedback" data-status="" style="display:none;">
+✅ <strong>Informed α</strong><br>
+CAPM prediction = R<sub>f</sub> + β(R<sub>m</sub> − R<sub>f</sub>) = 
+`r round(100*capm_I,2)`%.<br>
+Observed E[R] = `r round(100*ER_I,2)`%.<br>
+α<sub>informed</sub> = E[R] − CAPM = `r round(100*ER_I,2)`% − `r round(100*capm_I,2)`% = 
+<strong>`r alpha_I_bp` bp</strong>.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+  <label for="module5_num_q2b"><strong>2b. Fad followers’ expected return (in %):</strong></label>
+  <input type="number" id="module5_num_q2b" name="module5_num_q2b" style="width:200px;"
+         data-correct-answer=`r ER_F_pct` data-tolerance="0.05" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q2b" class="feedback" data-status="" style="display:none;">
+✅ <strong>Fad followers’ E[R]</strong><br>
+Within the <em>trading segment</em> (informed + fad), expected return must match the CAPM prediction for the counterparty exposure:<br>
+E[R]<sub>traded</sub> (CAPM) = R<sub>f</sub> − β(R<sub>m</sub> − R<sub>f</sub>) = <strong>`r round(100*ER_traded_capm,2)`%</strong>.<br>
+Let weights inside the trading segment be w<sub>I</sub>=`r round(100*wt_I,0)`% and w<sub>F</sub>=`r round(100*wt_F,0)`%. Then:<br>
+w<sub>I</sub>E[R]<sub>I</sub> + w<sub>F</sub>E[R]<sub>F</sub> = E[R]<sub>traded</sub> ⇒ 
+E[R]<sub>F</sub> = (E[R]<sub>traded</sub> − w<sub>I</sub>E[R]<sub>I</sub>)/w<sub>F</sub> = 
+<strong>`r ER_F_pct`%</strong>.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module5_num_q2c"><strong>2c. Fad followers’ alpha (bp) <em>(vs CAPM with β of informed)</em>:</strong></label>
+  <input type="number" id="module5_num_q2c" name="module5_num_q2c" style="width:240px;"
+         data-correct-answer=`r alpha_F_bp` data-tolerance="1" step="1" />
+</form>
+
+<div id="feedback-module5_num_q2c" class="feedback" data-status="" style="display:none;">
+✅ <strong>Fad followers’ α</strong><br>
+We evaluate α against the same β used by the informed portfolio (as in the textbook exercise). CAPM benchmark = <strong>`r round(100*capm_I,2)`%</strong>.<br>
+E[R]<sub>F</sub> = <strong>`r ER_F_pct`%</strong> ⇒ α<sub>F</sub> = E[R]<sub>F</sub> − CAPM = 
+<strong>`r alpha_F_bp` bp</strong>.<br>
+Interpretation: informed earn positive α (skill), the <em>counterparty</em> earns negative α; the passive investor (market) earns zero α.
+</div>
+:::

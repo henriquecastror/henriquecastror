@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q2','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q2" name="module5_tf_q2" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q2"><strong>Because beating the market requires enough trading skill to overcome transaction costs as well as behavioral biases, CAPM wisdom that investors should “hold the market” is probably the best advice for most people.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q2" class="feedback" data-status="" style="display:none;">
+This is TRUE. Most investors lack the skills and information advantage needed to beat the market consistently.
+</div>
+
+:::

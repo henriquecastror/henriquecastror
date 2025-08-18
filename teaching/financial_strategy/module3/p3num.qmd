@@ -2,6 +2,58 @@
 title: "Module 3:  Numeric Questions"
 ---
 
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
+```
+
 
 ::: {.callout-warning}
 ### For students
@@ -37,9 +89,10 @@ ___
 
 ### 📘 Part 1 (until Midterm)
 
-| Chapter | Slides | T/F | MCQ | Numeric | Long |
-|--------:|:------:|:---:|:---:|:-------:|:----:|
-| ch11    | [🎞️](p3.html) | [✅](p3tf.html) | [❓](p1m3q.html) | [🔢](p3num.html) | [📝](p3long.html) |
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|
+| 3 | ch11 | [🎞️](p3.html) | [✅](p3tf.html) | [❓](p3mcq.html) | [🔢](p3num.html) | [📝](p3long.html) |
+
 
 
 ___
@@ -54,7 +107,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q1.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q1.qmd" >}}
   </div>
@@ -63,7 +116,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q2.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q2.qmd" >}}
   </div>
@@ -72,7 +125,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q3.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q3.qmd" >}}
   </div>
@@ -81,7 +134,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q4.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q4.qmd" >}}
   </div>
@@ -90,7 +143,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q5.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q5.qmd" >}}
   </div>
@@ -108,7 +161,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q7.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q7.qmd" >}}
   </div>
@@ -117,7 +170,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q8.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q8.qmd" >}}
   </div>
@@ -126,7 +179,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q9.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q9.qmd" >}}
   </div>
@@ -135,7 +188,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q10.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q10.qmd" >}}
   </div>
@@ -144,7 +197,7 @@ ___
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
-  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="font-weight: bold; min-width: 40px;">Q11.</div>
   <div style="flex: 1;">
 {{< include "num/module3_num_q11.qmd" >}}
   </div>

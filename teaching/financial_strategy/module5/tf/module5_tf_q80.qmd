@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q80','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q80" name="module5_tf_q80" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q80"><strong>When a trading strategy yields positive alpha persistently, it suggests the existence of market inefficiency.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q80" class="feedback" data-status="" style="display:none;">
+This is TRUE. Persistent positive alpha suggests mispricing or risk not captured by standard models.
+</div>
+
+:::

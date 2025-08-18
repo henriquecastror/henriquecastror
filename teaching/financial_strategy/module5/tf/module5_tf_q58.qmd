@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module5_tf_q58','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module5_tf_q58" name="module5_tf_q58" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module5_tf_q58"><strong>According to the book, the average mutual fund manager earns a negative alpha after accounting for fees.</strong></label>
+</form>
+
+<div id="feedback-module5_tf_q58" class="feedback" data-status="" style="display:none;">
+This is TRUE. Most mutual funds underperform after fees.
+</div>
+
+:::

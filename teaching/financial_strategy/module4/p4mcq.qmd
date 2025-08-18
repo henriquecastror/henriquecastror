@@ -3,6 +3,59 @@ title: "Module 4:  Multiple Choice Questions"
 ---
 
 
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
+```
+
+
 ::: {.callout-warning}
 ### For students
 
@@ -37,9 +90,10 @@ ___
 
 ### 📘 Part 1 (until Midterm)
 
-| Chapter | Slides | T/F | MCQ | Numeric | Long |
-|--------:|:------:|:---:|:---:|:-------:|:----:|
-| ch12    | [🎞️](p4.html) | [✅](p4tf.html) | [❓](p4mcq.html) | [🔢](p4num.html) | [📝](p4long.html) |
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|
+| 4 | ch12 | [🎞️](p4.html) | [✅](p4tf.html) | [❓](p4mcq.html) | [🔢](p4num.html) | [📝](p4long.html) |
+
 
 
 

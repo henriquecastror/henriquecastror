@@ -1,0 +1,33 @@
+##  Cumulative Abnormal Return (CAR) Around News
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+library(webexercises)
+
+set.seed(NULL)
+# Randomized in percent units (not bp)
+ar0_pct     <- round(rnorm(1, mean = 0.80, sd = 0.40), 2)  # event-day AR in %
+days        <- sample(3:6, 1)
+ardrift_pct <- round(rnorm(1, mean = 0.10, sd = 0.08), 2)  # avg daily AR after event in %/day
+CAR_pct     <- round(ar0_pct + days * ardrift_pct, 2)
+```
+
+A firm-specific news generates an **event-day abnormal return = `r ar0_pct`%**, followed by **`r days` days** with an **average abnormal return of `r ardrift_pct`% per day**.  
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; flex-wrap:wrap;">
+  <label for="module5_num_q4a"><strong>4a. CAR over the event window (%):</strong></label>
+  <input type="number" id="module5_num_q4a" name="module5_num_q4a" style="width:200px;"
+         data-correct-answer=`r CAR_pct` data-tolerance="0.01" step="0.01" placeholder="e.g., 2.35 for 2.35%" />
+</form>
+
+<div id="feedback-module5_num_q4a" class="feedback" data-status="" style="display:none;">
+✅ <strong>CAR logic (in %):</strong> Sum abnormal returns over the window.<br>
+CAR = AR<sub>0</sub> + ∑<sub>t&gt;0</sub> AR<sub>t</sub> = 
+`r ar0_pct`% + `r days` × `r ardrift_pct`% = <strong>`r CAR_pct`%</strong>.<br><br>
+<em>Interpretation:</em> Under semi-strong EMH, prices should adjust quickly to news.  
+A post-event drift (positive or negative) may indicate delayed reaction or under/overreaction.
+</div>
+:::

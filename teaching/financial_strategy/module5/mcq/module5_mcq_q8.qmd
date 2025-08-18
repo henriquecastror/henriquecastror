@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q8')" data-correct-answer="E">
+<strong style="display: block;">Which of the following anomalies cannot be explained by the standard CAPM?</strong>
+
+<label><input type="radio" name="module5_mcq_q8" value="A"> A. Market portfolio returns</label><br>
+<label><input type="radio" name="module5_mcq_q8" value="B"> B. Diversification benefits</label><br>
+<label><input type="radio" name="module5_mcq_q8" value="C"> C. Expected return and beta relation</label><br>
+<label><input type="radio" name="module5_mcq_q8" value="D"> D. Risk-return tradeoff</label><br>
+<label><input type="radio" name="module5_mcq_q8" value="E"> E. Value and momentum effects</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q8" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Value and momentum anomalies show systematic deviations from CAPM predictions.
+</div>
+
+:::
