@@ -892,19 +892,32 @@ Source: Brealey, Myers and Allen (13ed)
 
 
 
+##  {.smaller background="#f7f9fc"}
 
 
-##  { background="#f7f9fc"}
+::: {.callout-important title="**Heads-up:** I’ve reopened the checkouts from previous classes. 🎉"}
+:::
+
+- If your submission wasn’t saved previously, **you can now resubmit**.
+- If the "Send" button is not available to you, **it means your previous checkout was saved successfully.** ✅
+- **What’s new**: I upgraded the whole submission pipeline and backend capacity to handle peak traffic, so the issues from last time should be resolved. 🚀
+- **Thank you for your patience!**
+
+
+
 
 <div data-ticket
      data-type="exit"
-     data-endpoint="https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec"
-     data-session="module2-session1"
-     data-open="2025-08-13 16:35"
-     data-close="2025-08-13 16:50"></div>
-{{< include ../ticket.html >}}
+     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
+     data-session="module2_checkout1"
+     data-page="module2_checkout1"
+     data-require-login="true"
+     data-open="2025-08-20 00:00"
+     data-close="2025-08-22 23:59">
+</div>
 
 
+{{< include ../checkout.html >}}
 
 
 
@@ -1052,9 +1065,7 @@ Key: *module2_slide1*
 
 {{< include "num/module2_num_q12_class.qmd" >}}
 
-
 :::
-
 
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
@@ -1289,6 +1300,7 @@ Key: *module2_slide2*
 
 
 
+
 # 10.6 Diversification {.smaller background="#f7e1ba" }
 
 ## 10.6 Diversification {.smaller background="#f7e1ba" }
@@ -1397,6 +1409,32 @@ An additional comment about diversification:
 
 
 
+##  { .smaller background="#f7f9fc" }
+
+::: {.callout-important title="**Heads-up:** I’ve reopened the checkouts from previous classes. 🎉"}
+:::
+
+- If your submission wasn’t saved previously, **you can now resubmit**.
+- If the "Send" button is not available to you, **it means your previous checkout was saved successfully.** ✅
+- **What’s new**: I upgraded the whole submission pipeline and backend capacity to handle peak traffic, so the issues from last time should be resolved. 🚀
+- **Thank you for your patience!**
+
+
+
+<div data-ticket
+     data-type="exit"
+     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
+     data-session="module2_checkout2"
+     data-page="module2_checkout2"
+     data-require-login="true"
+     data-open="2025-08-20 00:00"
+     data-close="2025-08-22 23:59">
+</div>
+
+
+{{< include ../checkout.html >}}
+
+
 
 
 ## 10.6 Diversification {.smaller background="#f7e1ba" }
@@ -1470,106 +1508,14 @@ Key: *module2_slide3*
 {{< include "mcq/module2_mcq_q12_class.qmd" >}}
 
 
+
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
 </div>
 
 
 
-##  { background="#f7f9fc"}
 
-<div data-ticket
-     data-type="exit"
-     data-endpoint="https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec"
-     data-session="module2-session2"
-     data-open="2025-08-18 16:35"
-     data-close="2025-08-18 16:50"></div>
-{{< include ../ticket.html >}}
-
-
-
-
-
-
-
-
-
-
-##  {.smaller background="#f7e1ba" }
-
-
-![](../figs/bm_div_p379.png){ width="95%"}
-
-
-
-
-##  {.smaller background="#f7e1ba" }
-
-```{r}
-#| warning: false
-#| message: false
-#| error: false
-#| fig-align: center
-#| echo: true
-#| output-location: default
-#| code-fold: true
-#| code-summary: "R"
-#| code-line-numbers: true
-#| eval: true
-start <-'2010-01-01' 
-end   <- '2025-06-01' 
-data <- yf_collection_get("IBOV", 
-                         first_date = start,
-                         last_date = end,
-                         freq_data = "daily",)
-data<-data[complete.cases(data),] 
-data$month <- format(as.Date(data$ref_date, format="%y/%m/%d"),"%y/%m")
-sd  <-    data %>%                          
-            group_by(ticker,month) %>%
-            summarise_at(vars(ret_adjusted_prices),list(sd = sd)) %>% 
-            as.data.frame()
-vol  <-    data %>%                          
-            group_by(ticker,month) %>%
-            summarise_at(vars(volume),list(vol_sum = sum)) %>% 
-            as.data.frame()
-vol2  <-    data %>%                          
-            group_by(month) %>%
-            summarise_at(vars(volume),
-                         list(vol_tot = sum)) %>% 
-            as.data.frame()
-data2 <- merge(sd ,vol, by=c("ticker","month"))
-data2 <- merge(data2 ,vol2, by=c("month"))
-data2$w <- data2$vol_sum/data2$vol_tot
-data2$sdw <- data2$sd * data2$w
-data3  <-   data2 %>%                          
-            group_by(month) %>%
-            summarise_at(vars(sdw),list(total = sum)) %>% 
-            as.data.frame()
-data3<-data3[complete.cases(data3),] 
-data3$id <-"Weighted"
-# Index
-ibov <- yf_get(tickers = '^BVSP', 
-                         first_date = start,
-                         last_date = end,
-                         freq_data = "daily",)
-ibov<-ibov[complete.cases(ibov),] 
-ibov$month <- format(as.Date(ibov$ref_date, format="%y/%m/%d"),"%y/%m")
-sd2  <-    ibov %>%                          
-            group_by(month, ticker) %>%
-            summarise_at(vars(ret_closing_prices) ,
-                         list(total = var ) ) %>% 
-            as.data.frame()
-sd2$total <- sd2$total^0.5
-sd2$id <-"ibov"
-sd2$ticker <- NULL
-data4 <- rbind(data3,sd2)
-p<-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +
-  geom_line() + 
-        labs(x = "",
-             y='Standard deviation',
-             title ="Diversification benefits - Ibov vs. Weighted sd of individual stocks") +   theme_solarized()
-ggplotly(p)
-```
 
 
 
@@ -1712,7 +1658,7 @@ Source: Brealey, Myers and Allen (13ed)
 
 ## {.smaller background="#f2f7ba" }
 
-Equity Risk Premium ([ERP](https://ceqef.fgv.br/banco-de-dados)) 
+**Equity Risk Premium** ([ERP](https://ceqef.fgv.br/banco-de-dados)) 
 
 ::: panel-tabset
 
@@ -1855,33 +1801,54 @@ $$E[R] = 6\% + 1.18 \times (11\% - 6\%) = 11.9\%$$
 
 
 
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module2_slide4*
+<input type="hidden" id="slide-id" value="module2_slide4">
+:::
+
+{{< include "tf/module2_tf_q54.qmd" >}}
+
+{{< include "tf/module2_tf_q75.qmd" >}}
+
+{{< include "tf/module2_tf_q83.qmd" >}}
+
+{{< include "tf/module2_tf_q30.qmd" >}}
+
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
 
 
 
 
 
 
-##  { background="#f7f9fc"}
+
+
+
+
+
+
+
+
+
+##  { background="#f7f9fc" visibility="hidden"}
 
 <div data-ticket
      data-type="exit"
-     data-endpoint="https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec"
-     data-session="module2-session3"
-     data-open="2025-08-20 16:35"
-     data-close="2025-08-20 16:50"></div>
-{{< include ../ticket.html >}}
+     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
+     data-session="module2_checkout3"
+     data-page="module2_checkout3"
+     data-require-login="true"
+     data-open="2025-08-20 16:30"
+     data-close="2025-08-20 16:59">
+</div>
 
 
-
-
-
-
-
-
-
-
-
-
+{{< include ../checkout.html >}}
 
 
 

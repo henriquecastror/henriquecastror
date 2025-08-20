@@ -261,6 +261,88 @@ The standard deviation of the portfolio is $\sqrt{486.1}= 22\%$, which is lower 
 
 
 
+##   {.smaller background="#f2f7ba"}
+
+
+![](../figs/bm_div_p379.png){ width="95%"}
+
+
+
+
+##   {.smaller background="#f2f7ba"}
+
+```{r}
+#| warning: false
+#| message: false
+#| error: false
+#| fig-align: center
+#| echo: true
+#| output-location: default
+#| code-fold: true
+#| code-summary: "R"
+#| code-line-numbers: true
+#| eval: true
+start <-'2010-01-01' 
+end   <- '2025-06-01' 
+data <- yf_collection_get("IBOV", 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = "daily",)
+data<-data[complete.cases(data),] 
+data$month <- format(as.Date(data$ref_date, format="%y/%m/%d"),"%y/%m")
+sd  <-    data %>%                          
+            group_by(ticker,month) %>%
+            summarise_at(vars(ret_adjusted_prices),list(sd = sd)) %>% 
+            as.data.frame()
+vol  <-    data %>%                          
+            group_by(ticker,month) %>%
+            summarise_at(vars(volume),list(vol_sum = sum)) %>% 
+            as.data.frame()
+vol2  <-    data %>%                          
+            group_by(month) %>%
+            summarise_at(vars(volume),
+                         list(vol_tot = sum)) %>% 
+            as.data.frame()
+data2 <- merge(sd ,vol, by=c("ticker","month"))
+data2 <- merge(data2 ,vol2, by=c("month"))
+data2$w <- data2$vol_sum/data2$vol_tot
+data2$sdw <- data2$sd * data2$w
+data3  <-   data2 %>%                          
+            group_by(month) %>%
+            summarise_at(vars(sdw),list(total = sum)) %>% 
+            as.data.frame()
+data3<-data3[complete.cases(data3),] 
+data3$id <-"Weighted"
+# Index
+ibov <- yf_get(tickers = '^BVSP', 
+                         first_date = start,
+                         last_date = end,
+                         freq_data = "daily",)
+ibov<-ibov[complete.cases(ibov),] 
+ibov$month <- format(as.Date(ibov$ref_date, format="%y/%m/%d"),"%y/%m")
+sd2  <-    ibov %>%                          
+            group_by(month, ticker) %>%
+            summarise_at(vars(ret_closing_prices) ,
+                         list(total = var ) ) %>% 
+            as.data.frame()
+sd2$total <- sd2$total^0.5
+sd2$id <-"ibov"
+sd2$ticker <- NULL
+data4 <- rbind(data3,sd2)
+p<-ggplot(data=data4, aes(x=month, y=total, color = id, group = id)) +
+  geom_line() + 
+        labs(x = "",
+             y='Standard deviation',
+             title ="Diversification benefits - Ibov vs. Weighted sd of individual stocks") +   theme_solarized()
+ggplotly(p)
+```
+
+
+
+
+
+
+
 
 
 
@@ -401,7 +483,7 @@ ggplotly(p)
 
 
 
-## {.smaller background="#f2f7ba"}
+## {.smaller background="#f2f7ba" visibility="hidden"}
 
 Let's compute the average return of a portfolio with 40% invested in A and 60% in B. **The portfolio return is the average return of the assets**.
 
@@ -411,12 +493,12 @@ Let's compute the average return of a portfolio with 40% invested in A and 60% i
 #| warning: false
 #| message: false
 #| fig-align: center
-#| echo: true
+#| echo: false
 #| output-location: default
 #| code-fold: true
 #| code-summary: "R"
 #| code-line-numbers: true
-#| eval: true
+#| eval: false
 # Defining weights and calculating portfolio return (daily)
 w <- c(0.40, 0.60)
 # Creating a df with stocks and weights
@@ -458,6 +540,26 @@ If you don't remember how to calculate manually the correlation, please take a l
 
 ![](../figs/bm_11_2.png)
  
+
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-type="exit"
+     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
+     data-session="module3_checkout1"
+     data-page="module3_checkout1"
+     data-require-login="true"
+     data-open="2025-08-20 16:30"
+     data-close="2025-08-20 16:59">
+</div>
+
+
+{{< include ../checkout.html >}}
+
 
 
 

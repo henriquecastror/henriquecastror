@@ -2,7 +2,7 @@
 
 <form onsubmit="event.preventDefault(); checkAnswerBox('q98','F')" style="display: flex; align-items: center; gap: 8px;">
 <input type="text" id="q98" name="q98" maxlength="1" placeholder="T or F"
-         style="width: 55px;" data-correct-answer="F." /> <label for="q98"><strong>Private equity firms typically hold their portfolio company investments for very short periods, usually less than one year, to maximize quick returns.</strong></label>
+         style="width: 55px;" data-correct-answer="F" /> <label for="q98"><strong>Private equity firms typically hold their portfolio company investments for very short periods, usually less than one year, to maximize quick returns.</strong></label>
 </form>
 
 <div id="feedback-q98" class="feedback" data-status="" style="display:none;">

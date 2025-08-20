@@ -1,0 +1,384 @@
+<style>
+  /* ====== Tokens (light) — exit-checkout colors ====== */
+  :root{
+    --card-bg: #ffffff;
+    --card-border: rgba(15,23,42,.06);
+    --card-shadow: 0 12px 30px rgba(17,24,39,.12);
+
+    --ink: #0b1220;
+    --muted: #3a4a5c;
+    --muted-2: #2b3a4a;
+    --line: #e9eef5;
+    --pill-bg: #f5f9ff;
+
+    --focus: rgba(59,130,246,.22);
+
+    --btn-bg-1: #4f46e5;
+    --btn-bg-2: #60a5fa;
+    --btn-ink: #ffffff;
+
+    --textarea-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --card-bg: rgba(15,23,42,.92);
+      --card-border: rgba(148,163,184,.20);
+      --card-shadow: 0 16px 44px rgba(0,0,0,.55);
+      --line: rgba(148,163,184,.28);
+      --pill-bg: rgba(148,163,184,.18);
+
+      --ink: #f8fafc;
+      --muted: #e5edf6;
+      --muted-2: #f1f5f9;
+
+      --btn-bg-1: #5b7fff;
+      --btn-bg-2: #7cc5ff;
+      --btn-ink: #0b1220;
+
+      --textarea-bg: rgba(2,6,23,.55);
+    }
+  }
+
+  /* ====== Card ====== */
+  [data-ticket] .tw-card{
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: saturate(120%) blur(6px);
+    -webkit-backdrop-filter: saturate(120%) blur(6px);
+    color: var(--ink);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  [data-ticket] .tw-card::before{
+    content:"";
+    position:absolute; inset:0 0 auto 0; height:56px;
+    background: linear-gradient(135deg, rgba(99,102,241,.14), rgba(96,165,250,.14));
+    pointer-events:none;
+  }
+
+  /* ====== Header ====== */
+  [data-ticket] .tw-header{ display:flex; align-items:center; gap:12px; margin-bottom:10px; position:relative; z-index:1; }
+  [data-ticket] .tw-icon{
+    width:36px; height:36px; border-radius:12px; background:#1f2937;
+    display:grid; place-items:center; flex:0 0 36px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    position: relative;
+  }
+  [data-ticket] .tw-icon::after{
+    content:""; position:absolute; inset:-3px; border-radius:14px;
+    background: conic-gradient(from 120deg, rgba(79,70,229,.35), rgba(6,182,212,.35), rgba(79,70,229,.35));
+    z-index:-1; filter: blur(6px); opacity:.55;
+  }
+  [data-ticket] .tw-icon svg{ width:18px; height:18px; color:#fff; opacity:.96; }
+
+  [data-ticket] .tw-titles{ display:flex; flex-direction:column; gap:2px; }
+  [data-ticket] .tw-title{ font-weight:800; color:var(--ink); line-height:1.1; letter-spacing:.2px; }
+  [data-ticket] .tw-sub{ color:var(--muted); font-size:.92rem; }
+
+  /* ====== Meta / badges ====== */
+  [data-ticket] .tw-meta{ margin-left:auto; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  [data-ticket] .tw-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 10px; border:1px solid var(--line); border-radius:999px;
+    background: var(--pill-bg); color: var(--muted-2);
+    font-size:.88rem; white-space:nowrap; box-shadow: 0 1px 0 rgba(17,24,39,.04) inset;
+  }
+  [data-ticket] .tw-badge svg, [data-ticket] .tw-badge svg *, [data-ticket] .tw-badge .tw-window-text{
+    color: currentColor; stroke: currentColor !important; fill: none;
+  }
+  [data-ticket] .tw-window-text{ white-space: pre-line; } /* allow window to break lines */
+
+  /* ====== Dots ====== */
+  [data-ticket] .tw-dot{ width:8px; height:8px; border-radius:50%; background:#94a3b8; }
+  [data-ticket].open  .tw-dot{ background:#16a34a; }
+  [data-ticket].soon  .tw-dot{ background:#f59e0b; }
+  [data-ticket].closed .tw-dot{ background:#ff4d4f; }
+
+  /* ====== Textarea ====== */
+  [data-ticket] .tw-body{ position:relative; z-index:1; box-sizing:border-box; }
+  [data-ticket] textarea.tw-text{
+    width:100%; border:1px solid var(--line); background:var(--textarea-bg);
+    border-radius:14px; padding:12px 14px; font-size:1rem; line-height:1.5; outline:none;
+    transition:border-color .15s, box-shadow .15s, transform .06s;
+    min-height:120px; resize:vertical; color: var(--ink);
+    box-sizing:border-box;
+  }
+  [data-ticket] textarea.tw-text:focus{ border-color:#60a5fa; box-shadow:0 0 0 4px var(--focus); transform:translateY(-1px); }
+  [data-ticket] textarea.tw-text::placeholder{ color:#60758a; opacity:.9; }
+
+  /* ====== Footer ====== */
+  [data-ticket] .tw-footer{ display:flex; align-items:center; gap:12px; margin-top:12px; }
+  [data-ticket] .tw-count{ margin-left:auto; color:#60758a; font-size:.86rem; }
+
+  /* ====== Messages (exit-checkout palette) ====== */
+  [data-ticket] .tw-msg{
+    margin-top:8px; font-size:.93rem; min-height:1.2em;
+    font-weight:700; letter-spacing:.2px;
+  }
+  /* error (and inline red from JS) */
+  [data-ticket] .tw-msg.error,
+  [data-ticket] .tw-msg[style*="b91c1c"],
+  [data-ticket] .tw-msg[style*="rgb(185, 28, 28)"]{
+    color:#ff4d4f !important;
+    text-shadow:0 0 3px rgba(255,77,79,.40);
+  }
+  /* warning (optional class) */
+  [data-ticket] .tw-msg.warning{ color:#f59e0b !important; text-shadow:0 0 3px rgba(245,158,11,.40); }
+  /* success (and inline green from JS) */
+  [data-ticket] .tw-msg.success,
+  [data-ticket] .tw-msg[style*="065f46"]{
+    color:#059669 !important;
+    text-shadow:0 0 1px rgba(255,255,255,.18);
+  }
+
+  /* ====== Button ====== */
+  [data-ticket] .tw-btn{
+    padding:10px 16px; border-radius:12px; border:1px solid rgba(15,23,42,.12);
+    background: linear-gradient(135deg, var(--btn-bg-1), var(--btn-bg-2));
+    color: var(--btn-ink); font-weight:800; cursor:pointer;
+    box-shadow: 0 4px 14px rgba(59,130,246,.25);
+    transition: transform .08s ease, box-shadow .15s ease, filter .15s ease;
+    letter-spacing:.2px;
+  }
+  [data-ticket] .tw-btn:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(59,130,246,.35); filter:saturate(108%); }
+  [data-ticket] .tw-btn:focus-visible{ outline:none; box-shadow:0 0 0 4px var(--focus); }
+  [data-ticket] .tw-btn:disabled{
+    opacity:.85; cursor:not-allowed; transform:none;
+    background:#e5f0ff; color:#6b7280; border-color:#dbeafe; box-shadow:none;
+  }
+  [data-ticket] .tw-btn.sent{ opacity:.92; cursor:default; }
+
+  /* Spinner */
+  [data-ticket] .spin:after{
+    content:""; display:inline-block; width:14px; height:14px; margin-left:8px;
+    border:2px solid rgba(255,255,255,.65); border-top-color:transparent;
+    border-radius:50%; animation:twspin .8s linear infinite; vertical-align:-2px;
+  }
+  @keyframes twspin{ to{ transform:rotate(360deg) } }
+
+  /* ====== Responsive ====== */
+  @media (max-width:640px){
+    [data-ticket] .tw-card{ border-radius:14px; padding:14px; }
+    [data-ticket] .tw-header{ gap:10px; }
+    [data-ticket] .tw-icon{ width:34px; height:34px; border-radius:11px; }
+    [data-ticket] .tw-meta{ gap:6px; }
+    [data-ticket] .tw-badge{ padding:5px 9px; font-size:.82rem; }
+  }
+  /* === Message color matches the status dot exactly === */
+  [data-ticket].open  .tw-msg  { color: #16a34a !important; }
+  [data-ticket].soon  .tw-msg  { color: #f59e0b !important; }
+  [data-ticket].closed .tw-msg { color: #ff4d4f !important; }
+</style>
+
+<script>
+(function(){
+  function mount(){
+    var hosts = document.querySelectorAll('[data-ticket]:not([data-tw-mounted])');
+    if (!hosts.length) return;
+    var host = hosts[hosts.length - 1];
+    host.setAttribute('data-tw-mounted','1');
+
+    /* ===== ENDPOINT DO BRIDGE → FORMS =====
+       1) data-bridge="https://script.google.com/macros/s/...../exec" (prioritário)
+       2) window.BRIDGE_URL (fallback global)
+    */
+    var bridge = (host.getAttribute('data-bridge') || window.BRIDGE_URL || '').trim();
+    if (!bridge){ console.warn('[checkout] Missing BRIDGE URL'); }
+
+    var type         = (host.getAttribute('data-type') || 'exit').toLowerCase(); // 'start' | 'exit'
+    var sessionTag   = (host.getAttribute('data-session') || '').trim();
+    var winStartStr  = (host.getAttribute('data-open') || '').trim();
+    var winEndStr    = (host.getAttribute('data-close') || '').trim();
+    var requireLogin = String(host.getAttribute('data-require-login') || 'true').toLowerCase() !== 'false';
+
+    function parseLocal(ts){ return ts ? new Date(ts.replace(' ','T')) : null; }
+    var winStart = parseLocal(winStartStr);
+    var winEnd   = parseLocal(winEndStr);
+
+    function fmtDur(s){
+      var m = Math.floor(s/60), r = s%60;
+      if (m >= 60){ var h = Math.floor(m/60), mm = m%60; return h+'h '+mm+'m'; }
+      if (m > 0) return m+'m '+r+'s';
+      return r+'s';
+    }
+    function statusNow(){
+      var now = new Date();
+      if (!winStart || !winEnd) return {state:'open', label:'Always available'};
+      if (now < winStart){ var s1 = Math.max(0, Math.floor((winStart - now)/1000)); return {state:'soon', label:'Opens in '+fmtDur(s1)}; }
+      if (now > winEnd)  return {state:'closed', label:'Closed'};
+      var s2 = Math.max(0, Math.floor((winEnd - now)/1000)); return {state:'open', label:'Closes in '+fmtDur(s2)};
+    }
+
+    function getStudentId(){
+      var a = window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '';
+      return String(a||'').trim();
+    }
+    /* 🔧 Ajuste: pageId agora respeita data-page (se você passar no HTML) */
+    function getPageId(){ return host.getAttribute('data-page') || window.pageId || (location.pathname + location.hash); }
+    function setMsg(el, t){ el.textContent = t || ''; }
+
+    function doneKey(){
+      var sid = getStudentId() || 'anon';
+      var scope = (sessionTag || getPageId() || 'page');
+      return 'ticket_done:' + type + ':' + scope + ':' + sid;
+    }
+    function isDone(){
+      try { return localStorage.getItem(doneKey()) === '1'; } catch(_) { return false; }
+    }
+    function markDone(){
+      try{ localStorage.setItem(doneKey(), '1'); }catch(_){}
+      btn.classList.remove('spin');
+      btn.disabled = true;
+      btn.classList.add('sent');
+      btn.textContent = 'Sent ✓';
+    }
+
+    host.innerHTML = '';
+    var card = document.createElement('div'); card.className = 'tw-card';
+    var windowLabel = (winStartStr && winEndStr)
+      ? (winStartStr + '\n→ ' + winEndStr)
+      : 'No window set';
+    var title = (type==='start' ? 'Check-in' : 'Check-out');
+    var subtitle = (type==='start' ? 'Press “Send” to check in.' : '');
+    card.innerHTML =
+      '<div class="tw-header">'+
+        '<div class="tw-icon" aria-hidden="true">'+
+          '<svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 3M6 3h12a1 1 0 0 1 1 1v16l-7-3-7 3V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+        '</div>'+
+        '<div class="tw-titles">'+
+          '<div class="tw-title">'+title+'</div>'+
+          '<div class="tw-sub">'+subtitle+'</div>'+
+        '</div>'+
+        '<div class="tw-meta">'+
+          '<div class="tw-badge"><span class="tw-dot"></span><span class="tw-badge-text">—</span></div>'+
+          '<div class="tw-badge" title="São Paulo time">'+
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="opacity:.8"><path d="M12 7v5l4 2" stroke="#334155" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#334155" stroke-width="1.5" fill="none"/></svg>'+
+            '<span class="tw-window-text">'+windowLabel+'</span>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="tw-body"></div>'+
+      '<div class="tw-footer">'+
+        '<button class="tw-btn tw-send">Send</button>'+
+        (type==='exit'?'<div class="tw-count">0/500</div>':'')+
+      '</div>'+
+      '<div class="tw-msg"></div>';
+    host.appendChild(card);
+
+    var body   = card.querySelector('.tw-body');
+    var btn    = card.querySelector('.tw-send');
+    var msg    = card.querySelector('.tw-msg');
+    var badge  = card.querySelector('.tw-badge');
+    var badgeText = card.querySelector('.tw-badge-text');
+    var count  = card.querySelector('.tw-count');
+
+    var successMsg = (type==='start' ? 'Check-in recorded. Thank you!' : 'Check-out recorded. Thank you!');
+    var dupMsg = (type==='start' ? 'You have already completed the check-in for this session. Thanks!' : 'You have already completed the check-out for this session. Thanks!');
+
+    var ta = null;
+    if (type === 'exit'){
+      ta = document.createElement('textarea');
+      ta.className = 'tw-text'; ta.maxLength = 500;
+      ta.placeholder = 'Your check-out (max 500): one thing you learned + one question…';
+      body.appendChild(ta);
+      ta.addEventListener('input', function(){
+        if (count) count.textContent = ta.value.length + '/500';
+        syncEnabled();
+      });
+    } else if (count) { count.parentNode.removeChild(count); }
+
+    function paintBadge(){
+      var st = statusNow();
+      host.classList.remove('open','soon','closed');
+      host.classList.add(st.state);
+      badgeText.textContent = st.label;
+    }
+
+    function syncEnabled(){
+      var logged = !requireLogin || !!getStudentId();
+      var st = statusNow().state;
+      var filled = (type==='start') || (ta && ta.value.trim().length>0);
+      var enabled = logged && (st==='open') && filled && !isDone();
+      btn.disabled = !enabled;
+
+      if (isDone()){
+        setMsg(msg, dupMsg, true);
+        btn.textContent = 'Sent ✓';
+        btn.classList.add('sent');
+        btn.disabled = true;
+        return;
+      }
+
+      if (!logged) setMsg(msg,'Please log in to submit.', false);
+      else if (st==='soon') setMsg(msg,'Not open yet.', false);
+      else if (st==='closed') setMsg(msg,'This activity is closed.', false);
+      else if (type==='exit' && !filled) setMsg(msg,'Write something to submit.', false);
+      else setMsg(msg,'', true);
+    }
+
+    paintBadge(); syncEnabled();
+    var ticker = setInterval(function(){ paintBadge(); syncEnabled(); }, 1000);
+    var obs = new MutationObserver(function(){ if(!document.body.contains(host)){ clearInterval(ticker); obs.disconnect(); } });
+    obs.observe(document.body, {childList:true, subtree:true});
+    document.addEventListener('auth:login', syncEnabled);
+
+    /* ====== ENVIO PARA O BRIDGE → FORMS (checkout) ====== */
+    btn.addEventListener('click', async function(){
+      var sid = getStudentId();
+      if (requireLogin && !sid){ setMsg(msg,'Please log in to submit.', false); return; }
+      var text = (type==='start') ? 'start=1' : (ta.value || '').trim().slice(0,500);
+      if (type==='exit' && !text){ setMsg(msg,'Write something to submit.', false); return; }
+
+      btn.classList.add('spin'); btn.disabled = true; setMsg(msg,'', true);
+
+      // pacote no mesmo backbone do answers bridge → GAS envia ao Forms EF_forms_checkout
+      var payload = {
+        submission_id: (crypto.randomUUID ? crypto.randomUUID() : (Date.now()+'-'+Math.random().toString(16).slice(2))),
+        studentId: sid,
+        page: getPageId(),
+        session: sessionTag,
+        tsClient: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        type: 'checkout',
+        payload: {
+          answers: { checkout: text },
+          client:  { tz: 'America/Sao_Paulo' }
+        }
+      };
+
+      try{
+        const res = await fetch(bridge, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' }, // simples (CORS-friendly)
+          keepalive: true,
+          body: JSON.stringify(payload)
+        });
+        let data = {};
+        try { data = await res.json(); } catch(_) {}
+
+        if (res.ok && data && data.ok){
+          setMsg(msg, successMsg, true);
+          if (ta){ ta.value=''; if (count) count.textContent='0/500'; }
+          markDone();
+        } else {
+          setMsg(msg, 'Failed to submit. Please try again.', false);
+          btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send';
+        }
+      } catch(e){
+        console.error('[checkout] submit error:', e);
+        setMsg(msg, 'Network error. Please try again.', false);
+        btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mount, {once:true});
+  } else {
+    mount();
+  }
+})();
+</script>

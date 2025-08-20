@@ -1,0 +1,81 @@
+<!-- ================================
+     SUBMIT-TO-FORMS (versão mínima)
+     ================================ -->
+
+<div style="margin-bottom: 10px;">
+  <label><strong>Student ID:</strong></label>
+  <input type="text" id="student-id" placeholder="Enter your ID">
+</div>
+
+<div style="margin-bottom: 20px;">
+  <label><strong>Password:</strong></label>
+  <input type="password" id="student-password" placeholder="Enter your password">
+</div>
+
+<button id="submit-btn"
+  style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+  Submit Answers
+</button>
+
+<script>
+/* === CONFIG: troque pelos IDs do seu Form === */
+const FORM_ACTION = "https://docs.google.com/forms/d/e/SEU_FORM_ID/formResponse";
+const ENTRY = {
+  studentId:   "entry.1111111111",
+  password:    "entry.2222222222",
+  slide:       "entry.3333333333",
+  timestamp:   "entry.4444444444",
+  answersJSON: "entry.5555555555"
+};
+/* ============================================ */
+
+(function(){
+  const btn = document.querySelector('#submit-btn');
+  btn.addEventListener('click', async () => {
+    const studentId = document.querySelector('#student-id').value.trim();
+    const password  = document.querySelector('#student-password').value.trim();
+    const slideId   = document.querySelector('#slide-id')?.value || "unknown";
+    const timestamp = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+
+    // coleta todas respostas do slide
+    const answers = {};
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+      const nameOrId = el.name || el.id || '';
+      if (!nameOrId.startsWith('q') && !nameOrId.startsWith('module')) return;
+      if ((el.type === 'radio' || el.type === 'checkbox') && !el.checked) return;
+      if (el.value.trim() === '') return;
+      answers[nameOrId] = el.value;
+    });
+
+    if (!studentId || !password) {
+      alert("❗ Please enter Student ID and Password.");
+      return;
+    }
+    if (!Object.keys(answers).length) {
+      alert("⚠️ No answers filled.");
+      return;
+    }
+
+    // monta payload
+    const data = new URLSearchParams();
+    data.append(ENTRY.studentId,   studentId);
+    data.append(ENTRY.password,    password);
+    data.append(ENTRY.slide,       slideId);
+    data.append(ENTRY.timestamp,   timestamp);
+    data.append(ENTRY.answersJSON, JSON.stringify(answers));
+
+    try {
+      await fetch(FORM_ACTION, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        body: data.toString()
+      });
+      alert("✅ Answers submitted!");
+    } catch (e) {
+      alert("❌ Error submitting: " + e.message);
+    }
+  });
+})();
+</script>
+
