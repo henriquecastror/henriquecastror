@@ -44,6 +44,33 @@
     background: linear-gradient(180deg,#dc2626,#b91c1c);
     border-color: rgba(220,38,38,.35);
   }
+
+  /* Placar */
+  .notice-score{
+    margin-top:10px;
+    font-weight:600;
+    color:#0f766e; /* teal-700 */
+    font-size:.95rem;
+  }
+  .notice-accuracy{
+    display:flex; align-items:center; gap:8px;
+    margin-top:6px; font-size:.92rem; color:#334155;
+  }
+  .stars{
+    display:inline-flex; gap:2px; line-height:1;
+  }
+  .star{
+    font-size:1.05rem; user-select:none;
+    color:#e5e7eb; /* base (cinza claro para “vazio”) */
+    text-shadow: 0 1px 0 rgba(0,0,0,.05);
+  }
+  .star.filled{ color:#F59E0B; }     /* gold  */
+  .star.half::after{                  /* meia estrela simples (overlay) */
+    content:'★'; color:#FDE047; position:absolute; width:50%; overflow:hidden;
+  }
+  .pct{
+    font-weight:700; color:#0ea5e9; /* ciano/teal p/ combinar com seus azuis */
+  }
 </style>
 
 <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
@@ -56,11 +83,14 @@
   </div>
 </div>
 
+<!-- Confete -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+
 <script>
 (function(){
   const ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1stXhHVbcinNcagloc6XNr3MYW9zn8EctaxxLuOJ086ODpCBvNCPwdfzbJxwl1XgDfw/exec';
   const SESSION_FLAG = 'notice_shown_this_load';
-  const FEEDBACK_AUTO_CLOSE_MS = 15000; // V/F: tempo p/ ler feedback (0 = fecha só no "Ok, got it")
+  const FEEDBACK_AUTO_CLOSE_MS = 18000;
   const DEBUG = false;
 
   /* Preconnect + dns-prefetch */
@@ -95,6 +125,7 @@
       if (DEBUG) console.log('[notice] backdrop injected');
     }
   }
+
   function getStudentId(){
     try { return (localStorage.getItem('studentId') || sessionStorage.getItem('studentId') || window.__lastLoginStudentId || '').trim(); }
     catch(e){ return ''; }
@@ -133,8 +164,6 @@
     const qs2 = new URLSearchParams({ action:'ack', studentId, notice_id, t: Date.now().toString() });
     fireAndForget(`${ENDPOINT}?${qs2.toString()}`);
   }
-
-  /* Normaliza rótulos T/F em vários formatos */
   function normalizeTF(x){
     const s = String(x || '').trim().toLowerCase();
     if (['true','t','verdadeiro','v','yes','y','sim','✅','✔️'].includes(s)) return 'true';
@@ -144,7 +173,50 @@
     return '';
   }
 
-  /* Render de poll (normal e T/F) */
+  /* ===== Estrelas ===== */
+  function makeStars(rating /* 0..5, pode ser decimal */){
+    const full = Math.floor(rating);
+    const hasHalf = (rating - full) >= 0.5;
+    let html = '';
+    for (let i=1;i<=5;i++){
+      if (i <= full) html += '<span class="star filled" aria-hidden="true">★</span>';
+      else if (i === full+1 && hasHalf) html += '<span class="star filled" style="position:relative" aria-hidden="true">★<span style="position:absolute;inset:0;clip-path:inset(0 50% 0 0); color:#FDE047;">★</span></span>';
+      else html += '<span class="star" aria-hidden="true">★</span>';
+    }
+    return html;
+  }
+
+  /* ===== Placar do backend + UI ===== */
+  async function updateTFScore(studentId, module){
+    const box = document.getElementById('pollScore');
+    if (!box) return;
+
+    try{
+      const qs = new URLSearchParams({ action:'stats_tf', studentId });
+      if (module) qs.set('module', module);
+      const j = await fetchJSON(`${ENDPOINT}?${qs.toString()}`);
+      if (!j?.ok) return;
+
+      const src = j.stats ? j.stats : j;
+      const correct = Number(src.correct ?? 0);
+      const total   = Number(src.total   ?? 0);
+      const pct = total ? Math.round((correct/total)*100) : 0;
+
+      // converte % em nota 0..5 (ex.: 70% => 3.5 estrelas)
+      const starsValue = Math.max(0, Math.min(5, (pct/20)));
+
+      box.innerHTML = `
+        <div>Congrats, you have answered ${correct} of ${total} correctly.</div>
+        <div class="notice-accuracy" aria-label="Your accuracy">
+          <div class="stars" aria-hidden="true">${makeStars(starsValue)}</div>
+          <div class="pct">${pct}%</div>
+        </div>
+      `;
+      box.style.display = '';
+    }catch(_){ /* silencioso */ }
+  }
+
+  /* Render de poll */
   function renderPoll(notice, studentId, module){
     const body = document.getElementById('noticeBody');
     const okBtn = document.getElementById('noticeOkBtn');
@@ -160,13 +232,13 @@
       <div style="margin:8px 0 12px 0;"><strong>${escapeHtml(q)}</strong></div>
       <div id="pollBtns" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
       <div id="pollFeedback" style="margin-top:10px;"></div>
+      <div id="pollScore" class="notice-score" style="display:none"></div>
     `;
     body.appendChild(pollWrap);
 
     const btns = pollWrap.querySelector('#pollBtns');
     const fb   = pollWrap.querySelector('#pollFeedback');
 
-    // T/F: deixa "Ok, got it" para leitura do feedback
     if (isQuizTF && okBtn) {
       okBtn.style.display = '';
       okBtn.onclick = (ev) => {
@@ -199,25 +271,27 @@
         fireAndForget(`${ENDPOINT}?${qs.toString()}`);
 
         if (!isQuizTF) {
-          // Poll "opinião": só marca seleção e fecha já
           b.classList.add('is-selected');
           ackAndClose(studentId, notice.notice_id);
           return;
         }
 
-        // T/F: decide correto/errado usando normalização
+        // T/F: decide correto/errado
         const choiceKey = normalizeTF(label);
         const isCorrect = (choiceKey && choiceKey === correctKey);
 
         b.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+        if (isCorrect) celebrate();
 
-        // Feedback amigável
+        // feedback
         fb.style.color = isCorrect ? '#065f46' : '#b91c1c';
         fb.innerHTML = isCorrect
           ? (notice.feedback_correct_html || '<p><strong>✅ Correct.</strong></p>')
           : (notice.feedback_wrong_html  || '<p><strong>❌ Not quite.</strong></p>');
 
-        // Auto-fecha após leitura (se configurado)
+        // 👉 só agora buscamos e revelamos o placar completo
+        updateTFScore(studentId, module);
+
         if (FEEDBACK_AUTO_CLOSE_MS > 0) {
           autoTimer = setTimeout(() => {
             autoTimer = null;
@@ -258,7 +332,6 @@
       const correctKey = normalizeTF(notice.poll_correct);
       const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
 
-      // Para poll de opinião: esconda o "Ok, got it"
       okBtn.style.display = isQuizTF ? '' : 'none';
       if (!isQuizTF) {
         okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
@@ -266,7 +339,6 @@
 
       renderPoll(notice, studentId, module);
     } else {
-      // Aviso HTML simples
       okBtn.style.display = '';
       okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
     }
@@ -307,6 +379,19 @@
     document.addEventListener('DOMContentLoaded', () => { waitForLoginAndShow(); });
   } else {
     waitForLoginAndShow();
+  }
+
+  /* 🎊 Confete em estrelas */
+  function celebrate(){
+    const defaults = {
+      spread: 360, ticks: 55, gravity: 0.9, decay: 0.92, startVelocity: 35,
+      colors: ['#F59E0B','#FDE047','#22D3EE','#60A5FA','#A78BFA']
+    };
+    function shoot(scale, countStar=40, countCircle=12){
+      confetti({ ...defaults, particleCount: countStar, scalar: scale, shapes: ['star'] });
+      confetti({ ...defaults, particleCount: countCircle, scalar: scale*0.7, shapes: ['circle'] });
+    }
+    shoot(1.1); setTimeout(()=>shoot(1.0), 180); setTimeout(()=>shoot(0.9), 320);
   }
 })();
 </script>
