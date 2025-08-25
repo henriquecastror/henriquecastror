@@ -345,6 +345,28 @@ ggplotly(p)
 
 
 
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-type="exit"
+     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
+     data-session="module3_checkout1"
+     data-page="module3_checkout1"
+     data-require-login="true"
+     data-open="2025-08-20 16:30"
+     data-close="2025-08-20 16:59">
+</div>
+
+
+{{< include ../checkout.html >}}
+
+
+
+
+
+
+
+
 
 
 ## 11.2 Volatility 2-stock portfolio {.smaller background="#f2f7ba"}
@@ -545,28 +567,19 @@ If you don't remember how to calculate manually the correlation, please take a l
 
 
 
-##  { background="#f7f9fc"}
+##  {.smaller  background="#FFFFFF"}
 
-<div data-ticket
-     data-type="exit"
-     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
-     data-session="module3_checkout1"
-     data-page="module3_checkout1"
-     data-require-login="true"
-     data-open="2025-08-20 16:30"
-     data-close="2025-08-20 16:59">
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module3_q1*
+<input type="hidden" id="slide-id" value="module3_q1">
+:::
+
+
+{{< include "num/module3_num_q1_class.qmd" >}}
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
 </div>
-
-
-{{< include ../checkout.html >}}
-
-
-
-
-
-
-
-
 
 
 
@@ -925,6 +938,23 @@ corrplot(cor,method = 'number' ,  tl.col = "black",   tl.cex = 0.9,  col = COL1(
 
 
 
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module3_q2*
+<input type="hidden" id="slide-id" value="module3_q2">
+:::
+
+
+
+{{< include "num/module3_num_q9_class.qmd" >}}
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
+
+
+
 
 
 
@@ -1225,6 +1255,10 @@ ggplotly(p)
 
 
 
+
+
+
+
 # 11.5 Risk-Free (RF) Saving and Borrowing {.smaller  background="#cff5ce" }
 
 ## 11.5 RF Saving and Borrowing {.smaller  background="#cff5ce" }
@@ -1354,6 +1388,24 @@ ggplotly(p)
 
 
 
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-type="exit"
+     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
+     data-session="module3_checkout2"
+     data-page="module3_checkout2"
+     data-require-login="true"
+     data-open="2025-08-25 16:30"
+     data-close="2025-08-25 16:59">
+</div>
+
+
+{{< include ../checkout.html >}}
 
 
 
@@ -2304,9 +2356,31 @@ ggplotly(p)
 
 
 
-# Now it is your turn... {.smaller background="#191f36"}
+## Now it is your turn... {.smaller background="#191f36"}
 
+<div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
 
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module3/p3tf.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    ✅ True / False Questions
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module3/p3num.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    🔢 Numeric Questions
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module3/p3mcq.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    📝 Multiple Choice
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module3/p3long.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    ✍️ Long-form Answers
+  </a>
+
+</div>
 
 
 
