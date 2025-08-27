@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q103','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q103" name="module3_tf_q103" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q103"><strong>A long position benefits from an increase in the asset’s price, while a short position benefits from a decrease in the asset’s price.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q103" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. In a long position, investors profit when prices rise, whereas in a short position, they profit when prices fall.
+</div>
+:::

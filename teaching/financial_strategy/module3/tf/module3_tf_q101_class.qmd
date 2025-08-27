@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q101','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q101" name="module3_tf_q101" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module3_tf_q101"><strong>If two risky assets have a correlation of -1, it is possible to construct a risk-free portfolio by choosing appropriate weights.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q101" class="feedback" data-status="" style="display:none;">
+The sentence is TRUE. Perfect negative correlation allows investors to combine assets in such a way that total portfolio variance becomes zero, creating a risk-free portfolio.
+</div>
+:::

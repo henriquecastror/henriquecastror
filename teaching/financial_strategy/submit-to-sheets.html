@@ -31,7 +31,7 @@
 
 <script>
 // ===== CONFIG DO ENDPOINT (global, sem redeclarar) =====
-window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec";
+window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/macros/s/AKfycbx8FM1P_d-VM3E1Je84bvmf-v1BVumEL0GvcTp7VKr83MrdX4OzV_9wCBZCzeSeccH6/exec";
 </script>
 
 <script>
@@ -121,22 +121,19 @@ window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/ma
     }
   }
 
-  /* ============ INTEGRAÇÃO COM RANKING ============ */
+  /* ============ INTEGRAÇÃO COM RANKING (opcional) ============ */
   async function sendLB(event_type, { details='', fingerprint='' } = {}) {
     if (!window.leaderboardLogEvent) return;
-    try {
-      return await window.leaderboardLogEvent(event_type, { details, fingerprint });
-    } catch(e) {
-      console.warn('LB error:', e);
-    }
+    try { return await window.leaderboardLogEvent(event_type, { details, fingerprint }); }
+    catch(e) { console.warn('LB error:', e); }
   }
-  /* ================================================ */
+  /* ============================================================ */
 
   // ===== Coleta SOMENTE deste slide e IGNORA vazios =====
   function collectAnswersFromThisSlide(){
     const out = {};
 
-    // text/number (TF e numéricas no seu padrão)
+    // text/number (TF e numéricas)
     $qAll('input[type="text"], input[type="number"]').forEach(input => {
       const nameOrId = input.name || input.id || '';
       if (!nameOrId) return;
@@ -146,10 +143,10 @@ window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/ma
       if (value === '') return;
 
       const correct   = input.dataset.correctAnswer;
-      const tolerance = input.dataset.tolerance; /* <<< MUDANÇA: captura tolerância */
+      const tolerance = input.dataset.tolerance;
 
       out[nameOrId] = (correct !== undefined)
-        ? { value, correct, tolerance }          /* <<< MUDANÇA: inclui tolerance */
+        ? { value, correct, tolerance }
         : value;
     });
 
@@ -200,6 +197,7 @@ window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/ma
     return out;
   }
 
+  // ===== SUBMIT =====
   async function submitAnswers(){
     const ids = getIds();
 
@@ -220,7 +218,6 @@ window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/ma
     }
 
     const answers = collectAnswersFromThisSlide();
-
     if (!Object.keys(answers).length) {
       isSubmittingNow = false;
       setBtnLoading(false);
@@ -236,44 +233,25 @@ window.SUBMIT_ENDPOINT = window.SUBMIT_ENDPOINT || "https://script.google.com/ma
       answers
     };
 
-    // armazena local para o botão de download
+    // para o botão de download
     slideEl.__lastSubmittedAnswers = payload;
 
     try {
-      const response = await fetch(ENDPOINT, {
+      await fetch(ENDPOINT, {
         method: "POST",
+        headers: { "Content-Type": "text/plain" }, // sem preflight
         body: JSON.stringify(payload),
-        headers: { "Content-Type": "text/plain" }
+        mode: "no-cors",   // evita CORS (resposta 'opaque')
+        credentials: "omit"
       });
 
-      const result = await response.json().catch(()=>({success:false, message:'Invalid JSON'}));
-      if (result.success) {
-        alert("✅ Your answers were submitted successfully!");
-        setSubmitLock(ids);
-        if (lockTimer) clearInterval(lockTimer);
-        lockTimer = setInterval(updateSubmitBtnState, 1000);
-        updateSubmitBtnState();
+      // sucesso local
+      alert("✅ Your answers were submitted successfully!");
+      setSubmitLock(ids);
+      if (lockTimer) clearInterval(lockTimer);
+      lockTimer = setInterval(updateSubmitBtnState, 1000);
+      updateSubmitBtnState();
 
-// ===== PATCH RANKING =====
-window.studentId = ids.studentId;
-window.moduleId  = window.moduleId || (ids.slideId.split('_')[0] || 'module');
-window.pageId    = ids.slideId;
-
-/* Front logging desativado: o backend (GAS) registra participação e acertos.
-   Mantido só para referência/histórico:
-
-   // await sendLB('flash_quiz_participate', { ... });
-
-   // for (const [qid, entry] of Object.entries(answers)) {
-   //   ...
-   //   await sendLB(ev, { ... });
-   // }
-*/
-// ===== FIM PATCH RANKING =====
-
-      } else {
-        alert("❌ Submission failed: " + (result.message || "Unknown error."));
-      }
     } catch (error) {
       alert("❌ Submission error: " + error.message);
     } finally {
@@ -311,7 +289,7 @@ window.pageId    = ids.slideId;
     document.body.removeChild(link);
   }
 
-  // ===== INIT (agora com elementos presentes) =====
+  // ===== INIT =====
   function init(){
     btnSubmit   = slideEl.querySelector('#submit-btn');
     btnDownload = slideEl.querySelector('#download-btn');

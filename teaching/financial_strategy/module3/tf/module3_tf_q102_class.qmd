@@ -1,0 +1,11 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module3_tf_q102','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module3_tf_q102" name="module3_tf_q102" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module3_tf_q102"><strong>The minimum variance portfolio always consists of an equal-weighted allocation between assets.</strong></label>
+</form>
+
+<div id="feedback-module3_tf_q102" class="feedback" data-status="" style="display:none;">
+The sentence is FALSE. The minimum variance portfolio weights depend on the assets’ variances, covariances, and correlations, not necessarily an equal split.
+</div>
+:::

@@ -1,0 +1,57 @@
+### Tangency Portfolio Mix and Sharpe Ratio
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+set.seed(5432)
+
+# Inputs: risk-free rate, tangency (market) portfolio stats, and weight in tangency
+rf     <- rnorm(1, mean = 0.05, sd = 0.01)           # risk-free rate
+mu_T   <- rnorm(1, mean = 0.12, sd = 0.03)           # E[R_T]
+sigmaT <- abs(rnorm(1, mean = 0.20, sd = 0.03))      # SD[R_T] (force positive)
+y_raw  <- rnorm(1, mean = 0.7, sd = 0.2)             # desired weight in tangency
+y      <- min(max(y_raw, 0), 1)                      # clamp to [0,1]
+
+# Complete portfolio expected return and (for reference) SD would be:
+# E[R_C] = (1 - y) * rf + y * mu_T
+# SD[R_C] = y * sigmaT  (when combining only rf and tangency)
+```
+
+You invest **`r round(y*100,2)`**% in the **tangency portfolio** (expected return = **`r round(mu_T*100,2)`**% and standard deviation = **`r round(sigmaT*100,2)`**%) and the remaining **`r round((1-y)*100,2)`**% in the **risk-free asset** (rate = **`r round(rf*100,2)`**%).  
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q12a_class"><strong>1. What is the expected return of the complete portfolio (in %)?</strong></label>
+  <input type="number" id="module3_num_q12a_class" name="module3_num_q12a_class" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( ((1 - y) * rf + y * mu_T) * 100 , 2 )` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module3_num_q12a_class" class="feedback" data-status="" style="display:none;">
+✅ Expected return of the complete portfolio: E[R<sub>C</sub>] = (1−y)·r<sub>f</sub> + y·E[R<sub>T</sub>] = **`r round(((1 - y) * rf + y * mu_T) * 100, 2)`**%.
+</div>
+
+:::
+
+Now consider the **Sharpe ratio of the tangency portfolio** (not of the complete portfolio):  
+\\[
+\\text{Sharpe}(T) = \\frac{E[R_T] - r_f}{\\sigma_T}.
+\\]  
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
+  <label for="module3_num_q12b_class"><strong>2. What is the Sharpe ratio of the tangency portfolio? </strong></label>
+  <input type="number" step="0.0001" id="module3_num_q12b_class" name="module3_num_q12b_class" placeholder="Enter value" style="width: 150px;"
+         data-correct-answer=`r round( (mu_T - rf) / sigmaT , 4 )` data-tolerance="0.0001" />
+</form>
+
+<div id="feedback-module3_num_q12b_class" class="feedback" data-status="" style="display:none;">
+✅ Sharpe(T) = (E[R<sub>T</sub>] − r<sub>f</sub>) / σ<sub>T</sub> = **`r round((mu_T - rf)/sigmaT, 4)`**.  
+💡 Any rf–tangency mix has the **same Sharpe** as the tangency portfolio itself.
+</div>
+
+:::

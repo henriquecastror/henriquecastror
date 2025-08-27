@@ -946,7 +946,6 @@ Key: *module3_q2*
 :::
 
 
-
 {{< include "num/module3_num_q9_class.qmd" >}}
 
 <div style="text-align: right;">
@@ -1272,6 +1271,30 @@ ggplotly(p)
 
 
 
+
+
+
+
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module3_quiz1*
+<input type="hidden" id="slide-id" value="module3_quiz1">
+:::
+
+{{< include "tf/module3_tf_q101_class.qmd" >}}
+
+{{< include "tf/module3_tf_q102_class.qmd" >}}
+
+{{< include "tf/module3_tf_q103_class.qmd" >}}
+
+{{< include "tf/module3_tf_q104_class.qmd" >}}
+
+{{< include "tf/module3_tf_q105_class.qmd" >}}
+
+
+
+{{< include "../submit-to-sheets.html" >}}
 
 
 
@@ -1682,6 +1705,22 @@ ggplotly(p)
 
 
 
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module3_quiz2*
+<input type="hidden" id="slide-id" value="module3_quiz2">
+:::
+
+{{< include "num/module3_num_q12_class.qmd" >}}
+
+{{< include "../submit-to-sheets.html" >}}
+
+
+
+
+
+
 
 
 
@@ -1824,6 +1863,26 @@ $$R_i =  R_f + \beta_i^P  \times (E[R_p] - R_f)$$
 
 
 
+
+
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-type="exit"
+     data-bridge="https://script.google.com/macros/s/AKfycbw-kE6XjRr2Zi8QunbqYdw_nDrlI92lx-vi_tS5BPOGEo9gbx3HUdO0bgu2n1EmPSs/exec"
+     data-session="module3_checkout3"
+     data-page="module3_checkout3"
+     data-require-login="true"
+     data-open="2025-08-26 16:30"
+     data-close="2025-08-26 16:59">
+</div>
+
+
+{{< include ../checkout.html >}}
 
 
 
