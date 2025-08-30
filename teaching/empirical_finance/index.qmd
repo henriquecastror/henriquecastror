@@ -1,15 +1,88 @@
 ---
-title: "Empirical Methods 2024/02"
+title: "Empirical Methods 2025/02"
 slide-format: revealjs
 comments: false
 ---
 
+
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
+```
 ___
 
+
 ::: {.callout-important}
-**We may or may not use all the slides throughout our course.**
+### For students
+
+```{r}
+#| echo: false
+#| results: asis
+#| warning: false
+cat(paste0("**Last updated:** ", format(Sys.time(), '%d/%m/%Y %H:%M', tz = 'America/Sao_Paulo')))
+```
+
+
+Below you find the persistent links to all lectures of the course. As they are continuously updated with fixes and new implementations, **you might expect some changes from time to time in the contents of each file**.
+
+This material leverages [Quarto](https://quarto.org/), an open-source scientific and technical publishing system. 
+
+**We may or may  not** use all slides during the course.
+
+---
+
+💡 *You can also press `Ctrl + P` (or `Cmd + P` on Mac) to print or save your responses as a `.pdf` file.*
+
 :::
 
+___
 
 ###  Slides
 
@@ -36,24 +109,3 @@ ___
 -   `Practice 7`: [Slides](part_O7.qmd) 
 
 **To be continued**
-
-___
-
-
-
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/EF_permanent"
-        data-repo-id="R_kgDOLMIejg"
-        data-category="General"
-        data-category-id="DIC_kwDOLMIejs4Cc1yS"
-        data-mapping="number"
-        data-term="17"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-
