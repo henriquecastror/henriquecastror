@@ -1,0 +1,91 @@
+---
+title: "Module 4 – (ch12) Estimating  Cost of Capital"
+author: "Henrique C. Martins - henrique.martins@fgv.br"
+format: pdf
+fontsize: 11pt
+geometry: margin=1in
+mainfont: "Times New Roman"
+header-includes: |
+  \usepackage{graphicx}
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[L]{Module 4 – (ch12) Estimating the Cost of Capital}
+  \fancyhead[R]{\includegraphics[height=1.2cm]{../figs/background6.png}}
+  \fancyfoot[C]{}
+  \fancypagestyle{firstpage}{
+    \fancyhf{}
+    \fancyhead[L]{Module 4 – (ch12) Estimating the Cost of Capital}
+    \fancyhead[R]{\includegraphics[height=1.2cm]{../figs/background6.png}}
+    \fancyfoot[C]{}
+  }
+  \usepackage{tcolorbox}
+  \tcbset{colback=blue!5!white, colframe=blue!75!black, boxrule=0.6pt, arc=4pt, left=6pt, right=6pt, top=4pt, bottom=4pt}
+---
+
+\thispagestyle{firstpage}
+
+\begin{tcolorbox}
+\textbf{Note:} This summary will be delivered \textbf{in printed form only}. No PDF version is available.
+\end{tcolorbox}
+
+## Overview: This summary covers the key points from Ch. 12 of *Berk & DeMarzo*.
+
+1) **Equity Cost of Capital (CAPM / SML)**  
+$R_i = R_f + \beta (E[R_M]-R_f)$.  
+Only market risk matters; firm-specific risk is diversifiable.
+
+2) **Market Portfolio & Premium**  
+Value-weighted portfolio; common proxies (S&P 500, Ibov).  
+Rf rate choices. Rxisk premium can be historical or implied (dividend yield + growth).
+
+3) **Beta Estimation**  
+From regression on excess returns. Industry betas reduce error; debt betas are small.
+
+4) **Debt Cost of Capital**  
+Expected return ≈ YTM – (default rate × loss rate).  
+Can also apply CAPM with debt beta.
+
+5) **Project Cost of Capital**  
+Use comparables; unlever to get asset beta/cost. Adjust for cash and division risk.
+
+6) **WACC**  
+Pre-tax: $R_u=\tfrac{E}{D+E}R_e+\tfrac{D}{D+E}R_d$. After-tax: $R_{wacc}=\tfrac{E}{D+E}R_e+\tfrac{D}{D+E}R_d(1-\phi_c)$.
+
+
+---
+
+# Scan to Access Online Class Resources
+
+|![](https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://henriquemartins.net/teaching/financial_strategy/module4/p4.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://henriquemartins.net/teaching/financial_strategy/module4/p4tf.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://henriquemartins.net/teaching/financial_strategy/module4/p4num.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://henriquemartins.net/teaching/financial_strategy/module4/p4mcq.html) | ![](https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://henriquemartins.net/teaching/financial_strategy/module4/p4long.html) |
+|:--:|:--:|:--:|:--:|:--:|
+| Slides | T/F | Numeric | MCQ | Long-form |
+
+\newpage
+
+# Notes
+
+\newcommand{\drawline}{\noindent\rule{\linewidth}{0.4pt}\vspace{14pt}}
+
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
