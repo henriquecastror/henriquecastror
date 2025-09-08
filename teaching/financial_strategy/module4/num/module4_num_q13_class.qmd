@@ -1,0 +1,34 @@
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+set.seed(121213)
+
+# Random parameters
+rf <- rnorm(1, mean = 0.04, sd = 0.002)        # risk-free rate (~4%)
+mkt_ret <- rnorm(1, mean = 0.12, sd = 0.005)   # market return (~12%)
+vol1 <- rnorm(1, mean = 0.16, sd = 0.01)       # volatility firm A
+beta1 <- rnorm(1, mean = 0.20, sd = 0.05)      # beta firm A
+vol2 <- rnorm(1, mean = 0.14, sd = 0.01)       # volatility firm B
+beta2 <- rnorm(1, mean = 0.55, sd = 0.05)      # beta firm B
+
+# Equity costs of capital
+r1 <- rf + beta1*(mkt_ret - rf)
+r2 <- rf + beta2*(mkt_ret - rf)
+
+
+```
+
+Two companies in the consumer sector present the following estimates:
+
+- Company A: volatility = `r round(vol1*100,1)`%, beta = `r round(beta1,2)`
+- Company B: volatility = `r round(vol2*100,1)`%, beta = `r round(beta2,2)`
+- Risk-free rate = `r round(rf*100,2)`%
+- Expected market return = `r round(mkt_ret*100,2)`%
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 12px;"> <div style="display: flex; flex-direction: row; gap: 6px;"> <label for="module4_num_q13a"><strong>1. What is the cost of equity capital for Company A?</strong></label> <input type="number" id="module4_num_q13a" name="module4_num_q13a" style="width: 150px;" data-correct-answer=`r round(r1*100,2)` data-tolerance="0.05" /> </div> <div style="display: flex; flex-direction: row; gap: 6px;"> <label for="module4_num_q13b"><strong>2. What is the cost of equity capital for Company B?</strong></label> <input type="number" id="module4_num_q13b" name="module4_num_q13b" style="width: 150px;" data-correct-answer=`r round(r2*100,2)` data-tolerance="0.05" /> </div> </form> <div id="feedback-module4_num_q13a" class="feedback" style="display:none;"> ✅ Company A = R<sub>f</sub> + β × (E[R<sub>m</sub>] − R<sub>f</sub>) = **`r round(rf*100,2)`**% + **`r round(beta1,2)`** × (**`r round(mkt_ret*100,2)`**% − **`r round(rf*100,2)`**%) = **`r round(r1*100,2)`**%. </div> <div id="feedback-module4_num_q13b" class="feedback" style="display:none;"> ✅ Company B = R<sub>f</sub> + β × (E[R<sub>m</sub>] − R<sub>f</sub>) = **`r round(rf*100,2)`**% + **`r round(beta2,2)`** × (**`r round(mkt_ret*100,2)`**% − **`r round(rf*100,2)`**%) = **`r round(r2*100,2)`**%. </div> 
+:::

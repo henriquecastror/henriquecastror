@@ -14,8 +14,8 @@ format:
     include-in-header: ../login-start.html
     include-after-body:
       - ../chat-widget.html
-#      - ../comnents.html
-      - ../ranking-widget.html
+      - ../threads-gate.html
+      - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
     controls: true
@@ -61,7 +61,7 @@ include-after: |
 ---
 
 # Intro {visibility="hidden"}
-
+ 
 
 ```{r setup}
 #| include: false
@@ -103,16 +103,31 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
 
 :::
+ 
+   
 
 
 
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 ## {background-image="../figs/ch12.png" background-size="1300px"}
 
 
 
-
-
+ 
+   
 
 
 
@@ -968,7 +983,7 @@ $$R_d = YTM - default \;rate \times average\; loss\; rate $$
 
 
 
-## 12.4 The Debt Cost of Capital {.smaller  background="#f5d5d5" }
+## 12.4 The Debt Cost of Capital {.smaller  background="#f5d5d5" visibility="hidden"}
 
 **Problem**
 
@@ -995,9 +1010,78 @@ Alternatively, we can estimate the bond’s expected return using CAPM and an es
 
 
 
-## 12.4 The Debt Cost of Capital {.smaller  background="#f5d5d5" }
+## 12.4 The Debt Cost of Capital {.smaller  background="#f5d5d5" visibility="hidden"}
 
 **Both estimates are rough approximations and they both suggest that the expected return of Autozone’s debt is below its yield-to-maturity of 3%.**
+
+
+
+
+
+
+  
+
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module4_num_qu2*
+<input type="hidden" 
+       id="slide-id" 
+       value="module4_num_qu2"
+       data-open="2025-09-08 16:00"
+       data-close="2025-09-08 16:59">
+:::
+
+{{< include "../submit-to-sheets2.html" >}}
+
+::: panel-tabset
+
+# (1)
+
+{{< include "num/module4_num_q8_class.qmd" >}}
+
+
+# (2)
+
+{{< include "num/module4_num_q13_class.qmd" >}}
+
+# (3)
+
+{{< include "num/module4_num_q12_class.qmd" >}}
+
+# (4)
+
+{{< include "tf/module4_tf_q43.qmd" >}}
+
+{{< include "tf/module4_tf_q46.qmd" >}}
+
+{{< include "tf/module4_tf_q81.qmd" >}}
+
+
+:::   
+
+
+
+
+
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
+     data-session="module4_checkout2"
+     data-page="module4_checkout2"
+     data-require-login="true"
+     data-open="2025-09-08 16:30"
+     data-close="2025-09-08 16:59">
+</div>
+
+
+{{< include ../checkout2.html >}}
+
 
 
 
@@ -1009,7 +1093,6 @@ Alternatively, we can estimate the bond’s expected return using CAPM and an es
 
 
 # 12.5 A Project’s Cost of Capital {.smaller background="#f7e1ba" }
-
 
 ## 12.5 A Project’s Cost of Capital {.smaller background="#f7e1ba" }
 

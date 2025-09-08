@@ -1,0 +1,37 @@
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+set.seed(121204)
+
+# Random parameters
+ytm <- rnorm(1, mean = 0.03, sd = 0.002)         # yield to maturity (~3%)
+rf  <- rnorm(1, mean = 0.015, sd = 0.001)        # risk-free rate (~1.5%)
+mkt <- rnorm(1, mean = 0.08, sd = 0.005)         # market risk premium (~8%)
+beta_d <- rnorm(1, mean = 0.10, sd = 0.02)       # debt beta (~0.10)
+
+spread <- rnorm(1, mean = 0.005, sd = 0.001)     # credit spread (~0.5%)
+loss_rate <- 0.60                                # loss given default
+
+# Two approaches
+ret_loss = ytm - spread * loss_rate
+ret_capm = rf + beta_d * mkt
+
+
+```
+
+Aurora Technologies issued 10-year bonds with the following characteristics:
+
+- Yield to maturity (YTM) = `r round(ytm*100,2)`%
+- Credit spread (BBB-like default rate) = `r round(spread*100,2)`%
+- Risk-free rate = `r round(rf*100,2)`%
+- Market risk premium = `r round(mkt*100,1)`%
+- Estimated debt beta = `r round(beta_d,2)`
+- Expected loss rate in default = 60%
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 12px;"> <div style="display: flex; flex-direction: row; gap: 6px;"> <label for="module4_num_q12a"><strong>1. What is the expected return using the loss-adjusted YTM approach?</strong></label> <input type="number" id="module4_num_q12a" name="module4_num_q12a" style="width: 150px;" data-correct-answer=`r round(ret_loss*100,2)` data-tolerance="0.05" /> </div> <div style="display: flex; flex-direction: row; gap: 6px;"> <label for="module4_num_q12b"><strong>2. What is the expected return using the CAPM approach?</strong></label> <input type="number" id="module4_num_q12b" name="module4_num_q12b" style="width: 150px;" data-correct-answer=`r round(ret_capm*100,2)` data-tolerance="0.05" /> </div> </form> <div id="feedback-module4_num_q12a" class="feedback" style="display:none;"> ✅  = YTM − default rate × Loss rate = **`r round(ytm*100,2)`**% − **`r round(spread*100,2)`**% × 0.60 = **`r round(ret_loss*100,2)`**%. </div> <div id="feedback-module4_num_q12b" class="feedback" style="display:none;"> ✅  = R<sub>f</sub> + β × (Market risk premium) = **`r round(rf*100,2)`**% + **`r round(beta_d,2)`** × **`r round(mkt*100,1)`**% = **`r round(ret_capm*100,2)`**%. </div> 
+:::

@@ -1,0 +1,165 @@
+<div class="like-container">
+  <button class="like-btn" title="Click if you got this">
+    ✅ <span class="like-text">Got it</span>
+    <span class="like-count">(0)</span>
+  </button>
+</div>
+
+<script>
+(function () {
+  const root = document.currentScript && document.currentScript.previousElementSibling;
+  if (!root || !root.matches('.like-container')) return;
+
+  const btn = root.querySelector('.like-btn');
+  const textSpan = btn && btn.querySelector('.like-text');
+  const countSpan = btn && btn.querySelector('.like-count');
+  if (!btn || !textSpan || !countSpan) return;
+
+  const scriptURL = "https://course-chat.hcmrtns.workers.dev";
+
+  function pageId() {
+    const sec = root.closest('section');
+    function getSlideHashForSection(sec) {
+      if (sec && sec.id) return `#/${sec.id}`;
+      if (window.Reveal && Reveal.getIndices) {
+        const idx = Reveal.getIndices(sec || Reveal.getCurrentSlide());
+        if (idx && typeof idx.h === 'number') {
+          return (typeof idx.v === 'number' && idx.v > 0) ? `#/${idx.h}/${idx.v}` : `#/${idx.h}`;
+        }
+      }
+      return location.hash || '#';
+    }
+    const hash = getSlideHashForSection(sec);
+    return location.origin + location.pathname + location.search + hash;
+  }
+  function getStudentId(){
+    return (window.studentId || localStorage.getItem("studentId") || localStorage.getItem("fs_user") || "");
+  }
+  function hasLogin(){ return !!getStudentId(); }
+
+  function setGotItState() {
+    textSpan.textContent = "Got it ✔";
+    btn.classList.add("liked");
+    btn.title = "You have already confirmed";
+  }
+  function clearGotItState() {
+    textSpan.textContent = "Got it";
+    btn.classList.remove("liked");
+    btn.title = hasLogin() ? "Click if you got this" : "Please log in to confirm";
+  }
+
+  function syncButtonLock() {
+    if (!hasLogin()) {
+      btn.setAttribute('disabled', 'disabled');
+      btn.style.opacity = 0.6;
+      btn.title = "Please log in to confirm";
+    } else {
+      btn.removeAttribute('disabled');
+      btn.style.opacity = "";
+      btn.title = "Click if you got this";
+    }
+  }
+  syncButtonLock();
+  document.addEventListener('auth:login', () => { syncButtonLock(); updateCount(); });
+
+  // Envia ponto (opcional; não bloqueia)
+  async function awardLikePoint(student, pid){
+    try{
+      await fetch(`${scriptURL}/ranking`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          student,
+          event_type:'like',
+          module:(window.moduleId||'module'),
+          page: pid,
+          details:'source=like_button',
+          fingerprint:`${student}:like:${pid}`
+        })
+      });
+      if (typeof window.leaderboardLogEvent === 'function') {
+        window.leaderboardLogEvent('like', { details:'mirrored_to_cloudflare' });
+      }
+    }catch(_){}
+  }
+
+  btn.addEventListener('click', () => {
+    const pid = pageId();
+    if (!hasLogin()) { alert("Please log in first."); return; }
+    if (localStorage.getItem(`liked_${pid}`)) return;
+
+    btn.disabled = true;
+    btn.classList.add('pulse');
+    setTimeout(() => btn.classList.remove('pulse'), 300);
+
+    const student = getStudentId();
+    fetch(`${scriptURL}/likes?like=1&page=${encodeURIComponent(pid)}&student=${encodeURIComponent(student)}`)
+      .then(r=>r.json())
+      .then(async data=>{
+        if (data && data.status === 'liked') {
+          await awardLikePoint(student, pid);
+        }
+        if (data && (data.status === 'liked' || data.status === 'already')) {
+          localStorage.setItem(`liked_${pid}`,"true");
+          setGotItState();
+        }
+        updateCount();
+      })
+      .catch(console.error)
+      .finally(()=>{ btn.disabled = false; });
+  });
+
+  function updateCount(){
+    const pid = pageId();
+    const student = getStudentId() || "anon";
+    fetch(`${scriptURL}/likes?state=1&page=${encodeURIComponent(pid)}&student=${encodeURIComponent(student)}`)
+      .then(r=>r.json())
+      .then(data=>{
+        const count = Number(data && data.count) || 0;
+        countSpan.textContent = `(${count})`;
+        if (data && data.liked) {
+          // servidor confirma like → garante UI e storage
+          localStorage.setItem(`liked_${pid}`,"true");
+          setGotItState();
+        } else {
+          // servidor diz que NÃO há like → limpa UI e storage
+          localStorage.removeItem(`liked_${pid}`);
+          clearGotItState();
+        }
+      })
+      .catch(()=>{ /* ignora */ });
+  }
+
+  updateCount();
+  const interval = setInterval(updateCount, 3000);
+
+  const obs = new MutationObserver(() => {
+    if (!document.body.contains(root)) { clearInterval(interval); obs.disconnect(); }
+  });
+  obs.observe(document.body, { childList:true, subtree:true });
+
+  if (window.Reveal && Reveal.addEventListener) {
+    Reveal.addEventListener('slidechanged', updateCount);
+  }
+})();
+</script>
+
+<style>
+.like-container { position: relative; margin-top: 20px; text-align: right; }
+.like-btn {
+  background-color:#f0fdf4; border:2px solid #86efac; color:#15803d;
+  padding:8px 16px; font-size:16px; border-radius:25px;
+  display:inline-flex; align-items:center; gap:8px; font-weight:500;
+  box-shadow:1px 1px 4px rgba(0,0,0,0.08);
+  transition: background-color .2s, color .2s, opacity .2s, transform .15s;
+  cursor:pointer;
+}
+.like-btn:hover{ background-color:#dcfce7; border-color:#4ade80; color:#166534; }
+.like-btn.liked{ background:#f0f0f0; color:#888; border-color:#ddd; opacity:.6; cursor:default; }
+.like-btn .like-count{
+  background:#86efac; color:#064e3b; padding:2px 8px; border-radius:12px;
+  font-size:14px; font-weight:bold;
+}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.pulse{animation:pulse .3s ease;}
+</style>

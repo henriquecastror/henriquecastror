@@ -1,0 +1,15 @@
+{
+  "hash": "f709123e1d704f40995292788f330063",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nparams:\n  endpoint: \"https://course-chat.hcmrtns.workers.dev/exercises/answer-key\"\n  send: true          # troque para true quando quiser enviar\n  send_id: \"\"          # ex.: \"module3_tf_q101\"\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
