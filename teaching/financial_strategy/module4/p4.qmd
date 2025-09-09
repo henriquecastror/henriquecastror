@@ -14,7 +14,7 @@ format:
     include-in-header: ../login-start.html
     include-after-body:
       - ../chat-widget.html
-      - ../threads-gate.html
+#      - ../threads-gate.html
       - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
@@ -521,7 +521,7 @@ ggplotly(p)
 </div>
 
 
-{{< include ../checkout.html >}}
+{{< include ../checkout2.html >}}
 
 
 
@@ -1067,7 +1067,6 @@ Key: *module4_num_qu2*
 
 
 
-
 ##  { background="#f7f9fc"}
 
 <div data-ticket
@@ -1079,8 +1078,8 @@ Key: *module4_num_qu2*
      data-close="2025-09-10 16:59">
 </div>
 
-
 {{< include ../checkout2.html >}}
+
 
 
 
