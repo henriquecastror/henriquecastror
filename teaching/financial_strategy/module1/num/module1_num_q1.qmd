@@ -10,6 +10,8 @@
 #| warning: false
 
 # Gerar valores aleatórios
+
+set.seed(1211)
 iinvest <- round(0.05 + runif(1, 0.001, 0.01), 3)
 ishares1 <- 1
 ishares2 <- 0.75

@@ -1,0 +1,5 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module4_tf_q102','F')" style="display: flex; align-items: center; gap: 8px;"> <input type="text" id="module4_tf_q102" name="module4_tf_q102" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> <label for="module4_tf_q102"><strong>The equity beta of a levered firm is always a good estimate of the project’s beta, regardless of the firm’s capital structure.</strong></label> </form> <div id="feedback-module4_tf_q102" class="feedback" data-status="" style="display:none;"> The sentence is FALSE. For levered firms, equity beta reflects financial leverage and is riskier than asset beta; the correct project beta requires unlevering. </div>
+
+:::

@@ -1,6 +1,7 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q1')" data-correct-answer="A">
+<form id="module1_mcq_q1"
+  onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q1')" data-correct-answer="A">
   <strong style="display: block;">Which of the following best describes a venture capital firm?</strong>
 
   <label><input type="radio" name="module1_mcq_q1" value="A"> A. A partnership that raises money to invest in young private firms</label><br>

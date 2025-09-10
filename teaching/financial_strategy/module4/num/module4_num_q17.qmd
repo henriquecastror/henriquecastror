@@ -1,0 +1,33 @@
+**Unlevered Cost of Capital**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+set.seed(17)
+E <- round(rnorm(1, mean = 70, sd = 5),1)   # equity in billions
+D <- round(rnorm(1, mean = 50, sd = 5),1)   # debt in billions
+beta_e <- rnorm(1, mean = 0.8, sd = 0.05)
+rf <- 0.025
+mkt_prem <- 0.06
+Rd <- rnorm(1, mean = 0.04, sd = 0.005)
+```
+
+
+Assume risk-free rate = `r round(rf*100,2)`% and market premium = `r round(mkt_prem*100,1)`%. Aurora Technologies wants to estimate the project’s cost of capital using Company X as a comparable.
+Company X has equity of `r E` billion with β<sub>e</sub> = `r round(beta_e,2)`, and debt of `r D` billion with average yield `r round(Rd*100,2)`%.
+
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;flex-direction:row;gap:6px;"> <label for="module4_num_q17a"><strong>1. What is Company X’s cost of equity (in %)?</strong></label> <input type="number" id="module4_num_q17a" name="module4_num_q17a" placeholder="Enter value" style="width:150px;" data-correct-answer=`r round((rf + beta_e*mkt_prem)*100,2)` data-tolerance="0.1"/> </form> <div id="feedback-module4_num_q17a" class="feedback" style="display:none;"> ✅ R<sub>e</sub> = r<sub>f</sub> + β<sub>e</sub>(r<sub>m</sub>−r<sub>f</sub>) = **`r round((rf + beta_e*mkt_prem)*100,2)`**%. </div>
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;flex-direction:row;gap:6px;"> <label for="module4_num_q17b"><strong>2. What is the unlevered cost of capital (in %)?</strong></label> <input type="number" id="module4_num_q17b" name="module4_num_q17b" placeholder="Enter value" style="width:150px;" data-correct-answer=`r round((E/(E+D))*(rf+beta_e*mkt_prem)*100 + (D/(E+D))*Rd*100,2)` data-tolerance="0.1"/> </form> <div id="feedback-module4_num_q17b" class="feedback" style="display:none;"> ✅ R<sub>u</sub> = (E/(E+D))R<sub>e</sub> + (D/(E+D))R<sub>d</sub> = **`r round((E/(E+D))*(rf+beta_e*mkt_prem)*100 + (D/(E+D))*Rd*100,2)`**%. </div>
+:::

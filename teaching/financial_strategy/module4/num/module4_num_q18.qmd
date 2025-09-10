@@ -1,0 +1,37 @@
+**Net Debt and Unlevered Beta**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+
+set.seed(18)
+E <- round(rnorm(1, mean = 450, sd = 20),0)   # equity in billions
+D <- round(rnorm(1, mean = 80, sd = 10),0)    # debt in billions
+Cash <- round(rnorm(1, mean = 30, sd = 5),0)  # cash in billions
+beta_e <- rnorm(1, mean = 1.0, sd = 0.05)
+rf <- 0.025
+mkt_prem <- 0.06
+```
+
+
+Assume risk-free rate = `r round(rf*100,2)`% and market premium = `r round(mkt_prem*100,1)`%. Aurora Technologies wants to adjust for cash holdings when estimating the risk of a comparable firm. Comparable firm data: Equity = `r E` billion, Debt = `r D` billion, Cash = `r Cash` billion, Equity beta = `r round(beta_e,2)`.
+Assume Debt beta = 0.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;flex-direction:row;gap:6px;"> <label for="module4_num_q18a"><strong>1. What is the firm’s net debt (in billions)?</strong></label> <input type="number" id="module4_num_q18a" name="module4_num_q18a" placeholder="Enter value" style="width:150px;" data-correct-answer=`r D - Cash` data-tolerance="0.1"/> </form> <div id="feedback-module4_num_q18a" class="feedback" style="display:none;"> ✅ Net debt = Debt − Cash = **`r D - Cash`**. </div>
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;flex-direction:row;gap:6px;"> <label for="module4_num_q18b"><strong>2. What is the firm’s unlevered beta?</strong></label> <input type="number" id="module4_num_q18b" name="module4_num_q18b" placeholder="Enter value" style="width:150px;" data-correct-answer=`r round((E/(E+D-Cash))*beta_e,3)` data-tolerance="0.1"/> </form> <div id="feedback-module4_num_q18b" class="feedback" style="display:none;"> ✅ β<sub>u</sub> = (E / (E + D − Cash)) × β<sub>e</sub> = **`r round((E/(E+D-Cash))*beta_e,3)`**. </div>
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex;flex-direction:row;gap:6px;"> <label for="module4_num_q18c"><strong>3. What is the cost of capital using β<sub>u</sub> (in %)?</strong></label> <input type="number" id="module4_num_q18c" name="module4_num_q18c" placeholder="Enter value" style="width:150px;" data-correct-answer=`r round((rf + (E/(E+D-Cash))*beta_e*mkt_prem)*100,2)` data-tolerance="0.1"/> </form> <div id="feedback-module4_num_q18c" class="feedback" style="display:none;"> ✅ R = r<sub>f</sub> + β<sub>u</sub>(r<sub>m</sub>−r<sub>f</sub>) = **`r round((rf + (E/(E+D-Cash))*beta_e*mkt_prem)*100,2)`**%. </div>
+:::
+
