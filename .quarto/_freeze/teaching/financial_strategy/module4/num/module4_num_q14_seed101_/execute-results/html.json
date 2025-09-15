@@ -1,0 +1,15 @@
+{
+  "hash": "24916f3ba4510501ca8436a3dd757974",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Estimating Cost of Debt from YTM\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(101)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nlibrary(webexercises)\n\ncoupon <- rnorm(1, mean = 0.05, sd = 0.005)\nytm <- rnorm(1, mean = 0.055, sd = 0.005)\ntc <- 0.34\n```\n:::\n\n\nAurora Technologies has outstanding bonds with coupon rate **4.84**% and yield-to-maturity (YTM) **5.78**%. The corporate tax rate is **34**%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q14a\"><strong>1. What is the after-tax cost of debt (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q14a\" name=\"module4_num_q14a\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=3.81 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q14a\" class=\"feedback\" style=\"display:none;\">\n✅ After-tax cost of debt = YTM × (1 − T_c) = **3.81**%.\n</div>\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

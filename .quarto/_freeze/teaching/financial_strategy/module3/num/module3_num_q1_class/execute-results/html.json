@@ -1,0 +1,15 @@
+{
+  "hash": "d5117ec326edb8d8a1fa0f0ee82903ce",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n\n**Expected Return, Variance, and Standard Deviation of a Portfolio**\n\n\n\n\n\nWhat is the **expected return** of a portfolio that invests **38.21**% in Asset&nbsp;1 (expected return = **4.5**%) and the remaining **61.79**% in Asset&nbsp;2 (expected return = **3.51**%   )?\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q1a\"><strong>1. What is the expected return of the portfolio (in %)?</strong></label>\n  <!-- Only two decimal places in the answer -->\n  <input type=\"number\" id=\"module3_num_q1a\" name=\"module3_num_q1a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=3.89 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q1a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Expected return = w₁×r₁ + w₂×r₂ = **3.89**%.\n</div>\n\n:::\n\nWhat is the **variance** of the portfolio above, given correlation **0.28**, standard deviation of Asset&nbsp;1 = **24.05**% and of Asset&nbsp;2 = **18.18**%?\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q1b\"><strong>2. What is the variance of the portfolio (in squared %)?</strong></label>\n  <!-- Only two decimal places in the answer -->\n  <input type=\"number\" id=\"module3_num_q1b\" name=\"module3_num_q1b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=2.69 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q1b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Variance = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂ = **2.69**.\n</div>\n\n:::\n\nWhat is the **standard deviation** of the portfolio above?\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q1c\"><strong>3. What is the standard deviation of the portfolio (in %)?</strong></label>\n  <!-- Only two decimal places in the answer -->\n  <input type=\"number\" id=\"module3_num_q1c\" name=\"module3_num_q1c\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=16.39 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q1c\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Standard deviation = √(variance) = **16.39**%.\n</div>\n\n:::\n\n\n\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

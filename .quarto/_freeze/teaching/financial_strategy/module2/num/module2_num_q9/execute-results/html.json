@@ -1,0 +1,15 @@
+{
+  "hash": "45fd27f1bf156f1d37de96e8ea19211b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Arithmetic vs. Geometric Average Return**\n\n\n\n\n\nA stock yielded returns of **8.69%** and **9.04%** over two consecutive years.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q9a\"><strong>1. What is the arithmetic average return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q9a\" name=\"module2_num_q9a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=8.87 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q9a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Arithmetic average return = (r1 + r2)/2 = **8.87**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q9b\"><strong>2. What is the geometric average return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q9b\" name=\"module2_num_q9b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=8.86 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q9b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Geometric average return = [(1 + r1/100) × (1 + r2/100)]¹ᐟ² − 1 = **8.86**%.\n</div>\n\n:::\n\n\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

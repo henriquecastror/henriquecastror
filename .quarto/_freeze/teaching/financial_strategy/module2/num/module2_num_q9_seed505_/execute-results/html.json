@@ -1,0 +1,15 @@
+{
+  "hash": "0f19ad2ccdc42f5277ce01afa0035222",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Arithmetic vs. Geometric Average Return**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(505)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nr1 <- rnorm(1, mean = 8, sd = 3)\nr2 <- rnorm(1, mean = 12, sd = 4)\narith_mean <- (r1 + r2) / 2\ngeo_mean   <- ((1 + r1/100) * (1 + r2/100))^(1/2) - 1\n```\n:::\n\n\nA stock yielded returns of **4.64%** and **6.87%** over two consecutive years.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q9a\"><strong>1. What is the arithmetic average return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q9a\" name=\"module2_num_q9a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=5.75 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q9a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Arithmetic average return = (r1 + r2)/2 = **5.75**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q9b\"><strong>2. What is the geometric average return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q9b\" name=\"module2_num_q9b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=5.75 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q9b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Geometric average return = [(1 + r1/100) × (1 + r2/100)]¹ᐟ² − 1 = **5.75**%.\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

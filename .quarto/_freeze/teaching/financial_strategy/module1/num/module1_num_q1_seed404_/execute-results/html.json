@@ -1,0 +1,15 @@
+{
+  "hash": "c0a572e622aa3cf332793f9986717adb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n::: {.question}\n\n**Post-money valuation and ownership**\n\n\n\n\n\n\n\n\n\nYou founded your company with **0.058 million** and received **1 million shares**.  \nYou later sold **0.75 million shares** to angel investors.  \nNow a VC wants to invest **3 million** in exchange for **2 million shares**.\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <span><strong>1. What is the post-money valuation (in million)?</strong></span>\n  <input type=\"number\" id=\"module1_num_q1a\" name=\"module1_num_q1a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=5.625 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q1a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Post-money = (Total shares) × (Price per share)  \n= (3.75) × (1.5) = **5.625 million**\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <span><strong>2. What percentage of the firm will the VC own?</strong></span>\n  <input type=\"number\" id=\"module1_num_q1b\" name=\"module1_num_q1b\" placeholder=\"Enter %\" style=\"width: 150px;\"\n         data-correct-answer=53.333 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q1b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ VC Ownership = 2 / (3.75) × 100 = **53.333%**\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <span><strong>3. What is the value of your shares (in million)?</strong></span>\n  <input type=\"number\" id=\"module1_num_q1c\" name=\"module1_num_q1c\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=1.5 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q1c\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Value = 1 × 1.5 = **1.5 million**\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

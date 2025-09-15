@@ -1,0 +1,15 @@
+{
+  "hash": "14c3a13da27ec0da902f3bc305622b49",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Realized Return and Return Breakdown**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\np1 <- rnorm(1, mean = 10, sd = 2)\np2 <- rnorm(1, mean = 10, sd = 2)\ndiv <- rnorm(1, mean = 1, sd = 0.1)\n```\n:::\n\n\nYou bought a stock one year ago for \\$**9.01 per share** and sold it today for \\$**10.56**. It paid a \\$**1.04 per share** dividend today.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q1a\"><strong>1. What was your realized return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q1a\" name=\"module2_num_q1a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=28.76 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module2_num_q1a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Realized return = (p2 − p1 + div)/p1 × 100 = **28.76**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q1b\"><strong>2. What percentage of the return came from dividend yield?</strong></label>\n  <input type=\"number\" id=\"module2_num_q1b\" name=\"module2_num_q1b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=11.53 data-tolerance=\"0.001\" />\n</form>\n\n<div id=\"feedback-module2_num_q1b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Dividend yield = div/p1 × 100 = **11.53**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q1c\"><strong>3. What percentage of the return came from capital gain?</strong></label>\n  <input type=\"number\" id=\"module2_num_q1c\" name=\"module2_num_q1c\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=17.23 data-tolerance=\"0.001\" />\n</form>\n\n<div id=\"feedback-module2_num_q1c\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Capital gain = (p2 − p1)/p1 × 100 = **17.23**%.\n</div>\n\n:::\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

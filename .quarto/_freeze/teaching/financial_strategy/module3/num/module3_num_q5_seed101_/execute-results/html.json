@@ -1,0 +1,15 @@
+{
+  "hash": "b0856e7858f9873bb5c990fdbf6d8c4d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Risk Premium and Sharpe Ratio Calculation\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(101)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nrf    <- rnorm(1, mean = 2, sd = 0.2)\nre    <- rnorm(1, mean = 8, sd = 1)\nsigma <- rnorm(1, mean = 15, sd = 2)\nrisk_premium <- re - rf\nsharpe_ratio  <- risk_premium / sigma\n```\n:::\n\n\nAn investment has an expected return of **8.55%**, a risk‑free rate of **1.93%**, and a volatility (standard deviation) of **13.65%**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n<label for=\"module3_num_q5a\"><strong>1. What is the risk premium (in %)?</strong></label>\n  <!-- Two decimal places for the risk premium -->\n  <input type=\"number\" id=\"module3_num_q5a\" name=\"module3_num_q5a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=6.62 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q5a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Risk premium = expected return − risk‑free rate = **6.62**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n<label for=\"module3_num_q5b\"><strong>2. What is the Sharpe ratio (return per unit of risk)?</strong></label>\n  <!-- Two decimal places for the Sharpe ratio -->\n  <input type=\"number\" id=\"module3_num_q5b\" name=\"module3_num_q5b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.48 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q5b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Sharpe ratio = risk premium / volatility = **0.48**.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

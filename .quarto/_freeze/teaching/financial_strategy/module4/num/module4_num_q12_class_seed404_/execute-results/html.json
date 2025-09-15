@@ -1,0 +1,15 @@
+{
+  "hash": "bef47f260d01a97b5eb24748f33919bb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\nAurora Technologies issued 10-year bonds with the following characteristics:\n\n- Yield to maturity (YTM) = 3.15%\n- Credit spread (BBB-like default rate) = 0.38%\n- Risk-free rate = 1.51%\n- Market risk premium = 7.8%\n- Estimated debt beta = 0.09\n- Expected loss rate in default = 60%\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: column; gap: 12px;\"> <div style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module4_num_q12a\"><strong>1. What is the expected return using the loss-adjusted YTM approach?</strong></label> <input type=\"number\" id=\"module4_num_q12a\" name=\"module4_num_q12a\" style=\"width: 150px;\" data-correct-answer=2.92 data-tolerance=\"0.05\" /> </div> <div style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module4_num_q12b\"><strong>2. What is the expected return using the CAPM approach?</strong></label> <input type=\"number\" id=\"module4_num_q12b\" name=\"module4_num_q12b\" style=\"width: 150px;\" data-correct-answer=2.21 data-tolerance=\"0.05\" /> </div> </form> <div id=\"feedback-module4_num_q12a\" class=\"feedback\" style=\"display:none;\"> ✅  = YTM − default rate × Loss rate = **3.15**% − **0.38**% × 0.60 = **2.92**%. </div> <div id=\"feedback-module4_num_q12b\" class=\"feedback\" style=\"display:none;\"> ✅  = R<sub>f</sub> + β × (Market risk premium) = **1.51**% + **0.09** × **7.8**% = **2.21**%. </div> \n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

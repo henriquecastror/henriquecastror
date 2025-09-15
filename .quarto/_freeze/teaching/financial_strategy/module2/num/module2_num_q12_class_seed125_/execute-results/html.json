@@ -1,0 +1,15 @@
+{
+  "hash": "6ad27fdc7873d783cd7e71d62d6f0256",
+  "result": {
+    "engine": "knitr",
+    "markdown": "### CAGR\n\n\n\n\n\nAn investment grew from **88** to **151.18** over **8** years.\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module2_num_qCAGR_class\"><strong>1. What is the CAGR (in %)?</strong>&nbsp;</label> <input type=\"number\" id=\"module2_num_qCAGR_class\" name=\"module2_num_qCAGR_class\" placeholder=\"Enter value\" style=\"width: 150px;\" data-correct-answer=7 data-tolerance=\"0.10\" /> </form> <div id=\"feedback-module2_num_qCAGR_class\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ <strong>Solution:</strong> CAGR = \\(\\big(\\frac{\\text{Final}}{\\text{Initial}}\\big)^{1/T} - 1\\). Here, \\(\\big(\\frac{151.18}{88}\\big)^{1/8} − 1 = <strong>7%</strong>. </div> \n                                                                                                                                                                  \n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

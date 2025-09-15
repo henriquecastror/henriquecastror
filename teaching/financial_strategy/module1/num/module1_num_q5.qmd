@@ -1,4 +1,6 @@
-###  Ownership After Two Funding Rounds
+::: {.question}
+
+**Ownership After Two Funding Rounds**
 
 ```{r}
 #| eval: true
@@ -46,5 +48,8 @@ Then, Series B investors contributed **`r seriesB_investment` million** and rece
 <div id="feedback-module1_num_q5b" class="feedback" data-status="" style="display:none;">
 ✅ Series A ownership = (1 - `r round(seriesB_ownership*100, 2)`%) × `r round(seriesA_pct*100,2)`% = **`r round(seriesA_pct_final*100, 2)`%**
 </div>
+
+:::
+
 
 :::

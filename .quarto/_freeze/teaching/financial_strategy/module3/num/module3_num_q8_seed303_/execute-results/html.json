@@ -1,0 +1,15 @@
+{
+  "hash": "ca25cd35abc65fd3c99074315735723b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Expected Return via CAPM\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nrf    <- rnorm(1, mean = 3, sd = 0.5)       # risk‑free rate (%)\nmrp   <- rnorm(1, mean = 6, sd = 1)         # market risk premium (%)\nbeta  <- rnorm(1, mean = 1.1, sd = 0.3)     # beta of the stock\nexp_ret <- rf + beta * mrp\n```\n:::\n\n\nThe risk‑free rate is **2.75%**, the market risk premium is **6.28%**, and the beta of the investment is **1.22**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q8a\"><strong>1. What is the expected return of the investment according to the CAPM (in %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q8a\" name=\"module3_num_q8a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=10.38 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q8a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Expected return = Rf + β × (market risk premium) = **10.38**%.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

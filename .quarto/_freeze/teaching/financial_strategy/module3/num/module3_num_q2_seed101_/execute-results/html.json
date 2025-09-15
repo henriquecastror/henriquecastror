@@ -1,0 +1,15 @@
+{
+  "hash": "bff4b4c6bcb0aec6728c056656937aef",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Portfolio Weight Calculation for Multiple Stocks\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(101)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nlibrary(webexercises)\n\n# Randomizing share prices\nprice_abt <- rnorm(1, mean = 60, sd = 8)\nprice_low <- rnorm(1, mean = 40, sd = 3)\nprice_bll <- rnorm(1, mean = 50, sd = 4)\n\n# Randomizing number of shares while ensuring total investment is consistent\ninvestment <- 20000\nshares_abt <- sample(100:300, 1)\nshares_low <- sample(100:300, 1)\nremaining_investment <- investment - (shares_abt * price_abt) - (shares_low * price_low)\nshares_bll <- round(remaining_investment / price_bll)\n\n# Compute values\nvalue_abt <- shares_abt * price_abt\nvalue_low <- shares_low * price_low\nvalue_bll <- shares_bll * price_bll\n\ntotal_value <- value_abt + value_low + value_bll\n\n# Ensure weights sum to 1\nweight_abt <- value_abt / total_value\nweight_low <- value_low / total_value\nweight_bll <- value_bll / total_value\n```\n:::\n\n\nSuppose you purchase **285** shares of Company&nbsp;A at \\$**57.39** per share, **194** shares of Company&nbsp;B at \\$**41.66** per share, and **-94** shares of Company&nbsp;C at \\$**47.3** per share.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q2a\"><strong>1. What is the weight on Company&nbsp;A in your portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q2a\" name=\"module3_num_q2a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=81.82 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q2a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Weight on Company A = value_A / total_value × 100 = **81.82**%.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

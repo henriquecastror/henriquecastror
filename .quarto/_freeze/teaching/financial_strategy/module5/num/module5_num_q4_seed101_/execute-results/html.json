@@ -1,0 +1,15 @@
+{
+  "hash": "de069d5376a4c7442466da9bdc277a46",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Cumulative Abnormal Return (CAR) Around News**\n\n\n\n\n\nA firm-specific news generates an **event-day abnormal return = 0.67%**, followed by **4 days** with an **average abnormal return of 0.13% per day**.  \n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; flex-wrap:wrap;\">\n  <label for=\"module5_num_q4a\"><strong>4a. CAR over the event window (%):</strong></label>\n  <input type=\"number\" id=\"module5_num_q4a\" name=\"module5_num_q4a\" style=\"width:200px;\"\n         data-correct-answer=1.19 data-tolerance=\"0.01\" step=\"0.01\" placeholder=\"e.g., 2.35 for 2.35%\" />\n</form>\n\n<div id=\"feedback-module5_num_q4a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>CAR logic (in %):</strong> Sum abnormal returns over the window.<br>\nCAR = AR<sub>0</sub> + ∑<sub>t&gt;0</sub> AR<sub>t</sub> = \n0.67% + 4 × 0.13% = <strong>1.19%</strong>.<br><br>\n<em>Interpretation:</em> Under semi-strong EMH, prices should adjust quickly to news.  \nA post-event drift (positive or negative) may indicate delayed reaction or under/overreaction.\n</div>\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "7dc353058b2258c160af9b3de3ce56ef",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\nTwo companies in the consumer sector present the following estimates:\n\n- Company A: volatility = 15.7%, beta = 0.17\n- Company B: volatility = 12.8%, beta = 0.6\n- Risk-free rate = 4.15%\n- Expected market return = 12.03%\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: column; gap: 12px;\"> <div style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module4_num_q13a\"><strong>1. What is the cost of equity capital for Company A?</strong></label> <input type=\"number\" id=\"module4_num_q13a\" name=\"module4_num_q13a\" style=\"width: 150px;\" data-correct-answer=5.53 data-tolerance=\"0.05\" /> </div> <div style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module4_num_q13b\"><strong>2. What is the cost of equity capital for Company B?</strong></label> <input type=\"number\" id=\"module4_num_q13b\" name=\"module4_num_q13b\" style=\"width: 150px;\" data-correct-answer=8.9 data-tolerance=\"0.05\" /> </div> </form> <div id=\"feedback-module4_num_q13a\" class=\"feedback\" style=\"display:none;\"> ✅ Company A = R<sub>f</sub> + β × (E[R<sub>m</sub>] − R<sub>f</sub>) = **4.15**% + **0.17** × (**12.03**% − **4.15**%) = **5.53**%. </div> <div id=\"feedback-module4_num_q13b\" class=\"feedback\" style=\"display:none;\"> ✅ Company B = R<sub>f</sub> + β × (E[R<sub>m</sub>] − R<sub>f</sub>) = **4.15**% + **0.6** × (**12.03**% − **4.15**%) = **8.9**%. </div> \n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

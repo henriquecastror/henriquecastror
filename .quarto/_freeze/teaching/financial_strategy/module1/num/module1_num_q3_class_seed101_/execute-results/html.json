@@ -1,0 +1,15 @@
+{
+  "hash": "383861c49ac8025a02622f7908a70cc5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Post-money valuation and VC ownership**\n\n\n\n\n\n \nYou founded a firm three years ago. You started with $0.3 million, which gave you 1.5 million shares. You later sold 1 million shares to angel investors. Now, a VC firm wants to invest $6.7 million in exchange for 3 million new shares.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 12px;\">\n  <label for=\"module1_num_q3a\"><strong>1. What is the post-money valuation (in million)?</strong></label>\n  <input type=\"number\" id=\"module1_num_q3a\" name=\"module1_num_q3a\" placeholder=\"Enter value\" style=\"width: 120px;\"\n         data-correct-answer=\"12.28\" data-tolerance=\"0.1\" />\n</form>\n<div id=\"feedback-module1_num_q3a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Post-money = Total shares × Price per share = (5.5) × (2.23) = **12.28 million**\n</div>\n:::\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 12px;\">\n  <label for=\"module1_num_q3b\"><strong>2. What percentage of the firm will the VC own?</strong></label>\n  <input type=\"number\" id=\"module1_num_q3b\" name=\"module1_num_q3b\" placeholder=\"Enter %\" style=\"width: 100px;\"\n         data-correct-answer=\"54.55\" data-tolerance=\"0.1\" />\n</form>\n<div id=\"feedback-module1_num_q3b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ VC Ownership = 3 / (5.5) × 100 = **54.55%**\n</div>\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

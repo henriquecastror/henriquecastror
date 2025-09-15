@@ -1,8 +1,8 @@
 {
-  "hash": "d33c16e7cc8bf401b0d1ed7d44e7e380",
+  "hash": "8f6a0a02464622421172cbb7f6a356d6",
   "result": {
     "engine": "knitr",
-    "markdown": "## Convertible Note with Discount\n\n\n\n\n\n**Context:**  \nYara invested in a startup using a convertible note of **$1.506 million**, with a **20% discount**.  \nWhen the company raised Series A at **$1.02 per share**, her note converted at the discounted price.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <span ><strong>1. How many shares did Yara receive upon conversion?</strong></span>\n  <input type=\"number\" id=\"module1_num_q6a\" name=\"module1_num_q6a\" placeholder=\"Shares\" style=\"width: 100px;\"\n         data-correct-answer=\"1.8455882\\times 10^{6}\" data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q6a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Shares = Note / Discounted Price = 1.506 million  / 0.816 = **1.846 million shares**\n</div>\n\n:::\n",
+    "markdown": "::: {.question}\n\n**Convertible Note with Discount**\n\n\n\n\n\n**Context:**  \nYara invested in a startup using a convertible note of **$1.541 million**, with a **20% discount**.  \nWhen the company raised Series A at **$1.39 per share**, her note converted at the discounted price.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <span ><strong>1. How many shares did Yara receive upon conversion?</strong></span>\n  <input type=\"number\" id=\"module1_num_q6a\" name=\"module1_num_q6a\" placeholder=\"Shares\" style=\"width: 100px;\"\n         data-correct-answer=\"1.3857914\\times 10^{6}\" data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q6a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Shares = Note / Discounted Price = 1.541 million  / 1.112 = **1.386 million shares**\n</div>\n\n:::\n\n\n:::",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

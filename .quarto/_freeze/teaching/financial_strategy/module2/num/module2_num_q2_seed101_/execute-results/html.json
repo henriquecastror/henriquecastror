@@ -1,0 +1,15 @@
+{
+  "hash": "f751f52d2cb9222385cf1c83e194bb92",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n::: {.question}\n\n**CAPM Cost of Capital**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(101)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nmrp <- rnorm(1, mean = 8, sd = 0.01)\nrf <- rnorm(1, mean = 5, sd = 0.01)\nbeta <- rnorm(1, mean = 0.9, sd = 0.2)\n```\n:::\n\n\nSuppose the market risk premium is **8**% and the risk‑free interest rate is **5.01**%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q2a\"><strong>1. What is the cost of capital of investing in a project with a beta of 0.77?</strong></label>\n  <input type=\"number\" id=\"module2_num_q2a\" name=\"module2_num_q2a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=11.12 data-tolerance=\"0.001\" />\n</form>\n\n<div id=\"feedback-module2_num_q2a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Cost of capital = rf + β × mrp = **11.12**.\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

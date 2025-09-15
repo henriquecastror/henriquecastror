@@ -1,0 +1,15 @@
+{
+  "hash": "45c601472dedcfefac2472e02dad4daf",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Expected Return of a Mixed Portfolio**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(101)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nrf <- rnorm(1, mean = 3, sd = 0.5)\nrm <- rnorm(1, mean = 9, sd = 1)\nw  <- runif(1, 0, 1)\n```\n:::\n\n\nSuppose you invest **25%** of your wealth in the market portfolio, which has an expected return of **9.55%**, and the remainder in the risk‑free asset, which has a return of **2.84%**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q6a\"><strong>1. What is the expected return of your portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q6a\" name=\"module2_num_q6a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=4.51 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q6a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Expected portfolio return = rm * w +  rf * (1-w)= **4.51**%.\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

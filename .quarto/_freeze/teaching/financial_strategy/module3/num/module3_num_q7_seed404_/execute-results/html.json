@@ -1,0 +1,15 @@
+{
+  "hash": "1a4ab8a784ae2f9bcce5e47d52bf1560",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Beta of a Three‑Asset Portfolio\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(404)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\n# Random weights for three assets (ensure they sum to 1)\nw1 <- runif(1, 0, 1)\nw2 <- runif(1, 0, 1 - w1)\nw3 <- 1 - w1 - w2\n# Random betas for each asset\nbeta1 <- rnorm(1, mean = 0.8, sd = 0.2)\nbeta2 <- rnorm(1, mean = 1.2, sd = 0.3)\nbeta3 <- rnorm(1, mean = 0.5, sd = 0.2)\nbeta_port <- w1 * beta1 + w2 * beta2 + w3 * beta3\n```\n:::\n\n\nYou hold a portfolio composed of three assets with betas **0.81**, **1.1**, and **0.4**, invested in proportions **78.04%**, **12.16%**, and **9.8%**, respectively.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q7a\"><strong>1. What is the beta of the portfolio?</strong></label>\n  <input type=\"number\" id=\"module3_num_q7a\" name=\"module3_num_q7a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.81 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module3_num_q7a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Portfolio beta = w₁×β₁ + w₂×β₂ + w₃×β₃ = **0.81**.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

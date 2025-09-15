@@ -1,0 +1,15 @@
+{
+  "hash": "c736bf21f84d53a56cff6e1eb236ac34",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n## WACC and Value Creation Threshold\n\n\n\n\n\nA firm has **Equity = \\$243m**, **Debt = \\$59m**, **Re = 14.3**%, **Rd = 7.6**%, **Tax = 24**%.  \nCompute the **WACC** (after tax).\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q2a\"><strong>1. WACC (in %):</strong></label>\n  <input type=\"number\" id=\"module4_num_q2a\" name=\"module4_num_q2a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=12.63 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q2a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Concept:** WACC is the **blended required return** from shareholders and debtholders, after the **interest tax shield**.  \nFormula: WACC = (E/V)·R<sub>e</sub> + (D/V)·R<sub>d</sub>·(1 − T).  \n**Your numbers:** WACC = (243/302)×14.3% + (59/302)×7.6%×(1−24%) = **12.63%**.\n</div>\n:::\n\nSuppose a project in this firm has **expected return = 14.2%**.  \nBy how many **percentage points** does the project’s return **exceed the WACC**? (This gap signals **value creation** if positive.)\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q2b\"><strong>2. Value creation gap (pp):</strong></label>\n  <input type=\"number\" id=\"module4_num_q2b\" name=\"module4_num_q2b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=1.57 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q2b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Decision rule:** If **Project Return &gt; WACC**, the project **creates value** (positive NPV under proportional scaling).  \n**Your numbers:** Gap = 14.2% − 12.63% = **1.57 pp**. A positive gap indicates the project clears the firm’s opportunity cost of capital.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

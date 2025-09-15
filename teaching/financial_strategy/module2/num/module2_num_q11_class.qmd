@@ -1,4 +1,6 @@
-### Annual Returns
+::: {.question}
+
+**Annual Returns**
 
 ```{r}
 #| eval: true
@@ -33,3 +35,4 @@ A stock paid quarterly dividends with realized returns: Q1: **`r round(RQ1*100, 
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;"> <label for="module2_num_q2b_class"><strong>2. What is the simple average of the four quarterly returns (in %)?</strong></label> <input type="number" id="module2_num_q2b_class" name="module2_num_q2b_class" placeholder="Enter value" style="width: 150px;" data-correct-answer=`r round(mean(c(RQ1, RQ2, RQ3, RQ4))*100, 2)` data-tolerance="0.01" /> </form> <div id="feedback-module2_num_q2b_class" class="feedback" data-status="" style="display:none;"> ✅ Simple average = (RQ1 + RQ2 + RQ3 + RQ4)/4 × 100 = **`r round(mean(c(RQ1, RQ2, RQ3, RQ4))*100, 2)`**%. The difference  Annual realized return − Simple average = **`r round(Rannual*100 - mean(c(RQ1, RQ2, RQ3, RQ4))*100, 2)`** p.p. </div>
 :::
 
+::: 

@@ -1,0 +1,15 @@
+{
+  "hash": "6e8b1a373879b3e14bdc1fd513d7611d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n\n**Buy-hold Return**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(202)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\np_buy  <- rnorm(1, mean = 50, sd = 5)\np_sell <- rnorm(1, mean = 55, sd = 5)\ndiv_yield <- rnorm(1, mean = 2, sd = 0.5)\n```\n:::\n\n\nYou bought a stock for \\$ **44.34** per share and sold it later for \\$  **52.8**. It paid \\$ **1.83** in dividends over the period.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q3a\"><strong>1. What was your holding period return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q3a\" name=\"module2_num_q3a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=23.2 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q3a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Holding period return = (p_sell − p_buy + div_yield)/p_buy × 100 = **23.2**%.\n</div>\n\n:::\n\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "edc2118726c48c794217e5a0379d79e8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## After-tax Cost of Debt\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(505)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nrd <- rnorm(1, mean = 0.07, sd = 0.005)\ntax <- rnorm(1, mean = 0.25, sd = 0.02)\n```\n:::\n\n\nAurora Technologies issues new bonds with a yield to maturity of **6.44**%.  \nThe corporate tax rate is **22.44**%.  \n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q9a\"><strong>1. What is the after-tax cost of debt (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q9a\" name=\"module4_num_q9a\" style=\"width: 150px;\"\n         data-correct-answer=4.99 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q9a\" class=\"feedback\" style=\"display:none;\">\n✅ After-tax cost of debt = r<sub>D</sub> × (1 – tax) = **4.99**%.  \nInterest is tax-deductible, so the effective cost of debt is lower than the nominal rate.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

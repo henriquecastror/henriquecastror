@@ -1,0 +1,15 @@
+{
+  "hash": "02a920055a6a16512aa2c07fe6193111",
+  "result": {
+    "engine": "knitr",
+    "markdown": "**Unlevered Cost of Capital**\n\n\n\n\n\n\nAssume risk-free rate = 2.5% and market premium = 6%. Aurora Technologies wants to estimate the project’s cost of capital using Company X as a comparable.\nCompany X has equity of 67.5 billion with β<sub>e</sub> = 0.82, and debt of 51.4 billion with average yield 4.03%.\n\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\"> <label for=\"module4_num_q17a\"><strong>1. What is Company X’s cost of equity (in %)?</strong></label> <input type=\"number\" id=\"module4_num_q17a\" name=\"module4_num_q17a\" placeholder=\"Enter value\" style=\"width:150px;\" data-correct-answer=7.42 data-tolerance=\"0.1\"/> </form> <div id=\"feedback-module4_num_q17a\" class=\"feedback\" style=\"display:none;\"> ✅ R<sub>e</sub> = r<sub>f</sub> + β<sub>e</sub>(r<sub>m</sub>−r<sub>f</sub>) = **7.42**%. </div>\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\"> <label for=\"module4_num_q17b\"><strong>2. What is the unlevered cost of capital (in %)?</strong></label> <input type=\"number\" id=\"module4_num_q17b\" name=\"module4_num_q17b\" placeholder=\"Enter value\" style=\"width:150px;\" data-correct-answer=5.95 data-tolerance=\"0.1\"/> </form> <div id=\"feedback-module4_num_q17b\" class=\"feedback\" style=\"display:none;\"> ✅ R<sub>u</sub> = (E/(E+D))R<sub>e</sub> + (D/(E+D))R<sub>d</sub> = **5.95**%. </div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

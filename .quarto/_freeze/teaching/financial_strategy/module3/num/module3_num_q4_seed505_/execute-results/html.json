@@ -1,0 +1,15 @@
+{
+  "hash": "3006f0f8e77b5d206fa09ec2ceaaa166",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Calculating Beta Using Covariance and Market Variance\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(505)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\ncov_am   <- rnorm(1, mean = 4, sd = 1)\nvar_mkt  <- rnorm(1, mean = 5, sd = 1)\nbeta_val <- cov_am / var_mkt\n```\n:::\n\n\nGiven that the covariance between a stock and the market is **2.88** and the variance of the market is **3.72**,\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n<label for=\"module3_num_q4a\"><strong>1. What is the beta of the stock?</strong></label>\n  <!-- Two decimal places for the beta -->\n  <input type=\"number\" id=\"module3_num_q4a\" name=\"module3_num_q4a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.77 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q4a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Beta = Cov(asset, market) / Var(market) = **0.77**.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

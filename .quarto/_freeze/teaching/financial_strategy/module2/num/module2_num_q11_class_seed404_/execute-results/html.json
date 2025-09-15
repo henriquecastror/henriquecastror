@@ -1,0 +1,15 @@
+{
+  "hash": "f23ff3aae11938c776d79f377b0da4bc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Annual Returns**\n\n\n\n\n\nA stock paid quarterly dividends with realized returns: Q1: **2.77%**, Q2: **1.56%**, Q3: **-0.82%**, and Q4: **1.99%**.\n\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module2_num_q2a_class\"><strong>1. What was the annual realized return (in %)?</strong></label> <input type=\"number\" id=\"module2_num_q2a_class\" name=\"module2_num_q2a_class\" placeholder=\"Enter value\" style=\"width: 150px;\" data-correct-answer=5.58 data-tolerance=\"0.01\" /> </form> <div id=\"feedback-module2_num_q2a_class\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ Annual realized return = ((1+RQ1) × (1+RQ2) × (1+RQ3) × (1+RQ4) − 1) × 100 = **5.58**%. </div>\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module2_num_q2b_class\"><strong>2. What is the simple average of the four quarterly returns (in %)?</strong></label> <input type=\"number\" id=\"module2_num_q2b_class\" name=\"module2_num_q2b_class\" placeholder=\"Enter value\" style=\"width: 150px;\" data-correct-answer=1.38 data-tolerance=\"0.01\" /> </form> <div id=\"feedback-module2_num_q2b_class\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ Simple average = (RQ1 + RQ2 + RQ3 + RQ4)/4 × 100 = **1.38**%. The difference  Annual realized return − Simple average = **4.21** p.p. </div>\n:::\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

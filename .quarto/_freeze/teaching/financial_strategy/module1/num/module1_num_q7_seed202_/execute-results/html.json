@@ -1,0 +1,15 @@
+{
+  "hash": "29d4f7a886c3d18fcc7978392eafa1cd",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n\n**Net Proceeds in an SEO**\n\n\n\n\n\n\nOrion AutoTech executed a seasoned equity offering (SEO) of 15 million shares at $37.94 per share.\nOf these, 6.1 million were primary (new shares issued by the company) and 8.9 million were secondary (sold by existing investors).\nAssume the underwriter charges 5.5% of the gross proceeds as an underwriting fee which is shared proportionately between the primary and secondary shares.\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;align-items:center;gap:8px;\"> <span ><strong>1. The amount of money raised by the company (in million USD) is:</strong></span> <input type=\"number\" id=\"module1_num_q7a\" name=\"module1_num_q7a\" placeholder=\"Value\" style=\"width:110px;\" data-correct-answer=\"218.7\" data-tolerance=\"0.5\" /> </form> <div id=\"feedback-module1_num_q7a\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ Net to issuer = (Primary Shares × Price) − Underwriter fee on primary = (6.1 × $37.94) − (5.5% × $231.43 million) = $231.43 million − $12.73 million = **$218.7 million**. </div> \n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;align-items:center;gap:8px;\"> <span ><strong>2. The amount of money raised by the VC (in million USD) is:</strong></span> <input type=\"number\" id=\"module1_num_q7b\" name=\"module1_num_q7b\" placeholder=\"Value\" style=\"width:110px;\" data-correct-answer=\"319.1\" data-tolerance=\"0.5\" /> </form> <div id=\"feedback-module1_num_q7b\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ Net to VCs = (Secondary Shares × Price) − Underwriter fee on secondary = (8.9 × $37.94) − (5.5% × $337.67 million) = $337.67 million − $18.57 million = **$319.1 million**. </div> \n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;align-items:center;gap:8px;\"> <span ><strong>3. The amount of money the underwriter will earn  (in million USD) is:</strong></span> <input type=\"number\" id=\"module1_num_q7c\" name=\"module1_num_q7c\" placeholder=\"Value\" style=\"width:110px;\" data-correct-answer=\"31.3\" data-tolerance=\"0.5\" /> </form> <div id=\"feedback-module1_num_q7c\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ Fee = (Total Shares × Price) × Fee Rate = (15 × $37.94) × 5.5% = $569.1 million × 5.5% = **$31.3 million**. </div> \n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

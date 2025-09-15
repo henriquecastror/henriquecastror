@@ -1,4 +1,6 @@
-##  Cumulative Abnormal Return (CAR) Around News
+::: {.question}
+
+**Cumulative Abnormal Return (CAR) Around News**
 
 ```{r}
 #| eval: true
@@ -30,4 +32,7 @@ CAR = AR<sub>0</sub> + ∑<sub>t&gt;0</sub> AR<sub>t</sub> =
 <em>Interpretation:</em> Under semi-strong EMH, prices should adjust quickly to news.  
 A post-event drift (positive or negative) may indicate delayed reaction or under/overreaction.
 </div>
+:::
+
+
 :::

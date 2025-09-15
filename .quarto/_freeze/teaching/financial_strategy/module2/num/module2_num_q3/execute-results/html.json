@@ -1,0 +1,15 @@
+{
+  "hash": "b74bd4e8d54d1f37b1936a5231d14178",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n\n**Buy-hold Return**\n\n\n\n\n\nYou bought a stock for \\$ **43.32** per share and sold it later for \\$  **55**. It paid \\$ **2.55** in dividends over the period.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q3a\"><strong>1. What was your holding period return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q3a\" name=\"module2_num_q3a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=32.86 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q3a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Holding period return = (p_sell − p_buy + div_yield)/p_buy × 100 = **32.86**%.\n</div>\n\n:::\n\n\n::: ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

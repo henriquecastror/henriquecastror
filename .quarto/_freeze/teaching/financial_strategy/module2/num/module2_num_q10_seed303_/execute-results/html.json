@@ -1,0 +1,15 @@
+{
+  "hash": "02f5871b553063b092eb3ff35476f777",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Market Risk Premium and Expected Return**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nrf   <- rnorm(1, mean = 3, sd = 0.3)\nrm   <- rnorm(1, mean = 10, sd = 0.5)\nbeta <- rnorm(1, mean = 1.2, sd = 0.3)\nmrp  <- rm - rf\nexp_ret <- rf + beta * mrp\n```\n:::\n\n\nThe risk‑free rate is **2.85%**, the expected market return is **10.14%**, and the beta of a stock is **1.32**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q10a\"><strong>1. What is the market risk premium (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q10a\" name=\"module2_num_q10a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=7.29 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q10a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Market risk premium = rm − rf = **7.29**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q10b\"><strong>2. What is the expected return of this stock (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q10b\" name=\"module2_num_q10b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=12.44 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q10b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Expected return = rf + β × (rm − rf) = **12.44**%.\n</div>\n\n:::\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

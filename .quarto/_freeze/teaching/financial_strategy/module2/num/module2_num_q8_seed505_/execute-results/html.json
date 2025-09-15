@@ -1,0 +1,15 @@
+{
+  "hash": "9689cd6ffe84e3a762f337d6e32527ba",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Compounded Annual Return from Semi‑Annual Returns**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(505)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nr1 <- rnorm(1, mean = 5, sd = 2)\nr2 <- rnorm(1, mean = 6, sd = 2)\nannual_return <- ((1 + r1/100) * (1 + r2/100) - 1) * 100\n```\n:::\n\n\nA stock returned **2.76%** in the first half of the year and **3.44%** in the second half of the year.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q8a\"><strong>1. What is the total annual return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q8a\" name=\"module2_num_q8a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=6.29 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q8a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Total annual return = (1 + r₁/100) × (1 + r₂/100) − 1 = **6.29**%.\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

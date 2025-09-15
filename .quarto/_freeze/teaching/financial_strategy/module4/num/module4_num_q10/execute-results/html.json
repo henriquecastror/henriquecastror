@@ -1,0 +1,15 @@
+{
+  "hash": "840c95bdf64252065e77448fffdb3026",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Project-specific Discount Rate\n\n\n\n\n\nAurora Technologies considers investing in a high-risk digital platform.  \n- Risk-free rate = **2.61**%  \n- Market risk premium = **5.51**%  \n- Project beta = **1.39**  \n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q10a\"><strong>1. What is the appropriate discount rate for this project (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q10a\" name=\"module4_num_q10a\" style=\"width: 150px;\"\n         data-correct-answer=10.25 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q10a\" class=\"feedback\" style=\"display:none;\">\n✅ Discount Rate = r<sub>f</sub> + β<sub>project</sub> × MRP = **10.25**%.  \nProjects with higher betas require higher discount rates to compensate investors for risk.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

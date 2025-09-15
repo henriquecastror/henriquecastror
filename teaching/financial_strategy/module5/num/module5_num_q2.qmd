@@ -1,4 +1,6 @@
-## Informed vs. Fad Followers vs. Passive: Who Earns Alpha?
+::: {.question}
+
+**Informed vs. Fad Followers vs. Passive: Who Earns Alpha?**
 
 ```{r}
 #| eval: true
@@ -92,4 +94,7 @@ E[R]<sub>F</sub> = <strong>`r ER_F_pct`%</strong> ⇒ α<sub>F</sub> = E[R]<sub>
 <strong>`r alpha_F_bp` bp</strong>.<br>
 Interpretation: informed earn positive α (skill), the <em>counterparty</em> earns negative α; the passive investor (market) earns zero α.
 </div>
+:::
+
+
 :::

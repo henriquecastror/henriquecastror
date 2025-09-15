@@ -1,4 +1,7 @@
-## CAPM Cost of Capital
+
+::: {.question}
+
+**CAPM Cost of Capital**
 
 ```{r}
 #| eval: true
@@ -24,5 +27,8 @@ Suppose the market risk premium is **`r round(mrp,2)`**% and the risk‑free int
 <div id="feedback-module2_num_q2a" class="feedback" data-status="" style="display:none;">
 ✅ Cost of capital = rf + β × mrp = **`r round(rf + beta * mrp, 2)`**.
 </div>
+
+:::
+
 
 :::

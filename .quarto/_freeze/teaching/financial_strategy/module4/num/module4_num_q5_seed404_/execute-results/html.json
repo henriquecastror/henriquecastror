@@ -1,0 +1,15 @@
+{
+  "hash": "964e2370b2a88b8e6b8997d3e1a21c76",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n## Portfolio Beta and Cost of Capital\n\n\n\n\n\nA two-asset portfolio invests **61**% in Asset A (β = 1.12) and **39**% in Asset B (β = 0.97).  \nCompute the **portfolio beta**.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q5a\"><strong>1. Portfolio beta (no units):</strong></label>\n  <input type=\"number\" id=\"module4_num_q5a\" name=\"module4_num_q5a\" placeholder=\"Enter value\" style=\"width: 160px;\"\n         data-correct-answer=1.062 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q5a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Aggregation rule:** Portfolio beta is the **value-weighted average** of component betas: β<sub>p</sub> = Σ w<sub>i</sub>β<sub>i</sub>.  \n**Your numbers:** 61%×1.12 + 39%×0.97 (scaled to weights) → **1.062**.\n</div>\n:::\n\nWith **Rf = 3**% and **Rm = 9.2**%, compute the portfolio’s **cost of capital via CAPM**.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q5b\"><strong>2. Cost of capital (in %):</strong></label>\n  <input type=\"number\" id=\"module4_num_q5b\" name=\"module4_num_q5b\" placeholder=\"Enter value\" style=\"width: 160px;\"\n         data-correct-answer=9.58 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q5b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **CAPM logic:** Required return rises with **systematic risk** (β).  \nE[R<sub>p</sub>] = R<sub>f</sub> + β<sub>p</sub>(R<sub>m</sub> − R<sub>f</sub>) = **9.58%**.  \nInterpretation: this is the portfolio’s **opportunity cost of capital**.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

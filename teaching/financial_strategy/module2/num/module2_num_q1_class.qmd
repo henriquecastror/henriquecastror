@@ -1,4 +1,7 @@
-### Return Breakdown
+::: {.question}
+
+
+**Return Breakdown**
 
 ```{r}
 #| eval: true
@@ -55,5 +58,7 @@ You bought a stock one year ago for \$**`r round(p1,2)` per share** and sold it 
 <div id="feedback-module2_num_q1c_class" class="feedback" data-status="" style="display:none;">
 ✅ Capital gain = (p2 − p1)/p1 × 100 = **`r round((p2 - p1)/p1 * 100, 2)`**%.
 </div>
+
+:::
 
 :::

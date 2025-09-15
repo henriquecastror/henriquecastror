@@ -1,0 +1,15 @@
+{
+  "hash": "48cd099c509fd021ecc87492ca912f0c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Momentum Long–Short**\n\n\n\n\n\n\nA momentum strategy buys past **winners** and shorts **losers** (equal weights). Next period: winners return **21%**, losers return **14%**; the strategy beta is **β = 0.08**.  \nAssume **R<sub>f</sub> = 4%**, **MRP = 7%**.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center; flex-wrap:wrap;\">\n  <label for=\"module5_num_q5a\"><strong>5a. Long–short return (in %):</strong></label>\n  <input type=\"number\" id=\"module5_num_q5a\" name=\"module5_num_q5a\" style=\"width:200px;\"\n         data-correct-answer=7 data-tolerance=\"0.05\" step=\"0.01\" />\n</form>\n\n<div id=\"feedback-module5_num_q5a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>Long–short return</strong><br>\nSpread = E[R]<sub>winners</sub> − E[R]<sub>losers</sub> = 21% − 14% =\n<strong>7%</strong>.\n</div>\n:::\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center; flex-wrap:wrap;\">\n  <label for=\"module5_num_q5b\"><strong>5b. CAPM required return for this portfolio (in %):</strong></label>\n  <input type=\"number\" id=\"module5_num_q5b\" name=\"module5_num_q5b\" style=\"width:260px;\"\n         data-correct-answer=4.56 data-tolerance=\"0.05\" step=\"0.01\" />\n</form>\n\n<div id=\"feedback-module5_num_q5b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>CAPM required return</strong><br>\nE[R]<sub>CAPM</sub> = R<sub>f</sub> + β × MRP = 4% + (0.08) × 7% =\n<strong>4.56%</strong>.  \nWhen β is near zero, CAPM says the expected long–short return should be close to the risk‑free rate.\n</div>\n:::\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center; flex-wrap:wrap;\">\n  <label for=\"module5_num_q5c\"><strong>5c. Alpha (in %):</strong></label>\n  <input type=\"number\" id=\"module5_num_q5c\" name=\"module5_num_q5c\" style=\"width:200px;\"\n         data-correct-answer=2.44 data-tolerance=\"0.05\" step=\"0.01\" />\n</form>\n\n<div id=\"feedback-module5_num_q5c\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>Alpha</strong><br>\nα = Realized long–short return − CAPM required = 7% − 4.56% =\n<strong>2.44%</strong>.<br>\nIf α &gt; 0 with β ≈ 0, momentum delivers returns not explained by market β → evidence of a factor or behavioral effect.\n</div>\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

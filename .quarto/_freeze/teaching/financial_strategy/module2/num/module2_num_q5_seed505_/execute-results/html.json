@@ -1,0 +1,15 @@
+{
+  "hash": "8348ee15d86380963ed2baa6e90e0515",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Average and Standard Deviation of Returns**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(505)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nreturns <- rnorm(5, mean = 8, sd = 3)\nstd_dev <- sd(returns)\n```\n:::\n\n\nThe past five annual returns of a stock were (in %): **4.64, 4.15, 1.88, 5.19, 6.47**\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q5a\"><strong>1. What was the average return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q5a\" name=\"module2_num_q5a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=4.47 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q5a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Average return = mean(returns) = **4.47**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q5b\"><strong>2. What was the standard deviation of the returns (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q5b\" name=\"module2_num_q5b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=1.68 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q5b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Standard deviation = sd(returns) = **1.68**%.\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

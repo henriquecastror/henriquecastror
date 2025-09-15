@@ -1,0 +1,15 @@
+{
+  "hash": "22b8717edb77e1acda3b49302c1c703a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Project-Specific Cost of Capital\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(404)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nlibrary(webexercises)\n\nrf <- 0.03\nbeta_project <- rnorm(1, mean = 1.2, sd = 0.1)\nrm <- 0.09\n```\n:::\n\n\nAurora Technologies is evaluating a project with beta **1.28**. Assume the risk-free rate is **3**% and the expected market return is **9**%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q13a\"><strong>1. What is the project-specific cost of equity (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q13a\" name=\"module4_num_q13a\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=10.66 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q13a\" class=\"feedback\" style=\"display:none;\">\n✅ Cost of equity (CAPM for project) = r_f + β_project (r_m − r_f) = **10.66**%.\n</div>\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "71baf24603cbf19b363acf4187f098ec",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Estimating Cost of Debt from YTM\n\n\n\n\n\nAurora Technologies has outstanding bonds with coupon rate **4.58**% and yield-to-maturity (YTM) **5.99**%. The corporate tax rate is **34**%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q14a\"><strong>1. What is the after-tax cost of debt (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q14a\" name=\"module4_num_q14a\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=3.95 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q14a\" class=\"feedback\" style=\"display:none;\">\n✅ After-tax cost of debt = YTM × (1 − T_c) = **3.95**%.\n</div>\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

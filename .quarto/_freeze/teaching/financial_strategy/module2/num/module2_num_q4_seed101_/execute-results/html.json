@@ -1,0 +1,15 @@
+{
+  "hash": "102f3c227c8346b62a35bb46f0a11096",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n\n**Total and Annualized Return Over Multiple Years**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(101)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\np1    <- rnorm(1, mean = 100, sd = 10)\np2    <- rnorm(1, mean = 130, sd = 10)\ndiv   <- rnorm(1, mean = 3, sd = 1)\nyears <- sample(1:5, 1)\n```\n:::\n\n\nYou bought a stock for \\$**96.74** per share and sold it for \\$**135.52** after **2** years. You received \\$**2.33** in dividends per year.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q4a\"><strong>1. What was your total return over the period (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q4a\" name=\"module2_num_q4a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=44.9 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q4a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Total return = (p2 − p1 + div × years)/p1 × 100 = **44.9**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q4b\"><strong>2. What was your annualized return (CAGR)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q4b\" name=\"module2_num_q4b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=20.37 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q4b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Annualized return (CAGR) = [((p2 + div × years)/p1)^(1/years) − 1] × 100 = **20.37**%.\n</div>\n\n:::\n\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

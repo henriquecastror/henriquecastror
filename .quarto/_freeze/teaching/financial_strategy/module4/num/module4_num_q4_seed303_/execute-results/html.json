@@ -1,0 +1,15 @@
+{
+  "hash": "4424de10faa07d7747f1e9faf9ec6fda",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n## Comparable Company Method: Unlever and Relever Beta\n\n\n\n\n\nA comparable firm has **β = 1.13**, **D/E = 0.44**, **tax = 31**%.  \n**(a)** Compute the **unlevered beta** for the business.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q4a\"><strong>1. Unlevered beta (no units):</strong></label>\n  <input type=\"number\" id=\"module4_num_q4a\" name=\"module4_num_q4a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.87 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module4_num_q4a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Step 1 (remove leverage):** β<sub>U</sub> = β<sub>L</sub> / [1 + (1 − T) × (D/E)] → business-only risk.  \n**Your numbers:** 1.13 / [1 + (1 − 0.31) × 0.44] = **0.87**.\n</div>\n:::\n\n**(b)** Your **target firm** will finance the project at **D/E = 0.82**. Compute the **relevered beta** to be used in CAPM.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q4b\"><strong>2. Relevered beta (no units):</strong></label>\n  <input type=\"number\" id=\"module4_num_q4b\" name=\"module4_num_q4b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=1.36 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module4_num_q4b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Step 2 (apply target leverage):** β<sub>L</sub> = β<sub>U</sub> × [1 + (1 − T) × (D/E)].  \n**Your numbers:** 0.8668 × [1 + (1 − 0.31) × 0.82] = **1.36**.  \nThis aligns the project’s risk with **your capital structure**.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

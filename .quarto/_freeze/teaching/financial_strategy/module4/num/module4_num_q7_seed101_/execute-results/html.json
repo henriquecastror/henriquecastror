@@ -1,0 +1,15 @@
+{
+  "hash": "fe6ca717d46f42343c0bc0f5e73cbc52",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Cost of Debt Capital – CAPM and Default Approach\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(101)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nrf <- rnorm(1, mean = 4, sd = 0.01)\nmrp <- rnorm(1, mean = 6, sd = 0.01)\nbeta_debt <- rnorm(1, mean = 0.10, sd = 0.01)\nytm <- rnorm(1, mean = 7, sd = 0.1)\ndefault_prob <- rnorm(1, mean = 0.5, sd = 0.01)\nloss_rate <- rnorm(1, mean = 60, sd = 1)\n```\n:::\n\n\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault(); checkNumericAnswer('module4_num_q3')\" style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module4_num_q3\"><strong>A company's bond has a beta of 0.09. The risk-free rate is 4% and the market risk premium is 6.01%. What is the expected return on debt using the CAPM?</strong></label> <input type=\"number\" id=\"module4_num_q3\" name=\"module4_num_q3\" placeholder=\"Enter value\" style=\"width: 150px;\" data-correct-answer=4.56 data-tolerance=\"0.01\" /> </form> <div id=\"feedback-module4_num_q3\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ Expected Return (CAPM) = r_f + β × MRP = **4.56**%. </div>\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault(); checkNumericAnswer('module4_num_q3b')\" style=\"display: flex; flex-direction: row; gap: 6px;\"> <label for=\"module4_num_q3b\"><strong>The bond has a Yield to Maturity (YTM) of 7.02%, probability of default of 0.5%, and expected loss given default of 61.2%. Estimate the expected return using the default method.</strong></label> <input type=\"number\" id=\"module4_num_q3b\" name=\"module4_num_q3b\" placeholder=\"Enter value\" style=\"width: 150px;\" data-correct-answer=6.71 data-tolerance=\"0.01\" /> </form> <div id=\"feedback-module4_num_q3b\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ Expected Return (Default Method) = YTM − Default Probability × Loss Rate = **6.71**%. </div>\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

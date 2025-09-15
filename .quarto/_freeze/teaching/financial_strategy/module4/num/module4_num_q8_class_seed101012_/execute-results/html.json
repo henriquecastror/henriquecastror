@@ -1,0 +1,15 @@
+{
+  "hash": "c9b301f03e151e77007bb98f9a725c0c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\nAn institutional investor holds two divisions of Aurora Technologies:  \n- Division A weight = **63.5**%, beta = **1.47**  \n- Division B weight = **36.5**%, beta = **0.63**  \n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q8a\"><strong>1. What is the overall portfolio beta?</strong></label>\n  <input type=\"number\" id=\"module4_num_q8a\" name=\"module4_num_q8a\" style=\"width: 150px;\"\n         data-correct-answer=1.16 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q8a\" class=\"feedback\" style=\"display:none;\">\n✅ Portfolio Beta = w<sub>A</sub>β<sub>A</sub> + w<sub>B</sub>β<sub>B</sub> = **1.16**.  \nThis shows how different risk exposures combine in a weighted portfolio.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

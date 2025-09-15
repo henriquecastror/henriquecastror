@@ -1,0 +1,15 @@
+{
+  "hash": "942b0d91676019078cc169f3c530b895",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Relevering Beta – Aurora Technologies\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(505)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nlibrary(webexercises)\nbeta_asset <- rnorm(1, mean = 0.8, sd = 0.05)\nde_ratio <- rnorm(1, mean = 1.2, sd = 0.2)\ntax_rate <- rnorm(1, mean = 0.30, sd = 0.02)\n```\n:::\n\n\nAurora Technologies has an asset beta of **0.74**.  \nIts debt-to-equity ratio is **0.94**, and the corporate tax rate is **25.92**%.  \n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q6a\"><strong>1. What is the equity beta of Aurora Technologies?</strong></label>\n  <input type=\"number\" id=\"module4_num_q6a\" name=\"module4_num_q6a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=1.26 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q6a\" class=\"feedback\" style=\"display:none;\">\n✅ Equity Beta = β<sub>A</sub> × [1 + (1 – tax) × D/E] = **1.26**.  \nThis accounts for financial leverage amplifying the risk borne by equity holders.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

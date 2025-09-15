@@ -1,0 +1,15 @@
+{
+  "hash": "149e2ac178417dc2388d9d71ec80f578",
+  "result": {
+    "engine": "knitr",
+    "markdown": "**Project Cost of Capital with Comparable Firm**\n\n\n\n\n\nAurora Technologies is evaluating a new project. The closest comparable firm (all-equity financed) has an equity beta of 1.14.\nThe risk-free rate is 2.5% and the expected market risk premium is 6.5%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\"> <label for=\"module4_num_q16a\"><strong>1. What is the project’s cost of capital (in %)?</strong></label> <input type=\"number\" id=\"module4_num_q16a\" name=\"module4_num_q16a\" placeholder=\"Enter value\" style=\"width:150px;\" data-correct-answer=9.94 data-tolerance=\"0.1\"/> </form> <div id=\"feedback-module4_num_q16a\" class=\"feedback\" style=\"display:none;\"> ✅ Cost of capital = r<sub>f</sub> + β × (Market premium) = **9.94**%. </div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

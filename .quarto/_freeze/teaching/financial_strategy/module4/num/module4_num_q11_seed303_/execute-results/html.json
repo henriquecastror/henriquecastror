@@ -1,0 +1,15 @@
+{
+  "hash": "a06fa4c95311250abbb8cc16d058a2a4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## CAPM and Cost of Equity for Aurora Technologies\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nlibrary(webexercises)\n\nrf <- rnorm(1, mean = 0.03, sd = 0.005)\nbeta <- rnorm(1, mean = 1.4, sd = 0.1)\nrm <- rnorm(1, mean = 0.09, sd = 0.01)\n```\n:::\n\n\nAurora Technologies’ equity beta is **1.43**. The risk-free rate is **2.75**% and the expected market return is **9.38**%.  \n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q11a\"><strong>1. What is the expected cost of equity (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q11a\" name=\"module4_num_q11a\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=12.22 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q11a\" class=\"feedback\" style=\"display:none;\">\n✅ According to CAPM: rₑ = r_f + β (r_m − r_f) = **12.22**%.\n</div>\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

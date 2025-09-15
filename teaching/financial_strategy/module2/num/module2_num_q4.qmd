@@ -1,4 +1,7 @@
-## Total and Annualized Return Over Multiple Years
+::: {.question}
+
+
+**Total and Annualized Return Over Multiple Years**
 
 ```{r}
 #| eval: true
@@ -39,5 +42,9 @@ You bought a stock for \$**`r round(p1,2)`** per share and sold it for \$**`r ro
 <div id="feedback-module2_num_q4b" class="feedback" data-status="" style="display:none;">
 ✅ Annualized return (CAGR) = [((p2 + div × years)/p1)^(1/years) − 1] × 100 = **`r round((((p2 + div * years) / p1)^(1/years) - 1) * 100, 2)`**%.
 </div>
+
+:::
+
+
 
 :::

@@ -1,0 +1,15 @@
+{
+  "hash": "adce0f41f8044b455a13779aed062b6a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Portfolio Beta and Required Return\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nlibrary(webexercises)\n\nbeta1 <- rnorm(1, mean = 1.1, sd = 0.1)\nbeta2 <- rnorm(1, mean = 0.8, sd = 0.1)\nw1 <- rnorm(1, mean = 0.6, sd = 0.1)\nw2 <- 1 - w1\nrf <- 0.03\nrm <- 0.09\n```\n:::\n\n\nAurora Technologies considers a portfolio of two divisions: Division A (β = **1.05**) with weight **63.8**% and Division B (β = **0.83**) with weight **36.2**%. The risk-free rate is **3**% and the expected market return is **9**%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q15a\"><strong>1. What is the portfolio beta?</strong></label>\n  <input type=\"number\" id=\"module4_num_q15a\" name=\"module4_num_q15a\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=0.97 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q15a\" class=\"feedback\" style=\"display:none;\">\n✅ Portfolio beta = w₁β₁ + w₂β₂ = **0.97**.\n</div>\n\n::: \n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q15b\"><strong>2. What is the required return of this portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q15b\" name=\"module4_num_q15b\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=8.82 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q15b\" class=\"feedback\" style=\"display:none;\">\n✅ Required return = r_f + β_p (r_m − r_f) = **8.82**%.\n</div>\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

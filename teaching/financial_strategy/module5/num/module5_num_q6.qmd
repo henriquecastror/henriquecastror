@@ -1,4 +1,6 @@
-## Fama–French–Carhart Expected Return and Factor Contributions
+::: {.question}
+
+**Fama–French–Carhart Expected Return and Factor Contributions**
 
 ```{r}
 #| eval: true
@@ -76,4 +78,7 @@ E[R] = R<sub>f</sub> + β<sub>MKT</sub>·MKT + β<sub>SMB</sub>·SMB + β<sub>HM
 Contribution = β<sub>Mom</sub> × Mom = (`r beta_mom`) × `r round(100*prem_mom,2)`% =
 <strong>`r c_mom_pct`%</strong>.
 </div>
+:::
+
+
 :::

@@ -1,0 +1,15 @@
+{
+  "hash": "f48f06da3e77f0d5b2d6a87a0deb6938",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Skill, Fees, and Equilibrium AUM **\n\n\n\n\n\nA manager can generate **α = 2.1%** per year up to **$366m** of capital; above that, incremental α ≈ 0.  \nThe fund charges **0.6%** on total AUM. Assume investors flock in until **net α = 0**.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center; flex-wrap:wrap;\">\n  <label for=\"module5_num_q3a\"><strong>3a. Equilibrium AUM (in $ millions):</strong></label>\n  <input type=\"number\" id=\"module5_num_q3a\" name=\"module5_num_q3a\" style=\"width:220px;\"\n         data-correct-answer=1281 data-tolerance=\"1\" step=\"1\" />\n</form>\n\n<div id=\"feedback-module5_num_q3a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>Equilibrium AUM</strong><br>\nDollar alpha at capacity: α × capacity = 2.1% × $366m = \n<strong>$7.69m</strong> per year.<br>\nAt equilibrium, investors add capital until **dollar α = fees**:<br>\nfee × AUM = 0.6% × AUM = $7.69m ⇒ \nAUM = $1281m (rounded).\n</div>\n:::\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center; flex-wrap:wrap;\">\n  <label for=\"module5_num_q3b\"><strong>3b. Annual fee revenue at equilibrium (in $ millions):</strong></label>\n  <input type=\"number\" id=\"module5_num_q3b\" name=\"module5_num_q3b\" style=\"width:240px;\"\n         data-correct-answer=7.69 data-tolerance=\"0.1\" step=\"0.01\" />\n</form>\n\n<div id=\"feedback-module5_num_q3b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>Fee revenue at equilibrium</strong><br>\nFee revenue = fee × AUM = 0.6% × $1281m = \n<strong>$7.69m</strong> per year.<br>\nNotice this equals the manager’s **dollar α at capacity**: $7.69m.  \nIntuition: competition drives **net α to investors ≈ 0**; skilled managers capture the rents via fees.\n</div>\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

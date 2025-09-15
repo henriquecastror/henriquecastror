@@ -1,0 +1,15 @@
+{
+  "hash": "f6bd93bbf7de13d1a15e928d3887c33a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Market Risk Premium and Expected Return**\n\n\n\n\n\nThe risk‑free rate is **3.51%**, the expected market return is **9.7%**, and the beta of a stock is **1.31**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q10a\"><strong>1. What is the market risk premium (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q10a\" name=\"module2_num_q10a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=6.19 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q10a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Market risk premium = rm − rf = **6.19**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q10b\"><strong>2. What is the expected return of this stock (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q10b\" name=\"module2_num_q10b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=11.61 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q10b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Expected return = rf + β × (rm − rf) = **11.61**%.\n</div>\n\n:::\n\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "7ddbf8ef9bf2dae71674caf4de6f8e3e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Variance and Volatility of a Three‑Asset Portfolio\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(505)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\n# Random weights summing to 1\nw1 <- runif(1, 0, 1)\nw2 <- runif(1, 0, 1 - w1)\nw3 <- 1 - w1 - w2\n# Volatilities (% per year)\nsd1 <- rnorm(1, mean = 15, sd = 3)\nsd2 <- rnorm(1, mean = 20, sd = 4)\nsd3 <- rnorm(1, mean = 25, sd = 5)\n# Correlations between assets\nrho12 <- runif(1, -0.2, 0.8)\nrho13 <- runif(1, -0.2, 0.8)\nrho23 <- runif(1, -0.2, 0.8)\n# Compute variance and standard deviation (squared %)\nvar_port <- w1^2 * sd1^2 + w2^2 * sd2^2 + w3^2 * sd3^2 + 2*w1*w2*sd1*sd2*rho12 + 2*w1*w3*sd1*sd3*rho13 + 2*w2*w3*sd2*sd3*rho23\nsd_port <- sqrt(var_port)\n```\n:::\n\n\nYou invest **13.11%**, **43.79%**, and **43.1%** of your funds in three assets with volatilities **11.15%**, **11.84%**, and **20.31%**, respectively. The pairwise correlations are ρ₁₂ = **0.1**, ρ₁₃ = **0.1**, and ρ₂₃ = **0.14**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q9a\"><strong>1. What is the variance of the portfolio?</strong></label>\n  <input type=\"number\" id=\"module3_num_q9a\" name=\"module3_num_q9a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=122.65 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q9a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Variance = Σwᵢ²σᵢ² + 2Σ wᵢwⱼσᵢσⱼρᵢⱼ = **122.65**.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q9b\"><strong>2. What is the standard deviation of the portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q9b\" name=\"module3_num_q9b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=11.07 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q9b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Standard deviation = √(variance) = **11.07**%.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

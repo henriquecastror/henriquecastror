@@ -1,4 +1,7 @@
-### Expected Return, Variance, and Standard Deviation of a Portfolio
+::: {.question}
+
+
+**Expected Return, Variance, and Standard Deviation of a Portfolio**
 
 ```{r}
 #| eval: true
@@ -69,5 +72,9 @@ What is the **standard deviation** of the portfolio above?
 <div id="feedback-module3_num_q1c" class="feedback" data-status="" style="display:none;">
 ✅ Standard deviation = √(variance) = **`r round(sqrt(w1^2 * sigma1^2 + w2^2 * sigma2^2 + 2*w1*w2*correl*sigma1*sigma2) * 100, 2)`**%.
 </div>
+
+:::
+
+
 
 :::

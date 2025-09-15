@@ -1,0 +1,15 @@
+{
+  "hash": "6733f7534ff5081ae8d0e89d92f024b2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n\n**Portfolio Return from Two Stocks**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nw1 <- runif(1, 0, 1)\nrA <- rnorm(1, mean = 8, sd = 3)\nrB <- rnorm(1, mean = 6, sd = 2)\nport_return <- w1 * rA + (1 - w1) * rB\n```\n:::\n\n\nYou invested **31%** of your capital in Stock&nbsp;A, which returned **10.92%**, and the remainder in Stock&nbsp;B, which returned **7.29%**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q7a\"><strong>1. What is your portfolio's return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q7a\" name=\"module2_num_q7a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=8.41 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q7a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Portfolio return = w×rA + (1 − w)×rB = **8.41**%.\n</div>\n\n:::\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

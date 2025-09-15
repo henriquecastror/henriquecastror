@@ -1,0 +1,15 @@
+{
+  "hash": "0f4a620cb67f54eceed5afd9f43b260d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Valuation and Ownership After Equity Issuance**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(202)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\n\n# Valores aleatórios\nfounder_shares <- 4\npartner_investment <- round(runif(1, 1.5, 2.5), 3)\npartner_shares <- 1.5\nshare_price <- round(partner_investment / partner_shares, 3)\ntotal_shares <- founder_shares + partner_shares\npost_money <- round(total_shares * share_price, 3)\npartner_pct <- round((partner_shares / total_shares) * 100, 3)\n```\n:::\n\n\nErica owns all **4 million shares** of her company, CoralTech. A new partner is offering to invest **1.629 million** in exchange for **1.5 million shares**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <span ><strong>1. What is the post-money valuation (in million)?</strong></span>\n  <input type=\"number\" id=\"module1_num_q4a\" name=\"module1_num_q4a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=\"5.973\" data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q4a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Post-money = (5.5) shares × $1.086 (1.629/ 1.5) = **5.973 million**\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <span ><strong>2. What percentage of the company will the new partner own?</strong></span>\n  <input type=\"number\" id=\"module1_num_q4b\" name=\"module1_num_q4b\" placeholder=\"Enter %\" style=\"width: 150px;\"\n         data-correct-answer=\"27.273\" data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q4b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Partner Ownership = 1.5 / 5.5 × 100 = **27.273%**\n</div>\n\n:::\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

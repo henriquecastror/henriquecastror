@@ -1,4 +1,6 @@
-### Valuation and Ownership After Equity Issuance
+::: {.question}
+
+**Valuation and Ownership After Equity Issuance**
 
 ```{r}
 #| eval: true
@@ -43,5 +45,7 @@ Erica owns all **`r founder_shares` million shares** of her company, CoralTech. 
 <div id="feedback-module1_num_q4b" class="feedback" data-status="" style="display:none;">
 ✅ Partner Ownership = `r partner_shares` / `r founder_shares + partner_shares` × 100 = **`r partner_pct`%**
 </div>
+
+:::
 
 :::

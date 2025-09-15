@@ -1,4 +1,6 @@
-## Skill, Fees, and Equilibrium AUM 
+::: {.question}
+
+**Skill, Fees, and Equilibrium AUM **
 
 ```{r}
 #| eval: true
@@ -56,4 +58,7 @@ Fee revenue = fee × AUM = `r fee_pct`% × $`r AUM_eq_m`m =
 Notice this equals the manager’s **dollar α at capacity**: $`r round(alpha_dollars/1e6,2)`m.  
 Intuition: competition drives **net α to investors ≈ 0**; skilled managers capture the rents via fees.
 </div>
+:::
+
+
 :::

@@ -1,0 +1,15 @@
+{
+  "hash": "6cd0e618ea4d0e74474404559a66bc22",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Project-specific Discount Rate\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nrf <- rnorm(1, mean = 0.03, sd = 0.005)\nmrp <- rnorm(1, mean = 0.06, sd = 0.005)\nbeta_proj <- rnorm(1, mean = 1.4, sd = 0.1)\n```\n:::\n\n\nAurora Technologies considers investing in a high-risk digital platform.  \n- Risk-free rate = **2.75**%  \n- Market risk premium = **6.14**%  \n- Project beta = **1.44**  \n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q10a\"><strong>1. What is the appropriate discount rate for this project (in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q10a\" name=\"module4_num_q10a\" style=\"width: 150px;\"\n         data-correct-answer=11.58 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module4_num_q10a\" class=\"feedback\" style=\"display:none;\">\n✅ Discount Rate = r<sub>f</sub> + β<sub>project</sub> × MRP = **11.58**%.  \nProjects with higher betas require higher discount rates to compensate investors for risk.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -3,23 +3,9 @@
 
 <script>
   // ===== Allowlist (inclui professor) =====
-  const CHAT_ALLOWLIST = new Set([
-    'hcm', // professor
-    'aula',
-    'aluno5',
-    'bruno_pereira',
-    'josé_allocca',
-    'ana_santos',
-    'eduardo_senedese',
-    'vanessa_meieler',
-    'leonardo_derviche',
-    'joão_coghi',
-    'luisa_fernandes',
-    'laura_nakama',
-    'ludmilla_moraes',
-    // variantes sem acento (robustez)
-    'jose_allocca', 'joao_coghi'
-  ]);
+//  const CHAT_ALLOWLIST = new Set([
+//    'hcm','aula','aluno5','bruno_pereira','josé_allocca','ana_santos','eduardo_senedese','vanessa_meieler', 'leonardo_derviche','joão_coghi','luisa_fernandes','laura_nakama','ludmilla_moraes','jose_allocca', 'joao_coghi'
+//  ]);
 
   const stripDiacritics = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const normalizeLogin  = s => {
@@ -45,11 +31,15 @@
     return '';
   }
 
-  function isAllowed(){
-    const user  = getCurrentUser();
-    const ascii = stripDiacritics(user);
-    return CHAT_ALLOWLIST.has(user) || CHAT_ALLOWLIST.has(ascii);
-  }
+//  function isAllowed(){
+//    const user  = getCurrentUser();
+//    const ascii = stripDiacritics(user);
+//    return CHAT_ALLOWLIST.has(user) || CHAT_ALLOWLIST.has(ascii);}
+
+
+// threads-gate.html
+function isAllowed(){ return true } // libera para todos
+
 
   // Injeta o conteúdo do template apenas se permitido
 

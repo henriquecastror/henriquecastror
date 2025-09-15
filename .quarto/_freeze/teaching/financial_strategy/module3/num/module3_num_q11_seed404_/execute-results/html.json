@@ -1,0 +1,15 @@
+{
+  "hash": "31098dc66ddba9b9abdead75bdaedafa",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Sharpe Calculation\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(404)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nrf    <- rnorm(1, mean = 2, sd = 0.2)\nre    <- rnorm(1, mean = 8, sd = 1)\nsigma <- rnorm(1, mean = 15, sd = 2)\nrisk_premium <- re - rf\nsharpe_ratio  <- risk_premium / sigma\n```\n:::\n\n\nAn investment has an expected return of **8.06%**, a risk‑free rate of **2.15%**, and a volatility (standard deviation) of **14.37%**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q11a\"><strong>1. What is the risk premium (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q11a\" name=\"module2_num_q11a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=5.9 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module2_num_q11a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Risk premium = expected return − risk‑free rate = **5.9**%.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q11b\"><strong>2. What is the Sharpe ratio?</strong></label>\n  <input type=\"number\" id=\"module2_num_q11b\" name=\"module2_num_q11b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.411 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q11b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Sharpe ratio = risk premium / volatility = **0.411**.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

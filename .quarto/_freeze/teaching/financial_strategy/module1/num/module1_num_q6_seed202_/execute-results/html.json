@@ -1,0 +1,15 @@
+{
+  "hash": "0cb79f2eeaabfc4d92311ea662e33fc8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Convertible Note with Discount**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(202)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\n\nnote_value <- round(runif(1, 1.4, 1.6), 3)        # Valor da nota\ndiscount <- 0.2                                   # Desconto de 20%\nseries_price <- round(runif(1, 1.0, 2.0), 2)       # Preço por ação na série\nconv_price <- round(series_price * (1 - discount), 3)  # Preço com desconto\nnew_shares <- round(note_value * 1000000 / conv_price, 3)\n```\n:::\n\n\n**Context:**  \nYara invested in a startup using a convertible note of **$1.426 million**, with a **20% discount**.  \nWhen the company raised Series A at **$1.67 per share**, her note converted at the discounted price.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <span ><strong>1. How many shares did Yara receive upon conversion?</strong></span>\n  <input type=\"number\" id=\"module1_num_q6a\" name=\"module1_num_q6a\" placeholder=\"Shares\" style=\"width: 100px;\"\n         data-correct-answer=\"1.0673653\\times 10^{6}\" data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module1_num_q6a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Shares = Note / Discounted Price = 1.426 million  / 1.336 = **1.067 million shares**\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -14,8 +14,8 @@ format:
     include-in-header: ../login-start.html
     include-after-body:
       - ../chat-widget.html
-#      - ../comnents.html
-      - ../ranking-widget.html
+      - ../threads-gate.html
+      - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
     controls: true
@@ -83,7 +83,7 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 
 💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
 
-{{< include ../like-button.html >}}
+{{< include ../like-button2.html >}}
 
 :::
 
@@ -475,11 +475,6 @@ Key: *module1_slide2*
 
 {{< include "num/module1_num_q3_class.qmd" >}}
 
-```{=html}
-<!-- <div style="text-align: right;">
-{{< include "../quiz-utils.html" >}}
-</div> -->
-```
 
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
@@ -835,19 +830,6 @@ Key: *module1_question3*
 {{< include "../quiz-utils.html" >}}
 </div>
 
-```{=html}
-<!-- <div style="text-align: right;">
-
-<div style="text-align: right;">
-{{< include "../quiz-utils.html" >}}
-</div>
-
-
-<div class="enable-timer" data-timer="60" data-pin="1234"></div>
-
-
-</div> -->
-```
 
 
 

@@ -1,4 +1,6 @@
-## Convertible Note with Discount
+::: {.question}
+
+**Convertible Note with Discount**
 
 ```{r}
 #| eval: true
@@ -28,5 +30,8 @@ When the company raised Series A at **$`r series_price` per share**, her note co
 <div id="feedback-module1_num_q6a" class="feedback" data-status="" style="display:none;">
 ✅ Shares = Note / Discounted Price = `r note_value` million  / `r conv_price` = **`r  round(new_shares  / 1000000,3)` million shares**
 </div>
+
+:::
+
 
 :::

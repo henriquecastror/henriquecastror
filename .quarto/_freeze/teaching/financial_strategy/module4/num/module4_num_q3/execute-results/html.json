@@ -1,0 +1,15 @@
+{
+  "hash": "5b9ff13f375dce586d442158dacde73f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n## Cost of Debt: YTM and After-Tax Adjustment\n\n\n\n\n\nA bond with face value \\$1000, **coupon rate = 6.9**% (annual), **price = \\$936**, and **maturity = 5** years.  \nCompute the **approximate YTM**.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q3a\"><strong>1. Approximate YTM (in %):</strong></label>\n  <input type=\"number\" id=\"module4_num_q3a\" name=\"module4_num_q3a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=8.45 data-tolerance=\"0.05\" />\n</form>\n\n<div id=\"feedback-module4_num_q3a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Idea:** The YTM is the bondholder’s **required return** if coupons are reinvested at the same rate.  \nA handy approximation is: YTM ≈ (Coupon + (FV − Price)/n) ÷ ((FV + Price)/2).  \n**Your numbers:** ≈ (69 + (1000 − 936)/5) ÷ ((1000 + 936)/2) = **8.45%**.\n</div>\n:::\n\nIf the **corporate tax rate** is **31**%, compute the **after-tax cost of debt**.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q3b\"><strong>2. After-tax cost of debt (in %):</strong></label>\n  <input type=\"number\" id=\"module4_num_q3b\" name=\"module4_num_q3b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=5.83 data-tolerance=\"0.05\" />\n</form>\n\n<div id=\"feedback-module4_num_q3b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Why lower after tax?** Interest is tax-deductible, so the effective cost is **Rd × (1 − T)**.  \n**Your numbers:** 8.45% × (1 − 31%) = **5.83%**.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

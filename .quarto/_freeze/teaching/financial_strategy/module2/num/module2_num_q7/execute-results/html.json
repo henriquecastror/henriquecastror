@@ -1,0 +1,15 @@
+{
+  "hash": "0b7cd7687651c8c4206445c9111cb94d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n\n**Portfolio Return from Two Stocks**\n\n\n\n\n\nYou invested **27.3%** of your capital in Stock&nbsp;A, which returned **11.04%**, and the remainder in Stock&nbsp;B, which returned **6.27%**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module2_num_q7a\"><strong>1. What is your portfolio's return (in %)?</strong></label>\n  <input type=\"number\" id=\"module2_num_q7a\" name=\"module2_num_q7a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=7.57 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module2_num_q7a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Portfolio return = w×rA + (1 − w)×rB = **7.57**%.\n</div>\n\n:::\n\n::: ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

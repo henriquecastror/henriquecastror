@@ -1,4 +1,6 @@
-## Arithmetic vs. Geometric Average Return
+::: {.question}
+
+**Arithmetic vs. Geometric Average Return**
 
 ```{r}
 #| eval: true
@@ -39,5 +41,8 @@ A stock yielded returns of **`r round(r1,2)`%** and **`r round(r2,2)`%** over tw
 <div id="feedback-module2_num_q9b" class="feedback" data-status="" style="display:none;">
 ✅ Geometric average return = [(1 + r1/100) × (1 + r2/100)]¹ᐟ² − 1 = **`r round(geo_mean * 100, 2)`**%.
 </div>
+
+:::
+
 
 :::

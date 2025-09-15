@@ -14,8 +14,8 @@ format:
     include-in-header: ../login-start.html
     include-after-body:
       - ../chat-widget.html
-#      - ../comnents.html
-      - ../ranking-widget.html
+      - ../threads-gate.html
+      - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
     controls: true
@@ -82,6 +82,37 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
 
 :::
+
+
+
+
+
+
+##  {.smaller  background="#FFFFFF"}
+
+::: {style="font-size: 40%; text-align: right;"}
+Key: *module4_num_qu2*
+<input type="hidden" 
+       id="slide-id" 
+       value="module4_num_qu2"
+       data-open="2025-09-08 16:00"
+       data-close="2025-09-08 16:59">
+:::
+
+{{< include "../submit-to-sheets2.html" >}}
+
+::: panel-tabset
+
+# (1)
+
+{{< include "num/module5_num_q1.qmd" >}}
+
+:::   
+
+
+
+
+
 
 
 
@@ -372,6 +403,17 @@ If naive investors trade too often, they should get lower returns due to trading
 - If individuals depart from the CAPM in random ways, then these departures will tend to cancel out.
 - These naive investors might only be trading erratically, thus not really affecting the market
 - **A defeat to CAPM occurs  if investors depart from the market portfolio more consistently and more predictably**.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1112,9 +1154,40 @@ So, given the evidence against and for the CAPM, and market efficiency, is the c
 
 
 
-# Now it is your turn... {.smaller background="#191f36"}
 
  
+
+
+
+
+## Now it is your turn... {.smaller background="#191f36"}
+
+<div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module5/p5tf.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    ✅ True / False Questions
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module5/p5num.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    🔢 Numeric Questions
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module5/p5mcq.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    📝 Multiple Choice
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module5/p5long.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    ✍️ Long-form Answers
+  </a>
+
+</div>
+
+
+
 
 
 

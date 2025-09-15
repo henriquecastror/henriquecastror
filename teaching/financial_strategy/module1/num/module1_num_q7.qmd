@@ -1,5 +1,7 @@
+::: {.question}
 
-### Net Proceeds in an SEO
+
+**Net Proceeds in an SEO**
 
 ```{r}
 #| eval: true
@@ -8,7 +10,7 @@
 #| warning: false
 
 # -------- Randomização (valores em "milhões de ações" e USD por ação) --------
-set.seed(NULL)
+set.seed(4587)
 total_shares <- sample(8:16, 1)                        # milhões (total no SEO)
 price_per_share <- round(runif(1, 28, 55), 2)          # USD por ação
 fee_rate <- sample(c(0.03, 0.035, 0.04, 0.045, 0.05, 0.055, 0.06), 1)
@@ -57,5 +59,8 @@ Assume the underwriter charges `r fee_rate_pct`% of the gross proceeds as an und
 ::: {.question-block}
 
 <form onsubmit="event.preventDefault();" style="display:flex;align-items:center;gap:8px;"> <span ><strong>3. The amount of money the underwriter will earn  (in million USD) is:</strong></span> <input type="number" id="module1_num_q7c" name="module1_num_q7c" placeholder="Value" style="width:110px;" data-correct-answer="`r round(total_fee, 1)`" data-tolerance="0.5" /> </form> <div id="feedback-module1_num_q7c" class="feedback" data-status="" style="display:none;"> ✅ Fee = (Total Shares × Price) × Fee Rate = (`r total_shares` × $`r price_per_share`) × `r fee_rate_pct`% = $`r round(gross_total, 2)` million × `r fee_rate_pct`% = **$`r round(total_fee, 1)` million**. </div> 
+
+:::
+
 
 :::

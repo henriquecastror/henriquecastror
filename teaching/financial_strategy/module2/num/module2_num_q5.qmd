@@ -1,4 +1,6 @@
-## Average and Standard Deviation of Returns
+::: {.question}
+
+**Average and Standard Deviation of Returns**
 
 ```{r}
 #| eval: true
@@ -36,5 +38,8 @@ The past five annual returns of a stock were (in %): **`r round(returns, 2)`**
 <div id="feedback-module2_num_q5b" class="feedback" data-status="" style="display:none;">
 ✅ Standard deviation = sd(returns) = **`r round(std_dev, 2)`**%.
 </div>
+
+:::
+
 
 :::

@@ -1,0 +1,15 @@
+{
+  "hash": "673f0eeddb5eb2f83f9a2380ac016e65",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n## Unlevered Beta and CAPM (Using Business Risk Only)\n\n\n\n\n\nA firm has **levered beta = 1.31**, **D/E = 0.7**, **tax rate = 25**%.  \nWhat is its **unlevered (asset) beta**? (Use the standard formula removing leverage.)\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q1a\"><strong>1. Unlevered beta (no units):</strong></label>\n  <input type=\"number\" id=\"module4_num_q1a\" name=\"module4_num_q1a\" placeholder=\"Enter value\" style=\"width: 160px;\"\n         data-correct-answer=0.86 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module4_num_q1a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **Why this is the answer:** Unlevered beta measures **business risk only** (no financial leverage).  \nWe “strip out” leverage using: β<sub>U</sub> = β<sub>L</sub> / [1 + (1 – T) × (D/E)].  \nThis lets us compare firms **on operating risk**, independent of capital structure.  \n**Your numbers:** β<sub>U</sub> = 1.31 / [1 + (1 − 0.25) × 0.7] = **0.86**.\n</div>\n:::\n\nIf the **risk-free rate** is **4**% and the **expected market return** is **9**%, what is the **expected return using CAPM with the unlevered beta**?\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module4_num_q1b\"><strong>2. Expected return (in %):</strong></label>\n  <input type=\"number\" id=\"module4_num_q1b\" name=\"module4_num_q1b\" placeholder=\"Enter value\" style=\"width: 160px;\"\n         data-correct-answer=8.3 data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module4_num_q1b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ **CAPM intuition:** Investors require compensation for time value (**Rf**) and for bearing market risk (**β × MRP**).  \nWe use the **unlevered beta** to price the **business risk** without leverage:  \nE[R] = R<sub>f</sub> + β<sub>U</sub> × (R<sub>m</sub> − R<sub>f</sub>) = **8.3%**.  \nThis gives a **baseline cost of equity** for the project/asset **before** financing effects.\n</div>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,4 +1,6 @@
-## Market Risk Premium and Expected Return
+::: {.question}
+
+**Market Risk Premium and Expected Return**
 
 ```{r}
 #| eval: true
@@ -40,5 +42,7 @@ The risk‑free rate is **`r round(rf,2)`%**, the expected market return is **`r
 <div id="feedback-module2_num_q10b" class="feedback" data-status="" style="display:none;">
 ✅ Expected return = rf + β × (rm − rf) = **`r round(exp_ret, 2)`**%.
 </div>
+
+:::
 
 :::

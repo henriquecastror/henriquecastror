@@ -1,0 +1,15 @@
+{
+  "hash": "d21d157c6f35940b42d10bd1d04535dc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "### Tangency Portfolio Mix and Sharpe Ratio\n\n\n\n\n\nYou invest **53.06**% in the **tangency portfolio** (expected return = **10.68**% and standard deviation = **18.99**%) and the remaining **46.94**% in the **risk-free asset** (rate = **3.87**%).  \n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q12a_class\"><strong>1. What is the expected return of the complete portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q12a_class\" name=\"module3_num_q12a_class\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=7.48 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q12a_class\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Expected return of the complete portfolio: E[R<sub>C</sub>] = (1−y)·r<sub>f</sub> + y·E[R<sub>T</sub>] = **7.48**%.\n</div>\n\n:::\n\nNow consider the **Sharpe ratio of the tangency portfolio** (not of the complete portfolio):  \n\\\\[\n\\\\text{Sharpe}(T) = \\\\frac{E[R_T] - r_f}{\\\\sigma_T}.\n\\\\]  \n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q12b_class\"><strong>2. What is the Sharpe ratio of the tangency portfolio? </strong></label>\n  <input type=\"number\" step=\"0.0001\" id=\"module3_num_q12b_class\" name=\"module3_num_q12b_class\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=0.3586 data-tolerance=\"0.0001\" />\n</form>\n\n<div id=\"feedback-module3_num_q12b_class\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Sharpe(T) = (E[R<sub>T</sub>] − r<sub>f</sub>) / σ<sub>T</sub> = **0.3586**.  \n💡 Any rf–tangency mix has the **same Sharpe** as the tangency portfolio itself.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

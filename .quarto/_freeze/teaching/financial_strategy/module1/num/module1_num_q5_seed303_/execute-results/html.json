@@ -1,0 +1,15 @@
+{
+  "hash": "b0a1050882de541a37d4ef0f34c0357e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Ownership After Two Funding Rounds**\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\n\n# Dados aleatórios\nfounders_pct_after_A <- round(runif(1, 0.60, 0.75), 3)\nseriesA_pct <- 1 - founders_pct_after_A\n\nseriesB_investment <- round(runif(1, 4, 6), 3)\nseriesB_ownership <- round(runif(1, 0.20, 0.30), 3)\n\nfinal_founders_pct <- round((1 - seriesB_ownership) * founders_pct_after_A, 3)\nseriesA_pct_final <- round((1 - seriesB_ownership) * seriesA_pct, 3)\n```\n:::\n\n\nAfter a Series A round, the founders owned **64.6%** of BetaVision.  \nThen, Series B investors contributed **5.669 million** and received **26.1%** of the company.\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <span ><strong>1. What is the founders’ final ownership (%)?</strong></label>\n  <input type=\"number\" id=\"module1_num_q5a\" name=\"module1_num_q5a\" placeholder=\"%\" style=\"width: 120px;\"\n         data-correct-answer=\"47.7\" data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module1_num_q5a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Founders’ final ownership = (1 - 26.1%) × 64.6% = **47.7%**\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; align-items: center; gap: 8px;\">\n  <label ><strong>2. What is the Series A investors’ final ownership (%)?</strong></label>\n  <input type=\"number\" id=\"module1_num_q5b\" name=\"module1_num_q5b\" placeholder=\"%\" style=\"width: 120px;\"\n         data-correct-answer=\"26.2\" data-tolerance=\"0.1\" />\n</form>\n\n<div id=\"feedback-module1_num_q5b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Series A ownership = (1 - 26.1%) × 35.4% = **26.2%**\n</div>\n\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

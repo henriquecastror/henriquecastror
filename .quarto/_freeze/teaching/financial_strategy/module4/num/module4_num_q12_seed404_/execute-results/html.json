@@ -1,0 +1,15 @@
+{
+  "hash": "996d2239ffe41f53decbd4099aa6fae8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## WACC with Debt and Equity Mix\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(404)\n#| eval: true\n#| results: asis\n#| echo: false\n#| warning: false\nlibrary(webexercises)\n\nre <- rnorm(1, mean = 0.12, sd = 0.01)\nrd <- rnorm(1, mean = 0.06, sd = 0.005)\ntc <- 0.34\nwe <- rnorm(1, mean = 0.65, sd = 0.05)\nwd <- 1 - we\n```\n:::\n\n\nAurora Technologies finances its operations with equity weight **63.4**% (cost of equity = **12.77**%) and debt weight **36.6**% (before-tax cost of debt = **6.03**%). The corporate tax rate is **34**%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q12a\"><strong>1. What is the weighted average cost of capital (WACC, in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q12a\" name=\"module4_num_q12a\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=9.56 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q12a\" class=\"feedback\" style=\"display:none;\">\n✅ WACC = wₑ·rₑ + w_d·r_d(1−T_c) = **9.56**%.\n</div>\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

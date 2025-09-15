@@ -1,0 +1,15 @@
+{
+  "hash": "9fa1b3463ee79eadb7a4c0925555579f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "### Variance and Volatility of a Three‑Asset Portfolio\n\n\n\n\n\nYou invest **30.96%**, **57.62%**, and **11.42%** of your funds in three assets with volatilities **15.84%**, **21.54%**, and **25.34%**, respectively. The pairwise correlations are ρ₁₂ = **0.08**, ρ₁₃ = **0.08**, and ρ₂₃ = **0.71**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q9a\"><strong>1. What is the variance of the portfolio?</strong></label>\n  <input type=\"number\" id=\"module3_num_q9a\" name=\"module3_num_q9a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=249.26 data-tolerance=\"0.03\" />\n</form>\n\n<div id=\"feedback-module3_num_q9a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Variance = Σwᵢ²σᵢ² + 2Σ wᵢwⱼσᵢσⱼρᵢⱼ = **249.26**.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n  <label for=\"module3_num_q9b\"><strong>2. What is the standard deviation of the portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q9b\" name=\"module3_num_q9b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=15.79 data-tolerance=\"0.03\" />\n</form>\n\n<div id=\"feedback-module3_num_q9b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Standard deviation = √(variance) = **15.79**%.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

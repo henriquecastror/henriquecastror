@@ -1,0 +1,15 @@
+{
+  "hash": "5f15402511ed1d732d902dda0f11616f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## Portfolio Variance and Standard Deviation Calculation\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(303)\n#| eval: true\n#| echo: false\n#| results: asis\n#| warning: false\nlibrary(webexercises)\nw    <- runif(1, 0, 1)\nsd1  <- rnorm(1, mean = 15, sd = 3)\nsd2  <- rnorm(1, mean = 25, sd = 5)\ncorr <- runif(1, -0.2, 0.8)\n# calculate variance and standard deviation\nvar_port <- (w * sd1)^2 + ((1 - w) * sd2)^2 + 2 * w * (1 - w) * sd1 * sd2 * corr\nsd_port  <- sqrt(var_port)\n```\n:::\n\n\nYou invest **30.96%** of your funds in Asset A (volatility = **17.92%**) and **69.04%** in Asset B (volatility = **28.22%**). The correlation between the two assets is **0.78**.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n<label for=\"module3_num_q3a\"><strong>1. What is the variance of your portfolio (in squared %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q3a\" name=\"module3_num_q3a\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=578.96 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q3a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Portfolio variance = w²×sd₁² + (1−w)²×sd₂² + 2×w×(1−w)×sd₁×sd₂×ρ = **578.96**.\n</div>\n\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display: flex; flex-direction: row; gap: 6px;\">\n<label for=\"module3_num_q3b\"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label>\n  <input type=\"number\" id=\"module3_num_q3b\" name=\"module3_num_q3b\" placeholder=\"Enter value\" style=\"width: 150px;\"\n         data-correct-answer=24.06 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module3_num_q3b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Portfolio standard deviation = √(variance) = **24.06**%.\n</div>\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

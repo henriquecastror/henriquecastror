@@ -1,0 +1,15 @@
+{
+  "hash": "3106b8193c79381a20739b7fa7c770f5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "## WACC with Debt and Equity Mix\n\n\n\n\n\nAurora Technologies finances its operations with equity weight **66**% (cost of equity = **12.6**%) and debt weight **34**% (before-tax cost of debt = **5.34**%). The corporate tax rate is **34**%.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\">\n  <label for=\"module4_num_q12a\"><strong>1. What is the weighted average cost of capital (WACC, in %)?</strong></label>\n  <input type=\"number\" id=\"module4_num_q12a\" name=\"module4_num_q12a\" placeholder=\"Enter value\" style=\"width:150px;\"\n    data-correct-answer=9.52 data-tolerance=\"0.01\"/>\n</form>\n\n<div id=\"feedback-module4_num_q12a\" class=\"feedback\" style=\"display:none;\">\n✅ WACC = wₑ·rₑ + w_d·r_d(1−T_c) = **9.52**%.\n</div>\n\n::: \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

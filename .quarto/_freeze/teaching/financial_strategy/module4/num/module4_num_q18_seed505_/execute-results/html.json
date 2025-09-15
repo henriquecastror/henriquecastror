@@ -1,0 +1,15 @@
+{
+  "hash": "c32fb9a4c8bc5f8b8d420da6669f75cf",
+  "result": {
+    "engine": "knitr",
+    "markdown": "**Net Debt and Unlevered Beta**\n\n\n\n\n\n\nAssume risk-free rate = 2.5% and market premium = 6%. Aurora Technologies wants to adjust for cash holdings when estimating the risk of a comparable firm. Comparable firm data: Equity = 428 billion, Debt = 67 billion, Cash = 20 billion, Equity beta = 0.95.\nAssume Debt beta = 0.\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\"> <label for=\"module4_num_q18a\"><strong>1. What is the firm’s net debt (in billions)?</strong></label> <input type=\"number\" id=\"module4_num_q18a\" name=\"module4_num_q18a\" placeholder=\"Enter value\" style=\"width:150px;\" data-correct-answer=47 data-tolerance=\"0.1\"/> </form> <div id=\"feedback-module4_num_q18a\" class=\"feedback\" style=\"display:none;\"> ✅ Net debt = Debt − Cash = **47**. </div>\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\"> <label for=\"module4_num_q18b\"><strong>2. What is the firm’s unlevered beta?</strong></label> <input type=\"number\" id=\"module4_num_q18b\" name=\"module4_num_q18b\" placeholder=\"Enter value\" style=\"width:150px;\" data-correct-answer=0.859 data-tolerance=\"0.1\"/> </form> <div id=\"feedback-module4_num_q18b\" class=\"feedback\" style=\"display:none;\"> ✅ β<sub>u</sub> = (E / (E + D − Cash)) × β<sub>e</sub> = **0.859**. </div>\n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex;flex-direction:row;gap:6px;\"> <label for=\"module4_num_q18c\"><strong>3. What is the cost of capital using β<sub>u</sub> (in %)?</strong></label> <input type=\"number\" id=\"module4_num_q18c\" name=\"module4_num_q18c\" placeholder=\"Enter value\" style=\"width:150px;\" data-correct-answer=7.65 data-tolerance=\"0.1\"/> </form> <div id=\"feedback-module4_num_q18c\" class=\"feedback\" style=\"display:none;\"> ✅ R = r<sub>f</sub> + β<sub>u</sub>(r<sub>m</sub>−r<sub>f</sub>) = **7.65**%. </div>\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

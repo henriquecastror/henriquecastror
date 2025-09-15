@@ -1,5 +1,7 @@
+::: {.question}
 
-###  Post-money valuation and VC ownership
+
+**Post-money valuation and VC ownership**
 
 ```{r}
 #| eval: true
@@ -46,4 +48,7 @@ You founded a firm three years ago. You started with $`r v1` million, which gave
 <div id="feedback-module1_num_q3b" class="feedback" data-status="" style="display:none;">
 ✅ VC Ownership = `r v5` / (`r v2 + v3 + v5`) × 100 = **`r vc_pct`%**
 </div>
+:::
+
+
 :::

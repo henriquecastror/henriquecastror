@@ -1,4 +1,6 @@
-## Expected Return of a Mixed Portfolio
+::: {.question}
+
+**Expected Return of a Mixed Portfolio**
 
 ```{r}
 #| eval: true
@@ -24,5 +26,8 @@ Suppose you invest **`r round(w*100,1)`%** of your wealth in the market portfoli
 <div id="feedback-module2_num_q6a" class="feedback" data-status="" style="display:none;">
 ✅ Expected portfolio return = rm * w +  rf * (1-w)= **`r round(rf + w * (rm - rf), 2)`**%.
 </div>
+
+:::
+
 
 :::

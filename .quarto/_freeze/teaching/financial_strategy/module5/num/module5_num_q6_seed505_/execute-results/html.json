@@ -1,0 +1,15 @@
+{
+  "hash": "ecf68d1ef9b1d51676ae0b938c083077",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Fama–French–Carhart Expected Return and Factor Contributions**\n\n\n\n```\nWarning: package 'knitr' was built under R version 4.2.3\n```\n\n<div style=\"max-width:360px;margin:16px auto;\"><table>\n <thead>\n  <tr>\n   <th style=\"text-align:left;\"> Factor </th>\n   <th style=\"text-align:right;\"> Beta </th>\n   <th style=\"text-align:right;\"> Premium (%) </th>\n  </tr>\n </thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:left;\"> MKT </td>\n   <td style=\"text-align:right;\"> 0.70 </td>\n   <td style=\"text-align:right;\"> 7 </td>\n  </tr>\n  <tr>\n   <td style=\"text-align:left;\"> SMB </td>\n   <td style=\"text-align:right;\"> 0.15 </td>\n   <td style=\"text-align:right;\"> 0 </td>\n  </tr>\n  <tr>\n   <td style=\"text-align:left;\"> HML </td>\n   <td style=\"text-align:right;\"> -0.12 </td>\n   <td style=\"text-align:right;\"> 0 </td>\n  </tr>\n  <tr>\n   <td style=\"text-align:left;\"> Mom </td>\n   <td style=\"text-align:right;\"> -0.04 </td>\n   <td style=\"text-align:right;\"> 1 </td>\n  </tr>\n</tbody>\n</table>\n</div>\n\n\nGiven **R<sub>f</sub> = 1%**, the table shows each factor’s **beta** and **premium**.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center; flex-wrap:wrap;\">\n  <label for=\"module5_num_q6a\"><strong>6a. Expected return E[R] (in %):</strong></label>\n  <input type=\"number\" id=\"module5_num_q6a\" name=\"module5_num_q6a\" style=\"width:220px;\"\n         data-correct-answer=5.86 data-tolerance=\"0.05\" step=\"0.01\" />\n</form>\n\n<div id=\"feedback-module5_num_q6a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>Expected return under FFC</strong><br>\nE[R] = R<sub>f</sub> + β<sub>MKT</sub>·MKT + β<sub>SMB</sub>·SMB + β<sub>HML</sub>·HML + β<sub>Mom</sub>·Mom.<br>\n= 1% + (0.7)×7% + (0.15)×0% + (-0.12)×0% + (-0.04)×1%<br>\n= 1% + 4.9% + 0% + 0% + -0.04% =\n<strong>5.86%</strong>.\n</div>\n:::\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center; flex-wrap:wrap;\">\n  <label for=\"module5_num_q6b\"><strong>6b. Contribution from Momentum factor (in %):</strong></label>\n  <input type=\"number\" id=\"module5_num_q6b\" name=\"module5_num_q6b\" style=\"width:260px;\"\n         data-correct-answer=-0.04 data-tolerance=\"0.05\" step=\"0.01\" />\n</form>\n\n<div id=\"feedback-module5_num_q6b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ <strong>Momentum contribution</strong><br>\nContribution = β<sub>Mom</sub> × Mom = (-0.04) × 1% =\n<strong>-0.04%</strong>.\n</div>\n:::\n\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
