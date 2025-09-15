@@ -88,29 +88,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 
 
 
-##  {.smaller  background="#FFFFFF"}
-
-::: {style="font-size: 40%; text-align: right;"}
-Key: *module4_num_qu2*
-<input type="hidden" 
-       id="slide-id" 
-       value="module4_num_qu2"
-       data-open="2025-09-08 16:00"
-       data-close="2025-09-08 16:59">
-:::
-
-{{< include "../submit-to-sheets2.html" >}}
-
-::: panel-tabset
-
-# (1)
-
-{{< include "num/module5_num_q1.qmd" >}}
-
-:::   
-
-
-
 
 
 
@@ -853,7 +830,7 @@ A smart Beta strategy is the idea that investors can tailor their risk exposures
 
 
 
-## Efficient Markets and behavioral finance {.smaller background="#FFFA9A" visibility="hidden"}
+## Efficient Markets and behavioral finance {.smaller background="#FFFA9A"}
 
 **There are three forms of efficiency.**
 
@@ -886,7 +863,7 @@ A smart Beta strategy is the idea that investors can tailor their risk exposures
 
 
 
-## Random Walk (weak efficiency)  {.smaller background="#FFFA9A" visibility="hidden"}
+## Random Walk (weak efficiency)  {.smaller background="#FFFA9A" }
 
 **Imagine a toin coss.**
 
@@ -908,14 +885,12 @@ A smart Beta strategy is the idea that investors can tailor their risk exposures
 
 
 
-## Random Walk (weak efficiency)  {.smaller background="#FFFA9A" visibility="hidden"}
+## Random Walk (weak efficiency)  {.smaller background="#FFFA9A" }
 
 
 **Prices are independent from one another.** 
 
-::: panel-tabset
 
-### R 
 
 
 ```{r}
@@ -967,49 +942,11 @@ ggplotly(g)
 
 
 
-### Python 
-
-```{python}
-#| warning: false
-#| message: false
-#| fig-align: center
-#| echo: true
-#| output: true
-#| code-fold: true
-#| code-line-numbers: true	
-#| output-location: default
-#| code-summary: "Python"
-#| collapse: true
-#| eval: true
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import yfinance as yf
-freq_data = '1d'
-start = '2000-01-01'
-end = pd.Timestamp.now()
-asset = yf.download(tickers="PETR4.SA",start=start,end=end,interval=freq_data)
-returns = asset['Adj Close'].pct_change().dropna()
-plt.figure(figsize=(20, 10))
-plt.scatter(returns[1:], returns[:-1], color='black')
-plt.title('Pairs of returns PETR4', fontsize=20, fontweight='bold', color='black')
-plt.xlabel('Returns PETR4 t-1', fontsize=20, fontweight='bold', color='black')
-plt.ylabel('Returns PETR4 t', fontsize=20, fontweight='bold', color='black')
-plt.xlim(-0.2, 0.2)
-plt.ylim(-0.2, 0.2)
-plt.axhline(y=0, color='black', linestyle='--')
-plt.axvline(x=0, color='black', linestyle='--')
-plt.grid(True, linestyle='--', color='grey', alpha=0.5)
-plt.show()
-```
-
-
-:::
 
 
 
 
-## {.smaller background="#FFFA9A" visibility="hidden"}
+## {.smaller background="#FFFA9A" }
 
 **Prices adjust immediately.** 
 
@@ -1029,7 +966,7 @@ plt.show()
 
 
 
-## Semistrong efficiency {.smaller background="#FFFA9A" visibility="hidden"}
+## Semistrong efficiency {.smaller background="#FFFA9A" }
 
 **It means that stock prices respond to relevant news quickly and completely.**
 
@@ -1058,7 +995,7 @@ Examples of evidence that suggest semistrong efficiency:
 
 
 
-## Strong efficiency {.smaller background="#FFFA9A" visibility="hidden"}
+## Strong efficiency {.smaller background="#FFFA9A" }
 
 
 An efficient market does not mean that nobody earns a return.
@@ -1071,7 +1008,7 @@ It means that investors will earn a return that is appropriate for the risk unde
 
 
 
-## Are markets efficient? [Video](https://www.youtube.com/watch?v=bM9bYOBuKF4) {.smaller background="#FFFA9A" visibility="hidden"}
+## Are markets efficient? [Video](https://www.youtube.com/watch?v=bM9bYOBuKF4) {.smaller background="#FFFA9A" }
 
 ![](../figs/are_markets_efficient.png)
 
@@ -1081,7 +1018,7 @@ It means that investors will earn a return that is appropriate for the risk unde
 
 
 
-## Bubbles {.smaller background="#FFFA9A" visibility="hidden"}
+## Bubbles {.smaller background="#FFFA9A" }
 
 **How can we explain bubbles?** [Link](https://historyofyesterday.com/the-1636-tulip-mania-defines-the-present-economic-bubble-641b70fb8980)
 
@@ -1093,7 +1030,7 @@ It means that investors will earn a return that is appropriate for the risk unde
 
 
 
-## Bubbles {.smaller background="#FFFA9A" visibility="hidden"}
+## Bubbles {.smaller background="#FFFA9A" }
 
 ![](../figs/buysell.jpg)
 
