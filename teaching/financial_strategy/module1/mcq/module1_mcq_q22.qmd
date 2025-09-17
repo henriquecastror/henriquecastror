@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q22')" data-correct-answer="E"> 
+  <strong style="display: block;">What is a greenshoe option?</strong> 
+  <label><input type="radio" name="module1_mcq_q22" value="A"> A. A clause that cancels IPO allocations</label><br>
+  <label><input type="radio" name="module1_mcq_q22" value="B"> B. A right given only to founders to buy shares cheaply</label><br>
+  <label><input type="radio" name="module1_mcq_q22" value="C"> C. A dividend reinvestment plan</label><br>
+  <label><input type="radio" name="module1_mcq_q22" value="D"> D. A lock-up waiver</label><br>
+  <label><input type="radio" name="module1_mcq_q22" value="E"> E. An option allowing underwriters to sell extra shares to stabilize prices</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q22" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: E. A greenshoe lets underwriters sell more shares than planned to stabilize trading. 
+</div> 
+:::

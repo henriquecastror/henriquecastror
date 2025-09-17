@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q78')" data-correct-answer="C"> 
+  <strong style="display: block;">Which method is most common globally for pricing IPOs?</strong> 
+  <label><input type="radio" name="module1_mcq_q78" value="A"> A. Fixed price offers</label><br>
+  <label><input type="radio" name="module1_mcq_q78" value="B"> B. Dutch auctions</label><br>
+  <label><input type="radio" name="module1_mcq_q78" value="C"> C. Bookbuilding</label><br>
+  <label><input type="radio" name="module1_mcq_q78" value="D"> D. Lottery allocation</label><br>
+  <label><input type="radio" name="module1_mcq_q78" value="E"> E. Government pricing</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q78" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Bookbuilding dominates as the main IPO pricing method worldwide. 
+</div> 
+:::

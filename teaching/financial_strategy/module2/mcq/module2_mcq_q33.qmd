@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q33')" data-correct-answer="B">
+<strong style="display: block;">The Sharpe ratio measures:</strong>
+<label><input type="radio" name="module2_mcq_q33" value="A"> A. Return per unit of unsystematic risk</label><br>
+<label><input type="radio" name="module2_mcq_q33" value="B"> B. Excess return per unit of total risk</label><br>
+<label><input type="radio" name="module2_mcq_q33" value="C"> C. Excess return per unit of beta</label><br>
+<label><input type="radio" name="module2_mcq_q33" value="D"> D. Excess return per unit of variance</label><br>
+<label><input type="radio" name="module2_mcq_q33" value="E"> E. Return relative to risk-free rate</label><br>
+</form>
+<div id="feedback-module2_mcq_q33" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Sharpe ratio = (Rp−Rf)/σp.
+</div>
+:::

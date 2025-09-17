@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q37')" data-correct-answer="C">
+<strong style="display: block;">Asset A (σ=15%) and Asset B (σ=25%) are uncorrelated, with equal weights. What is portfolio standard deviation?</strong>
+<label><input type="radio" name="module2_mcq_q37" value="A"> A. 12.0%</label><br>
+<label><input type="radio" name="module2_mcq_q37" value="B"> B. 15.0%</label><br>
+<label><input type="radio" name="module2_mcq_q37" value="C"> C. 17.7%</label><br>
+<label><input type="radio" name="module2_mcq_q37" value="D"> D. 20.0%</label><br>
+<label><input type="radio" name="module2_mcq_q37" value="E"> E. 22.5%</label><br>
+</form>
+<div id="feedback-module2_mcq_q37" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. σp = √[(0.5²×0.15²)+(0.5²×0.25²)] = 17.7%.
+</div>
+:::

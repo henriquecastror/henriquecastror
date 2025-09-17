@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q61')" data-correct-answer="D"> 
+  <strong style="display: block;">Who usually determines the final IPO offer price?</strong> 
+  <label><input type="radio" name="module1_mcq_q61" value="A"> A. Only the regulator</label><br>
+  <label><input type="radio" name="module1_mcq_q61" value="B"> B. Only the company’s CEO</label><br>
+  <label><input type="radio" name="module1_mcq_q61" value="C"> C. Only retail investors</label><br>
+  <label><input type="radio" name="module1_mcq_q61" value="D"> D. Negotiation between issuer and underwriters, informed by demand</label><br>
+  <label><input type="radio" name="module1_mcq_q61" value="E"> E. A random lottery</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q61" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. The IPO price is negotiated between the issuer and underwriters, using bookbuilding data. 
+</div> 
+:::

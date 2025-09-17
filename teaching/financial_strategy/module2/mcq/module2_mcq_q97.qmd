@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q97')" data-correct-answer="C">
+<strong style="display: block;">Which risk remains even in a well-diversified portfolio?</strong>
+<label><input type="radio" name="module2_mcq_q97" value="A"> A. Idiosyncratic</label><br>
+<label><input type="radio" name="module2_mcq_q97" value="B"> B. Firm-specific</label><br>
+<label><input type="radio" name="module2_mcq_q97" value="C"> C. Systematic</label><br>
+<label><input type="radio" name="module2_mcq_q97" value="D"> D. Diversifiable</label><br>
+<label><input type="radio" name="module2_mcq_q97" value="E"> E. Operational</label><br>
+</form>
+<div id="feedback-module2_mcq_q97" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Systematic risk remains after diversification.
+</div>
+:::

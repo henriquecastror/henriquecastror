@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q71')" data-correct-answer="C"> 
+  <strong style="display: block;">What is the purpose of the IPO roadshow?</strong> 
+  <label><input type="radio" name="module1_mcq_q71" value="A"> A. To file legal paperwork</label><br>
+  <label><input type="radio" name="module1_mcq_q71" value="B"> B. To set dividend policy</label><br>
+  <label><input type="radio" name="module1_mcq_q71" value="C"> C. To market the IPO and educate investors</label><br>
+  <label><input type="radio" name="module1_mcq_q71" value="D"> D. To negotiate insider lock-up periods</label><br>
+  <label><input type="radio" name="module1_mcq_q71" value="E"> E. To regulate stock exchange rules</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q71" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Roadshows build demand and inform potential investors about the company. 
+</div> 
+:::

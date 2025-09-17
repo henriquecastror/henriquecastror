@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q11')" data-correct-answer="C"> 
+  <strong style="display: block;">Why are new issue (IPO) volumes considered highly cyclical?</strong> 
+  <label><input type="radio" name="module1_mcq_q11" value="A"> A. Because regulations change every month</label><br>
+  <label><input type="radio" name="module1_mcq_q11" value="B"> B. Because underwriter capacity is fixed</label><br>
+  <label><input type="radio" name="module1_mcq_q11" value="C"> C. Firms time IPOs to favorable market sentiment and valuations</label><br>
+  <label><input type="radio" name="module1_mcq_q11" value="D"> D. Because IPOs can only occur in January and July</label><br>
+  <label><input type="radio" name="module1_mcq_q11" value="E"> E. Because accounting rules mandate quarterly offerings</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q11" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Firms go public more often in bull markets when sentiment and valuations are favorable. 
+</div> 
+:::

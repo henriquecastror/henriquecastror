@@ -1,0 +1,85 @@
+::: {.question}
+
+**Fama–French–Carhart Expected Return and Factor Contributions**
+
+```{r}
+#| eval: true
+#| echo: false
+#| results: asis
+
+set.seed(9876)
+library(webexercises)
+library(knitr)
+
+beta_m   <- round(runif(1, 0.6, 1.4), 2)
+beta_smb <- round(runif(1, -0.2, 0.5), 2)
+beta_hml <- round(runif(1, -0.2, 0.6), 2)
+beta_mom <- round(runif(1, -0.1, 0.6), 2)
+
+rf       <- round(runif(1, 0.01, 0.04), 2)
+prem_m   <- round(runif(1, 0.04, 0.08), 2)
+prem_smb <- round(runif(1, -0.01, 0.03), 2)
+prem_hml <- round(runif(1, -0.01, 0.04), 2)
+prem_mom <- round(runif(1, -0.01, 0.04), 2)
+
+c_m    <- beta_m   * prem_m
+c_smb  <- beta_smb * prem_smb
+c_hml  <- beta_hml * prem_hml
+c_mom  <- beta_mom * prem_mom
+
+ER <- rf + c_m + c_smb + c_hml + c_mom
+
+ER_pct     <- round(100*ER, 2)
+c_m_pct    <- round(100*c_m, 2)
+c_smb_pct  <- round(100*c_smb, 2)
+c_hml_pct  <- round(100*c_hml, 2)
+c_mom_pct  <- round(100*c_mom, 2)
+
+# Build compact table WITHOUT Contribution column
+tbl <- data.frame(
+  Factor = c("MKT", "SMB", "HML", "Mom"),
+  Beta   = c(beta_m, beta_smb, beta_hml, beta_mom),
+  `Premium (%)` = round(100*c(prem_m, prem_smb, prem_hml, prem_mom), 2)
+)
+
+# Render centered, compact table
+cat('<div style="max-width:360px;margin:16px auto;">')
+print(kable(tbl, align = c('l','r','r'), format = "html",
+            col.names = c("Factor","Beta","Premium (%)")))
+cat('</div>')
+```
+
+Given **R<sub>f</sub> = `r round(100*rf,2)`%**, the table shows each factor’s **beta** and **premium**.
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+  <label for="module5_num_q6a"><strong>6a. Expected return E[R] (in %):</strong></label>
+  <input type="number" id="module5_num_q6a" name="module5_num_q6a" style="width:220px;"
+         data-correct-answer=`r ER_pct` data-tolerance="0.05" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q6a" class="feedback" data-status="" style="display:none;">
+✅ <strong>Expected return under FFC</strong><br>
+E[R] = R<sub>f</sub> + β<sub>MKT</sub>·MKT + β<sub>SMB</sub>·SMB + β<sub>HML</sub>·HML + β<sub>Mom</sub>·Mom.<br>
+= `r round(100*rf,2)`% + (`r beta_m`)×`r round(100*prem_m,2)`% + (`r beta_smb`)×`r round(100*prem_smb,2)`% + (`r beta_hml`)×`r round(100*prem_hml,2)`% + (`r beta_mom`)×`r round(100*prem_mom,2)`%<br>
+= `r round(100*rf,2)`% + `r c_m_pct`% + `r c_smb_pct`% + `r c_hml_pct`% + `r c_mom_pct`% =
+<strong>`r ER_pct`%</strong>.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+  <label for="module5_num_q6b"><strong>6b. Contribution from Momentum factor (in %):</strong></label>
+  <input type="number" id="module5_num_q6b" name="module5_num_q6b" style="width:260px;"
+         data-correct-answer=`r c_mom_pct` data-tolerance="0.05" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q6b" class="feedback" data-status="" style="display:none;">
+✅ <strong>Momentum contribution</strong><br>
+Contribution = β<sub>Mom</sub> × Mom = (`r beta_mom`) × `r round(100*prem_mom,2)`% =
+<strong>`r c_mom_pct`%</strong>.
+</div>
+:::
+
+
+:::

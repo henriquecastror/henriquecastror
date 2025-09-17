@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q89')" data-correct-answer="E"> 
+  <strong style="display: block;">What happens when new shares are issued?</strong> 
+  <label><input type="radio" name="module1_mcq_q89" value="A"> A. Ownership of existing shareholders increases</label><br>
+  <label><input type="radio" name="module1_mcq_q89" value="B"> B. Dilution never occurs</label><br>
+  <label><input type="radio" name="module1_mcq_q89" value="C"> C. Ownership remains unchanged</label><br>
+  <label><input type="radio" name="module1_mcq_q89" value="D"> D. Existing shareholders gain control</label><br>
+  <label><input type="radio" name="module1_mcq_q89" value="E"> E. Existing shareholders’ ownership percentage decreases</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q89" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: E. Issuing new equity dilutes existing ownership percentages. 
+</div> 
+:::

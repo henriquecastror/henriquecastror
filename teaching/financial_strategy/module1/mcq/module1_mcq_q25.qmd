@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q25')" data-correct-answer="C"> 
+  <strong style="display: block;">To sell shares publicly on an exchange, a private company must:</strong> 
+  <label><input type="radio" name="module1_mcq_q25" value="A"> A. Issue a SAFE</label><br>
+  <label><input type="radio" name="module1_mcq_q25" value="B"> B. Get board approval only</label><br>
+  <label><input type="radio" name="module1_mcq_q25" value="C"> C. Conduct an IPO or direct listing</label><br>
+  <label><input type="radio" name="module1_mcq_q25" value="D"> D. Obtain a loan guarantee</label><br>
+  <label><input type="radio" name="module1_mcq_q25" value="E"> E. Skip disclosures entirely</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q25" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Selling shares publicly requires an IPO or direct listing process. 
+</div> 
+:::

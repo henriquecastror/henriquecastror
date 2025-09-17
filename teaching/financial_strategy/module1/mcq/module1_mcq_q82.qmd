@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q82')" data-correct-answer="C"> 
+  <strong style="display: block;">What is the main goal of IPO underpricing?</strong> 
+  <label><input type="radio" name="module1_mcq_q82" value="A"> A. To maximize company proceeds</label><br>
+  <label><input type="radio" name="module1_mcq_q82" value="B"> B. To avoid listing fees</label><br>
+  <label><input type="radio" name="module1_mcq_q82" value="C"> C. To create positive first-day sentiment</label><br>
+  <label><input type="radio" name="module1_mcq_q82" value="D"> D. To reduce disclosure requirements</label><br>
+  <label><input type="radio" name="module1_mcq_q82" value="E"> E. To avoid roadshows</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q82" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Underpricing boosts first-day returns and attracts investor interest. 
+</div> 
+:::

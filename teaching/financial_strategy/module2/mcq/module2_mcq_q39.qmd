@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q39')" data-correct-answer="A">
+<strong style="display: block;">An investor holds Stock A with return 8% and Stock B with return 12%. If correlation = 1, what is the range of possible portfolio returns?</strong>
+<label><input type="radio" name="module2_mcq_q39" value="A"> A. 8–12%</label><br>
+<label><input type="radio" name="module2_mcq_q39" value="B"> B. 9–11%</label><br>
+<label><input type="radio" name="module2_mcq_q39" value="C"> C. 10% only</label><br>
+<label><input type="radio" name="module2_mcq_q39" value="D"> D. Unlimited</label><br>
+<label><input type="radio" name="module2_mcq_q39" value="E"> E. Cannot be determined</label><br>
+</form>
+<div id="feedback-module2_mcq_q39" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. With perfect correlation, portfolio return is just the weighted average, between 8% and 12%.
+</div>
+:::

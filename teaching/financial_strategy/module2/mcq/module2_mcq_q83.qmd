@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q83')" data-correct-answer="B">
+<strong style="display: block;">Which statement is TRUE about the efficient frontier?</strong>
+<label><input type="radio" name="module2_mcq_q83" value="A"> A. It only includes single assets</label><br>
+<label><input type="radio" name="module2_mcq_q83" value="B"> B. It shows optimal portfolios with maximum return for each risk level</label><br>
+<label><input type="radio" name="module2_mcq_q83" value="C"> C. It guarantees elimination of market risk</label><br>
+<label><input type="radio" name="module2_mcq_q83" value="D"> D. It is irrelevant in CAPM</label><br>
+<label><input type="radio" name="module2_mcq_q83" value="E"> E. It equals the Security Market Line</label><br>
+</form>
+<div id="feedback-module2_mcq_q83" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The efficient frontier represents optimal risk-return trade-offs.
+</div>
+:::

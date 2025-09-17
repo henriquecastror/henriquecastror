@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q23')" data-correct-answer="B"> 
+  <strong style="display: block;">The process of selling stock to the public for the first time is called:</strong> 
+  <label><input type="radio" name="module1_mcq_q23" value="A"> A. Seasoned equity offering (SEO)</label><br>
+  <label><input type="radio" name="module1_mcq_q23" value="B"> B. Initial Public Offering (IPO)</label><br>
+  <label><input type="radio" name="module1_mcq_q23" value="C"> C. Rights issue</label><br>
+  <label><input type="radio" name="module1_mcq_q23" value="D"> D. Private placement</label><br>
+  <label><input type="radio" name="module1_mcq_q23" value="E"> E. Debt offering</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q23" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: B. The first public sale of shares is an IPO. 
+</div> 
+:::

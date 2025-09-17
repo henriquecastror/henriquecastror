@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q35')" data-correct-answer="A"> 
+  <strong style="display: block;">A rights offer gives shareholders:</strong> 
+  <label><input type="radio" name="module1_mcq_q35" value="A"> A. The right to buy new shares to maintain ownership</label><br>
+  <label><input type="radio" name="module1_mcq_q35" value="B"> B. Guaranteed dividends</label><br>
+  <label><input type="radio" name="module1_mcq_q35" value="C"> C. Free warrants</label><br>
+  <label><input type="radio" name="module1_mcq_q35" value="D"> D. Access to insider information</label><br>
+  <label><input type="radio" name="module1_mcq_q35" value="E"> E. Voting rights for new directors</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q35" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: A. Rights issues let shareholders maintain their percentage ownership by buying new shares. 
+</div> 
+:::

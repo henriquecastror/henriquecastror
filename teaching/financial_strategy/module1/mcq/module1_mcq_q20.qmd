@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q20')" data-correct-answer="A"> 
+  <strong style="display: block;">What is the “quiet period” in the IPO process?</strong> 
+  <label><input type="radio" name="module1_mcq_q20" value="A"> A. A time when company and underwriters limit public communications outside the prospectus</label><br>
+  <label><input type="radio" name="module1_mcq_q20" value="B"> B. A period when trading is halted post-IPO</label><br>
+  <label><input type="radio" name="module1_mcq_q20" value="C"> C. A restriction on analyst reports for two years</label><br>
+  <label><input type="radio" name="module1_mcq_q20" value="D"> D. A time when insiders can buy unlimited shares</label><br>
+  <label><input type="radio" name="module1_mcq_q20" value="E"> E. A marketing blackout for institutional investors only</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q20" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: A. The quiet period helps ensure information symmetry around the prospectus. 
+</div> 
+:::

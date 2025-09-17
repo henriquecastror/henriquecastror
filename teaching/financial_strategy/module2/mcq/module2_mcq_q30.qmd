@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q30')" data-correct-answer="D">
+<strong style="display: block;">Stock X has beta 0.8, market return 9%, risk-free rate 2%. What is the expected return according to CAPM?</strong>
+<label><input type="radio" name="module2_mcq_q30" value="A"> A. 6.6%</label><br>
+<label><input type="radio" name="module2_mcq_q30" value="B"> B. 7.2%</label><br>
+<label><input type="radio" name="module2_mcq_q30" value="C"> C. 8.0%</label><br>
+<label><input type="radio" name="module2_mcq_q30" value="D"> D. 8.6%</label><br>
+<label><input type="radio" name="module2_mcq_q30" value="E"> E. 9.0%</label><br>
+</form>
+<div id="feedback-module2_mcq_q30" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. E(R) = 2% + 0.8×(9−2)% = 8.6%.
+</div>
+:::

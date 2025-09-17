@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q62')" data-correct-answer="C"> 
+  <strong style="display: block;">When is an over-allotment option (greenshoe) typically exercised?</strong> 
+  <label><input type="radio" name="module1_mcq_q62" value="A"> A. Only if the IPO fails completely</label><br>
+  <label><input type="radio" name="module1_mcq_q62" value="B"> B. Only if the stock falls sharply</label><br>
+  <label><input type="radio" name="module1_mcq_q62" value="C"> C. If the stock trades above offer price and demand is strong</label><br>
+  <label><input type="radio" name="module1_mcq_q62" value="D"> D. Automatically in every IPO</label><br>
+  <label><input type="radio" name="module1_mcq_q62" value="E"> E. Never, it is theoretical</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q62" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Underwriters exercise greenshoes when prices rise to meet excess demand. 
+</div> 
+:::

@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q63')" data-correct-answer="B"> 
+  <strong style="display: block;">What is the “quiet period” in an IPO?</strong> 
+  <label><input type="radio" name="module1_mcq_q63" value="A"> A. When trading is halted after listing</label><br>
+  <label><input type="radio" name="module1_mcq_q63" value="B"> B. A time before and just after IPO when company/underwriters limit public statements</label><br>
+  <label><input type="radio" name="module1_mcq_q63" value="C"> C. A holiday period declared by regulators</label><br>
+  <label><input type="radio" name="module1_mcq_q63" value="D"> D. A gap between Series A and Series B funding</label><br>
+  <label><input type="radio" name="module1_mcq_q63" value="E"> E. A freeze on dividend payments</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q63" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: B. The quiet period restricts communications outside the prospectus to ensure fairness. 
+</div> 
+:::

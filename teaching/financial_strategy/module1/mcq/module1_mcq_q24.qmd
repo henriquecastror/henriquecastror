@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q24')" data-correct-answer="D"> 
+  <strong style="display: block;">What does due diligence in an IPO involve?</strong> 
+  <label><input type="radio" name="module1_mcq_q24" value="A"> A. Random audits by the stock exchange</label><br>
+  <label><input type="radio" name="module1_mcq_q24" value="B"> B. Negotiating analyst coverage</label><br>
+  <label><input type="radio" name="module1_mcq_q24" value="C"> C. Only checking the company logo and name</label><br>
+  <label><input type="radio" name="module1_mcq_q24" value="D"> D. Verifying the accuracy of financial and legal disclosures</label><br>
+  <label><input type="radio" name="module1_mcq_q24" value="E"> E. Setting executive salaries</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q24" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. Underwriters check the company’s financials and legal documents carefully. 
+</div> 
+:::

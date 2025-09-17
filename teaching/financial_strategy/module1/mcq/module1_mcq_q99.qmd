@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q99')" data-correct-answer="E"> 
+  <strong style="display: block;">Venture capital firms usually target:</strong> 
+  <label><input type="radio" name="module1_mcq_q99" value="A"> A. Mature, low-growth companies</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="B"> B. Distressed buyouts</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="C"> C. Real estate projects</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="D"> D. Government bonds</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="E"> E. Early-stage, high-growth companies</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q99" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: E. VC firms invest in early-stage companies with high growth potential. 
+</div> 
+:::

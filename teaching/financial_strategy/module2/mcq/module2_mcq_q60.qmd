@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q60')" data-correct-answer="B">
+<strong style="display: block;">Portfolio weights: 70% in stock (E=14%) and 30% in bonds (E=6%). Expected return?</strong>
+<label><input type="radio" name="module2_mcq_q60" value="A"> A. 9.5%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="B"> B. 11.6%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="C"> C. 12.0%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="D"> D. 12.5%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="E"> E. 13.0%</label><br>
+</form>
+<div id="feedback-module2_mcq_q60" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. 0.7×14%+0.3×6%=11.6%.
+</div>
+:::

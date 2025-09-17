@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q50')" data-correct-answer="E"> 
+  <strong style="display: block;">What is an SEO (Seasoned Equity Offering)?</strong> 
+  <label><input type="radio" name="module1_mcq_q50" value="A"> A. The first offering of shares to the public</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="B"> B. A type of corporate bond</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="C"> C. An insider lock-up period</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="D"> D. A regulatory filing</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="E"> E. An issuance of additional shares by a company already public</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q50" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: E. An SEO is when an already public company raises new equity. 
+</div> 
+:::

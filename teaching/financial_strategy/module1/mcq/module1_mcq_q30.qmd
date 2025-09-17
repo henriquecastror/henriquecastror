@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q30')" data-correct-answer="B"> 
+  <strong style="display: block;">What is the underwriter’s spread in an IPO?</strong> 
+  <label><input type="radio" name="module1_mcq_q30" value="A"> A. The company’s profit after the IPO</label><br>
+  <label><input type="radio" name="module1_mcq_q30" value="B"> B. The difference between the investor price and what the issuer receives</label><br>
+  <label><input type="radio" name="module1_mcq_q30" value="C"> C. The cost of printing the prospectus</label><br>
+  <label><input type="radio" name="module1_mcq_q30" value="D"> D. The legal expenses of the IPO</label><br>
+  <label><input type="radio" name="module1_mcq_q30" value="E"> E. The increase in stock price on day one</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q30" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: B. The spread is underwriters’ compensation, not company profit. 
+</div> 
+:::

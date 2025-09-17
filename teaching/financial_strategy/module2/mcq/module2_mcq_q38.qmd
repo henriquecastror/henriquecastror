@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q38')" data-correct-answer="C">
+<strong style="display: block;">Which concept explains why investors should not expect compensation for diversifiable risk?</strong>
+<label><input type="radio" name="module2_mcq_q38" value="A"> A. Arbitrage Pricing Theory</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="B"> B. Law of Large Numbers</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="C"> C. CAPM</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="D"> D. Efficient Market Hypothesis</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="E"> E. Behavioral finance</label><br>
+</form>
+<div id="feedback-module2_mcq_q38" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. CAPM assumes only systematic risk is priced.
+</div>
+:::

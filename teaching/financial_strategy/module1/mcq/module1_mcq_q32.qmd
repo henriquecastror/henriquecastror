@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q32')" data-correct-answer="A"> 
+  <strong style="display: block;">In a firm commitment underwriting, investment banks:</strong> 
+  <label><input type="radio" name="module1_mcq_q32" value="A"> A. Buy the shares from the issuer and resell them to the public</label><br>
+  <label><input type="radio" name="module1_mcq_q32" value="B"> B. Only act as advisors without risk</label><br>
+  <label><input type="radio" name="module1_mcq_q32" value="C"> C. Provide loans instead of equity</label><br>
+  <label><input type="radio" name="module1_mcq_q32" value="D"> D. Are prohibited from marketing shares</label><br>
+  <label><input type="radio" name="module1_mcq_q32" value="E"> E. Transfer all risk to the regulator</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q32" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: A. In firm commitment underwriting, the bank assumes the risk by buying and reselling shares. 
+</div> 
+:::

@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q68')" data-correct-answer="C"> 
+  <strong style="display: block;">What is typical of IPO aftermarket performance?</strong> 
+  <label><input type="radio" name="module1_mcq_q68" value="A"> A. Always negative returns</label><br>
+  <label><input type="radio" name="module1_mcq_q68" value="B"> B. Guaranteed strong returns</label><br>
+  <label><input type="radio" name="module1_mcq_q68" value="C"> C. Often unpredictable, with many showing first-day “pops”</label><br>
+  <label><input type="radio" name="module1_mcq_q68" value="D"> D. Always flat</label><br>
+  <label><input type="radio" name="module1_mcq_q68" value="E"> E. Always better in tech firms</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q68" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. IPOs often “pop” on day one, but long-term results are uncertain. 
+</div> 
+:::

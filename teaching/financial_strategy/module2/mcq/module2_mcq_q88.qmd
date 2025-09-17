@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q88')" data-correct-answer="E">
+<strong style="display: block;">Market return=9%, Rf=2%, stock β=1.5. CAPM expected return?</strong>
+<label><input type="radio" name="module2_mcq_q88" value="A"> A. 11%</label><br>
+<label><input type="radio" name="module2_mcq_q88" value="B"> B. 12%</label><br>
+<label><input type="radio" name="module2_mcq_q88" value="C"> C. 12.5%</label><br>
+<label><input type="radio" name="module2_mcq_q88" value="D"> D. 13%</label><br>
+<label><input type="radio" name="module2_mcq_q88" value="E"> E. 12.5%</label><br>
+</form>
+<div id="feedback-module2_mcq_q88" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. 2%+1.5×(9−2)%=12.5%.
+</div>
+:::

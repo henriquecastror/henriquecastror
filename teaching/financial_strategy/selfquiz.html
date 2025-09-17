@@ -1,0 +1,171 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Self-quiz</title>
+<style>
+  :root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--card:#f8fafc;--brand:#4f46e5}
+  body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  .page{max-width:860px;margin:0 auto;padding:20px}
+  header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 16px}
+  h1{font-size:18px;margin:0}
+  .muted{color:var(--muted);font-size:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+  .qnum{font-weight:600;margin-bottom:6px}
+  .stem{margin:8px 0 10px}
+  .opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
+  .opt input{margin-top:3px}
+  .actions{display:flex;gap:10px;align-items:center;margin-top:16px}
+  button{padding:10px 14px;border-radius:10px;border:1px solid var(--line);cursor:pointer;background:#fff}
+  button.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#eef2ff;font-size:12px}
+  .timer{font-variant-numeric:tabular-nums}
+</style>
+
+<section class="page">
+  <header>
+    <div>
+      <h1>Self-quiz</h1>
+      <div class="muted" id="subtitle">Carregando…</div>
+    </div>
+    <div class="pill timer" id="timer">--:--</div>
+  </header>
+
+  <div id="quiz"></div>
+  <div class="actions">
+    <button id="submit" class="primary" disabled>Enviar respostas</button>
+    <button id="save" disabled>Salvar rascunho</button>
+    <span class="muted" id="status"></span>
+  </div>
+</section>
+
+<script>
+const API_BASE = "https://course-chat.hcmrtns.workers.dev/"; // deixe vazio se o HTML estiver no MESMO domínio do Worker. Caso contrário, ex.: "https://seu-worker.workers.dev"
+
+(async function(){
+  const qs = new URLSearchParams(location.search);
+  const student_id = (qs.get("student_id") || "").toLowerCase().trim();
+  const paper_id   = (qs.get("paper_id") || "").trim();               // para MIDTERM (ou finals)
+  const track      = (qs.get("track") || "").toLowerCase().trim();    // para MÓDULO
+  const moduleId   = (qs.get("module") || "").toLowerCase().trim();   // para MÓDULO
+  const n_mcq      = parseInt(qs.get("n") || "10", 10);
+
+  const subtitle = document.getElementById("subtitle");
+  if(!student_id){ subtitle.textContent = "Falta student_id na URL."; return; }
+
+  // 1) Iniciar tentativa
+  let startPayload = { student_id };
+  if (paper_id) {
+    startPayload.paper_id = paper_id;                     // MIDTERM (conta ponto)
+  } else {
+    startPayload.track  = track || "module";              // MÓDULO (não conta ponto)
+    startPayload.module = moduleId;
+    startPayload.n_mcq  = isFinite(n_mcq) ? n_mcq : 10;
+  }
+
+  const startRes = await fetch(API_BASE + "/selfquiz/attempt/start", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify(startPayload)
+  }).then(r=>r.json()).catch(()=>null);
+
+  if (!startRes || !startRes.ok) {
+    subtitle.textContent = (startRes && startRes.error) || "Não foi possível iniciar a tentativa.";
+    return;
+  }
+
+  const attempt_id = startRes.attempt_id;
+  const timeLimit  = Number(startRes.time_limit_sec || 1200);
+  const qids       = Array.isArray(startRes.question_ids) ? startRes.question_ids : [];
+
+  subtitle.textContent = paper_id
+    ? "Prova iniciada (midterm/fixed)."
+    : `Prova iniciada (módulo: ${startRes.module || moduleId}).`;
+
+  // 2) Buscar enunciados
+  const qdata = await fetch(API_BASE + "/selfquiz/questions?ids=" + encodeURIComponent(qids.join(",")))
+    .then(r=>r.json()).catch(()=>null);
+
+  const items = (qdata && qdata.items) || [];
+  renderQuiz(items);
+
+  // 3) Timer simples
+  let left = timeLimit;
+  const timerEl = document.getElementById("timer");
+  const tick = () => {
+    const m = String(Math.floor(left/60)).padStart(2,"0");
+    const s = String(left%60).padStart(2,"0");
+    timerEl.textContent = m + ":" + s;
+    if(left<=0){ submitNow(); } else { left--; setTimeout(tick, 1000); }
+  };
+  tick();
+
+  // 4) Botões
+  document.getElementById("submit").onclick = submitNow;
+  document.getElementById("save").onclick = () => {
+    localStorage.setItem("sq_" + attempt_id, JSON.stringify(readAnswers()));
+    document.getElementById("status").textContent = "Rascunho salvo.";
+  };
+
+  function renderQuiz(items){
+    const root = document.getElementById("quiz");
+    root.innerHTML = "";
+    items.forEach((q, idx) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="qnum">Q${idx+1}</div>
+        <div class="stem">${escapeHtml(q.stem || q.question || "")}</div>
+        <div class="opts">
+          ${renderOption(q, "A")}
+          ${renderOption(q, "B")}
+          ${renderOption(q, "C")}
+          ${renderOption(q, "D")}
+          ${renderOption(q, "E")}
+        </div>
+      `;
+      root.appendChild(card);
+    });
+    document.getElementById("submit").disabled = false;
+    document.getElementById("save").disabled   = false;
+  }
+
+  function renderOption(q, letter){
+    const txt = (q.options && q.options[letter]) || "";
+    if(!txt) return "";
+    return `<label class="opt">
+      <input type="radio" name="${q.question_id}" value="${letter}">
+      <div><strong>${letter})</strong> ${escapeHtml(txt)}</div>
+    </label>`;
+  }
+
+  function readAnswers(){
+    const out = {};
+    document.querySelectorAll('input[type="radio"]:checked').forEach(inp => {
+      out[inp.name] = inp.value;
+    });
+    return out;
+  }
+
+  async function submitNow(){
+    document.getElementById("submit").disabled = true;
+    const answers = readAnswers();
+    const res = await fetch(API_BASE + "/selfquiz/attempt/submit", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ attempt_id, answers })
+    }).then(r=>r.json()).catch(()=>null);
+
+    if(!res || !res.ok){
+      document.getElementById("status").textContent = "Falha ao enviar. Tente novamente.";
+      document.getElementById("submit").disabled = false;
+      return;
+    }
+    document.getElementById("status").textContent =
+      "Enviado! Acertou " + res.score + " de " + res.max_score + ".";
+  }
+
+  function escapeHtml(s){
+    return String(s||"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+})();
+</script>

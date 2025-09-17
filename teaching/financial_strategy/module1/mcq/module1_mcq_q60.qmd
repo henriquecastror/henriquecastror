@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q60')" data-correct-answer="C"> 
+  <strong style="display: block;">What is bookbuilding in the IPO process?</strong> 
+  <label><input type="radio" name="module1_mcq_q60" value="A"> A. A method to create company bylaws</label><br>
+  <label><input type="radio" name="module1_mcq_q60" value="B"> B. A legal filing with regulators</label><br>
+  <label><input type="radio" name="module1_mcq_q60" value="C"> C. Collecting investor demand to help set IPO price</label><br>
+  <label><input type="radio" name="module1_mcq_q60" value="D"> D. A corporate governance rule</label><br>
+  <label><input type="radio" name="module1_mcq_q60" value="E"> E. Pricing shares based on past dividends</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q60" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Bookbuilding gathers indications of interest from investors to determine pricing. 
+</div> 
+:::

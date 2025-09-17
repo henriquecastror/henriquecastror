@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q57')" data-correct-answer="B"> 
+  <strong style="display: block;">Are IPOs always cheaper than bank loans for raising capital?</strong> 
+  <label><input type="radio" name="module1_mcq_q57" value="A"> A. Yes, IPOs avoid interest payments</label><br>
+  <label><input type="radio" name="module1_mcq_q57" value="B"> B. No, IPOs often have higher transaction costs</label><br>
+  <label><input type="radio" name="module1_mcq_q57" value="C"> C. Yes, because regulators subsidize IPOs</label><br>
+  <label><input type="radio" name="module1_mcq_q57" value="D"> D. No, but only in emerging markets</label><br>
+  <label><input type="radio" name="module1_mcq_q57" value="E"> E. Yes, because underwriters work for free</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q57" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: B. IPOs involve significant underwriting, legal, and accounting fees. 
+</div> 
+:::

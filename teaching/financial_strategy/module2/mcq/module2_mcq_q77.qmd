@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q77')" data-correct-answer="E">
+<strong style="display: block;">Which is FALSE about CAPM assumptions?</strong>
+<label><input type="radio" name="module2_mcq_q77" value="A"> A. Investors are mean-variance optimizers</label><br>
+<label><input type="radio" name="module2_mcq_q77" value="B"> B. All investors have homogeneous expectations</label><br>
+<label><input type="radio" name="module2_mcq_q77" value="C"> C. There are no taxes or transaction costs</label><br>
+<label><input type="radio" name="module2_mcq_q77" value="D"> D. Unlimited borrowing and lending at risk-free rate</label><br>
+<label><input type="radio" name="module2_mcq_q77" value="E"> E. Market risk can be eliminated through diversification</label><br>
+</form>
+<div id="feedback-module2_mcq_q77" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. CAPM assumes systematic risk cannot be diversified away.
+</div>
+:::

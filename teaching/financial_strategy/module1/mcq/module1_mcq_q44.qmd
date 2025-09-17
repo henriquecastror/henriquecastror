@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q44')" data-correct-answer="A"> 
+  <strong style="display: block;">Institutional investors who buy equity in startups are typically called:</strong> 
+  <label><input type="radio" name="module1_mcq_q44" value="A"> A. Venture capitalists</label><br>
+  <label><input type="radio" name="module1_mcq_q44" value="B"> B. Angel investors</label><br>
+  <label><input type="radio" name="module1_mcq_q44" value="C"> C. Hedge funds</label><br>
+  <label><input type="radio" name="module1_mcq_q44" value="D"> D. Pension funds</label><br>
+  <label><input type="radio" name="module1_mcq_q44" value="E"> E. Corporate investors</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q44" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: A. Venture capitalists specialize in funding high-growth startups. 
+</div> 
+:::

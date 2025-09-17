@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q15')" data-correct-answer="A"> 
+  <strong style="display: block;">Which is a disadvantage of being a public company?</strong> 
+  <label><input type="radio" name="module1_mcq_q15" value="A"> A. Increased reporting and compliance burden</label><br>
+  <label><input type="radio" name="module1_mcq_q15" value="B"> B. Immediate elimination of market risk</label><br>
+  <label><input type="radio" name="module1_mcq_q15" value="C"> C. Guaranteed analyst upgrades</label><br>
+  <label><input type="radio" name="module1_mcq_q15" value="D"> D. Ability to delist at will without cost</label><br>
+  <label><input type="radio" name="module1_mcq_q15" value="E"> E. No need for independent directors</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q15" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: A. Public firms must meet extensive disclosure and governance requirements. 
+</div> 
+:::

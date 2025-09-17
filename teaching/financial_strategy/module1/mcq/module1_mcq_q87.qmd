@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q87')" data-correct-answer="C"> 
+  <strong style="display: block;">Does going public eliminate financial risks?</strong> 
+  <label><input type="radio" name="module1_mcq_q87" value="A"> A. Yes, always</label><br>
+  <label><input type="radio" name="module1_mcq_q87" value="B"> B. Yes, for shareholders</label><br>
+  <label><input type="radio" name="module1_mcq_q87" value="C"> C. No, it introduces new risks too</label><br>
+  <label><input type="radio" name="module1_mcq_q87" value="D"> D. Yes, unless dual-class shares exist</label><br>
+  <label><input type="radio" name="module1_mcq_q87" value="E"> E. Yes, until dividends are paid</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q87" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Going public does not remove financial risks; it can add new ones. 
+</div> 
+:::

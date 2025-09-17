@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q39')" data-correct-answer="D"> 
+  <strong style="display: block;">What is usually the main motivation for an IPO?</strong> 
+  <label><input type="radio" name="module1_mcq_q39" value="A"> A. Reduce regulation</label><br>
+  <label><input type="radio" name="module1_mcq_q39" value="B"> B. Ensure dividends</label><br>
+  <label><input type="radio" name="module1_mcq_q39" value="C"> C. Eliminate business risks</label><br>
+  <label><input type="radio" name="module1_mcq_q39" value="D"> D. Access to capital and liquidity</label><br>
+  <label><input type="radio" name="module1_mcq_q39" value="E"> E. Avoid board oversight</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q39" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. IPOs provide greater capital access and liquidity. 
+</div> 
+:::

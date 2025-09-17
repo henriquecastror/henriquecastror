@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q100')" data-correct-answer="D"> 
+  <strong style="display: block;">Why do corporate investors sometimes invest in startups?</strong> 
+  <label><input type="radio" name="module1_mcq_q100" value="A"> A. Only for dividends</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="B"> B. To comply with regulations</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="C"> C. To park idle cash</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="D"> D. For strategic objectives like technology access</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="E"> E. To reduce IPO fees</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q100" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. Corporates often invest to gain strategic benefits such as technology, markets, or talent. 
+</div> 
+:::

@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q28')" data-correct-answer="C"> 
+  <strong style="display: block;">An SEO (Seasoned Equity Offering) is defined as:</strong> 
+  <label><input type="radio" name="module1_mcq_q28" value="A"> A. The first time a company sells shares to the public</label><br>
+  <label><input type="radio" name="module1_mcq_q28" value="B"> B. An issuance of bonds convertible to equity</label><br>
+  <label><input type="radio" name="module1_mcq_q28" value="C"> C. Sale of new stock by a company already public</label><br>
+  <label><input type="radio" name="module1_mcq_q28" value="D"> D. A private placement to employees</label><br>
+  <label><input type="radio" name="module1_mcq_q28" value="E"> E. A market-only trading of existing shares</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q28" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. SEOs occur when a public company issues more equity capital. 
+</div> 
+:::

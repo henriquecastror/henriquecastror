@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q50')" data-correct-answer="C">
+<strong style="display: block;">Investor holds stock with σ=30%, market σ=20%, correlation=0.7. What is beta?</strong>
+<label><input type="radio" name="module2_mcq_q50" value="A"> A. 0.9</label><br>
+<label><input type="radio" name="module2_mcq_q50" value="B"> B. 1.0</label><br>
+<label><input type="radio" name="module2_mcq_q50" value="C"> C. 1.05</label><br>
+<label><input type="radio" name="module2_mcq_q50" value="D"> D. 1.2</label><br>
+<label><input type="radio" name="module2_mcq_q50" value="E"> E. 1.3</label><br>
+</form>
+<div id="feedback-module2_mcq_q50" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. β = ρ×σi/σm = 0.7×30/20 = 1.05.
+</div>
+:::

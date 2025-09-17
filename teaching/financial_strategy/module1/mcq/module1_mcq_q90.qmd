@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q90')" data-correct-answer="C"> 
+  <strong style="display: block;">Do venture capitalists typically demand board seats?</strong> 
+  <label><input type="radio" name="module1_mcq_q90" value="A"> A. No, never</label><br>
+  <label><input type="radio" name="module1_mcq_q90" value="B"> B. No, they only want dividends</label><br>
+  <label><input type="radio" name="module1_mcq_q90" value="C"> C. Yes, to influence strategy and protect investments</label><br>
+  <label><input type="radio" name="module1_mcq_q90" value="D"> D. Yes, but only in IPOs</label><br>
+  <label><input type="radio" name="module1_mcq_q90" value="E"> E. No, regulators forbid it</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q90" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. VCs often require board seats to safeguard their investment. 
+</div> 
+:::

@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q87')" data-correct-answer="B">
+<strong style="display: block;">Which ratio evaluates excess return relative to beta?</strong>
+<label><input type="radio" name="module2_mcq_q87" value="A"> A. Sharpe ratio</label><br>
+<label><input type="radio" name="module2_mcq_q87" value="B"> B. Treynor ratio</label><br>
+<label><input type="radio" name="module2_mcq_q87" value="C"> C. Information ratio</label><br>
+<label><input type="radio" name="module2_mcq_q87" value="D"> D. Sortino ratio</label><br>
+<label><input type="radio" name="module2_mcq_q87" value="E"> E. Alpha</label><br>
+</form>
+<div id="feedback-module2_mcq_q87" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Treynor=(Rp−Rf)/β.
+</div>
+:::

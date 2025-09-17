@@ -1,0 +1,112 @@
+::: {.question}
+
+
+**CAPM Alpha Across Stocks**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(15678)
+library(webexercises)
+library(knitr)
+suppressWarnings(suppressMessages({
+  ok <- requireNamespace("kableExtra", quietly = TRUE)
+  if (ok) library(kableExtra)
+}))
+
+set.seed(101)
+rf  <- round(runif(1, 0.02, 0.05), 2)
+rm  <- round(runif(1, 0.08, 0.12), 2)
+
+beta <- round(runif(3, 0.7, 1.8), 2)
+ER   <- round(runif(3, 0.06, 0.18), 2)
+
+capm  <- rf + beta * (rm - rf)
+alpha <- ER - capm
+alpha_pct <- round(100*alpha, 2) # answers in percent (%)
+
+# labels
+names(beta)      <- c("A","B","C")
+names(ER)        <- c("A","B","C")
+names(capm)      <- c("A","B","C")
+names(alpha_pct) <- c("A","B","C")
+
+# Compact, centered table
+tbl <- data.frame(
+  Stock = c("A","B","C"),
+  Beta  = as.numeric(beta),
+  check.names = FALSE,
+  `E[R] (%)`  = round(100*as.numeric(ER), 2)
+)
+
+if ("kableExtra" %in% (.packages())) {
+  kb <- kable(tbl, format = "html", escape = FALSE, align = c("l","r","r")) %>%
+    kable_styling(full_width = FALSE, bootstrap_options = c("condensed", "striped"), position = "center") %>%
+    column_spec(1, width = "4em") %>%
+    column_spec(2, width = "5em", extra_css = "text-align:right;") %>%
+    column_spec(3, width = "7em", extra_css = "text-align:right;")
+  html <- as.character(kb)
+  cat(sprintf('<div style="max-width: 320px; width: 320px; font-size: 0.85em; margin: 0 auto;">%s</div>', html))
+} else {
+  kb <- kable(tbl, format = "html", escape = FALSE, align = c("l","r","r"),
+              table.attr = 'style="font-size:0.85em; width:320px; max-width:320px; margin: 0 auto;"')
+  cat(sprintf('<div style="max-width: 320px; width: 320px; font-size: 0.85em; margin: 0 auto;">%s</div>', as.character(kb)))
+}
+```
+
+You observe three stocks with **betas** and **expected returns** (table above).  
+Using **R<sub>f</sub>=`r round(100*rf,2)`%**, **E[R<sub>m</sub>]=`r round(100*rm,2)`%**, compute each stock’s **alpha in percent (%)**.  
+
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module5_num_q1a"><strong>1a. Stock A alpha (%):</strong></label>
+  <input type="number" id="module5_num_q1a" name="module5_num_q1a" style="width:160px;"
+         data-correct-answer=`r alpha_pct["A"]` data-tolerance="0.1" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q1a" class="feedback" data-status="" style="display:none;">
+✅ <strong>Stock A</strong><br>
+CAPM = R<sub>f</sub> + β(R<sub>m</sub> − R<sub>f</sub>) = <strong>`r round(100*capm["A"],2)`%</strong>.<br>
+α<sub>A</sub> = E[R]<sub>A</sub> − CAPM = `r round(100*ER["A"],2)`% − `r round(100*capm["A"],2)`% =
+<strong>`r alpha_pct["A"]`%</strong>.<br>
+Interpretation: α &gt; 0 ⇒ above SML (underpriced → buy); α &lt; 0 ⇒ below SML (overpriced → sell).
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module5_num_q1b"><strong>1b. Stock B alpha (%):</strong></label>
+  <input type="number" id="module5_num_q1b" name="module5_num_q1b" style="width:160px;"
+         data-correct-answer=`r alpha_pct["B"]` data-tolerance="0.1" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q1b" class="feedback" data-status="" style="display:none;">
+✅ <strong>Stock B</strong><br>
+CAPM = <strong>`r round(100*capm["B"],2)`%</strong>.<br>
+α<sub>B</sub> = `r round(100*ER["B"],2)`% − `r round(100*capm["B"],2)`% =
+<strong>`r alpha_pct["B"]`%</strong>.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module5_num_q1c"><strong>1c. Stock C alpha (%):</strong></label>
+  <input type="number" id="module5_num_q1c" name="module5_num_q1c" style="width:160px;"
+         data-correct-answer=`r alpha_pct["C"]` data-tolerance="0.1" step="0.01" />
+</form>
+
+<div id="feedback-module5_num_q1c" class="feedback" data-status="" style="display:none;">
+✅ <strong>Stock C</strong><br>
+CAPM = <strong>`r round(100*capm["C"],2)`%</strong>.<br>
+α<sub>C</sub> = `r round(100*ER["C"],2)`% − `r round(100*capm["C"],2)`% =
+<strong>`r alpha_pct["C"]`%</strong>.
+</div>
+:::
+
+
+
+:::

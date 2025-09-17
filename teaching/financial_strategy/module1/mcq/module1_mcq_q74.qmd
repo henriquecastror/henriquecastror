@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q74')" data-correct-answer="A"> 
+  <strong style="display: block;">Why do underwriters often form a syndicate?</strong> 
+  <label><input type="radio" name="module1_mcq_q74" value="A"> A. To share responsibility and risk of selling IPO shares</label><br>
+  <label><input type="radio" name="module1_mcq_q74" value="B"> B. To avoid legal requirements</label><br>
+  <label><input type="radio" name="module1_mcq_q74" value="C"> C. To bypass regulators</label><br>
+  <label><input type="radio" name="module1_mcq_q74" value="D"> D. To eliminate costs</label><br>
+  <label><input type="radio" name="module1_mcq_q74" value="E"> E. To secure dividends</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q74" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: A. Syndicates distribute IPO risk and workload across banks. 
+</div> 
+:::

@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q84')" data-correct-answer="E"> 
+  <strong style="display: block;">Do early investors usually hold their shares long after an IPO?</strong> 
+  <label><input type="radio" name="module1_mcq_q84" value="A"> A. Yes, always</label><br>
+  <label><input type="radio" name="module1_mcq_q84" value="B"> B. Yes, for decades</label><br>
+  <label><input type="radio" name="module1_mcq_q84" value="C"> C. Yes, until dividends start</label><br>
+  <label><input type="radio" name="module1_mcq_q84" value="D"> D. Yes, if regulators force them</label><br>
+  <label><input type="radio" name="module1_mcq_q84" value="E"> E. No, they often exit within a few years</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q84" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: E. Venture capitalists and similar investors usually exit after IPO. 
+</div> 
+:::

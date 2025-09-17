@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q19')" data-correct-answer="C"> 
+  <strong style="display: block;">A rights offer is best defined as:</strong> 
+  <label><input type="radio" name="module1_mcq_q19" value="A"> A. A public offer open to all new investors</label><br>
+  <label><input type="radio" name="module1_mcq_q19" value="B"> B. A bond issue convertible at maturity</label><br>
+  <label><input type="radio" name="module1_mcq_q19" value="C"> C. An offer of new shares to existing shareholders to maintain ownership</label><br>
+  <label><input type="radio" name="module1_mcq_q19" value="D"> D. A secondary market sale by insiders</label><br>
+  <label><input type="radio" name="module1_mcq_q19" value="E"> E. A mandatory employee stock grant</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q19" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Rights offers target existing shareholders to avoid dilution of their percentage stake. 
+</div> 
+:::

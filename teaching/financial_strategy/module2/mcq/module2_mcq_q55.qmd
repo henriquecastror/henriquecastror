@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q55')" data-correct-answer="C">
+<strong style="display: block;">Which ratio uses beta in the denominator?</strong>
+<label><input type="radio" name="module2_mcq_q55" value="A"> A. Sharpe</label><br>
+<label><input type="radio" name="module2_mcq_q55" value="B"> B. Information</label><br>
+<label><input type="radio" name="module2_mcq_q55" value="C"> C. Treynor</label><br>
+<label><input type="radio" name="module2_mcq_q55" value="D"> D. Sortino</label><br>
+<label><input type="radio" name="module2_mcq_q55" value="E"> E. Alpha</label><br>
+</form>
+<div id="feedback-module2_mcq_q55" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Treynor = (Rp−Rf)/β.
+</div>
+:::

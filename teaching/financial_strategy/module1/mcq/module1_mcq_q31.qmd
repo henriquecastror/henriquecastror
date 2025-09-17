@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q31')" data-correct-answer="D"> 
+  <strong style="display: block;">Which regulatory filing must be submitted before an IPO?</strong> 
+  <label><input type="radio" name="module1_mcq_q31" value="A"> A. Annual report (10-K)</label><br>
+  <label><input type="radio" name="module1_mcq_q31" value="B"> B. Earnings guidance</label><br>
+  <label><input type="radio" name="module1_mcq_q31" value="C"> C. Tax filings</label><br>
+  <label><input type="radio" name="module1_mcq_q31" value="D"> D. Registration statement (e.g., Form S-1)</label><br>
+  <label><input type="radio" name="module1_mcq_q31" value="E"> E. Dividend policy</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q31" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. Companies must file a registration statement with regulators before selling shares. 
+</div> 
+:::

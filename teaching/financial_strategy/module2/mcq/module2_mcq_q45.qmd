@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q45')" data-correct-answer="C">
+<strong style="display: block;">Which of the following is a diversifiable risk?</strong>
+<label><input type="radio" name="module2_mcq_q45" value="A"> A. Change in interest rates</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="B"> B. Recession</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="C"> C. A firm-specific lawsuit</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="D"> D. Oil price shocks</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="E"> E. Inflation</label><br>
+</form>
+<div id="feedback-module2_mcq_q45" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Firm-specific lawsuit risk can be diversified away.
+</div>
+:::

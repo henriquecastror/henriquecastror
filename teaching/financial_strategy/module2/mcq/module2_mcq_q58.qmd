@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q58')" data-correct-answer="A">
+<strong style="display: block;">Expected market return=12%, Rf=4%, β=0.7. CAPM return?</strong>
+<label><input type="radio" name="module2_mcq_q58" value="A"> A. 9.6%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="B"> B. 10.0%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="C"> C. 10.5%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="D"> D. 11.0%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="E"> E. 11.2%</label><br>
+</form>
+<div id="feedback-module2_mcq_q58" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. 4%+0.7×(12−4)%=9.6%.
+</div>
+:::

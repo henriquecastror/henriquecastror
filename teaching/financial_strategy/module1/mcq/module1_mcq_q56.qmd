@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q56')" data-correct-answer="C"> 
+  <strong style="display: block;">On average, IPOs are:</strong> 
+  <label><input type="radio" name="module1_mcq_q56" value="A"> A. Overpriced</label><br>
+  <label><input type="radio" name="module1_mcq_q56" value="B"> B. Fairly priced</label><br>
+  <label><input type="radio" name="module1_mcq_q56" value="C"> C. Underpriced</label><br>
+  <label><input type="radio" name="module1_mcq_q56" value="D"> D. Risk-free</label><br>
+  <label><input type="radio" name="module1_mcq_q56" value="E"> E. Loss-making by design</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q56" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Empirical evidence shows IPOs are typically underpriced on average. 
+</div> 
+:::

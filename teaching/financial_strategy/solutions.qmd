@@ -1,0 +1,436 @@
+---
+params:
+  endpoint: "https://course-chat.hcmrtns.workers.dev/exercises/answer-key"
+  send: true          # troque para true quando quiser enviar
+---
+
+
+```{r}
+#| echo: false
+#| message: false
+# Helper: função para enviar payload
+send_answer_key <- function(payload, endpoint) {
+  if (!requireNamespace("httr2", quietly = TRUE)) {
+    stop("Pacote 'httr2' não instalado. Instale com install.packages('httr2').")
+  }
+  admin_token <- Sys.getenv("ADMIN_TOKEN", unset = NA)
+  if (is.na(admin_token) || admin_token == "") {
+  stop("Variável de ambiente ADMIN_TOKEN não definida.")
+  }
+
+  req <- httr2::request(endpoint) |>
+    httr2::req_method("POST") |>
+    httr2::req_headers(
+      "content-type" = "application/json",
+      "x-admin-token" = admin_token
+    ) |>
+    httr2::req_body_json(payload)
+  resp <- httr2::req_perform(req)
+  list(
+    status = httr2::resp_status(resp),
+    body   = tryCatch(httr2::resp_body_string(resp), error = function(e) "")
+  )
+}
+```
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module5_num_qu1",
+  items = list(list(
+    question_id   = "module5_num_q1a",
+    qtype         = "num",
+    correct_value = -0.04,   # número (use ponto decimal)
+    tolerance     = 0.05,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod5"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module5_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module5_num_qu1",
+  items = list(list(
+    question_id   = "module5_num_q1b",
+    qtype         = "num",
+    correct_value = 2.90,   # número (use ponto decimal)
+    tolerance     = 0.1,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod5"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module5_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module5_num_qu1",
+  items = list(list(
+    question_id   = "module5_num_q1c",
+    qtype         = "num",
+    correct_value = 2.15,   # número (use ponto decimal)
+    tolerance     = 0.1,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod5"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module5_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module5_num_qu1",
+  items = list(list(
+    question_id   = "module5_num_q6a",
+    qtype         = "num",
+    correct_value = 8.86,   # número (use ponto decimal)
+    tolerance     = 0.1,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod5"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module5_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module5_num_qu1",
+  items = list(list(
+    question_id   = "module5_num_q6b",
+    qtype         = "num",
+    correct_value = 0.6,   # número (use ponto decimal)
+    tolerance     = 0.1,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod5"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module5_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+
+stop
+
+
+
+```{r}
+#| echo: false
+
+payload <- list(
+  slide_id = "module4_quiz1",
+  items = list(list(
+    question_id   = "module4_tf_q101",
+    qtype         = "tf",
+    correct_value = "T",
+    tolerance     = NULL,
+    points        = 1,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_tf_q101 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+```{r}
+
+#| echo: false
+payload <- list(
+  slide_id = "module4_quiz2",   # slide/página onde essa questão aparece
+  items = list(list(
+    question_id   = "module4_mcq_q201",
+    qtype         = "mcq",
+    correct_value = "B",         # letra A..E (maiúscula)
+    tolerance     = NULL,        # sempre NULL para mcq
+    points        = 1,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_mcq_q201 | HTTP:", res$status, "\n", res$body)
+```
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_quiz3",
+  items = list(list(
+    question_id   = "module4_num_q301",
+    qtype         = "num",
+    correct_value = 14.88,   # número (use ponto decimal)
+    tolerance     = 0.10,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_q1",
+  items = list(list(
+    question_id   = "module4_num_q8a",
+    qtype         = "num",
+    correct_value = 0.92,   # número (use ponto decimal)
+    tolerance     = 0.010,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_q1",
+  items = list(list(
+    question_id   = "module4_num_q8b",
+    qtype         = "num",
+    correct_value = 0.92,   # número (use ponto decimal)
+    tolerance     = 0.010,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_q1",
+  items = list(list(
+    question_id   = "module4_num_q8c",
+    qtype         = "num",
+    correct_value = 0.92,   # número (use ponto decimal)
+    tolerance     = 0.010,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q301 | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_num_q8a",
+    qtype         = "num",
+    correct_value = 1.16,   # número (use ponto decimal)
+    tolerance     = 0.01,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q8a | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_num_q12a",
+    qtype         = "num",
+    correct_value = 2.45,   # número (use ponto decimal)
+    tolerance     = 0.02,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q8a | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_num_q12b",
+    qtype         = "num",
+    correct_value = 3.08,   # número (use ponto decimal)
+    tolerance     = 0.02,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q8a | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_num_q13a",
+    qtype         = "num",
+    correct_value = 5.80,   # número (use ponto decimal)
+    tolerance     = 0.02,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q8a | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+
+```{r}
+#| echo: false
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_num_q13b",
+    qtype         = "num",
+    correct_value = 8.69,   # número (use ponto decimal)
+    tolerance     = 0.02,    # tolerância absoluta; NULL se não houver
+    points        = 2,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_num_q8a | HTTP:", res$status, "\n", res$body)
+```
+
+
+
+
+
+
+
+
+
+```{r}
+#| echo: false
+
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_tf_q43",
+    qtype         = "tf",
+    correct_value = "F",
+    tolerance     = NULL,
+    points        = 1,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_tf_q101 | HTTP:", res$status, "\n", res$body)
+
+
+```
+
+
+
+
+
+
+```{r}
+#| echo: false
+
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_tf_q46",
+    qtype         = "tf",
+    correct_value = "T",
+    tolerance     = NULL,
+    points        = 1,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_tf_q101 | HTTP:", res$status, "\n", res$body)
+
+
+```
+
+
+
+
+
+
+```{r}
+#| echo: false
+
+payload <- list(
+  slide_id = "module4_num_qu2",
+  items = list(list(
+    question_id   = "module4_tf_q81",
+    qtype         = "tf",
+    correct_value = "F",
+    tolerance     = NULL,
+    points        = 1,
+    module        = "mod4"
+  ))
+)
+res <- send_answer_key(payload, params$endpoint)
+cat("→ module4_tf_q101 | HTTP:", res$status, "\n", res$body)
+
+
+```

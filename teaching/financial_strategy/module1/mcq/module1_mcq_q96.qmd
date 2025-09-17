@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q96')" data-correct-answer="C"> 
+  <strong style="display: block;">In a liquidation event, who is paid first?</strong> 
+  <label><input type="radio" name="module1_mcq_q96" value="A"> A. Common stockholders</label><br>
+  <label><input type="radio" name="module1_mcq_q96" value="B"> B. Employees</label><br>
+  <label><input type="radio" name="module1_mcq_q96" value="C"> C. Preferred stockholders with liquidation preference</label><br>
+  <label><input type="radio" name="module1_mcq_q96" value="D"> D. Venture capital firms</label><br>
+  <label><input type="radio" name="module1_mcq_q96" value="E"> E. Regulators</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q96" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Preferred stockholders with liquidation preference are paid before common stockholders. 
+</div> 
+:::

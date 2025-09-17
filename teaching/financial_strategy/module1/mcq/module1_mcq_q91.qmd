@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q91')" data-correct-answer="C"> 
+  <strong style="display: block;">A startup has 2 million shares outstanding. A VC invests $4 million for 1 million new shares. What is the post-money valuation?</strong> 
+  <label><input type="radio" name="module1_mcq_q91" value="A"> A. $4 million</label><br>
+  <label><input type="radio" name="module1_mcq_q91" value="B"> B. $6 million</label><br>
+  <label><input type="radio" name="module1_mcq_q91" value="C"> C. $12 million</label><br>
+  <label><input type="radio" name="module1_mcq_q91" value="D"> D. $16 million</label><br>
+  <label><input type="radio" name="module1_mcq_q91" value="E"> E. $20 million</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q91" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: C. Price/share = 4 ÷ 1 = $4. Total shares = 3M × $4 = $12M post-money. 
+</div> 
+:::

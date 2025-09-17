@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q64')" data-correct-answer="D">
+<strong style="display: block;">Portfolio weights: 50% in asset A (E=12%), 50% in asset B (E=8%). Expected return?</strong>
+<label><input type="radio" name="module2_mcq_q64" value="A"> A. 9.0%</label><br>
+<label><input type="radio" name="module2_mcq_q64" value="B"> B. 9.5%</label><br>
+<label><input type="radio" name="module2_mcq_q64" value="C"> C. 10.0%</label><br>
+<label><input type="radio" name="module2_mcq_q64" value="D"> D. 10.0%</label><br>
+<label><input type="radio" name="module2_mcq_q64" value="E"> E. 10.5%</label><br>
+</form>
+<div id="feedback-module2_mcq_q64" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. 0.5×12%+0.5×8%=10%.
+</div>
+:::

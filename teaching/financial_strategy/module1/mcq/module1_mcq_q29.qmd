@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q29')" data-correct-answer="D"> 
+  <strong style="display: block;">Does bookbuilding eliminate the risk of IPO mispricing?</strong> 
+  <label><input type="radio" name="module1_mcq_q29" value="A"> A. Yes, it ensures exact pricing</label><br>
+  <label><input type="radio" name="module1_mcq_q29" value="B"> B. Yes, but only for small IPOs</label><br>
+  <label><input type="radio" name="module1_mcq_q29" value="C"> C. No, but it prevents underpricing</label><br>
+  <label><input type="radio" name="module1_mcq_q29" value="D"> D. No, mispricing can still occur</label><br>
+  <label><input type="radio" name="module1_mcq_q29" value="E"> E. Yes, but only in emerging markets</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q29" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. Bookbuilding helps price discovery but cannot fully eliminate mispricing. 
+</div> 
+:::

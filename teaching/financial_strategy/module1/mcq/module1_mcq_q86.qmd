@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q86')" data-correct-answer="D"> 
+  <strong style="display: block;">What is a rights offer?</strong> 
+  <label><input type="radio" name="module1_mcq_q86" value="A"> A. Sale of new shares to the general public</label><br>
+  <label><input type="radio" name="module1_mcq_q86" value="B"> B. Issuance of debt securities</label><br>
+  <label><input type="radio" name="module1_mcq_q86" value="C"> C. IPO using bookbuilding</label><br>
+  <label><input type="radio" name="module1_mcq_q86" value="D"> D. Sale of new shares to existing shareholders</label><br>
+  <label><input type="radio" name="module1_mcq_q86" value="E"> E. Sale of treasury stock</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q86" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. Rights offers let existing shareholders maintain proportional ownership. 
+</div> 
+:::

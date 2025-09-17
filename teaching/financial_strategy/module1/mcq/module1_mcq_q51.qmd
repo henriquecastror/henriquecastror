@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q51')" data-correct-answer="D"> 
+  <strong style="display: block;">An SEO (Seasoned Equity Offering) can involve:</strong> 
+  <label><input type="radio" name="module1_mcq_q51" value="A"> A. Only bonds</label><br>
+  <label><input type="radio" name="module1_mcq_q51" value="B"> B. Only preferred shares</label><br>
+  <label><input type="radio" name="module1_mcq_q51" value="C"> C. Only rights issues</label><br>
+  <label><input type="radio" name="module1_mcq_q51" value="D"> D. Primary (new shares) or secondary (existing shares) offerings</label><br>
+  <label><input type="radio" name="module1_mcq_q51" value="E"> E. None of the above</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q51" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. SEOs can include both new shares issued or shares sold by existing shareholders. 
+</div> 
+:::

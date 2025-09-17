@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q88')" data-correct-answer="B"> 
+  <strong style="display: block;">What is the purpose of IPO lock-up periods?</strong> 
+  <label><input type="radio" name="module1_mcq_q88" value="A"> A. To guarantee dividends</label><br>
+  <label><input type="radio" name="module1_mcq_q88" value="B"> B. To prevent insider selling immediately after IPO</label><br>
+  <label><input type="radio" name="module1_mcq_q88" value="C"> C. To reduce underwriting fees</label><br>
+  <label><input type="radio" name="module1_mcq_q88" value="D"> D. To enforce disclosure</label><br>
+  <label><input type="radio" name="module1_mcq_q88" value="E"> E. To speed up bookbuilding</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q88" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: B. Lock-ups reduce market instability after IPOs by delaying insider sales. 
+</div> 
+:::

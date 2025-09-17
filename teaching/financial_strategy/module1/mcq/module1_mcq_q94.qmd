@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q94')" data-correct-answer="E"> 
+  <strong style="display: block;">A founder owns 60%. A new round issues shares equal to 50% of existing shares. What will be the founder’s new ownership?</strong> 
+  <label><input type="radio" name="module1_mcq_q94" value="A"> A. 35%</label><br>
+  <label><input type="radio" name="module1_mcq_q94" value="B"> B. 37.5%</label><br>
+  <label><input type="radio" name="module1_mcq_q94" value="C"> C. 42.5%</label><br>
+  <label><input type="radio" name="module1_mcq_q94" value="D"> D. 45%</label><br>
+  <label><input type="radio" name="module1_mcq_q94" value="E"> E. 40%</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q94" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: E. After dilution, founder’s % = 60 ÷ (1 + 0.5) = 40%. 
+</div> 
+:::

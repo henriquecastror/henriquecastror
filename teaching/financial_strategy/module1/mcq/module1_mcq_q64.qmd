@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q64')" data-correct-answer="D"> 
+  <strong style="display: block;">Does an IPO always increase wealth for existing shareholders?</strong> 
+  <label><input type="radio" name="module1_mcq_q64" value="A"> A. Yes, by definition</label><br>
+  <label><input type="radio" name="module1_mcq_q64" value="B"> B. Yes, if underwriters are reputable</label><br>
+  <label><input type="radio" name="module1_mcq_q64" value="C"> C. Yes, because regulators ensure it</label><br>
+  <label><input type="radio" name="module1_mcq_q64" value="D"> D. No, shares can fall below offer price</label><br>
+  <label><input type="radio" name="module1_mcq_q64" value="E"> E. Yes, if dividends are declared</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q64" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. IPOs do not guarantee wealth; stock prices can decline. 
+</div> 
+:::

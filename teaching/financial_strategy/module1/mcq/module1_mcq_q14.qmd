@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q14')" data-correct-answer="E"> 
+  <strong style="display: block;">Which statement about IPO allocation/pricing is accurate?</strong> 
+  <label><input type="radio" name="module1_mcq_q14" value="A"> A. Investors are guaranteed shares at the offer price</label><br>
+  <label><input type="radio" name="module1_mcq_q14" value="B"> B. All investors receive the same number of shares</label><br>
+  <label><input type="radio" name="module1_mcq_q14" value="C"> C. The market price cannot change on day one</label><br>
+  <label><input type="radio" name="module1_mcq_q14" value="D"> D. Allocation is random and independent of demand</label><br>
+  <label><input type="radio" name="module1_mcq_q14" value="E"> E. Allocation depends on demand; market prices may move immediately</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q14" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: E. Allocation depends on demand; market prices may move immediately after listing. 
+</div> 
+:::

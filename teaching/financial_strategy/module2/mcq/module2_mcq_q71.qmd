@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q71')" data-correct-answer="B">
+<strong style="display: block;">Which of the following is FALSE about beta?</strong>
+<label><input type="radio" name="module2_mcq_q71" value="A"> A. Beta measures sensitivity to market movements</label><br>
+<label><input type="radio" name="module2_mcq_q71" value="B"> B. Beta equals total volatility of a stock</label><br>
+<label><input type="radio" name="module2_mcq_q71" value="C"> C. Beta can be negative</label><br>
+<label><input type="radio" name="module2_mcq_q71" value="D"> D. Beta is used in CAPM</label><br>
+<label><input type="radio" name="module2_mcq_q71" value="E"> E. Beta is covariance with market divided by market variance</label><br>
+</form>
+<div id="feedback-module2_mcq_q71" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Beta is not total volatility; it measures relative systematic risk.
+</div>
+:::

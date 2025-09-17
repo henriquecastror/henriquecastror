@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q99')" data-correct-answer="E">
+<strong style="display: block;">Which of the following is TRUE about the Capital Market Line (CML)?</strong>
+<label><input type="radio" name="module2_mcq_q99" value="A"> A. It shows return vs beta</label><br>
+<label><input type="radio" name="module2_mcq_q99" value="B"> B. It passes through (β=1, Rm)</label><br>
+<label><input type="radio" name="module2_mcq_q99" value="C"> C. It is identical to SML</label><br>
+<label><input type="radio" name="module2_mcq_q99" value="D"> D. It cannot be used with risk-free assets</label><br>
+<label><input type="radio" name="module2_mcq_q99" value="E"> E. It represents risk-return combinations of market portfolio and risk-free asset</label><br>
+</form>
+<div id="feedback-module2_mcq_q99" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. The CML connects the risk-free rate with the market portfolio.
+</div>
+:::

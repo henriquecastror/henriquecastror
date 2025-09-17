@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q79')" data-correct-answer="A"> 
+  <strong style="display: block;">Why do founders sometimes prefer dual-class share structures?</strong> 
+  <label><input type="radio" name="module1_mcq_q79" value="A"> A. To maintain control with superior voting rights</label><br>
+  <label><input type="radio" name="module1_mcq_q79" value="B"> B. To reduce corporate taxes</label><br>
+  <label><input type="radio" name="module1_mcq_q79" value="C"> C. To issue bonds instead</label><br>
+  <label><input type="radio" name="module1_mcq_q79" value="D"> D. To bypass disclosure rules</label><br>
+  <label><input type="radio" name="module1_mcq_q79" value="E"> E. To avoid underwriter fees</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q79" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: A. Dual-class structures allow founders to keep control despite selling equity. 
+</div> 
+:::

@@ -1,0 +1,14 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q81')" data-correct-answer="D"> 
+  <strong style="display: block;">Does the CVM require companies to keep disclosing results after an IPO?</strong> 
+  <label><input type="radio" name="module1_mcq_q81" value="A"> A. No, only before the IPO</label><br>
+  <label><input type="radio" name="module1_mcq_q81" value="B"> B. No, only if investors request</label><br>
+  <label><input type="radio" name="module1_mcq_q81" value="C"> C. No, reporting stops after listing</label><br>
+  <label><input type="radio" name="module1_mcq_q81" value="D"> D. Yes, continuous disclosure is mandatory</label><br>
+  <label><input type="radio" name="module1_mcq_q81" value="E"> E. Only for the first year</label><br>
+</form> 
+
+<div id="feedback-module1_mcq_q81" class="feedback" data-status="" style="display:none;"> 
+✅ Correct: D. Regulators like CVM require ongoing disclosure after IPOs. 
+</div> 
+:::

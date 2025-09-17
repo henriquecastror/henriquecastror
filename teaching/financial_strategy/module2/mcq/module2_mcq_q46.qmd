@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q46')" data-correct-answer="C">
+<strong style="display: block;">Portfolio return: 40% in asset A (12%), 60% in asset B (8%). Expected return?</strong>
+<label><input type="radio" name="module2_mcq_q46" value="A"> A. 8.5%</label><br>
+<label><input type="radio" name="module2_mcq_q46" value="B"> B. 9.0%</label><br>
+<label><input type="radio" name="module2_mcq_q46" value="C"> C. 9.6%</label><br>
+<label><input type="radio" name="module2_mcq_q46" value="D"> D. 10.0%</label><br>
+<label><input type="radio" name="module2_mcq_q46" value="E"> E. 10.2%</label><br>
+</form>
+<div id="feedback-module2_mcq_q46" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. 0.4×12%+0.6×8%=9.6%.
+</div>
+:::
