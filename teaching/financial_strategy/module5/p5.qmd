@@ -15,7 +15,7 @@ format:
     include-after-body:
       - ../chat-widget.html
       - ../threads-gate.html
-  #    - ../ranking-widget2.html
+      - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
     controls: true
