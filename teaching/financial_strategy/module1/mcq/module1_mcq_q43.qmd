@@ -1,14 +1,14 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q43')" data-correct-answer="E"> 
-  <strong style="display: block;">Which body regulates IPOs and securities markets in Brazil?</strong> 
-  <label><input type="radio" name="module1_mcq_q43" value="A"> A. BACEN</label><br>
-  <label><input type="radio" name="module1_mcq_q43" value="B"> B. IBGE</label><br>
-  <label><input type="radio" name="module1_mcq_q43" value="C"> C. Receita Federal</label><br>
-  <label><input type="radio" name="module1_mcq_q43" value="D"> D. ANBIMA</label><br>
-  <label><input type="radio" name="module1_mcq_q43" value="E"> E. CVM (Comissão de Valores Mobiliários)</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q43')" data-correct-answer="C"> 
+  <strong style="display: block;">Which valuation method is most commonly used to estimate the value of early-stage startups?</strong> 
+  <label><input type="radio" name="module1_mcq_q43" value="A"> A. Dividend Discount Model (DDM)</label><br>
+  <label><input type="radio" name="module1_mcq_q43" value="B"> B. Price-to-Earnings (P/E) multiples</label><br>
+  <label><input type="radio" name="module1_mcq_q43" value="C"> C. Estimating the future exit value of the startup and discounting it to today</label><br>
+  <label><input type="radio" name="module1_mcq_q43" value="D"> D. Net Asset Value (NAV)</label><br>
+  <label><input type="radio" name="module1_mcq_q43" value="E"> E. Discounted Payback Period</label><br>
 </form> 
 
 <div id="feedback-module1_mcq_q43" class="feedback" data-status="" style="display:none;"> 
-✅ Correct: E. The CVM is the Brazilian equivalent of the SEC in regulating securities offerings. 
+✅ Correct: C. The most common approach for early-stage startups is to estimate their potential exit value (e.g., at IPO or acquisition) and discount it back to the present, since they often lack reliable cash flows or earnings. 
 </div> 
 :::

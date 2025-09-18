@@ -1,0 +1,248 @@
+---
+title: "Self-quiz — Module 1 (MCQ)"
+format:
+  html:
+    toc: false
+    embed-resources: false
+---
+
+```{=html}
+<style>
+  :root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--card:#f8fafc;--brand:#4f46e5}
+  .sq-wrap{max-width:880px;margin:0 auto}
+  .sq-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .sq-muted{color:var(--muted);font-size:14px}
+  .sq-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+  .sq-qnum{font-weight:600;margin-bottom:6px}
+  .sq-stem{margin:8px 0 10px}
+  .sq-opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
+  .sq-opt input{margin-top:3px}
+  .sq-actions{display:flex;gap:10px;align-items:center;margin-top:16px}
+  .sq-btn{padding:10px 14px;border-radius:10px;border:1px solid var(--line);cursor:pointer;background:#fff}
+  .sq-btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .sq-pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#eef2ff;font-size:12px}
+  .sq-timer{font-variant-numeric:tabular-nums}
+  .sq-warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:10px;border-radius:10px;margin:10px 0}
+  .sq-err{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px;border-radius:10px;margin:10px 0}
+  .sq-ok{background:#ecfdf5;border:1px solid #bbf7d0;color:#065f46;padding:10px;border-radius:10px;margin:10px 0}
+</style>
+<script> // ===== Identificador desta página (para logs/checkouts se você usar) ===== const SLIDE_ID = "module1_selfquiz"; </script>
+{{< include ../login-start.html >}}
+
+{=html}
+Copiar código
+<div class="sq-wrap">
+  <header class="sq-head">
+    <div>
+      <h2 style="margin:0">Self-quiz (MCQ)</h2>
+      <div class="sq-muted" id="sq-subtitle">Preparando…</div>
+    </div>
+    <div class="sq-pill sq-timer" id="sq-timer">--:--</div>
+  </header>
+
+  <div id="sq-alerts"></div>
+  <div id="sq-quiz"></div>
+
+  <div class="sq-actions">
+    <button id="sq-submit" class="sq-btn primary" disabled>Enviar respostas</button>
+    <button id="sq-save" class="sq-btn" disabled>Salvar rascunho</button>
+    <span class="sq-muted" id="sq-status"></span>
+  </div>
+</div>
+{=html}
+Copiar código
+<script>
+(function(){
+  // ========= Config local =========
+  const API_BASE        = (window.SELFQUIZ_API_BASE || "https://course-chat.hcmrtns.workers.dev").replace(/\/+$/,'');
+  const DEFAULT_TRACK   = "module";     // "module" = prática; "midterm"/"final" = provas fixas
+  const DEFAULT_MODULE  = "module1";    // mude para module2/module3/etc.
+  const DEFAULT_N       = 10;           // quantidade de MCQ sorteadas
+
+  // ========= Util: pega usuário do MESMO gate dos exercícios =========
+  const stripDiacritics = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const normalizeLogin  = s => {
+    const raw = String(s || '').trim().toLowerCase();
+    if (!raw) return '';
+    return raw.includes('@') ? raw.split('@')[0] : raw;
+  };
+  function getCurrentUser(){
+    try{
+      const seq = [
+        () => localStorage.getItem('student_login'),
+        () => localStorage.getItem('vhcm_current_user'),
+        () => sessionStorage.getItem('student_login'),
+      ];
+      for (const f of seq){
+        const v = normalizeLogin(stripDiacritics(f() || ''));
+        if (v) return v;
+      }
+    }catch{}
+    return '';
+  }
+
+  // ========= Elementos =========
+  const el = (id) => document.getElementById(id);
+  const subtitle = el("sq-subtitle");
+  const alerts   = el("sq-alerts");
+  const quizRoot = el("sq-quiz");
+  const btnSubmit= el("sq-submit");
+  const btnSave  = el("sq-save");
+  const statusEl = el("sq-status");
+  const timerEl  = el("sq-timer");
+
+  // ========= Start: exige login =========
+  const student_id = getCurrentUser();
+  if(!student_id){
+    subtitle.textContent = "Faça login para iniciar o self-quiz.";
+    pushAlert("sq-warn","Você precisa estar logado para ver o self-quiz.");
+    return; // o gate mostra o modal de login
+  }
+
+  // ========= Inicia tentativa =========
+  const payload = {
+    student_id,
+    track: DEFAULT_TRACK,
+    module: DEFAULT_MODULE,
+    n_mcq: DEFAULT_N
+  };
+
+  safeJsonPost(API_BASE + "/selfquiz/attempt/start", payload).then(startRes => {
+    if(!startRes || !startRes.ok){
+      subtitle.textContent = (startRes && (startRes.error || startRes.message)) || "Não foi possível iniciar a tentativa.";
+      pushAlert("sq-err", subtitle.textContent);
+      return;
+    }
+
+    const attempt_id = startRes.attempt_id;
+    const timeLimit  = Number(startRes.time_limit_sec || 1200);
+    const qids       = Array.isArray(startRes.question_ids) ? startRes.question_ids : [];
+
+    subtitle.textContent = `Prova iniciada (módulo: ${startRes.module || DEFAULT_MODULE}).`;
+
+    if(!qids.length){
+      pushAlert("sq-warn","Nenhuma questão foi sorteada. Verifique a pool/configuração no backend.");
+      return;
+    }
+
+    // ========= Baixa enunciados =========
+    safeJsonGet(API_BASE + "/selfquiz/questions?ids=" + encodeURIComponent(qids.join(","))).then(qdata => {
+      const items = (qdata && Array.isArray(qdata.items)) ? qdata.items : [];
+      if(!items.length){
+        pushAlert("sq-err","Falha ao carregar as questões. Tente novamente ou confira o endpoint /selfquiz/questions.");
+        return;
+      }
+      renderQuiz(items);
+      enableActions(true);
+      restoreDraft(attempt_id);
+      startTimer(timeLimit, submitNow);
+
+      // ========= ações =========
+      btnSave.onclick   = () => { localStorage.setItem("sq_"+attempt_id, JSON.stringify(readAnswers())); setStatus("Rascunho salvo."); };
+      btnSubmit.onclick = submitNow;
+
+      async function submitNow(){
+        enableActions(false);
+        const answers = readAnswers();
+        const res = await safeJsonPost(API_BASE + "/selfquiz/attempt/submit", { attempt_id, answers });
+        if(!res || !res.ok){
+          setStatus("Falha ao enviar. Tente novamente.");
+          enableActions(true);
+          return;
+        }
+        setStatus(`Enviado! Acertou ${res.score} de ${res.max_score}.`);
+        try{ localStorage.removeItem("sq_"+attempt_id); }catch{}
+      }
+    });
+  });
+
+  // ========= Render =========
+  function renderQuiz(items){
+    quizRoot.innerHTML = "";
+    items.forEach((q, idx) => {
+      const card = document.createElement("div");
+      card.className = "sq-card";
+      card.innerHTML = `
+        <div class="sq-qnum">Q${idx+1}</div>
+        <div class="sq-stem">${escapeHtml(q.stem || q.question || "")}</div>
+        <div class="sq-opts">
+          ${renderOpt(q,"A")}
+          ${renderOpt(q,"B")}
+          ${renderOpt(q,"C")}
+          ${renderOpt(q,"D")}
+          ${renderOpt(q,"E")}
+        </div>
+      `;
+      quizRoot.appendChild(card);
+    });
+  }
+  function renderOpt(q, letter){
+    const txt = (q.options && q.options[letter]) || "";
+    if(!txt) return "";
+    return `<label class="sq-opt">
+      <input type="radio" name="${escapeAttr(q.question_id)}" value="${letter}">
+      <div><strong>${letter})</strong> ${escapeHtml(txt)}</div>
+    </label>`;
+  }
+  function readAnswers(){
+    const out = {};
+    document.querySelectorAll('#sq-quiz input[type="radio"]:checked').forEach(inp => {
+      out[inp.name] = inp.value;
+    });
+    return out;
+  }
+  function restoreDraft(attempt_id){
+    try{
+      const raw = localStorage.getItem("sq_"+attempt_id);
+      if(!raw) return;
+      const saved = JSON.parse(raw) || {};
+      Object.entries(saved).forEach(([qid, letter]) => {
+        const sel = `#sq-quiz input[type="radio"][name="${cssEscape(qid)}"][value="${letter}"]`;
+        const el  = document.querySelector(sel);
+        if (el) el.checked = true;
+      });
+      pushAlert("sq-ok","Rascunho recuperado.");
+    }catch{}
+  }
+
+  // ========= Timer / UI / Utils =========
+  function startTimer(seconds, onFinish){
+    let left = Number(seconds) || 0;
+    const tick = () => {
+      const m = String(Math.floor(left/60)).padStart(2,"0");
+      const s = String(left%60).padStart(2,"0");
+      timerEl.textContent = m + ":" + s;
+      if(left<=0){ onFinish(); } else { left--; setTimeout(tick, 1000); }
+    };
+    tick();
+  }
+  function setStatus(msg){ statusEl.textContent = msg; }
+  function enableActions(on){
+    btnSubmit.disabled = !on;
+    btnSave.disabled   = !on;
+  }
+  function pushAlert(kind,msg){
+    const div = document.createElement("div");
+    div.className = kind;
+    div.textContent = msg;
+    alerts.appendChild(div);
+  }
+
+  async function safeJsonGet(url){
+    try{ const r = await fetch(url); if(!r.ok) return null; return await r.json(); }catch{ return null; }
+  }
+  async function safeJsonPost(url, body){
+    try{
+      const r = await fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(body) });
+      if(!r.ok) return null;
+      return await r.json();
+    }catch{ return null; }
+  }
+  function escapeHtml(s){
+    return String(s||"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+  function escapeAttr(s){ return String(s||"").replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+  function cssEscape(s){ return String(s||"").replace(/(["\\\]\\])/g, "\\$1"); }
+})();
+</script>
+{{< include ../login-end.html >}}

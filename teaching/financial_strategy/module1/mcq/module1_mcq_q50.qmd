@@ -1,14 +1,14 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q50')" data-correct-answer="E"> 
-  <strong style="display: block;">What is an SEO (Seasoned Equity Offering)?</strong> 
-  <label><input type="radio" name="module1_mcq_q50" value="A"> A. The first offering of shares to the public</label><br>
-  <label><input type="radio" name="module1_mcq_q50" value="B"> B. A type of corporate bond</label><br>
-  <label><input type="radio" name="module1_mcq_q50" value="C"> C. An insider lock-up period</label><br>
-  <label><input type="radio" name="module1_mcq_q50" value="D"> D. A regulatory filing</label><br>
-  <label><input type="radio" name="module1_mcq_q50" value="E"> E. An issuance of additional shares by a company already public</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q50')" data-correct-answer="B"> 
+  <strong style="display: block;">What is a key role of the lead underwriter in an Initial Public Offering (IPO)?</strong> 
+  <label><input type="radio" name="module1_mcq_q50" value="A"> A. Determining the company’s accounting policies</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="B"> B. Coordinating the sale of shares and helping set the offer price</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="C"> C. Approving the IPO at the securities regulator</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="D"> D. Auditing the company’s financial statements</label><br>
+  <label><input type="radio" name="module1_mcq_q50" value="E"> E. Deciding which investors can trade the stock in the secondary market</label><br>
 </form> 
 
 <div id="feedback-module1_mcq_q50" class="feedback" data-status="" style="display:none;"> 
-✅ Correct: E. An SEO is when an already public company raises new equity. 
+✅ Correct: B. The lead underwriter is responsible for organizing the IPO process, marketing the shares, building the book of demand, and helping determine the final offer price. 
 </div> 
 :::

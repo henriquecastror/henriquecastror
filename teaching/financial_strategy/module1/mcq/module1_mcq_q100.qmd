@@ -1,14 +1,14 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q100')" data-correct-answer="D"> 
-  <strong style="display: block;">Why do corporate investors sometimes invest in startups?</strong> 
-  <label><input type="radio" name="module1_mcq_q100" value="A"> A. Only for dividends</label><br>
-  <label><input type="radio" name="module1_mcq_q100" value="B"> B. To comply with regulations</label><br>
-  <label><input type="radio" name="module1_mcq_q100" value="C"> C. To park idle cash</label><br>
-  <label><input type="radio" name="module1_mcq_q100" value="D"> D. For strategic objectives like technology access</label><br>
-  <label><input type="radio" name="module1_mcq_q100" value="E"> E. To reduce IPO fees</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q100')" data-correct-answer="B"> 
+  <strong style="display: block;">After an IPO, Aurora Technologies has 20 million outstanding shares. The company then issues 5 million new shares. What percentage of the company do the original shareholders now own?</strong> 
+  <label><input type="radio" name="module1_mcq_q100" value="A"> A. 80%</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="B"> B. 80%</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="C"> C. 83.3%</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="D"> D. 75%</label><br>
+  <label><input type="radio" name="module1_mcq_q100" value="E"> E. 70%</label><br>
 </form> 
 
 <div id="feedback-module1_mcq_q100" class="feedback" data-status="" style="display:none;"> 
-✅ Correct: D. Corporates often invest to gain strategic benefits such as technology, markets, or talent. 
+✅ Correct: B. After issuing 5 million new shares, the total rises to 25 million. The original 20 million shares now represent 20 ÷ 25 = 80% of the company. 
 </div> 
 :::

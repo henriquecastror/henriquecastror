@@ -1,14 +1,15 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q99')" data-correct-answer="E"> 
-  <strong style="display: block;">Venture capital firms usually target:</strong> 
-  <label><input type="radio" name="module1_mcq_q99" value="A"> A. Mature, low-growth companies</label><br>
-  <label><input type="radio" name="module1_mcq_q99" value="B"> B. Distressed buyouts</label><br>
-  <label><input type="radio" name="module1_mcq_q99" value="C"> C. Real estate projects</label><br>
-  <label><input type="radio" name="module1_mcq_q99" value="D"> D. Government bonds</label><br>
-  <label><input type="radio" name="module1_mcq_q99" value="E"> E. Early-stage, high-growth companies</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q99')" data-correct-answer="B"> 
+  <strong style="display: block;">A company has 100 in Assets and 50 shares outstanding. Each share is worth 2. It announces a rights offer, allowing each shareholder to buy 1 new share for 1. If all shareholders exercise their rights, what will be the new share price?</strong> 
+  <label><input type="radio" name="module1_mcq_q99" value="A"> A. 1.00</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="B"> B. 1.50</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="C"> C. 2.00</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="D"> D. 2.50</label><br>
+  <label><input type="radio" name="module1_mcq_q99" value="E"> E. 3.00</label><br>
 </form> 
 
 <div id="feedback-module1_mcq_q99" class="feedback" data-status="" style="display:none;"> 
-✅ Correct: E. VC firms invest in early-stage companies with high growth potential. 
+✅ Correct: B. After the rights offer, the firm has 150 in total value and 100 shares outstanding.  
+The new share price is therefore 150 ÷ 100 = **1.50**. 
 </div> 
 :::
