@@ -19,6 +19,9 @@
   button.primary{background:var(--brand);border-color:var(--brand);color:#fff}
   .pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#eef2ff;font-size:12px}
   .timer{font-variant-numeric:tabular-nums}
+  .warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:10px;border-radius:10px;margin:10px 0}
+  .err{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px;border-radius:10px;margin:10px 0}
+  .ok{background:#ecfdf5;border:1px solid #bbf7d0;color:#065f46;padding:10px;border-radius:10px;margin:10px 0}
 </style>
 
 <section class="page">
@@ -30,6 +33,7 @@
     <div class="pill timer" id="timer">--:--</div>
   </header>
 
+  <div id="alerts"></div>
   <div id="quiz"></div>
   <div class="actions">
     <button id="submit" class="primary" disabled>Enviar respostas</button>
@@ -39,37 +43,40 @@
 </section>
 
 <script>
-const API_BASE = "https://course-chat.hcmrtns.workers.dev/"; // deixe vazio se o HTML estiver no MESMO domínio do Worker. Caso contrário, ex.: "https://seu-worker.workers.dev"
-
 (async function(){
-  const qs = new URLSearchParams(location.search);
-  const student_id = (qs.get("student_id") || "").toLowerCase().trim();
-  const paper_id   = (qs.get("paper_id") || "").trim();               // para MIDTERM (ou finals)
-  const track      = (qs.get("track") || "").toLowerCase().trim();    // para MÓDULO
-  const moduleId   = (qs.get("module") || "").toLowerCase().trim();   // para MÓDULO
-  const n_mcq      = parseInt(qs.get("n") || "10", 10);
+  // --- Config: pode passar ?api=https://... para testar outros ambientes
+  const qs       = new URLSearchParams(location.search);
+  const apiParam = (qs.get("api") || "https://course-chat.hcmrtns.workers.dev").trim();
+  const API_BASE = apiParam.replace(/\/+$/,''); // remove barra final para evitar //
 
-  const subtitle = document.getElementById("subtitle");
-  if(!student_id){ subtitle.textContent = "Falta student_id na URL."; return; }
+  const student_id = (qs.get("student_id") || "").toLowerCase().trim();
+  const paper_id   = (qs.get("paper_id") || "").trim();             // MIDTERM/FINAL (fixo, conta pontos)
+  const track      = (qs.get("track") || "").toLowerCase().trim();  // "module" (default) para prática
+  const moduleId   = (qs.get("module") || "").toLowerCase().trim(); // ex.: module3
+  const n_mcq      = Number.parseInt(qs.get("n") || "10", 10);
+  const subtitle   = document.getElementById("subtitle");
+  const alerts     = document.getElementById("alerts");
+
+  if(!student_id){
+    subtitle.textContent = "Falta student_id na URL (?student_id=...).";
+    showAlert("err","Inclua ?student_id=seu_login.");
+    return;
+  }
 
   // 1) Iniciar tentativa
   let startPayload = { student_id };
   if (paper_id) {
-    startPayload.paper_id = paper_id;                     // MIDTERM (conta ponto)
+    startPayload.paper_id = paper_id;         // prova fixa (midterm/final)
   } else {
-    startPayload.track  = track || "module";              // MÓDULO (não conta ponto)
-    startPayload.module = moduleId;
-    startPayload.n_mcq  = isFinite(n_mcq) ? n_mcq : 10;
+    startPayload.track  = track || "module";  // prática por módulo (não conta pontos no ranking)
+    startPayload.module = moduleId || "module1";
+    startPayload.n_mcq  = Number.isFinite(n_mcq) ? n_mcq : 10;
   }
 
-  const startRes = await fetch(API_BASE + "/selfquiz/attempt/start", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify(startPayload)
-  }).then(r=>r.json()).catch(()=>null);
-
+  const startRes = await safeJsonPost(`${API_BASE}/selfquiz/attempt/start`, startPayload);
   if (!startRes || !startRes.ok) {
     subtitle.textContent = (startRes && startRes.error) || "Não foi possível iniciar a tentativa.";
+    showAlert("err", subtitle.textContent);
     return;
   }
 
@@ -79,33 +86,45 @@ const API_BASE = "https://course-chat.hcmrtns.workers.dev/"; // deixe vazio se o
 
   subtitle.textContent = paper_id
     ? "Prova iniciada (midterm/fixed)."
-    : `Prova iniciada (módulo: ${startRes.module || moduleId}).`;
+    : `Prova iniciada (módulo: ${startRes.module || moduleId || "module1"}).`;
 
-  // 2) Buscar enunciados
-  const qdata = await fetch(API_BASE + "/selfquiz/questions?ids=" + encodeURIComponent(qids.join(",")))
-    .then(r=>r.json()).catch(()=>null);
+  if (!qids.length){
+    showAlert("warn","Nenhuma questão foi sorteada para esta tentativa. Verifique a pool/configuração no backend.");
+    enableActions(false);
+    return;
+  }
 
-  const items = (qdata && qdata.items) || [];
+  // 2) Buscar enunciados (MCQ)
+  const qdata = await safeJsonGet(`${API_BASE}/selfquiz/questions?ids=${encodeURIComponent(qids.join(","))}`);
+  const items = (qdata && Array.isArray(qdata.items)) ? qdata.items : [];
+
+  if (!items.length){
+    showAlert("err","Falha ao carregar as questões. Tente novamente ou confira o endpoint /selfquiz/questions.");
+    enableActions(false);
+    return;
+  }
+
+  // Checagem mínima do schema esperado (question_id, options.A..E)
+  const bad = items.find(q => !q || !q.question_id || !q.options || typeof q.options !== 'object');
+  if (bad){
+    showAlert("warn","Alguma questão retornou com formato inesperado. Verifique se o backend envia {question_id, stem|question, options:{A..E}}.");
+  }
+
   renderQuiz(items);
+  enableActions(true);
+  restoreDraftIfExists(attempt_id);
 
   // 3) Timer simples
-  let left = timeLimit;
-  const timerEl = document.getElementById("timer");
-  const tick = () => {
-    const m = String(Math.floor(left/60)).padStart(2,"0");
-    const s = String(left%60).padStart(2,"0");
-    timerEl.textContent = m + ":" + s;
-    if(left<=0){ submitNow(); } else { left--; setTimeout(tick, 1000); }
-  };
-  tick();
+  startTimer(timeLimit, submitNow);
 
   // 4) Botões
   document.getElementById("submit").onclick = submitNow;
-  document.getElementById("save").onclick = () => {
+  document.getElementById("save").onclick   = () => {
     localStorage.setItem("sq_" + attempt_id, JSON.stringify(readAnswers()));
-    document.getElementById("status").textContent = "Rascunho salvo.";
+    setStatus("Rascunho salvo.");
   };
 
+  // ---------- Funções ----------
   function renderQuiz(items){
     const root = document.getElementById("quiz");
     root.innerHTML = "";
@@ -125,15 +144,13 @@ const API_BASE = "https://course-chat.hcmrtns.workers.dev/"; // deixe vazio se o
       `;
       root.appendChild(card);
     });
-    document.getElementById("submit").disabled = false;
-    document.getElementById("save").disabled   = false;
   }
 
   function renderOption(q, letter){
     const txt = (q.options && q.options[letter]) || "";
     if(!txt) return "";
     return `<label class="opt">
-      <input type="radio" name="${q.question_id}" value="${letter}">
+      <input type="radio" name="${escapeAttr(q.question_id)}" value="${letter}">
       <div><strong>${letter})</strong> ${escapeHtml(txt)}</div>
     </label>`;
   }
@@ -146,26 +163,91 @@ const API_BASE = "https://course-chat.hcmrtns.workers.dev/"; // deixe vazio se o
     return out;
   }
 
-  async function submitNow(){
-    document.getElementById("submit").disabled = true;
-    const answers = readAnswers();
-    const res = await fetch(API_BASE + "/selfquiz/attempt/submit", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ attempt_id, answers })
-    }).then(r=>r.json()).catch(()=>null);
-
-    if(!res || !res.ok){
-      document.getElementById("status").textContent = "Falha ao enviar. Tente novamente.";
-      document.getElementById("submit").disabled = false;
-      return;
-    }
-    document.getElementById("status").textContent =
-      "Enviado! Acertou " + res.score + " de " + res.max_score + ".";
+  function restoreDraftIfExists(attempt_id){
+    const raw = localStorage.getItem("sq_" + attempt_id);
+    if(!raw) return;
+    try{
+      const saved = JSON.parse(raw) || {};
+      Object.entries(saved).forEach(([qid, letter]) => {
+        const sel = `input[type="radio"][name="${cssEscape(qid)}"][value="${letter}"]`;
+        const el = document.querySelector(sel);
+        if (el) el.checked = true;
+      });
+      showAlert("ok","Rascunho recuperado desta tentativa.");
+    }catch{}
   }
 
+  async function submitNow(){
+    enableActions(false);
+    const answers = readAnswers();
+
+    const res = await safeJsonPost(`${API_BASE}/selfquiz/attempt/submit`, { attempt_id, answers });
+    if(!res || !res.ok){
+      setStatus("Falha ao enviar. Tente novamente.");
+      enableActions(true);
+      return;
+    }
+    setStatus(`Enviado! Acertou ${res.score} de ${res.max_score}.`);
+    // opcional: limpar rascunho após envio bem-sucedido
+    try { localStorage.removeItem("sq_" + attempt_id); } catch {}
+  }
+
+  function startTimer(seconds, onFinish){
+    let left = Number(seconds) || 0;
+    const timerEl = document.getElementById("timer");
+    const tick = () => {
+      const m = String(Math.floor(left/60)).padStart(2,"0");
+      const s = String(left%60).padStart(2,"0");
+      timerEl.textContent = m + ":" + s;
+      if(left<=0){ onFinish(); } else { left--; setTimeout(tick, 1000); }
+    };
+    tick();
+  }
+
+  function enableActions(enable){
+    document.getElementById("submit").disabled = !enable;
+    document.getElementById("save").disabled   = !enable;
+  }
+
+  function setStatus(msg){ document.getElementById("status").textContent = msg; }
+
+  function showAlert(kind, msg){
+    const div = document.createElement("div");
+    div.className = kind;
+    div.textContent = msg;
+    alerts.appendChild(div);
+  }
+
+  // --- util: GET/POST com tratamento simples
+  async function safeJsonGet(url){
+    try{
+      const r = await fetch(url, { method:"GET" });
+      if (!r.ok) return null;
+      return await r.json();
+    }catch{ return null; }
+  }
+  async function safeJsonPost(url, body){
+    try{
+      const r = await fetch(url, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(body)
+      });
+      if (!r.ok) return null;
+      return await r.json();
+    }catch{ return null; }
+  }
+
+  // --- helpers de segurança
   function escapeHtml(s){
     return String(s||"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+  function escapeAttr(s){
+    return String(s||"").replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function cssEscape(s){
+    // escape simples p/ seletor [name="..."]
+    return String(s||"").replace(/(["\\\]\\])/g, "\\$1");
   }
 })();
 </script>

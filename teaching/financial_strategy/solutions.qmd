@@ -42,8 +42,8 @@ payload <- list(
   items = list(list(
     question_id   = "module5_num_q1a",
     qtype         = "num",
-    correct_value = -0.04,   # número (use ponto decimal)
-    tolerance     = 0.05,    # tolerância absoluta; NULL se não houver
+    correct_value = -0.4,   # número (use ponto decimal)
+    tolerance     = 0.01,    # tolerância absoluta; NULL se não houver
     points        = 2,
     module        = "mod5"
   ))
