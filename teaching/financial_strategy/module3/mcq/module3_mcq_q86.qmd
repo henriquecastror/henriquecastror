@@ -1,0 +1,16 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q86')" data-correct-answer="C">
+<strong style="display: block;">
+A stock has rf=3%, βM=1.2, βS=0.4, βB=0.6. Market premium=7%, size premium=2%, book-to-market premium=3%. 
+Using the Fama–French three-factor model, what is its expected return?
+</strong>
+<label><input type="radio" name="module3_mcq_q86" value="A"> A. 11.4%</label><br>
+<label><input type="radio" name="module3_mcq_q86" value="B"> B. 12.0%</label><br>
+<label><input type="radio" name="module3_mcq_q86" value="C"> C. 14.2%</label><br>
+<label><input type="radio" name="module3_mcq_q86" value="D"> D. 15.0%</label><br>
+<label><input type="radio" name="module3_mcq_q86" value="E"> E. 16.8%</label><br>
+</form>
+<div id="feedback-module3_mcq_q86" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. E(R)=3%+1.2×7%+0.4×2%+0.6×3%=3%+8.4%+0.8%+1.8%=14.2%.
+</div>
+:::

@@ -1,0 +1,25 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q55')" data-correct-answer="C">
+  <strong style="display: block;">
+  Omega Corp has E=$48bn, D=$22bn, Cash=$10bn, equity β=1.30, and BBB debt with βD=0.10.  
+  Compute Omega’s asset beta using net debt (cash β≈0).  
+  Then, for a new project financed at target D/E=0.5 with the same BBB debt, what is the project’s equity beta (βE,target)?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q55" value="A"> A. 0.54</label><br>
+  <label><input type="radio" name="module4_mcq_q55" value="B"> B. 1.04</label><br>
+  <label><input type="radio" name="module4_mcq_q55" value="C"> C. 1.54</label><br>
+  <label><input type="radio" name="module4_mcq_q55" value="D"> D. 2.04</label><br>
+  <label><input type="radio" name="module4_mcq_q55" value="E"> E. 2.54</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q55" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. ≈1.54.  
+• Net debt=22−10=12bn; EV=48+12=60bn.  
+• βA=(48/60)(1.30)+(12/60)(0.10)=1.04.  
+• Target D/E=0.5 → βE=1.04+(0.5)(1.04−0.10)=1.54.  
+👉 Leverage magnifies equity risk above asset risk; net debt ensures correct adjustment.
+</div>
+
+:::

@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q16')" data-correct-answer="D">
+  <strong style="display: block;">Which portfolio construction requires the least trading to maintain its weights if share counts don’t change?</strong>
+<label><input type="radio" name="module4_mcq_q16" value="A"> A. Equal‑weighted</label><br>
+<label><input type="radio" name="module4_mcq_q16" value="B"> B. Minimum‑variance</label><br>
+<label><input type="radio" name="module4_mcq_q16" value="C"> C. Same‑weighted</label><br>
+<label><input type="radio" name="module4_mcq_q16" value="D"> D. Value‑weighted</label><br>
+<label><input type="radio" name="module4_mcq_q16" value="E"> E. Risk‑parity</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q16" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. In a value‑weighted portfolio, price changes raise and lower weights automatically; rebalancing is minimal unless shares outstanding change.
+</div>
+
+:::

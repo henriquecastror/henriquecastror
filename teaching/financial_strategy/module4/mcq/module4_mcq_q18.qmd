@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q18')" data-correct-answer="B">
+  <strong style="display: block;">Compared to using yield to maturity, estimating the debt cost of capital via CAPM requires:</strong>
+<label><input type="radio" name="module4_mcq_q18" value="A"> A. No estimate of market risk premium</label><br>
+<label><input type="radio" name="module4_mcq_q18" value="B"> B. An estimate of the debt beta</label><br>
+<label><input type="radio" name="module4_mcq_q18" value="C"> C. Assuming zero default risk</label><br>
+<label><input type="radio" name="module4_mcq_q18" value="D"> D. Using book values of debt</label><br>
+<label><input type="radio" name="module4_mcq_q18" value="E"> E. Knowing expected recovery rates</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q18" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Debt‑CAPM needs β_d (often proxied by rating‑based indices); YTM can be adjusted for expected default losses as an alternative.
+</div>
+
+:::

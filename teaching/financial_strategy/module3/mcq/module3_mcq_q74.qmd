@@ -1,0 +1,33 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q74')" data-correct-answer="D">
+<strong style="display: block;">
+An investor forms a portfolio with three assets:  
+- Asset A: weight = 40%, σ = 12%  
+- Asset B: weight = 35%, σ = 20%  
+- Asset C: weight = 25%, σ = 25%  
+
+The correlations are ρ(A,B)=0.2, ρ(A,C)=0.1, and ρ(B,C)=0.4.  
+What is the portfolio’s volatility?
+</strong>
+<label><input type="radio" name="module2_mcq_q74" value="A"> A. 14.5%</label><br>
+<label><input type="radio" name="module2_mcq_q74" value="B"> B. 15.0%</label><br>
+<label><input type="radio" name="module2_mcq_q74" value="C"> C. 15.5%</label><br>
+<label><input type="radio" name="module2_mcq_q74" value="D"> D. 16.0%</label><br>
+<label><input type="radio" name="module2_mcq_q74" value="E"> E. 16.5%</label><br>
+</form>
+<div id="feedback-module2_mcq_q74" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Portfolio variance is  
+
+\(\sigma_p^2 = \sum w_i^2\sigma_i^2 + 2\sum_{i<j} w_iw_j\sigma_i\sigma_j\rho_{ij}\).  
+
+= (0.4²×0.12²) + (0.35²×0.20²) + (0.25²×0.25²)  
++ 2(0.4×0.35×0.12×0.20×0.2)  
++ 2(0.4×0.25×0.12×0.25×0.1)  
++ 2(0.35×0.25×0.20×0.25×0.4).  
+
+= 0.0023 + 0.0049 + 0.0039 + 0.0013 + 0.0010 + 0.0070 ≈ 0.0205.  
+
+So, \(\sigma_p = \sqrt{0.0205} ≈ 16.0\%\).  
+This shows how correlations drive portfolio risk beyond individual volatilities.
+</div>
+:::

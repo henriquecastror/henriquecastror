@@ -1,0 +1,17 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q84')" data-correct-answer="A">
+<strong style="display: block;">
+Consider the same opportunity set of risky portfolios. Draw Capital Market Lines (CMLs) for different risk-free rates: 3%, 7.5%, 10%, and 15%. 
+Which statement is MOST accurate about how the risk-free rate affects the CML and investors’ expected returns for a given standard deviation?
+</strong>
+<label><input type="radio" name="module2_mcq_q84" value="A"> A. A lower risk-free rate makes the CML steeper (higher Sharpe). Thus, for sufficiently large σ (levered positions), the 3% CML delivers the highest expected return for a given σ, even though higher rf gives a higher intercept at σ=0.</label><br>
+<label><input type="radio" name="module2_mcq_q84" value="B"> B. A higher risk-free rate always makes the CML steeper and dominates for every σ.</label><br>
+<label><input type="radio" name="module2_mcq_q84" value="C"> C. Changing the risk-free rate only shifts the CML in parallel; the slope is unchanged.</label><br>
+<label><input type="radio" name="module2_mcq_q84" value="D"> D. The CML slope is independent of the tangency portfolio, so all investors choose the same σ regardless of rf.</label><br>
+<label><input type="radio" name="module2_mcq_q84" value="E"> E. Raising the risk-free rate does not affect the CML or the optimal risky portfolio.</label><br>
+</form>
+<div id="feedback-module2_mcq_q84" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. With a fixed risky opportunity set, the CML slope is \((E[R_T]-r_f)/\sigma_T\). A lower \(r_f\) increases this slope (higher Sharpe). 
+Hence, although higher \(r_f\) raises the intercept at \(\sigma=0\), for sufficiently high \(\sigma\) the steeper (low-\(r_f\)) CML yields the highest expected return for a given risk level.
+</div>
+:::

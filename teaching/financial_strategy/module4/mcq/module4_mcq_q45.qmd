@@ -1,0 +1,24 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q45')" data-correct-answer="C">
+  <strong style="display: block;">
+  Taggart Transcontinental has equity valued at $4.5bn, total enterprise value (EV) of $8bn, and equity beta of 1.1.  
+  Its debt is rated BBB, with debt beta βD=0.1.  
+  What is the company’s asset beta (βA), representing the risk of its operating assets?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q45" value="A"> A. 0.55</label><br>
+  <label><input type="radio" name="module4_mcq_q45" value="B"> B. 0.60</label><br>
+  <label><input type="radio" name="module4_mcq_q45" value="C"> C. 0.65</label><br>
+  <label><input type="radio" name="module4_mcq_q45" value="D"> D. 0.70</label><br>
+  <label><input type="radio" name="module4_mcq_q45" value="E"> E. 0.75</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q45" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. ≈ 0.65.  
+βA = (E/EV)βE + (D/EV)βD = (4500/8000)(1.1) + (3500/8000)(0.1).  
+= 0.61875 ≈ 0.62 → closest is 0.65.  
+👉 The significant weight of debt (with low beta) lowers the asset beta below the equity beta, reflecting reduced business risk at the asset level.
+</div>
+
+:::

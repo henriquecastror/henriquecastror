@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q84')" data-correct-answer="E">
+  <strong style="display: block;">
+  An airline company has a beta of 1.8. Analysts suggest that because oil prices tend to move inversely to airline profits, investing simultaneously in oil futures could reduce effective systematic risk.  
+  Which CAPM-related concept is being implicitly invoked?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q84" value="A"> A. CAPM assumes only the risk-free rate matters, so hedging is irrelevant.</label><br>
+  <label><input type="radio" name="module4_mcq_q84" value="B"> B. Arbitrage Pricing Theory (APT) implies identical results as CAPM.</label><br>
+  <label><input type="radio" name="module4_mcq_q84" value="C"> C. The market risk premium is reduced when commodities are included in the portfolio.</label><br>
+  <label><input type="radio" name="module4_mcq_q84" value="D"> D. Firm-specific hedging eliminates systematic risk completely.</label><br>
+  <label><input type="radio" name="module4_mcq_q84" value="E"> E. Portfolio diversification—by combining negatively correlated assets, investors can reduce exposure to systematic risk factors.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q84" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. The idea is diversification: oil futures are negatively correlated with airline profits, reducing the firm’s effective beta through hedging.
+</div>
+
+:::

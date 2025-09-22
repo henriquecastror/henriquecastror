@@ -141,8 +141,72 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
     
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Self-quiz — Module 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+For students
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Give this a try and see how much of <strong>Module 1</strong> stuck!</p>
+<p>You can retake the self-quiz <strong>as many times as you like</strong>—each attempt shuffles the questions so you’ll get fresh practice.</p>
+<p>Aim to improve your score with every run, review what you miss, and come back anytime. You’ve got this! 🚀</p>
+<p>You have <strong>20 minutes</strong> to answer. This quiz randomly selects <strong>10 MCQ questions</strong>.</p>
+</div>
+</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Module</th>
+<th style="text-align: center;">Chapter</th>
+<th style="text-align: center;">Slides</th>
+<th style="text-align: center;">T/F</th>
+<th style="text-align: center;">MCQ</th>
+<th style="text-align: center;">Numeric</th>
+<th style="text-align: center;">Long</th>
+<th style="text-align: center;">Self-quiz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">ch23</td>
+<td style="text-align: center;"><a href="p1.html">🎞️</a></td>
+<td style="text-align: center;"><a href="p1tf.html">✅</a></td>
+<td style="text-align: center;"><a href="p1mcq.html">❓</a></td>
+<td style="text-align: center;"><a href="p1num.html">🔢</a></td>
+<td style="text-align: center;"><a href="p1long.html">📝</a></td>
+<td style="text-align: center;"><a href="p1selfquiz.html">🧪</a></td>
+</tr>
+</tbody>
+</table>
+<script>
+  const SLIDE_ID = "module1_selfquiz";
+</script>
+<!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
 <style>
   /* Card padrão (páginas normais) */
   #login-form {
@@ -260,7 +324,6 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
   #login-form .cell-output-display,
   #login-form .cell { display: none !important; }
 </style>
-
 <!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
 <script>
   (function(){
@@ -276,7 +339,6 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
     } catch(_) {}
   })();
 </script>
-
 <!-- shim seguro: define onLoginSuccess se ainda não existir -->
 <script>
   if (typeof window.onLoginSuccess !== 'function') {
@@ -300,29 +362,33 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
     };
   }
 </script>
-
 <form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
-  <h3 style="text-align:center;" class="anchored">Login</h3>
-  <input type="text" id="username" placeholder="Username" autocomplete="username" required="">
-  <input type="password" id="password" placeholder="Password" autocomplete="current-password" required="">
-
-  <!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
-  <div class="remember-row">
-    <input type="checkbox" id="remember-me" checked="">
-    <label for="remember-me">Remember me</label>
-  </div>
-
-  <button type="submit" id="login-submit">Enter</button>
-  <div id="loading-msg"></div>
-  <div id="login-error"></div>
-</form>
-
-<div id="login-scrim" aria-hidden="true"></div>
-
-<div id="after-login-content" style="display:none;">
-  <h4 id="welcome-message" style="text-align:center; display:none; margin-top:10px; font-size:1.8em; color:#333;" class="anchored"></h4>
+<h3 style="text-align:center;" class="anchored">
+Login
+</h3>
+<p><input type="text" id="username" placeholder="Username" autocomplete="username" required=""> <input type="password" id="password" placeholder="Password" autocomplete="current-password" required=""></p>
+<!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
+<div class="remember-row">
+<pre><code>&lt;input type="checkbox" id="remember-me" checked /&gt;
+&lt;label for="remember-me"&gt;Remember me&lt;/label&gt;</code></pre>
 </div>
+<button type="submit" id="login-submit">
+Enter
+</button>
+<div id="loading-msg">
 
+</div>
+<div id="login-error">
+
+</div>
+</form>
+<div id="login-scrim" aria-hidden="true">
+
+</div>
+<div id="after-login-content" style="display:none;">
+<h4 id="welcome-message" style="text-align:center; display:none; margin-top:10px; font-size:1.8em; color:#333;" class="anchored">
+</h4>
+</div>
 <script>
   /***** CONFIG *****/
   const REMEMBER_PASSWORD  = true;
@@ -587,297 +653,91 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
   })();
 
 </script>
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Self-quiz — Module 1</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
 <style>
-  :root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--card:#f8fafc;--brand:#4f46e5}
-  .sq-wrap{max-width:880px;margin:0 auto}
-  .sq-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .sq-muted{color:var(--muted);font-size:14px}
-  .sq-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
-  .sq-qnum{font-weight:600;margin-bottom:6px}
-  .sq-stem{margin:8px 0 10px}
-  .sq-opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
-  .sq-opt input{margin-top:3px}
-  .sq-actions{display:flex;gap:10px;align-items:center;margin-top:16px}
-  .sq-btn{padding:10px 14px;border-radius:10px;border:1px solid var(--line);cursor:pointer;background:#fff}
-  .sq-btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
-  .sq-pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#eef2ff;font-size:12px}
-  .sq-timer{font-variant-numeric:tabular-nums}
-  .sq-warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:10px;border-radius:10px;margin:10px 0}
-  .sq-err{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px;border-radius:10px;margin:10px 0}
-  .sq-ok{background:#ecfdf5;border:1px solid #bbf7d0;color:#065f46;padding:10px;border-radius:10px;margin:10px 0}
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
 </style>
+
+<hr>
+<!-- Pretty self-quiz button -->
 <div class="sq-wrap">
-<header class="sq-head">
-<div>
-<pre><code>  &lt;h2 style="margin:0"&gt;Self-quiz&lt;/h2&gt;
-  &lt;div class="sq-muted" id="sq-subtitle"&gt;Preparing…&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sq-pill sq-timer" id="sq-timer"&gt;--:--&lt;/div&gt;</code></pre>
-</div></header>
-<div id="sq-alerts">
-
+<p><a class="sq-btn" href="https://course-chat.hcmrtns.workers.dev/selfquiz/m/module1" aria-label="Start self-quiz for Module 1"> <span class="sq-icon" aria-hidden="true">▶</span> <span>Start self-quiz</span> </a></p>
 </div>
-<div id="sq-quiz">
-
-</div>
-<div class="sq-actions">
-<pre><code>&lt;button id="sq-submit" class="sq-btn primary" disabled&gt;Submit answers&lt;/button&gt;
-&lt;button id="sq-save" class="sq-btn" disabled&gt;Save draft&lt;/button&gt;
-&lt;span class="sq-muted" id="sq-status"&gt;&lt;/span&gt;</code></pre>
-</div>
-</div>
+<style>
+  .sq-wrap{ margin:1rem 0; display:flex; justify-content:center }
+  .sq-btn{
+    --bg1:#4f46e5; --bg2:#7c3aed; --ink:#fff;
+    display:inline-flex; align-items:center; gap:.6rem;
+    padding:.9rem 1.35rem; border-radius:999px;
+    color:var(--ink); text-decoration:none; font-weight:600;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2));
+    box-shadow:0 10px 18px rgba(79,70,229,.25);
+    border:1px solid rgba(255,255,255,.25);
+    transition:transform .08s ease, box-shadow .08s ease, filter .08s ease;
+  }
+  .sq-btn:hover{ transform:translateY(-1px) scale(1.01);
+    box-shadow:0 12px 22px rgba(79,70,229,.32); filter:saturate(1.05) }
+  .sq-btn:active{ transform:translateY(0) scale(.99) }
+  .sq-icon{ display:inline-grid; place-items:center; width:1.35rem; height:1.35rem;
+    border-radius:999px; background:rgba(255,255,255,.18); font-size:.9rem }
+  @media (prefers-color-scheme: dark){
+    .sq-btn{ box-shadow:0 10px 18px rgba(0,0,0,.35) }
+  }
+</style>
+</main></div>
+<!-- Fecha #after-login-content -->
 <script>
-(function(){
-  // ========= Config =========
-  const API_BASE        = (window.SELFQUIZ_API_BASE || "https://course-chat.hcmrtns.workers.dev").replace(/\/+$/,'');
-  const DEFAULT_TRACK   = "module";    // "module" (prática)
-  const DEFAULT_MODULE  = "module1";   // ajuste para module2/3/4/5 conforme o arquivo
-  const DEFAULT_N       = 10;
-
-  // ========= Utils: login compatível com seu gate =========
-  const stripDiacritics = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const normalizeLogin  = s => {
-    const raw = String(s || '').trim().toLowerCase();
-    if (!raw) return '';
-    return raw.includes('@') ? raw.split('@')[0] : raw;
-  };
-
-  function readFromStorage(){
-    try{
-      const keys = ['student_login','vhcm_current_user','current_user','user_login','login','user'];
-      for (const k of keys){
-        const v = normalizeLogin(stripDiacritics(localStorage.getItem(k) || sessionStorage.getItem(k) || ''));
-        if (v) return v;
-      }
-    }catch{}
-    return '';
-  }
-  function readFromGlobals(){
-    try{
-      const cand = [
-        window.CURRENT_USER,
-        window.VHCM_CURRENT_USER,
-        window.__VHCM && window.__VHCM.currentUser,
-        window.__vhcm && window.__vhcm.user && window.__vhcm.user.login
-      ];
-      for (const c of cand){
-        const v = normalizeLogin(stripDiacritics(c || ''));
-        if (v) return v;
-      }
-    }catch{}
-    return '';
-  }
-  function readFromCookies(){
-    try{
-      const map = Object.fromEntries((document.cookie || '').split(';').filter(Boolean).map(s=>{
-        const [k,...r]=s.split('=');
-        return [k.trim(), decodeURIComponent((r.join('=')||'').trim())];
-      }));
-      for (const k of ['student_login','vhcm_current_user','login']){
-        const v = normalizeLogin(stripDiacritics(map[k] || ''));
-        if (v) return v;
-      }
-    }catch{}
-    return '';
-  }
-  function getCurrentUser(){ return readFromStorage() || readFromGlobals() || readFromCookies() || ''; }
-
-  function waitForLogin(maxWaitMs = 8000){
-    return new Promise(resolve => {
-      let u = getCurrentUser();
-      if (u) return resolve(u);
-
-      let done = false;
-      const finish = (v) => { if(!done){ done=true; resolve(v||''); cleanup(); } };
-
-      const onEvt = () => finish(getCurrentUser());
-      const onStorage = (e) => {
-        if (['student_login','vhcm_current_user','current_user','user_login','login','user'].includes(e.key||'')) {
-          finish(getCurrentUser());
-        }
-      };
-      window.addEventListener('vhcm:login', onEvt);
-      window.addEventListener('storage', onStorage);
-
-      const start = Date.now();
-      const iv = setInterval(()=>{
-        u = getCurrentUser();
-        if (u) finish(u);
-        if (Date.now() - start > maxWaitMs) finish('');
-      }, 200);
-
-      function cleanup(){
-        try{ window.removeEventListener('vhcm:login', onEvt); }catch{}
-        try{ window.removeEventListener('storage', onStorage); }catch{}
-        try{ clearInterval(iv); }catch{}
-      }
-    });
-  }
-
-  // ========= Elements =========
-  const $ = id => document.getElementById(id);
-  const subtitle = $("sq-subtitle");
-  const alerts   = $("sq-alerts");
-  const quizRoot = $("sq-quiz");
-  const btnSubmit= $("sq-submit");
-  const btnSave  = $("sq-save");
-  const statusEl = $("sq-status");
-  const timerEl  = $("sq-timer");
-
-  const alert = (cls,msg)=>{ const d=document.createElement('div'); d.className=cls; d.textContent=msg; alerts.appendChild(d); };
-  const setStatus = (m)=>{ statusEl.textContent = m; };
-  const enableActions = (on)=>{ btnSubmit.disabled=!on; btnSave.disabled=!on; };
-
-  // ========= Flow =========
-  (async function init(){
-    const student_id = await waitForLogin();
-    if(!student_id){
-      subtitle.textContent = "Login not detected. Please refresh after logging in.";
-      alert("sq-warn","Could not detect your login. If your name appears above, just refresh.");
-      return;
-    }
-
-    subtitle.textContent = "Starting attempt…";
-
-    const payload = { student_id, track: DEFAULT_TRACK, module: DEFAULT_MODULE, n_mcq: DEFAULT_N };
-    const startRes = await safeJsonPost(API_BASE + "/selfquiz/attempt/start", payload);
-
-    if(!startRes || !startRes.ok){
-      subtitle.textContent = (startRes && (startRes.error || startRes.message)) || "Could not start attempt.";
-      alert("sq-err", subtitle.textContent);
-      return;
-    }
-
-    const attempt_id = startRes.attempt_id;
-    const timeLimit  = Number(startRes.time_limit_sec || 1200);
-    const qids       = Array.isArray(startRes.question_ids) ? startRes.question_ids : [];
-
-    subtitle.textContent = `Attempt started (module: ${startRes.module || DEFAULT_MODULE}).`;
-
-    if(!qids.length){
-      alert("sq-warn","No questions were drawn. Check the pool/config on the backend.");
-      return;
-    }
-
-    const qdata = await safeJsonGet(API_BASE + "/selfquiz/questions?ids=" + encodeURIComponent(qids.join(",")));
-    const items = (qdata && Array.isArray(qdata.items)) ? qdata.items : [];
-    if(!items.length){
-      alert("sq-err","Failed to load questions. Check /selfquiz/questions.");
-      return;
-    }
-
-    renderQuiz(items);
-    enableActions(true);
-    restoreDraft(attempt_id);
-    startTimer(timeLimit, submitNow);
-
-    btnSave.onclick   = () => { localStorage.setItem("sq_"+attempt_id, JSON.stringify(readAnswers())); setStatus("Draft saved."); };
-    btnSubmit.onclick = submitNow;
-
-    async function submitNow(){
-      enableActions(false);
-      const answers = readAnswers();
-      const res = await safeJsonPost(API_BASE + "/selfquiz/attempt/submit", { attempt_id, answers });
-      if(!res || !res.ok){
-        setStatus("Submit failed. Please try again.");
-        enableActions(true);
-        return;
-      }
-      setStatus(`Submitted! Score: ${res.score} / ${res.max_score}.`);
-      try{ localStorage.removeItem("sq_"+attempt_id); }catch{}
-    }
-  })();
-
-  // ========= Render/helpers =========
-  function renderQuiz(items){
-    quizRoot.innerHTML = "";
-    items.forEach((q,i) => {
-      const card = document.createElement("div");
-      card.className = "sq-card";
-      card.innerHTML = `
-        <div class="sq-qnum">Q${i+1}</div>
-        <div class="sq-stem">${escapeHtml(q.stem || q.question || "")}</div>
-        <div class="sq-opts">
-          ${opt(q,"A")}${opt(q,"B")}${opt(q,"C")}${opt(q,"D")}${opt(q,"E")}
-        </div>`;
-      quizRoot.appendChild(card);
-    });
-  }
-  function opt(q,l){
-    const t = (q.options && q.options[l]) || "";
-    if(!t) return "";
-    return `<label class="sq-opt">
-      <input type="radio" name="${escapeAttr(q.question_id)}" value="${l}">
-      <div><strong>${l})</strong> ${escapeHtml(t)}</div>
-    </label>`;
-  }
-  function readAnswers(){
-    const out = {};
-    quizRoot.querySelectorAll('input[type="radio"]:checked').forEach(inp => { out[inp.name] = inp.value; });
-    return out;
-  }
-  function restoreDraft(id){
-    try{
-      const raw = localStorage.getItem("sq_"+id);
-      if(!raw) return;
-      const saved = JSON.parse(raw) || {};
-      Object.entries(saved).forEach(([qid, letter]) => {
-        const sel = `#sq-quiz input[type="radio"][name="${cssEscape(qid)}"][value="${letter}"]`;
-        const el  = document.querySelector(sel);
-        if (el) el.checked = true;
-      });
-      alert("sq-ok","Draft restored.");
-    }catch{}
-  }
-  function startTimer(s,onEnd){
-    let left = Number(s) || 0;
-    const tick = () => {
-      const m = String(Math.floor(left/60)).padStart(2,"0");
-      const ss= String(left%60).padStart(2,"0");
-      document.getElementById("sq-timer").textContent = m+":"+ss;
-      if(left<=0) onEnd(); else { left--; setTimeout(tick,1000); }
-    };
-    tick();
-  }
-
-  // ========= HTTP & escaping =========
-  async function safeJsonGet(u){ try{ const r=await fetch(u); if(!r.ok) return null; return await r.json(); }catch{ return null; } }
-  async function safeJsonPost(u,b){
-    try{
-      const r=await fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});
-      if(!r.ok) return null;
-      return await r.json();
-    }catch{ return null; }
-  }
-  function escapeHtml(s){ return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-  function escapeAttr(s){ return String(s||"").replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-  function cssEscape(s){ return String(s||"").replace(/(["\\\]\\])/g,"\\$1"); }
-})();
+  document.documentElement.classList.remove("locked");
+  if (document.body) document.body.classList.remove("locked");
 </script>
 
 
 
-</main> <!-- /main -->
+ <!-- /main -->
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -1083,12 +943,6 @@ window.onload = function() {
   update_total_correct();
 }
 
-</script>
-</div> <!-- Fecha #after-login-content -->
-
-<script>
-  document.documentElement.classList.remove("locked");
-  if (document.body) document.body.classList.remove("locked");
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -1,0 +1,26 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q60')" data-correct-answer="C">
+  <strong style="display: block;">
+  Firm has E=$4bn, D=$3bn, Cash=$0.5bn, βE=1.3, βD=0.10, τ=21%, Rf=3%, MRP=6%.  
+  FCF1=$350m, g=3%. Compute WACC via CAPM, then EV=FCF1/(WACC−g), then equity=EV−(D−Cash), then price/share with 160m shares.
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q60" value="A"> A. $33.2</label><br>
+  <label><input type="radio" name="module4_mcq_q60" value="B"> B. $33.7</label><br>
+  <label><input type="radio" name="module4_mcq_q60" value="C"> C. $34.2</label><br>
+  <label><input type="radio" name="module4_mcq_q60" value="D"> D. $34.7</label><br>
+  <label><input type="radio" name="module4_mcq_q60" value="E"> E. $35.2</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q60" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. ≈ $34.2.  
+Step 1: rE=3%+1.3×6%=10.8%, rD=3%+0.10×6%=3.6%.  
+Step 2: Weights E/V=0.571, D/V=0.429 → WACC ≈ 8.0%.  
+Step 3: EV=350/(0.08−0.03)=7.0bn.  
+Step 4: Equity=7.0−(3−0.5)=4.5bn.  
+Step 5: Price/share=4.5bn/160m ≈ $34.2.  
+Flow: CAPM → WACC → EV → equity value → per-share price.
+</div>
+
+:::

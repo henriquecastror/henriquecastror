@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q71')" data-correct-answer="C">
+<strong style="display: block;">
+Suppose two portfolios, X and Y, have Sharpe ratios of 0.5 and 0.7 respectively. Which conclusion follows?
+</strong>
+<label><input type="radio" name="module3_mcq_q71" value="A"> A. X lies above the Capital Market Line, Y lies on it.</label><br>
+<label><input type="radio" name="module3_mcq_q71" value="B"> B. Both X and Y are efficient portfolios.</label><br>
+<label><input type="radio" name="module3_mcq_q71" value="C"> C. Y dominates X, since higher Sharpe ratio means better risk–adjusted return.</label><br>
+<label><input type="radio" name="module3_mcq_q71" value="D"> D. X must be risk-free, Y must be risky.</label><br>
+<label><input type="radio" name="module3_mcq_q71" value="E"> E. No conclusion is possible without knowing betas.</label><br>
+</form>
+<div id="feedback-module3_mcq_q71" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Higher Sharpe ratio ⇒ higher slope in (E(R)−rf)/σ, so Y provides superior risk–return tradeoff.
+</div>
+:::

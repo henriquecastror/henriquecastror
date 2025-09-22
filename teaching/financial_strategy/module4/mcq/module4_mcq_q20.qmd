@@ -1,0 +1,13 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q20')" data-correct-answer="B"> <strong style="display: block;"> In a world without corporate taxes, how does the weighted average cost of capital (WACC) compare to the firm’s unlevered cost of capital (r<sub>u</sub>)? </strong>
+
+<label><input type="radio" name="module4_mcq_q20" value="A"> A. WACC always exceeds r<sub>u</sub> because debt financing is cheaper than equity.</label><br>
+<label><input type="radio" name="module4_mcq_q20" value="B"> B. WACC equals r<sub>u</sub>, regardless of the firm’s debt-to-equity ratio.</label><br>
+<label><input type="radio" name="module4_mcq_q20" value="C"> C. WACC is always below r<sub>u</sub> because of the relative stability of debt returns.</label><br>
+<label><input type="radio" name="module4_mcq_q20" value="D"> D. WACC and r<sub>u</sub> are unrelated measures in theory.</label><br>
+<label><input type="radio" name="module4_mcq_q20" value="E"> E. r<sub>u</sub> reflects only equity risk, while WACC reflects both equity and debt risks separately.</label><br>
+
+</form> <div id="feedback-module4_mcq_q20" class="feedback" data-status="" style="display:none;"> ✅ Correct: B. In a no-tax world, WACC = r<sub>u</sub>, independent of leverage. This follows from Modigliani–Miller Proposition II, where the overall cost of capital is unaffected by capital structure in the absence of taxes. </div>
+
+:::

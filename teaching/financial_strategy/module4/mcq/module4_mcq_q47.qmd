@@ -1,0 +1,22 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q47')" data-correct-answer="E">
+  <strong style="display: block;">
+  A project has β=1.2. After a monetary policy shock, the risk-free rate rises from 2% to 3.5%, while the market risk premium falls from 7% to 6%.  
+  What is the new required return under CAPM?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q47" value="A"> A. 9.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q47" value="B"> B. 9.2%</label><br>
+  <label><input type="radio" name="module4_mcq_q47" value="C"> C. 10.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q47" value="D"> D. 10.4%</label><br>
+  <label><input type="radio" name="module4_mcq_q47" value="E"> E. 10.7%</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q47" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. 10.7%.  
+r = 3.5% + 1.2×6% = 3.5% + 7.2% = 10.7%.  
+👉 Macro shifts can move Rf and MRP in opposite directions; CAPM captures both effects through r = Rf + β·MRP.
+</div>
+
+:::

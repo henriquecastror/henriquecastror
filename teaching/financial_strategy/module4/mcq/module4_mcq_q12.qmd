@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q12')" data-correct-answer="C">
+  <strong style="display: block;">Which statement about the market portfolio used in CAPM is MOST accurate in practice?</strong>
+<label><input type="radio" name="module4_mcq_q12" value="A"> A. It is a price‑weighted index of large stocks (e.g., DJIA).</label><br>
+<label><input type="radio" name="module4_mcq_q12" value="B"> B. It is exactly the S&P 500 by definition.</label><br>
+<label><input type="radio" name="module4_mcq_q12" value="C"> C. It is the value‑weighted portfolio of all risky assets; broad indexes are proxies.</label><br>
+<label><input type="radio" name="module4_mcq_q12" value="D"> D. It excludes small‑cap stocks to reduce noise.</label><br>
+<label><input type="radio" name="module4_mcq_q12" value="E"> E. It must be equal‑weighted to be efficient.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q12" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The theoretical market portfolio is value‑weighted over all risky assets; broad indexes like the S&P 500 or Wilshire 5000 are proxies.
+</div>
+
+:::

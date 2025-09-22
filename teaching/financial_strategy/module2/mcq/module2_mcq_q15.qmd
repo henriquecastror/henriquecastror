@@ -1,13 +1,17 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q15')" data-correct-answer="E">
-<strong style="display: block;">The slope of the Security Market Line equals:</strong>
-<label><input type="radio" name="module2_mcq_q15" value="A"> A. Variance of the market</label><br>
-<label><input type="radio" name="module2_mcq_q15" value="B"> B. Standard deviation of the market</label><br>
-<label><input type="radio" name="module2_mcq_q15" value="C"> C. Risk-free rate</label><br>
-<label><input type="radio" name="module2_mcq_q15" value="D"> D. Sharpe ratio</label><br>
-<label><input type="radio" name="module2_mcq_q15" value="E"> E. Market risk premium</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q15')" data-correct-answer="C">
+<strong style="display: block;">
+Suppose the average annual return on U.S. common stocks is 11.7%, while the average annual return on Treasury bills is 4.0%.  
+What is the **average market risk premium** over this period?
+</strong>
+<label><input type="radio" name="module2_mcq_q15" value="A"> A. 15.7%</label><br>
+<label><input type="radio" name="module2_mcq_q15" value="B"> B. 4.0%</label><br>
+<label><input type="radio" name="module2_mcq_q15" value="C"> C. 7.7%</label><br>
+<label><input type="radio" name="module2_mcq_q15" value="D"> D. 3.7%</label><br>
+<label><input type="radio" name="module2_mcq_q15" value="E"> E. 5.7%</label><br>
 </form>
 <div id="feedback-module2_mcq_q15" class="feedback" data-status="" style="display:none;">
-✅ Correct: E. The slope of the SML is (Rm−Rf).
+✅ Correct: C. Risk premium = 11.7% − 4.0% = **7.7%**.  
+This shows the extra compensation investors demand for holding risky stocks relative to Treasury bills.
 </div>
 :::

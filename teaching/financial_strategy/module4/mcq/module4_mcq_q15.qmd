@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q15')" data-correct-answer="D">
+  <strong style="display: block;">Which statement about alpha (α) in the regression (R_i−R_f)=α+β(R_M−R_f)+ε is correct?</strong>
+<label><input type="radio" name="module4_mcq_q15" value="A"> A. It measures total risk.</label><br>
+<label><input type="radio" name="module4_mcq_q15" value="B"> B. It is the risk premium implied by CAPM.</label><br>
+<label><input type="radio" name="module4_mcq_q15" value="C"> C. It is the average residual risk.</label><br>
+<label><input type="radio" name="module4_mcq_q15" value="D"> D. It measures performance relative to the CAPM prediction; under CAPM it should be ≈0.</label><br>
+<label><input type="radio" name="module4_mcq_q15" value="E"> E. It equals the intercept of the CML.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q15" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Alpha is the risk‑adjusted abnormal return relative to the SML prediction.
+</div>
+
+:::

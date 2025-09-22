@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q63')" data-correct-answer="B">
+  <strong style="display: block;">Total risk, systematic risk, and diversifiable risk are often confused in practice. Which statement best clarifies their distinction in the context of cost of capital?</strong>
+<label><input type="radio" name="module4_mcq_q63" value="A"> A. Total risk is relevant for all investors, while systematic risk is relevant only for diversified investors.</label><br>
+<label><input type="radio" name="module4_mcq_q63" value="B"> B. Systematic risk is the component that cannot be diversified away and is the only part priced in equilibrium models like CAPM.</label><br>
+<label><input type="radio" name="module4_mcq_q63" value="C"> C. Diversifiable risk is often rewarded with a higher required return because it adds volatility to the asset.</label><br>
+<label><input type="radio" name="module4_mcq_q63" value="D"> D. Total risk equals systematic risk only when the correlation with the market is zero.</label><br>
+<label><input type="radio" name="module4_mcq_q63" value="E"> E. Systematic risk and diversifiable risk are interchangeable terms.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q63" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. CAPM and related models assume investors hold diversified portfolios. Only systematic (non-diversifiable) risk commands a risk premium; diversifiable risk does not affect cost of capital.
+</div>
+
+:::

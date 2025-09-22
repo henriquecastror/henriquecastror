@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q26')" data-correct-answer="C">
+<strong style="display: block;">A stock has an expected return of 11%. Risk-free rate = 4%, beta = 1.1, market portfolio return = 10%. According to CAPM, the stock is:</strong>
+<label><input type="radio" name="module2_mcq_q26" value="A"> A. Overpriced (return &lt; required)</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="B"> B. Underpriced (return &gt; required)</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="C"> C. Fairly priced</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="D"> D. Price cannot be judged</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="E"> E. Price depends on dividends</label><br>
+</form>
+<div id="feedback-module2_mcq_q26" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. CAPM return = 4% + 1.1×(10−4)% = 10.6%. Given 11% ≈ 10.6%, it’s  fairly priced. More strictly, it would be  underpriced.
+</div>
+:::

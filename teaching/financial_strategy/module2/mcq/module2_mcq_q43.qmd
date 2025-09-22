@@ -1,13 +1,22 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q43')" data-correct-answer="B">
-<strong style="display: block;">Which of the following lies on the Capital Market Line (CML)?</strong>
-<label><input type="radio" name="module2_mcq_q43" value="A"> A. Any individual asset</label><br>
-<label><input type="radio" name="module2_mcq_q43" value="B"> B. Portfolios combining the risk-free asset and the market portfolio</label><br>
-<label><input type="radio" name="module2_mcq_q43" value="C"> C. Portfolios with only unsystematic risk</label><br>
-<label><input type="radio" name="module2_mcq_q43" value="D"> D. Portfolios with negative betas</label><br>
-<label><input type="radio" name="module2_mcq_q43" value="E"> E. Any inefficient portfolio</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q43')" data-correct-answer="C">
+<strong style="display: block;">
+An asset has the following possible returns and probabilities:  
+- With probability 25%: return = −20%.  
+- With probability 50%: return = +10%.  
+- With probability 25%: return = +40%.  
+
+What is the expected return of this asset?
+</strong>
+<label><input type="radio" name="module2_mcq_q43" value="A"> A. 8%</label><br>
+<label><input type="radio" name="module2_mcq_q43" value="B"> B. 9%</label><br>
+<label><input type="radio" name="module2_mcq_q43" value="C"> C. 10%</label><br>
+<label><input type="radio" name="module2_mcq_q43" value="D"> D. 11%</label><br>
+<label><input type="radio" name="module2_mcq_q43" value="E"> E. 12%</label><br>
 </form>
 <div id="feedback-module2_mcq_q43" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. Only efficient portfolios (risk-free + market) lie on CML.
+✅ Correct: C.  
+E[R] = 0.25×(−0.20) + 0.50×0.10 + 0.25×0.40 = −0.05 + 0.05 + 0.10 = 0.10 = 10%.  
+This calculation uses the **historical average return** as the best estimate of expected return.
 </div>
 :::

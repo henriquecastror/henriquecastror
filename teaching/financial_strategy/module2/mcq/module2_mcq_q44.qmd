@@ -1,13 +1,16 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q44')" data-correct-answer="D">
-<strong style="display: block;">Stock β=1.5, Rf=4%, Rm=12%. According to CAPM, expected return is:</strong>
-<label><input type="radio" name="module2_mcq_q44" value="A"> A. 14%</label><br>
-<label><input type="radio" name="module2_mcq_q44" value="B"> B. 15%</label><br>
-<label><input type="radio" name="module2_mcq_q44" value="C"> C. 16%</label><br>
-<label><input type="radio" name="module2_mcq_q44" value="D"> D. 16%</label><br>
-<label><input type="radio" name="module2_mcq_q44" value="E"> E. 18%</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q44')" data-correct-answer="C">
+<strong style="display: block;">
+Which of the following statements about the **market risk premium** is correct?
+</strong>
+<label><input type="radio" name="module2_mcq_q44" value="A"> A. The market risk premium equals the variance of the market portfolio.</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="B"> B. The market risk premium is the difference between a stock’s expected return and the risk-free rate.</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="C"> C. The market risk premium is the additional return investors require for holding the market portfolio instead of the risk-free asset, i.e., \(E[R_m] - R_f\).</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="D"> D. The market risk premium is always equal to the risk-free rate.</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="E"> E. The market risk premium disappears in a well-diversified portfolio.</label><br>
 </form>
 <div id="feedback-module2_mcq_q44" class="feedback" data-status="" style="display:none;">
-✅ Correct: D. E(R)=4%+1.5×(12−4)%=16%.
+✅ Correct: C. The **market risk premium** is defined as the excess return of the market portfolio over the risk-free rate, \(E[R_m] - R_f\).  
+It represents the reward investors demand for bearing systematic risk, and it is central to the CAPM equation.
 </div>
 :::

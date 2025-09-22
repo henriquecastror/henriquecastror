@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q67')" data-correct-answer="B">
+  <strong style="display: block;">Different proxies are used for the market portfolio in CAPM applications (e.g., S&P500, Wilshire5000, MSCI World). What is the deepest conceptual concern with using a narrow index like the S&P500 as the sole proxy?</strong>
+<label><input type="radio" name="module4_mcq_q67" value="A"> A. It has too few securities to represent a diversified portfolio.</label><br>
+<label><input type="radio" name="module4_mcq_q67" value="B"> B. It excludes international assets, human capital, and other risky investments that theoretically belong to the market portfolio.</label><br>
+<label><input type="radio" name="module4_mcq_q67" value="C"> C. It includes too many technology firms, biasing beta estimates.</label><br>
+<label><input type="radio" name="module4_mcq_q67" value="D"> D. It is equal-weighted instead of value-weighted.</label><br>
+<label><input type="radio" name="module4_mcq_q67" value="E"> E. It overestimates the risk premium due to survivorship bias.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q67" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The theoretical market portfolio contains all risky assets (global equities, bonds, real estate, human capital). A narrow equity index omits these, leading to proxy error.
+</div>
+
+:::

@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q61')" data-correct-answer="D">
+  <strong style="display: block;">In practice, estimating a firm’s cost of equity using the CAPM requires several assumptions. Suppose you are advising a multinational corporation that operates in both mature U.S. markets and highly volatile emerging markets. The firm’s analyst insists on using the S&P 500 index as the sole proxy for the market portfolio, the 10-year U.S. Treasury yield as the risk-free rate, and an industry beta estimated from U.S. peers. Which of the following is the most rigorous criticism of this approach, based on the theoretical foundations of the CAPM?</strong>
+<label><input type="radio" name="module4_mcq_q61" value="A"> A. The CAPM requires the use of historical returns rather than forward-looking expectations, so using current yields violates the model’s assumptions.</label><br>
+<label><input type="radio" name="module4_mcq_q61" value="B"> B. The CAPM is designed only for single-country portfolios and cannot be extended to global corporations.</label><br>
+<label><input type="radio" name="module4_mcq_q61" value="C"> C. The choice of risk-free rate is not relevant since any Treasury maturity produces identical results in the CAPM.</label><br>
+<label><input type="radio" name="module4_mcq_q61" value="D"> D. By relying solely on U.S. proxies, the approach ignores the global composition of the true market portfolio and the possibility that the firm’s exposure to emerging market risk is not captured by a U.S.-only beta.</label><br>
+<label><input type="radio" name="module4_mcq_q61" value="E"> E. The problem is primarily that the S&P 500 is an equal-weighted index, whereas the CAPM requires a value-weighted index.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q61" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. The CAPM’s theoretical market portfolio includes all risky assets worldwide. Restricting estimation to U.S. data may severely misrepresent the systematic risk faced by a multinational with exposure to emerging markets.
+</div>
+
+:::

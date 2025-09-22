@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q98')" data-correct-answer="B">
+  <strong style="display: block;">
+  Suppose the risk-free rate suddenly increases significantly while market expectations of the equity risk premium remain constant. According to the CAPM, how does this shock affect firms’ costs of equity and WACC?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q98" value="A"> A. Cost of equity falls because the spread over the risk-free rate is unchanged.</label><br>
+  <label><input type="radio" name="module4_mcq_q98" value="B"> B. Cost of equity rises one-for-one with the higher risk-free rate, raising WACC as well.</label><br>
+  <label><input type="radio" name="module4_mcq_q98" value="C"> C. Cost of equity is unaffected, since only betas determine required returns.</label><br>
+  <label><input type="radio" name="module4_mcq_q98" value="D"> D. WACC remains constant, because equity holders adjust their expectations downward.</label><br>
+  <label><input type="radio" name="module4_mcq_q98" value="E"> E. Debt cost rises, but equity cost remains the same, so WACC falls overall.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q98" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. In CAPM, rE = rF + β × (E[Rm] − rF). If the market risk premium is unchanged, a higher rF raises required equity returns and the WACC.
+</div>
+
+:::

@@ -108,18 +108,49 @@ ___
 
 
 
-<!-- Botões de navegação -->
-<button onclick="showGroup(1)">1–10</button>
-<button onclick="showGroup(2)">11–20</button>
-<button onclick="showGroup(3)">21–30</button>
-<button onclick="showGroup(4)">31–40</button>
-<button onclick="showGroup(5)">41–50</button>
-<button onclick="showGroup(6)">51–60</button>
-<button onclick="showGroup(7)">61–70</button>
-<button onclick="showGroup(8)">71–80</button>
-<button onclick="showGroup(9)">81–90</button>
-<button onclick="showGroup(10)">91–100</button>
 
+<!-- Botões de navegação -->
+<div class="groups-wrap">
+  <button class="grp-btn" data-group="1"  onclick="showGroup(1)">1–10</button>
+  <button class="grp-btn" data-group="2"  onclick="showGroup(2)">11–20</button>
+  <button class="grp-btn" data-group="3"  onclick="showGroup(3)">21–30</button>
+  <button class="grp-btn" data-group="4"  onclick="showGroup(4)">31–40</button>
+  <button class="grp-btn" data-group="5"  onclick="showGroup(5)">41–50</button>
+  <button class="grp-btn" data-group="6"  onclick="showGroup(6)">51–60</button>
+  <button class="grp-btn" data-group="7"  onclick="showGroup(7)">61–70</button>
+  <button class="grp-btn" data-group="8"  onclick="showGroup(8)">71–80</button>
+  <button class="grp-btn" data-group="9"  onclick="showGroup(9)">81–90</button>
+  <button class="grp-btn" data-group="10" onclick="showGroup(10)">91–100</button>
+</div>
+
+
+<style>
+/* Container dos botões */
+.groups-wrap{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;
+}
+
+/* Pílulas padrão */
+.grp-btn{
+  padding:8px 14px;
+  border:1px solid #e2e8f0;
+  background:#ffffff;
+  color:#0f172a;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  line-height:1;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.grp-btn:hover{ border-color:#94a3b8; }
+
+/* Pílula ativa (somente o botão selecionado) */
+.grp-btn.active{
+  background:#3b82f6;   /* azul */
+  color:#ffffff;
+  border-color:#3b82f6;
+}
+</style>
 
 
 
@@ -932,30 +963,42 @@ ___
   let currentGroup = 1;
   const totalGroups = 10;
 
-  function showGroup(index) {
-    for (let i = 1; i <= totalGroups; i++) {
-      const el = document.getElementById(`group${i}`);
-      if (el) el.style.display = (i === index) ? 'block' : 'none';
-    }
-    document.getElementById('group-indicator').textContent = `Group ${index} of ${totalGroups}`;
-    currentGroup = index;
+  function setActivePill(index){
+    document.querySelectorAll('.grp-btn[data-group]').forEach(btn=>{
+      const n = Number(btn.getAttribute('data-group'));
+      if(n === index){
+        btn.classList.add('active');
+        btn.setAttribute('aria-current','page');
+      }else{
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
+      }
+    });
   }
 
-  function nextGroup() {
-    if (currentGroup < totalGroups) {
-      showGroup(currentGroup + 1);
+  function setActiveGroupBox(index){
+    for(let i=1;i<=totalGroups;i++){
+      const box = document.getElementById(`group${i}`);
+      if(!box) continue;
+      box.style.display = (i===index)?'block':'none';
+      box.classList.toggle('active', i===index);
     }
   }
 
-  function prevGroup() {
-    if (currentGroup > 1) {
-      showGroup(currentGroup - 1);
-    }
+  function showGroup(index){
+    currentGroup = Math.max(1, Math.min(totalGroups, index));
+    setActiveGroupBox(currentGroup);
+    setActivePill(currentGroup);
+    const ind = document.getElementById('group-indicator');
+    if(ind) ind.textContent = `Group ${currentGroup} of ${totalGroups}`;
   }
 
+  function nextGroup(){ if(currentGroup < totalGroups) showGroup(currentGroup+1); }
+  function prevGroup(){ if(currentGroup > 1)        showGroup(currentGroup-1); }
+
+  // iniciar no 1
   showGroup(currentGroup);
 </script>
-
 
 
 

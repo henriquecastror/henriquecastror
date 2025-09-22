@@ -1,0 +1,32 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q58')" data-correct-answer="D">
+<strong style="display: block;">
+An investor holds a portfolio with three assets:  
+- Asset A: weight = 40%, σA = 10%  
+- Asset B: weight = 30%, σB = 20%  
+- Asset C: weight = 30%, σC = 15%  
+
+The pairwise correlations are: ρAB = 0.2, ρAC = 0.1, ρBC = 0.3.  
+What is the portfolio’s standard deviation (σp)?
+</strong>
+<label><input type="radio" name="module2_mcq_q58" value="A"> A. 11.0%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="B"> B. 11.5%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="C"> C. 12.0%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="D"> D. 12.1%</label><br>
+<label><input type="radio" name="module2_mcq_q58" value="E"> E. 12.5%</label><br>
+</form>
+<div id="feedback-module2_mcq_q58" class="feedback" data-status="" style="display:none;">
+✅ Correct: D.  
+The portfolio variance is:  
+σp² = (0.4²)(0.10²) + (0.3²)(0.20²) + (0.3²)(0.15²)   
+  + 2(0.4)(0.3)(0.10)(0.20)(0.2)   
+  + 2(0.4)(0.3)(0.10)(0.15)(0.1)   
+  + 2(0.3)(0.3)(0.20)(0.15)(0.3).  
+
+σp² = 0.0016 + 0.0036 + 0.002025 + 0.00192 + 0.00036 + 0.00162 ≈ 0.011125.  
+
+Thus, σp = √0.011125 ≈ 0.121 = **12.1%**.  
+
+This illustrates the complexity of portfolio risk when considering **multiple assets and correlations**.
+</div>
+:::

@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q68')" data-correct-answer="B">
+  <strong style="display: block;">A stock is found to have a negative beta (β = –0.2) when regressed against the market. Which interpretation is most consistent with CAPM?</strong>
+<label><input type="radio" name="module4_mcq_q68" value="A"> A. The stock carries extremely high total risk, hence negative required return.</label><br>
+<label><input type="radio" name="module4_mcq_q68" value="B"> B. The stock acts as a hedge, tending to move opposite to the market, and thus may have an expected return below the risk-free rate.</label><br>
+<label><input type="radio" name="module4_mcq_q68" value="C"> C. Negative betas are estimation errors and cannot persist in practice.</label><br>
+<label><input type="radio" name="module4_mcq_q68" value="D"> D. The CAPM predicts that such a stock must still earn the market return on average.</label><br>
+<label><input type="radio" name="module4_mcq_q68" value="E"> E. The firm is bankrupt, which explains the negative coefficient.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q68" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Negative-beta assets are valuable hedges. CAPM predicts they can have expected returns lower than the risk-free rate, reflecting insurance-like properties.
+</div>
+
+:::

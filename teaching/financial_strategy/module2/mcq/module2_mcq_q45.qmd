@@ -1,13 +1,18 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q45')" data-correct-answer="C">
-<strong style="display: block;">Which of the following is a diversifiable risk?</strong>
-<label><input type="radio" name="module2_mcq_q45" value="A"> A. Change in interest rates</label><br>
-<label><input type="radio" name="module2_mcq_q45" value="B"> B. Recession</label><br>
-<label><input type="radio" name="module2_mcq_q45" value="C"> C. A firm-specific lawsuit</label><br>
-<label><input type="radio" name="module2_mcq_q45" value="D"> D. Oil price shocks</label><br>
-<label><input type="radio" name="module2_mcq_q45" value="E"> E. Inflation</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q45')" data-correct-answer="B">
+<strong style="display: block;">
+An investor holds a well-diversified portfolio of 100 stocks across multiple industries.  
+Which of the following events primarily represents a **non-diversifiable (systematic) risk** that will remain in the portfolio even after diversification?  
+</strong>
+<label><input type="radio" name="module2_mcq_q45" value="A"> A. A major pharmaceutical company faces a lawsuit due to defective products.</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="B"> B. The central bank unexpectedly raises interest rates, leading to higher borrowing costs across the economy.</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="C"> C. One of the portfolio firms suffers from a factory fire disrupting production for a year.</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="D"> D. A single company announces a product recall due to safety issues.</label><br>
+<label><input type="radio" name="module2_mcq_q45" value="E"> E. A retail firm in the portfolio loses market share due to stronger competition in its niche.</label><br>
 </form>
 <div id="feedback-module2_mcq_q45" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. Firm-specific lawsuit risk can be diversified away.
+✅ Correct: B. Systematic risk arises from economy-wide shocks (e.g., interest rate hikes, recessions, inflation) that affect all firms.  
+Idiosyncratic events such as lawsuits, fires, or competitive pressures are diversifiable risks that can be eliminated through holding a sufficiently large and diversified portfolio.  
+This distinction underpins the CAPM framework, where only systematic risk is priced.
 </div>
 :::

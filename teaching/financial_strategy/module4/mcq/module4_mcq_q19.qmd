@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q19')" data-correct-answer="C">
+  <strong style="display: block;">All else equal, increasing excess cash holdings (with unchanged operations) tends to:</strong>
+<label><input type="radio" name="module4_mcq_q19" value="A"> A. Increase the firm’s asset beta</label><br>
+<label><input type="radio" name="module4_mcq_q19" value="B"> B. Leave the firm’s asset beta unchanged</label><br>
+<label><input type="radio" name="module4_mcq_q19" value="C"> C. Reduce the firm’s asset beta</label><br>
+<label><input type="radio" name="module4_mcq_q19" value="D"> D. Increase equity beta and reduce asset beta</label><br>
+<label><input type="radio" name="module4_mcq_q19" value="E"> E. Make debt beta exceed equity beta</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q19" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Cash is near risk‑free; holding more cash dilutes operating risk, lowering β_u (often handled via net debt).
+</div>
+
+:::

@@ -6,18 +6,23 @@
 # ==========================
 
 # ======== CONFIGURAÇÃO MÍNIMA ========
-QMD_DIR <- "module1/mcq"  # <<< ajuste a pasta com seus .qmd de MCQ
+QMD_DIR <- "module3/mcq"  # <<< ajuste a pasta com seus .qmd de MCQ
 
 ENDPOINT_BASE       <- "https://course-chat.hcmrtns.workers.dev"
 ENDPOINT_ANSWER_KEY <- paste0(ENDPOINT_BASE, "/exercises/answer-key")
-ENDPOINT_TEMPL      <- paste0(ENDPOINT_BASE, "/exercises/templates")
+#ENDPOINT_TEMPL      <- paste0(ENDPOINT_BASE, "/exercises/templates")
 PING_URL            <- paste0(ENDPOINT_BASE, "/admin/ping")
+ENDPOINT_BANK       <- paste0(ENDPOINT_BASE, "/selfquiz/bank")
 
 ADMIN_TOKEN_ENV     <- "ADMIN_TOKEN"     # defina antes: Sys.setenv(ADMIN_TOKEN = "seu_token")
 
 # Política de lotes/pausas
-BATCH_SIZE          <- 10L               # fixo: 10
-PAUSE_MS_BETWEEN    <- 250L              # ~0.25s entre lotes
+BANK_BATCH_SIZE   <- 10L   # nº de questões por POST /selfquiz/bank
+BANK_PAUSE_MS     <- 400L   # pausa entre lotes do bank
+
+AK_FILES_BATCH    <- 20L    # nº de arquivos .qmd por “leva” de answer-keys
+AK_PAUSE_MS       <- 250L   # pausa entre levas de answer-keys
+
 
 # ======== PACOTES ========
 ensure_pkg <- function(pkgs) for (p in pkgs) if (!requireNamespace(p, quietly = TRUE)) install.packages(p)
@@ -149,6 +154,80 @@ extract_items_from_html <- function(html_path) {
   df$tolerance[] <- NA_real_
   df
 }
+# Extrai enunciado e alternativas A..E do mesmo <form data-correct-answer="...">
+extract_bank_from_html <- function(html_path) {
+  doc <- read_html(html_path)
+  out <- list()
+  
+  forms <- xml_find_all(doc, ".//form[@data-correct-answer]")
+  if (length(forms) == 0) return(out)
+  
+  get_text <- function(node) {
+    txt <- xml_text(node, trim = TRUE)
+    gsub("\\s+", " ", txt)
+  }
+  
+  for (frm in forms) {
+    # Heurística para QID (mesma do extract_items_from_html)
+    radios <- xml_find_all(frm, ".//input[@type='radio']")
+    if (length(radios) == 0) next
+    form_id <- xml_attr(frm, "id") %||% ""
+    r_ids   <- xml_attr(radios, "id")
+    r_ids   <- r_ids[!is.na(r_ids) & nzchar(r_ids)]
+    qid_from_radio_id <- if (length(r_ids) > 0) sub("_[A-Ea-e]$", "", r_ids[1]) else ""
+    r_name <- xml_attr(radios[[1]], "name") %||% ""
+    qid <- if      (nzchar(form_id))           form_id
+    else if (nzchar(qid_from_radio_id)) qid_from_radio_id
+    else if (nzchar(r_name))            r_name
+    else paste0("MCQ_", digest::digest(xml_path(frm)))
+    
+    # Enunciado: tenta legend/h3/h4/p (primeiro que existir)
+    stem_node <- xml_find_first(
+      frm,
+      ".//*[self::legend or self::h1 or self::h2 or self::h3 or self::h4 or self::strong or self::p][1]"
+    )
+    stem <- get_text(stem_node) %||% ""
+    
+    # Alternativas: tenta pegar texto do <label> associado a cada input
+    get_opt_text <- function(inp) {
+      id <- xml_attr(inp, "id") %||% ""
+      # 1) label[@for=id]
+      if (nzchar(id)) {
+        lab <- xml_find_first(frm, sprintf(".//label[@for='%s']", id))
+        if (!is.na(lab)) {
+          t <- get_text(lab)
+          if (nzchar(t)) return(t)
+        }
+      }
+      # 2) pai é <label>
+      lab2 <- xml_find_first(inp, "ancestor::label[1]")
+      if (!is.na(lab2)) {
+        t <- get_text(lab2)
+        if (nzchar(t)) return(t)
+      }
+      # 3) irmão próximo <label>
+      sib <- xml_find_first(inp, "following-sibling::label[1]")
+      if (!is.na(sib)) {
+        t <- get_text(sib)
+        if (nzchar(t)) return(t)
+      }
+      ""
+    }
+    
+    # Mapeia A..E na ordem dos radios
+    opts <- sapply(radios, get_opt_text)
+    names(opts) <- c("A","B","C","D","E")[seq_along(opts)]
+    optA <- opts[["A"]] %||% ""; optB <- opts[["B"]] %||% ""
+    optC <- opts[["C"]] %||% ""; optD <- opts[["D"]] %||% ""
+    optE <- opts[["E"]] %||% ""
+    
+    out[[length(out)+1]] <- list(
+      question_id = qid, stem = stem,
+      opt_a = optA, opt_b = optB, opt_c = optC, opt_d = optD, opt_e = optE
+    )
+  }
+  out
+}
 
 # ======== HTTP HELPERS ========
 req_hardening <- function(req) {
@@ -168,10 +247,14 @@ post_answer_key <- function(payload, endpoint = ENDPOINT_ANSWER_KEY, token = adm
        body   = tryCatch(resp_body_string(resp), error = function(e) ""))
 }
 
-post_templates <- function(items, endpoint = ENDPOINT_TEMPL, token = admin_token) {
+
+
+
+post_bank <- function(items, endpoint = ENDPOINT_BANK, token = admin_token) {
   req <- request(endpoint) |>
     req_method("POST") |>
-    req_headers("Authorization"=paste("Bearer", trimws(token)), "Content-Type"="application/json") |>
+    req_headers("Authorization"=paste("Bearer", trimws(token)),
+                "Content-Type"="application/json") |>
     req_body_json(list(items = unname(items))) |>
     req_error(is_error = function(resp) FALSE)
   resp <- req_hardening(req) |> req_perform()
@@ -181,22 +264,60 @@ post_templates <- function(items, endpoint = ENDPOINT_TEMPL, token = admin_token
 }
 
 # ======== MONTAGEM DOS PAYLOADS ========
-build_templates_payload <- function(files) {
-  lapply(files, function(qmd){
-    qid    <- derive_question_id(qmd)                 # ex: module5_mcq_q101
+
+build_bank_payload <- function(files){
+  items <- list()
+  for (qmd in files) {
+    qid    <- derive_question_id(qmd)
     module <- derive_module_from_qid(qid) %||% derive_module_fallback_from_path(qmd)
-    list(
-      question_id    = qid,
-      module         = tolower(module %||% ""),
-      qtype          = "mcq",          # força MCQ
-      tags           = "",
-      source_file    = norm_path(qmd, mustWork = TRUE),
-      source_url     = "",
-      version_hash   = version_hash_of_qmd(qmd),
-      active         = 1
-    )
-  })
+    base_dir <- fs::path_dir(qmd)
+    out_dir  <- fs::path(base_dir, ".render_bank")
+    html_out <- render_qmd_to_html(qmd, out_dir)
+    qs <- extract_bank_from_html(html_out)
+    
+    if (length(qs)) {
+      for (q in qs) {
+        items[[length(items)+1]] <- list(
+          question_id = tolower(q$question_id),
+          module      = tolower(module %||% ""),
+          stem        = q$stem %||% "",
+          opt_a       = q$opt_a %||% "",
+          opt_b       = q$opt_b %||% "",
+          opt_c       = q$opt_c %||% "",
+          opt_d       = q$opt_d %||% "",
+          opt_e       = q$opt_e %||% "",
+          active      = 1
+        )
+      }
+    } else {
+      message("  [BANK] Sem MCQ detectado — pulando: ", qid)
+    }
+    try(fs::dir_delete(out_dir), silent = TRUE)
+  }
+  items
 }
+
+run_ingest_bank <- function(files){
+  items <- build_bank_payload(files)
+  if (!length(items)) {
+    message("[BANK] Nenhum item para enviar.")
+    return(list(status = NA, sent = 0, batches = 0))
+  }
+  chunks <- chunk_list(seq_along(items), size = BANK_BATCH_SIZE)
+  sent_total <- 0L
+  last_status <- NA_integer_
+  for (i in seq_along(chunks)) {
+    batch <- items[chunks[[i]]]
+    res <- post_bank(batch)
+    last_status <- res$status
+    sent_total <- sent_total + length(batch)
+    message(sprintf("[BANK] Lote %d/%d — HTTP %s — enviados: %d (acum: %d)",
+                    i, length(chunks), res$status, length(batch), sent_total))
+    if (i < length(chunks)) Sys.sleep(BANK_PAUSE_MS/1000)
+  }
+  list(status = last_status, sent = sent_total, batches = length(chunks))
+}
+
 
 # ======== ANSWER-KEY (um arquivo por vez) ========
 run_ingest_answer_keys <- function(files){
@@ -213,7 +334,8 @@ run_ingest_answer_keys <- function(files){
     df <- extract_items_from_html(html_out)
     
     # Segurança: só MCQ
-    df <- subset(df, tolower(qtype) == "mcq")
+    df <- subset(df, tolower(df$qtype) == "mcq")
+    
     if (nrow(df) == 0) {
       message("  [KEY] Sem MCQ com 'data-correct-answer' — pulando: ", qid)
       try(fs::dir_delete(out_dir), silent = TRUE)
@@ -241,40 +363,31 @@ run_ingest_answer_keys <- function(files){
 }
 
 # ======== TEMPLATES (lotes de 10) ========
-run_ingest_templates <- function(files){
-  items   <- build_templates_payload(files)
-  chunks  <- chunk_list(items, BATCH_SIZE)
-  results <- list()
-  for (i in seq_along(chunks)) {
-    res <- post_templates(chunks[[i]])
-    ok  <- 0L
-    if (!is.null(res$json) && !is.null(res$json$results)) {
-      ok <- sum(vapply(res$json$results, function(z) {
-        identical(z$action, "upsert") || identical(z$action, "insert")
-      }, logical(1)))
-    }
-    msg <- sprintf("[TPL] Lote %d/%d — HTTP %s — upserts: %d/%d",
-                   i, length(chunks), res$status, ok, length(chunks[[i]]))
-    message(msg)
-    results[[i]] <- list(status = res$status, ok = ok, total = length(chunks[[i]]))
-    Sys.sleep(PAUSE_MS_BETWEEN/1000)
-  }
-  results
-}
+
 
 # ======== PIPELINE (UMA PASTA POR VEZ) ========
 cat("\n=== [1/2] ANSWER-KEY por arquivo (MCQ) ===\n")
-r1 <- run_ingest_answer_keys(FILES)
-cat(sprintf("Resumo: %d OK, %d falhas (sem key ou erro HTTP)\n", r1$ok, r1$fail))
+ak_chunks <- chunk_list(FILES, size = AK_FILES_BATCH)
+ak_ok <- 0L; ak_fail <- 0L
+for (i in seq_along(ak_chunks)) {
+  r1 <- run_ingest_answer_keys(ak_chunks[[i]])
+  ak_ok  <- ak_ok  + r1$ok
+  ak_fail<- ak_fail+ r1$fail
+  message(sprintf("[KEY] Lote %d/%d — ok:%d fail:%d (acum ok:%d fail:%d)",
+                  i, length(ak_chunks), r1$ok, r1$fail, ak_ok, ak_fail))
+  if (i < length(ak_chunks)) Sys.sleep(AK_PAUSE_MS/1000)
+}
+cat(sprintf("Resumo keys: %d OK, %d falhas\n", ak_ok, ak_fail))
 
-cat("\n=== [2/2] TEMPLATES em lotes de ", BATCH_SIZE, " (MCQ) ===\n", sep = "")
-r2 <- run_ingest_templates(FILES)
-tpl_ok <- sum(vapply(r2, function(x) x$ok, numeric(1)))
-tpl_tot<- sum(vapply(r2, function(x) x$total, numeric(1)))
-cat(sprintf("Resumo: %d/%d templates upsertados\n", tpl_ok, tpl_tot))
 
-# ======== CHECKPOINT FINAL ========
+cat("\n=== [2/2] BANCO (selfquiz_bank) ===\n")
+rbank <- run_ingest_bank(FILES)
+cat(sprintf("Resumo bank: enviados %d em %d lotes (último HTTP %s)\n",
+            rbank$sent, rbank$batches, rbank$status))
+
+
 cat("\n=== CHECKPOINT FINAL ===\n")
-cat(sprintf("- Arquivos .qmd na pasta:        %d\n", length(FILES)))
-cat(sprintf("- Templates upsertados (passo 2): %d/%d\n", tpl_ok, tpl_tot))
-cat("=== Finished (MCQ-only, no instances) ===\n")
+cat(sprintf("- Arquivos .qmd na pasta: %d\n", length(FILES)))
+cat(sprintf("- Itens enviados ao banco: %s\n", rbank$sent))
+cat("=== Finished (MCQ-only) ===\n")
+

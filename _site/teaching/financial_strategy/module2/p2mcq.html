@@ -222,7 +222,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 17/08/2025 09:46</p>
+<p><strong>Last updated:</strong> 19/09/2025 16:45</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -248,22 +248,24 @@ For students
 <th style="text-align: center;">MCQ</th>
 <th style="text-align: center;">Numeric</th>
 <th style="text-align: center;">Long</th>
+<th style="text-align: center;">Self-quiz</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">ch10</td>
-<td style="text-align: center;"><a href="p2.html">🎞️</a></td>
-<td style="text-align: center;"><a href="p2tf.html">✅</a></td>
-<td style="text-align: center;"><a href="p2mcq.html">❓</a></td>
-<td style="text-align: center;"><a href="p2num.html">🔢</a></td>
-<td style="text-align: center;"><a href="p2long.html">📝</a></td>
+<td style="text-align: center;"><a href="module2/p2.html">🎞️</a></td>
+<td style="text-align: center;"><a href="module2/p2tf.html">✅</a></td>
+<td style="text-align: center;"><a href="module2/p2mcq.html">❓</a></td>
+<td style="text-align: center;"><a href="module2/p2num.html">🔢</a></td>
+<td style="text-align: center;"><a href="module2/p2long.html">📝</a></td>
+<td style="text-align: center;"><a href="module2/p2selfquiz.html">🧪</a></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<p><strong>Answer the following questions based on the discussions in class.</strong></p>
+<p><strong>Select the correct answers.</strong></p>
 <script>
   const SLIDE_ID = "module2_p2mcq";
 </script>
@@ -714,7 +716,69 @@ Enter
   })();
 
 </script>
-<div class="webex-box card border-info mb-4 p-3">
+<!-- Botões de navegação (20 grupos, 5 questões por grupo) -->
+<div class="groups-wrap">
+<p><button class="grp-btn" data-group="1" onclick="showGroup(1)">1</button> <button class="grp-btn" data-group="2" onclick="showGroup(2)">2</button> <button class="grp-btn" data-group="3" onclick="showGroup(3)">3</button> <button class="grp-btn" data-group="4" onclick="showGroup(4)">4</button> <button class="grp-btn" data-group="5" onclick="showGroup(5)">5</button> <button class="grp-btn" data-group="6" onclick="showGroup(6)">6</button> <button class="grp-btn" data-group="7" onclick="showGroup(7)">7</button> <button class="grp-btn" data-group="8" onclick="showGroup(8)">8</button> <button class="grp-btn" data-group="9" onclick="showGroup(9)">9</button> <button class="grp-btn" data-group="10" onclick="showGroup(10)">10</button></p>
+</div>
+<script>
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextGroup();
+    if (e.key === 'ArrowLeft')  prevGroup();
+  });
+</script>
+<style>
+/* Container dos botões */
+.groups-wrap{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;
+}
+
+/* Pílulas padrão */
+.grp-btn{
+  padding:8px 14px;
+  border:1px solid #e2e8f0;
+  background:#ffffff;
+  color:#0f172a;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  line-height:1;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.grp-btn:hover{ border-color:#94a3b8; }
+
+/* Pílula ativa (grupo selecionado) */
+.grp-btn.active{
+  background:#3b82f6;   /* azul */
+  color:#ffffff;
+  border-color:#3b82f6;
+}
+
+/* Card das questões (aplica em cada groupX) */
+.question-group{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:8px;
+  box-shadow:0 2px 4px rgba(0,0,0,.05);
+}
+
+/* Cada questão dentro do grupo vira uma “linha” com separador */
+.question-group > div{
+  padding:12px 8px;
+  border-top:1px solid #e5e7eb;
+}
+.question-group > div:first-child{ border-top:none; }
+
+/* Tipografia do número da questão (primeiro <div> da linha) */
+.question-group &gt; div &gt; div:first-child{
+  font-weight:800;
+  font-size:1.05rem;
+  min-width:44px !important;  /* um tiquinho maior */
+}
+</div></style>
+<div class="webex-box card mb-4 p-3" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px;">
+<!-- Group 1: Q1–Q5 -->
+<div id="group1" class="question-group">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
 Q1.
@@ -795,6 +859,9 @@ Q5.
 </div>
 </div>
 </div>
+</div>
+<!-- Group 2: Q6–Q10 -->
+<div id="group2" class="question-group" style="display: none;">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
 Q6.
@@ -874,6 +941,723 @@ Q10.
 </div>
 </div>
 </div>
+</div>
+</div>
+<!-- Group 3: Q11–Q15 -->
+<div id="group3" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q11.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q11')" data-correct-answer="B">
+<strong style="display: block;"> If the standard deviation of annual returns is 19.8% and the number of years of observation is 107, what is the standard error of the mean? </strong> <label><input type="radio" name="module2_mcq_q11" value="A"> A. 0.47%</label><br> <label><input type="radio" name="module2_mcq_q11" value="B"> B. 1.91%</label><br> <label><input type="radio" name="module2_mcq_q11" value="C"> C. 4.23%</label><br> <label><input type="radio" name="module2_mcq_q11" value="D"> D. 19.8%</label><br> <label><input type="radio" name="module2_mcq_q11" value="E"> E. 9.9%</label><br>
+</form>
+<div id="feedback-module2_mcq_q11" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Standard error = σ/√N = 19.8% / √107 ≈ 1.91%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q12.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q12')" data-correct-answer="B">
+<p><strong style="display: block;"> An investor is comparing two assets:<br>
+- Asset X: Expected return of 14% with standard deviation of 20%.<br>
+- Asset Y: Expected return of 6% with standard deviation of 2% (risk-free Treasury bill).</strong></p><strong style="display: block;">
+If the investor allocates 25% of the portfolio to Asset X and 75% to Asset Y, what is the expected portfolio return? </strong> <label><input type="radio" name="module2_mcq_q12" value="A"> A. 6.5%</label><br> <label><input type="radio" name="module2_mcq_q12" value="B"> B. 8.0%</label><br> <label><input type="radio" name="module2_mcq_q12" value="C"> C. 9.5%</label><br> <label><input type="radio" name="module2_mcq_q12" value="D"> D. 10.0%</label><br> <label><input type="radio" name="module2_mcq_q12" value="E"> E. 11.5%</label><br>
+</form>
+<div id="feedback-module2_mcq_q12" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Portfolio expected return = 0.25×14% + 0.75×6% = <strong>8.0%</strong>.<br>
+This illustrates how combining risky and risk-free assets changes expected performance.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q13.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q13')" data-correct-answer="D">
+<strong style="display: block;">Which risk is NOT eliminated through diversification?</strong> <label><input type="radio" name="module2_mcq_q13" value="A"> A. Firm-specific risk</label><br> <label><input type="radio" name="module2_mcq_q13" value="B"> B. Idiosyncratic risk</label><br> <label><input type="radio" name="module2_mcq_q13" value="C"> C. Diversifiable risk</label><br> <label><input type="radio" name="module2_mcq_q13" value="D"> D. Systematic risk</label><br> <label><input type="radio" name="module2_mcq_q13" value="E"> E. Unique risk</label><br>
+</form>
+<div id="feedback-module2_mcq_q13" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Systematic risk cannot be eliminated by diversification.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q14.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q14')" data-correct-answer="C">
+<strong style="display: block;"> An investor places $1,000 in a risk-free Treasury bill paying 4% per year, and another $1,000 in a portfolio of U.S. common stocks with an expected return of 12% per year.<br>
+What is the expected return of the combined portfolio? </strong> <label><input type="radio" name="module2_mcq_q14" value="A"> A. 6%</label><br> <label><input type="radio" name="module2_mcq_q14" value="B"> B. 7%</label><br> <label><input type="radio" name="module2_mcq_q14" value="C"> C. 8%</label><br> <label><input type="radio" name="module2_mcq_q14" value="D"> D. 9%</label><br> <label><input type="radio" name="module2_mcq_q14" value="E"> E. 10%</label><br>
+</form>
+<div id="feedback-module2_mcq_q14" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The portfolio invests equally in two assets: 0.5×4% + 0.5×12% = <strong>8% expected return</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q15.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q15')" data-correct-answer="C">
+<strong style="display: block;"> Suppose the average annual return on U.S. common stocks is 11.7%, while the average annual return on Treasury bills is 4.0%.<br>
+What is the <strong>average market risk premium</strong> over this period? </strong> <label><input type="radio" name="module2_mcq_q15" value="A"> A. 15.7%</label><br> <label><input type="radio" name="module2_mcq_q15" value="B"> B. 4.0%</label><br> <label><input type="radio" name="module2_mcq_q15" value="C"> C. 7.7%</label><br> <label><input type="radio" name="module2_mcq_q15" value="D"> D. 3.7%</label><br> <label><input type="radio" name="module2_mcq_q15" value="E"> E. 5.7%</label><br>
+</form>
+<div id="feedback-module2_mcq_q15" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Risk premium = 11.7% − 4.0% = <strong>7.7%</strong>.<br>
+This shows the extra compensation investors demand for holding risky stocks relative to Treasury bills.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 4: Q16–Q20 -->
+<div id="group4" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q16.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q16')" data-correct-answer="D">
+<strong style="display: block;"> Which of the following statements is correct regarding the historical risk–return tradeoff presented in Chapter 10? </strong> <label><input type="radio" name="module2_mcq_q16" value="A"> A. Treasury Bills provided the highest long-run average return, but with the greatest volatility.</label><br> <label><input type="radio" name="module2_mcq_q16" value="B"> B. Large stocks always outperformed small stocks in both return and volatility measures.</label><br> <label><input type="radio" name="module2_mcq_q16" value="C"> C. Corporate bonds offered the same average returns as equities but with lower volatility.</label><br> <label><input type="radio" name="module2_mcq_q16" value="D"> D. Small stocks historically delivered the highest returns but also the highest volatility among major asset classes.</label><br> <label><input type="radio" name="module2_mcq_q16" value="E"> E. Treasury bonds consistently dominated equities in terms of risk-adjusted performance.</label><br>
+</form>
+<div id="feedback-module2_mcq_q16" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Evidence from Chapter 10 shows that <strong>small stocks</strong> earned the highest average returns but also had the largest volatility.<br>
+This illustrates the fundamental principle that assets with greater risk tend to offer higher expected returns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q17.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q17')" data-correct-answer="A">
+<strong style="display: block;">If E(RA)=10%, E(RB)=14%, wA=0.25, wB=0.75, what is portfolio E(R)?</strong> <label><input type="radio" name="module2_mcq_q17" value="A"> A. 13%</label><br> <label><input type="radio" name="module2_mcq_q17" value="B"> B. 12%</label><br> <label><input type="radio" name="module2_mcq_q17" value="C"> C. 11%</label><br> <label><input type="radio" name="module2_mcq_q17" value="D"> D. 10%</label><br> <label><input type="radio" name="module2_mcq_q17" value="E"> E. 9%</label><br>
+</form>
+<div id="feedback-module2_mcq_q17" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. E(Rp)=0.25×10%+0.75×14%=13%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q18.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q18')" data-correct-answer="D">
+<strong style="display: block;">Which of the following represents diversifiable risk?</strong> <label><input type="radio" name="module2_mcq_q18" value="A"> A. Recession in the economy</label><br> <label><input type="radio" name="module2_mcq_q18" value="B"> B. Change in interest rates</label><br> <label><input type="radio" name="module2_mcq_q18" value="C"> C. Inflation increase</label><br> <label><input type="radio" name="module2_mcq_q18" value="D"> D. Product recall by a single company</label><br> <label><input type="radio" name="module2_mcq_q18" value="E"> E. Market crash</label><br>
+</form>
+<div id="feedback-module2_mcq_q18" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Diversifiable risk is firm-specific like product recalls.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q19.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q19')" data-correct-answer="A">
+<strong style="display: block;">Portfolio: 25% in asset A (E=20%), 75% in asset B (E=8%). Expected return?</strong> <label><input type="radio" name="module2_mcq_q19" value="A"> A. 11.0%</label><br> <label><input type="radio" name="module2_mcq_q19" value="B"> B. 11.5%</label><br> <label><input type="radio" name="module2_mcq_q19" value="C"> C. 12.0%</label><br> <label><input type="radio" name="module2_mcq_q19" value="D"> D. 12.5%</label><br> <label><input type="radio" name="module2_mcq_q19" value="E"> E. 13.0%</label><br>
+</form>
+<div id="feedback-module2_mcq_q19" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. 0.25×20%+0.75×8%=11%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q20.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q20')" data-correct-answer="C">
+<strong style="display: block;">Which statement about diversification is TRUE?</strong> <label><input type="radio" name="module2_mcq_q20" value="A"> A. It eliminates systematic risk</label><br> <label><input type="radio" name="module2_mcq_q20" value="B"> B. It increases expected return</label><br> <label><input type="radio" name="module2_mcq_q20" value="C"> C. It reduces unsystematic risk</label><br> <label><input type="radio" name="module2_mcq_q20" value="D"> D. It always reduces beta</label><br> <label><input type="radio" name="module2_mcq_q20" value="E"> E. It guarantees positive returns</label><br>
+</form>
+<div id="feedback-module2_mcq_q20" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Diversification reduces unsystematic (firm-specific) risk.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 5: Q21–Q25 -->
+<div id="group5" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q21.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q21')" data-correct-answer="C">
+<strong style="display: block;">What does beta measure in CAPM?</strong> <label><input type="radio" name="module2_mcq_q21" value="A"> A. Diversifiable risk</label><br> <label><input type="radio" name="module2_mcq_q21" value="B"> B. Total variance of a stock</label><br> <label><input type="radio" name="module2_mcq_q21" value="C"> C. Sensitivity of a stock’s return to the market return</label><br> <label><input type="radio" name="module2_mcq_q21" value="D"> D. Firm-specific risk only</label><br> <label><input type="radio" name="module2_mcq_q21" value="E"> E. Probability of default</label><br>
+</form>
+<div id="feedback-module2_mcq_q21" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Beta measures the stock’s systematic risk relative to the market.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q22.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q22')" data-correct-answer="B">
+<strong style="display: block;"> Over long horizons, investors often compare the arithmetic and geometric averages of returns. Which of the following statements is correct according to the evidence in Chapter 10? </strong> <label><input type="radio" name="module2_mcq_q22" value="A"> A. The arithmetic average is always lower than the geometric average because it accounts for compounding.</label><br> <label><input type="radio" name="module2_mcq_q22" value="B"> B. The geometric average is always less than or equal to the arithmetic average, especially when returns are volatile.</label><br> <label><input type="radio" name="module2_mcq_q22" value="C"> C. The arithmetic and geometric averages are always identical in practice.</label><br> <label><input type="radio" name="module2_mcq_q22" value="D"> D. The geometric average overstates expected returns in a single year.</label><br> <label><input type="radio" name="module2_mcq_q22" value="E"> E. The choice between arithmetic and geometric averages does not depend on the investment horizon.</label><br>
+</form>
+<div id="feedback-module2_mcq_q22" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The <strong>geometric average</strong> is always less than or equal to the arithmetic average.<br>
+This gap increases with volatility.
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q23.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q23')" data-correct-answer="C">
+<strong style="display: block;"> Which of the following statements about diversification and correlation is correct according to the evidence discussed in Chapter 10? </strong> <label><input type="radio" name="module2_mcq_q23" value="A"> A. If two assets have a correlation of +1, diversification completely eliminates risk.</label><br> <label><input type="radio" name="module2_mcq_q23" value="B"> B. If two assets have a correlation of 0, their combined portfolio will have volatility equal to the average of their volatilities.</label><br> <label><input type="radio" name="module2_mcq_q23" value="C"> C. If two assets have a correlation less than 1, diversification reduces portfolio volatility relative to the weighted average of individual volatilities.</label><br> <label><input type="radio" name="module2_mcq_q23" value="D"> D. Negative correlation between assets increases portfolio risk relative to holding them separately.</label><br> <label><input type="radio" name="module2_mcq_q23" value="E"> E. Diversification benefits are independent of correlation.</label><br>
+</form>
+<div id="feedback-module2_mcq_q23" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Diversification reduces risk as long as correlation is less than +1.<br>
+When correlation = +1, no risk reduction occurs.<br>
+When correlation &lt; 0, diversification can be especially powerful, potentially lowering risk more than either asset alone.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q24.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q24')" data-correct-answer="C">
+<strong style="display: block;"> In modern portfolio theory, the expected return of a portfolio is a fundamental concept used to guide investment decisions. Which of the following statements best describes how the expected return of a portfolio is determined? </strong> <label><input type="radio" name="module2_mcq_q24" value="A"> A. It is equal to the risk-free rate plus the weighted average volatility of the assets in the portfolio.</label><br> <label><input type="radio" name="module2_mcq_q24" value="B"> B. It is calculated as the geometric average of individual asset returns, adjusted for portfolio beta.</label><br> <label><input type="radio" name="module2_mcq_q24" value="C"> C. It is the weighted average of the expected returns of the individual assets, with weights corresponding to their proportion in the portfolio.</label><br> <label><input type="radio" name="module2_mcq_q24" value="D"> D. It is determined by multiplying the portfolio’s total volatility by the market risk premium.</label><br> <label><input type="radio" name="module2_mcq_q24" value="E"> E. It is estimated by adding each asset’s alpha to the overall market return.</label><br>
+</form>
+<div id="feedback-module2_mcq_q24" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The expected return of a portfolio is a weighted average of the expected returns of the assets that compose it, with the weights given by the relative share of each asset in the portfolio. This property highlights that expected return depends on allocation, not on correlations or volatilities.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q25.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q25')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements is TRUE about diversifiable risk?</strong> <label><input type="radio" name="module2_mcq_q25" value="A"> A. It is rewarded with higher expected return</label><br> <label><input type="radio" name="module2_mcq_q25" value="B"> B. It cannot be reduced by diversification</label><br> <label><input type="radio" name="module2_mcq_q25" value="C"> C. It is eliminated in large portfolios</label><br> <label><input type="radio" name="module2_mcq_q25" value="D"> D. It equals systematic risk</label><br> <label><input type="radio" name="module2_mcq_q25" value="E"> E. It increases with market beta</label><br>
+</form>
+<div id="feedback-module2_mcq_q25" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Diversifiable risk can be eliminated by holding a sufficiently diversified portfolio.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 6: Q26–Q30 -->
+<div id="group6" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q26.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q26')" data-correct-answer="C">
+<strong style="display: block;"> Which statement about the historical performance of U.S. asset classes over the past century is most accurate? </strong> <label><input type="radio" name="module2_mcq_q26" value="A"> A. Treasury Bills earned higher average returns than the S&amp;P 500 but with more volatility.</label><br> <label><input type="radio" name="module2_mcq_q26" value="B"> B. Corporate bonds consistently outperformed small stocks in both return and volatility.</label><br> <label><input type="radio" name="module2_mcq_q26" value="C"> C. Small stocks delivered the highest average returns, but with the highest volatility among major asset classes.</label><br> <label><input type="radio" name="module2_mcq_q26" value="D"> D. Large stocks had lower volatility than Treasury Bills but earned lower returns.</label><br> <label><input type="radio" name="module2_mcq_q26" value="E"> E. Treasury bonds offered the same risk–return tradeoff as small stocks.</label><br>
+</form>
+<div id="feedback-module2_mcq_q26" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Historical evidence shows that <strong>small stocks had both the highest average returns and the greatest volatility</strong>.<br>
+This illustrates the fundamental <strong>risk–return tradeoff</strong> emphasized in Chapter 10: assets that are riskier tend to offer higher expected returns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q27.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q27')" data-correct-answer="A">
+<strong style="display: block;">When correlation between two assets is negative:</strong> <label><input type="radio" name="module2_mcq_q27" value="A"> A. Diversification benefits are enhanced</label><br> <label><input type="radio" name="module2_mcq_q27" value="B"> B. Portfolio variance is maximized</label><br> <label><input type="radio" name="module2_mcq_q27" value="C"> C. Both assets must have the same beta</label><br> <label><input type="radio" name="module2_mcq_q27" value="D"> D. Risk-free rate decreases</label><br> <label><input type="radio" name="module2_mcq_q27" value="E"> E. Returns are uncorrelated with market</label><br>
+</form>
+<div id="feedback-module2_mcq_q27" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Negative correlation enhances diversification by reducing total variance.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q28.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q28')" data-correct-answer="A">
+<strong style="display: block;">An equally weighted portfolio of 4 assets, each with expected return 12%, will have expected return:</strong> <label><input type="radio" name="module2_mcq_q28" value="A"> A. 12%</label><br> <label><input type="radio" name="module2_mcq_q28" value="B"> B. 10%</label><br> <label><input type="radio" name="module2_mcq_q28" value="C"> C. 11%</label><br> <label><input type="radio" name="module2_mcq_q28" value="D"> D. 13%</label><br> <label><input type="radio" name="module2_mcq_q28" value="E"> E. Cannot be determined</label><br>
+</form>
+<div id="feedback-module2_mcq_q28" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Expected return is the weighted average = 12%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q29.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q29')" data-correct-answer="C">
+<strong style="display: block;"> Which of the following statements best describes the statistical properties typically observed in daily stock returns? </strong> <label><input type="radio" name="module2_mcq_q29" value="A"> A. Daily returns are normally distributed with constant variance over time.</label><br> <label><input type="radio" name="module2_mcq_q29" value="B"> B. Extreme positive and negative returns are rare, so daily returns rarely deviate from their average.</label><br> <label><input type="radio" name="module2_mcq_q29" value="C"> C. Daily returns exhibit volatility clustering, with periods of high variability followed by calmer periods, and they tend to have fat tails relative to a normal distribution.</label><br> <label><input type="radio" name="module2_mcq_q29" value="D"> D. Daily returns always follow a predictable cyclical pattern that repeats every year.</label><br> <label><input type="radio" name="module2_mcq_q29" value="E"> E. Since returns are independent over time, risk estimated from the past always perfectly predicts future volatility.</label><br>
+</form>
+<div id="feedback-module2_mcq_q29" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Empirical evidence shows that daily stock returns are not perfectly normal:<br>
+they present <strong>volatility clustering</strong> (turbulent periods followed by calmer ones) and <strong>fat tails</strong>, meaning extreme movements occur more often than predicted by the normal distribution.<br>
+This is why models like ARCH/GARCH are often used to capture the time-varying nature of volatility.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q30.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q30')" data-correct-answer="E">
+<strong style="display: block;"> Which of the following best explains the relationship between systematic risk and the Equity Risk Premium (ERP) in financial markets? </strong> <label><input type="radio" name="module2_mcq_q30" value="A"> A. ERP is entirely determined by unsystematic risk, since investors demand compensation for firm-specific events.</label><br> <label><input type="radio" name="module2_mcq_q30" value="B"> B. ERP is constant through time, because systematic risk does not change with macroeconomic conditions.</label><br> <label><input type="radio" name="module2_mcq_q30" value="C"> C. ERP reflects investors’ compensation for both diversifiable and non-diversifiable risks, as both are priced equally in CAPM.</label><br> <label><input type="radio" name="module2_mcq_q30" value="D"> D. ERP is inversely related to systematic risk: when uncertainty rises, investors require lower premiums to invest in equities.</label><br> <label><input type="radio" name="module2_mcq_q30" value="E"> E. ERP compensates only for systematic risk, and its magnitude fluctuates over time with changes in macroeconomic uncertainty, investor sentiment, and global financial conditions.</label><br>
+</form>
+<div id="feedback-module2_mcq_q30" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: E. The Equity Risk Premium (ERP) represents the additional return investors demand for bearing <strong>systematic (non-diversifiable) risk</strong>.<br>
+Unlike unsystematic risk, which can be eliminated through diversification, systematic risk remains and is priced in equilibrium.<br>
+Importantly, ERP is not fixed: it rises during crises or high uncertainty (when investors are more risk averse) and falls during stable periods.<br>
+This dynamic relationship makes ERP central for cost of equity estimation, valuation, and risk management.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 7: Q31–Q35 -->
+<div id="group7" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q31.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q31')" data-correct-answer="B">
+<strong style="display: block;">Which measure indicates total volatility of an asset’s return?</strong> <label><input type="radio" name="module2_mcq_q31" value="A"> A. Beta</label><br> <label><input type="radio" name="module2_mcq_q31" value="B"> B. Variance or standard deviation</label><br> <label><input type="radio" name="module2_mcq_q31" value="C"> C. Alpha</label><br> <label><input type="radio" name="module2_mcq_q31" value="D"> D. Sharpe ratio</label><br> <label><input type="radio" name="module2_mcq_q31" value="E"> E. Jensen’s measure</label><br>
+</form>
+<div id="feedback-module2_mcq_q31" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Standard deviation reflects total return volatility.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q32.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q32')" data-correct-answer="D">
+<strong style="display: block;"> Which of the following statements about the Equity Risk Premium (ERP) is correct? </strong> <label><input type="radio" name="module2_mcq_q32" value="A"> A. The ERP is constant over time and can be applied universally without adjustment.</label><br> <label><input type="radio" name="module2_mcq_q32" value="B"> B. The ERP reflects the difference between a firm’s expected return and its accounting cost of equity.</label><br> <label><input type="radio" name="module2_mcq_q32" value="C"> C. The ERP is the same in all countries, as global integration eliminates local risk factors.</label><br> <label><input type="radio" name="module2_mcq_q32" value="D"> D. The ERP represents the additional return that investors demand for holding equities over risk-free assets, and it tends to vary over time depending on economic conditions and market uncertainty.</label><br> <label><input type="radio" name="module2_mcq_q32" value="E"> E. A higher ERP always implies lower perceived risk in the market.</label><br>
+</form>
+<div id="feedback-module2_mcq_q32" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. The Equity Risk Premium (ERP) is the compensation investors require for bearing the additional risk of equities relative to risk-free assets.<br>
+It is not constant: it fluctuates with economic conditions, investor sentiment, and market volatility.<br>
+During crises or high uncertainty, ERP typically rises, while in more stable periods it tends to decline.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q33.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q33')" data-correct-answer="C">
+<strong style="display: block;"> Which of the following statements best describes the behavior of the standard deviation (volatility) of a stock’s returns over time? </strong> <label><input type="radio" name="module2_mcq_q33" value="A"> A. Standard deviation is constant over time, so past volatility perfectly predicts future volatility.</label><br> <label><input type="radio" name="module2_mcq_q33" value="B"> B. Volatility only changes when the firm’s capital structure changes significantly.</label><br> <label><input type="radio" name="module2_mcq_q33" value="C"> C. Volatility is time-varying: it tends to cluster in periods of market stress or crisis, rising sharply and then gradually declining.</label><br> <label><input type="radio" name="module2_mcq_q33" value="D"> D. Volatility reflects only idiosyncratic shocks, not market-wide conditions.</label><br> <label><input type="radio" name="module2_mcq_q33" value="E"> E. Standard deviation is irrelevant for risk measurement because it cannot change over time.</label><br>
+</form>
+<div id="feedback-module2_mcq_q33" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Stock volatility is not constant — it is <strong>time-varying</strong>.<br>
+Periods of market stress (e.g., crises) often show volatility spikes, followed by gradual normalization.<br>
+This property is known as <strong>volatility clustering</strong>, and it is central to risk modeling in finance (e.g., ARCH/GARCH models).</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q34.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q34')" data-correct-answer="D">
+<strong style="display: block;"> Suppose a stock generates quarterly realized returns of RQ1 = 5%, RQ2 = 2%, RQ3 = −3%, and RQ4 = 4%.<br>
+What is the realized annual return for the year, considering compounding? </strong> <label><input type="radio" name="module2_mcq_q34" value="A"> A. 7.8%</label><br> <label><input type="radio" name="module2_mcq_q34" value="B"> B. 8.2%</label><br> <label><input type="radio" name="module2_mcq_q34" value="C"> C. 8.5%</label><br> <label><input type="radio" name="module2_mcq_q34" value="D"> D. 8.9%</label><br> <label><input type="radio" name="module2_mcq_q34" value="E"> E. 9.2%</label><br>
+</form>
+<div id="feedback-module2_mcq_q34" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. The realized annual return is computed as:<br>
+((1+R_{annual}) = (1+0.05)(1+0.02)(1−0.03)(1+0.04) = 1.0889).<br>
+Thus, (R_{annual} ≈ 8.9%).<br>
+This illustrates how realized returns must account for compounding across subperiods.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q35.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q35')" data-correct-answer="D">
+<strong style="display: block;"> The beta coefficient is a central concept in the CAPM framework. Which of the following statements best reflects a deeper understanding of what beta measures and its implications for asset pricing and portfolio management? </strong> <label><input type="radio" name="module2_mcq_q35" value="A"> A. Beta represents the total volatility of an asset’s returns, capturing both systematic and unsystematic risk.</label><br> <label><input type="radio" name="module2_mcq_q35" value="B"> B. A stock with β = 1.5 is guaranteed to earn returns 50% higher than the market in every period.</label><br> <label><input type="radio" name="module2_mcq_q35" value="C"> C. Beta is calculated as the standard deviation of an asset’s returns divided by the standard deviation of the market portfolio.</label><br> <label><input type="radio" name="module2_mcq_q35" value="D"> D. Beta measures the sensitivity of an asset’s returns to movements in the market portfolio; it captures only systematic risk, which cannot be eliminated through diversification.</label><br> <label><input type="radio" name="module2_mcq_q35" value="E"> E. Beta is a backward-looking metric that reflects realized historical returns and therefore has no predictive value for expected returns.</label><br>
+</form>
+<div id="feedback-module2_mcq_q35" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Beta is the slope coefficient from regressing an asset’s returns on market returns, capturing the asset’s sensitivity to systematic (non-diversifiable) risk. A higher beta implies greater exposure to market movements and thus a higher required return under CAPM, while diversification cannot eliminate this component of risk.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 8: Q36–Q40 -->
+<div id="group8" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q36.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q36')" data-correct-answer="D">
+<strong style="display: block;"> An investor bought a stock for $100 and sold it 5 years later for $161.05.<br>
+What was the Compound Annual Growth Rate (CAGR) of this investment? </strong> <label><input type="radio" name="module2_mcq_q36" value="A"> A. 8%</label><br> <label><input type="radio" name="module2_mcq_q36" value="B"> B. 9%</label><br> <label><input type="radio" name="module2_mcq_q36" value="C"> C. 10%</label><br> <label><input type="radio" name="module2_mcq_q36" value="D"> D. 10.0%</label><br> <label><input type="radio" name="module2_mcq_q36" value="E"> E. 12%</label><br>
+</form>
+<div id="feedback-module2_mcq_q36" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. CAGR = (()^{1/5} - 1 = (1.6105)^{0.2} - 1 = 10.0%).<br>
+This reflects the constant annual growth rate that would transform $100 into $161.05 over 5 years.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q37.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q37')" data-correct-answer="D">
+<strong style="display: block;"> Which of the following statements about diversification is the most accurate in the context of modern portfolio theory? </strong> <label><input type="radio" name="module2_mcq_q37" value="A"> A. In large portfolios, all risk is eliminated because correlations converge to zero across assets.</label><br> <label><input type="radio" name="module2_mcq_q37" value="B"> B. The marginal benefit of adding an asset to a portfolio depends only on its own variance, not on its covariance with other assets.</label><br> <label><input type="radio" name="module2_mcq_q37" value="C"> C. Once a portfolio has more than 30 stocks, it is guaranteed to be free of any risk, regardless of correlations.</label><br> <label><input type="radio" name="module2_mcq_q37" value="D"> D. Diversification reduces unsystematic risk, but the degree of reduction depends critically on the correlations between assets; systematic risk cannot be eliminated and therefore sets a lower bound for portfolio risk.</label><br> <label><input type="radio" name="module2_mcq_q37" value="E"> E. International diversification always reduces portfolio risk because foreign markets are uncorrelated with domestic markets.</label><br>
+</form>
+<div id="feedback-module2_mcq_q37" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Diversification lowers unsystematic (idiosyncratic) risk, but the magnitude of the benefit depends on asset correlations. If correlations are high, adding more assets has limited effect; if correlations are low, the reduction is stronger. Systematic risk, however, cannot be diversified away — it is inherent to all investments in the market. Thus, diversification improves portfolio efficiency but cannot eliminate the fundamental trade-off between risk and return.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q38.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q38')" data-correct-answer="C">
+<strong style="display: block;"> Which of the following statements about the Compound Annual Growth Rate (CAGR) is correct? </strong> <label><input type="radio" name="module2_mcq_q38" value="A"> A. CAGR is simply the arithmetic average of yearly returns across the sample period.</label><br> <label><input type="radio" name="module2_mcq_q38" value="B"> B. CAGR always exceeds the arithmetic mean, because compounding increases long-term averages.</label><br> <label><input type="radio" name="module2_mcq_q38" value="C"> C. CAGR represents the constant annual rate of return that would transform the initial investment into the final value over the period, accounting for compounding.</label><br> <label><input type="radio" name="module2_mcq_q38" value="D"> D. CAGR is unaffected by the sequence of returns, so it is identical to the arithmetic mean in all cases.</label><br> <label><input type="radio" name="module2_mcq_q38" value="E"> E. CAGR is only applicable for risk-free assets and cannot be applied to risky assets like stocks.</label><br>
+</form>
+<div id="feedback-module2_mcq_q38" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. CAGR (geometric average return) reflects the annualized growth rate of an investment over multiple periods, incorporating the effect of compounding.<br>
+Unlike the arithmetic mean, it accounts for the sequence of gains and losses and typically produces a lower value when returns are volatile.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q39.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q39')" data-correct-answer="A">
+<strong style="display: block;">An investor holds Stock A with return 8% and Stock B with return 12%. If correlation = 1, what is the range of possible portfolio returns?</strong> <label><input type="radio" name="module2_mcq_q39" value="A"> A. 8–12%</label><br> <label><input type="radio" name="module2_mcq_q39" value="B"> B. 9–11%</label><br> <label><input type="radio" name="module2_mcq_q39" value="C"> C. 10% only</label><br> <label><input type="radio" name="module2_mcq_q39" value="D"> D. Unlimited</label><br> <label><input type="radio" name="module2_mcq_q39" value="E"> E. Cannot be determined</label><br>
+</form>
+<div id="feedback-module2_mcq_q39" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Portfolio return is just the weighted average, between 8% and 12%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q40.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q40')" data-correct-answer="D">
+<strong style="display: block;"> A stock is priced at $100 at the beginning of the year.<br>
+At the end of the year, the stock price rises to $108 and the firm pays a dividend of $2. What is the stock’s total realized return? </strong> <label><input type="radio" name="module2_mcq_q40" value="A"> A. 8.0%</label><br> <label><input type="radio" name="module2_mcq_q40" value="B"> B. 9.0%</label><br> <label><input type="radio" name="module2_mcq_q40" value="C"> C. 10.0%</label><br> <label><input type="radio" name="module2_mcq_q40" value="D"> D. 10.0%</label><br> <label><input type="radio" name="module2_mcq_q40" value="E"> E. 11.0%</label><br>
+</form>
+<div id="feedback-module2_mcq_q40" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. The return is ((2 + 108)/100 - 1 = 0.10 = 10%).<br>
+This return combines the <strong>dividend yield</strong> (2/100 = 2%) and the <strong>capital gain rate</strong> (8/100 = 8%).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 9: Q41–Q45 -->
+<div id="group9" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q41.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q41')" data-correct-answer="D">
+<strong style="display: block;">Which statement is TRUE about systematic risk?</strong> <label><input type="radio" name="module2_mcq_q41" value="A"> A. It can be eliminated by diversification</label><br> <label><input type="radio" name="module2_mcq_q41" value="B"> B. It refers only to company-specific events</label><br> <label><input type="radio" name="module2_mcq_q41" value="C"> C. It is unrelated to macroeconomic factors</label><br> <label><input type="radio" name="module2_mcq_q41" value="D"> D. It affects the entire market and cannot be diversified away</label><br> <label><input type="radio" name="module2_mcq_q41" value="E"> E. It measures alpha</label><br>
+</form>
+<div id="feedback-module2_mcq_q41" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Systematic risk is market-wide risk that diversification cannot eliminate.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q42.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q42')" data-correct-answer="B">
+<strong style="display: block;"> Which of the following statements about diversification is TRUE? </strong> <label><input type="radio" name="module2_mcq_q42" value="A"> A. Diversification eliminates both systematic and unsystematic risk from a portfolio.</label><br> <label><input type="radio" name="module2_mcq_q42" value="B"> B. Diversification reduces unsystematic (firm-specific) risk, but systematic (market) risk always remains.</label><br> <label><input type="radio" name="module2_mcq_q42" value="C"> C. Diversification works only when assets are perfectly positively correlated.</label><br> <label><input type="radio" name="module2_mcq_q42" value="D"> D. Diversification guarantees higher returns regardless of risk levels.</label><br> <label><input type="radio" name="module2_mcq_q42" value="E"> E. Diversification is ineffective in large portfolios because correlations are always close to 1.</label><br>
+</form>
+<div id="feedback-module2_mcq_q42" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Diversification reduces <strong>unsystematic risk</strong> by combining assets whose returns are not perfectly correlated.<br>
+However, <strong>systematic risk</strong>, driven by market-wide factors, cannot be diversified away and remains present in any portfolio.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q43.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q43')" data-correct-answer="C">
+<p><strong style="display: block;"> An asset has the following possible returns and probabilities:<br>
+- With probability 25%: return = −20%.<br>
+- With probability 50%: return = +10%.<br>
+- With probability 25%: return = +40%.</strong></p><strong style="display: block;">
+What is the expected return of this asset? </strong> <label><input type="radio" name="module2_mcq_q43" value="A"> A. 8%</label><br> <label><input type="radio" name="module2_mcq_q43" value="B"> B. 9%</label><br> <label><input type="radio" name="module2_mcq_q43" value="C"> C. 10%</label><br> <label><input type="radio" name="module2_mcq_q43" value="D"> D. 11%</label><br> <label><input type="radio" name="module2_mcq_q43" value="E"> E. 12%</label><br>
+</form>
+<div id="feedback-module2_mcq_q43" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C.<br>
+E[R] = 0.25×(−0.20) + 0.50×0.10 + 0.25×0.40 = −0.05 + 0.05 + 0.10 = 0.10 = 10%.<br>
+This calculation uses the <strong>historical average return</strong> as the best estimate of expected return.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q44.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q44')" data-correct-answer="C">
+<strong style="display: block;"> Which of the following statements about the <strong>market risk premium</strong> is correct? </strong> <label><input type="radio" name="module2_mcq_q44" value="A"> A. The market risk premium equals the variance of the market portfolio.</label><br> <label><input type="radio" name="module2_mcq_q44" value="B"> B. The market risk premium is the difference between a stock’s expected return and the risk-free rate.</label><br> <label><input type="radio" name="module2_mcq_q44" value="C"> C. The market risk premium is the additional return investors require for holding the market portfolio instead of the risk-free asset, i.e., (E[R_m] - R_f).</label><br> <label><input type="radio" name="module2_mcq_q44" value="D"> D. The market risk premium is always equal to the risk-free rate.</label><br> <label><input type="radio" name="module2_mcq_q44" value="E"> E. The market risk premium disappears in a well-diversified portfolio.</label><br>
+</form>
+<div id="feedback-module2_mcq_q44" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The <strong>market risk premium</strong> is defined as the excess return of the market portfolio over the risk-free rate, (E[R_m] - R_f).<br>
+It represents the reward investors demand for bearing systematic risk, and it is central to the CAPM equation.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q45.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q45')" data-correct-answer="B">
+<strong style="display: block;"> An investor holds a well-diversified portfolio of 100 stocks across multiple industries.<br>
+Which of the following events primarily represents a <strong>non-diversifiable (systematic) risk</strong> that will remain in the portfolio even after diversification?<br>
+</strong> <label><input type="radio" name="module2_mcq_q45" value="A"> A. A major pharmaceutical company faces a lawsuit due to defective products.</label><br> <label><input type="radio" name="module2_mcq_q45" value="B"> B. The central bank unexpectedly raises interest rates, leading to higher borrowing costs across the economy.</label><br> <label><input type="radio" name="module2_mcq_q45" value="C"> C. One of the portfolio firms suffers from a factory fire disrupting production for a year.</label><br> <label><input type="radio" name="module2_mcq_q45" value="D"> D. A single company announces a product recall due to safety issues.</label><br> <label><input type="radio" name="module2_mcq_q45" value="E"> E. A retail firm in the portfolio loses market share due to stronger competition in its niche.</label><br>
+</form>
+<div id="feedback-module2_mcq_q45" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Systematic risk arises from economy-wide shocks (e.g., interest rate hikes, recessions, inflation) that affect all firms.<br>
+Idiosyncratic events such as lawsuits, fires, or competitive pressures are diversifiable risks that can be eliminated through holding a sufficiently large and diversified portfolio.<br>
+This distinction underpins the CAPM framework, where only systematic risk is priced.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 10: Q46–Q50 -->
+<div id="group10" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q46.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q46')" data-correct-answer="C">
+<strong style="display: block;"> Which of the following best reflects the relationship between risk (volatility) and return observed in financial markets when analyzing individual stocks over long periods? </strong> <label><input type="radio" name="module2_mcq_q46" value="A"> A. There is always a strong and exact linear relationship, with higher volatility guaranteeing higher returns.</label><br> <label><input type="radio" name="module2_mcq_q46" value="B"> B. All assets align perfectly with the predictions of CAPM, meaning no stock ever offers returns inconsistent with its beta.</label><br> <label><input type="radio" name="module2_mcq_q46" value="C"> C. While theory suggests a positive relationship between risk and expected return, in practice the data show considerable dispersion, with some high-volatility stocks yielding poor returns and some low-volatility stocks performing well.</label><br> <label><input type="radio" name="module2_mcq_q46" value="D"> D. Investors can always earn abnormal profits by simply selecting the riskiest stocks available in the market.</label><br> <label><input type="radio" name="module2_mcq_q46" value="E"> E. Diversification eliminates all forms of risk, making volatility irrelevant to expected returns in practice.</label><br>
+</form>
+<div id="feedback-module2_mcq_q46" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Finance theory (e.g., CAPM) predicts that higher systematic risk should be compensated with higher expected returns. However, when looking at historical data for individual stocks, the relationship is noisy and dispersed. Some risky stocks perform poorly, while others with lower volatility outperform, reflecting the limits of using past data as a predictor of expected returns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q47.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q47')" data-correct-answer="D">
+<strong style="display: block;"> An investor buys a stock at $50 and sells it one year later for $60. During the year, the stock also paid a dividend of $2 per share.<br>
+What is the investor’s total return, and what portion of it represents the capital gain? </strong> <label><input type="radio" name="module2_mcq_q47" value="A"> A. Total return = 20%; Capital gain = 2%</label><br> <label><input type="radio" name="module2_mcq_q47" value="B"> B. Total return = 22%; Capital gain = 22%</label><br> <label><input type="radio" name="module2_mcq_q47" value="C"> C. Total return = 22%; Capital gain = 24%</label><br> <label><input type="radio" name="module2_mcq_q47" value="D"> D. Total return = 24%; Capital gain = 20%</label><br> <label><input type="radio" name="module2_mcq_q47" value="E"> E. Total return = 20%; Capital gain = 18%</label><br>
+</form>
+<div id="feedback-module2_mcq_q47" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D.<br>
+Capital gain = (60 − 50)/50 = 20%.<br>
+Dividend yield = 2/50 = 4%.<br>
+Total return = 20% + 4% = 24%.<br>
+Thus, capital gain contributes 20 percentage points of the total return.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q48.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q48')" data-correct-answer="C">
+<strong style="display: block;"> Which of the following statements best captures a subtle but crucial insight about diversification in modern portfolio theory? </strong> <label><input type="radio" name="module2_mcq_q48" value="A"> A. Diversification eliminates all forms of risk when enough assets are included in a portfolio.</label><br> <label><input type="radio" name="module2_mcq_q48" value="B"> B. As the number of securities increases, the portfolio variance declines linearly until it converges to zero.</label><br> <label><input type="radio" name="module2_mcq_q48" value="C"> C. Diversification reduces firm-specific (idiosyncratic) risk, but portfolio risk converges to systematic risk, which cannot be eliminated.</label><br> <label><input type="radio" name="module2_mcq_q48" value="D"> D. Market risk can be diversified away by holding assets from different industries and countries.</label><br> <label><input type="radio" name="module2_mcq_q48" value="E"> E. The correlation between assets is irrelevant for diversification, since adding more assets always lowers risk.</label><br>
+</form>
+<div id="feedback-module2_mcq_q48" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C.<br>
+Diversification is powerful but limited: it eliminates unsystematic (firm-specific) risk, yet total portfolio risk converges to the non-diversifiable, systematic risk that depends on common factors such as the market portfolio. This insight is central to CAPM and explains why only systematic risk is priced in equilibrium.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q49.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q49')" data-correct-answer="B">
+<strong style="display: block;">Which risk does diversification primarily reduce?</strong> <label><input type="radio" name="module2_mcq_q49" value="A"> A. Systematic risk</label><br> <label><input type="radio" name="module2_mcq_q49" value="B"> B. Unsystematic risk</label><br> <label><input type="radio" name="module2_mcq_q49" value="C"> C. Market risk</label><br> <label><input type="radio" name="module2_mcq_q49" value="D"> D. Inflation risk</label><br> <label><input type="radio" name="module2_mcq_q49" value="E"> E. Currency risk</label><br>
+</form>
+<div id="feedback-module2_mcq_q49" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Diversification reduces firm-specific (unsystematic) risk.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q50.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q50')" data-correct-answer="C">
+<strong style="display: block;">Investor holds stock with σ=30%, market σ=20%, correlation=0.7. What is the stock’s beta?</strong> <label><input type="radio" name="module2_mcq_q50" value="A"> A. 0.9</label><br> <label><input type="radio" name="module2_mcq_q50" value="B"> B. 1.0</label><br> <label><input type="radio" name="module2_mcq_q50" value="C"> C. 1.05</label><br> <label><input type="radio" name="module2_mcq_q50" value="D"> D. 1.2</label><br> <label><input type="radio" name="module2_mcq_q50" value="E"> E. 1.3</label><br>
+</form>
+<div id="feedback-module2_mcq_q50" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. β = ρ×σi/σm = 0.7×30/20 = 1.05.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Navegação entre os grupos -->
+<script>
+  let currentGroup = 1;
+  const totalGroups = 10;
+
+  function setActivePill(index){
+    const pills = document.querySelectorAll('.grp-btn[data-group]');
+    pills.forEach(btn => {
+      const n = Number(btn.getAttribute('data-group'));
+      if (n === index){
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'page');
+      } else {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function showGroup(index) {
+    for (let i = 1; i <= totalGroups; i++) {
+      const el = document.getElementById(`group${i}`);
+      if (el) el.style.display = (i === index) ? 'block' : 'none';
+    }
+    const ind = document.getElementById('group-indicator');
+    if (ind) ind.textContent = `Group ${index} of ${totalGroups}`;
+    currentGroup = index;
+    setActivePill(index);
+  }
+
+  function nextGroup() {
+    if (currentGroup < totalGroups) showGroup(currentGroup + 1);
+  }
+
+  function prevGroup() {
+    if (currentGroup > 1) showGroup(currentGroup - 1);
+  }
+
+  // Inicia no grupo 1 com pílula ativa
+  showGroup(currentGroup);
+</script>
+<div style="margin-top: 14px; display:flex; justify-content:center; gap:12px;">
+<p><button class="grp-btn" onclick="prevGroup()">Previous</button> <span id="group-indicator" style="align-self:center; font-weight:700;">Group 1 of 10</span> <button class="grp-btn" onclick="nextGroup()">Next</button></p>
 </div>
 <div style="text-align: right;">
 <script>

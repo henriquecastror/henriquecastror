@@ -1,13 +1,15 @@
 ::: {.question-block}
 <form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q11')" data-correct-answer="B">
-<strong style="display: block;">Which of the following is an assumption of CAPM?</strong>
-<label><input type="radio" name="module2_mcq_q11" value="A"> A. Investors have heterogeneous expectations</label><br>
-<label><input type="radio" name="module2_mcq_q11" value="B"> B. Investors can borrow and lend at the risk-free rate</label><br>
-<label><input type="radio" name="module2_mcq_q11" value="C"> C. Markets are always inefficient</label><br>
-<label><input type="radio" name="module2_mcq_q11" value="D"> D. Taxes and transaction costs are large</label><br>
-<label><input type="radio" name="module2_mcq_q11" value="E"> E. Investors only care about skewness</label><br>
+<strong style="display: block;">
+If the standard deviation of annual returns is 19.8% and the number of years of observation is 107, what is the standard error of the mean?
+</strong>
+<label><input type="radio" name="module2_mcq_q11" value="A"> A. 0.47%</label><br>
+<label><input type="radio" name="module2_mcq_q11" value="B"> B. 1.91%</label><br>
+<label><input type="radio" name="module2_mcq_q11" value="C"> C. 4.23%</label><br>
+<label><input type="radio" name="module2_mcq_q11" value="D"> D. 19.8%</label><br>
+<label><input type="radio" name="module2_mcq_q11" value="E"> E. 9.9%</label><br>
 </form>
 <div id="feedback-module2_mcq_q11" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. CAPM assumes investors can borrow and lend unlimited amounts at the risk-free rate.
+✅ Correct: B. Standard error = σ/√N = 19.8% / √107 ≈ 1.91%.
 </div>
 :::

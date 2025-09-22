@@ -1,13 +1,20 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q47')" data-correct-answer="A">
-<strong style="display: block;">Which is FALSE about CAPM?</strong>
-<label><input type="radio" name="module2_mcq_q47" value="A"> A. Investors are rewarded for bearing total risk</label><br>
-<label><input type="radio" name="module2_mcq_q47" value="B"> B. Only systematic risk is priced</label><br>
-<label><input type="radio" name="module2_mcq_q47" value="C"> C. Beta measures systematic risk</label><br>
-<label><input type="radio" name="module2_mcq_q47" value="D"> D. Market portfolio is efficient</label><br>
-<label><input type="radio" name="module2_mcq_q47" value="E"> E. Alpha measures mispricing</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q47')" data-correct-answer="D">
+<strong style="display: block;">
+An investor buys a stock at $50 and sells it one year later for $60. During the year, the stock also paid a dividend of $2 per share.  
+What is the investor’s total return, and what portion of it represents the capital gain?
+</strong>
+<label><input type="radio" name="module2_mcq_q47" value="A"> A. Total return = 20%; Capital gain = 2%</label><br>
+<label><input type="radio" name="module2_mcq_q47" value="B"> B. Total return = 22%; Capital gain = 22%</label><br>
+<label><input type="radio" name="module2_mcq_q47" value="C"> C. Total return = 22%; Capital gain = 24%</label><br>
+<label><input type="radio" name="module2_mcq_q47" value="D"> D. Total return = 24%; Capital gain = 20%</label><br>
+<label><input type="radio" name="module2_mcq_q47" value="E"> E. Total return = 20%; Capital gain = 18%</label><br>
 </form>
 <div id="feedback-module2_mcq_q47" class="feedback" data-status="" style="display:none;">
-✅ Correct: A. CAPM rewards only systematic risk, not total risk.
+✅ Correct: D.  
+Capital gain = (60 − 50)/50 = 20%.  
+Dividend yield = 2/50 = 4%.  
+Total return = 20% + 4% = 24%.  
+Thus, capital gain contributes 20 percentage points of the total return.
 </div>
 :::

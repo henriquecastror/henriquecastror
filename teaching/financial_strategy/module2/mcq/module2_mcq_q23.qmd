@@ -1,13 +1,17 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q23')" data-correct-answer="B">
-<strong style="display: block;">In the CAPM framework, the market portfolio:</strong>
-<label><input type="radio" name="module2_mcq_q23" value="A"> A. Contains only government bonds</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="B"> B. Is the combination of all risky assets in the economy</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="C"> C. Is chosen arbitrarily by investors</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="D"> D. Contains only large-cap stocks</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="E"> E. Is equivalent to the risk-free asset</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q23')" data-correct-answer="C">
+<strong style="display: block;">
+Which of the following statements about diversification and correlation is correct according to the evidence discussed in Chapter 10?
+</strong>
+<label><input type="radio" name="module2_mcq_q23" value="A"> A. If two assets have a correlation of +1, diversification completely eliminates risk.</label><br>
+<label><input type="radio" name="module2_mcq_q23" value="B"> B. If two assets have a correlation of 0, their combined portfolio will have volatility equal to the average of their volatilities.</label><br>
+<label><input type="radio" name="module2_mcq_q23" value="C"> C. If two assets have a correlation less than 1, diversification reduces portfolio volatility relative to the weighted average of individual volatilities.</label><br>
+<label><input type="radio" name="module2_mcq_q23" value="D"> D. Negative correlation between assets increases portfolio risk relative to holding them separately.</label><br>
+<label><input type="radio" name="module2_mcq_q23" value="E"> E. Diversification benefits are independent of correlation.</label><br>
 </form>
 <div id="feedback-module2_mcq_q23" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. The theoretical market portfolio includes all risky assets weighted by market value.
+✅ Correct: C. Diversification reduces risk as long as correlation is less than +1.  
+When correlation = +1, no risk reduction occurs.  
+When correlation &lt; 0, diversification can be especially powerful, potentially lowering risk more than either asset alone.
 </div>
 :::

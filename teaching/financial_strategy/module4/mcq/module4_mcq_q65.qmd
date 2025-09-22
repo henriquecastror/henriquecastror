@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q65')" data-correct-answer="C">
+  <strong style="display: block;">Financial leverage magnifies the difference between equity and asset betas. Consider a firm that doubles its debt-to-equity ratio while keeping asset risk constant. What is the conceptual implication for the firm’s equity beta?</strong>
+<label><input type="radio" name="module4_mcq_q65" value="A"> A. It decreases, because debt absorbs more of the firm’s total risk.</label><br>
+<label><input type="radio" name="module4_mcq_q65" value="B"> B. It remains constant, because asset beta is unchanged.</label><br>
+<label><input type="radio" name="module4_mcq_q65" value="C"> C. It increases, because a larger share of risk is borne by equity holders once fixed debt obligations are considered.</label><br>
+<label><input type="radio" name="module4_mcq_q65" value="D"> D. It decreases only if the risk-free rate falls.</label><br>
+<label><input type="radio" name="module4_mcq_q65" value="E"> E. It converges toward zero, since equity value becomes relatively smaller.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q65" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Higher leverage amplifies the volatility of equity returns relative to asset returns. Equity beta rises with leverage, holding asset beta fixed.
+</div>
+
+:::

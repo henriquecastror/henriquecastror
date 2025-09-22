@@ -1,13 +1,16 @@
 ::: {.question-block}
 <form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q26')" data-correct-answer="C">
-<strong style="display: block;">A stock has an expected return of 11%. Risk-free rate = 4%, beta = 1.1, market return = 10%. According to CAPM, is the stock correctly priced?</strong>
-<label><input type="radio" name="module2_mcq_q26" value="A"> A. Overpriced (return &lt; required)</label><br>
-<label><input type="radio" name="module2_mcq_q26" value="B"> B. Underpriced (return &gt; required)</label><br>
-<label><input type="radio" name="module2_mcq_q26" value="C"> C. Fairly priced</label><br>
-<label><input type="radio" name="module2_mcq_q26" value="D"> D. Cannot be judged</label><br>
-<label><input type="radio" name="module2_mcq_q26" value="E"> E. Depends on dividends</label><br>
+<strong style="display: block;">
+Which statement about the historical performance of U.S. asset classes over the past century is most accurate?
+</strong>
+<label><input type="radio" name="module2_mcq_q26" value="A"> A. Treasury Bills earned higher average returns than the S&amp;P 500 but with more volatility.</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="B"> B. Corporate bonds consistently outperformed small stocks in both return and volatility.</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="C"> C. Small stocks delivered the highest average returns, but with the highest volatility among major asset classes.</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="D"> D. Large stocks had lower volatility than Treasury Bills but earned lower returns.</label><br>
+<label><input type="radio" name="module2_mcq_q26" value="E"> E. Treasury bonds offered the same risk–return tradeoff as small stocks.</label><br>
 </form>
 <div id="feedback-module2_mcq_q26" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. CAPM return = 4% + 1.1×(10−4)% = 10.6%. Given 11% ≈ 10.6%, it’s fairly priced.
+✅ Correct: C. Historical evidence shows that **small stocks had both the highest average returns and the greatest volatility**.  
+This illustrates the fundamental **risk–return tradeoff** emphasized in Chapter 10: assets that are riskier tend to offer higher expected returns.
 </div>
 :::

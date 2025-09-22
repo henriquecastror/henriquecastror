@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q77')" data-correct-answer="A">
+  <strong style="display: block;">A company with significant foreign currency debt argues that its WACC is unchanged by exchange rate risk. What is the best theoretical critique?</strong>
+<label><input type="radio" name="module4_mcq_q77" value="A"> A. Exchange rate risk may affect the systematic risk of cash flows and debt, influencing both cost of equity and cost of debt.</label><br>
+<label><input type="radio" name="module4_mcq_q77" value="B"> B. Foreign currency debt always lowers WACC.</label><br>
+<label><input type="radio" name="module4_mcq_q77" value="C"> C. CAPM ignores exchange rates completely.</label><br>
+<label><input type="radio" name="module4_mcq_q77" value="D"> D. Currency risk is diversifiable and irrelevant to investors.</label><br>
+<label><input type="radio" name="module4_mcq_q77" value="E"> E. Debt beta does not change with exchange rate movements.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q77" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Currency exposure can create systematic risk, altering betas and required returns on both debt and equity.
+</div>
+
+:::

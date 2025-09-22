@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q92')" data-correct-answer="A">
+  <strong style="display: block;">
+  Some analysts defend the use of book-value weights instead of market-value weights when calculating the WACC, claiming that book values are more stable. Why is this practice inconsistent with the CAPM and valuation principles?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q92" value="A"> A. Because investors price securities based on market values, not historical book values.</label><br>
+  <label><input type="radio" name="module4_mcq_q92" value="B"> B. Because book values change too frequently to be useful in practice.</label><br>
+  <label><input type="radio" name="module4_mcq_q92" value="C"> C. Because CAPM requires debt weights only, not equity weights.</label><br>
+  <label><input type="radio" name="module4_mcq_q92" value="D"> D. Because market betas cannot be estimated using book values.</label><br>
+  <label><input type="radio" name="module4_mcq_q92" value="E"> E. Because book values always exceed market values.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q92" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. WACC reflects the opportunity cost of capital, which is determined by current market values, not historical accounting numbers.
+</div>
+
+:::

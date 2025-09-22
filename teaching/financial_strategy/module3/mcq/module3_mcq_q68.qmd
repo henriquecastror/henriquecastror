@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q68')" data-correct-answer="E">
+<strong style="display: block;">
+Consider two portfolios, P and Q, both lying on the efficient frontier. Portfolio P has higher expected return than Q. Which must be true?
+</strong>
+<label><input type="radio" name="module3_mcq_q68" value="A"> A. P has lower standard deviation than Q.</label><br>
+<label><input type="radio" name="module3_mcq_q68" value="B"> B. P and Q must have the same Sharpe ratio.</label><br>
+<label><input type="radio" name="module3_mcq_q68" value="C"> C. P dominates Q, offering higher return and lower risk.</label><br>
+<label><input type="radio" name="module3_mcq_q68" value="D"> D. P must have a beta below 1, while Q’s beta exceeds 1.</label><br>
+<label><input type="radio" name="module3_mcq_q68" value="E"> E. P has higher risk (σ) than Q, otherwise Q would not be on the efficient frontier.</label><br>
+</form>
+<div id="feedback-module3_mcq_q68" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. On the efficient frontier, portfolios with higher expected return necessarily come with higher volatility.
+</div>
+:::

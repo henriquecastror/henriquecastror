@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q99')" data-correct-answer="D">
+  <strong style="display: block;">
+  An analyst suggests that since a project is entirely equity-financed, its appropriate discount rate is simply the firm’s current cost of equity. Under what condition is this assumption most problematic?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q99" value="A"> A. When the firm has no outstanding debt.</label><br>
+  <label><input type="radio" name="module4_mcq_q99" value="B"> B. When the risk-free rate is volatile.</label><br>
+  <label><input type="radio" name="module4_mcq_q99" value="C"> C. When the project has the same risk as the firm’s existing assets.</label><br>
+  <label><input type="radio" name="module4_mcq_q99" value="D"> D. When the project’s risk profile differs from the firm’s average risk.</label><br>
+  <label><input type="radio" name="module4_mcq_q99" value="E"> E. When the firm pays dividends rather than reinvesting earnings.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q99" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Using the firm’s cost of equity assumes the project has the same systematic risk as the firm. If risks differ, the discount rate must be adjusted.
+</div>
+
+:::

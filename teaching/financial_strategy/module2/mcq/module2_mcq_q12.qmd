@@ -1,13 +1,20 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q12')" data-correct-answer="C">
-<strong style="display: block;">A stock has β=1.2, Rf=3%, Rm=9%. What is its expected return under CAPM?</strong>
-<label><input type="radio" name="module2_mcq_q12" value="A"> A. 9%</label><br>
-<label><input type="radio" name="module2_mcq_q12" value="B"> B. 10%</label><br>
-<label><input type="radio" name="module2_mcq_q12" value="C"> C. 10.2%</label><br>
-<label><input type="radio" name="module2_mcq_q12" value="D"> D. 11%</label><br>
-<label><input type="radio" name="module2_mcq_q12" value="E"> E. 12%</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q12')" data-correct-answer="B">
+<strong style="display: block;">
+An investor is comparing two assets:  
+- Asset X: Expected return of 14% with standard deviation of 20%.  
+- Asset Y: Expected return of 6% with standard deviation of 2% (risk-free Treasury bill).  
+
+If the investor allocates 25% of the portfolio to Asset X and 75% to Asset Y, what is the expected portfolio return?
+</strong>
+<label><input type="radio" name="module2_mcq_q12" value="A"> A. 6.5%</label><br>
+<label><input type="radio" name="module2_mcq_q12" value="B"> B. 8.0%</label><br>
+<label><input type="radio" name="module2_mcq_q12" value="C"> C. 9.5%</label><br>
+<label><input type="radio" name="module2_mcq_q12" value="D"> D. 10.0%</label><br>
+<label><input type="radio" name="module2_mcq_q12" value="E"> E. 11.5%</label><br>
 </form>
 <div id="feedback-module2_mcq_q12" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. E(R)=3%+1.2×(9−3)%=10.2%.
+✅ Correct: B. Portfolio expected return = 0.25×14% + 0.75×6% = **8.0%**.  
+This illustrates how combining risky and risk-free assets changes expected performance.
 </div>
 :::

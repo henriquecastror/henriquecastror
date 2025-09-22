@@ -1,13 +1,16 @@
 ::: {.question-block}
 <form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q38')" data-correct-answer="C">
-<strong style="display: block;">Which concept explains why investors should not expect compensation for diversifiable risk?</strong>
-<label><input type="radio" name="module2_mcq_q38" value="A"> A. Arbitrage Pricing Theory</label><br>
-<label><input type="radio" name="module2_mcq_q38" value="B"> B. Law of Large Numbers</label><br>
-<label><input type="radio" name="module2_mcq_q38" value="C"> C. CAPM</label><br>
-<label><input type="radio" name="module2_mcq_q38" value="D"> D. Efficient Market Hypothesis</label><br>
-<label><input type="radio" name="module2_mcq_q38" value="E"> E. Behavioral finance</label><br>
+<strong style="display: block;">
+Which of the following statements about the Compound Annual Growth Rate (CAGR) is correct?
+</strong>
+<label><input type="radio" name="module2_mcq_q38" value="A"> A. CAGR is simply the arithmetic average of yearly returns across the sample period.</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="B"> B. CAGR always exceeds the arithmetic mean, because compounding increases long-term averages.</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="C"> C. CAGR represents the constant annual rate of return that would transform the initial investment into the final value over the period, accounting for compounding.</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="D"> D. CAGR is unaffected by the sequence of returns, so it is identical to the arithmetic mean in all cases.</label><br>
+<label><input type="radio" name="module2_mcq_q38" value="E"> E. CAGR is only applicable for risk-free assets and cannot be applied to risky assets like stocks.</label><br>
 </form>
 <div id="feedback-module2_mcq_q38" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. CAPM assumes only systematic risk is priced.
+✅ Correct: C. CAGR (geometric average return) reflects the annualized growth rate of an investment over multiple periods, incorporating the effect of compounding.  
+Unlike the arithmetic mean, it accounts for the sequence of gains and losses and typically produces a lower value when returns are volatile.
 </div>
 :::

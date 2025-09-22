@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q39')" data-correct-answer="C">
+<strong style="display: block;">
+If the market risk premium is 8%, then the risk premium of a stock with β=1.7 must be:
+</strong>
+<label><input type="radio" name="module3_mcq_q39" value="A"> A. 8%</label><br>
+<label><input type="radio" name="module3_mcq_q39" value="B"> B. 10%</label><br>
+<label><input type="radio" name="module3_mcq_q39" value="C"> C. 13.6%</label><br>
+<label><input type="radio" name="module3_mcq_q39" value="D"> D. 12.0%</label><br>
+<label><input type="radio" name="module3_mcq_q39" value="E"> E. Cannot be determined without rf.</label><br>
+</form>
+<div id="feedback-module3_mcq_q39" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Risk premium = β×(Rm−rf)=1.7×8%=13.6%.
+</div>
+:::

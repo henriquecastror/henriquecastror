@@ -1,0 +1,19 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q14')" data-correct-answer="A">
+<strong style="display: block;">
+An investor constructs a two-asset portfolio with equal weights in Asset A and Asset B. 
+Asset A has a volatility (σA) of 10%, while Asset B has a volatility (σB) of 20%. 
+The correlation between the two assets’ returns is zero, meaning they are uncorrelated. 
+Using portfolio theory, what is the resulting volatility of the portfolio, and what does this outcome imply about the benefits of diversification?
+</strong>
+<label><input type="radio" name="module2_mcq_q14" value="A"> A. 11.18% — lower than the simple average of the two volatilities, illustrating risk reduction through diversification.</label><br>
+<label><input type="radio" name="module2_mcq_q14" value="B"> B. 12.00% — only slightly reduced relative to the higher volatility asset.</label><br>
+<label><input type="radio" name="module2_mcq_q14" value="C"> C. 13.00% — indicating partial diversification but still dominated by the riskier asset.</label><br>
+<label><input type="radio" name="module2_mcq_q14" value="D"> D. 14.14% — equal to the root mean square of the two volatilities without accounting for weights.</label><br>
+<label><input type="radio" name="module2_mcq_q14" value="E"> E. 15.00% — essentially the average of the two risks, implying no diversification benefit.</label><br>
+</form>
+<div id="feedback-module2_mcq_q14" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. The portfolio volatility is σp = √[(0.5² × 0.1²) + (0.5² × 0.2²)] = 0.1118 = 11.18%. 
+Because the assets are uncorrelated, the portfolio risk is strictly lower than the weighted average of individual risks, demonstrating the power of diversification in reducing overall volatility.
+</div>
+:::

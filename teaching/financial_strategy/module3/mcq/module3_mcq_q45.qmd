@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q45')" data-correct-answer="C">
+<strong style="display: block;">
+Assume β=0.9, rf=4%, and E(Rm)=14%. If the stock’s expected return is 13%, how is it priced relative to CAPM?
+</strong>
+<label><input type="radio" name="module3_mcq_q45" value="A"> A. Overpriced, since required return is 16%.</label><br>
+<label><input type="radio" name="module3_mcq_q45" value="B"> B. Underpriced, since required return is 8%.</label><br>
+<label><input type="radio" name="module3_mcq_q45" value="C"> C. Correctly priced, since required return is 13%.</label><br>
+<label><input type="radio" name="module3_mcq_q45" value="D"> D. Overpriced, since required return is 12%.</label><br>
+<label><input type="radio" name="module3_mcq_q45" value="E"> E. Underpriced, since required return is 15%.</label><br>
+</form>
+<div id="feedback-module3_mcq_q45" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. CAPM ⇒ 4%+0.9×(14%−4%)=13%. Expected return equals required ⇒ correctly priced.
+</div>
+:::

@@ -1,0 +1,23 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q59')" data-correct-answer="C">
+  <strong style="display: block;">
+  Practitioners blend near-term growth (6% for 5y) and long-run growth (3%) into effective expected growth of 4.5%,  
+  with dividend yield 2%. Expected market return=6.5%. With Rf=2.5%, compute expected return for stock β=1.25.
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q59" value="A"> A. 6.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q59" value="B"> B. 7.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q59" value="C"> C. 7.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q59" value="D"> D. 8.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q59" value="E"> E. 8.5%</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q59" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. ≈ 7.5%.  
+Step 1: Market premium = 6.5 − 2.5 = 4.0%.  
+Step 2: rE = 2.5% + 1.25×4.0% = 7.5%.  
+Blending short- and long-run growth rates gives a forward-looking estimate of market return used in CAPM.
+</div>
+
+:::

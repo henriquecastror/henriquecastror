@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q62')" data-correct-answer="B">
+  <strong style="display: block;">Analysts often estimate beta using historical regressions of a firm’s excess returns on the market’s excess returns. Which of the following limitations is the most serious conceptual weakness of this method, especially for firms undergoing structural changes?</strong>
+<label><input type="radio" name="module4_mcq_q62" value="A"> A. Historical regressions cannot be computed when the firm’s stock has short trading history.</label><br>
+<label><input type="radio" name="module4_mcq_q62" value="B"> B. Past betas may not reflect future risk if the firm changes its business mix, leverage, or market environment.</label><br>
+<label><input type="radio" name="module4_mcq_q62" value="C"> C. The regression technique is computationally complex and thus rarely used in practice.</label><br>
+<label><input type="radio" name="module4_mcq_q62" value="D"> D. The R-squared from such regressions is always close to zero.</label><br>
+<label><input type="radio" name="module4_mcq_q62" value="E"> E. Using monthly data instead of weekly leads to systematic underestimation of beta.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q62" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Betas are forward-looking. A firm with structural changes (e.g., mergers, divestitures, leverage shifts) will have future risk exposures not captured by historical regressions.
+</div>
+
+:::

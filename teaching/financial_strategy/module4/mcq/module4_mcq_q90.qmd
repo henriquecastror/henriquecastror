@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q90')" data-correct-answer="A">
+  <strong style="display: block;">
+  Suppose an investor estimates the WACC using current market values of debt and equity.  
+  If instead book values were used, what is the most rigorous criticism of this practice?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q90" value="A"> A. Book values reflect historical accounting numbers, not the current opportunity cost of capital faced by investors.</label><br>
+  <label><input type="radio" name="module4_mcq_q90" value="B"> B. Book values are always larger than market values, leading to upward bias.</label><br>
+  <label><input type="radio" name="module4_mcq_q90" value="C"> C. CAPM requires book-value weights to be consistent with beta estimation.</label><br>
+  <label><input type="radio" name="module4_mcq_q90" value="D"> D. Market values are too volatile to be used in practice, so both methods are equally valid.</label><br>
+  <label><input type="radio" name="module4_mcq_q90" value="E"> E. Book-value weights eliminate the need to estimate cost of equity separately.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q90" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. WACC must reflect market-value weights, since they capture the actual trade-off investors face today, while book values are backward-looking.
+</div>
+
+:::

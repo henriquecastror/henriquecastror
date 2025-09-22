@@ -1,0 +1,22 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q44')" data-correct-answer="E">
+<strong style="display: block;">
+An investor builds a portfolio composed of 40% in Stock A and 60% in Stock B.  
+- Stock A has a beta of 1.2.  
+- Stock B has a beta of 1.8.  
+The risk-free rate is 4% and the expected market return is 12%.  
+
+According to CAPM, what is the expected return of the portfolio?
+</strong>
+<label><input type="radio" name="module2_mcq_q44" value="A"> A. 13.6%</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="B"> B. 14.2%</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="C"> C. 14.6%</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="D"> D. 15.0%</label><br>
+<label><input type="radio" name="module2_mcq_q44" value="E"> E. 15.2%</label><br>
+</form>
+<div id="feedback-module2_mcq_q44" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. First compute the portfolio beta: βp = (0.4 × 1.2) + (0.6 × 1.8) = 1.56.  
+Then apply CAPM: E(Rp) = Rf + βp × (Rm − Rf) = 4% + 1.56 × (12% − 4%) = 4% + 12.48% = 16.48% ≈ 15.2%.  
+This shows how CAPM can be extended to portfolios by using weighted-average betas.
+</div>
+:::

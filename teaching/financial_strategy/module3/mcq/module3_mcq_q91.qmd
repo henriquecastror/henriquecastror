@@ -1,0 +1,21 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q91')" data-correct-answer="C">
+<strong style="display: block;">
+Consider an equally weighted portfolio of <em>N = 50</em> stocks. 
+Each stock has variance <em>0.04</em> (i.e., σ = 20%) and the <em>average covariance</em> across stocks is <em>0.012</em>. 
+Using the large-portfolio identity 
+<span style="white-space:nowrap;">Var(R<sub>p</sub>) = (1/N) × average variance + (1 − 1/N) × average covariance</span>, 
+what is the portfolio’s volatility <em>now</em>, and what happens as <em>N → ∞</em>?
+</strong>
+<label><input type="radio" name="module3_mcq_q91" value="A"> A. σ<sub>p</sub> ≈ 9.8%; as N → ∞, Var → 0.</label><br>
+<label><input type="radio" name="module3_mcq_q91" value="B"> B. σ<sub>p</sub> ≈ 10.4%; as N → ∞, Var → average variance (0.04).</label><br>
+<label><input type="radio" name="module3_mcq_q91" value="C"> C. σ<sub>p</sub> ≈ 11.2%; as N → ∞, Var → average covariance (0.012), so covariances dominate in large portfolios.</label><br>
+<label><input type="radio" name="module3_mcq_q91" value="D"> D. σ<sub>p</sub> ≈ 12.6%; as N → ∞, Var stays constant.</label><br>
+<label><input type="radio" name="module3_mcq_q91" value="E"> E. σ<sub>p</sub> = 20% regardless of N (diversification does not affect volatility).</label><br>
+</form>
+<div id="feedback-module3_mcq_q91" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. 
+Var = (1/50)×0.04 + (49/50)×0.012 = 0.0008 + 0.01176 = 0.01256 ⇒ σ ≈ √0.01256 ≈ **11.2%**.  
+As N grows, the (1/N) term vanishes and Var → **average covariance (0.012)**, illustrating that in well-diversified portfolios the variance is mostly driven by **covariances**.
+</div>
+:::

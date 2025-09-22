@@ -1,0 +1,17 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q92')" data-correct-answer="C">
+<strong style="display: block;">
+Over time, the annualized volatility of a broad market index is typically much lower than the weighted-average volatility of its individual constituent stocks. 
+However, during episodes of systemic stress, both volatilities rise and the gap between them narrows. 
+Which mechanism best explains this pattern?
+</strong>
+<label><input type="radio" name="module2_mcq_q92" value="A"> A. Idiosyncratic risk increases in crises, strengthening diversification for the index.</label><br>
+<label><input type="radio" name="module2_mcq_q92" value="B"> B. Changes in the risk-free rate mechanically depress index volatility outside crises.</label><br>
+<label><input type="radio" name="module2_mcq_q92" value="C"> C. Average pairwise correlations among stocks jump sharply in crises; with higher correlation, diversification benefits shrink and the index volatility converges toward the (higher) average individual volatility.</label><br>
+<label><input type="radio" name="module2_mcq_q92" value="D"> D. Betas fall to zero in crises, eliminating systematic risk.</label><br>
+<label><input type="radio" name="module2_mcq_q92" value="E"> E. The difference is solely due to different sampling windows (monthly vs. daily).</label><br>
+</form>
+<div id="feedback-module2_mcq_q92" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Outside crises, low cross-stock correlations mean a covariance matrix with small off-diagonal terms, so diversification reduces index variance (Var = w'Σw). In crises, correlations spike, cross terms grow, diversification weakens, and the index’s volatility moves closer to the average individual volatility.
+</div>
+:::

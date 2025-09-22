@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q35')" data-correct-answer="B">
+<strong style="display: block;">
+Suppose Stock X has β=1.4, rf=2%, and expected market return=9%. According to CAPM, what is the expected return on X?
+</strong>
+<label><input type="radio" name="module3_mcq_q35" value="A"> A. 9.8%</label><br>
+<label><input type="radio" name="module3_mcq_q35" value="B"> B. 11.8%</label><br>
+<label><input type="radio" name="module3_mcq_q35" value="C"> C. 12.6%</label><br>
+<label><input type="radio" name="module3_mcq_q35" value="D"> D. 13.0%</label><br>
+<label><input type="radio" name="module3_mcq_q35" value="E"> E. 14.5%</label><br>
+</form>
+<div id="feedback-module3_mcq_q35" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. E(R)=2%+1.4×(9%−2%)=2%+9.8%=11.8%.
+</div>
+:::

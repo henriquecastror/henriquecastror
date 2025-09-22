@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q14')" data-correct-answer="B">
+  <strong style="display: block;">In a levered firm, the asset (unlevered) beta equals:</strong>
+<label><input type="radio" name="module4_mcq_q14" value="A"> A. The equity beta regardless of leverage</label><br>
+<label><input type="radio" name="module4_mcq_q14" value="B"> B. A value‑weighted average of equity and debt betas</label><br>
+<label><input type="radio" name="module4_mcq_q14" value="C"> C. The debt beta only</label><br>
+<label><input type="radio" name="module4_mcq_q14" value="D"> D. The correlation between firm and market returns</label><br>
+<label><input type="radio" name="module4_mcq_q14" value="E"> E. One minus the equity beta</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q14" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. β_u = (E/(E+D))·β_e + (D/(E+D))·β_d.
+</div>
+
+:::

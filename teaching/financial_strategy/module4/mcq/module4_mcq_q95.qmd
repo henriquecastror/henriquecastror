@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q95')" data-correct-answer="E">
+  <strong style="display: block;">
+  Consider two divisions of a conglomerate: one highly cyclical with β = 1.6, another defensive with β = 0.5. If the firm applies the corporate WACC uniformly to both, what misallocation problem arises in capital budgeting?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q95" value="A"> A. Both divisions will reject all projects, regardless of NPV.</label><br>
+  <label><input type="radio" name="module4_mcq_q95" value="B"> B. The defensive division will overstate its risk, leading to excess investment.</label><br>
+  <label><input type="radio" name="module4_mcq_q95" value="C"> C. The cyclical division will understate its risk, rejecting projects that should be accepted.</label><br>
+  <label><input type="radio" name="module4_mcq_q95" value="D"> D. Both divisions will end up with identical NPVs, masking risk differences.</label><br>
+  <label><input type="radio" name="module4_mcq_q95" value="E"> E. The cyclical division may accept projects that are too risky, while the defensive division may reject safe projects, misallocating capital overall.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q95" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Applying a uniform WACC distorts project evaluation: risky divisions may get cheap capital, and safe divisions may be unfairly penalized.
+</div>
+
+:::

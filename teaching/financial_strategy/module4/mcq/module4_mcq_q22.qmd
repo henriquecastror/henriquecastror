@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q22')" data-correct-answer="C">
+  <strong style="display: block;">According to CAPM, the expected return of a zero-beta asset equals:</strong>
+<label><input type="radio" name="module4_mcq_q22" value="A"> A. Zero</label><br>
+<label><input type="radio" name="module4_mcq_q22" value="B"> B. The market return</label><br>
+<label><input type="radio" name="module4_mcq_q22" value="C"> C. The risk-free rate</label><br>
+<label><input type="radio" name="module4_mcq_q22" value="D"> D. Infinity</label><br>
+<label><input type="radio" name="module4_mcq_q22" value="E"> E. The alpha of the market</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q22" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. By construction, a zero-beta asset has expected return equal to the risk-free rate.
+</div>
+
+:::

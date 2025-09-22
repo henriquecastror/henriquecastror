@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q82')" data-correct-answer="C">
+  <strong style="display: block;">
+  A large utility company argues that because its revenues are relatively stable, it should discount all projects at the regulated WACC.  
+  However, management is considering investing in renewable ventures with volatile cash flows.  
+  What is the conceptual flaw in applying the same WACC indiscriminately?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q82" value="A"> A. Renewable projects always require debt financing instead of equity.</label><br>
+  <label><input type="radio" name="module4_mcq_q82" value="B"> B. The regulated WACC already incorporates the volatility of all potential ventures.</label><br>
+  <label><input type="radio" name="module4_mcq_q82" value="C"> C. The risk of the renewable ventures may differ substantially from the utility’s core business, requiring a higher project-specific discount rate.</label><br>
+  <label><input type="radio" name="module4_mcq_q82" value="D"> D. CAPM does not apply to regulated industries.</label><br>
+  <label><input type="radio" name="module4_mcq_q82" value="E"> E. WACC cannot be used when projects are financed by equity.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q82" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Applying the corporate WACC assumes projects share the same risk as existing assets. Riskier ventures like renewables require adjusting the discount rate upward.
+</div>
+
+:::

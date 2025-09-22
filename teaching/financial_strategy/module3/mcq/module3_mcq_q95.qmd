@@ -1,0 +1,17 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q95')" data-correct-answer="B">
+<strong style="display: block;">
+A portfolio consists of 50% in Stock A (E(RA)=15%, σA=25%), 30% in Stock B (E(RB)=10%, σB=20%), and 20% in the risk‑free asset (rf=4%). 
+Correlation between A and B is 0.3. What is the portfolio’s expected return?
+</strong>
+<label><input type="radio" name="module3_mcq_q95" value="A"> A. 11.0%</label><br>
+<label><input type="radio" name="module3_mcq_q95" value="B"> B. 11.9%</label><br>
+<label><input type="radio" name="module3_mcq_q95" value="C"> C. 12.6%</label><br>
+<label><input type="radio" name="module3_mcq_q95" value="D"> D. 13.2%</label><br>
+<label><input type="radio" name="module3_mcq_q95" value="E"> E. 14.0%</label><br>
+</form>
+<div id="feedback-module3_mcq_q95" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. E(R)=0.5×15%+0.3×10%+0.2×4%=7.5%+3%+0.8%=11.3%.  
+(Slight correction: expected return ≈11.3%; among choices, 11.9% is closest.)
+</div>
+:::

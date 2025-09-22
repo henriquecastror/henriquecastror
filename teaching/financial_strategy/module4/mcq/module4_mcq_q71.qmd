@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q71')" data-correct-answer="A">
+  <strong style="display: block;">One limitation of applying CAPM internationally is the choice of the risk-free rate. Suppose a Brazilian firm uses the yield on local government bonds as the risk-free rate in CAPM, while investors in New York use U.S. Treasuries. Which is the most accurate theoretical criticism?</strong>
+<label><input type="radio" name="module4_mcq_q71" value="A"> A. The CAPM requires a universal risk-free rate accessible to all investors; using local bonds may embed default and inflation risk.</label><br>
+<label><input type="radio" name="module4_mcq_q71" value="B"> B. Different risk-free rates simply cancel out in the CAPM formula.</label><br>
+<label><input type="radio" name="module4_mcq_q71" value="C"> C. The CAPM has no restriction on the choice of risk-free rate.</label><br>
+<label><input type="radio" name="module4_mcq_q71" value="D"> D. Local bonds are preferable since they reflect domestic inflation.</label><br>
+<label><input type="radio" name="module4_mcq_q71" value="E"> E. It is irrelevant because the risk-free rate does not affect expected returns.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q71" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. CAPM assumes a common risk-free asset available to all investors. Local government bonds may carry risk and differ from a true global risk-free asset.
+</div>
+
+:::

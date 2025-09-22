@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q21')" data-correct-answer="B">
+  <strong style="display: block;">Which of the following is a key theoretical difficulty of applying the CAPM in practice?</strong>
+<label><input type="radio" name="module4_mcq_q21" value="A"> A. Betas are directly observable from accounting data.</label><br>
+<label><input type="radio" name="module4_mcq_q21" value="B"> B. The true market portfolio is unobservable and proxies are used.</label><br>
+<label><input type="radio" name="module4_mcq_q21" value="C"> C. Risk-free rate is irrelevant in CAPM.</label><br>
+<label><input type="radio" name="module4_mcq_q21" value="D"> D. The model assumes investors face transaction costs.</label><br>
+<label><input type="radio" name="module4_mcq_q21" value="E"> E. Idiosyncratic risk explains expected returns.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q21" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The actual market portfolio is unobservable (it would include all risky assets), so proxies like the S&P 500 are used.
+</div>
+
+:::

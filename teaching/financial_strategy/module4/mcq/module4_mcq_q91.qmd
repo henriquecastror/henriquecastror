@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q91')" data-correct-answer="D">
+  <strong style="display: block;">
+  A firm with international operations argues that since it consolidates all financial statements in USD, it should estimate its cost of capital exclusively with U.S. parameters (Treasury yields, S&P 500 betas). Which conceptual flaw is most relevant to this reasoning?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q91" value="A"> A. CAPM cannot be applied when a firm has multinational operations.</label><br>
+  <label><input type="radio" name="module4_mcq_q91" value="B"> B. The S&P 500 is an equal-weighted index, while CAPM requires value-weighting.</label><br>
+  <label><input type="radio" name="module4_mcq_q91" value="C"> C. Exchange rate fluctuations have no effect on systematic risk in CAPM.</label><br>
+  <label><input type="radio" name="module4_mcq_q91" value="D"> D. By using only U.S. proxies, the firm ignores that the true market portfolio includes global risk factors, not just U.S. ones.</label><br>
+  <label><input type="radio" name="module4_mcq_q91" value="E"> E. The U.S. Treasury yield is not observable in international markets.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q91" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. CAPM’s theoretical market portfolio is global. Using only U.S. parameters ignores the exposure of cash flows to international risks.
+</div>
+
+:::

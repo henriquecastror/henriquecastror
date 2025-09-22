@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q23')" data-correct-answer="B">
+  <strong style="display: block;">Which of the following best explains why WACC must be adjusted when evaluating projects with different risk than the firm?</strong>
+<label><input type="radio" name="module4_mcq_q23" value="A"> A. Because debt capacity changes with tax rates.</label><br>
+<label><input type="radio" name="module4_mcq_q23" value="B"> B. Because CAPM beta of the project may differ from the firm’s overall beta.</label><br>
+<label><input type="radio" name="module4_mcq_q23" value="C"> C. Because equity is always more expensive than debt.</label><br>
+<label><input type="radio" name="module4_mcq_q23" value="D"> D. Because interest tax shields vary with depreciation.</label><br>
+<label><input type="radio" name="module4_mcq_q23" value="E"> E. Because dividends affect required return.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q23" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. If a project’s systematic risk differs, its discount rate should be based on its own beta, not the firm’s average.
+</div>
+
+:::

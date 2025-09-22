@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q76')" data-correct-answer="A">
+  <strong style="display: block;">A researcher argues that firm-specific events (lawsuits, scandals, product recalls) increase cost of equity because they increase volatility. According to CAPM, what is the correct counterargument?</strong>
+<label><input type="radio" name="module4_mcq_q76" value="A"> A. Firm-specific risk is diversifiable and should not affect expected return.</label><br>
+<label><input type="radio" name="module4_mcq_q76" value="B"> B. Firm-specific events always reduce cost of capital.</label><br>
+<label><input type="radio" name="module4_mcq_q76" value="C"> C. CAPM ignores systematic risk completely.</label><br>
+<label><input type="radio" name="module4_mcq_q76" value="D"> D. Volatility and systematic risk are identical concepts.</label><br>
+<label><input type="radio" name="module4_mcq_q76" value="E"> E. CAPM assigns lower return to higher volatility stocks.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q76" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Firm-specific shocks raise total volatility but are diversifiable. CAPM only prices systematic risk, so required return is unaffected.
+</div>
+
+:::

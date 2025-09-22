@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q11')" data-correct-answer="C">
+  <strong style="display: block;">Within the CAPM, which term is responsible for scaling the market risk premium to the security’s risk?</strong>
+<label><input type="radio" name="module4_mcq_q11" value="A"> A. Risk‑free rate</label><br>
+<label><input type="radio" name="module4_mcq_q11" value="B"> B. Alpha</label><br>
+<label><input type="radio" name="module4_mcq_q11" value="C"> C. Beta</label><br>
+<label><input type="radio" name="module4_mcq_q11" value="D"> D. Total volatility</label><br>
+<label><input type="radio" name="module4_mcq_q11" value="E"> E. Idiosyncratic variance</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q11" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Beta multiplies the market risk premium to reflect market sensitivity (systematic risk).
+</div>
+
+:::

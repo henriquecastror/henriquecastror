@@ -1,0 +1,16 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q28')" data-correct-answer="A">
+<strong style="display: block;">
+Two stocks have identical expected returns but different betas (βA=0.7, βB=1.3). 
+Under CAPM, which is TRUE?
+</strong>
+<label><input type="radio" name="module3_mcq_q28" value="A"> A. Stock B should have a higher required return; if both have the same E(R), B would have a negative alpha.</label><br>
+<label><input type="radio" name="module3_mcq_q28" value="B"> B. Stock A must be overpriced.</label><br>
+<label><input type="radio" name="module3_mcq_q28" value="C"> C. Both have zero alpha by construction.</label><br>
+<label><input type="radio" name="module3_mcq_q28" value="D"> D. Required returns are identical if Corr=0.</label><br>
+<label><input type="radio" name="module3_mcq_q28" value="E"> E. A has higher systematic risk.</label><br>
+</form>
+<div id="feedback-module3_mcq_q28" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. On the SML, higher β ⇒ higher required return. If E(R) is the same for A and B, the higher-β stock tends to show **negative alpha**.
+</div>
+:::

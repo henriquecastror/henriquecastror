@@ -1,0 +1,119 @@
+---
+title: "Self-quiz — Module 3"
+
+---
+
+<script>
+  const SLIDE_ID = "module3_selfquiz";
+</script>
+
+{{< include ../login-start.html >}}
+
+
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
+```
+
+::: {.callout-warning}
+### For students
+
+Give this a try and see how much of **Module 3** stuck!
+
+You can retake the self-quiz <strong>as many times as you like</strong>—each attempt shuffles the questions so you’ll get fresh practice.
+
+Aim to improve your score with every run, review what you miss, and come back anytime. You’ve got this! 🚀
+
+You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions**. 
+
+::: 
+
+
+
+___
+
+
+
+
+<!-- Pretty self-quiz button -->
+<div class="sq-wrap">
+  <a class="sq-btn"
+     href="https://course-chat.hcmrtns.workers.dev/selfquiz/m/module3"
+     aria-label="Start self-quiz for Module 3">
+    <span class="sq-icon" aria-hidden="true">▶</span>
+    <span>Start self-quiz</span>
+  </a>
+</div>
+
+<style>
+  .sq-wrap{ margin:1rem 0; display:flex; justify-content:center }
+  .sq-btn{
+    --bg1:#4f46e5; --bg2:#7c3aed; --ink:#fff;
+    display:inline-flex; align-items:center; gap:.6rem;
+    padding:.9rem 1.35rem; border-radius:999px;
+    color:var(--ink); text-decoration:none; font-weight:600;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2));
+    box-shadow:0 10px 18px rgba(79,70,229,.25);
+    border:1px solid rgba(255,255,255,.25);
+    transition:transform .08s ease, box-shadow .08s ease, filter .08s ease;
+  }
+  .sq-btn:hover{ transform:translateY(-1px) scale(1.01);
+    box-shadow:0 12px 22px rgba(79,70,229,.32); filter:saturate(1.05) }
+  .sq-btn:active{ transform:translateY(0) scale(.99) }
+  .sq-icon{ display:inline-grid; place-items:center; width:1.35rem; height:1.35rem;
+    border-radius:999px; background:rgba(255,255,255,.18); font-size:.9rem }
+  @media (prefers-color-scheme: dark){
+    .sq-btn{ box-shadow:0 10px 18px rgba(0,0,0,.35) }
+  }
+</style>
+
+
+
+{{< include ../login-end.html >}}

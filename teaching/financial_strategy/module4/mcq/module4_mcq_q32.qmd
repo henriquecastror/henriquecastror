@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q32')" data-correct-answer="C">
+  <strong style="display: block;">
+  A private equity fund is valuing a leveraged buyout target.  
+  The target has an equity beta of 1.5. The current risk-free rate is 2%, and the expected market risk premium is estimated at 6%.  
+  According to CAPM, what is the cost of equity capital for this firm?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q32" value="A"> A. 9.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q32" value="B"> B. 10.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q32" value="C"> C. 11.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q32" value="D"> D. 11.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q32" value="E"> E. 12.0%</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q32" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. rE = 2% + 1.5 × 6% = 11.0%.
+</div>
+
+:::

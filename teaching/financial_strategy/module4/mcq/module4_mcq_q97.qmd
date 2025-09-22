@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q97')" data-correct-answer="A">
+  <strong style="display: block;">
+  An analyst estimates a company’s equity beta using daily returns and finds β=0.3. However, using monthly data, β=1.1. Which econometric issue best explains this discrepancy?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q97" value="A"> A. Non-synchronous trading and measurement error at high frequencies (the “errors-in-variables” problem).</label><br>
+  <label><input type="radio" name="module4_mcq_q97" value="B"> B. The firm’s true beta changes every month with macroeconomic cycles.</label><br>
+  <label><input type="radio" name="module4_mcq_q97" value="C"> C. Daily betas are always biased downward, while monthly betas are always unbiased.</label><br>
+  <label><input type="radio" name="module4_mcq_q97" value="D"> D. CAPM is valid only with monthly data.</label><br>
+  <label><input type="radio" name="module4_mcq_q97" value="E"> E. Liquidity-adjusted betas eliminate this discrepancy.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q97" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. High-frequency data often suffer from non-synchronous trading and measurement errors, biasing β estimates downward. Monthly data reduce this issue.
+</div>
+
+:::

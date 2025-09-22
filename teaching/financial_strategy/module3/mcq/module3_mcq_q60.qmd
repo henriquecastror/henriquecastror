@@ -1,0 +1,28 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q60')" data-correct-answer="C">
+<strong style="display: block;">
+An investor allocates 70% of wealth to stocks and 30% to bonds.  
+- Expected return of stocks: 14%, volatility = 20%  
+- Expected return of bonds: 6%, volatility = 8%  
+- Correlation between stock and bond returns: 0.2  
+
+What is the portfolio’s standard deviation (σp)?
+</strong>
+<label><input type="radio" name="module2_mcq_q60" value="A"> A. 11.0%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="B"> B. 11.5%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="C"> C. 14.8%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="D"> D. 15.5%</label><br>
+<label><input type="radio" name="module2_mcq_q60" value="E"> E. 16.0%</label><br>
+</form>
+<div id="feedback-module2_mcq_q60" class="feedback" data-status="" style="display:none;">
+✅ Correct: C.  
+The portfolio variance is:  
+σp² = (0.7²)(0.20²) + (0.3²)(0.08²) + 2(0.7)(0.3)(0.20)(0.08)(0.2).  
+
+= 0.0196 + 0.000576 + 0.004704 = 0.02488.  
+
+Thus, σp = √0.02488 ≈ **14.8%**.  
+
+This demonstrates that portfolio risk depends on **weights, volatilities, and correlations**, not just expected returns.
+</div>
+:::

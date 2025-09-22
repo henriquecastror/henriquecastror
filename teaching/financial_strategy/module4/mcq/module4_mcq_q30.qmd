@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q30')" data-correct-answer="C">
+  <strong style="display: block;">What is the main distinction between diversifiable and non-diversifiable risk in the CAPM framework?</strong>
+<label><input type="radio" name="module4_mcq_q30" value="A"> A. Diversifiable risk commands a positive risk premium; non-diversifiable risk does not.</label><br>
+<label><input type="radio" name="module4_mcq_q30" value="B"> B. Only diversifiable risk is priced.</label><br>
+<label><input type="radio" name="module4_mcq_q30" value="C"> C. Only non-diversifiable (systematic) risk is priced; diversifiable risk can be eliminated by holding the market portfolio.</label><br>
+<label><input type="radio" name="module4_mcq_q30" value="D"> D. Both contribute equally to expected return.</label><br>
+<label><input type="radio" name="module4_mcq_q30" value="E"> E. Neither affects asset prices.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q30" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. CAPM states that only systematic, non-diversifiable risk is compensated with higher expected returns.
+</div>
+
+:::

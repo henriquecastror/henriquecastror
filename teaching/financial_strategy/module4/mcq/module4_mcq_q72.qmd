@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q72')" data-correct-answer="A">
+  <strong style="display: block;">Consider a regulated utility company with stable cash flows. An analyst argues that its equity beta is underestimated because regulation reduces volatility. Which is the best theoretical response?</strong>
+<label><input type="radio" name="module4_mcq_q72" value="A"> A. Regulation may reduce total risk but systematic risk depends on sensitivity to the market, not stability per se.</label><br>
+<label><input type="radio" name="module4_mcq_q72" value="B"> B. If cash flows are stable, equity beta must always be close to zero.</label><br>
+<label><input type="radio" name="module4_mcq_q72" value="C"> C. Systematic risk is irrelevant for cost of capital in regulated industries.</label><br>
+<label><input type="radio" name="module4_mcq_q72" value="D"> D. The CAPM cannot be applied to regulated firms.</label><br>
+<label><input type="radio" name="module4_mcq_q72" value="E"> E. Stable cash flows directly imply low systematic risk.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q72" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Beta measures co-movement with the market, not standalone volatility. Regulation may reduce total volatility, but systematic risk depends on correlation with the market.
+</div>
+
+:::

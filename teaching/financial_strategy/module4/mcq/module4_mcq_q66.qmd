@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q66')" data-correct-answer="B">
+  <strong style="display: block;">A firm’s bond has a yield to maturity of 9%, but rating agencies estimate a 7% default probability with 60% expected loss given default. Which statement best explains why the YTM is a poor proxy for the cost of debt capital in this case?</strong>
+<label><input type="radio" name="module4_mcq_q66" value="A"> A. YTM already incorporates expected losses, so it is always unbiased.</label><br>
+<label><input type="radio" name="module4_mcq_q66" value="B"> B. YTM overstates expected return to investors when default risk is significant, because it assumes all promised payments will be made.</label><br>
+<label><input type="radio" name="module4_mcq_q66" value="C"> C. YTM understates expected return because investors demand higher yields when default is likely.</label><br>
+<label><input type="radio" name="module4_mcq_q66" value="D"> D. YTM and expected return coincide whenever debt is risky.</label><br>
+<label><input type="radio" name="module4_mcq_q66" value="E"> E. YTM is irrelevant; only CAPM applies to debt instruments.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q66" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. YTM assumes full repayment. With default risk, expected return is lower than YTM, so using YTM biases downward the true cost of capital.
+</div>
+
+:::

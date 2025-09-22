@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q73')" data-correct-answer="A">
+  <strong style="display: block;">A firm is evaluating two projects: one in the oil sector (highly cyclical) and one in consumer staples (defensive). The CFO suggests using the same corporate WACC to evaluate both. What is the main risk of this approach?</strong>
+<label><input type="radio" name="module4_mcq_q73" value="A"> A. The oil project’s NPV will be overstated and the staples project’s NPV understated.</label><br>
+<label><input type="radio" name="module4_mcq_q73" value="B"> B. The oil project’s NPV will be understated and the staples project’s NPV overstated.</label><br>
+<label><input type="radio" name="module4_mcq_q73" value="C"> C. Both projects will be correctly valued on average.</label><br>
+<label><input type="radio" name="module4_mcq_q73" value="D"> D. The oil project will be rejected despite being attractive.</label><br>
+<label><input type="radio" name="module4_mcq_q73" value="E"> E. The staples project will be accepted despite being unattractive.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q73" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Applying a uniform WACC ignores project-specific risk. Risky projects appear too attractive; safer projects look less attractive.
+</div>
+
+:::

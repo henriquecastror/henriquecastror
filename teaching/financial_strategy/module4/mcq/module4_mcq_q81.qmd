@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q81')" data-correct-answer="D">
+  <strong style="display: block;">
+  In the context of international capital budgeting, suppose a Brazilian firm is estimating its cost of equity for a project in the U.S.  
+  The analyst suggests using the CAPM with the U.S. risk-free rate, the S&P 500 as the market proxy, and a beta estimated from Brazilian peers.  
+  Which is the most accurate criticism?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q81" value="A"> A. CAPM cannot be used for cross-border projects.</label><br>
+  <label><input type="radio" name="module4_mcq_q81" value="B"> B. The S&P 500 is not a valid market proxy for any CAPM application.</label><br>
+  <label><input type="radio" name="module4_mcq_q81" value="C"> C. Using the U.S. risk-free rate is invalid because the firm is Brazilian.</label><br>
+  <label><input type="radio" name="module4_mcq_q81" value="D"> D. Mixing U.S. discount rate components with a beta from Brazilian peers creates inconsistency: betas must be estimated relative to the same market used in CAPM.</label><br>
+  <label><input type="radio" name="module4_mcq_q81" value="E"> E. CAPM does not require a risk-free rate when evaluating foreign projects.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q81" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. CAPM requires consistency: if using the U.S. market as the benchmark, the beta must be estimated against that same market, not against Brazilian peers.
+</div>
+
+:::

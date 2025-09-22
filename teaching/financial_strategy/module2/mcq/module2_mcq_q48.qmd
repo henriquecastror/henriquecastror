@@ -1,13 +1,16 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q48')" data-correct-answer="E">
-<strong style="display: block;">Stock has E(R)=11%, β=0.9, Rf=3%, Rm=12%. According to CAPM, is it fairly priced?</strong>
-<label><input type="radio" name="module2_mcq_q48" value="A"> A. Overpriced, since CAPM = 10.2%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="B"> B. Underpriced, since CAPM = 12%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="C"> C. Overpriced, since CAPM = 11%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="D"> D. Underpriced, since CAPM = 9%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="E"> E. Fairly priced, since CAPM = 11%</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q48')" data-correct-answer="C">
+<strong style="display: block;">
+Which of the following statements best captures a subtle but crucial insight about diversification in modern portfolio theory?
+</strong>
+<label><input type="radio" name="module2_mcq_q48" value="A"> A. Diversification eliminates all forms of risk when enough assets are included in a portfolio.</label><br>
+<label><input type="radio" name="module2_mcq_q48" value="B"> B. As the number of securities increases, the portfolio variance declines linearly until it converges to zero.</label><br>
+<label><input type="radio" name="module2_mcq_q48" value="C"> C. Diversification reduces firm-specific (idiosyncratic) risk, but portfolio risk converges to systematic risk, which cannot be eliminated.</label><br>
+<label><input type="radio" name="module2_mcq_q48" value="D"> D. Market risk can be diversified away by holding assets from different industries and countries.</label><br>
+<label><input type="radio" name="module2_mcq_q48" value="E"> E. The correlation between assets is irrelevant for diversification, since adding more assets always lowers risk.</label><br>
 </form>
 <div id="feedback-module2_mcq_q48" class="feedback" data-status="" style="display:none;">
-✅ Correct: E. CAPM = 3%+0.9×(12−3)%=11%. Fairly priced.
+✅ Correct: C.  
+Diversification is powerful but limited: it eliminates unsystematic (firm-specific) risk, yet total portfolio risk converges to the non-diversifiable, systematic risk that depends on common factors such as the market portfolio. This insight is central to CAPM and explains why only systematic risk is priced in equilibrium.
 </div>
 :::

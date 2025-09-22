@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q87')" data-correct-answer="B">
+  <strong style="display: block;">
+  A project in a cyclical industry is financed with a large share of debt.  
+  How does high operating leverage combined with financial leverage affect the beta of equity compared to the asset beta?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q87" value="A"> A. Equity beta will equal the asset beta, because leverage effects cancel out.</label><br>
+  <label><input type="radio" name="module4_mcq_q87" value="B"> B. Equity beta will be much higher than the asset beta, since fixed costs and debt amplify exposure to systematic risk.</label><br>
+  <label><input type="radio" name="module4_mcq_q87" value="C"> C. Equity beta will be lower than the asset beta, since debt absorbs most of the cash flow volatility.</label><br>
+  <label><input type="radio" name="module4_mcq_q87" value="D"> D. Equity beta will converge to zero in the long run, regardless of leverage.</label><br>
+  <label><input type="radio" name="module4_mcq_q87" value="E"> E. The relationship between equity beta and asset beta is unaffected by leverage in cyclical industries.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q87" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Both operating leverage (high fixed costs) and financial leverage (debt) magnify the sensitivity of equity returns to market movements, making equity beta much higher than the asset beta.
+</div>
+
+:::

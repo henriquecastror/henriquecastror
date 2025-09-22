@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q75')" data-correct-answer="A">
+<strong style="display: block;">
+A stock is underpriced relative to CAPM predictions. Where will it plot on the Security Market Line (SML), and what is the implication?
+</strong>
+<label><input type="radio" name="module3_mcq_q75" value="A"> A. Above the SML; expected return exceeds required return, implying positive alpha.</label><br>
+<label><input type="radio" name="module3_mcq_q75" value="B"> B. Below the SML; expected return below required return, implying negative alpha.</label><br>
+<label><input type="radio" name="module3_mcq_q75" value="C"> C. On the SML; correctly priced with alpha=0.</label><br>
+<label><input type="radio" name="module3_mcq_q75" value="D"> D. Above the CML; risk-adjusted return equals Sharpe ratio.</label><br>
+<label><input type="radio" name="module3_mcq_q75" value="E"> E. On the y‑axis, indicating zero systematic risk.</label><br>
+</form>
+<div id="feedback-module3_mcq_q75" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Underpriced stocks plot **above the SML**, since investors earn more than required for their level of systematic risk (positive alpha).
+</div>
+:::

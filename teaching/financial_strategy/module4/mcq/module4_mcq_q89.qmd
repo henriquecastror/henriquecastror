@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q89')" data-correct-answer="C">
+  <strong style="display: block;">
+  When applying the CAPM in practice, why might the market risk premium differ depending on whether one uses historical averages or implied forward-looking estimates?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q89" value="A"> A. Because the risk-free rate cancels out when calculating the premium, so differences are irrelevant.</label><br>
+  <label><input type="radio" name="module4_mcq_q89" value="B"> B. Because historical averages always overestimate risk premiums by definition.</label><br>
+  <label><input type="radio" name="module4_mcq_q89" value="C"> C. Because historical averages reflect past realized excess returns, while implied premiums are derived from current prices and growth expectations, often yielding different values.</label><br>
+  <label><input type="radio" name="module4_mcq_q89" value="D"> D. Because CAPM ignores the choice of premium entirely.</label><br>
+  <label><input type="radio" name="module4_mcq_q89" value="E"> E. Because implied estimates are always more accurate than historical ones.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q89" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Historical risk premiums look backward at realized returns, while implied premiums incorporate forward-looking expectations. The choice can significantly affect CAPM estimates.
+</div>
+
+:::

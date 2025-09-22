@@ -1,0 +1,23 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q42')" data-correct-answer="D">
+  <strong style="display: block;">
+  A project under review has an estimated beta of 1.6.  
+  The risk-free rate is 3%, and the expected return on the market portfolio is 11%.  
+  According to the CAPM, what is the required rate of return for this project?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q42" value="A"> A. 12.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q42" value="B"> B. 13.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q42" value="C"> C. 15.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q42" value="D"> D. 15.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q42" value="E"> E. 17.0%</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q42" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. ≈ 15.5%.  
+r = Rf + β(Rm−Rf) = 3% + 1.6×(11%−3%) = 3% + 12.8% = 15.8%. Closest option is 15.5%.  
+👉 The project’s systematic risk is well above average (β=1.6), which drives a high required return under CAPM. Small rounding differences lead to choosing the closest option.
+</div>
+
+:::

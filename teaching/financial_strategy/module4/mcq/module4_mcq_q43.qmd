@@ -1,0 +1,24 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q43')" data-correct-answer="C">
+  <strong style="display: block;">
+  A firm is evaluating its overall cost of capital.  
+  Its equity costs 14% (rE), its debt costs 8% (rD), and the corporate tax rate is 25%.  
+  With equity valued at $600m and debt at $400m, what is the weighted average cost of capital (WACC)?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q43" value="A"> A. 10.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q43" value="B"> B. 10.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q43" value="C"> C. 11.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q43" value="D"> D. 11.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q43" value="E"> E. 12.0%</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q43" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. ≈ 11.0%.  
+WACC = (E/V)rE + (D/V)rD(1−τ) = (600/1000)(14%) + (400/1000)(8%)(0.75).  
+= 8.4% + 2.4% = 10.8%. Closest option is 11.0%.  
+👉 Taxes reduce the effective cost of debt, lowering WACC below the simple average of equity and debt costs.
+</div>
+
+:::

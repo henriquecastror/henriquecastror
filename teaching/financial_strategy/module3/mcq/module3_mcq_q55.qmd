@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q55')" data-correct-answer="A">
+<strong style="display: block;">
+Two stocks (A and B) have equal variance but E(RA)=12% and E(RB)=14%. Which would a nondiversified investor prefer?
+</strong>
+<label><input type="radio" name="module3_mcq_q55" value="A"> A. Stock B</label><br>
+<label><input type="radio" name="module3_mcq_q55" value="B"> B. Stock A</label><br>
+<label><input type="radio" name="module3_mcq_q55" value="C"> C. Indifferent, same variance</label><br>
+<label><input type="radio" name="module3_mcq_q55" value="D"> D. Whichever has lower beta</label><br>
+<label><input type="radio" name="module3_mcq_q55" value="E"> E. Cannot be determined</label><br>
+</form>
+<div id="feedback-module3_mcq_q55" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. With identical risk, the higher expected return (14%) is preferred.
+</div>
+:::

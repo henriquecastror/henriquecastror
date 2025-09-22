@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q17')" data-correct-answer="B">
+  <strong style="display: block;">When using comparables to estimate a project’s cost of capital for a levered peer, the usual first step is to:</strong>
+<label><input type="radio" name="module4_mcq_q17" value="A"> A. Assume β_d=0 for safety</label><br>
+<label><input type="radio" name="module4_mcq_q17" value="B"> B. Unlever the comparable’s equity beta to get an asset beta</label><br>
+<label><input type="radio" name="module4_mcq_q17" value="C"> C. Use the comparable’s YTM as the discount rate</label><br>
+<label><input type="radio" name="module4_mcq_q17" value="D"> D. Replace R_f with the peer’s dividend yield</label><br>
+<label><input type="radio" name="module4_mcq_q17" value="E"> E. Regress project returns on market returns</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q17" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Unlever β_e of the peer to obtain β_u, then (re)lever if needed to the project’s target leverage.
+</div>
+
+:::

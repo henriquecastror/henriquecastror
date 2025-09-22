@@ -1,13 +1,13 @@
 ::: {.question-block}
 <form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q18')" data-correct-answer="D">
-<strong style="display: block;">Which ratio measures excess return per unit of total risk?</strong>
-<label><input type="radio" name="module2_mcq_q18" value="A"> A. Treynor ratio</label><br>
-<label><input type="radio" name="module2_mcq_q18" value="B"> B. Beta</label><br>
-<label><input type="radio" name="module2_mcq_q18" value="C"> C. Alpha</label><br>
-<label><input type="radio" name="module2_mcq_q18" value="D"> D. Sharpe ratio</label><br>
-<label><input type="radio" name="module2_mcq_q18" value="E"> E. Jensen’s measure</label><br>
+<strong style="display: block;">Which of the following represents diversifiable risk?</strong>
+<label><input type="radio" name="module2_mcq_q18" value="A"> A. Recession in the economy</label><br>
+<label><input type="radio" name="module2_mcq_q18" value="B"> B. Change in interest rates</label><br>
+<label><input type="radio" name="module2_mcq_q18" value="C"> C. Inflation increase</label><br>
+<label><input type="radio" name="module2_mcq_q18" value="D"> D. Product recall by a single company</label><br>
+<label><input type="radio" name="module2_mcq_q18" value="E"> E. Market crash</label><br>
 </form>
 <div id="feedback-module2_mcq_q18" class="feedback" data-status="" style="display:none;">
-✅ Correct: D. Sharpe ratio = (Rp−Rf)/σp.
+✅ Correct: D. Diversifiable risk is firm-specific like product recalls.
 </div>
 :::

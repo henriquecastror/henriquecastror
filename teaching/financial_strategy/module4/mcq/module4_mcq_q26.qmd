@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q26')" data-correct-answer="B">
+  <strong style="display: block;">When estimating beta, why might industry-average betas be preferred to firm-specific betas?</strong>
+<label><input type="radio" name="module4_mcq_q26" value="A"> A. They capture idiosyncratic shocks of a single firm.</label><br>
+<label><input type="radio" name="module4_mcq_q26" value="B"> B. They reduce estimation error by pooling across firms.</label><br>
+<label><input type="radio" name="module4_mcq_q26" value="C"> C. They ignore leverage differences.</label><br>
+<label><input type="radio" name="module4_mcq_q26" value="D"> D. They assume higher volatility leads to higher return.</label><br>
+<label><input type="radio" name="module4_mcq_q26" value="E"> E. They remove systematic risk.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q26" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Industry betas reduce noise by pooling data, assuming similar risk exposures.
+</div>
+
+:::

@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q86')" data-correct-answer="C">
+  <strong style="display: block;">
+  Consider two firms with identical operations, except one holds substantial cash reserves.  
+  If analysts compute asset betas without adjusting for cash, what distortion occurs in the estimate of the firm’s business risk?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q86" value="A"> A. The asset beta will be inflated because cash raises total firm volatility.</label><br>
+  <label><input type="radio" name="module4_mcq_q86" value="B"> B. The asset beta will remain unchanged because cash does not affect leverage.</label><br>
+  <label><input type="radio" name="module4_mcq_q86" value="C"> C. The asset beta will be understated, since risk-free cash dilutes the measured exposure to market risk.</label><br>
+  <label><input type="radio" name="module4_mcq_q86" value="D"> D. The beta of debt will fully offset the effect of excess cash.</label><br>
+  <label><input type="radio" name="module4_mcq_q86" value="E"> E. Cash reserves increase the firm’s correlation with the market, overstating systematic risk.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q86" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Holding large cash reserves reduces the true risk of the business, but if cash is not netted out, the asset beta appears artificially low because the risk-free portion dilutes the operating risk signal.
+</div>
+
+:::

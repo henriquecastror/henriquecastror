@@ -1,0 +1,19 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q70')" data-correct-answer="B">
+<strong style="display: block;">
+Two assets have expected returns of 8% and 14%, with volatilities 10% and 20%, respectively. If an investor allocates 40% to the first and 60% to the second, and their correlation is 0.5, what is the portfolio’s volatility?
+</strong>
+<label><input type="radio" name="module2_mcq_q70" value="A"> A. 13.0%</label><br>
+<label><input type="radio" name="module2_mcq_q70" value="B"> B. 14.1%</label><br>
+<label><input type="radio" name="module2_mcq_q70" value="C"> C. 15.0%</label><br>
+<label><input type="radio" name="module2_mcq_q70" value="D"> D. 16.0%</label><br>
+<label><input type="radio" name="module2_mcq_q70" value="E"> E. 17.0%</label><br>
+</form>
+<div id="feedback-module2_mcq_q70" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Portfolio volatility is  
+\(\sigma_p = \sqrt{w_1^2\sigma_1^2 + w_2^2\sigma_2^2 + 2w_1w_2\sigma_1\sigma_2\rho}\).  
+Here, \(w_1=0.4, w_2=0.6, \sigma_1=0.10, \sigma_2=0.20, \rho=0.5\).  
+So, \(\sigma_p = \sqrt{0.16(0.01) + 0.36(0.04) + 2(0.24)(0.10)(0.20)(0.5)} \approx 0.141 = 14.1\%\).  
+Diversification reduces risk relative to the weighted average of 16%.
+</div>
+:::

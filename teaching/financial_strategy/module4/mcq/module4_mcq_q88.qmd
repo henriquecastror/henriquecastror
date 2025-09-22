@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q88')" data-correct-answer="D">
+  <strong style="display: block;">
+  Critics argue that the CAPM is too simplistic.  
+  Which of the following best summarizes the empirical evidence that led to multifactor models like the Fama-French three-factor model?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q88" value="A"> A. Beta alone perfectly explains the cross-section of stock returns across all industries.</label><br>
+  <label><input type="radio" name="module4_mcq_q88" value="B"> B. Market anomalies such as momentum and value premia disappeared once CAPM was widely adopted.</label><br>
+  <label><input type="radio" name="module4_mcq_q88" value="C"> C. Evidence showed that small-cap and growth stocks consistently underperformed predictions of CAPM.</label><br>
+  <label><input type="radio" name="module4_mcq_q88" value="D"> D. Empirical studies revealed that size and value effects systematically explain returns beyond beta, motivating multifactor models.</label><br>
+  <label><input type="radio" name="module4_mcq_q88" value="E"> E. CAPM failed only during recessions, but otherwise holds without anomalies.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q88" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. CAPM could not account for persistent size and value effects. These anomalies led to the Fama-French three-factor model, which added size and book-to-market factors to beta.
+</div>
+
+:::

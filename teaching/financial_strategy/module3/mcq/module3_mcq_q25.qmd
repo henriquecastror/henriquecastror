@@ -1,0 +1,15 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q25')" data-correct-answer="B">
+<strong style="display: block;">
+Which statement about diversification is MOST accurate?
+</strong>
+<label><input type="radio" name="module3_mcq_q25" value="A"> A. Adding any stock always lowers portfolio volatility.</label><br>
+<label><input type="radio" name="module3_mcq_q25" value="B"> B. For large portfolios, average covariance dominates variance in determining volatility.</label><br>
+<label><input type="radio" name="module3_mcq_q25" value="C"> C. Portfolio variance is the weighted average of individual variances only.</label><br>
+<label><input type="radio" name="module3_mcq_q25" value="D"> D. If Corr=0, diversification has no effect.</label><br>
+<label><input type="radio" name="module3_mcq_q25" value="E"> E. Diversification eliminates systematic risk.</label><br>
+</form>
+<div id="feedback-module3_mcq_q25" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. In large portfolios, the **average covariance** between assets largely determines volatility (Berk/DeMarzo §11.3).
+</div>
+:::

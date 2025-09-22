@@ -1,13 +1,13 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q19')" data-correct-answer="D">
-<strong style="display: block;">If E(R)=12%, Rf=4%, σ=16%, Sharpe ratio=?</strong>
-<label><input type="radio" name="module2_mcq_q19" value="A"> A. 0.25</label><br>
-<label><input type="radio" name="module2_mcq_q19" value="B"> B. 0.40</label><br>
-<label><input type="radio" name="module2_mcq_q19" value="C"> C. 0.45</label><br>
-<label><input type="radio" name="module2_mcq_q19" value="D"> D. 0.50</label><br>
-<label><input type="radio" name="module2_mcq_q19" value="E"> E. 0.75</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q19')" data-correct-answer="A">
+<strong style="display: block;">Portfolio: 25% in asset A (E=20%), 75% in asset B (E=8%). Expected return?</strong>
+<label><input type="radio" name="module2_mcq_q19" value="A"> A. 11.0%</label><br>
+<label><input type="radio" name="module2_mcq_q19" value="B"> B. 11.5%</label><br>
+<label><input type="radio" name="module2_mcq_q19" value="C"> C. 12.0%</label><br>
+<label><input type="radio" name="module2_mcq_q19" value="D"> D. 12.5%</label><br>
+<label><input type="radio" name="module2_mcq_q19" value="E"> E. 13.0%</label><br>
 </form>
 <div id="feedback-module2_mcq_q19" class="feedback" data-status="" style="display:none;">
-✅ Correct: D. Sharpe=(12−4)/16=0.5.
+✅ Correct: A. 0.25×20%+0.75×8%=11%.
 </div>
 :::

@@ -1,0 +1,16 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q69')" data-correct-answer="B">
+  <strong style="display: block;">Inflation complicates cost of capital estimation. A firm mistakenly discounts real cash flows at a nominal WACC. What is the most likely consequence of this mismatch?</strong>
+<label><input type="radio" name="module4_mcq_q69" value="A"> A. The NPV is overstated, leading to excessive project acceptance.</label><br>
+<label><input type="radio" name="module4_mcq_q69" value="B"> B. The NPV is understated, leading to excessive project rejection.</label><br>
+<label><input type="radio" name="module4_mcq_q69" value="C"> C. The NPV is unaffected, because real and nominal rates are interchangeable.</label><br>
+<label><input type="radio" name="module4_mcq_q69" value="D"> D. The CAPM automatically adjusts for inflation, so no issue arises.</label><br>
+<label><input type="radio" name="module4_mcq_q69" value="E"> E. Nominal WACC is always higher, so projects will look artificially attractive.</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q69" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Discounting real cash flows at a nominal WACC overstates the discount rate, undervaluing projects and biasing toward rejection.
+</div>
+
+:::

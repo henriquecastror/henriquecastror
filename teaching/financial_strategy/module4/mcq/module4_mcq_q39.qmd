@@ -1,0 +1,23 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q39')" data-correct-answer="B">
+  <strong style="display: block;">
+  Consider the following market data for Aurora Technologies’ peers:  
+  • Taggart Transcontinental: Market value $400m, equity beta 1.2  
+  • Rearden Metal: Market value $300m, equity beta 1.5  
+  • Wyatt Oil: Market value $200m, equity beta 0.9  
+  If Aurora wants to estimate its asset beta by using the industry average (value-weighted), what is the approximate industry beta?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q39" value="A"> A. 1.05</label><br>
+  <label><input type="radio" name="module4_mcq_q39" value="B"> B. 1.20</label><br>
+  <label><input type="radio" name="module4_mcq_q39" value="C"> C. 1.25</label><br>
+  <label><input type="radio" name="module4_mcq_q39" value="D"> D. 1.30</label><br>
+  <label><input type="radio" name="module4_mcq_q39" value="E"> E. 1.35</label><br>
+</form>
+
+<div id="feedback-module4_mcq_q39" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Weighted beta = (400/900)(1.2) + (300/900)(1.5) + (200/900)(0.9) ≈ 1.20.
+</div>
+
+:::

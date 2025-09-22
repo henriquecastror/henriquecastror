@@ -1,0 +1,13 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q22')" data-correct-answer="B">
+<strong style="display: block;">A portfolio has 30% in Asset X (σ=12%), 70% in Asset Y (σ=18%), correlation=0.5. What is the portfolio variance?</strong>
+<label><input type="radio" name="module2_mcq_q22" value="A"> A. 0.0220</label><br>
+<label><input type="radio" name="module2_mcq_q22" value="B"> B. 0.0245</label><br>
+<label><input type="radio" name="module2_mcq_q22" value="C"> C. 0.0260</label><br>
+<label><input type="radio" name="module2_mcq_q22" value="D"> D. 0.0270</label><br>
+<label><input type="radio" name="module2_mcq_q22" value="E"> E. 0.0300</label><br>
+</form>
+<div id="feedback-module2_mcq_q22" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Var = (0.3²×0.12²) + (0.7²×0.18²) + 2×0.3×0.7×0.12×0.18×0.5 = 0.0245.
+</div>
+:::

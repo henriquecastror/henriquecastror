@@ -1,0 +1,18 @@
+::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q65')" data-correct-answer="D">
+<strong style="display: block;">
+Which of the following statements best describes how asset pricing is determined under the CAPM framework?
+</strong>
+<label><input type="radio" name="module2_mcq_q65" value="A"> A. The expected return of an asset depends only on its own variance, regardless of correlations with the market.</label><br>
+<label><input type="radio" name="module2_mcq_q65" value="B"> B. Assets are priced according to their total risk, since both systematic and unsystematic risk are equally compensated.</label><br>
+<label><input type="radio" name="module2_mcq_q65" value="C"> C. An asset’s fair price is determined exclusively by investor demand, without reference to its relation to the market portfolio.</label><br>
+<label><input type="radio" name="module2_mcq_q65" value="D"> D. The expected return of an asset is determined by the risk-free rate plus a risk premium proportional to its beta, which measures systematic risk relative to the market portfolio.</label><br>
+<label><input type="radio" name="module2_mcq_q65" value="E"> E. In equilibrium, all assets must offer the same return, regardless of their risk exposure.</label><br>
+</form>
+<div id="feedback-module2_mcq_q65" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Under CAPM, asset pricing depends only on **systematic risk**.  
+Expected return is given by:  
+\(E(R_i) = R_f + \beta_i \times (E(R_m) - R_f)\).  
+This shows that only the portion of risk correlated with the market (beta) is priced, while unsystematic risk can be diversified away and is not compensated.
+</div>
+:::
