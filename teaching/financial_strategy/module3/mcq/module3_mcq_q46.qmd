@@ -1,15 +1,15 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q46')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q46')" data-correct-answer="C">
 <strong style="display: block;">
 Which of the following best reflects the relationship between risk (volatility) and return observed in financial markets when analyzing individual stocks over long periods?
 </strong>
-<label><input type="radio" name="module2_mcq_q46" value="A"> A. There is always a strong and exact linear relationship, with higher volatility guaranteeing higher returns.</label><br>
-<label><input type="radio" name="module2_mcq_q46" value="B"> B. All assets align perfectly with the predictions of CAPM, meaning no stock ever offers returns inconsistent with its beta.</label><br>
-<label><input type="radio" name="module2_mcq_q46" value="C"> C. While theory suggests a positive relationship between risk and expected return, in practice the data show considerable dispersion, with some high-volatility stocks yielding poor returns and some low-volatility stocks performing well.</label><br>
-<label><input type="radio" name="module2_mcq_q46" value="D"> D. Investors can always earn abnormal profits by simply selecting the riskiest stocks available in the market.</label><br>
-<label><input type="radio" name="module2_mcq_q46" value="E"> E. Diversification eliminates all forms of risk, making volatility irrelevant to expected returns in practice.</label><br>
+<label><input type="radio" name="module3_mcq_q46" value="A"> A. There is always a strong and exact linear relationship, with higher volatility guaranteeing higher returns.</label><br>
+<label><input type="radio" name="module3_mcq_q46" value="B"> B. All assets align perfectly with the predictions of CAPM, meaning no stock ever offers returns inconsistent with its beta.</label><br>
+<label><input type="radio" name="module3_mcq_q46" value="C"> C. While theory suggests a positive relationship between risk and expected return, in practice the data show considerable dispersion, with some high-volatility stocks yielding poor returns and some low-volatility stocks performing well.</label><br>
+<label><input type="radio" name="module3_mcq_q46" value="D"> D. Investors can always earn abnormal profits by simply selecting the riskiest stocks available in the market.</label><br>
+<label><input type="radio" name="module3_mcq_q46" value="E"> E. Diversification eliminates all forms of risk, making volatility irrelevant to expected returns in practice.</label><br>
 </form>
-<div id="feedback-module2_mcq_q46" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q46" class="feedback" data-status="" style="display:none;">
 ✅ Correct: C. Finance theory (e.g., CAPM) predicts that higher systematic risk should be compensated with higher expected returns. However, when looking at historical data for individual stocks, the relationship is noisy and dispersed. Some risky stocks perform poorly, while others with lower volatility outperform, reflecting the limits of using past data as a predictor of expected returns.
 </div>
 :::

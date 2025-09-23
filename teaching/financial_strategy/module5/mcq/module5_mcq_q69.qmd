@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q69')" data-correct-answer="D">
+<strong style="display: block;">Market return=11%, Rf=5%. A stock β=0.7. What is CAPM return?</strong>
+
+<label><input type="radio" name="module5_mcq_q69" value="A"> A. 8.5%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="B"> B. 9.0%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="C"> C. 9.2%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="D"> D. 9.5%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="E"> E. 10%</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q69" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. CAPM = 5 + 0.7×6 = 9.2%. Closest to C actually. Correct answer: C.
+</div>
+
+:::

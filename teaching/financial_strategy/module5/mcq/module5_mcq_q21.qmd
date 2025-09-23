@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q21')" data-correct-answer="D">
+<strong style="display: block;">Why do most actively managed mutual funds underperform passive index funds after fees?</strong>
+
+<label><input type="radio" name="module5_mcq_q21" value="A"> A. Because managers hold too many international stocks</label><br>
+<label><input type="radio" name="module5_mcq_q21" value="B"> B. Because CAPM does not apply to mutual funds</label><br>
+<label><input type="radio" name="module5_mcq_q21" value="C"> C. Because they avoid diversification to chase alpha</label><br>
+<label><input type="radio" name="module5_mcq_q21" value="D"> D. Because fees and trading costs erode any gross alpha generated</label><br>
+<label><input type="radio" name="module5_mcq_q21" value="E"> E. Because passive funds have lower systematic risk</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q21" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. While some managers may generate positive gross alpha, on average fees and trading costs exceed this, leaving net alpha negative compared to passive index funds.
+</div>
+
+:::
+

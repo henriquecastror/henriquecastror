@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q50')" data-correct-answer="B">
+<strong style="display: block;">Why does the average alpha across all securities equal zero in equilibrium under CAPM?</strong>
+
+<label><input type="radio" name="module5_mcq_q50" value="A"> A. Because markets are inefficient</label><br>
+<label><input type="radio" name="module5_mcq_q50" value="B"> B. Because arbitrage eliminates positive and negative alphas</label><br>
+<label><input type="radio" name="module5_mcq_q50" value="C"> C. Because diversification eliminates risk-free returns</label><br>
+<label><input type="radio" name="module5_mcq_q50" value="D"> D. Because idiosyncratic risk dominates pricing</label><br>
+<label><input type="radio" name="module5_mcq_q50" value="E"> E. Because investors always act irrationally</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q50" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. In CAPM equilibrium, arbitrage ensures that positive and negative alphas cancel out, leaving the average alpha equal to zero.
+</div>
+
+:::

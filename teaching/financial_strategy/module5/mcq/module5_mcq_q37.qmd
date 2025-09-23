@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q37')" data-correct-answer="B">
+<strong style="display: block;">Which factor is added in the Carhart four-factor model beyond the Fama-French three factors?</strong>
+
+<label><input type="radio" name="module5_mcq_q37" value="A"> A. Liquidity</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="B"> B. Momentum</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="C"> C. Inflation</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="D"> D. Volatility</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="E"> E. Arbitrage</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q37" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Carhart adds a momentum factor to the Fama-French three-factor model, capturing persistence in stock returns.
+</div>
+
+:::

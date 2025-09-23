@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q20')" data-correct-answer="D">
+  <strong style="display: block;">
+  Which of the following statements best reflects the strong-form version of the Efficient Market Hypothesis (EMH)?
+  </strong>
+
+  <label><input type="radio" name="module5_mcq_q20" value="A"> A. Security prices fully reflect all past price and volume data.</label><br>
+  <label><input type="radio" name="module5_mcq_q20" value="B"> B. Public information, such as financial statements and news, is rapidly incorporated into prices.</label><br>
+  <label><input type="radio" name="module5_mcq_q20" value="C"> C. Skilled fund managers can consistently generate abnormal returns by analyzing public information.</label><br>
+  <label><input type="radio" name="module5_mcq_q20" value="D"> D. Even with access to insider or private information, no investor can consistently earn abnormal returns.</label><br>
+  <label><input type="radio" name="module5_mcq_q20" value="E"> E. Market inefficiencies can be easily identified and arbitraged away by rational traders.</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q20" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Strong-form EMH asserts that all information — past, public, and even private insider data — is already reflected in security prices.  
+👉 This implies that neither technical analysis, fundamental research, nor insider access can systematically produce excess returns.
+</div>
+
+:::

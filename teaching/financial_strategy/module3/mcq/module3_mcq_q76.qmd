@@ -1,15 +1,15 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q76')" data-correct-answer="A">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q76')" data-correct-answer="A">
 <strong style="display: block;">
 You start with a universe of risky assets whose pairwise correlations are strictly less than 1.  You first build efficient portfolios using only 3 assets, and then expand the investable set to 10 assets (same return forecasts and volatilities, correlations unchanged on average). What happens to the mean–variance efficient frontier when the number of available assets increases?
 </strong>
-<label><input type="radio" name="module2_mcq_q76" value="A"> A. It shifts outward (up/left): for a given expected return you can attain lower volatility, and for a given volatility you can attain higher expected return.</label><br>
-<label><input type="radio" name="module2_mcq_q76" value="B"> B. It is unchanged, because adding assets with similar characteristics adds no diversification.</label><br>
-<label><input type="radio" name="module2_mcq_q76" value="C"> C. It rotates downward: adding assets always increases portfolio variance.</label><br>
-<label><input type="radio" name="module2_mcq_q76" value="D"> D. It collapses to a single point equal to the average stock’s risk and return.</label><br>
-<label><input type="radio" name="module2_mcq_q76" value="E"> E. Only the minimum-variance point moves; the rest of the frontier is unaffected.</label><br>
+<label><input type="radio" name="module3_mcq_q76" value="A"> A. It shifts outward (up/left): for a given expected return you can attain lower volatility, and for a given volatility you can attain higher expected return.</label><br>
+<label><input type="radio" name="module3_mcq_q76" value="B"> B. It is unchanged, because adding assets with similar characteristics adds no diversification.</label><br>
+<label><input type="radio" name="module3_mcq_q76" value="C"> C. It rotates downward: adding assets always increases portfolio variance.</label><br>
+<label><input type="radio" name="module3_mcq_q76" value="D"> D. It collapses to a single point equal to the average stock’s risk and return.</label><br>
+<label><input type="radio" name="module3_mcq_q76" value="E"> E. Only the minimum-variance point moves; the rest of the frontier is unaffected.</label><br>
 </form>
-<div id="feedback-module2_mcq_q76" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q76" class="feedback" data-status="" style="display:none;">
 ✅ Correct: A. With imperfect correlations, more assets create more combinations that lower variance via diversification. 
 For equal-weighted intuition: \( \mathrm{Var}(R_p) \approx \tfrac{1}{N}\,\overline{\sigma^2} + \left(1-\tfrac{1}{N}\right)\overline{\mathrm{Cov}} \). 
 As \(N\) increases, the \(1/N\) term shrinks and the minimum variance falls; the attainable set expands so the efficient frontier moves outward. 

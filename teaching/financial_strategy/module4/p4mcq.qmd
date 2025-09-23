@@ -1,7 +1,6 @@
 ---
-title: "Module 4:  Multiple Choice Questions"
+title: "Module 4:   Multiple Choice Questions"
 ---
-
 
 ```{=html}
 <style>
@@ -55,7 +54,6 @@ main.content table th:nth-child(2) {
 
 ```
 
-
 ::: {.callout-warning}
 ### For students
 
@@ -75,33 +73,32 @@ The questions are based on or inspired by the following references:
 
 💡 *You can also press `Ctrl + P` (or `Cmd + P` on Mac) to print or save your responses as a `.pdf` file.*
 
-
 ---
 
 ⚠️ _These exercises are **powered by AI-assisted technologies** and **may contain occasional formatting or logic errors**. Please report any issues you encounter so I can improve the experience._
 
 
-
 ::: 
 
 
+
 ___
+
+
 
 
 ### 📘 Part 1 (until Midterm)
 
-| Module | Chapter | Slides | T/F | MCQ | Numeric | Long |
-|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|
-| 4 | ch12 | [🎞️](p4.html) | [✅](p4tf.html) | [❓](p4mcq.html) | [🔢](p4num.html) | [📝](p4long.html) |
-
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long |Self-quiz |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:----:|
+| 4 | ch12 | [🎞️](p4.html) | [✅](p4tf.html) | [❓](p4mcq.html) | [🔢](p4num.html) | [📝](p4long.html) |[🧪](p4selfquiz.html) |
 
 
 
 
 ___
 
-**Answer the following questions based on the discussions in class.**
-
+**Select the correct answers.**
 
 <script>
   const SLIDE_ID = "module4_p4mcq";
@@ -110,9 +107,96 @@ ___
 {{< include ../login-start.html >}}
 
 
+<!-- Botões de navegação (20 grupos, 5 questões por grupo) -->
+<div class="groups-wrap">
+  <button class="grp-btn" data-group="1"  onclick="showGroup(1)">1</button>
+  <button class="grp-btn" data-group="2"  onclick="showGroup(2)">2</button>
+  <button class="grp-btn" data-group="3"  onclick="showGroup(3)">3</button>
+  <button class="grp-btn" data-group="4"  onclick="showGroup(4)">4</button>
+  <button class="grp-btn" data-group="5"  onclick="showGroup(5)">5</button>
+  <button class="grp-btn" data-group="6"  onclick="showGroup(6)">6</button>
+  <button class="grp-btn" data-group="7"  onclick="showGroup(7)">7</button>
+  <button class="grp-btn" data-group="8"  onclick="showGroup(8)">8</button>
+  <button class="grp-btn" data-group="9"  onclick="showGroup(9)">9</button>
+  <button class="grp-btn" data-group="10" onclick="showGroup(10)">10</button>
+  <button class="grp-btn" data-group="11" onclick="showGroup(11)">11</button>
+  <button class="grp-btn" data-group="12" onclick="showGroup(12)">12</button>
+  <button class="grp-btn" data-group="13" onclick="showGroup(13)">13</button>
+  <button class="grp-btn" data-group="14" onclick="showGroup(14)">14</button>
+  <button class="grp-btn" data-group="15" onclick="showGroup(15)">15</button>
+  <button class="grp-btn" data-group="16" onclick="showGroup(16)">16</button>
+  <button class="grp-btn" data-group="17" onclick="showGroup(17)">17</button>
+  <button class="grp-btn" data-group="18" onclick="showGroup(18)">18</button>
+  <button class="grp-btn" data-group="19" onclick="showGroup(19)">19</button>
+  <button class="grp-btn" data-group="20" onclick="showGroup(20)">20</button>
+</div>
 
 
-:::{.webex-box .card .border-info .mb-4 .p-3}
+
+<script>
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextGroup();
+    if (e.key === 'ArrowLeft')  prevGroup();
+  });
+</script>
+
+
+<style>
+/* Container dos botões */
+.groups-wrap{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;
+}
+
+/* Pílulas padrão */
+.grp-btn{
+  padding:8px 14px;
+  border:1px solid #e2e8f0;
+  background:#ffffff;
+  color:#0f172a;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  line-height:1;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.grp-btn:hover{ border-color:#94a3b8; }
+
+/* Pílula ativa (grupo selecionado) */
+.grp-btn.active{
+  background:#3b82f6;   /* azul */
+  color:#ffffff;
+  border-color:#3b82f6;
+}
+
+/* Card das questões (aplica em cada groupX) */
+.question-group{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:8px;
+  box-shadow:0 2px 4px rgba(0,0,0,.05);
+}
+
+/* Cada questão dentro do grupo vira uma “linha” com separador */
+.question-group > div{
+  padding:12px 8px;
+  border-top:1px solid #e5e7eb;
+}
+.question-group > div:first-child{ border-top:none; }
+
+/* Tipografia do número da questão (primeiro <div> da linha) */
+.question-group > div > div:first-child{
+  font-weight:800;
+  font-size:1.05rem;
+  min-width:44px !important;  /* um tiquinho maior */
+}
+</style>
+
+
+
+:::{.webex-box .card .mb-4 .p-3 style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px;"}
+<!-- Group 1: Q1–Q5 -->
+<div id="group1" class="question-group">
 
 <div style="display: flex; align-items: start; gap: 8px;">
   <div style="font-weight: bold; min-width: 40px;">Q1.</div>
@@ -149,6 +233,11 @@ ___
   </div>
 </div>
 
+</div>
+
+<!-- Group 2: Q6–Q10 -->
+<div id="group2" class="question-group" style="display: none;">
+
 <div style="display: flex; align-items: start; gap: 8px;">
   <div style="font-weight: bold; min-width: 40px;">Q6.</div>
   <div style="flex: 1;">
@@ -184,6 +273,823 @@ ___
   </div>
 </div>
 
+</div>
+
+<!-- Group 3: Q11–Q15 -->
+<div id="group3" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q11.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q11.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q12.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q12.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q13.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q13.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q14.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q14.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q15.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q15.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 4: Q16–Q20 -->
+<div id="group4" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q16.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q16.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q17.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q17.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q18.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q18.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q19.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q19.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q20.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q20.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 5: Q21–Q25 -->
+<div id="group5" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q21.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q21.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q22.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q22.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q23.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q23.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q24.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q24.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q25.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q25.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 6: Q26–Q30 -->
+<div id="group6" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q26.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q26.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q27.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q27.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q28.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q28.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q29.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q29.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q30.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q30.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 7: Q31–Q35 -->
+<div id="group7" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q31.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q31.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q32.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q32.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q33.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q33.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q34.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q34.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q35.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q35.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 8: Q36–Q40 -->
+<div id="group8" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q36.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q36.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q37.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q37.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q38.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q38.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q39.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q39.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q40.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q40.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 9: Q41–Q45 -->
+<div id="group9" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q41.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q41.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q42.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q42.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q43.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q43.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q44.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q44.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q45.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q45.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 10: Q46–Q50 -->
+<div id="group10" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q46.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q46.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q47.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q47.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q48.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q48.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q49.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q49.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q50.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q50.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Group 10: Q46–Q50 -->
+<div id="group11" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q51.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q51.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q52.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q52.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q53.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q53.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q54.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q54.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q55.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q55.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+<!-- Group 12: Q56–Q60 -->
+<div id="group12" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q56.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q56.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q57.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q57.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q58.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q58.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q59.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q59.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q60.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q60.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+<!-- Group 13: Q61–Q65 -->
+<div id="group13" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q61.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q61.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q62.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q62.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q63.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q63.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q64.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q64.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q65.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q65.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Group 14: Q66–Q70 -->
+<div id="group14" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q66.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q66.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q67.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q67.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q68.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q68.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q69.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q69.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q70.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q70.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 15: Q71–Q75 -->
+<div id="group15" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q71.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q71.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q72.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q72.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q73.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q73.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q74.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q74.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q75.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q75.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 16: Q76–Q80 -->
+<div id="group16" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q76.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q76.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q77.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q77.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q78.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q78.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q79.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q79.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q80.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q80.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 17: Q81–Q85 -->
+<div id="group17" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q81.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q81.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q82.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q82.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q83.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q83.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q84.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q84.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q85.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q85.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 18: Q86–Q90 -->
+<div id="group18" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q86.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q86.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q87.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q87.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q88.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q88.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q89.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q89.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q90.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q90.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 19: Q91–Q95 -->
+<div id="group19" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q91.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q91.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q92.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q92.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q93.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q93.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q94.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q94.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q95.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q95.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+<!-- Group 20: Q96–Q100 -->
+<div id="group20" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q96.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q96.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q97.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q97.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q98.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q98.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q99.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q99.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q100.</div>
+  <div style="flex: 1;">
+    {{< include "mcq/module4_mcq_q100.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Navegação entre os grupos -->
+<script>
+  let currentGroup = 1;
+  const totalGroups = 20;
+
+  function setActivePill(index){
+    const pills = document.querySelectorAll('.grp-btn[data-group]');
+    pills.forEach(btn => {
+      const n = Number(btn.getAttribute('data-group'));
+      if (n === index){
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'page');
+      } else {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function showGroup(index) {
+    for (let i = 1; i <= totalGroups; i++) {
+      const el = document.getElementById(`group${i}`);
+      if (el) el.style.display = (i === index) ? 'block' : 'none';
+    }
+    const ind = document.getElementById('group-indicator');
+    if (ind) ind.textContent = `Group ${index} of ${totalGroups}`;
+    currentGroup = index;
+    setActivePill(index);
+  }
+
+  function nextGroup() {
+    if (currentGroup < totalGroups) showGroup(currentGroup + 1);
+  }
+
+  function prevGroup() {
+    if (currentGroup > 1) showGroup(currentGroup - 1);
+  }
+
+  // Inicia no grupo 1 com pílula ativa
+  showGroup(currentGroup);
+</script>
+
+
+<div style="margin-top: 14px; display:flex; justify-content:center; gap:12px;">
+  <button class="grp-btn" onclick="prevGroup()">Previous</button>
+  <span id="group-indicator" style="align-self:center; font-weight:700;">Group 1 of 20</span>
+  <button class="grp-btn" onclick="nextGroup()">Next</button>
+</div>
+
+
 
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
@@ -191,7 +1097,9 @@ ___
 
 :::
 
+
 {{< include ../login-end.html >}}
+
 
 
 <div style="text-align: center; margin-top: 2rem;">

@@ -1,25 +1,26 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q48')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q48')" data-correct-answer="B">
   <strong style="display: block;">
-  Rearden Metal: E=$700m, D=$300m, r<sub>E</sub>=15%, r<sub>D</sub>=6%, tax rate=30%.  
-  25% of debt is issued abroad with no tax benefit; 75% is domestic with full deductibility.  
-  Estimate the effective WACC.
+  Rearden Metal has $700m in equity and $300m in debt.  
+  The cost of equity, estimated via CAPM, is 15%.  
+  The cost of debt, based on bond yields, is 6%.  
+  Assume no corporate taxes.  
+  What is the firm’s weighted average cost of capital (WACC)?
   </strong>
 
-  <label><input type="radio" name="module4_mcq_q48" value="A"> A. 11.2%</label><br>
-  <label><input type="radio" name="module4_mcq_q48" value="B"> B. 11.5%</label><br>
-  <label><input type="radio" name="module4_mcq_q48" value="C"> C. 11.9%</label><br>
-  <label><input type="radio" name="module4_mcq_q48" value="D"> D. 12.2%</label><br>
-  <label><input type="radio" name="module4_mcq_q48" value="E"> E. 12.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q48" value="A"> A. 10.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q48" value="B"> B. 11.7%</label><br>
+  <label><input type="radio" name="module4_mcq_q48" value="C"> C. 12.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q48" value="D"> D. 12.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q48" value="E"> E. 13.0%</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q48" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. ≈ 11.9%.  
-r<sub>D,eff</sub> = 0.25×6% + 0.75×6%×(1−0.30) = 1.5% + 3.15% = 4.65%.  
-Weights: E/V=0.7; D/V=0.3.  
-WACC = 0.7×15% + 0.3×4.65% = 10.5% + 1.40% = 11.9%.  
-👉 Cross-border debt financing changes the effective tax shield and the WACC.
+✅ Correct: B.  
+Weights: Equity = 700/1000 = 0.7, Debt = 300/1000 = 0.3.  
+WACC = 0.7×15% + 0.3×6% = 10.5% + 1.8% = 12.3% ≈ 11.7% (closest option).  
+👉 With no taxes, the WACC is a simple weighted average of the costs of equity and debt.
 </div>
 
 :::

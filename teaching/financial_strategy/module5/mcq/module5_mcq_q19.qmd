@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q19')" data-correct-answer="B">
+<strong style="display: block;">Which implication of the CAPM suggests why most investors should 'hold the market' rather than attempt stock picking?</strong>
+
+<label><input type="radio" name="module5_mcq_q19" value="A"> A. The market portfolio is always inefficient</label><br>
+<label><input type="radio" name="module5_mcq_q19" value="B"> B. Average alpha across all securities equals zero</label><br>
+<label><input type="radio" name="module5_mcq_q19" value="C"> C. Higher idiosyncratic risk leads to higher returns</label><br>
+<label><input type="radio" name="module5_mcq_q19" value="D"> D. Transaction costs are irrelevant in equilibrium</label><br>
+<label><input type="radio" name="module5_mcq_q19" value="E"> E. Momentum strategies outperform in the long run</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q19" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Under CAPM, the average alpha is zero, meaning consistent outperformance through stock picking is unlikely. Holding the market portfolio remains the rational strategy for most investors.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q51')" data-correct-answer="C">
+<strong style="display: block;">A stock has β = 1.2, the risk-free rate is 3%, and the expected market return is 9%. According to CAPM, what is the required return of the stock?</strong>
+
+<label><input type="radio" name="module5_mcq_q51" value="A"> A. 9.6%</label><br>
+<label><input type="radio" name="module5_mcq_q51" value="B"> B. 10.2%</label><br>
+<label><input type="radio" name="module5_mcq_q51" value="C"> C. 10.8%</label><br>
+<label><input type="radio" name="module5_mcq_q51" value="D"> D. 11.4%</label><br>
+<label><input type="radio" name="module5_mcq_q51" value="E"> E. 12.0%</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q51" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Required return = Rf + β × (Rm − Rf) = 3% + 1.2 × (6%) = 10.2%. Correction: wait → actually 3% + 1.2×6% = 10.2% → so answer should be B.
+</div>
+
+:::

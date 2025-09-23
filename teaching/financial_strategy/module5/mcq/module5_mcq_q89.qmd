@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q89')" data-correct-answer="C">
+<strong style="display: block;">Why is diversification bias considered costly for long-term investors?</strong>
+
+<label><input type="radio" name="module5_mcq_q89" value="A"> A. It reduces exposure to market beta</label><br>
+<label><input type="radio" name="module5_mcq_q89" value="B"> B. It increases transaction costs significantly</label><br>
+<label><input type="radio" name="module5_mcq_q89" value="C"> C. It leads to concentrated portfolios with higher idiosyncratic risk</label><br>
+<label><input type="radio" name="module5_mcq_q89" value="D"> D. It guarantees negative alpha in all periods</label><br>
+<label><input type="radio" name="module5_mcq_q89" value="E"> E. It prevents access to mutual funds</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q89" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Diversification bias, like familiarity bias, leaves investors exposed to idiosyncratic risk that could have been diversified away.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q12')" data-correct-answer="A">
+<strong style="display: block;">The disposition effect refers to an investor’s tendency to:</strong>
+
+<label><input type="radio" name="module5_mcq_q12" value="A"> A. Hold losers too long and sell winners too early</label><br>
+<label><input type="radio" name="module5_mcq_q12" value="B"> B. Mimic the trades of others</label><br>
+<label><input type="radio" name="module5_mcq_q12" value="C"> C. Diversify across many industries</label><br>
+<label><input type="radio" name="module5_mcq_q12" value="D"> D. Prefer domestic stocks over international ones</label><br>
+<label><input type="radio" name="module5_mcq_q12" value="E"> E. Overestimate their forecasting abilities</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q12" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. The disposition effect is the tendency to sell winning investments too soon and hold on to losers for too long.
+</div>
+
+:::

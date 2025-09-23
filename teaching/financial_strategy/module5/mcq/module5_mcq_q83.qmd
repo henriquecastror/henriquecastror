@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q83')" data-correct-answer="B">
+<strong style="display: block;">Why is the no-trade theorem important for understanding rational expectations equilibria?</strong>
+
+<label><input type="radio" name="module5_mcq_q83" value="A"> A. It shows that arbitrage opportunities persist in efficient markets</label><br>
+<label><input type="radio" name="module5_mcq_q83" value="B"> B. It implies that with common knowledge, prices adjust without actual trading</label><br>
+<label><input type="radio" name="module5_mcq_q83" value="C"> C. It demonstrates why bubbles are inevitable</label><br>
+<label><input type="radio" name="module5_mcq_q83" value="D"> D. It proves that insider trading is always profitable</label><br>
+<label><input type="radio" name="module5_mcq_q83" value="E"> E. It validates behavioral finance anomalies</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q83" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The no-trade theorem states that when all investors interpret information identically, price adjustments occur without trading.
+</div>
+
+:::

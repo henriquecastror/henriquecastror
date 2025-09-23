@@ -1,5 +1,5 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q58')" data-correct-answer="D">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q58')" data-correct-answer="D">
 <strong style="display: block;">
 An investor holds a portfolio with three assets:  
 - Asset A: weight = 40%, σA = 10%  
@@ -9,13 +9,13 @@ An investor holds a portfolio with three assets:
 The pairwise correlations are: ρAB = 0.2, ρAC = 0.1, ρBC = 0.3.  
 What is the portfolio’s standard deviation (σp)?
 </strong>
-<label><input type="radio" name="module2_mcq_q58" value="A"> A. 11.0%</label><br>
-<label><input type="radio" name="module2_mcq_q58" value="B"> B. 11.5%</label><br>
-<label><input type="radio" name="module2_mcq_q58" value="C"> C. 12.0%</label><br>
-<label><input type="radio" name="module2_mcq_q58" value="D"> D. 12.1%</label><br>
-<label><input type="radio" name="module2_mcq_q58" value="E"> E. 12.5%</label><br>
+<label><input type="radio" name="module3_mcq_q58" value="A"> A. 11.0%</label><br>
+<label><input type="radio" name="module3_mcq_q58" value="B"> B. 11.5%</label><br>
+<label><input type="radio" name="module3_mcq_q58" value="C"> C. 12.0%</label><br>
+<label><input type="radio" name="module3_mcq_q58" value="D"> D. 12.1%</label><br>
+<label><input type="radio" name="module3_mcq_q58" value="E"> E. 12.5%</label><br>
 </form>
-<div id="feedback-module2_mcq_q58" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q58" class="feedback" data-status="" style="display:none;">
 ✅ Correct: D.  
 The portfolio variance is:  
 σp² = (0.4²)(0.10²) + (0.3²)(0.20²) + (0.3²)(0.15²)   

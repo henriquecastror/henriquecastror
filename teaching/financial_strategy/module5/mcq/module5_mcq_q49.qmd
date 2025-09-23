@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q49')" data-correct-answer="C">
+<strong style="display: block;">Which anomaly shows that high book-to-market stocks historically outperform low book-to-market stocks?</strong>
+
+<label><input type="radio" name="module5_mcq_q49" value="A"> A. Size effect</label><br>
+<label><input type="radio" name="module5_mcq_q49" value="B"> B. Momentum effect</label><br>
+<label><input type="radio" name="module5_mcq_q49" value="C"> C. Value effect</label><br>
+<label><input type="radio" name="module5_mcq_q49" value="D"> D. Liquidity effect</label><br>
+<label><input type="radio" name="module5_mcq_q49" value="E"> E. Disposition effect</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q49" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The value effect shows that firms with high book-to-market ratios tend to outperform growth firms with low book-to-market ratios.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q24')" data-correct-answer="B">
+<strong style="display: block;">Why does strong-form efficiency rarely hold in practice?</strong>
+
+<label><input type="radio" name="module5_mcq_q24" value="A"> A. Because public information is not available</label><br>
+<label><input type="radio" name="module5_mcq_q24" value="B"> B. Because insider information can sometimes generate abnormal returns</label><br>
+<label><input type="radio" name="module5_mcq_q24" value="C"> C. Because past prices are unpredictable</label><br>
+<label><input type="radio" name="module5_mcq_q24" value="D"> D. Because technical analysis is too powerful</label><br>
+<label><input type="radio" name="module5_mcq_q24" value="E"> E. Because markets never reflect risk preferences</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q24" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Strong-form efficiency assumes even insider information is reflected in prices, but in reality, insiders can often profit from privileged information (though illegal).
+</div>
+
+:::

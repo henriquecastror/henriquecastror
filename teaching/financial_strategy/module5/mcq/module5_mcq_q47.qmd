@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q47')" data-correct-answer="A">
+<strong style="display: block;">Why might liquidity risk cause deviations from perfect market efficiency?</strong>
+
+<label><input type="radio" name="module5_mcq_q47" value="A"> A. Illiquid assets command higher expected returns as compensation</label><br>
+<label><input type="radio" name="module5_mcq_q47" value="B"> B. Illiquidity ensures that alphas are always zero</label><br>
+<label><input type="radio" name="module5_mcq_q47" value="C"> C. Liquidity risk eliminates systematic risk</label><br>
+<label><input type="radio" name="module5_mcq_q47" value="D"> D. Liquidity has no impact on asset pricing</label><br>
+<label><input type="radio" name="module5_mcq_q47" value="E"> E. Liquidity is irrelevant in EMH</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q47" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Illiquid assets may yield higher returns to compensate investors for the difficulty of trading them, leading to deviations from perfect efficiency.
+</div>
+
+:::

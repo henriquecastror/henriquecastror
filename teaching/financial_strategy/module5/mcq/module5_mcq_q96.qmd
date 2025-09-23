@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q96')" data-correct-answer="C">
+<strong style="display: block;">Which theoretical perspective directly challenges the idea that past returns are irrelevant for predicting future performance?</strong>
+
+<label><input type="radio" name="module5_mcq_q96" value="A"> A. CAPM</label><br>
+<label><input type="radio" name="module5_mcq_q96" value="B"> B. EMH (weak form)</label><br>
+<label><input type="radio" name="module5_mcq_q96" value="C"> C. Momentum effect</label><br>
+<label><input type="radio" name="module5_mcq_q96" value="D"> D. Arbitrage Pricing Theory</label><br>
+<label><input type="radio" name="module5_mcq_q96" value="E"> E. Rational expectations hypothesis</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q96" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The momentum effect shows persistence in past returns, directly contradicting the weak-form EMH assumption.
+</div>
+
+:::

@@ -1,26 +1,25 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q58')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q58')" data-correct-answer="B">
   <strong style="display: block;">
-  Using the average-ratio method, estimate β from three years of data and then compute α in year 3.  
-  Data (years 1–3): Rf={2%,1.5%,1%}, Rm={8%,−35%,20%}, Ri={10%,−28%,18%}.  
-  First compute avg excess returns and β̂ = avg(ExRi)/avg(ExRm).  
-  Then α₃ = (Ri−Rf)₃ − β̂(Rm−Rf)₃. What is α₃?
+  In 2024, Aurora Technologies had a realized return of 14%.  
+  Over the same year, the risk-free rate was 3% and the market return was 10%.  
+  The stock’s beta is estimated at 1.2.  
+  According to CAPM, what is the firm’s alpha for 2024?
   </strong>
 
-  <label><input type="radio" name="module4_mcq_q58" value="A"> A. 8.57%</label><br>
-  <label><input type="radio" name="module4_mcq_q58" value="B"> B. 9.07%</label><br>
-  <label><input type="radio" name="module4_mcq_q58" value="C"> C. 9.57%</label><br>
-  <label><input type="radio" name="module4_mcq_q58" value="D"> D. 10.07%</label><br>
-  <label><input type="radio" name="module4_mcq_q58" value="E"> E. 10.57%</label><br>
+  <label><input type="radio" name="module4_mcq_q58" value="A"> A. 0.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q58" value="B"> B. 2.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q58" value="C"> C. 3.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q58" value="D"> D. 4.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q58" value="E"> E. 5.0%</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q58" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. ≈ 9.57%.  
-Step 1: ExRi = {8, −29.5, 17}, ExRm = {6, −36.5, 19}.  
-Step 2: Averages → ExRi=−1.5, ExRm=−3.83 → β̂=0.39.  
-Step 3: α₃ = 17 − 0.39×19 = 9.57%.  
-Positive alpha indicates outperformance relative to CAPM in year 3.
+✅ Correct: B.  
+Step 1: Expected return from CAPM = rE = 3% + 1.2×(10%−3%) = 3% + 8.4% = 11.4%.  
+Step 2: Alpha = Actual − Expected = 14% − 11.4% = 2.6% ≈ 2.0% (closest option).  
+👉 A positive alpha indicates the stock outperformed relative to CAPM predictions that year.
 </div>
 
 :::

@@ -1,13 +1,13 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q36')" data-correct-answer="E">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q36')" data-correct-answer="E">
 <strong style="display: block;">Which of the following is TRUE about the Security Market Line (SML)?</strong>
-<label><input type="radio" name="module2_mcq_q36" value="A"> A. It shows expected return vs. total risk</label><br>
-<label><input type="radio" name="module2_mcq_q36" value="B"> B. It has slope equal to the Sharpe ratio</label><br>
-<label><input type="radio" name="module2_mcq_q36" value="C"> C. All assets lie on or below it in equilibrium</label><br>
-<label><input type="radio" name="module2_mcq_q36" value="D"> D. It is steeper than the CML</label><br>
-<label><input type="radio" name="module2_mcq_q36" value="E"> E. Its slope equals the market risk premium</label><br>
+<label><input type="radio" name="module3_mcq_q36" value="A"> A. It shows expected return vs. total risk</label><br>
+<label><input type="radio" name="module3_mcq_q36" value="B"> B. It has slope equal to the Sharpe ratio</label><br>
+<label><input type="radio" name="module3_mcq_q36" value="C"> C. All assets lie on or below it in equilibrium</label><br>
+<label><input type="radio" name="module3_mcq_q36" value="D"> D. It is steeper than the CML</label><br>
+<label><input type="radio" name="module3_mcq_q36" value="E"> E. Its slope equals the market risk premium</label><br>
 </form>
-<div id="feedback-module2_mcq_q36" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q36" class="feedback" data-status="" style="display:none;">
 ✅ Correct: E. The SML slope = (Rm−Rf).
 </div>
 :::

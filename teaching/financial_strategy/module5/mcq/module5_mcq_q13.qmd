@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q13')" data-correct-answer="C">
+<strong style="display: block;">Which of the following anomalies suggests that small-cap stocks historically outperform large-cap stocks?</strong>
+
+<label><input type="radio" name="module5_mcq_q13" value="A"> A. Momentum effect</label><br>
+<label><input type="radio" name="module5_mcq_q13" value="B"> B. Value effect</label><br>
+<label><input type="radio" name="module5_mcq_q13" value="C"> C. Size effect</label><br>
+<label><input type="radio" name="module5_mcq_q13" value="D"> D. Disposition effect</label><br>
+<label><input type="radio" name="module5_mcq_q13" value="E"> E. Overconfidence bias</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q13" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The size effect indicates that small-cap stocks tend to earn higher returns than large-cap stocks, even after adjusting for risk.
+</div>
+
+:::

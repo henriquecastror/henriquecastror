@@ -1,0 +1,220 @@
+---
+title: "Personal reports"
+---
+
+<script>
+  const SLIDE_ID = "reports";
+  const REPORTS_BASE = "https://course-chat.hcmrtns.workers.dev";
+</script>
+
+
+
+
+
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800 */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a;
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones/links */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child { text-align: center; }
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) { text-align: center; }
+
+/* ===== Ações do relatório (botões) ===== */
+.report-actions{ margin: 1.25rem 0 1.5rem; display:flex; gap:.8rem; flex-wrap:wrap; justify-content:center }
+.report-btn{
+  --bg1:#4f46e5; --bg2:#7c3aed; --ink:#fff;
+  display:inline-flex; align-items:center; gap:.55rem;
+  padding:.8rem 1.15rem; border-radius:999px; font-weight:600;
+  color:var(--ink); text-decoration:none;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 10px 18px rgba(79,70,229,.25);
+  transition:transform .08s ease, box-shadow .08s ease, filter .08s ease;
+}
+.report-btn:hover{ transform:translateY(-1px) scale(1.01); box-shadow:0 12px 22px rgba(79,70,229,.32); filter:saturate(1.05) }
+.report-btn:active{ transform:translateY(0) scale(.99) }
+.report-icon{ display:inline-grid; place-items:center; width:1.25rem; height:1.25rem; border-radius:999px; background:rgba(255,255,255,.18); font-size:.85rem }
+
+/* Notas/footers */
+.small-note{ font-size:.9rem; color:#475569; margin-top:.5rem; text-align:center }
+@media (prefers-color-scheme: dark){
+  .report-btn{ box-shadow:0 10px 18px rgba(0,0,0,.35) }
+  .small-note{ color:#94a3b8 }
+}
+</style>
+```
+
+
+
+::: {.callout-note}
+
+**For students**
+
+This page gives you access to your **personal report** with all your activities before midterm.
+
+**Reports are private**: you must be logged in to view or download.
+
+You can use this report to **compare your performance** with your peers and to **assess where you can improve**. 
+
+:::
+
+
+
+{{< include login-start.html >}}
+
+
+
+
+
+
+
+<div class="report-actions">
+  <a id="btn-report-pdf"
+     class="report-btn"
+     href="javascript:void(0)"
+     role="button"
+     aria-label="Download my report as PDF">
+    <span class="report-icon" aria-hidden="true">⬇️</span>
+    <span>Download PDF</span>
+  </a>
+</div>
+
+
+<script>
+(function(){
+  const BTN  = document.getElementById("btn-report-pdf");
+  const BASE = REPORTS_BASE; // já definido no topo da página
+
+  // ---------- Coleta do student_id ----------
+  const norm = s => {
+    const r = String(s||"").trim().toLowerCase();
+    return r.includes("@") ? r.split("@")[0] : r;
+  };
+  const looksLikeId = v => /^[a-z0-9._-]{2,}$/i.test(v || "");
+
+  function fromQuery(){
+    const p = new URLSearchParams(location.search);
+    const v = norm(p.get("me") || p.get("sid") || "");
+    return looksLikeId(v) ? v : "";
+  }
+  function fromStorage(){
+    try{
+      const keys = [
+        "student_login","vhcm_current_user","hcm_current_user",
+        "current_user","user_login","login","user","sid","student"
+      ];
+      for (const k of keys){
+        const v = norm(localStorage.getItem(k) || sessionStorage.getItem(k) || "");
+        if (looksLikeId(v)) return v;
+      }
+      // heurística: varre tudo
+      for (const S of [localStorage, sessionStorage]){
+        for (let i=0;i<S.length;i++){
+          const val = norm(S.getItem(S.key(i)));
+          if (looksLikeId(val)) return val;
+          if (/^[^@\s]+@[^@\s]+$/.test(val)) return norm(val);
+        }
+      }
+    }catch{}
+    // possíveis variáveis globais do seu gate
+    try{
+      if (looksLikeId(window.CURRENT_STUDENT)) return norm(window.CURRENT_STUDENT);
+      if (looksLikeId(window.__LOGIN?.studentId)) return norm(window.__LOGIN.studentId);
+    }catch{}
+    return "";
+  }
+  function fromCookies(){
+    try{
+      const bag = Object.fromEntries(document.cookie.split(/; */).filter(Boolean).map(kv=>{
+        const i = kv.indexOf("="); return [decodeURIComponent(kv.slice(0,i)), decodeURIComponent(kv.slice(i+1))];
+      }));
+      const v = norm(bag.student_id || bag.sid || bag.hcm_student || "");
+      if (looksLikeId(v)) return v;
+      const email = (document.cookie.match(/(?:^|;)\s*[^=]+=([^;@]+@[^;]+)/)||[])[1];
+      if (email) return norm(email);
+    }catch{}
+    return "";
+  }
+  function getStudent(){ return fromQuery() || fromStorage() || fromCookies() || ""; }
+
+  // ---------- Ação do botão ----------
+  async function openMyPdf(){
+    const sid = getStudent();
+    if (!sid){ alert("Faça login primeiro para gerar seu PDF."); return; }
+
+    const label = BTN.innerHTML;
+    BTN.innerHTML = "Gerando…";
+    BTN.style.opacity = "0.7";
+    BTN.style.pointerEvents = "none";
+
+    // Abre a aba antes do fetch para evitar bloqueio
+    const win = window.open("", "_blank");
+
+    try{
+      const res = await fetch(BASE + "/reports/html", {
+        method: "GET",
+        headers: { "x-student-id": sid }
+      });
+      if (!res.ok){
+        win.close();
+        alert("Falhou: " + res.status + " — tente relogar.");
+        return;
+      }
+      const blob = await res.blob();
+      const url  = URL.createObjectURL(blob);
+      win.location = url;                  // carrega o PDF na nova aba
+      setTimeout(()=>URL.revokeObjectURL(url), 60000);
+    }catch(e){
+      win.close();
+      alert("Erro ao gerar PDF: " + e.message);
+    }finally{
+      BTN.innerHTML = label;
+      BTN.style.opacity = "1";
+      BTN.style.pointerEvents = "auto";
+    }
+  }
+
+  BTN.addEventListener("click", openMyPdf);
+})();
+</script>
+
+
+{{< include login-end.html >}}
+

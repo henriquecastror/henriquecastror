@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q100')" data-correct-answer="C">
+<strong style="display: block;">Why is the persistence of mutual fund underperformance strong evidence in favor of EMH?</strong>
+
+<label><input type="radio" name="module5_mcq_q100" value="A"> A. Because it shows markets are irrational</label><br>
+<label><input type="radio" name="module5_mcq_q100" value="B"> B. Because it confirms that managers add positive alpha after fees</label><br>
+<label><input type="radio" name="module5_mcq_q100" value="C"> C. Because it demonstrates the difficulty of consistently beating passive benchmarks</label><br>
+<label><input type="radio" name="module5_mcq_q100" value="D"> D. Because it implies arbitrage always eliminates mispricing</label><br>
+<label><input type="radio" name="module5_mcq_q100" value="E"> E. Because it proves CAPM is always correct</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q100" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Persistent underperformance of active mutual funds supports EMH’s claim that consistent outperformance after fees is unlikely.
+</div>
+
+:::

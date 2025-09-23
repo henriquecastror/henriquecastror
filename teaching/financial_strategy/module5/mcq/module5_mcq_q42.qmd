@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q42')" data-correct-answer="A">
+<strong style="display: block;">Why do bubbles, such as the dot-com bubble, pose a challenge to the EMH?</strong>
+
+<label><input type="radio" name="module5_mcq_q42" value="A"> A. They show that prices may deviate significantly from fundamentals for extended periods</label><br>
+<label><input type="radio" name="module5_mcq_q42" value="B"> B. They prove that technical analysis is always valid</label><br>
+<label><input type="radio" name="module5_mcq_q42" value="C"> C. They demonstrate that insider trading never occurs</label><br>
+<label><input type="radio" name="module5_mcq_q42" value="D"> D. They confirm that beta perfectly explains returns</label><br>
+<label><input type="radio" name="module5_mcq_q42" value="E"> E. They indicate that fees always reduce alpha</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q42" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Bubbles indicate that prices can diverge from fundamentals for long periods, challenging the EMH’s prediction of rapid correction.
+</div>
+
+:::

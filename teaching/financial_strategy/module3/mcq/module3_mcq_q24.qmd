@@ -1,16 +1,16 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q24')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q24')" data-correct-answer="C">
 <strong style="display: block;">
 In modern portfolio theory, the expected return of a portfolio is a fundamental concept used to guide investment decisions. 
 Which of the following statements best describes how the expected return of a portfolio is determined?
 </strong>
-<label><input type="radio" name="module2_mcq_q24" value="A"> A. It is equal to the risk-free rate plus the weighted average volatility of the assets in the portfolio.</label><br>
-<label><input type="radio" name="module2_mcq_q24" value="B"> B. It is calculated as the geometric average of individual asset returns, adjusted for portfolio beta.</label><br>
-<label><input type="radio" name="module2_mcq_q24" value="C"> C. It is the weighted average of the expected returns of the individual assets, with weights corresponding to their proportion in the portfolio.</label><br>
-<label><input type="radio" name="module2_mcq_q24" value="D"> D. It is determined by multiplying the portfolio’s total volatility by the market risk premium.</label><br>
-<label><input type="radio" name="module2_mcq_q24" value="E"> E. It is estimated by adding each asset’s alpha to the overall market return.</label><br>
+<label><input type="radio" name="module3_mcq_q24" value="A"> A. It is equal to the risk-free rate plus the weighted average volatility of the assets in the portfolio.</label><br>
+<label><input type="radio" name="module3_mcq_q24" value="B"> B. It is calculated as the geometric average of individual asset returns, adjusted for portfolio beta.</label><br>
+<label><input type="radio" name="module3_mcq_q24" value="C"> C. It is the weighted average of the expected returns of the individual assets, with weights corresponding to their proportion in the portfolio.</label><br>
+<label><input type="radio" name="module3_mcq_q24" value="D"> D. It is determined by multiplying the portfolio’s total volatility by the market risk premium.</label><br>
+<label><input type="radio" name="module3_mcq_q24" value="E"> E. It is estimated by adding each asset’s alpha to the overall market return.</label><br>
 </form>
-<div id="feedback-module2_mcq_q24" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q24" class="feedback" data-status="" style="display:none;">
 ✅ Correct: C. The expected return of a portfolio is a weighted average of the expected returns of the assets that compose it, with the weights given by the relative share of each asset in the portfolio. This property highlights that expected return depends on allocation, not on correlations or volatilities.
 </div>
 :::

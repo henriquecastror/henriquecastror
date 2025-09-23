@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q26')" data-correct-answer="B">
+<strong style="display: block;">Why do professional fund managers often deliver negative net alphas?</strong>
+
+<label><input type="radio" name="module5_mcq_q26" value="A"> A. Because they systematically misinterpret information</label><br>
+<label><input type="radio" name="module5_mcq_q26" value="B"> B. Because transaction costs and management fees outweigh their skill</label><br>
+<label><input type="radio" name="module5_mcq_q26" value="C"> C. Because they invest only in passive strategies</label><br>
+<label><input type="radio" name="module5_mcq_q26" value="D"> D. Because they focus exclusively on technical analysis</label><br>
+<label><input type="radio" name="module5_mcq_q26" value="E"> E. Because they hold overly diversified portfolios</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q26" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Although some managers may generate gross alpha, after fees and costs most deliver negative net alphas relative to passive benchmarks.
+</div>
+
+:::

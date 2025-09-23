@@ -1,19 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q96')" data-correct-answer="C">
-  <strong style="display: block;">
-  Why might empirical tests of the CAPM often find that low-beta stocks earn higher returns than predicted, while high-beta stocks earn lower returns?
-  </strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q96')" data-correct-answer="B">
+  <strong style="display: block;">An analyst is estimating the cost of equity using CAPM. She argues that since the firm operates in a very cyclical industry, she should add an extra “cyclicality premium” on top of the CAPM result. Which is the most rigorous criticism of this approach?</strong>
 
-  <label><input type="radio" name="module4_mcq_q96" value="A"> A. Because the CAPM systematically underestimates idiosyncratic risk premiums.</label><br>
-  <label><input type="radio" name="module4_mcq_q96" value="B"> B. Because the equity risk premium is mismeasured and often negative in practice.</label><br>
-  <label><input type="radio" name="module4_mcq_q96" value="C"> C. Because leverage and borrowing constraints push investors toward high-beta stocks, depressing their returns relative to low-beta stocks.</label><br>
-  <label><input type="radio" name="module4_mcq_q96" value="D"> D. Because low-beta stocks are always more illiquid and must compensate with higher returns.</label><br>
-  <label><input type="radio" name="module4_mcq_q96" value="E"> E. Because estimation errors in beta necessarily reverse the CAPM predictions.</label><br>
+  <label><input type="radio" name="module4_mcq_q96" value="A"> A. It is acceptable, since CAPM ignores macroeconomic cycles.</label><br>
+  <label><input type="radio" name="module4_mcq_q96" value="B"> B. It is incorrect, because the effect of cyclicality is already embedded in the firm’s beta, which measures sensitivity to market conditions.</label><br>
+  <label><input type="radio" name="module4_mcq_q96" value="C"> C. It is necessary, because CAPM only accounts for idiosyncratic risk, not systematic cyclicality.</label><br>
+  <label><input type="radio" name="module4_mcq_q96" value="D"> D. It is optional, as CAPM can be adjusted with any additional premiums the analyst considers relevant.</label><br>
+  <label><input type="radio" name="module4_mcq_q96" value="E"> E. It depends on whether the firm’s competitors also adjust their CAPM estimates.</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q96" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. Evidence suggests that leverage constraints lead investors to bid up high-beta stocks, lowering their realized returns, while low-beta stocks deliver higher returns than predicted.
+✅ Correct: B. In CAPM, the beta coefficient already captures the degree to which a firm’s cash flows are affected by cyclical market fluctuations. Adding an arbitrary “cyclicality premium” would double-count the same risk, leading to an overestimation of the cost of equity.
 </div>
 
 :::

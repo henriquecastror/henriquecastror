@@ -1,31 +1,29 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q51')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q51')" data-correct-answer="B">
   <strong style="display: block;">
-  Two comparable firms define the industry risk.  
-  Comparable A: E=$7bn, D=$3bn, Cash=$1bn, βE=1.20, rating BBB.  
-  Comparable B: E=$5bn, D=$6bn, Cash=$2bn, βE=1.60, rating BB.  
-  Use βD,BBB=0.10 and βD,BB=0.17.  
-  Use net debt and EV=E+D−Cash to compute each asset beta, take the EV-weighted industry asset beta, then re-lever to a project with target D/E=0.8 (same BBB debt).  
-  With Rf=3%, MRP=6%, and τ=25%, what is the project’s WACC?
+  Aurora Technologies is evaluating a new project.  
+  Industry analysis suggests an average asset beta of 0.9.  
+  The firm plans to finance the project with a target debt-to-equity ratio of 0.5.  
+  Assume debt beta ≈ 0, Rf=3%, and MRP=6%.  
+  What is the project’s WACC (ignore taxes)?
   </strong>
 
-  <label><input type="radio" name="module4_mcq_q51" value="A"> A. 7.36%</label><br>
-  <label><input type="radio" name="module4_mcq_q51" value="B"> B. 7.86%</label><br>
-  <label><input type="radio" name="module4_mcq_q51" value="C"> C. 8.36%</label><br>
-  <label><input type="radio" name="module4_mcq_q51" value="D"> D. 8.86%</label><br>
-  <label><input type="radio" name="module4_mcq_q51" value="E"> E. 9.36%</label><br>
+  <label><input type="radio" name="module4_mcq_q51" value="A"> A. 7.8%</label><br>
+  <label><input type="radio" name="module4_mcq_q51" value="B"> B. 8.1%</label><br>
+  <label><input type="radio" name="module4_mcq_q51" value="C"> C. 8.4%</label><br>
+  <label><input type="radio" name="module4_mcq_q51" value="D"> D. 8.7%</label><br>
+  <label><input type="radio" name="module4_mcq_q51" value="E"> E. 9.0%</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q51" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. ≈ 8.36%.  
-• EV(A)=7+3−1=9; βA=(7/9)(1.20)+(2/9)(0.10)=0.96.  
-• EV(B)=5+6−2=9; βA=(5/9)(1.60)+(4/9)(0.17)=1.01.  
-• Industry βA=(0.96+1.01)/2=0.99.  
-• Re-lever D/E=0.8 → βE≈1.25.  
-• rE=3%+1.25×6%=10.5%, rD=3.6%.  
-• WACC=0.556×10.5%+0.444×3.6%(0.75)=8.36%.  
-👉 Net debt adjustment avoids overstating risk when firms hold cash.
+✅ Correct: B.  
+• Re-lever equity beta: βE = βA × (1 + D/E) = 0.9 × (1 + 0.5) = 1.35.  
+• Cost of equity: rE = 3% + 1.35×6% = 11.1%.  
+• Weights: E/V = 0.667, D/V = 0.333.  
+• WACC = 0.667×11.1% + 0.333×3% ≈ 8.1%.  
+👉 The project’s discount rate reflects industry risk (via βA) and the chosen capital structure.
 </div>
 
 :::
+

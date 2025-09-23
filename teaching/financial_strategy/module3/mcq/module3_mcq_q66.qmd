@@ -1,17 +1,17 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q66')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q66')" data-correct-answer="C">
 <strong style="display: block;">
 You hold a stock with **expected return 14%** and **volatility 28%**.  
 The risk-free rate is 3% and the market portfolio has **expected return 11%** and **volatility 16%**.  
 According to the **Capital Market Line (CML)**, what is the **minimum volatility** you can achieve while targeting the **same 14% expected return** as the stock?  
 </strong>
-<label><input type="radio" name="module2_mcq_q66" value="A"> A. 18.0%</label><br>
-<label><input type="radio" name="module2_mcq_q66" value="B"> B. 20.0%</label><br>
-<label><input type="radio" name="module2_mcq_q66" value="C"> C. 22.0%</label><br>
-<label><input type="radio" name="module2_mcq_q66" value="D"> D. 24.0%</label><br>
-<label><input type="radio" name="module2_mcq_q66" value="E"> E. 28.0%</label><br>
+<label><input type="radio" name="module3_mcq_q66" value="A"> A. 18.0%</label><br>
+<label><input type="radio" name="module3_mcq_q66" value="B"> B. 20.0%</label><br>
+<label><input type="radio" name="module3_mcq_q66" value="C"> C. 22.0%</label><br>
+<label><input type="radio" name="module3_mcq_q66" value="D"> D. 24.0%</label><br>
+<label><input type="radio" name="module3_mcq_q66" value="E"> E. 28.0%</label><br>
 </form>
-<div id="feedback-module2_mcq_q66" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q66" class="feedback" data-status="" style="display:none;">
 ✅ Correct: C. On the CML, any target return is achieved with the **minimum variance** by combining the risk-free asset and the **market (tangency) portfolio**:
 \(E[R]=r_f + x\,(E[R_m]-r_f)\).
 For 14%: \(x=\dfrac{0.14-0.03}{0.11-0.03}=1.375\).

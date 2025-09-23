@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q36')" data-correct-answer="B">
+<strong style="display: block;">What is the main lesson from evidence that most active mutual funds underperform passive benchmarks after fees?</strong>
+
+<label><input type="radio" name="module5_mcq_q36" value="A"> A. Markets are always inefficient</label><br>
+<label><input type="radio" name="module5_mcq_q36" value="B"> B. Passive investing is generally superior for most investors</label><br>
+<label><input type="radio" name="module5_mcq_q36" value="C"> C. Active management eliminates behavioral biases</label><br>
+<label><input type="radio" name="module5_mcq_q36" value="D"> D. CAPM does not apply to mutual funds</label><br>
+<label><input type="radio" name="module5_mcq_q36" value="E"> E. Index funds are always risk-free</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q36" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Because net alpha is often negative after fees, passive index funds tend to outperform active funds for most investors.
+</div>
+
+:::

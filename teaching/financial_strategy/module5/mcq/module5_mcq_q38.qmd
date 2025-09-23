@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q38')" data-correct-answer="A">
+<strong style="display: block;">Which of the following is a critique of using market indices as proxies for the true market portfolio in CAPM tests?</strong>
+
+<label><input type="radio" name="module5_mcq_q38" value="A"> A. Market indices exclude non-traded assets like human capital</label><br>
+<label><input type="radio" name="module5_mcq_q38" value="B"> B. Indices always deliver positive alphas</label><br>
+<label><input type="radio" name="module5_mcq_q38" value="C"> C. Indices capture all forms of systematic risk</label><br>
+<label><input type="radio" name="module5_mcq_q38" value="D"> D. Indices never reflect firm-specific risk</label><br>
+<label><input type="radio" name="module5_mcq_q38" value="E"> E. Indices eliminate the need for diversification</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q38" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Market proxies like the S&P 500 exclude major components of the true market portfolio, such as human capital and real estate.
+</div>
+
+:::

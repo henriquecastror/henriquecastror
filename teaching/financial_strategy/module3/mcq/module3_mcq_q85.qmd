@@ -1,13 +1,13 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q85')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q85')" data-correct-answer="C">
 <strong style="display: block;">Which is FALSE about the Security Market Line (SML)?</strong>
-<label><input type="radio" name="module2_mcq_q85" value="A"> A. It has slope equal to the market risk premium</label><br>
-<label><input type="radio" name="module2_mcq_q85" value="B"> B. It shows expected return vs beta</label><br>
-<label><input type="radio" name="module2_mcq_q85" value="C"> C. It applies only to risk-free assets</label><br>
-<label><input type="radio" name="module2_mcq_q85" value="D"> D. Mispriced assets lie off it</label><br>
-<label><input type="radio" name="module2_mcq_q85" value="E"> E. Correctly priced assets lie on it</label><br>
+<label><input type="radio" name="module3_mcq_q85" value="A"> A. It has slope equal to the market risk premium</label><br>
+<label><input type="radio" name="module3_mcq_q85" value="B"> B. It shows expected return vs beta</label><br>
+<label><input type="radio" name="module3_mcq_q85" value="C"> C. It applies only to risk-free assets</label><br>
+<label><input type="radio" name="module3_mcq_q85" value="D"> D. Mispriced assets lie off it</label><br>
+<label><input type="radio" name="module3_mcq_q85" value="E"> E. Correctly priced assets lie on it</label><br>
 </form>
-<div id="feedback-module2_mcq_q85" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q85" class="feedback" data-status="" style="display:none;">
 ✅ Correct: C. The SML applies to all assets, not just risk-free.
 </div>
 :::

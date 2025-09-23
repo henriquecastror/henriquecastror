@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q63')" data-correct-answer="C">
+<strong style="display: block;">A fund can generate α = 1.5% on $300m. Beyond that, α=0. Fees = 0.5% AUM. At equilibrium, what AUM will the fund reach?</strong>
+
+<label><input type="radio" name="module5_mcq_q63" value="A"> A. $300m</label><br>
+<label><input type="radio" name="module5_mcq_q63" value="B"> B. $600m</label><br>
+<label><input type="radio" name="module5_mcq_q63" value="C"> C. $900m</label><br>
+<label><input type="radio" name="module5_mcq_q63" value="D"> D. $1,200m</label><br>
+<label><input type="radio" name="module5_mcq_q63" value="E"> E. $1,500m</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q63" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Dollar alpha = 0.015×300m = 4.5m. Fees = 0.5%×AUM. Equilibrium: 0 = 4.5 − 0.005×AUM → AUM = $900m.
+</div>
+
+:::

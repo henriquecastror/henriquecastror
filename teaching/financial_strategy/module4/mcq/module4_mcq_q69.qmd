@@ -1,16 +1,19 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q69')" data-correct-answer="B">
-  <strong style="display: block;">Inflation complicates cost of capital estimation. A firm mistakenly discounts real cash flows at a nominal WACC. What is the most likely consequence of this mismatch?</strong>
-<label><input type="radio" name="module4_mcq_q69" value="A"> A. The NPV is overstated, leading to excessive project acceptance.</label><br>
-<label><input type="radio" name="module4_mcq_q69" value="B"> B. The NPV is understated, leading to excessive project rejection.</label><br>
-<label><input type="radio" name="module4_mcq_q69" value="C"> C. The NPV is unaffected, because real and nominal rates are interchangeable.</label><br>
-<label><input type="radio" name="module4_mcq_q69" value="D"> D. The CAPM automatically adjusts for inflation, so no issue arises.</label><br>
-<label><input type="radio" name="module4_mcq_q69" value="E"> E. Nominal WACC is always higher, so projects will look artificially attractive.</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q69')" data-correct-answer="C">
+  <strong style="display: block;">
+  An analyst estimates a firm’s cost of equity using CAPM with β=1.2, but she mistakenly uses the short-term T-bill rate (1%) as the risk-free rate,  even though the project horizon is 10 years. What is the main issue with this approach?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q69" value="A"> A. The market risk premium already accounts for horizon differences, so no error occurs.</label><br>
+  <label><input type="radio" name="module4_mcq_q69" value="B"> B. Short-term T-bills are always preferable as risk-free rates in CAPM.</label><br>
+  <label><input type="radio" name="module4_mcq_q69" value="C"> C. The risk-free rate should match the project’s horizon; using a short-term rate understates the true cost of equity.</label><br>
+  <label><input type="radio" name="module4_mcq_q69" value="D"> D. CAPM does not require a risk-free rate, so the choice is irrelevant.</label><br>
+  <label><input type="radio" name="module4_mcq_q69" value="E"> E. The beta will automatically adjust if the wrong risk-free rate is used.</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q69" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. Discounting real cash flows at a nominal WACC overstates the discount rate, undervaluing projects and biasing toward rejection.
+✅ Correct: C. In CAPM, the risk-free rate must correspond to the horizon of the project or asset being valued. Using a short-term T-bill for a long-term project underestimates the required return, biasing the cost of equity downward.
 </div>
 
 :::

@@ -1,13 +1,13 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q61')" data-correct-answer="E">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q61')" data-correct-answer="E">
 <strong style="display: block;">Which statement is TRUE about the Capital Market Line (CML)?</strong>
-<label><input type="radio" name="module2_mcq_q61" value="A"> A. It plots expected return vs beta</label><br>
-<label><input type="radio" name="module2_mcq_q61" value="B"> B. Its slope equals beta</label><br>
-<label><input type="radio" name="module2_mcq_q61" value="C"> C. It ignores the risk-free rate</label><br>
-<label><input type="radio" name="module2_mcq_q61" value="D"> D. It applies to all individual assets</label><br>
-<label><input type="radio" name="module2_mcq_q61" value="E"> E. It represents efficient portfolios of risk-free asset and the market portfolio</label><br>
+<label><input type="radio" name="module3_mcq_q61" value="A"> A. It plots expected return vs beta</label><br>
+<label><input type="radio" name="module3_mcq_q61" value="B"> B. Its slope equals beta</label><br>
+<label><input type="radio" name="module3_mcq_q61" value="C"> C. It ignores the risk-free rate</label><br>
+<label><input type="radio" name="module3_mcq_q61" value="D"> D. It applies to all individual assets</label><br>
+<label><input type="radio" name="module3_mcq_q61" value="E"> E. It represents efficient portfolios of risk-free asset and the market portfolio</label><br>
 </form>
-<div id="feedback-module2_mcq_q61" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q61" class="feedback" data-status="" style="display:none;">
 ✅ Correct: E. CML shows efficient portfolios mixing risk-free and market portfolio.
 </div>
 :::

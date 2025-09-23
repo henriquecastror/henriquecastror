@@ -1,13 +1,13 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q40')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q40')" data-correct-answer="C">
 <strong style="display: block;">If an asset’s alpha is positive relative to CAPM:</strong>
-<label><input type="radio" name="module2_mcq_q40" value="A"> A. Asset is fairly priced</label><br>
-<label><input type="radio" name="module2_mcq_q40" value="B"> B. Asset is overvalued</label><br>
-<label><input type="radio" name="module2_mcq_q40" value="C"> C. Asset is undervalued</label><br>
-<label><input type="radio" name="module2_mcq_q40" value="D"> D. Market is inefficient</label><br>
-<label><input type="radio" name="module2_mcq_q40" value="E"> E. Beta must be zero</label><br>
+<label><input type="radio" name="module3_mcq_q40" value="A"> A. Asset is fairly priced</label><br>
+<label><input type="radio" name="module3_mcq_q40" value="B"> B. Asset is overvalued</label><br>
+<label><input type="radio" name="module3_mcq_q40" value="C"> C. Asset is undervalued</label><br>
+<label><input type="radio" name="module3_mcq_q40" value="D"> D. Market is inefficient</label><br>
+<label><input type="radio" name="module3_mcq_q40" value="E"> E. Beta must be zero</label><br>
 </form>
-<div id="feedback-module2_mcq_q40" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q40" class="feedback" data-status="" style="display:none;">
 ✅ Correct: C. Positive alpha means actual return > CAPM prediction → undervalued.
 </div>
 :::

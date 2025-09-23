@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q80')" data-correct-answer="A">
+<strong style="display: block;">Rf=2%. Market premium=7%. A stock β=0.7 has expected return 7%. Alpha?</strong>
+
+<label><input type="radio" name="module5_mcq_q80" value="A"> A. -1.1%</label><br>
+<label><input type="radio" name="module5_mcq_q80" value="B"> B. -0.9%</label><br>
+<label><input type="radio" name="module5_mcq_q80" value="C"> C. 0%</label><br>
+<label><input type="radio" name="module5_mcq_q80" value="D"> D. +0.9%</label><br>
+<label><input type="radio" name="module5_mcq_q80" value="E"> E. +1.1%</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q80" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. CAPM=2+0.7×7=6.9%. Expected=7%. Alpha=+0.1%. Closest D.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q29')" data-correct-answer="B">
+<strong style="display: block;">According to behavioral finance, what is herding behavior?</strong>
+
+<label><input type="radio" name="module5_mcq_q29" value="A"> A. Following one's own private information consistently</label><br>
+<label><input type="radio" name="module5_mcq_q29" value="B"> B. Copying others’ trades rather than relying on independent analysis</label><br>
+<label><input type="radio" name="module5_mcq_q29" value="C"> C. Selling winners too early and holding losers too long</label><br>
+<label><input type="radio" name="module5_mcq_q29" value="D"> D. Preferring domestic stocks over foreign ones</label><br>
+<label><input type="radio" name="module5_mcq_q29" value="E"> E. Trading excessively due to overconfidence</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q29" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Herding behavior occurs when investors imitate the actions of others, which can amplify bubbles and crashes.
+</div>
+
+:::

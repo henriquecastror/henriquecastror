@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q11')" data-correct-answer="B">
+<strong style="display: block;">Which of the following best describes the weak form of the Efficient Market Hypothesis (EMH)?</strong>
+
+<label><input type="radio" name="module5_mcq_q11" value="A"> A. Prices incorporate all public and private information</label><br>
+<label><input type="radio" name="module5_mcq_q11" value="B"> B. Prices incorporate all historical price and volume data</label><br>
+<label><input type="radio" name="module5_mcq_q11" value="C"> C. Prices incorporate only insider information</label><br>
+<label><input type="radio" name="module5_mcq_q11" value="D"> D. Prices never follow a random walk</label><br>
+<label><input type="radio" name="module5_mcq_q11" value="E"> E. Prices always reflect investors’ emotions</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q11" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Weak-form efficiency means past prices and volumes are already reflected in current prices, leaving no predictable patterns.
+</div>
+
+:::

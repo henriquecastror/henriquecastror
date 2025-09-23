@@ -1,16 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q28')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q28')" data-correct-answer="B">
   <strong style="display: block;">Which situation illustrates a violation of the CAPM assumptions?</strong>
-<label><input type="radio" name="module4_mcq_q28" value="A"> A. Investors face homogeneous expectations about returns.</label><br>
-<label><input type="radio" name="module4_mcq_q28" value="B"> B. All assets are infinitely divisible.</label><br>
-<label><input type="radio" name="module4_mcq_q28" value="C"> C. Investors can borrow unlimited amounts at the risk-free rate.</label><br>
-<label><input type="radio" name="module4_mcq_q28" value="D"> D. The market portfolio is mean-variance efficient.</label><br>
-<label><input type="radio" name="module4_mcq_q28" value="E"> E. Expected returns increase linearly with beta.</label><br>
+
+  <label><input type="radio" name="module4_mcq_q28" value="A"> A. Investors have homogeneous expectations about returns and risks.</label><br>
+  <label><input type="radio" name="module4_mcq_q28" value="B"> B. Some investors face borrowing constraints and cannot access the risk-free rate for leverage.</label><br>
+  <label><input type="radio" name="module4_mcq_q28" value="C"> C. All assets are publicly traded and infinitely divisible.</label><br>
+  <label><input type="radio" name="module4_mcq_q28" value="D"> D. The market portfolio is assumed to be mean-variance efficient.</label><br>
+  <label><input type="radio" name="module4_mcq_q28" value="E"> E. Expected returns are assumed to increase linearly with beta.</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q28" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. Unlimited borrowing at the risk-free rate is unrealistic; this is a strong simplifying assumption of CAPM.
+✅ Correct: B. CAPM assumes investors can freely borrow and lend at the risk-free rate. In reality, borrowing constraints and different lending/borrowing rates mean this assumption is violated, which limits the model’s accuracy in practice.
 </div>
 
 :::

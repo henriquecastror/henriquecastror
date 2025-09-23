@@ -1,27 +1,32 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q57')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q57')" data-correct-answer="B">
   <strong style="display: block;">
-  Wyatt Group has three divisions with asset betas and perpetual FCF1/g as follows:  
-  Exploration β=1.4, FCF1=$500m, g=4%; Refining β=1.0, FCF1=$700m, g=2.5%; Retail β=0.7, FCF1=$900m, g=3%.  
-  With Rf=3%, MRP=6%, tax=25%, and target structure E=65%, D=35% (βD=0.05), compute WACC via value-weighted asset beta and re-leverage.
+  Wyatt Group has three divisions with the following characteristics:  
+  Exploration β=1.4, FCF₁=$500m, g=4%;  
+  Refining β=1.0, FCF₁=$700m, g=2.5%;  
+  Retail β=0.7, FCF₁=$900m, g=3%.  
+  Assume Rf=3% and MRP=6%.  
+  Using the divisional betas and value weights from their perpetuities, what is the group’s weighted average cost of capital (ignore taxes and debt)?
   </strong>
 
-  <label><input type="radio" name="module4_mcq_q57" value="A"> A. 7.14%</label><br>
-  <label><input type="radio" name="module4_mcq_q57" value="B"> B. 7.64%</label><br>
-  <label><input type="radio" name="module4_mcq_q57" value="C"> C. 8.14%</label><br>
-  <label><input type="radio" name="module4_mcq_q57" value="D"> D. 8.64%</label><br>
-  <label><input type="radio" name="module4_mcq_q57" value="E"> E. 9.14%</label><br>
+  <label><input type="radio" name="module4_mcq_q57" value="A"> A. 7.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q57" value="B"> B. 8.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q57" value="C"> C. 8.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q57" value="D"> D. 9.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q57" value="E"> E. 9.5%</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q57" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. ≈ 8.14%.  
-Step 1: Compute divisional costs → Exploration 11.4%, Refining 9.0%, Retail 7.2%.  
-Step 2: Value each via FCF/(r−g) → weights yield asset β ≈ 1.02.  
-Step 3: Re-lever with E=65%, D=35%: βE ≈ 1.55.  
-Step 4: rE=12.3%, rD=3.3%.  
-Step 5: WACC=0.65×12.3% + 0.35×3.3%(0.75) = 8.14%.  
-Shows the role of divisional risk, re-leveraging, and weighting in WACC.
+✅ Correct: B.  
+Step 1: Cost of equity per division → Exploration r=3%+1.4×6%=11.4%; Refining r=9.0%; Retail r=7.2%.  
+Step 2: Value each division via perpetuity:  
+• Exploration V=500/(0.114−0.04)=6.8bn.  
+• Refining V=700/(0.09−0.025)=10.8bn.  
+• Retail V=900/(0.072−0.03)=21.4bn.  
+Step 3: Weights ≈ 19%, 30%, 51%.  
+Step 4: WACC = 0.19×11.4% + 0.30×9.0% + 0.51×7.2% ≈ 8.0%.  
+👉 The weighted average reflects differences in divisional risk and growth.
 </div>
 
 :::

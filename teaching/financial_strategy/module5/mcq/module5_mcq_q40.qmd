@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q40')" data-correct-answer="B">
+<strong style="display: block;">Why might positive-alpha trading strategies persist in real markets?</strong>
+
+<label><input type="radio" name="module5_mcq_q40" value="A"> A. CAPM always underestimates risk premiums</label><br>
+<label><input type="radio" name="module5_mcq_q40" value="B"> B. Trading costs or behavioral limits to arbitrage prevent full exploitation</label><br>
+<label><input type="radio" name="module5_mcq_q40" value="C"> C. Investors ignore momentum and size effects</label><br>
+<label><input type="radio" name="module5_mcq_q40" value="D"> D. All investors have homogeneous expectations</label><br>
+<label><input type="radio" name="module5_mcq_q40" value="E"> E. Alpha is always equal to beta</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q40" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Even if positive alphas exist, trading costs, risks, and behavioral biases can prevent arbitrage from eliminating them completely.
+</div>
+
+:::

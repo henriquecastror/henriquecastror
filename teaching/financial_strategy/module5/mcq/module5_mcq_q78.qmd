@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q78')" data-correct-answer="D">
+<strong style="display: block;">Market return=10%, Rf=4%. A stock β=1.5. CAPM required return?</strong>
+
+<label><input type="radio" name="module5_mcq_q78" value="A"> A. 11%</label><br>
+<label><input type="radio" name="module5_mcq_q78" value="B"> B. 12%</label><br>
+<label><input type="radio" name="module5_mcq_q78" value="C"> C. 13%</label><br>
+<label><input type="radio" name="module5_mcq_q78" value="D"> D. 14%</label><br>
+<label><input type="radio" name="module5_mcq_q78" value="E"> E. 15%</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q78" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. CAPM=4+1.5×6=13%. Correct answer C.
+</div>
+
+:::

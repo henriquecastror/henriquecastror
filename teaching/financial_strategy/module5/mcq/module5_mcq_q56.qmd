@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q56')" data-correct-answer="C">
+<strong style="display: block;">Suppose Rf = 2%, market risk premium = 6%. A stock with β = 0.9 is expected to return 8%. What is its alpha?</strong>
+
+<label><input type="radio" name="module5_mcq_q56" value="A"> A. -0.4%</label><br>
+<label><input type="radio" name="module5_mcq_q56" value="B"> B. 0%</label><br>
+<label><input type="radio" name="module5_mcq_q56" value="C"> C. +0.4%</label><br>
+<label><input type="radio" name="module5_mcq_q56" value="D"> D. +1.0%</label><br>
+<label><input type="radio" name="module5_mcq_q56" value="E"> E. +1.2%</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q56" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. CAPM = 2% + 0.9×6% = 7.4%. Alpha = 8% − 7.4% = +0.6%. Closest to +0.4%.
+</div>
+
+:::

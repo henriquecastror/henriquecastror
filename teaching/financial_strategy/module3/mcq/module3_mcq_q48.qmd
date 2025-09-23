@@ -1,13 +1,13 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q48')" data-correct-answer="E">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q48')" data-correct-answer="E">
 <strong style="display: block;">Stock has E(R)=11%, β=0.9, Rf=3%, Rm=12%. According to CAPM, is it fairly priced?</strong>
-<label><input type="radio" name="module2_mcq_q48" value="A"> A. Overpriced, since CAPM = 10.2%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="B"> B. Underpriced, since CAPM = 12%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="C"> C. Overpriced, since CAPM = 11%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="D"> D. Underpriced, since CAPM = 9%</label><br>
-<label><input type="radio" name="module2_mcq_q48" value="E"> E. Fairly priced, since CAPM = 11%</label><br>
+<label><input type="radio" name="module3_mcq_q48" value="A"> A. Overpriced, since CAPM = 10.2%</label><br>
+<label><input type="radio" name="module3_mcq_q48" value="B"> B. Underpriced, since CAPM = 12%</label><br>
+<label><input type="radio" name="module3_mcq_q48" value="C"> C. Overpriced, since CAPM = 11%</label><br>
+<label><input type="radio" name="module3_mcq_q48" value="D"> D. Underpriced, since CAPM = 9%</label><br>
+<label><input type="radio" name="module3_mcq_q48" value="E"> E. Fairly priced, since CAPM = 11%</label><br>
 </form>
-<div id="feedback-module2_mcq_q48" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q48" class="feedback" data-status="" style="display:none;">
 ✅ Correct: E. CAPM = 3%+0.9×(12−3)%=11%. Fairly priced.
 </div>
 :::

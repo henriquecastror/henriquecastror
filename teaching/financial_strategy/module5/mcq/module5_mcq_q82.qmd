@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q82')" data-correct-answer="A">
+<strong style="display: block;">Why do multifactor models like Fama-French-Carhart often explain anomalies better than CAPM?</strong>
+
+<label><input type="radio" name="module5_mcq_q82" value="A"> A. They include additional systematic risk factors beyond market beta</label><br>
+<label><input type="radio" name="module5_mcq_q82" value="B"> B. They eliminate the need for diversification</label><br>
+<label><input type="radio" name="module5_mcq_q82" value="C"> C. They guarantee positive alpha for all portfolios</label><br>
+<label><input type="radio" name="module5_mcq_q82" value="D"> D. They assume investors behave irrationally</label><br>
+<label><input type="radio" name="module5_mcq_q82" value="E"> E. They adjust only for transaction costs</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q82" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Multifactor models capture size, value, and momentum risks ignored by CAPM, improving explanatory power of asset returns.
+</div>
+
+:::

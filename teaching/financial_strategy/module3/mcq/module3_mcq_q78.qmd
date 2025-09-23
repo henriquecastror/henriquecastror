@@ -1,16 +1,16 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q78')" data-correct-answer="B">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q78')" data-correct-answer="B">
 <strong style="display: block;">
 Two risky assets A and B have the same expected return but different volatilities, σ<sub>A</sub>=10% and σ<sub>B</sub>=20%. 
 As the correlation ρ between A and B varies from +0.9 down to −1, what happens to the feasible mean–variance set and the minimum-variance portfolio?
 </strong>
-<label><input type="radio" name="module2_mcq_q78" value="A"> A. Lower correlation raises expected returns but leaves risk unchanged.</label><br>
-<label><input type="radio" name="module2_mcq_q78" value="B"> B. As ρ decreases, the set shifts left (more diversification): the minimum achievable σ falls; at ρ = −1 there exists a combination with σ = 0 (e.g., w<sub>A</sub>=σ<sub>B</sub>/(σ<sub>A</sub>+σ<sub>B</sub>)).</label><br>
-<label><input type="radio" name="module2_mcq_q78" value="C"> C. The minimum σ is constant for any ρ; only the frontier’s slope changes.</label><br>
-<label><input type="radio" name="module2_mcq_q78" value="D"> D. Diversification benefits are identical for all ρ ≠ 1.</label><br>
-<label><input type="radio" name="module2_mcq_q78" value="E"> E. With ρ = +1 there is a zero-variance combination.</label><br>
+<label><input type="radio" name="module3_mcq_q78" value="A"> A. Lower correlation raises expected returns but leaves risk unchanged.</label><br>
+<label><input type="radio" name="module3_mcq_q78" value="B"> B. As ρ decreases, the set shifts left (more diversification): the minimum achievable σ falls; at ρ = −1 there exists a combination with σ = 0 (e.g., w<sub>A</sub>=σ<sub>B</sub>/(σ<sub>A</sub>+σ<sub>B</sub>)).</label><br>
+<label><input type="radio" name="module3_mcq_q78" value="C"> C. The minimum σ is constant for any ρ; only the frontier’s slope changes.</label><br>
+<label><input type="radio" name="module3_mcq_q78" value="D"> D. Diversification benefits are identical for all ρ ≠ 1.</label><br>
+<label><input type="radio" name="module3_mcq_q78" value="E"> E. With ρ = +1 there is a zero-variance combination.</label><br>
 </form>
-<div id="feedback-module2_mcq_q78" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q78" class="feedback" data-status="" style="display:none;">
 ✅ Correct: B. Portfolio variance is \( \mathrm{Var}(R_p)=w^2\sigma_A^2+(1-w)^2\sigma_B^2+2w(1-w)\rho\sigma_A\sigma_B \).  
 Lower ρ reduces the cross term, shifting the frontier left. The minimum σ declines with ρ, and when \( \rho=-1 \) there is an exact hedge with zero variance at \( w_A=\sigma_B/(\sigma_A+\sigma_B) \) (here \( w_A=20/(10+20)=2/3 \)).
 </div>

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q32')" data-correct-answer="B">
+<strong style="display: block;">According to CAPM, what type of risk is compensated with higher expected returns?</strong>
+
+<label><input type="radio" name="module5_mcq_q32" value="A"> A. Idiosyncratic risk</label><br>
+<label><input type="radio" name="module5_mcq_q32" value="B"> B. Systematic risk</label><br>
+<label><input type="radio" name="module5_mcq_q32" value="C"> C. Diversifiable risk</label><br>
+<label><input type="radio" name="module5_mcq_q32" value="D"> D. Firm-specific risk</label><br>
+<label><input type="radio" name="module5_mcq_q32" value="E"> E. Behavioral risk</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q32" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. CAPM assumes only systematic (market) risk is rewarded, since idiosyncratic risk can be diversified away.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q97')" data-correct-answer="A">
+<strong style="display: block;">Why is human capital considered a missing component of the true market portfolio in CAPM tests?</strong>
+
+<label><input type="radio" name="module5_mcq_q97" value="A"> A. Because it cannot be observed or traded directly</label><br>
+<label><input type="radio" name="module5_mcq_q97" value="B"> B. Because it is risk-free by definition</label><br>
+<label><input type="radio" name="module5_mcq_q97" value="C"> C. Because it has no correlation with financial assets</label><br>
+<label><input type="radio" name="module5_mcq_q97" value="D"> D. Because investors ignore it when forming expectations</label><br>
+<label><input type="radio" name="module5_mcq_q97" value="E"> E. Because it eliminates systematic risk</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q97" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Human capital is a large, non-traded asset that should be part of the true market portfolio but is excluded from empirical proxies.
+</div>
+
+:::

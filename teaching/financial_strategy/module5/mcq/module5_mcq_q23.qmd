@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q23')" data-correct-answer="B">
+<strong style="display: block;">In semi-strong form efficiency, which type of information is assumed to be reflected in stock prices?</strong>
+
+<label><input type="radio" name="module5_mcq_q23" value="A"> A. Only historical price data</label><br>
+<label><input type="radio" name="module5_mcq_q23" value="B"> B. All public information</label><br>
+<label><input type="radio" name="module5_mcq_q23" value="C"> C. Insider private information</label><br>
+<label><input type="radio" name="module5_mcq_q23" value="D"> D. Non-financial personal preferences</label><br>
+<label><input type="radio" name="module5_mcq_q23" value="E"> E. Future expectations not yet known</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q23" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Semi-strong form efficiency assumes that all publicly available information, such as earnings reports and news, is quickly incorporated into stock prices.
+</div>
+
+:::

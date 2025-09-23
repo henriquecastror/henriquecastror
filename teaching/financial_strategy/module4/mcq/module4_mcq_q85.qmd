@@ -1,21 +1,22 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q85')" data-correct-answer="A">
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q85')" data-correct-answer="C">
   <strong style="display: block;">
-  Suppose a firm operates in an environment of high and volatile inflation.  
-  Its CFO insists on using nominal WACC with real cash flows.  
-  What is the key theoretical inconsistency in this approach?
+  A utility company argues that because its revenues are very stable,  
+  it can apply the same corporate WACC to evaluate all new investments,  
+  including ventures in renewable energy that have much higher cash flow volatility.  
+  What is the flaw in this reasoning?
   </strong>
 
-  <label><input type="radio" name="module4_mcq_q85" value="A"> A. Discounting real cash flows with a nominal rate mismatches units, leading to undervaluation of projects.</label><br>
-  <label><input type="radio" name="module4_mcq_q85" value="B"> B. Inflation volatility has no effect on project valuation under CAPM.</label><br>
-  <label><input type="radio" name="module4_mcq_q85" value="C"> C. The firm should always ignore inflation when applying WACC.</label><br>
-  <label><input type="radio" name="module4_mcq_q85" value="D"> D. Real cash flows are automatically adjusted by nominal discounting.</label><br>
-  <label><input type="radio" name="module4_mcq_q85" value="E"> E. WACC must always be estimated using book-value weights in high-inflation environments.</label><br>
+  <label><input type="radio" name="module4_mcq_q85" value="A"> A. The WACC should always be based on industry averages, not company-specific data.</label><br>
+  <label><input type="radio" name="module4_mcq_q85" value="B"> B. Stable revenues imply that the firm has no systematic risk exposure.</label><br>
+  <label><input type="radio" name="module4_mcq_q85" value="C"> C. Different projects have different betas; applying the corporate WACC uniformly can misallocate capital.</label><br>
+  <label><input type="radio" name="module4_mcq_q85" value="D"> D. Renewable projects should always be valued with the risk-free rate since they are future-oriented.</label><br>
+  <label><input type="radio" name="module4_mcq_q85" value="E"> E. WACC must be constant across all divisions to preserve consistency in reporting.</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q85" class="feedback" data-status="" style="display:none;">
-✅ Correct: A. Consistency requires matching: real cash flows must be discounted with a real WACC, while nominal cash flows require a nominal WACC. Mixing the two biases valuations.
+✅ Correct: C. The appropriate discount rate depends on the project’s risk. Using the corporate WACC for all projects ignores differences in project betas. A renewable venture with higher systematic risk should be discounted at a higher rate than a stable utility project, otherwise the firm risks accepting value-destroying investments.
 </div>
 
 :::

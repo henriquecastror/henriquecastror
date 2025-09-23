@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q92')" data-correct-answer="B">
+<strong style="display: block;">Which argument best explains why anomalies like value and momentum may not disappear despite being well-documented?</strong>
+
+<label><input type="radio" name="module5_mcq_q92" value="A"> A. Investors universally ignore academic research</label><br>
+<label><input type="radio" name="module5_mcq_q92" value="B"> B. The anomalies represent compensation for hidden risk factors</label><br>
+<label><input type="radio" name="module5_mcq_q92" value="C"> C. CAPM fully explains them with beta alone</label><br>
+<label><input type="radio" name="module5_mcq_q92" value="D"> D. They occur only in emerging markets</label><br>
+<label><input type="radio" name="module5_mcq_q92" value="E"> E. Arbitrageurs immediately eliminate them</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q92" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Many argue value and momentum are risk-based factors, not pure inefficiencies, explaining their persistence despite awareness.
+</div>
+
+:::

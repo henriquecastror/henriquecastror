@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q88')" data-correct-answer="B">
+<strong style="display: block;">Which of the following best describes rational expectations in finance?</strong>
+
+<label><input type="radio" name="module5_mcq_q88" value="A"> A. Investors always predict future returns correctly</label><br>
+<label><input type="radio" name="module5_mcq_q88" value="B"> B. Investors use all available information correctly when forming expectations</label><br>
+<label><input type="radio" name="module5_mcq_q88" value="C"> C. Investors ignore risk factors not in CAPM</label><br>
+<label><input type="radio" name="module5_mcq_q88" value="D"> D. Investors never rely on public signals</label><br>
+<label><input type="radio" name="module5_mcq_q88" value="E"> E. Investors cannot misinterpret private signals</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q88" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Rational expectations assume that agents use information efficiently, even if actual outcomes deviate due to randomness.
+</div>
+
+:::

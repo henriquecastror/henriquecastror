@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q41')" data-correct-answer="B">
+<strong style="display: block;">Which form of the EMH suggests that analyzing publicly available financial reports should not consistently yield abnormal returns?</strong>
+
+<label><input type="radio" name="module5_mcq_q41" value="A"> A. Weak form</label><br>
+<label><input type="radio" name="module5_mcq_q41" value="B"> B. Semi-strong form</label><br>
+<label><input type="radio" name="module5_mcq_q41" value="C"> C. Strong form</label><br>
+<label><input type="radio" name="module5_mcq_q41" value="D"> D. Adaptive markets hypothesis</label><br>
+<label><input type="radio" name="module5_mcq_q41" value="E"> E. Behavioral hypothesis</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q41" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Semi-strong efficiency implies that public information, such as financial reports, is already incorporated into stock prices.
+</div>
+
+:::

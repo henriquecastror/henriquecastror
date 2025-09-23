@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q16')" data-correct-answer="C">
+<strong style="display: block;">Which form of the Efficient Market Hypothesis (EMH) implies that even insider information is already reflected in stock prices?</strong>
+
+<label><input type="radio" name="module5_mcq_q16" value="A"> A. Weak form</label><br>
+<label><input type="radio" name="module5_mcq_q16" value="B"> B. Semi-strong form</label><br>
+<label><input type="radio" name="module5_mcq_q16" value="C"> C. Strong form</label><br>
+<label><input type="radio" name="module5_mcq_q16" value="D"> D. Adaptive markets hypothesis</label><br>
+<label><input type="radio" name="module5_mcq_q16" value="E"> E. Rational expectations hypothesis</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q16" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Strong-form efficiency assumes that all information, public and private, is already incorporated into prices, leaving no room for abnormal profits even for insiders.
+</div>
+
+:::

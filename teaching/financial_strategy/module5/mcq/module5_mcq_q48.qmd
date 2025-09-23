@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q48')" data-correct-answer="B">
+<strong style="display: block;">Which of the following is a key limitation of the EMH?</strong>
+
+<label><input type="radio" name="module5_mcq_q48" value="A"> A. It ignores the role of risk</label><br>
+<label><input type="radio" name="module5_mcq_q48" value="B"> B. It assumes all investors are perfectly rational and process information correctly</label><br>
+<label><input type="radio" name="module5_mcq_q48" value="C"> C. It excludes market anomalies from consideration</label><br>
+<label><input type="radio" name="module5_mcq_q48" value="D"> D. It guarantees abnormal returns for passive investors</label><br>
+<label><input type="radio" name="module5_mcq_q48" value="E"> E. It does not apply to equity markets</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q48" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. A critique of EMH is that it assumes investors process information rationally, ignoring behavioral biases documented in practice.
+</div>
+
+:::

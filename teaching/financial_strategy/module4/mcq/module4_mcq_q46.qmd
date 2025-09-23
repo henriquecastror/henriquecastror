@@ -1,26 +1,26 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q46')" data-correct-answer="C">
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q46')" data-correct-answer="D">
   <strong style="display: block;">
   Aurora Technologies finances with $300m in equity and $200m in debt.  
-  The cost of equity (via CAPM) is 13%, and the bonds trade at 7% YTM. Corporate tax rate = 21%.  
-  Analysts note that 40% of the debt matures within 1 year (with little effective tax benefit) while 60% is long-term (full tax benefit).  
-  Adjust the effective cost of debt as r<sub>D,eff</sub> = 0.4×7% + 0.6×7%×(1−0.21). What is the firm’s WACC?
+  The cost of equity, estimated with CAPM, is 13%.  
+  The cost of debt, based on bond yields, is 7%.  
+  Assume no corporate taxes.  
+  What is the firm’s weighted average cost of capital (WACC)?
   </strong>
 
-  <label><input type="radio" name="module4_mcq_q46" value="A"> A. 9.8%</label><br>
-  <label><input type="radio" name="module4_mcq_q46" value="B"> B. 10.0%</label><br>
-  <label><input type="radio" name="module4_mcq_q46" value="C"> C. 10.3%</label><br>
+  <label><input type="radio" name="module4_mcq_q46" value="A"> A. 9.0%</label><br>
+  <label><input type="radio" name="module4_mcq_q46" value="B"> B. 9.5%</label><br>
+  <label><input type="radio" name="module4_mcq_q46" value="C"> C. 10.0%</label><br>
   <label><input type="radio" name="module4_mcq_q46" value="D"> D. 10.5%</label><br>
-  <label><input type="radio" name="module4_mcq_q46" value="E"> E. 10.8%</label><br>
+  <label><input type="radio" name="module4_mcq_q46" value="E"> E. 11.0%</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q46" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. ≈ 10.3%.  
-r<sub>D,eff</sub> = 0.4×7% + 0.6×7%×0.79 = 2.8% + 3.32% = 6.12%.  
-Weights: E/V=0.6; D/V=0.4.  
-WACC = 0.6×13% + 0.4×6.12% = 7.8% + 2.45% = 10.25% ≈ 10.3%.  
-👉 Debt maturity structure (short vs. long-term) affects the effective tax shield and therefore the WACC.
+✅ Correct: D.  
+Weights: Equity = 300/500 = 0.6, Debt = 200/500 = 0.4.  
+WACC = 0.6×13% + 0.4×7% = 7.8% + 2.8% = 10.6% ≈ 10.5%.  
+👉 With no taxes, the WACC is just the weighted average of equity and debt costs.
 </div>
 
 :::

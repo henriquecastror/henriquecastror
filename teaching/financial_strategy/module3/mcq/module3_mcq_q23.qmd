@@ -1,13 +1,13 @@
 ::: {.question-block}
-<form onsubmit="event.preventDefault(); checkAnswer('module2_mcq_q23')" data-correct-answer="B">
+<form onsubmit="event.preventDefault(); checkAnswer('module3_mcq_q23')" data-correct-answer="B">
 <strong style="display: block;">In the CAPM framework, the market portfolio:</strong>
-<label><input type="radio" name="module2_mcq_q23" value="A"> A. Contains only government bonds</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="B"> B. Is the combination of all risky assets in the economy</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="C"> C. Is chosen arbitrarily by investors</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="D"> D. Contains only large-cap stocks</label><br>
-<label><input type="radio" name="module2_mcq_q23" value="E"> E. Is equivalent to the risk-free asset</label><br>
+<label><input type="radio" name="module3_mcq_q23" value="A"> A. Contains only government bonds</label><br>
+<label><input type="radio" name="module3_mcq_q23" value="B"> B. Is the combination of all risky assets in the economy</label><br>
+<label><input type="radio" name="module3_mcq_q23" value="C"> C. Is chosen arbitrarily by investors</label><br>
+<label><input type="radio" name="module3_mcq_q23" value="D"> D. Contains only large-cap stocks</label><br>
+<label><input type="radio" name="module3_mcq_q23" value="E"> E. Is equivalent to the risk-free asset</label><br>
 </form>
-<div id="feedback-module2_mcq_q23" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module3_mcq_q23" class="feedback" data-status="" style="display:none;">
 ✅ Correct: B. The theoretical market portfolio includes all risky assets weighted by market value.
 </div>
 :::

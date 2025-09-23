@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q93')" data-correct-answer="B">
+<strong style="display: block;">Why is alpha considered a zero-sum game across all investors?</strong>
+
+<label><input type="radio" name="module5_mcq_q93" value="A"> A. Because not all investors diversify</label><br>
+<label><input type="radio" name="module5_mcq_q93" value="B"> B. Because the weighted average alpha of all positions must equal zero</label><br>
+<label><input type="radio" name="module5_mcq_q93" value="C"> C. Because alphas can only be positive in inefficient markets</label><br>
+<label><input type="radio" name="module5_mcq_q93" value="D"> D. Because beta already captures total return</label><br>
+<label><input type="radio" name="module5_mcq_q93" value="E"> E. Because alpha is identical to market volatility</label><br>
+</form>
+
+<div id="feedback-module5_mcq_q93" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Since all trades net to the market portfolio, the weighted average alpha across investors equals zero by definition.
+</div>
+
+:::

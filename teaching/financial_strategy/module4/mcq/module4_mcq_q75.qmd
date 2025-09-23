@@ -1,16 +1,21 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q75')" data-correct-answer="B">
-  <strong style="display: block;">Suppose a firm with high leverage argues its WACC is low because interest is tax deductible. What is the flaw in this reasoning?</strong>
-<label><input type="radio" name="module4_mcq_q75" value="A"> A. WACC always increases with leverage.</label><br>
-<label><input type="radio" name="module4_mcq_q75" value="B"> B. Default risk and higher required return on equity offset tax benefits, limiting the reduction in WACC.</label><br>
-<label><input type="radio" name="module4_mcq_q75" value="C"> C. Debt beta is always zero, so debt risk is irrelevant.</label><br>
-<label><input type="radio" name="module4_mcq_q75" value="D"> D. Tax shields always vanish in practice.</label><br>
-<label><input type="radio" name="module4_mcq_q75" value="E"> E. Equity cost does not change with leverage.</label><br>
+<form onsubmit="event.preventDefault(); checkAnswer('module4_mcq_q75')" data-correct-answer="D">
+  <strong style="display: block;">
+  An analyst claims that by simply lowering the firm’s beta estimate from 1.4 to 0.8,  
+  the company can reduce its cost of equity and improve valuation.  
+  What is the main problem with this reasoning?
+  </strong>
+
+  <label><input type="radio" name="module4_mcq_q75" value="A"> A. Beta is irrelevant for the CAPM, so the cost of equity does not change.</label><br>
+  <label><input type="radio" name="module4_mcq_q75" value="B"> B. The risk-free rate already captures systematic risk, making beta redundant.</label><br>
+  <label><input type="radio" name="module4_mcq_q75" value="C"> C. Changing beta automatically alters the market risk premium in CAPM.</label><br>
+  <label><input type="radio" name="module4_mcq_q75" value="D"> D. Beta is determined by the firm’s underlying business and cannot be arbitrarily adjusted to lower the cost of equity.</label><br>
+  <label><input type="radio" name="module4_mcq_q75" value="E"> E. Lower betas always lead to higher costs of equity, not lower.</label><br>
 </form>
 
 <div id="feedback-module4_mcq_q75" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. Leverage raises equity risk and expected return, offsetting tax shields. WACC reduction is limited by default risk and higher cost of equity.
+✅ Correct: D. Beta reflects the firm’s exposure to systematic market risk, which is linked to its operations and industry. It cannot be reduced by choice. If a firm operates in a volatile, cyclical sector, its beta — and thus its cost of equity — will remain high regardless of how managers wish to present it.
 </div>
 
 :::
