@@ -1,10 +1,32 @@
 ---
-title: "Self-quiz — Module 2"
+title: "Self-quiz — Module 1"
 
 ---
 
+
+::: {.callout-warning}
+### For students
+
+Give this a try and see how much of **Module 2** stuck!
+
+You can retake the self-quiz <strong>as many times as you like</strong>—each attempt shuffles the questions so you’ll get fresh practice.
+
+Aim to improve your score with every run, review what you miss, and come back anytime. You’ve got this! 🚀
+
+You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions**. 
+
+::: 
+
+
+
+
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
+| 1 | ch10 | [🎞️](p2.html) | [✅](p2tf.html) | [❓](p2mcq.html) | [🔢](p2num.html) | [📝](p2long.html) | [🧪](p2selfquiz.html) |
+
+
 <script>
-  const SLIDE_ID = "module2_selfquiz";
+  const SLIDE_ID = "module1_selfquiz";
 </script>
 
 {{< include ../login-start.html >}}
@@ -61,23 +83,6 @@ main.content table th:nth-child(2) {
 </style>
 
 ```
-
-::: {.callout-warning}
-### For students
-
-Give this a try and see how much of **Module 2** stuck!
-
-You can retake the self-quiz <strong>as many times as you like</strong>—each attempt shuffles the questions so you’ll get fresh practice.
-
-Aim to improve your score with every run, review what you miss, and come back anytime. You’ve got this! 🚀
-
-You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions**. 
-
-::: 
-
-
-
-___
 
 
 
