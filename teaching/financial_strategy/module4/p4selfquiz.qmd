@@ -90,18 +90,18 @@ main.content table th:nth-child(2) {
 
 ___
 
-
-
-
-<!-- Pretty self-quiz button -->
 <div class="sq-wrap">
-  <a class="sq-btn"
+  <a id="start-selfquiz-btn"
+     class="sq-btn"
      href="https://course-chat.hcmrtns.workers.dev/selfquiz/m/module4"
-     aria-label="Start self-quiz for Module 4">
+     aria-label="Start self-quiz for Module 4"
+     rel="noopener noreferrer">
     <span class="sq-icon" aria-hidden="true">▶</span>
     <span>Start self-quiz</span>
   </a>
 </div>
+
+
 
 <style>
   .sq-wrap{ margin:1rem 0; display:flex; justify-content:center }
@@ -124,6 +124,71 @@ ___
     .sq-btn{ box-shadow:0 10px 18px rgba(0,0,0,.35) }
   }
 </style>
+<style>
+  /* Esconde o cartão de login assim que houver sessão ativa */
+  html.logged #login-form { display: none !important; }
+</style>
+
+<script>
+(function selfQuizSessionize(){
+  const KEY = "student_id";
+  const BTN_ID = "start-selfquiz-btn";
+  const MAX_MS = 15000;         // para de checar após 15s
+  const TICK_MS = 300;
+
+  function syncLocalToSession() {
+    try {
+      const lsVal = localStorage.getItem(KEY);
+      const ssVal = sessionStorage.getItem(KEY);
+      if (lsVal && !ssVal) {
+        sessionStorage.setItem(KEY, lsVal);
+        localStorage.removeItem(KEY);
+      }
+    } catch (e) {}
+  }
+
+  function updateUI() {
+    const sid = sessionStorage.getItem(KEY);
+    if (!sid) return false;
+
+    // Marca como logado → esconde o card de login via CSS
+    document.documentElement.classList.add('logged');
+
+    // Atualiza o href do botão com student_id (+ slide_id, se houver)
+    const btn = document.getElementById(BTN_ID);
+    if (btn) {
+      const baseHref = btn.getAttribute('data-base') || btn.getAttribute('href');
+      try {
+        const url = new URL(baseHref); // baseHref é absoluto (Worker)
+        url.searchParams.set('student_id', sid);
+        if (typeof SLIDE_ID !== 'undefined') url.searchParams.set('slide_id', SLIDE_ID);
+        // opcional: cache-buster
+        url.searchParams.set('_', Date.now().toString());
+        btn.setAttribute('href', url.toString());
+      } catch (e) {
+        // fallback básico
+        const sep = baseHref.includes('?') ? '&' : '?';
+        btn.setAttribute('href',
+          baseHref + sep + 'student_id=' + encodeURIComponent(sid) +
+          (typeof SLIDE_ID !== 'undefined' ? '&slide_id=' + encodeURIComponent(SLIDE_ID) : '')
+        );
+      }
+    }
+    return true;
+  }
+
+  // Passo 1: migra, tenta atualizar UI já de cara
+  syncLocalToSession();
+  if (updateUI()) return;
+
+  // Passo 2: faz um polling leve por alguns segundos, esperando o login terminar
+  const t0 = Date.now();
+  const id = setInterval(() => {
+    syncLocalToSession();
+    if (updateUI() || (Date.now() - t0) > MAX_MS) clearInterval(id);
+  }, TICK_MS);
+})();
+</script>
 
 
 

@@ -210,7 +210,7 @@ You can use this report to **compare your performance** with your peers and to *
 
   // --- boot ---
   const sid = findSidNow();
-  if (sid) armButtonFor(sid, /*autoGo=*/true);
+  if (sid) armButtonFor(sid, /*autoGo=*/false);
   else     waitForLogin();
 
 })();

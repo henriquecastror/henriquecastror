@@ -792,7 +792,7 @@ Enter
 
   // --- boot ---
   const sid = findSidNow();
-  if (sid) armButtonFor(sid, /*autoGo=*/true);
+  if (sid) armButtonFor(sid, /*autoGo=*/false);
   else     waitForLogin();
 
 })();
