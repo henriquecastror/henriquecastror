@@ -105,11 +105,11 @@ You can use this report to **compare your performance** with your peers and to *
 
 
 <div class="report-actions">
-  <a id="btn-report-pdf"
+  <a id="btn-report"
      class="report-btn"
-     href="javascript:void(0)"
+     href="#"
      role="button"
-     aria-label="Download my report as PDF">
+     aria-label="View my report">
     <span class="report-icon" aria-hidden="true">⬇️</span>
     <span>View my Report</span>
   </a>
@@ -118,8 +118,8 @@ You can use this report to **compare your performance** with your peers and to *
 
 <script>
 (function(){
-  const BTN  = document.getElementById("btn-report-pdf");
-  const BASE = REPORTS_BASE;
+  const BTN  = document.getElementById("btn-report");
+  const BASE = REPORTS_BASE; // "https://course-chat.hcmrtns.workers.dev"
 
   // ---------- helpers ----------
   const strip = s => (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
@@ -128,8 +128,7 @@ You can use this report to **compare your performance** with your peers and to *
     if (!r) return "";
     return r.includes("@") ? r.split("@")[0] : r;
   };
-  // aceita "ana_santos", "joao.silva-23", etc. (precisa ter "_" ou ".")
-  // e rejeita "mod4", "module4", etc.
+  // aceita ids tipo "ana_santos", "joao.silva-23"
   const isStudentId = v =>
     /^[a-z0-9._-]{3,40}$/i.test(v||"") &&
     /[_\.]/.test(v) &&
@@ -147,9 +146,7 @@ You can use this report to **compare your performance** with your peers and to *
     }catch{ return ""; }
   }
   function fromCookies(){
-    const v = norm(
-      getCookie("student_id") || getCookie("sid") || getCookie("hcm_student")
-    );
+    const v = norm(getCookie("student_id") || getCookie("sid") || getCookie("hcm_student"));
     return isStudentId(v) ? v : "";
   }
   function fromStorage(){
@@ -162,7 +159,6 @@ You can use this report to **compare your performance** with your peers and to *
         const v = norm(strip(localStorage.getItem(k) || sessionStorage.getItem(k) || ""));
         if (isStudentId(v)) return v;
       }
-      // possíveis globais do seu gate
       if (isStudentId(norm(window.CURRENT_STUDENT))) return norm(window.CURRENT_STUDENT);
       if (isStudentId(norm(window.__LOGIN?.studentId))) return norm(window.__LOGIN.studentId);
     }catch{}
@@ -172,49 +168,25 @@ You can use this report to **compare your performance** with your peers and to *
     return fromQuery() || fromCookies() || fromStorage() || "";
   }
 
-  // ---------- ação do botão ----------
-  async function openMyPdf(){
-    const sid = getStudent();
-    if (!sid){
+  // ---------- define o href do botão ----------
+  const sid = getStudent();
+  if (sid) {
+    // usa o bridge (cria cookie e redireciona)
+    const next = "/reports/html";
+    BTN.href = `${BASE}/session/start?sid=${encodeURIComponent(sid)}&next=${encodeURIComponent(next)}`;
+    BTN.setAttribute("aria-disabled", "false");
+  } else {
+    // sem SID: deixa link “desabilitado” e orienta o aluno
+    BTN.href = "#";
+    BTN.setAttribute("aria-disabled", "true");
+    BTN.addEventListener("click", (e) => {
+      e.preventDefault();
       alert("Não encontrei seu login. Entre no site do curso ou adicione ?sid=seu_id à URL.");
-      return;
-    }
-
-    const label = BTN.innerHTML;
-    BTN.innerHTML = "Creating…";
-    BTN.style.opacity = "0.7";
-    BTN.style.pointerEvents = "none";
-
-    // Abre a aba antes do fetch para evitar bloqueio por popup
-    const win = window.open("", "_blank");
-
-    try{
-      const res = await fetch(BASE + "/reports/html", {
-        method: "GET",
-        headers: { "x-student-id": sid }
-      });
-      if (!res.ok){
-        win.close();
-        alert("Falhou: " + res.status + " — tente relogar.");
-        return;
-      }
-      const blob = await res.blob();
-      const url  = URL.createObjectURL(blob);
-      win.location = url;
-      setTimeout(()=>URL.revokeObjectURL(url), 60000);
-    }catch(e){
-      win.close();
-      alert("Erro ao gerar: " + e.message);
-    }finally{
-      BTN.innerHTML = label;
-      BTN.style.opacity = "1";
-      BTN.style.pointerEvents = "auto";
-    }
+    });
   }
-
-  BTN.addEventListener("click", openMyPdf);
 })();
 </script>
+
 
 
 {{< include login-end.html >}}
