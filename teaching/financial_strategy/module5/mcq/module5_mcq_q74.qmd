@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q74')" data-correct-answer="B">
-<strong style="display: block;">A mutual fund produces α=1% on $500m. Fees=0.5%. At equilibrium, how much AUM will the fund attract?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q74')" data-correct-answer="A">
+<strong style="display: block;">Why might skilled fund managers still fail to deliver positive net alpha to investors?</strong>
 
-<label><input type="radio" name="module5_mcq_q74" value="A"> A. $500m</label><br>
-<label><input type="radio" name="module5_mcq_q74" value="B"> B. $1,000m</label><br>
-<label><input type="radio" name="module5_mcq_q74" value="C"> C. $1,500m</label><br>
-<label><input type="radio" name="module5_mcq_q74" value="D"> D. $2,000m</label><br>
-<label><input type="radio" name="module5_mcq_q74" value="E"> E. $2,500m</label><br>
+<label><input type="radio" name="module5_mcq_q74" value="A"> A. Because inflows of capital dilute opportunities and fees reduce investor returns</label><br>
+<label><input type="radio" name="module5_mcq_q74" value="B"> B. Because regulations prevent them from exploiting market anomalies</label><br>
+<label><input type="radio" name="module5_mcq_q74" value="C"> C. Because they can only invest in government bonds</label><br>
+<label><input type="radio" name="module5_mcq_q74" value="D"> D. Because CAPM does not allow positive alpha in theory</label><br>
+<label><input type="radio" name="module5_mcq_q74" value="E"> E. Because markets are always strong-form efficient</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q74" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. Dollar α=0.01×500=5m. Fees=0.5%×AUM. At equilibrium: 5=0.005×AUM → AUM=$1,000m.
+✅ Correct: A. Even skilled managers may attract so much capital that opportunities diminish, and after fees and costs, investors’ net alpha becomes negative.
 </div>
 
 :::

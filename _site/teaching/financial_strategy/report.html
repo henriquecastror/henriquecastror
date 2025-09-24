@@ -163,7 +163,7 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 <script>
   const SLIDE_ID = "reports";
-  const REPORTS_BASE = "https://course-chat.hcmrtns.workers.dev";
+  const REPORTS_BASE = "https://course-chat.hcmrtns.workers.dev"; 
 </script>
 <style>
 /* ===== Estilo local: afeta somente esta página ===== */
@@ -701,71 +701,73 @@ Enter
 <script>
 (function(){
   const BTN  = document.getElementById("btn-report-pdf");
-  const BASE = REPORTS_BASE; // já definido no topo da página
+  const BASE = REPORTS_BASE;
 
-  // ---------- Coleta do student_id ----------
-  const norm = s => {
+  // ---------- helpers ----------
+  const strip = s => (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  const norm  = s => {
     const r = String(s||"").trim().toLowerCase();
+    if (!r) return "";
     return r.includes("@") ? r.split("@")[0] : r;
   };
-  const looksLikeId = v => /^[a-z0-9._-]{2,}$/i.test(v || "");
+  // aceita "ana_santos", "joao.silva-23", etc. (precisa ter "_" ou ".")
+  // e rejeita "mod4", "module4", etc.
+  const isStudentId = v =>
+    /^[a-z0-9._-]{3,40}$/i.test(v||"") &&
+    /[_\.]/.test(v) &&
+    !/^mod(ule)?\d+$/i.test(v||"");
 
   function fromQuery(){
     const p = new URLSearchParams(location.search);
-    const v = norm(p.get("me") || p.get("sid") || "");
-    return looksLikeId(v) ? v : "";
+    const v = norm(p.get("sid") || p.get("me") || "");
+    return isStudentId(v) ? v : "";
+  }
+  function getCookie(name){
+    try{
+      const m = document.cookie.match(new RegExp("(^|; )"+name.replace(/([.*+?^${}()|[\]\\])/g,"\\$1")+"=([^;]*)"));
+      return m ? decodeURIComponent(m[2]) : "";
+    }catch{ return ""; }
+  }
+  function fromCookies(){
+    const v = norm(
+      getCookie("student_id") || getCookie("sid") || getCookie("hcm_student")
+    );
+    return isStudentId(v) ? v : "";
   }
   function fromStorage(){
     try{
       const keys = [
         "student_login","vhcm_current_user","hcm_current_user",
-        "current_user","user_login","login","user","sid","student"
+        "current_user","user_login","login","user","sid","student","student_id"
       ];
       for (const k of keys){
-        const v = norm(localStorage.getItem(k) || sessionStorage.getItem(k) || "");
-        if (looksLikeId(v)) return v;
+        const v = norm(strip(localStorage.getItem(k) || sessionStorage.getItem(k) || ""));
+        if (isStudentId(v)) return v;
       }
-      // heurística: varre tudo
-      for (const S of [localStorage, sessionStorage]){
-        for (let i=0;i<S.length;i++){
-          const val = norm(S.getItem(S.key(i)));
-          if (looksLikeId(val)) return val;
-          if (/^[^@\s]+@[^@\s]+$/.test(val)) return norm(val);
-        }
-      }
-    }catch{}
-    // possíveis variáveis globais do seu gate
-    try{
-      if (looksLikeId(window.CURRENT_STUDENT)) return norm(window.CURRENT_STUDENT);
-      if (looksLikeId(window.__LOGIN?.studentId)) return norm(window.__LOGIN.studentId);
+      // possíveis globais do seu gate
+      if (isStudentId(norm(window.CURRENT_STUDENT))) return norm(window.CURRENT_STUDENT);
+      if (isStudentId(norm(window.__LOGIN?.studentId))) return norm(window.__LOGIN.studentId);
     }catch{}
     return "";
   }
-  function fromCookies(){
-    try{
-      const bag = Object.fromEntries(document.cookie.split(/; */).filter(Boolean).map(kv=>{
-        const i = kv.indexOf("="); return [decodeURIComponent(kv.slice(0,i)), decodeURIComponent(kv.slice(i+1))];
-      }));
-      const v = norm(bag.student_id || bag.sid || bag.hcm_student || "");
-      if (looksLikeId(v)) return v;
-      const email = (document.cookie.match(/(?:^|;)\s*[^=]+=([^;@]+@[^;]+)/)||[])[1];
-      if (email) return norm(email);
-    }catch{}
-    return "";
+  function getStudent(){ 
+    return fromQuery() || fromCookies() || fromStorage() || "";
   }
-  function getStudent(){ return fromQuery() || fromStorage() || fromCookies() || ""; }
 
-  // ---------- Ação do botão ----------
+  // ---------- ação do botão ----------
   async function openMyPdf(){
     const sid = getStudent();
-    if (!sid){ alert("Faça login primeiro para gerar seu PDF."); return; }
+    if (!sid){
+      alert("Não encontrei seu login. Entre no site do curso ou adicione ?sid=seu_id à URL.");
+      return;
+    }
 
     const label = BTN.innerHTML;
     BTN.innerHTML = "Gerando…";
     BTN.style.opacity = "0.7";
     BTN.style.pointerEvents = "none";
 
-    // Abre a aba antes do fetch para evitar bloqueio
+    // Abre a aba antes do fetch para evitar bloqueio por popup
     const win = window.open("", "_blank");
 
     try{
@@ -780,11 +782,11 @@ Enter
       }
       const blob = await res.blob();
       const url  = URL.createObjectURL(blob);
-      win.location = url;                  // carrega o PDF na nova aba
+      win.location = url;
       setTimeout(()=>URL.revokeObjectURL(url), 60000);
     }catch(e){
       win.close();
-      alert("Erro ao gerar PDF: " + e.message);
+      alert("Erro ao gerar: " + e.message);
     }finally{
       BTN.innerHTML = label;
       BTN.style.opacity = "1";

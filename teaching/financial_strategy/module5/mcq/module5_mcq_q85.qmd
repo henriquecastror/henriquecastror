@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q85')" data-correct-answer="B">
-<strong style="display: block;">What is the main implication of the adaptive markets hypothesis (AMH)?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q85')" data-correct-answer="D">
+<strong style="display: block;">In the Fama-French-Carhart (FFC) model, what does the factor HML (High Minus Low) capture?</strong>
 
-<label><input type="radio" name="module5_mcq_q85" value="A"> A. Markets are always efficient</label><br>
-<label><input type="radio" name="module5_mcq_q85" value="B"> B. Market efficiency evolves depending on competition, adaptation, and context</label><br>
-<label><input type="radio" name="module5_mcq_q85" value="C"> C. Behavioral biases never affect prices</label><br>
-<label><input type="radio" name="module5_mcq_q85" value="D"> D. CAPM always provides unbiased expected returns</label><br>
-<label><input type="radio" name="module5_mcq_q85" value="E"> E. Market anomalies cannot persist over time</label><br>
+<label><input type="radio" name="module5_mcq_q85" value="A"> A. The excess return of the market portfolio over the risk-free rate</label><br>
+<label><input type="radio" name="module5_mcq_q85" value="B"> B. The return difference between small-cap and large-cap firms</label><br>
+<label><input type="radio" name="module5_mcq_q85" value="C"> C. The persistence of returns based on past performance</label><br>
+<label><input type="radio" name="module5_mcq_q85" value="D"> D. The return difference between value (high book-to-market) and growth (low book-to-market) stocks</label><br>
+<label><input type="radio" name="module5_mcq_q85" value="E"> E. The impact of investor mood and attention on returns</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q85" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. The AMH argues efficiency is not static but adaptive, influenced by changing market conditions, competition, and investor learning.
+✅ Correct: D. HML measures the premium that value stocks (high book-to-market) have historically earned over growth stocks (low book-to-market), one of the central anomalies motivating multifactor models.
 </div>
 
 :::

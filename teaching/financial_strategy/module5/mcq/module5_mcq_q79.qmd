@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q79')" data-correct-answer="C">
-<strong style="display: block;">A portfolio has 40% in stock A (E=10%) and 60% in stock B (E=16%). Expected return?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q79')" data-correct-answer="E">
+<strong style="display: block;">What behavioral phenomenon is illustrated when investors collectively rush to buy or sell based on the actions of others rather than their own analysis?</strong>
 
-<label><input type="radio" name="module5_mcq_q79" value="A"> A. 12%</label><br>
-<label><input type="radio" name="module5_mcq_q79" value="B"> B. 13%</label><br>
-<label><input type="radio" name="module5_mcq_q79" value="C"> C. 14%</label><br>
-<label><input type="radio" name="module5_mcq_q79" value="D"> D. 15%</label><br>
-<label><input type="radio" name="module5_mcq_q79" value="E"> E. 16%</label><br>
+<label><input type="radio" name="module5_mcq_q79" value="A"> A. Disposition effect</label><br>
+<label><input type="radio" name="module5_mcq_q79" value="B"> B. Familiarity bias</label><br>
+<label><input type="radio" name="module5_mcq_q79" value="C"> C. Overconfidence bias</label><br>
+<label><input type="radio" name="module5_mcq_q79" value="D"> D. Attention bias</label><br>
+<label><input type="radio" name="module5_mcq_q79" value="E"> E. Herding behavior</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q79" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. E[R]=0.4×10+0.6×16=4+9.6=13.6%. Closest 14%.
+✅ Correct: E. Herding occurs when investors mimic others’ actions, amplifying price swings and potentially contributing to bubbles or crashes.
 </div>
 
 :::

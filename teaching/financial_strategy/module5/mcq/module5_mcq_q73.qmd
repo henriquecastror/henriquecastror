@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q73')" data-correct-answer="A">
-<strong style="display: block;">Rf=2%. Market premium=8%. A stock with β=0.5 has expected return 6%. What is alpha?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q73')" data-correct-answer="B">
+<strong style="display: block;">Which of the following anomalies most directly challenges the idea that prices fully reflect all past and public information?</strong>
 
-<label><input type="radio" name="module5_mcq_q73" value="A"> A. -1%</label><br>
-<label><input type="radio" name="module5_mcq_q73" value="B"> B. 0%</label><br>
-<label><input type="radio" name="module5_mcq_q73" value="C"> C. +1%</label><br>
-<label><input type="radio" name="module5_mcq_q73" value="D"> D. +2%</label><br>
-<label><input type="radio" name="module5_mcq_q73" value="E"> E. +3%</label><br>
+<label><input type="radio" name="module5_mcq_q73" value="A"> A. CAPM risk-return tradeoff</label><br>
+<label><input type="radio" name="module5_mcq_q73" value="B"> B. Momentum effect</label><br>
+<label><input type="radio" name="module5_mcq_q73" value="C"> C. Diversification bias</label><br>
+<label><input type="radio" name="module5_mcq_q73" value="D"> D. Rational expectations</label><br>
+<label><input type="radio" name="module5_mcq_q73" value="E"> E. Arbitrage pricing theory</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q73" class="feedback" data-status="" style="display:none;">
-✅ Correct: A. CAPM=2+0.5×8=6%. Expected=6%. Alpha=0. Actually correction: 0%. So B.
+✅ Correct: B. The momentum effect shows that past winners continue to outperform in the short run, contradicting EMH and CAPM predictions that past performance should not predict future returns.
 </div>
 
 :::

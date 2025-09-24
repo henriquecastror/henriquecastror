@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q75')" data-correct-answer="C">
-<strong style="display: block;">Rf=1%. Market premium=4%. A stock with β=1.8. What is its required return under CAPM?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q75')" data-correct-answer="E">
+<strong style="display: block;">What does the evidence on small-cap stocks (size effect) suggest about the CAPM?</strong>
 
-<label><input type="radio" name="module5_mcq_q75" value="A"> A. 7%</label><br>
-<label><input type="radio" name="module5_mcq_q75" value="B"> B. 8%</label><br>
-<label><input type="radio" name="module5_mcq_q75" value="C"> C. 9%</label><br>
-<label><input type="radio" name="module5_mcq_q75" value="D"> D. 10%</label><br>
-<label><input type="radio" name="module5_mcq_q75" value="E"> E. 11%</label><br>
+<label><input type="radio" name="module5_mcq_q75" value="A"> A. CAPM fully explains the higher returns of small firms</label><br>
+<label><input type="radio" name="module5_mcq_q75" value="B"> B. Small firms do not systematically earn abnormal returns</label><br>
+<label><input type="radio" name="module5_mcq_q75" value="C"> C. The size effect is consistent with weak-form efficiency</label><br>
+<label><input type="radio" name="module5_mcq_q75" value="D"> D. Small firms earn lower returns than large firms after adjusting for risk</label><br>
+<label><input type="radio" name="module5_mcq_q75" value="E"> E. CAPM is incomplete, as it cannot explain the small-firm premium</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q75" class="feedback" data-status="" style="display:none;">
-✅ Correct: C. Required return=1+1.8×4=1+7.2=8.2% ≈ 8%. Closest B.
+✅ Correct: E. The persistent outperformance of small firms relative to CAPM predictions is one reason why multifactor models like Fama-French include a size factor.
 </div>
 
 :::

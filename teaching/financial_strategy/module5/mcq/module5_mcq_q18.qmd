@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q18')" data-correct-answer="B">
-<strong style="display: block;">Which behavioral bias best explains why investors may hold disproportionately large positions in familiar domestic companies?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q18')" data-correct-answer="C">
+<strong style="display: block;">What does empirical evidence suggest about the average performance of actively managed mutual funds compared to passive index funds?</strong>
 
-<label><input type="radio" name="module5_mcq_q18" value="A"> A. Herding bias</label><br>
-<label><input type="radio" name="module5_mcq_q18" value="B"> B. Familiarity bias</label><br>
-<label><input type="radio" name="module5_mcq_q18" value="C"> C. Overconfidence bias</label><br>
-<label><input type="radio" name="module5_mcq_q18" value="D"> D. Disposition effect</label><br>
-<label><input type="radio" name="module5_mcq_q18" value="E"> E. Anchoring bias</label><br>
+<label><input type="radio" name="module5_mcq_q18" value="A"> A. They consistently generate positive alpha after fees</label><br>
+<label><input type="radio" name="module5_mcq_q18" value="B"> B. They deliver similar net performance to passive funds</label><br>
+<label><input type="radio" name="module5_mcq_q18" value="C"> C. They underperform on average after accounting for fees and costs</label><br>
+<label><input type="radio" name="module5_mcq_q18" value="D"> D. They outperform in all market conditions due to superior information</label><br>
+<label><input type="radio" name="module5_mcq_q18" value="E"> E. They always hedge against behavioral biases of investors</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q18" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. Familiarity bias leads investors to concentrate in stocks they know, such as domestic firms or employer stock, which reduces diversification and increases idiosyncratic risk.
+✅ Correct: C. Research shows that while some managers generate positive gross alpha, the majority of mutual funds underperform passive index funds after accounting for management fees and trading costs.
 </div>
 
 :::

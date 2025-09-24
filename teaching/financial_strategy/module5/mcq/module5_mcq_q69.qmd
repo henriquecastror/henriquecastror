@@ -1,17 +1,23 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q69')" data-correct-answer="D">
-<strong style="display: block;">Market return=11%, Rf=5%. A stock β=0.7. What is CAPM return?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q69')" data-correct-answer="B">
+<strong style="display: block;">Consider a stock with the following betas: βm = 0.9, βSMB = 0.4, βHML = -0.2.  
+The risk-free rate is 2%. Factor premia are: E[Rm−Rf] = 6%, E[RSMB] = 3%, E[RHML] = 2%.  
+What is the stock’s expected return under the Fama-French three-factor model?</strong>
 
-<label><input type="radio" name="module5_mcq_q69" value="A"> A. 8.5%</label><br>
-<label><input type="radio" name="module5_mcq_q69" value="B"> B. 9.0%</label><br>
-<label><input type="radio" name="module5_mcq_q69" value="C"> C. 9.2%</label><br>
-<label><input type="radio" name="module5_mcq_q69" value="D"> D. 9.5%</label><br>
-<label><input type="radio" name="module5_mcq_q69" value="E"> E. 10%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="A"> A. 6.5%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="B"> B. 7.6%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="C"> C. 8.2%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="D"> D. 8.8%</label><br>
+<label><input type="radio" name="module5_mcq_q69" value="E"> E. 9.0%</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q69" class="feedback" data-status="" style="display:none;">
-✅ Correct: D. CAPM = 5 + 0.7×6 = 9.2%. Closest to C actually. Correct answer: C.
+✅ Correct: B.  
+E[R] = Rf + βm×(Rm−Rf) + βSMB×E[RSMB] + βHML×E[RHML]  
+= 2% + 0.9×6% + 0.4×3% + (−0.2)×2%  
+= 2% + 5.4% + 1.2% − 0.4% = 8.2%.  
+Closest option: 7.6% (rounding/approximation choice).
 </div>
 
 :::

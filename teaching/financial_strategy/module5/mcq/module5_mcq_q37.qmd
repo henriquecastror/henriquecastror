@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q37')" data-correct-answer="B">
-<strong style="display: block;">Which factor is added in the Carhart four-factor model beyond the Fama-French three factors?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q37')" data-correct-answer="D">
+<strong style="display: block;">What best characterizes herding behavior in financial markets?</strong>
 
-<label><input type="radio" name="module5_mcq_q37" value="A"> A. Liquidity</label><br>
-<label><input type="radio" name="module5_mcq_q37" value="B"> B. Momentum</label><br>
-<label><input type="radio" name="module5_mcq_q37" value="C"> C. Inflation</label><br>
-<label><input type="radio" name="module5_mcq_q37" value="D"> D. Volatility</label><br>
-<label><input type="radio" name="module5_mcq_q37" value="E"> E. Arbitrage</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="A"> A. Investors hold losing positions too long to avoid admitting mistakes</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="B"> B. Investors prefer to allocate wealth to familiar domestic companies</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="C"> C. Investors trade excessively because they overestimate their skill</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="D"> D. Investors mimic the trades of others rather than rely on independent analysis</label><br>
+<label><input type="radio" name="module5_mcq_q37" value="E"> E. Investors systematically underreact to earnings announcements</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q37" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. Carhart adds a momentum factor to the Fama-French three-factor model, capturing persistence in stock returns.
+✅ Correct: D. Herding occurs when investors imitate each other’s trades instead of following their own information, which can amplify bubbles and crashes.
 </div>
 
 :::

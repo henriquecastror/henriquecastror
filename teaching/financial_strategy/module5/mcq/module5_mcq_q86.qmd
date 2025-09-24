@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q86')" data-correct-answer="B">
-<strong style="display: block;">Why might institutional investors still exhibit behavioral biases despite access to superior data?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q86')" data-correct-answer="C">
+<strong style="display: block;">Which of the following is an example of a style-based anomaly that challenges the predictions of the CAPM?</strong>
 
-<label><input type="radio" name="module5_mcq_q86" value="A"> A. Regulatory constraints</label><br>
-<label><input type="radio" name="module5_mcq_q86" value="B"> B. Agency problems and career concerns</label><br>
-<label><input type="radio" name="module5_mcq_q86" value="C"> C. Lack of computing technology</label><br>
-<label><input type="radio" name="module5_mcq_q86" value="D"> D. Inability to diversify portfolios</label><br>
-<label><input type="radio" name="module5_mcq_q86" value="E"> E. Permanent limits to arbitrage</label><br>
+<label><input type="radio" name="module5_mcq_q86" value="A"> A. Rational expectations</label><br>
+<label><input type="radio" name="module5_mcq_q86" value="B"> B. Arbitrage pricing theory</label><br>
+<label><input type="radio" name="module5_mcq_q86" value="C"> C. Momentum effect</label><br>
+<label><input type="radio" name="module5_mcq_q86" value="D"> D. Market portfolio efficiency</label><br>
+<label><input type="radio" name="module5_mcq_q86" value="E"> E. Diversification bias</label><br>
 </form>
 
 <div id="feedback-module5_mcq_q86" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. Institutional managers may herd or avoid contrarian trades to protect their careers, even if data suggests otherwise.
+✅ Correct: C. The momentum effect shows that stocks with high past returns tend to outperform in the short run, contradicting CAPM’s assumption that past returns should not predict future performance.
 </div>
 
 :::

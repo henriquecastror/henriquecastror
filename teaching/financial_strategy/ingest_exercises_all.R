@@ -6,7 +6,7 @@
 # ==========================
 
 # ======== CONFIGURAÇÃO MÍNIMA ========
-QMD_DIR <- "module3/mcq"  # <<< ajuste a pasta com seus .qmd de MCQ
+QMD_DIR <- "module5/mcq"  # <<< ajuste a pasta com seus .qmd de MCQ
 
 ENDPOINT_BASE       <- "https://course-chat.hcmrtns.workers.dev"
 ENDPOINT_ANSWER_KEY <- paste0(ENDPOINT_BASE, "/exercises/answer-key")
@@ -15,7 +15,7 @@ PING_URL            <- paste0(ENDPOINT_BASE, "/admin/ping")
 ENDPOINT_BANK       <- paste0(ENDPOINT_BASE, "/selfquiz/bank")
 
 ADMIN_TOKEN_ENV     <- "ADMIN_TOKEN"     # defina antes: Sys.setenv(ADMIN_TOKEN = "seu_token")
-
+ 
 # Política de lotes/pausas
 BANK_BATCH_SIZE   <- 10L   # nº de questões por POST /selfquiz/bank
 BANK_PAUSE_MS     <- 400L   # pausa entre lotes do bank

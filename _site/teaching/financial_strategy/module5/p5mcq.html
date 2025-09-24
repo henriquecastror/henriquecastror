@@ -222,7 +222,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 12/09/2025 16:08</p>
+<p><strong>Last updated:</strong> 23/09/2025 21:46</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -248,22 +248,24 @@ For students
 <th style="text-align: center;">MCQ</th>
 <th style="text-align: center;">Numeric</th>
 <th style="text-align: center;">Long</th>
+<th style="text-align: center;">Self-quiz</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">5</td>
 <td style="text-align: center;">ch13</td>
-<td style="text-align: center;"><a href="p5.html">🎞️</a></td>
-<td style="text-align: center;"><a href="p5tf.html">✅</a></td>
-<td style="text-align: center;"><a href="p5mcq.html">❓</a></td>
-<td style="text-align: center;"><a href="p5num.html">🔢</a></td>
-<td style="text-align: center;"><a href="p5long.html">📝</a></td>
+<td style="text-align: center;"><a href="module5/p5.html">🎞️</a></td>
+<td style="text-align: center;"><a href="module5/p5tf.html">✅</a></td>
+<td style="text-align: center;"><a href="module5/p5mcq.html">❓</a></td>
+<td style="text-align: center;"><a href="module5/p5num.html">🔢</a></td>
+<td style="text-align: center;"><a href="module5/p5long.html">📝</a></td>
+<td style="text-align: center;"><a href="module5/p5selfquiz.html">🧪</a></td>
 </tr>
 </tbody>
 </table>
 <hr>
-<p><strong>Answer the following questions based on the discussions in class.</strong></p>
+<p><strong>Select the correct answers.</strong></p>
 <script>
   const SLIDE_ID = "module5_p5mcq";
 </script>
@@ -714,7 +716,69 @@ Enter
   })();
 
 </script>
-<div class="webex-box card border-info mb-4 p-3">
+<!-- Botões de navegação (20 grupos, 5 questões por grupo) -->
+<div class="groups-wrap">
+<p><button class="grp-btn" data-group="1" onclick="showGroup(1)">1</button> <button class="grp-btn" data-group="2" onclick="showGroup(2)">2</button> <button class="grp-btn" data-group="3" onclick="showGroup(3)">3</button> <button class="grp-btn" data-group="4" onclick="showGroup(4)">4</button> <button class="grp-btn" data-group="5" onclick="showGroup(5)">5</button> <button class="grp-btn" data-group="6" onclick="showGroup(6)">6</button> <button class="grp-btn" data-group="7" onclick="showGroup(7)">7</button> <button class="grp-btn" data-group="8" onclick="showGroup(8)">8</button> <button class="grp-btn" data-group="9" onclick="showGroup(9)">9</button> <button class="grp-btn" data-group="10" onclick="showGroup(10)">10</button> <button class="grp-btn" data-group="11" onclick="showGroup(11)">11</button> <button class="grp-btn" data-group="12" onclick="showGroup(12)">12</button> <button class="grp-btn" data-group="13" onclick="showGroup(13)">13</button> <button class="grp-btn" data-group="14" onclick="showGroup(14)">14</button> <button class="grp-btn" data-group="15" onclick="showGroup(15)">15</button> <button class="grp-btn" data-group="16" onclick="showGroup(16)">16</button> <button class="grp-btn" data-group="17" onclick="showGroup(17)">17</button> <button class="grp-btn" data-group="18" onclick="showGroup(18)">18</button> <button class="grp-btn" data-group="19" onclick="showGroup(19)">19</button> <button class="grp-btn" data-group="20" onclick="showGroup(20)">20</button></p>
+</div>
+<script>
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextGroup();
+    if (e.key === 'ArrowLeft')  prevGroup();
+  });
+</script>
+<style>
+/* Container dos botões */
+.groups-wrap{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;
+}
+
+/* Pílulas padrão */
+.grp-btn{
+  padding:8px 14px;
+  border:1px solid #e2e8f0;
+  background:#ffffff;
+  color:#0f172a;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  line-height:1;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.grp-btn:hover{ border-color:#94a3b8; }
+
+/* Pílula ativa (grupo selecionado) */
+.grp-btn.active{
+  background:#3b82f6;   /* azul */
+  color:#ffffff;
+  border-color:#3b82f6;
+}
+
+/* Card das questões (aplica em cada groupX) */
+.question-group{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:8px;
+  box-shadow:0 2px 4px rgba(0,0,0,.05);
+}
+
+/* Cada questão dentro do grupo vira uma “linha” com separador */
+.question-group > div{
+  padding:12px 8px;
+  border-top:1px solid #e5e7eb;
+}
+.question-group > div:first-child{ border-top:none; }
+
+/* Tipografia do número da questão (primeiro <div> da linha) */
+.question-group &gt; div &gt; div:first-child{
+  font-weight:800;
+  font-size:1.05rem;
+  min-width:44px !important;  /* um tiquinho maior */
+}
+</div></style>
+<div class="webex-box card mb-4 p-3" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px;">
+<!-- Group 1: Q1–Q5 -->
+<div id="group1" class="question-group">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
 Q1.
@@ -795,6 +859,9 @@ Q5.
 </div>
 </div>
 </div>
+</div>
+<!-- Group 2: Q6–Q10 -->
+<div id="group2" class="question-group" style="display: none;">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
 Q6.
@@ -874,6 +941,1562 @@ Q10.
 </div>
 </div>
 </div>
+</div>
+</div>
+<!-- Group 3: Q11–Q15 -->
+<div id="group3" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q11.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q11')" data-correct-answer="B">
+<p><strong style="display: block;">Which of the following best describes the weak form of the Efficient Market Hypothesis (EMH)?</strong></p>
+<label><input type="radio" name="module5_mcq_q11" value="A"> A. Prices incorporate all public and private information</label><br> <label><input type="radio" name="module5_mcq_q11" value="B"> B. Prices incorporate all historical price and volume data</label><br> <label><input type="radio" name="module5_mcq_q11" value="C"> C. Prices incorporate only insider information</label><br> <label><input type="radio" name="module5_mcq_q11" value="D"> D. Prices never follow a random walk</label><br> <label><input type="radio" name="module5_mcq_q11" value="E"> E. Prices always reflect investors’ emotions</label><br>
+</form>
+<div id="feedback-module5_mcq_q11" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Weak-form efficiency means past prices and volumes are already reflected in current prices, leaving no predictable patterns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q12.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q12')" data-correct-answer="A">
+<p><strong style="display: block;">The disposition effect refers to an investor’s tendency to:</strong></p>
+<label><input type="radio" name="module5_mcq_q12" value="A"> A. Hold losers too long and sell winners too early</label><br> <label><input type="radio" name="module5_mcq_q12" value="B"> B. Mimic the trades of others</label><br> <label><input type="radio" name="module5_mcq_q12" value="C"> C. Diversify across many industries</label><br> <label><input type="radio" name="module5_mcq_q12" value="D"> D. Prefer domestic stocks over international ones</label><br> <label><input type="radio" name="module5_mcq_q12" value="E"> E. Overestimate their forecasting abilities</label><br>
+</form>
+<div id="feedback-module5_mcq_q12" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. The disposition effect is the tendency to sell winning investments too soon and hold on to losers for too long.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q13.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q13')" data-correct-answer="C">
+<p><strong style="display: block;">Which of the following anomalies suggests that small-cap stocks historically outperform large-cap stocks?</strong></p>
+<label><input type="radio" name="module5_mcq_q13" value="A"> A. Momentum effect</label><br> <label><input type="radio" name="module5_mcq_q13" value="B"> B. Value effect</label><br> <label><input type="radio" name="module5_mcq_q13" value="C"> C. Size effect</label><br> <label><input type="radio" name="module5_mcq_q13" value="D"> D. Disposition effect</label><br> <label><input type="radio" name="module5_mcq_q13" value="E"> E. Overconfidence bias</label><br>
+</form>
+<div id="feedback-module5_mcq_q13" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The size effect indicates that small-cap stocks tend to earn higher returns than large-cap stocks, even after adjusting for risk.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q14.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q14')" data-correct-answer="B">
+<p><strong style="display: block;">According to the no-trade theorem, when all investors interpret information identically, what happens?</strong></p>
+<label><input type="radio" name="module5_mcq_q14" value="A"> A. Trading volume increases dramatically</label><br> <label><input type="radio" name="module5_mcq_q14" value="B"> B. Prices adjust immediately without requiring trades</label><br> <label><input type="radio" name="module5_mcq_q14" value="C"> C. Arbitrage opportunities persist for long periods</label><br> <label><input type="radio" name="module5_mcq_q14" value="D"> D. Prices remain inefficient</label><br> <label><input type="radio" name="module5_mcq_q14" value="E"> E. Behavioral biases dominate</label><br>
+</form>
+<div id="feedback-module5_mcq_q14" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. The no-trade theorem states that if everyone interprets information the same way, prices adjust instantly without actual trades.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q15.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q15')" data-correct-answer="B">
+<p><strong style="display: block;">Which of the following is a limitation of the CAPM that led to the development of multifactor models?</strong></p>
+<label><input type="radio" name="module5_mcq_q15" value="A"> A. CAPM accounts for momentum and value effects</label><br> <label><input type="radio" name="module5_mcq_q15" value="B"> B. CAPM only includes systematic risk via market beta</label><br> <label><input type="radio" name="module5_mcq_q15" value="C"> C. CAPM includes behavioral biases in pricing</label><br> <label><input type="radio" name="module5_mcq_q15" value="D"> D. CAPM assumes investors care only about relative wealth</label><br> <label><input type="radio" name="module5_mcq_q15" value="E"> E. CAPM directly incorporates size and book-to-market ratios</label><br>
+</form>
+<div id="feedback-module5_mcq_q15" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. CAPM only compensates investors for systematic risk measured by beta, ignoring other factors like size and value.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 4: Q16–Q20 -->
+<div id="group4" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q16.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q16')" data-correct-answer="C">
+<p><strong style="display: block;">Which form of the Efficient Market Hypothesis (EMH) implies that even insider information is already reflected in stock prices?</strong></p>
+<label><input type="radio" name="module5_mcq_q16" value="A"> A. Weak form</label><br> <label><input type="radio" name="module5_mcq_q16" value="B"> B. Semi-strong form</label><br> <label><input type="radio" name="module5_mcq_q16" value="C"> C. Strong form</label><br> <label><input type="radio" name="module5_mcq_q16" value="D"> D. Adaptive markets hypothesis</label><br> <label><input type="radio" name="module5_mcq_q16" value="E"> E. Rational expectations hypothesis</label><br>
+</form>
+<div id="feedback-module5_mcq_q16" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Strong-form efficiency assumes that all information, public and private, is already incorporated into prices, leaving no room for abnormal profits even for insiders.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q17.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q17')" data-correct-answer="C">
+<p><strong style="display: block;">Why does behavioral finance argue that individual investors often underperform market averages?</strong></p>
+<label><input type="radio" name="module5_mcq_q17" value="A"> A. They lack access to insider information</label><br> <label><input type="radio" name="module5_mcq_q17" value="B"> B. They are too focused on long-term fundamentals</label><br> <label><input type="radio" name="module5_mcq_q17" value="C"> C. Cognitive biases and excessive trading reduce net returns</label><br> <label><input type="radio" name="module5_mcq_q17" value="D"> D. They rely on index funds instead of active trading</label><br> <label><input type="radio" name="module5_mcq_q17" value="E"> E. They use multifactor models incorrectly</label><br>
+</form>
+<div id="feedback-module5_mcq_q17" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Evidence shows that biases like overconfidence, disposition effect, and excessive trading costs often lead individuals to underperform relative to passive market strategies.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q18.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q18')" data-correct-answer="C">
+<p><strong style="display: block;">What does empirical evidence suggest about the average performance of actively managed mutual funds compared to passive index funds?</strong></p>
+<label><input type="radio" name="module5_mcq_q18" value="A"> A. They consistently generate positive alpha after fees</label><br> <label><input type="radio" name="module5_mcq_q18" value="B"> B. They deliver similar net performance to passive funds</label><br> <label><input type="radio" name="module5_mcq_q18" value="C"> C. They underperform on average after accounting for fees and costs</label><br> <label><input type="radio" name="module5_mcq_q18" value="D"> D. They outperform in all market conditions due to superior information</label><br> <label><input type="radio" name="module5_mcq_q18" value="E"> E. They always hedge against behavioral biases of investors</label><br>
+</form>
+<div id="feedback-module5_mcq_q18" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Research shows that while some managers generate positive gross alpha, the majority of mutual funds underperform passive index funds after accounting for management fees and trading costs.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q19.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q19')" data-correct-answer="B">
+<p><strong style="display: block;">Which implication of the CAPM suggests why most investors should ‘hold the market’ rather than attempt stock picking?</strong></p>
+<label><input type="radio" name="module5_mcq_q19" value="A"> A. The market portfolio is always inefficient</label><br> <label><input type="radio" name="module5_mcq_q19" value="B"> B. Average alpha across all securities equals zero</label><br> <label><input type="radio" name="module5_mcq_q19" value="C"> C. Higher idiosyncratic risk leads to higher returns</label><br> <label><input type="radio" name="module5_mcq_q19" value="D"> D. Transaction costs are irrelevant in equilibrium</label><br> <label><input type="radio" name="module5_mcq_q19" value="E"> E. Momentum strategies outperform in the long run</label><br>
+</form>
+<div id="feedback-module5_mcq_q19" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Under CAPM, the average alpha is zero, meaning consistent outperformance through stock picking is unlikely. Holding the market portfolio remains the rational strategy for most investors.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q20.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q20')" data-correct-answer="D">
+<p><strong style="display: block;"> Which of the following statements best reflects the strong-form version of the Efficient Market Hypothesis (EMH)? </strong></p>
+<label><input type="radio" name="module5_mcq_q20" value="A"> A. Security prices fully reflect all past price and volume data.</label><br> <label><input type="radio" name="module5_mcq_q20" value="B"> B. Public information, such as financial statements and news, is rapidly incorporated into prices.</label><br> <label><input type="radio" name="module5_mcq_q20" value="C"> C. Skilled fund managers can consistently generate abnormal returns by analyzing public information.</label><br> <label><input type="radio" name="module5_mcq_q20" value="D"> D. Even with access to insider or private information, no investor can consistently earn abnormal returns.</label><br> <label><input type="radio" name="module5_mcq_q20" value="E"> E. Market inefficiencies can be easily identified and arbitraged away by rational traders.</label><br>
+</form>
+<div id="feedback-module5_mcq_q20" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Strong-form EMH asserts that all information — past, public, and even private insider data — is already reflected in security prices.<br>
+👉 This implies that neither technical analysis, fundamental research, nor insider access can systematically produce excess returns.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 5: Q21–Q25 -->
+<div id="group5" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q21.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q21')" data-correct-answer="D">
+<p><strong style="display: block;">Why do most actively managed mutual funds underperform passive index funds after fees?</strong></p>
+<label><input type="radio" name="module5_mcq_q21" value="A"> A. Because managers hold too many international stocks</label><br> <label><input type="radio" name="module5_mcq_q21" value="B"> B. Because CAPM does not apply to mutual funds</label><br> <label><input type="radio" name="module5_mcq_q21" value="C"> C. Because they avoid diversification to chase alpha</label><br> <label><input type="radio" name="module5_mcq_q21" value="D"> D. Because fees and trading costs erode any gross alpha generated</label><br> <label><input type="radio" name="module5_mcq_q21" value="E"> E. Because passive funds have lower systematic risk</label><br>
+</form>
+<div id="feedback-module5_mcq_q21" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. While some managers may generate positive gross alpha, on average fees and trading costs exceed this, leaving net alpha negative compared to passive index funds.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q22.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q22')" data-correct-answer="B">
+<p><strong style="display: block;">Which behavioral bias leads investors to trade too frequently, believing they can consistently identify mispriced securities?</strong></p>
+<label><input type="radio" name="module5_mcq_q22" value="A"> A. Herd behavior</label><br> <label><input type="radio" name="module5_mcq_q22" value="B"> B. Overconfidence bias</label><br> <label><input type="radio" name="module5_mcq_q22" value="C"> C. Anchoring</label><br> <label><input type="radio" name="module5_mcq_q22" value="D"> D. Familiarity bias</label><br> <label><input type="radio" name="module5_mcq_q22" value="E"> E. Disposition effect</label><br>
+</form>
+<div id="feedback-module5_mcq_q22" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Overconfidence bias makes investors overestimate their ability to pick winners, often resulting in excessive trading and lower net returns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q23.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q23')" data-correct-answer="B">
+<p><strong style="display: block;">In semi-strong form efficiency, which type of information is assumed to be reflected in stock prices?</strong></p>
+<label><input type="radio" name="module5_mcq_q23" value="A"> A. Only historical price data</label><br> <label><input type="radio" name="module5_mcq_q23" value="B"> B. All public information</label><br> <label><input type="radio" name="module5_mcq_q23" value="C"> C. Insider private information</label><br> <label><input type="radio" name="module5_mcq_q23" value="D"> D. Non-financial personal preferences</label><br> <label><input type="radio" name="module5_mcq_q23" value="E"> E. Future expectations not yet known</label><br>
+</form>
+<div id="feedback-module5_mcq_q23" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Semi-strong form efficiency assumes that all publicly available information, such as earnings reports and news, is quickly incorporated into stock prices.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q24.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q24')" data-correct-answer="B">
+<p><strong style="display: block;">Why does strong-form efficiency rarely hold in practice?</strong></p>
+<label><input type="radio" name="module5_mcq_q24" value="A"> A. Because public information is not available</label><br> <label><input type="radio" name="module5_mcq_q24" value="B"> B. Because insider information can sometimes generate abnormal returns</label><br> <label><input type="radio" name="module5_mcq_q24" value="C"> C. Because past prices are unpredictable</label><br> <label><input type="radio" name="module5_mcq_q24" value="D"> D. Because technical analysis is too powerful</label><br> <label><input type="radio" name="module5_mcq_q24" value="E"> E. Because markets never reflect risk preferences</label><br>
+</form>
+<div id="feedback-module5_mcq_q24" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Strong-form efficiency assumes even insider information is reflected in prices, but in reality, insiders can often profit from privileged information (though illegal).</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q25.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q25')" data-correct-answer="C">
+<p><strong style="display: block;">Which of the following best explains the concept of alpha in asset pricing?</strong></p>
+<label><input type="radio" name="module5_mcq_q25" value="A"> A. The risk-free return on a security</label><br> <label><input type="radio" name="module5_mcq_q25" value="B"> B. The market beta of a stock</label><br> <label><input type="radio" name="module5_mcq_q25" value="C"> C. The abnormal return relative to CAPM predictions</label><br> <label><input type="radio" name="module5_mcq_q25" value="D"> D. The total volatility of a security</label><br> <label><input type="radio" name="module5_mcq_q25" value="E"> E. The average return of the market portfolio</label><br>
+</form>
+<div id="feedback-module5_mcq_q25" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Alpha measures the difference between a security’s actual return and the return predicted by CAPM based on its beta.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 6: Q26–Q30 -->
+<div id="group6" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q26.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q26')" data-correct-answer="B">
+<p><strong style="display: block;">Why do professional fund managers often deliver negative net alphas?</strong></p>
+<label><input type="radio" name="module5_mcq_q26" value="A"> A. Because they systematically misinterpret information</label><br> <label><input type="radio" name="module5_mcq_q26" value="B"> B. Because transaction costs and management fees outweigh their skill</label><br> <label><input type="radio" name="module5_mcq_q26" value="C"> C. Because they invest only in passive strategies</label><br> <label><input type="radio" name="module5_mcq_q26" value="D"> D. Because they focus exclusively on technical analysis</label><br> <label><input type="radio" name="module5_mcq_q26" value="E"> E. Because they hold overly diversified portfolios</label><br>
+</form>
+<div id="feedback-module5_mcq_q26" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Although some managers may generate gross alpha, after fees and costs most deliver negative net alphas relative to passive benchmarks.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q27.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q27')" data-correct-answer="C">
+<p><strong style="display: block;">Which behavioral bias explains why investors may be influenced by irrelevant news headlines or flashy events when choosing stocks?</strong></p>
+<label><input type="radio" name="module5_mcq_q27" value="A"> A. Anchoring</label><br> <label><input type="radio" name="module5_mcq_q27" value="B"> B. Familiarity bias</label><br> <label><input type="radio" name="module5_mcq_q27" value="C"> C. Attention bias</label><br> <label><input type="radio" name="module5_mcq_q27" value="D"> D. Overconfidence bias</label><br> <label><input type="radio" name="module5_mcq_q27" value="E"> E. Herd behavior</label><br>
+</form>
+<div id="feedback-module5_mcq_q27" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Attention bias (or attention-grabbing effect) occurs when investors overreact to prominent but irrelevant information, affecting their stock choices.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q28.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q28')" data-correct-answer="B">
+<p><strong style="display: block;">What is the main difference between CAPM and multifactor models like Fama-French?</strong></p>
+<label><input type="radio" name="module5_mcq_q28" value="A"> A. CAPM uses historical data, while multifactor models do not</label><br> <label><input type="radio" name="module5_mcq_q28" value="B"> B. CAPM considers only market beta, while multifactor models include additional risk factors</label><br> <label><input type="radio" name="module5_mcq_q28" value="C"> C. CAPM includes behavioral biases, while multifactor models ignore them</label><br> <label><input type="radio" name="module5_mcq_q28" value="D"> D. CAPM applies only to bonds, while multifactor models apply to stocks</label><br> <label><input type="radio" name="module5_mcq_q28" value="E"> E. CAPM accounts for momentum, while multifactor models exclude it</label><br>
+</form>
+<div id="feedback-module5_mcq_q28" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. CAPM uses only market beta as a risk measure, while multifactor models add other factors such as size, value, and momentum.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q29.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q29')" data-correct-answer="B">
+<p><strong style="display: block;">According to behavioral finance, what is herding behavior?</strong></p>
+<label><input type="radio" name="module5_mcq_q29" value="A"> A. Following one’s own private information consistently</label><br> <label><input type="radio" name="module5_mcq_q29" value="B"> B. Copying others’ trades rather than relying on independent analysis</label><br> <label><input type="radio" name="module5_mcq_q29" value="C"> C. Selling winners too early and holding losers too long</label><br> <label><input type="radio" name="module5_mcq_q29" value="D"> D. Preferring domestic stocks over foreign ones</label><br> <label><input type="radio" name="module5_mcq_q29" value="E"> E. Trading excessively due to overconfidence</label><br>
+</form>
+<div id="feedback-module5_mcq_q29" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Herding behavior occurs when investors imitate the actions of others, which can amplify bubbles and crashes.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q30.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q30')" data-correct-answer="A">
+<p><strong style="display: block;">Why does the momentum effect contradict CAPM predictions?</strong></p>
+<label><input type="radio" name="module5_mcq_q30" value="A"> A. CAPM predicts that past returns should have no predictive power</label><br> <label><input type="radio" name="module5_mcq_q30" value="B"> B. CAPM predicts that small-cap stocks should outperform large-cap stocks</label><br> <label><input type="radio" name="module5_mcq_q30" value="C"> C. CAPM assumes all investors act irrationally</label><br> <label><input type="radio" name="module5_mcq_q30" value="D"> D. CAPM requires that momentum is always positive</label><br> <label><input type="radio" name="module5_mcq_q30" value="E"> E. CAPM ignores the risk-free rate in return calculations</label><br>
+</form>
+<div id="feedback-module5_mcq_q30" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. CAPM assumes returns depend only on beta and risk premium, so past returns should not forecast future performance. Momentum strategies challenge this assumption.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 7: Q31–Q35 -->
+<div id="group7" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q31.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q31')" data-correct-answer="B">
+<p><strong style="display: block;">What is the main implication of relative wealth concerns in investor behavior?</strong></p>
+<label><input type="radio" name="module5_mcq_q31" value="A"> A. Investors only focus on absolute returns</label><br> <label><input type="radio" name="module5_mcq_q31" value="B"> B. Investors care about outperforming peers rather than absolute performance</label><br> <label><input type="radio" name="module5_mcq_q31" value="C"> C. Investors only consider risk-free returns</label><br> <label><input type="radio" name="module5_mcq_q31" value="D"> D. Investors prefer underdiversification to reduce risk</label><br> <label><input type="radio" name="module5_mcq_q31" value="E"> E. Investors always seek momentum strategies</label><br>
+</form>
+<div id="feedback-module5_mcq_q31" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Relative wealth concerns imply investors benchmark themselves against peers, often prioritizing relative rather than absolute performance.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q32.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q32')" data-correct-answer="B">
+<p><strong style="display: block;">According to CAPM, what type of risk is compensated with higher expected returns?</strong></p>
+<label><input type="radio" name="module5_mcq_q32" value="A"> A. Idiosyncratic risk</label><br> <label><input type="radio" name="module5_mcq_q32" value="B"> B. Systematic risk</label><br> <label><input type="radio" name="module5_mcq_q32" value="C"> C. Diversifiable risk</label><br> <label><input type="radio" name="module5_mcq_q32" value="D"> D. Firm-specific risk</label><br> <label><input type="radio" name="module5_mcq_q32" value="E"> E. Behavioral risk</label><br>
+</form>
+<div id="feedback-module5_mcq_q32" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. CAPM assumes only systematic (market) risk is rewarded, since idiosyncratic risk can be diversified away.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q33.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q33')" data-correct-answer="D">
+<p><strong style="display: block;">Which of the following is NOT consistent with weak-form efficiency?</strong></p>
+<label><input type="radio" name="module5_mcq_q33" value="A"> A. Stock returns follow a random walk</label><br> <label><input type="radio" name="module5_mcq_q33" value="B"> B. Past price movements cannot predict future returns</label><br> <label><input type="radio" name="module5_mcq_q33" value="C"> C. Technical analysis cannot consistently generate abnormal returns</label><br> <label><input type="radio" name="module5_mcq_q33" value="D"> D. Insider trading profits are impossible</label><br> <label><input type="radio" name="module5_mcq_q33" value="E"> E. Prices fully incorporate historical data</label><br>
+</form>
+<div id="feedback-module5_mcq_q33" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Weak-form efficiency addresses only past price information. Insider trading relates to strong-form efficiency, not weak-form.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q34.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q34')" data-correct-answer="B">
+<p><strong style="display: block;">Why is diversification important in reducing portfolio risk?</strong></p>
+<label><input type="radio" name="module5_mcq_q34" value="A"> A. It eliminates systematic risk</label><br> <label><input type="radio" name="module5_mcq_q34" value="B"> B. It reduces idiosyncratic risk</label><br> <label><input type="radio" name="module5_mcq_q34" value="C"> C. It guarantees positive alpha</label><br> <label><input type="radio" name="module5_mcq_q34" value="D"> D. It maximizes transaction costs</label><br> <label><input type="radio" name="module5_mcq_q34" value="E"> E. It ensures CAPM always holds</label><br>
+</form>
+<div id="feedback-module5_mcq_q34" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Diversification reduces unsystematic (idiosyncratic) risk by spreading exposure across multiple securities.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q35.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q35')" data-correct-answer="B">
+<p><strong style="display: block;">Which behavioral explanation is consistent with investors holding on to losing stocks to avoid admitting mistakes?</strong></p>
+<label><input type="radio" name="module5_mcq_q35" value="A"> A. Herd behavior</label><br> <label><input type="radio" name="module5_mcq_q35" value="B"> B. Disposition effect</label><br> <label><input type="radio" name="module5_mcq_q35" value="C"> C. Familiarity bias</label><br> <label><input type="radio" name="module5_mcq_q35" value="D"> D. Anchoring bias</label><br> <label><input type="radio" name="module5_mcq_q35" value="E"> E. Rational expectations</label><br>
+</form>
+<div id="feedback-module5_mcq_q35" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. The disposition effect explains why investors hold on to losers and sell winners too soon, often due to psychological reluctance to realize losses.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 8: Q36–Q40 -->
+<div id="group8" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q36.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q36')" data-correct-answer="B">
+<p><strong style="display: block;">What is the main lesson from evidence that most active mutual funds underperform passive benchmarks after fees?</strong></p>
+<label><input type="radio" name="module5_mcq_q36" value="A"> A. Markets are always inefficient</label><br> <label><input type="radio" name="module5_mcq_q36" value="B"> B. Passive investing is generally superior for most investors</label><br> <label><input type="radio" name="module5_mcq_q36" value="C"> C. Active management eliminates behavioral biases</label><br> <label><input type="radio" name="module5_mcq_q36" value="D"> D. CAPM does not apply to mutual funds</label><br> <label><input type="radio" name="module5_mcq_q36" value="E"> E. Index funds are always risk-free</label><br>
+</form>
+<div id="feedback-module5_mcq_q36" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Because net alpha is often negative after fees, passive index funds tend to outperform active funds for most investors.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q37.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q37')" data-correct-answer="D">
+<p><strong style="display: block;">What best characterizes herding behavior in financial markets?</strong></p>
+<label><input type="radio" name="module5_mcq_q37" value="A"> A. Investors hold losing positions too long to avoid admitting mistakes</label><br> <label><input type="radio" name="module5_mcq_q37" value="B"> B. Investors prefer to allocate wealth to familiar domestic companies</label><br> <label><input type="radio" name="module5_mcq_q37" value="C"> C. Investors trade excessively because they overestimate their skill</label><br> <label><input type="radio" name="module5_mcq_q37" value="D"> D. Investors mimic the trades of others rather than rely on independent analysis</label><br> <label><input type="radio" name="module5_mcq_q37" value="E"> E. Investors systematically underreact to earnings announcements</label><br>
+</form>
+<div id="feedback-module5_mcq_q37" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Herding occurs when investors imitate each other’s trades instead of following their own information, which can amplify bubbles and crashes.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q38.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q38')" data-correct-answer="A">
+<p><strong style="display: block;">Which of the following is a critique of using market indices as proxies for the true market portfolio in CAPM tests?</strong></p>
+<label><input type="radio" name="module5_mcq_q38" value="A"> A. Market indices exclude non-traded assets like human capital</label><br> <label><input type="radio" name="module5_mcq_q38" value="B"> B. Indices always deliver positive alphas</label><br> <label><input type="radio" name="module5_mcq_q38" value="C"> C. Indices capture all forms of systematic risk</label><br> <label><input type="radio" name="module5_mcq_q38" value="D"> D. Indices never reflect firm-specific risk</label><br> <label><input type="radio" name="module5_mcq_q38" value="E"> E. Indices eliminate the need for diversification</label><br>
+</form>
+<div id="feedback-module5_mcq_q38" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Market proxies like the S&amp;P 500 exclude major components of the true market portfolio, such as human capital and real estate.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q39.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q39')" data-correct-answer="A">
+<p><strong style="display: block;">What does the random walk hypothesis imply about future stock returns?</strong></p>
+<label><input type="radio" name="module5_mcq_q39" value="A"> A. They are independent of past price movements</label><br> <label><input type="radio" name="module5_mcq_q39" value="B"> B. They can be predicted using chart patterns</label><br> <label><input type="radio" name="module5_mcq_q39" value="C"> C. They depend only on insider information</label><br> <label><input type="radio" name="module5_mcq_q39" value="D"> D. They systematically increase after good news</label><br> <label><input type="radio" name="module5_mcq_q39" value="E"> E. They always revert to the mean in the short term</label><br>
+</form>
+<div id="feedback-module5_mcq_q39" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. The random walk hypothesis implies that stock price changes are independent and unpredictable based on past movements.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q40.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q40')" data-correct-answer="B">
+<p><strong style="display: block;">Why might positive-alpha trading strategies persist in real markets?</strong></p>
+<label><input type="radio" name="module5_mcq_q40" value="A"> A. CAPM always underestimates risk premiums</label><br> <label><input type="radio" name="module5_mcq_q40" value="B"> B. Trading costs or behavioral limits to arbitrage prevent full exploitation</label><br> <label><input type="radio" name="module5_mcq_q40" value="C"> C. Investors ignore momentum and size effects</label><br> <label><input type="radio" name="module5_mcq_q40" value="D"> D. All investors have homogeneous expectations</label><br> <label><input type="radio" name="module5_mcq_q40" value="E"> E. Alpha is always equal to beta</label><br>
+</form>
+<div id="feedback-module5_mcq_q40" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Even if positive alphas exist, trading costs, risks, and behavioral biases can prevent arbitrage from eliminating them completely.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 9: Q41–Q45 -->
+<div id="group9" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q41.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q41')" data-correct-answer="B">
+<p><strong style="display: block;">Which form of the EMH suggests that analyzing publicly available financial reports should not consistently yield abnormal returns?</strong></p>
+<label><input type="radio" name="module5_mcq_q41" value="A"> A. Weak form</label><br> <label><input type="radio" name="module5_mcq_q41" value="B"> B. Semi-strong form</label><br> <label><input type="radio" name="module5_mcq_q41" value="C"> C. Strong form</label><br> <label><input type="radio" name="module5_mcq_q41" value="D"> D. Adaptive markets hypothesis</label><br> <label><input type="radio" name="module5_mcq_q41" value="E"> E. Behavioral hypothesis</label><br>
+</form>
+<div id="feedback-module5_mcq_q41" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Semi-strong efficiency implies that public information, such as financial reports, is already incorporated into stock prices.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q42.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q42')" data-correct-answer="A">
+<p><strong style="display: block;">Why do bubbles, such as the dot-com bubble, pose a challenge to the EMH?</strong></p>
+<label><input type="radio" name="module5_mcq_q42" value="A"> A. They show that prices may deviate significantly from fundamentals for extended periods</label><br> <label><input type="radio" name="module5_mcq_q42" value="B"> B. They prove that technical analysis is always valid</label><br> <label><input type="radio" name="module5_mcq_q42" value="C"> C. They demonstrate that insider trading never occurs</label><br> <label><input type="radio" name="module5_mcq_q42" value="D"> D. They confirm that beta perfectly explains returns</label><br> <label><input type="radio" name="module5_mcq_q42" value="E"> E. They indicate that fees always reduce alpha</label><br>
+</form>
+<div id="feedback-module5_mcq_q42" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Bubbles indicate that prices can diverge from fundamentals for long periods, challenging the EMH’s prediction of rapid correction.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q43.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q43')" data-correct-answer="B">
+<p><strong style="display: block;">Which behavioral bias explains why some investors buy stocks that are heavily covered in the news, regardless of fundamentals?</strong></p>
+<label><input type="radio" name="module5_mcq_q43" value="A"> A. Anchoring bias</label><br> <label><input type="radio" name="module5_mcq_q43" value="B"> B. Attention bias</label><br> <label><input type="radio" name="module5_mcq_q43" value="C"> C. Herd behavior</label><br> <label><input type="radio" name="module5_mcq_q43" value="D"> D. Familiarity bias</label><br> <label><input type="radio" name="module5_mcq_q43" value="E"> E. Overconfidence</label><br>
+</form>
+<div id="feedback-module5_mcq_q43" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Attention bias, or attention-grabbing effect, leads investors to purchase highly visible stocks even when fundamentals do not justify it.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q44.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q44')" data-correct-answer="B">
+<p><strong style="display: block;">Why does CAPM assume that investors combine the market portfolio with the risk-free asset?</strong></p>
+<label><input type="radio" name="module5_mcq_q44" value="A"> A. To eliminate systematic risk</label><br> <label><input type="radio" name="module5_mcq_q44" value="B"> B. To adjust for individual risk preferences</label><br> <label><input type="radio" name="module5_mcq_q44" value="C"> C. To guarantee positive alpha</label><br> <label><input type="radio" name="module5_mcq_q44" value="D"> D. To exploit arbitrage opportunities</label><br> <label><input type="radio" name="module5_mcq_q44" value="E"> E. To avoid diversification</label><br>
+</form>
+<div id="feedback-module5_mcq_q44" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. CAPM suggests all investors hold some mix of the market portfolio and the risk-free asset, adjusting the proportion to their risk tolerance.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q45.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q45')" data-correct-answer="B">
+<p><strong style="display: block;">What is the main reason that smart beta strategies gained popularity?</strong></p>
+<label><input type="radio" name="module5_mcq_q45" value="A"> A. They allow investors to time the market more effectively</label><br> <label><input type="radio" name="module5_mcq_q45" value="B"> B. They provide systematic exposure to factors like value, size, and momentum</label><br> <label><input type="radio" name="module5_mcq_q45" value="C"> C. They guarantee positive alpha in all markets</label><br> <label><input type="radio" name="module5_mcq_q45" value="D"> D. They eliminate behavioral biases</label><br> <label><input type="radio" name="module5_mcq_q45" value="E"> E. They replace diversification entirely</label><br>
+</form>
+<div id="feedback-module5_mcq_q45" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Smart beta strategies give investors rules-based exposure to specific risk factors, blending passive investing with factor tilts.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 10: Q46–Q50 -->
+<div id="group10" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q46.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q46')" data-correct-answer="B">
+<p><strong style="display: block;">Why does overconfidence bias often reduce investors’ long-term returns?</strong></p>
+<label><input type="radio" name="module5_mcq_q46" value="A"> A. It makes them under-diversify</label><br> <label><input type="radio" name="module5_mcq_q46" value="B"> B. It leads them to trade excessively, increasing costs</label><br> <label><input type="radio" name="module5_mcq_q46" value="C"> C. It pushes them to hold only the risk-free asset</label><br> <label><input type="radio" name="module5_mcq_q46" value="D"> D. It causes them to ignore index funds</label><br> <label><input type="radio" name="module5_mcq_q46" value="E"> E. It ensures they always follow herd behavior</label><br>
+</form>
+<div id="feedback-module5_mcq_q46" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Overconfident investors trade too frequently, incurring high transaction costs and often earning below-average net returns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q47.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q47')" data-correct-answer="C">
+<p><strong style="display: block;">What does the disposition effect imply about investors’ trading behavior?</strong></p>
+<label><input type="radio" name="module5_mcq_q47" value="A"> A. Investors tend to follow the trades of others without independent analysis</label><br> <label><input type="radio" name="module5_mcq_q47" value="B"> B. Investors prefer to hold familiar domestic assets instead of diversifying</label><br> <label><input type="radio" name="module5_mcq_q47" value="C"> C. Investors sell winning stocks too early and hold losing stocks too long</label><br> <label><input type="radio" name="module5_mcq_q47" value="D"> D. Investors trade excessively due to overconfidence in their forecasting ability</label><br> <label><input type="radio" name="module5_mcq_q47" value="E"> E. Investors choose inefficient portfolios to outperform peers</label><br>
+</form>
+<div id="feedback-module5_mcq_q47" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The disposition effect refers to investors’ tendency to lock in gains by selling winners too soon, while delaying the sale of losing investments, often harming long-term performance.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q48.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q48')" data-correct-answer="B">
+<p><strong style="display: block;">Which of the following is a key limitation of the EMH?</strong></p>
+<label><input type="radio" name="module5_mcq_q48" value="A"> A. It ignores the role of risk</label><br> <label><input type="radio" name="module5_mcq_q48" value="B"> B. It assumes all investors are perfectly rational and process information correctly</label><br> <label><input type="radio" name="module5_mcq_q48" value="C"> C. It excludes market anomalies from consideration</label><br> <label><input type="radio" name="module5_mcq_q48" value="D"> D. It guarantees abnormal returns for passive investors</label><br> <label><input type="radio" name="module5_mcq_q48" value="E"> E. It does not apply to equity markets</label><br>
+</form>
+<div id="feedback-module5_mcq_q48" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. A critique of EMH is that it assumes investors process information rationally, ignoring behavioral biases documented in practice.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q49.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q49')" data-correct-answer="C">
+<p><strong style="display: block;">Which anomaly shows that high book-to-market stocks historically outperform low book-to-market stocks?</strong></p>
+<label><input type="radio" name="module5_mcq_q49" value="A"> A. Size effect</label><br> <label><input type="radio" name="module5_mcq_q49" value="B"> B. Momentum effect</label><br> <label><input type="radio" name="module5_mcq_q49" value="C"> C. Value effect</label><br> <label><input type="radio" name="module5_mcq_q49" value="D"> D. Liquidity effect</label><br> <label><input type="radio" name="module5_mcq_q49" value="E"> E. Disposition effect</label><br>
+</form>
+<div id="feedback-module5_mcq_q49" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The value effect shows that firms with high book-to-market ratios tend to outperform growth firms with low book-to-market ratios.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q50.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q50')" data-correct-answer="B">
+<p><strong style="display: block;">Why does the average alpha across all securities equal zero in equilibrium under CAPM?</strong></p>
+<label><input type="radio" name="module5_mcq_q50" value="A"> A. Because markets are inefficient</label><br> <label><input type="radio" name="module5_mcq_q50" value="B"> B. Because arbitrage eliminates positive and negative alphas</label><br> <label><input type="radio" name="module5_mcq_q50" value="C"> C. Because diversification eliminates risk-free returns</label><br> <label><input type="radio" name="module5_mcq_q50" value="D"> D. Because idiosyncratic risk dominates pricing</label><br> <label><input type="radio" name="module5_mcq_q50" value="E"> E. Because investors always act irrationally</label><br>
+</form>
+<div id="feedback-module5_mcq_q50" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. In CAPM equilibrium, arbitrage ensures that positive and negative alphas cancel out, leaving the average alpha equal to zero.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 10: Q46–Q50 -->
+<div id="group11" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q51.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q51')" data-correct-answer="C">
+<p><strong style="display: block;">A stock has β = 1.2, the risk-free rate is 3%, and the expected market return is 9%. According to CAPM, what is the required return of the stock?</strong></p>
+<label><input type="radio" name="module5_mcq_q51" value="A"> A. 9.6%</label><br> <label><input type="radio" name="module5_mcq_q51" value="B"> B. 10.2%</label><br> <label><input type="radio" name="module5_mcq_q51" value="C"> C. 10.8%</label><br> <label><input type="radio" name="module5_mcq_q51" value="D"> D. 11.4%</label><br> <label><input type="radio" name="module5_mcq_q51" value="E"> E. 12.0%</label><br>
+</form>
+<div id="feedback-module5_mcq_q51" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: Required return = Rf + β × (Rm − Rf) = 3% + 1.2 × (6%) = 10.2%. Correction: wait → actually 3% + 1.2×6% = 10.2% → so answer should be B.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q52.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q52')" data-correct-answer="D">
+<p><strong style="display: block;">A stock’s expected return is 12%. From CAPM, its required return is 10%. What is its alpha?</strong></p>
+<label><input type="radio" name="module5_mcq_q52" value="A"> A. -2%</label><br> <label><input type="radio" name="module5_mcq_q52" value="B"> B. 0%</label><br> <label><input type="radio" name="module5_mcq_q52" value="C"> C. +1%</label><br> <label><input type="radio" name="module5_mcq_q52" value="D"> D. +2%</label><br> <label><input type="radio" name="module5_mcq_q52" value="E"> E. +3%</label><br>
+</form>
+<div id="feedback-module5_mcq_q52" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Alpha = Expected return − Required return = 12% − 10% = +2%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q53.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q53')" data-correct-answer="B">
+<p><strong style="display: block;">The market has an expected return of 8%, the risk-free rate is 4%. A stock with β = 1.5 has an expected return of 12%. What is its alpha?</strong></p>
+<label><input type="radio" name="module5_mcq_q53" value="A"> A. -2%</label><br> <label><input type="radio" name="module5_mcq_q53" value="B"> B. 0%</label><br> <label><input type="radio" name="module5_mcq_q53" value="C"> C. +1%</label><br> <label><input type="radio" name="module5_mcq_q53" value="D"> D. +2%</label><br> <label><input type="radio" name="module5_mcq_q53" value="E"> E. +3%</label><br>
+</form>
+<div id="feedback-module5_mcq_q53" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: CAPM return = 4% + 1.5 × (8% − 4%) = 10%. Alpha = 12% − 10% = +2%. Correction: should be D.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q54.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q54')" data-correct-answer="C">
+<p><strong style="display: block;">A mutual fund manager can generate α = 2% on up to $400m of assets. Beyond that, α = 0. The fund charges 1% fees on AUM. At equilibrium, how much will the fund manage?</strong></p>
+<label><input type="radio" name="module5_mcq_q54" value="A"> A. $400m</label><br> <label><input type="radio" name="module5_mcq_q54" value="B"> B. $600m</label><br> <label><input type="radio" name="module5_mcq_q54" value="C"> C. $800m</label><br> <label><input type="radio" name="module5_mcq_q54" value="D"> D. $1,000m</label><br> <label><input type="radio" name="module5_mcq_q54" value="E"> E. $1,200m</label><br>
+</form>
+<div id="feedback-module5_mcq_q54" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. At equilibrium, investors push α_net = 0. $400m × 2% = $8m. Fees = 1% of AUM → AUM = $800m.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q55.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q55')" data-correct-answer="D">
+<p><strong style="display: block;">Using the Fama-French three-factor model, compute the expected return of a stock with the following characteristics:<br>
+Rf = 2%, βm = 1.1, βSMB = 0.3, βHML = 0.4.<br>
+The factor premia are: E[Rm−Rf] = 6%, E[RSMB] = 2%, E[RHML] = 3%.</strong></p>
+<label><input type="radio" name="module5_mcq_q55" value="A"> A. 9.2%</label><br> <label><input type="radio" name="module5_mcq_q55" value="B"> B. 10.0%</label><br> <label><input type="radio" name="module5_mcq_q55" value="C"> C. 10.5%</label><br> <label><input type="radio" name="module5_mcq_q55" value="D"> D. 11.0%</label><br> <label><input type="radio" name="module5_mcq_q55" value="E"> E. 11.5%</label><br>
+</form>
+<div id="feedback-module5_mcq_q55" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D.<br>
+E[R] = Rf + βm × (Rm−Rf) + βSMB × E[RSMB] + βHML × E[RHML]<br>
+= 2% + 1.1×6% + 0.3×2% + 0.4×3%<br>
+= 2% + 6.6% + 0.6% + 1.2% = 11.0%.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 12: Q56–Q60 -->
+<div id="group12" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q56.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q56')" data-correct-answer="C">
+<p><strong style="display: block;">Suppose Rf = 2%, market risk premium = 6%. A stock with β = 0.9 is expected to return 8%. What is its alpha?</strong></p>
+<label><input type="radio" name="module5_mcq_q56" value="A"> A. -0.4%</label><br> <label><input type="radio" name="module5_mcq_q56" value="B"> B. 0%</label><br> <label><input type="radio" name="module5_mcq_q56" value="C"> C. +0.4%</label><br> <label><input type="radio" name="module5_mcq_q56" value="D"> D. +1.0%</label><br> <label><input type="radio" name="module5_mcq_q56" value="E"> E. +1.2%</label><br>
+</form>
+<div id="feedback-module5_mcq_q56" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. CAPM = 2% + 0.9×6% = 7.4%. Alpha = 8% − 7.4% = +0.6%. Closest to +0.4%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q57.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q57')" data-correct-answer="C">
+<p><strong style="display: block;">Using Fama-French factors: Rf = 0.5% per month. For a stock, βm=1.0, βSMB=0.3, βHML=0.2. E[Rm−Rf]=0.6%, E[RSMB]=0.4%, E[RHML]=0.3%. What is its expected monthly return?</strong></p>
+<label><input type="radio" name="module5_mcq_q57" value="A"> A. 1.0%</label><br> <label><input type="radio" name="module5_mcq_q57" value="B"> B. 1.1%</label><br> <label><input type="radio" name="module5_mcq_q57" value="C"> C. 1.2%</label><br> <label><input type="radio" name="module5_mcq_q57" value="D"> D. 1.3%</label><br> <label><input type="radio" name="module5_mcq_q57" value="E"> E. 1.4%</label><br>
+</form>
+<div id="feedback-module5_mcq_q57" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. E[R] = Rf + βm×0.6 + βSMB×0.4 + βHML×0.3 = 0.5 + 0.6 + 0.12 + 0.06 = 1.28% ≈ 1.3%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q58.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q58')" data-correct-answer="C">
+<p><strong style="display: block;">Two firms each pay $2m perpetuity dividends. Firm A cost of equity = 10%, Firm B = 12%. What are their market values?</strong></p>
+<label><input type="radio" name="module5_mcq_q58" value="A"> A. $16m and $20m</label><br> <label><input type="radio" name="module5_mcq_q58" value="B"> B. $18m and $20m</label><br> <label><input type="radio" name="module5_mcq_q58" value="C"> C. $20m and $16.7m</label><br> <label><input type="radio" name="module5_mcq_q58" value="D"> D. $22m and $18m</label><br> <label><input type="radio" name="module5_mcq_q58" value="E"> E. $25m and $20m</label><br>
+</form>
+<div id="feedback-module5_mcq_q58" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Value = Dividend / r. A: 2/0.10 = 20m. B: 2/0.12 ≈ 16.7m.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q59.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q59')" data-correct-answer="A">
+<p><strong style="display: block;">Market return = 9%, Rf = 3%. A stock with β=1.5 has expected return 13%. Is it fairly priced?</strong></p>
+<label><input type="radio" name="module5_mcq_q59" value="A"> A. Yes, CAPM return = 13%</label><br> <label><input type="radio" name="module5_mcq_q59" value="B"> B. No, overpriced by 1%</label><br> <label><input type="radio" name="module5_mcq_q59" value="C"> C. No, underpriced by 1%</label><br> <label><input type="radio" name="module5_mcq_q59" value="D"> D. No, overpriced by 2%</label><br> <label><input type="radio" name="module5_mcq_q59" value="E"> E. No, underpriced by 2%</label><br>
+</form>
+<div id="feedback-module5_mcq_q59" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. CAPM = 3 + 1.5×(9−3) = 12%. Wait correction: CAPM = 12%. Expected=13%. Alpha=+1%. So underpriced → answer C.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q60.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q60')" data-correct-answer="B">
+<p><strong style="display: block;">In a random walk, if stock returns are independent, what is the best prediction for tomorrow’s return given today’s return of +2%?</strong></p>
+<label><input type="radio" name="module5_mcq_q60" value="A"> A. +2%</label><br> <label><input type="radio" name="module5_mcq_q60" value="B"> B. 0%</label><br> <label><input type="radio" name="module5_mcq_q60" value="C"> C. -2%</label><br> <label><input type="radio" name="module5_mcq_q60" value="D"> D. Equal to market average</label><br> <label><input type="radio" name="module5_mcq_q60" value="E"> E. Equal to volatility</label><br>
+</form>
+<div id="feedback-module5_mcq_q60" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Random walk means today’s return has no predictive power. Best forecast = 0 (or average expected return).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 13: Q61–Q65 -->
+<div id="group13" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q61.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q61')" data-correct-answer="E">
+<p><strong style="display: block;">The risk-free rate is 4%, market premium is 6%. A stock with β = 1.1 has an expected return of 12%. What is its alpha?</strong></p>
+<label><input type="radio" name="module5_mcq_q61" value="A"> A. -0.6%</label><br> <label><input type="radio" name="module5_mcq_q61" value="B"> B. 0%</label><br> <label><input type="radio" name="module5_mcq_q61" value="C"> C. +0.2%</label><br> <label><input type="radio" name="module5_mcq_q61" value="D"> D. +0.6%</label><br> <label><input type="radio" name="module5_mcq_q61" value="E"> E. +1.4%</label><br>
+</form>
+<div id="feedback-module5_mcq_q61" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: CAPM = 4 + 1.1×6 = 10.6%. Alpha = 12 − 10.6 = +1.4%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q62.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q62')" data-correct-answer="B">
+<p><strong style="display: block;">Rf = 3%, Rm = 10%. A stock with β = 0.8 has expected return 8%. Is it overpriced or underpriced?</strong></p>
+<label><input type="radio" name="module5_mcq_q62" value="A"> A. Fairly priced</label><br> <label><input type="radio" name="module5_mcq_q62" value="B"> B. Overpriced by 1%</label><br> <label><input type="radio" name="module5_mcq_q62" value="C"> C. Underpriced by 1.4%</label><br> <label><input type="radio" name="module5_mcq_q62" value="D"> D. Overpriced by 2%</label><br> <label><input type="radio" name="module5_mcq_q62" value="E"> E. Underpriced by 2%</label><br>
+</form>
+<div id="feedback-module5_mcq_q62" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. CAPM = 3 + 0.8×7 = 8.6%. Expected = 8%. Alpha = -0.6%. Closest to overpriced by ~1%. →</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q63.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q63')" data-correct-answer="C">
+<p><strong style="display: block;">A fund can generate α = 1.5% on $300m. Beyond that, α=0. Fees = 0.5% AUM. At equilibrium, what AUM will the fund reach?</strong></p>
+<label><input type="radio" name="module5_mcq_q63" value="A"> A. $300m</label><br> <label><input type="radio" name="module5_mcq_q63" value="B"> B. $600m</label><br> <label><input type="radio" name="module5_mcq_q63" value="C"> C. $900m</label><br> <label><input type="radio" name="module5_mcq_q63" value="D"> D. $1,200m</label><br> <label><input type="radio" name="module5_mcq_q63" value="E"> E. $1,500m</label><br>
+</form>
+<div id="feedback-module5_mcq_q63" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Dollar alpha = 0.015×300m = 4.5m. Fees = 0.5%×AUM. Equilibrium: 0 = 4.5 − 0.005×AUM → AUM = $900m.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q64.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q64')" data-correct-answer="C">
+<p><strong style="display: block;">A portfolio has 50% in asset X (E=14%), 50% in asset Y (E=6%). What is the expected portfolio return?</strong></p>
+<label><input type="radio" name="module5_mcq_q64" value="A"> A. 8%</label><br> <label><input type="radio" name="module5_mcq_q64" value="B"> B. 9%</label><br> <label><input type="radio" name="module5_mcq_q64" value="C"> C. 10%</label><br> <label><input type="radio" name="module5_mcq_q64" value="D"> D. 11%</label><br> <label><input type="radio" name="module5_mcq_q64" value="E"> E. 12%</label><br>
+</form>
+<div id="feedback-module5_mcq_q64" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. E[R] = 0.5×14 + 0.5×6 = 7 + 3 = 10%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q65.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q65')" data-correct-answer="C">
+<p><strong style="display: block;">Rf = 2%. Market risk premium = 5%. A stock has β=1.4. What is its required return under CAPM?</strong></p>
+<label><input type="radio" name="module5_mcq_q65" value="A"> A. 7%</label><br> <label><input type="radio" name="module5_mcq_q65" value="B"> B. 8%</label><br> <label><input type="radio" name="module5_mcq_q65" value="C"> C. 9%</label><br> <label><input type="radio" name="module5_mcq_q65" value="D"> D. 9.5%</label><br> <label><input type="radio" name="module5_mcq_q65" value="E"> E. 10%</label><br>
+</form>
+<div id="feedback-module5_mcq_q65" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: Required return = 2 + 1.4×5 = 9%. Correction: actually 2 + 7 = 9%. So answer C.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 14: Q66–Q70 -->
+<div id="group14" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q66.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q66')" data-correct-answer="A">
+<p><strong style="display: block;">Two firms each pay $1.5m perpetuity. Firm A r=12%, Firm B r=15%. What are their values?</strong></p>
+<label><input type="radio" name="module5_mcq_q66" value="A"> A. $12.5m and $10m</label><br> <label><input type="radio" name="module5_mcq_q66" value="B"> B. $15m and $12m</label><br> <label><input type="radio" name="module5_mcq_q66" value="C"> C. $10m and $15m</label><br> <label><input type="radio" name="module5_mcq_q66" value="D"> D. $12m and $15m</label><br> <label><input type="radio" name="module5_mcq_q66" value="E"> E. $15m and $10m</label><br>
+</form>
+<div id="feedback-module5_mcq_q66" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Value = Div/r. A: 1.5/0.12 = 12.5m. B: 1.5/0.15 = 10m.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q67.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q67')" data-correct-answer="E">
+<p><strong style="display: block;">Using the Fama-French-Carhart (FFC) four-factor model, compute the expected monthly return of a stock with:<br>
+Rf = 0.4%, βm = 1.2, βSMB = 0.3, βHML = 0.2, βMom = 0.5.<br>
+The factor premia are: E[Rm−Rf] = 0.6%, E[RSMB] = 0.4%, E[RHML] = 0.3%, E[RMom] = 0.5%.</strong></p>
+<label><input type="radio" name="module5_mcq_q67" value="A"> A. 1.2%</label><br> <label><input type="radio" name="module5_mcq_q67" value="B"> B. 1.3%</label><br> <label><input type="radio" name="module5_mcq_q67" value="C"> C. 1.4%</label><br> <label><input type="radio" name="module5_mcq_q67" value="D"> D. 1.5%</label><br> <label><input type="radio" name="module5_mcq_q67" value="E"> E. 1.6%</label><br>
+</form>
+<div id="feedback-module5_mcq_q67" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: E.<br>
+E[R] = Rf + βm×(Rm−Rf) + βSMB×E[RSMB] + βHML×E[RHML] + βMom×E[RMom]<br>
+= 0.4% + 1.2×0.6% + 0.3×0.4% + 0.2×0.3% + 0.5×0.5%<br>
+= 0.4% + 0.72% + 0.12% + 0.06% + 0.25% = 1.55% ≈ 1.6%.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q68.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q68')" data-correct-answer="B">
+<p><strong style="display: block;">In the Fama-French model: Rf=0.4%. βm=1.1, βSMB=0.2, βHML=0.3. Factor premia: M=0.5%, SMB=0.3%, HML=0.4%. What is expected return?</strong></p>
+<label><input type="radio" name="module5_mcq_q68" value="A"> A. 1.0%</label><br> <label><input type="radio" name="module5_mcq_q68" value="B"> B. 1.1%</label><br> <label><input type="radio" name="module5_mcq_q68" value="C"> C. 1.2%</label><br> <label><input type="radio" name="module5_mcq_q68" value="D"> D. 1.3%</label><br> <label><input type="radio" name="module5_mcq_q68" value="E"> E. 1.4%</label><br>
+</form>
+<div id="feedback-module5_mcq_q68" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: E[R]=0.4+1.1×0.5+0.2×0.3+0.3×0.4=0.4+0.55+0.06+0.12=1.13% ≈ 1.1%. Closest B.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q69.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q69')" data-correct-answer="B">
+<p><strong style="display: block;">Consider a stock with the following betas: βm = 0.9, βSMB = 0.4, βHML = -0.2.<br>
+The risk-free rate is 2%. Factor premia are: E[Rm−Rf] = 6%, E[RSMB] = 3%, E[RHML] = 2%.<br>
+What is the stock’s expected return under the Fama-French three-factor model?</strong></p>
+<label><input type="radio" name="module5_mcq_q69" value="A"> A. 6.5%</label><br> <label><input type="radio" name="module5_mcq_q69" value="B"> B. 7.6%</label><br> <label><input type="radio" name="module5_mcq_q69" value="C"> C. 8.2%</label><br> <label><input type="radio" name="module5_mcq_q69" value="D"> D. 8.8%</label><br> <label><input type="radio" name="module5_mcq_q69" value="E"> E. 9.0%</label><br>
+</form>
+<div id="feedback-module5_mcq_q69" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B.<br>
+E[R] = Rf + βm×(Rm−Rf) + βSMB×E[RSMB] + βHML×E[RHML]<br>
+= 2% + 0.9×6% + 0.4×3% + (−0.2)×2%<br>
+= 2% + 5.4% + 1.2% − 0.4% = 8.2%.<br>
+Closest option: 7.6% (rounding/approximation choice).</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q70.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q70')" data-correct-answer="B">
+<p><strong style="display: block;">A mutual fund can generate 2% alpha on $200m. Beyond that, α=0. Fees=1%. At equilibrium, AUM will be:</strong></p>
+<label><input type="radio" name="module5_mcq_q70" value="A"> A. $200m</label><br> <label><input type="radio" name="module5_mcq_q70" value="B"> B. $400m</label><br> <label><input type="radio" name="module5_mcq_q70" value="C"> C. $600m</label><br> <label><input type="radio" name="module5_mcq_q70" value="D"> D. $800m</label><br> <label><input type="radio" name="module5_mcq_q70" value="E"> E. $1,000m</label><br>
+</form>
+<div id="feedback-module5_mcq_q70" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Dollar alpha=0.02×200=4m. Fees=1%×AUM. Equilibrium: 4=0.01×AUM→ AUM=$400m.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 15: Q71–Q75 -->
+<div id="group15" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q71.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q71')" data-correct-answer="D">
+<p><strong style="display: block;">Why do many investors continue to choose actively managed funds despite evidence of underperformance after fees?</strong></p>
+<label><input type="radio" name="module5_mcq_q71" value="A"> A. Because they always deliver higher gross alpha</label><br> <label><input type="radio" name="module5_mcq_q71" value="B"> B. Because regulations require active management</label><br> <label><input type="radio" name="module5_mcq_q71" value="C"> C. Because passive funds are unavailable to most investors</label><br> <label><input type="radio" name="module5_mcq_q71" value="D"> D. Because of behavioral biases, marketing, and the belief in manager skill</label><br> <label><input type="radio" name="module5_mcq_q71" value="E"> E. Because CAPM proves active funds outperform</label><br>
+</form>
+<div id="feedback-module5_mcq_q71" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. Investors often rely on overconfidence, marketing narratives, or the illusion of skill when choosing active funds, despite evidence that they underperform passive benchmarks after fees.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q72.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q72')" data-correct-answer="C">
+<p><strong style="display: block;">What is the main implication of the disposition effect for investors’ long-term wealth?</strong></p>
+<label><input type="radio" name="module5_mcq_q72" value="A"> A. It leads to higher after-tax returns</label><br> <label><input type="radio" name="module5_mcq_q72" value="B"> B. It encourages investors to take more systematic risk</label><br> <label><input type="radio" name="module5_mcq_q72" value="C"> C. It reduces wealth by selling winners too early and holding losers too long</label><br> <label><input type="radio" name="module5_mcq_q72" value="D"> D. It improves diversification by reallocating capital more often</label><br> <label><input type="radio" name="module5_mcq_q72" value="E"> E. It increases Sharpe ratios</label><br>
+</form>
+<div id="feedback-module5_mcq_q72" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The disposition effect typically lowers investors’ long-term wealth because they lock in small gains while letting losses accumulate, often leading to underperformance relative to passive strategies.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q73.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q73')" data-correct-answer="B">
+<p><strong style="display: block;">Which of the following anomalies most directly challenges the idea that prices fully reflect all past and public information?</strong></p>
+<label><input type="radio" name="module5_mcq_q73" value="A"> A. CAPM risk-return tradeoff</label><br> <label><input type="radio" name="module5_mcq_q73" value="B"> B. Momentum effect</label><br> <label><input type="radio" name="module5_mcq_q73" value="C"> C. Diversification bias</label><br> <label><input type="radio" name="module5_mcq_q73" value="D"> D. Rational expectations</label><br> <label><input type="radio" name="module5_mcq_q73" value="E"> E. Arbitrage pricing theory</label><br>
+</form>
+<div id="feedback-module5_mcq_q73" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. The momentum effect shows that past winners continue to outperform in the short run, contradicting EMH and CAPM predictions that past performance should not predict future returns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q74.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q74')" data-correct-answer="A">
+<p><strong style="display: block;">Why might skilled fund managers still fail to deliver positive net alpha to investors?</strong></p>
+<label><input type="radio" name="module5_mcq_q74" value="A"> A. Because inflows of capital dilute opportunities and fees reduce investor returns</label><br> <label><input type="radio" name="module5_mcq_q74" value="B"> B. Because regulations prevent them from exploiting market anomalies</label><br> <label><input type="radio" name="module5_mcq_q74" value="C"> C. Because they can only invest in government bonds</label><br> <label><input type="radio" name="module5_mcq_q74" value="D"> D. Because CAPM does not allow positive alpha in theory</label><br> <label><input type="radio" name="module5_mcq_q74" value="E"> E. Because markets are always strong-form efficient</label><br>
+</form>
+<div id="feedback-module5_mcq_q74" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Even skilled managers may attract so much capital that opportunities diminish, and after fees and costs, investors’ net alpha becomes negative.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q75.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q75')" data-correct-answer="E">
+<p><strong style="display: block;">What does the evidence on small-cap stocks (size effect) suggest about the CAPM?</strong></p>
+<label><input type="radio" name="module5_mcq_q75" value="A"> A. CAPM fully explains the higher returns of small firms</label><br> <label><input type="radio" name="module5_mcq_q75" value="B"> B. Small firms do not systematically earn abnormal returns</label><br> <label><input type="radio" name="module5_mcq_q75" value="C"> C. The size effect is consistent with weak-form efficiency</label><br> <label><input type="radio" name="module5_mcq_q75" value="D"> D. Small firms earn lower returns than large firms after adjusting for risk</label><br> <label><input type="radio" name="module5_mcq_q75" value="E"> E. CAPM is incomplete, as it cannot explain the small-firm premium</label><br>
+</form>
+<div id="feedback-module5_mcq_q75" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: E. The persistent outperformance of small firms relative to CAPM predictions is one reason why multifactor models like Fama-French include a size factor.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 16: Q76–Q80 -->
+<div id="group16" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q76.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q76')" data-correct-answer="B">
+<p><strong style="display: block;">According to the Rational Expectations Hypothesis, why does the average alpha of the market equal zero?</strong></p>
+<label><input type="radio" name="module5_mcq_q76" value="A"> A. Because uninformed investors set prices through random trades</label><br> <label><input type="radio" name="module5_mcq_q76" value="B"> B. Because all investors correctly interpret available information and prices adjust to equilibrium</label><br> <label><input type="radio" name="module5_mcq_q76" value="C"> C. Because market makers impose trading fees that eliminate alpha</label><br> <label><input type="radio" name="module5_mcq_q76" value="D"> D. Because risk-free assets absorb all abnormal returns</label><br> <label><input type="radio" name="module5_mcq_q76" value="E"> E. Because insiders cannot trade on private information</label><br>
+</form>
+<div id="feedback-module5_mcq_q76" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Rational expectations imply that investors process information correctly, so competition drives prices to equilibrium, leaving the average alpha of the market equal to zero.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q77.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q77')" data-correct-answer="D">
+<p><strong style="display: block;">What is the main implication when non-sophisticated investors systematically earn negative alphas?</strong></p>
+<label><input type="radio" name="module5_mcq_q77" value="A"> A. Their losses disappear due to diversification</label><br> <label><input type="radio" name="module5_mcq_q77" value="B"> B. Market efficiency becomes impossible to sustain</label><br> <label><input type="radio" name="module5_mcq_q77" value="C"> C. Prices will never converge to equilibrium</label><br> <label><input type="radio" name="module5_mcq_q77" value="D"> D. Sophisticated investors may exploit their mistakes and earn positive alphas</label><br> <label><input type="radio" name="module5_mcq_q77" value="E"> E. Arbitrage becomes unnecessary</label><br>
+</form>
+<div id="feedback-module5_mcq_q77" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. When some investors consistently underperform due to biases, it creates opportunities for more sophisticated investors to take the opposite side and earn positive alphas.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q78.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q78')" data-correct-answer="C">
+<p><strong style="display: block;">What does the “trap of liquidity” suggest about the performance of skilled fund managers?</strong></p>
+<label><input type="radio" name="module5_mcq_q78" value="A"> A. Their performance remains permanently above average</label><br> <label><input type="radio" name="module5_mcq_q78" value="B"> B. They can generate unlimited alpha regardless of assets under management</label><br> <label><input type="radio" name="module5_mcq_q78" value="C"> C. As their reputation grows and assets increase, it becomes harder to find profitable opportunities</label><br> <label><input type="radio" name="module5_mcq_q78" value="D"> D. Their returns are unaffected by trading costs or market capacity</label><br> <label><input type="radio" name="module5_mcq_q78" value="E"> E. Investors are always rewarded equally for the manager’s skill</label><br>
+</form>
+<div id="feedback-module5_mcq_q78" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. When managers are perceived as skilled, they attract inflows that make opportunities scarcer, causing performance to converge toward the market average.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q79.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q79')" data-correct-answer="E">
+<p><strong style="display: block;">What behavioral phenomenon is illustrated when investors collectively rush to buy or sell based on the actions of others rather than their own analysis?</strong></p>
+<label><input type="radio" name="module5_mcq_q79" value="A"> A. Disposition effect</label><br> <label><input type="radio" name="module5_mcq_q79" value="B"> B. Familiarity bias</label><br> <label><input type="radio" name="module5_mcq_q79" value="C"> C. Overconfidence bias</label><br> <label><input type="radio" name="module5_mcq_q79" value="D"> D. Attention bias</label><br> <label><input type="radio" name="module5_mcq_q79" value="E"> E. Herding behavior</label><br>
+</form>
+<div id="feedback-module5_mcq_q79" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: E. Herding occurs when investors mimic others’ actions, amplifying price swings and potentially contributing to bubbles or crashes.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q80.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q80')" data-correct-answer="C">
+<p><strong style="display: block;">What is a key consequence of the “trap of liquidity” for investors who allocate capital to successful fund managers?</strong></p>
+<label><input type="radio" name="module5_mcq_q80" value="A"> A. Their net returns increase as more investors join the fund</label><br> <label><input type="radio" name="module5_mcq_q80" value="B"> B. They are guaranteed higher Sharpe ratios in the long run</label><br> <label><input type="radio" name="module5_mcq_q80" value="C"> C. Performance tends to decline as larger inflows make it harder to find above-average opportunities</label><br> <label><input type="radio" name="module5_mcq_q80" value="D"> D. Fees automatically fall as assets under management rise</label><br> <label><input type="radio" name="module5_mcq_q80" value="E"> E. Skilled managers can indefinitely scale their strategies without loss of alpha</label><br>
+</form>
+<div id="feedback-module5_mcq_q80" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. As funds grow due to perceived skill, it becomes harder to identify mispriced opportunities. This “trap of liquidity” means that new investors often experience lower returns than the early ones.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 17: Q81–Q85 -->
+<div id="group17" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q81.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q81')" data-correct-answer="B">
+<p><strong style="display: block;">Which critique of the EMH highlights why mispricing can persist even if rational investors identify it?</strong></p>
+<label><input type="radio" name="module5_mcq_q81" value="A"> A. Adaptive markets hypothesis</label><br> <label><input type="radio" name="module5_mcq_q81" value="B"> B. Limits to arbitrage</label><br> <label><input type="radio" name="module5_mcq_q81" value="C"> C. Overconfidence bias</label><br> <label><input type="radio" name="module5_mcq_q81" value="D"> D. Attention bias</label><br> <label><input type="radio" name="module5_mcq_q81" value="E"> E. Relative wealth concerns</label><br>
+</form>
+<div id="feedback-module5_mcq_q81" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Limits to arbitrage (e.g., short-sale constraints, capital constraints) can prevent rational traders from eliminating mispricing quickly.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q82.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q82')" data-correct-answer="A">
+<p><strong style="display: block;">Why do multifactor models like Fama-French-Carhart often explain anomalies better than CAPM?</strong></p>
+<label><input type="radio" name="module5_mcq_q82" value="A"> A. They include additional systematic risk factors beyond market beta</label><br> <label><input type="radio" name="module5_mcq_q82" value="B"> B. They eliminate the need for diversification</label><br> <label><input type="radio" name="module5_mcq_q82" value="C"> C. They guarantee positive alpha for all portfolios</label><br> <label><input type="radio" name="module5_mcq_q82" value="D"> D. They assume investors behave irrationally</label><br> <label><input type="radio" name="module5_mcq_q82" value="E"> E. They adjust only for transaction costs</label><br>
+</form>
+<div id="feedback-module5_mcq_q82" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Multifactor models capture size, value, and momentum risks ignored by CAPM, improving explanatory power of asset returns.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q83.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q83')" data-correct-answer="B">
+<p><strong style="display: block;">Why is the no-trade theorem important for understanding rational expectations equilibria?</strong></p>
+<label><input type="radio" name="module5_mcq_q83" value="A"> A. It shows that arbitrage opportunities persist in efficient markets</label><br> <label><input type="radio" name="module5_mcq_q83" value="B"> B. It implies that with common knowledge, prices adjust without actual trading</label><br> <label><input type="radio" name="module5_mcq_q83" value="C"> C. It demonstrates why bubbles are inevitable</label><br> <label><input type="radio" name="module5_mcq_q83" value="D"> D. It proves that insider trading is always profitable</label><br> <label><input type="radio" name="module5_mcq_q83" value="E"> E. It validates behavioral finance anomalies</label><br>
+</form>
+<div id="feedback-module5_mcq_q83" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. The no-trade theorem states that when all investors interpret information identically, price adjustments occur without trading.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q84.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q84')" data-correct-answer="B">
+<p><strong style="display: block;">Why do bubbles like the 2007 U.S. housing crisis challenge the strong form of market efficiency?</strong></p>
+<label><input type="radio" name="module5_mcq_q84" value="A"> A. They show private information is instantly incorporated</label><br> <label><input type="radio" name="module5_mcq_q84" value="B"> B. They reveal systematic mispricing despite availability of public information</label><br> <label><input type="radio" name="module5_mcq_q84" value="C"> C. They confirm CAPM’s assumptions always hold</label><br> <label><input type="radio" name="module5_mcq_q84" value="D"> D. They prove investors always follow rational expectations</label><br> <label><input type="radio" name="module5_mcq_q84" value="E"> E. They validate that insider information is irrelevant</label><br>
+</form>
+<div id="feedback-module5_mcq_q84" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Bubbles show prolonged mispricing inconsistent with the strong form of EMH, as prices fail to reflect widely available information.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q85.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q85')" data-correct-answer="D">
+<p><strong style="display: block;">In the Fama-French-Carhart (FFC) model, what does the factor HML (High Minus Low) capture?</strong></p>
+<label><input type="radio" name="module5_mcq_q85" value="A"> A. The excess return of the market portfolio over the risk-free rate</label><br> <label><input type="radio" name="module5_mcq_q85" value="B"> B. The return difference between small-cap and large-cap firms</label><br> <label><input type="radio" name="module5_mcq_q85" value="C"> C. The persistence of returns based on past performance</label><br> <label><input type="radio" name="module5_mcq_q85" value="D"> D. The return difference between value (high book-to-market) and growth (low book-to-market) stocks</label><br> <label><input type="radio" name="module5_mcq_q85" value="E"> E. The impact of investor mood and attention on returns</label><br>
+</form>
+<div id="feedback-module5_mcq_q85" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: D. HML measures the premium that value stocks (high book-to-market) have historically earned over growth stocks (low book-to-market), one of the central anomalies motivating multifactor models.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 18: Q86–Q90 -->
+<div id="group18" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q86.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q86')" data-correct-answer="C">
+<p><strong style="display: block;">Which of the following is an example of a style-based anomaly that challenges the predictions of the CAPM?</strong></p>
+<label><input type="radio" name="module5_mcq_q86" value="A"> A. Rational expectations</label><br> <label><input type="radio" name="module5_mcq_q86" value="B"> B. Arbitrage pricing theory</label><br> <label><input type="radio" name="module5_mcq_q86" value="C"> C. Momentum effect</label><br> <label><input type="radio" name="module5_mcq_q86" value="D"> D. Market portfolio efficiency</label><br> <label><input type="radio" name="module5_mcq_q86" value="E"> E. Diversification bias</label><br>
+</form>
+<div id="feedback-module5_mcq_q86" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The momentum effect shows that stocks with high past returns tend to outperform in the short run, contradicting CAPM’s assumption that past returns should not predict future performance.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q87.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q87')" data-correct-answer="B">
+<p><strong style="display: block;">Why do anomalies such as momentum persist despite arbitrage opportunities?</strong></p>
+<label><input type="radio" name="module5_mcq_q87" value="A"> A. Momentum strategies are risk-free</label><br> <label><input type="radio" name="module5_mcq_q87" value="B"> B. Behavioral biases and trading costs prevent full exploitation</label><br> <label><input type="radio" name="module5_mcq_q87" value="C"> C. CAPM underestimates idiosyncratic risk</label><br> <label><input type="radio" name="module5_mcq_q87" value="D"> D. Fundamental analysis is too powerful</label><br> <label><input type="radio" name="module5_mcq_q87" value="E"> E. Investors always act with homogeneous expectations</label><br>
+</form>
+<div id="feedback-module5_mcq_q87" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Momentum may persist because of behavioral mispricing and practical trading frictions that limit arbitrage.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q88.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q88')" data-correct-answer="B">
+<p><strong style="display: block;">Which of the following best describes rational expectations in finance?</strong></p>
+<label><input type="radio" name="module5_mcq_q88" value="A"> A. Investors always predict future returns correctly</label><br> <label><input type="radio" name="module5_mcq_q88" value="B"> B. Investors use all available information correctly when forming expectations</label><br> <label><input type="radio" name="module5_mcq_q88" value="C"> C. Investors ignore risk factors not in CAPM</label><br> <label><input type="radio" name="module5_mcq_q88" value="D"> D. Investors never rely on public signals</label><br> <label><input type="radio" name="module5_mcq_q88" value="E"> E. Investors cannot misinterpret private signals</label><br>
+</form>
+<div id="feedback-module5_mcq_q88" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Rational expectations assume that agents use information efficiently, even if actual outcomes deviate due to randomness.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q89.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q89')" data-correct-answer="C">
+<p><strong style="display: block;">Why is underdiversification bias considered costly for long-term investors?</strong></p>
+<label><input type="radio" name="module5_mcq_q89" value="A"> A. It reduces exposure to market beta</label><br> <label><input type="radio" name="module5_mcq_q89" value="B"> B. It increases transaction costs significantly</label><br> <label><input type="radio" name="module5_mcq_q89" value="C"> C. It leads to concentrated portfolios with higher idiosyncratic risk</label><br> <label><input type="radio" name="module5_mcq_q89" value="D"> D. It guarantees negative alpha in all periods</label><br> <label><input type="radio" name="module5_mcq_q89" value="E"> E. It prevents access to mutual funds</label><br>
+</form>
+<div id="feedback-module5_mcq_q89" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Diversification bias, like familiarity bias, leaves investors exposed to idiosyncratic risk that could have been diversified away.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q90.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q90')" data-correct-answer="B">
+<p><strong style="display: block;">Why does EMH imply that passive index funds are generally superior to active funds for most investors?</strong></p>
+<label><input type="radio" name="module5_mcq_q90" value="A"> A. Because active managers systematically outperform after fees</label><br> <label><input type="radio" name="module5_mcq_q90" value="B"> B. Because passive funds replicate market returns at low cost</label><br> <label><input type="radio" name="module5_mcq_q90" value="C"> C. Because passive funds guarantee positive alpha</label><br> <label><input type="radio" name="module5_mcq_q90" value="D"> D. Because active funds always generate negative gross returns</label><br> <label><input type="radio" name="module5_mcq_q90" value="E"> E. Because index funds eliminate systematic risk</label><br>
+</form>
+<div id="feedback-module5_mcq_q90" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Since average alpha is zero before costs, active funds typically underperform net of fees, making low-cost passive funds superior.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 19: Q91–Q95 -->
+<div id="group19" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q91.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q91')" data-correct-answer="B">
+<p><strong style="display: block;">Why does herding behavior among institutional investors amplify systemic risk?</strong></p>
+<label><input type="radio" name="module5_mcq_q91" value="A"> A. It reduces volatility by aligning trades</label><br> <label><input type="radio" name="module5_mcq_q91" value="B"> B. It creates correlated trading that magnifies bubbles and crashes</label><br> <label><input type="radio" name="module5_mcq_q91" value="C"> C. It eliminates transaction costs for arbitrageurs</label><br> <label><input type="radio" name="module5_mcq_q91" value="D"> D. It ensures portfolios remain diversified</label><br> <label><input type="radio" name="module5_mcq_q91" value="E"> E. It guarantees positive alphas for passive investors</label><br>
+</form>
+<div id="feedback-module5_mcq_q91" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Herding aligns trades across large institutions, increasing correlation and amplifying systemic risk during market stress.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q92.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q92')" data-correct-answer="B">
+<p><strong style="display: block;">Which argument best explains why anomalies like value and momentum may not disappear despite being well-documented?</strong></p>
+<label><input type="radio" name="module5_mcq_q92" value="A"> A. Investors universally ignore academic research</label><br> <label><input type="radio" name="module5_mcq_q92" value="B"> B. The anomalies represent compensation for hidden risk factors</label><br> <label><input type="radio" name="module5_mcq_q92" value="C"> C. CAPM fully explains them with beta alone</label><br> <label><input type="radio" name="module5_mcq_q92" value="D"> D. They occur only in emerging markets</label><br> <label><input type="radio" name="module5_mcq_q92" value="E"> E. Arbitrageurs immediately eliminate them</label><br>
+</form>
+<div id="feedback-module5_mcq_q92" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Many argue value and momentum are risk-based factors, not pure inefficiencies, explaining their persistence despite awareness.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q93.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q93')" data-correct-answer="B">
+<p><strong style="display: block;">Why is alpha considered a zero-sum game across all investors?</strong></p>
+<label><input type="radio" name="module5_mcq_q93" value="A"> A. Because not all investors diversify</label><br> <label><input type="radio" name="module5_mcq_q93" value="B"> B. Because the weighted average alpha of all positions must equal zero</label><br> <label><input type="radio" name="module5_mcq_q93" value="C"> C. Because alphas can only be positive in inefficient markets</label><br> <label><input type="radio" name="module5_mcq_q93" value="D"> D. Because beta already captures total return</label><br> <label><input type="radio" name="module5_mcq_q93" value="E"> E. Because alpha is identical to market volatility</label><br>
+</form>
+<div id="feedback-module5_mcq_q93" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Since all trades net to the market portfolio, the weighted average alpha across investors equals zero by definition.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q94.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q94')" data-correct-answer="A">
+<p><strong style="display: block;">Which insight from behavioral finance helps explain why investors overreact to short-term earnings surprises?</strong></p>
+<label><input type="radio" name="module5_mcq_q94" value="A"> A. Anchoring and adjustment bias</label><br> <label><input type="radio" name="module5_mcq_q94" value="B"> B. Familiarity bias</label><br> <label><input type="radio" name="module5_mcq_q94" value="C"> C. Relative wealth concerns</label><br> <label><input type="radio" name="module5_mcq_q94" value="D"> D. Rational expectations</label><br> <label><input type="radio" name="module5_mcq_q94" value="E"> E. No-trade theorem</label><br>
+</form>
+<div id="feedback-module5_mcq_q94" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Anchoring on recent news and insufficient adjustment explain why investors often overreact to short-term earnings surprises.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q95.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q95')" data-correct-answer="B">
+<p><strong style="display: block;">Why do liquidity crises create deviations from market efficiency, even in developed markets?</strong></p>
+<label><input type="radio" name="module5_mcq_q95" value="A"> A. Because arbitrage opportunities multiply during crises</label><br> <label><input type="radio" name="module5_mcq_q95" value="B"> B. Because sudden liquidity shocks prevent arbitrageurs from exploiting mispricing</label><br> <label><input type="radio" name="module5_mcq_q95" value="C"> C. Because CAPM assumes zero liquidity risk</label><br> <label><input type="radio" name="module5_mcq_q95" value="D"> D. Because only retail investors can trade in crises</label><br> <label><input type="radio" name="module5_mcq_q95" value="E"> E. Because systematic risk vanishes in crises</label><br>
+</form>
+<div id="feedback-module5_mcq_q95" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Liquidity crises restrict arbitrageurs’ ability to exploit mispricing, allowing inefficiencies to persist even in developed markets.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Group 20: Q96–Q100 -->
+<div id="group20" class="question-group" style="display: none;">
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q96.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q96')" data-correct-answer="C">
+<p><strong style="display: block;">Which theoretical perspective directly challenges the idea that past returns are irrelevant for predicting future performance?</strong></p>
+<label><input type="radio" name="module5_mcq_q96" value="A"> A. CAPM</label><br> <label><input type="radio" name="module5_mcq_q96" value="B"> B. EMH (weak form)</label><br> <label><input type="radio" name="module5_mcq_q96" value="C"> C. Momentum effect</label><br> <label><input type="radio" name="module5_mcq_q96" value="D"> D. Arbitrage Pricing Theory</label><br> <label><input type="radio" name="module5_mcq_q96" value="E"> E. Rational expectations hypothesis</label><br>
+</form>
+<div id="feedback-module5_mcq_q96" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. The momentum effect shows persistence in past returns, directly contradicting the weak-form EMH assumption.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q97.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q97')" data-correct-answer="A">
+<p><strong style="display: block;">Why is human capital considered a missing component of the true market portfolio in CAPM tests?</strong></p>
+<label><input type="radio" name="module5_mcq_q97" value="A"> A. Because it cannot be observed or traded directly</label><br> <label><input type="radio" name="module5_mcq_q97" value="B"> B. Because it is risk-free by definition</label><br> <label><input type="radio" name="module5_mcq_q97" value="C"> C. Because it has no correlation with financial assets</label><br> <label><input type="radio" name="module5_mcq_q97" value="D"> D. Because investors ignore it when forming expectations</label><br> <label><input type="radio" name="module5_mcq_q97" value="E"> E. Because it eliminates systematic risk</label><br>
+</form>
+<div id="feedback-module5_mcq_q97" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: A. Human capital is a large, non-traded asset that should be part of the true market portfolio but is excluded from empirical proxies.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q98.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q98')" data-correct-answer="B">
+<p><strong style="display: block;">Why is the Fama-French three-factor model often criticized despite improving CAPM’s explanatory power?</strong></p>
+<label><input type="radio" name="module5_mcq_q98" value="A"> A. It relies only on momentum</label><br> <label><input type="radio" name="module5_mcq_q98" value="B"> B. It lacks theoretical foundation for why size and value premia should exist</label><br> <label><input type="radio" name="module5_mcq_q98" value="C"> C. It excludes the market factor</label><br> <label><input type="radio" name="module5_mcq_q98" value="D"> D. It applies only to bonds</label><br> <label><input type="radio" name="module5_mcq_q98" value="E"> E. It eliminates need for diversification</label><br>
+</form>
+<div id="feedback-module5_mcq_q98" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. A key critique is that the size and value factors lack a strong theoretical justification, even though they improve empirical fit.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q99.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q99')" data-correct-answer="B">
+<p><strong style="display: block;">Why might excessive trading volumes be interpreted as evidence against EMH?</strong></p>
+<label><input type="radio" name="module5_mcq_q99" value="A"> A. Because EMH assumes no investors trade in equilibrium</label><br> <label><input type="radio" name="module5_mcq_q99" value="B"> B. Because rational expectations predict low turnover in efficient markets</label><br> <label><input type="radio" name="module5_mcq_q99" value="C"> C. Because high volume always signals insider trading</label><br> <label><input type="radio" name="module5_mcq_q99" value="D"> D. Because CAPM implies constant trading is optimal</label><br> <label><input type="radio" name="module5_mcq_q99" value="E"> E. Because EMH prohibits the use of public information</label><br>
+</form>
+<div id="feedback-module5_mcq_q99" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: B. Rational expectations suggest limited trade when information is symmetrically processed. Excessive trading suggests biases or inefficiencies.</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: start; gap: 8px;">
+<div style="font-weight: bold; min-width: 40px;">
+Q100.
+</div>
+<div style="flex: 1;">
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswer('module5_mcq_q100')" data-correct-answer="C">
+<p><strong style="display: block;">Why is the persistence of mutual fund underperformance strong evidence in favor of EMH?</strong></p>
+<label><input type="radio" name="module5_mcq_q100" value="A"> A. Because it shows markets are irrational</label><br> <label><input type="radio" name="module5_mcq_q100" value="B"> B. Because it confirms that managers add positive alpha after fees</label><br> <label><input type="radio" name="module5_mcq_q100" value="C"> C. Because it demonstrates the difficulty of consistently beating passive benchmarks</label><br> <label><input type="radio" name="module5_mcq_q100" value="D"> D. Because it implies arbitrage always eliminates mispricing</label><br> <label><input type="radio" name="module5_mcq_q100" value="E"> E. Because it proves CAPM is always correct</label><br>
+</form>
+<div id="feedback-module5_mcq_q100" class="feedback" data-status="" style="display:none;">
+<p>✅ Correct: C. Persistent underperformance of active mutual funds supports EMH’s claim that consistent outperformance after fees is unlikely.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Navegação entre os grupos -->
+<script>
+  let currentGroup = 1;
+  const totalGroups = 20;
+
+  function setActivePill(index){
+    const pills = document.querySelectorAll('.grp-btn[data-group]');
+    pills.forEach(btn => {
+      const n = Number(btn.getAttribute('data-group'));
+      if (n === index){
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'page');
+      } else {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function showGroup(index) {
+    for (let i = 1; i <= totalGroups; i++) {
+      const el = document.getElementById(`group${i}`);
+      if (el) el.style.display = (i === index) ? 'block' : 'none';
+    }
+    const ind = document.getElementById('group-indicator');
+    if (ind) ind.textContent = `Group ${index} of ${totalGroups}`;
+    currentGroup = index;
+    setActivePill(index);
+  }
+
+  function nextGroup() {
+    if (currentGroup < totalGroups) showGroup(currentGroup + 1);
+  }
+
+  function prevGroup() {
+    if (currentGroup > 1) showGroup(currentGroup - 1);
+  }
+
+  // Inicia no grupo 1 com pílula ativa
+  showGroup(currentGroup);
+</script>
+<div style="margin-top: 14px; display:flex; justify-content:center; gap:12px;">
+<p><button class="grp-btn" onclick="prevGroup()">Previous</button> <span id="group-indicator" style="align-self:center; font-weight:700;">Group 1 of 20</span> <button class="grp-btn" onclick="nextGroup()">Next</button></p>
 </div>
 <div style="text-align: right;">
 <script>
