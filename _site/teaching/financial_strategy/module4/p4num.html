@@ -222,7 +222,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 17/08/2025 11:05</p>
+<p><strong>Last updated:</strong> 23/09/2025 22:50</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -248,6 +248,7 @@ For students
 <th style="text-align: center;">MCQ</th>
 <th style="text-align: center;">Numeric</th>
 <th style="text-align: center;">Long</th>
+<th style="text-align: center;">Self-quiz</th>
 </tr>
 </thead>
 <tbody>
@@ -259,6 +260,7 @@ For students
 <td style="text-align: center;"><a href="p4mcq.html">❓</a></td>
 <td style="text-align: center;"><a href="p4num.html">🔢</a></td>
 <td style="text-align: center;"><a href="p4long.html">📝</a></td>
+<td style="text-align: center;"><a href="p4selfquiz.html">🧪</a></td>
 </tr>
 </tbody>
 </table>
@@ -721,28 +723,28 @@ Q1.
 </div>
 <section id="unlevered-beta-and-capm-using-business-risk-only" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="unlevered-beta-and-capm-using-business-risk-only">Unlevered Beta and CAPM (Using Business Risk Only)</h2>
-<p>A firm has <strong>levered beta = 1.85</strong>, <strong>D/E = 0.57</strong>, <strong>tax rate = 30</strong>%.<br>
+<p>A firm has <strong>levered beta = 1.68</strong>, <strong>D/E = 0.34</strong>, <strong>tax rate = 29</strong>%.<br>
 What is its <strong>unlevered (asset) beta</strong>? (Use the standard formula removing leverage.)</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q1a"><strong>1. Unlevered beta (no units):</strong></label> <input type="number" id="module4_num_q1a" name="module4_num_q1a" placeholder="Enter value" style="width: 160px;" data-correct-answer="1.32" data-tolerance="0.1">
+<label for="module4_num_q1a"><strong>1. Unlevered beta (no units):</strong></label> <input type="number" id="module4_num_q1a" name="module4_num_q1a" placeholder="Enter value" style="width: 160px;" data-correct-answer="1.35" data-tolerance="0.1">
 </form>
 <div id="feedback-module4_num_q1a" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>Why this is the answer:</strong> Unlevered beta measures <strong>business risk only</strong> (no financial leverage).<br>
 We “strip out” leverage using: β<sub>U</sub> = β<sub>L</sub> / [1 + (1 – T) × (D/E)].<br>
 This lets us compare firms <strong>on operating risk</strong>, independent of capital structure.<br>
-<strong>Your numbers:</strong> β<sub>U</sub> = 1.85 / [1 + (1 − 0.3) × 0.57] = <strong>1.32</strong>.</p>
+<strong>Your numbers:</strong> β<sub>U</sub> = 1.68 / [1 + (1 − 0.29) × 0.34] = <strong>1.35</strong>.</p>
 </div>
 </div>
-<p>If the <strong>risk-free rate</strong> is <strong>3</strong>% and the <strong>expected market return</strong> is <strong>10</strong>%, what is the <strong>expected return using CAPM with the unlevered beta</strong>?</p>
+<p>If the <strong>risk-free rate</strong> is <strong>2</strong>% and the <strong>expected market return</strong> is <strong>9</strong>%, what is the <strong>expected return using CAPM with the unlevered beta</strong>?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q1b"><strong>2. Expected return (in %):</strong></label> <input type="number" id="module4_num_q1b" name="module4_num_q1b" placeholder="Enter value" style="width: 160px;" data-correct-answer="12.26" data-tolerance="0.1">
+<label for="module4_num_q1b"><strong>2. Expected return (in %):</strong></label> <input type="number" id="module4_num_q1b" name="module4_num_q1b" placeholder="Enter value" style="width: 160px;" data-correct-answer="11.47" data-tolerance="0.1">
 </form>
 <div id="feedback-module4_num_q1b" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>CAPM intuition:</strong> Investors require compensation for time value (<strong>Rf</strong>) and for bearing market risk (<strong>β × MRP</strong>).<br>
 We use the <strong>unlevered beta</strong> to price the <strong>business risk</strong> without leverage:<br>
-E[R] = R<sub>f</sub> + β<sub>U</sub> × (R<sub>m</sub> − R<sub>f</sub>) = <strong>12.26%</strong>.<br>
+E[R] = R<sub>f</sub> + β<sub>U</sub> × (R<sub>m</sub> − R<sub>f</sub>) = <strong>11.47%</strong>.<br>
 This gives a <strong>baseline cost of equity</strong> for the project/asset <strong>before</strong> financing effects.</p>
 </div>
 </div>
@@ -756,27 +758,27 @@ Q2.
 </div>
 <section id="wacc-and-value-creation-threshold" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="wacc-and-value-creation-threshold">WACC and Value Creation Threshold</h2>
-<p>A firm has <strong>Equity = $299m</strong>, <strong>Debt = $148m</strong>, <strong>Re = 13.9</strong>%, <strong>Rd = 8.4</strong>%, <strong>Tax = 29</strong>%.<br>
+<p>A firm has <strong>Equity = $330m</strong>, <strong>Debt = $188m</strong>, <strong>Re = 15.1</strong>%, <strong>Rd = 8</strong>%, <strong>Tax = 30</strong>%.<br>
 Compute the <strong>WACC</strong> (after tax).</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q2a"><strong>1. WACC (in %):</strong></label> <input type="number" id="module4_num_q2a" name="module4_num_q2a" placeholder="Enter value" style="width: 150px;" data-correct-answer="11.27" data-tolerance="0.01">
+<label for="module4_num_q2a"><strong>1. WACC (in %):</strong></label> <input type="number" id="module4_num_q2a" name="module4_num_q2a" placeholder="Enter value" style="width: 150px;" data-correct-answer="11.65" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q2a" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>Concept:</strong> WACC is the <strong>blended required return</strong> from shareholders and debtholders, after the <strong>interest tax shield</strong>.<br>
 Formula: WACC = (E/V)·R<sub>e</sub> + (D/V)·R<sub>d</sub>·(1 − T).<br>
-<strong>Your numbers:</strong> WACC = (299/447)×13.9% + (148/447)×8.4%×(1−29%) = <strong>11.27%</strong>.</p>
+<strong>Your numbers:</strong> WACC = (330/518)×15.1% + (188/518)×8%×(1−30%) = <strong>11.65%</strong>.</p>
 </div>
 </div>
-<p>Suppose a project in this firm has <strong>expected return = 12.1%</strong>.<br>
+<p>Suppose a project in this firm has <strong>expected return = 14.4%</strong>.<br>
 By how many <strong>percentage points</strong> does the project’s return <strong>exceed the WACC</strong>? (This gap signals <strong>value creation</strong> if positive.)</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q2b"><strong>2. Value creation gap (pp):</strong></label> <input type="number" id="module4_num_q2b" name="module4_num_q2b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.83" data-tolerance="0.01">
+<label for="module4_num_q2b"><strong>2. Value creation gap (pp):</strong></label> <input type="number" id="module4_num_q2b" name="module4_num_q2b" placeholder="Enter value" style="width: 150px;" data-correct-answer="2.75" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q2b" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>Decision rule:</strong> If <strong>Project Return &gt; WACC</strong>, the project <strong>creates value</strong> (positive NPV under proportional scaling).<br>
-<strong>Your numbers:</strong> Gap = 12.1% − 11.27% = <strong>0.83 pp</strong>. A positive gap indicates the project clears the firm’s opportunity cost of capital.</p>
+<strong>Your numbers:</strong> Gap = 14.4% − 11.65% = <strong>2.75 pp</strong>. A positive gap indicates the project clears the firm’s opportunity cost of capital.</p>
 </div>
 </div>
 </section>
@@ -789,25 +791,25 @@ Q3.
 </div>
 <section id="comparable-company-method-unlever-and-relever-beta" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="comparable-company-method-unlever-and-relever-beta">Comparable Company Method: Unlever and Relever Beta</h2>
-<p>A comparable firm has <strong>β = 1.33</strong>, <strong>D/E = 0.4</strong>, <strong>tax = 25</strong>%.<br>
+<p>A comparable firm has <strong>β = 1.19</strong>, <strong>D/E = 0.46</strong>, <strong>tax = 23</strong>%.<br>
 <strong>(a)</strong> Compute the <strong>unlevered beta</strong> for the business.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q4a"><strong>1. Unlevered beta (no units):</strong></label> <input type="number" id="module4_num_q4a" name="module4_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.02" data-tolerance="0.1">
+<label for="module4_num_q4a"><strong>1. Unlevered beta (no units):</strong></label> <input type="number" id="module4_num_q4a" name="module4_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.88" data-tolerance="0.1">
 </form>
 <div id="feedback-module4_num_q4a" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>Step 1 (remove leverage):</strong> β<sub>U</sub> = β<sub>L</sub> / [1 + (1 − T) × (D/E)] → business-only risk.<br>
-<strong>Your numbers:</strong> 1.33 / [1 + (1 − 0.25) × 0.4] = <strong>1.02</strong>.</p>
+<strong>Your numbers:</strong> 1.19 / [1 + (1 − 0.23) × 0.46] = <strong>0.88</strong>.</p>
 </div>
 </div>
-<p><strong>(b)</strong> Your <strong>target firm</strong> will finance the project at <strong>D/E = 0.83</strong>. Compute the <strong>relevered beta</strong> to be used in CAPM.</p>
+<p><strong>(b)</strong> Your <strong>target firm</strong> will finance the project at <strong>D/E = 0.67</strong>. Compute the <strong>relevered beta</strong> to be used in CAPM.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q4b"><strong>2. Relevered beta (no units):</strong></label> <input type="number" id="module4_num_q4b" name="module4_num_q4b" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.66" data-tolerance="0.1">
+<label for="module4_num_q4b"><strong>2. Relevered beta (no units):</strong></label> <input type="number" id="module4_num_q4b" name="module4_num_q4b" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.33" data-tolerance="0.1">
 </form>
 <div id="feedback-module4_num_q4b" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>Step 2 (apply target leverage):</strong> β<sub>L</sub> = β<sub>U</sub> × [1 + (1 − T) × (D/E)].<br>
-<strong>Your numbers:</strong> 1.0231 × [1 + (1 − 0.25) × 0.83] = <strong>1.66</strong>.<br>
+<strong>Your numbers:</strong> 0.8787 × [1 + (1 − 0.23) × 0.67] = <strong>1.33</strong>.<br>
 This aligns the project’s risk with <strong>your capital structure</strong>.</p>
 </div>
 </div>
@@ -821,25 +823,25 @@ Q4.
 </div>
 <section id="portfolio-beta-and-cost-of-capital" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="portfolio-beta-and-cost-of-capital">Portfolio Beta and Cost of Capital</h2>
-<p>A two-asset portfolio invests <strong>43</strong>% in Asset A (β = 1.29) and <strong>57</strong>% in Asset B (β = 0.77).<br>
+<p>A two-asset portfolio invests <strong>54</strong>% in Asset A (β = 1.09) and <strong>46</strong>% in Asset B (β = 0.9).<br>
 Compute the <strong>portfolio beta</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q5a"><strong>1. Portfolio beta (no units):</strong></label> <input type="number" id="module4_num_q5a" name="module4_num_q5a" placeholder="Enter value" style="width: 160px;" data-correct-answer="0.994" data-tolerance="0.01">
+<label for="module4_num_q5a"><strong>1. Portfolio beta (no units):</strong></label> <input type="number" id="module4_num_q5a" name="module4_num_q5a" placeholder="Enter value" style="width: 160px;" data-correct-answer="1.003" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q5a" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>Aggregation rule:</strong> Portfolio beta is the <strong>value-weighted average</strong> of component betas: β<sub>p</sub> = Σ w<sub>i</sub>β<sub>i</sub>.<br>
-<strong>Your numbers:</strong> 43%×1.29 + 57%×0.77 (scaled to weights) → <strong>0.994</strong>.</p>
+<strong>Your numbers:</strong> 54%×1.09 + 46%×0.9 (scaled to weights) → <strong>1.003</strong>.</p>
 </div>
 </div>
-<p>With <strong>Rf = 2.9</strong>% and <strong>Rm = 11.9</strong>%, compute the portfolio’s <strong>cost of capital via CAPM</strong>.</p>
+<p>With <strong>Rf = 3.2</strong>% and <strong>Rm = 9.2</strong>%, compute the portfolio’s <strong>cost of capital via CAPM</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q5b"><strong>2. Cost of capital (in %):</strong></label> <input type="number" id="module4_num_q5b" name="module4_num_q5b" placeholder="Enter value" style="width: 160px;" data-correct-answer="11.84" data-tolerance="0.01">
+<label for="module4_num_q5b"><strong>2. Cost of capital (in %):</strong></label> <input type="number" id="module4_num_q5b" name="module4_num_q5b" placeholder="Enter value" style="width: 160px;" data-correct-answer="9.22" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q5b" class="feedback" data-status="" style="display:none;">
 <p>✅ <strong>CAPM logic:</strong> Required return rises with <strong>systematic risk</strong> (β).<br>
-E[R<sub>p</sub>] = R<sub>f</sub> + β<sub>p</sub>(R<sub>m</sub> − R<sub>f</sub>) = <strong>11.84%</strong>.<br>
+E[R<sub>p</sub>] = R<sub>f</sub> + β<sub>p</sub>(R<sub>m</sub> − R<sub>f</sub>) = <strong>9.22%</strong>.<br>
 Interpretation: this is the portfolio’s <strong>opportunity cost of capital</strong>.</p>
 </div>
 </div>
@@ -853,14 +855,14 @@ Q5.
 </div>
 <section id="relevering-beta-aurora-technologies" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="relevering-beta-aurora-technologies">Relevering Beta – Aurora Technologies</h2>
-<p>Aurora Technologies has an asset beta of <strong>0.75</strong>.<br>
-Its debt-to-equity ratio is <strong>1.46</strong>, and the corporate tax rate is <strong>28.44</strong>%.</p>
+<p>Aurora Technologies has an asset beta of <strong>0.82</strong>.<br>
+Its debt-to-equity ratio is <strong>1.3</strong>, and the corporate tax rate is <strong>30.93</strong>%.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q6a"><strong>1. What is the equity beta of Aurora Technologies?</strong></label> <input type="number" id="module4_num_q6a" name="module4_num_q6a" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.54" data-tolerance="0.01">
+<label for="module4_num_q6a"><strong>1. What is the equity beta of Aurora Technologies?</strong></label> <input type="number" id="module4_num_q6a" name="module4_num_q6a" placeholder="Enter value" style="width: 150px;" data-correct-answer="1.56" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q6a" class="feedback" style="display:none;">
-<p>✅ Equity Beta = β<sub>A</sub> × [1 + (1 – tax) × D/E] = <strong>1.54</strong>.<br>
+<p>✅ Equity Beta = β<sub>A</sub> × [1 + (1 – tax) × D/E] = <strong>1.56</strong>.<br>
 This accounts for financial leverage amplifying the risk borne by equity holders.</p>
 </div>
 </div>
@@ -876,18 +878,18 @@ Q6.
 <h2 class="anchored" data-anchor-id="cost-of-debt-capital-capm-and-default-approach">Cost of Debt Capital – CAPM and Default Approach</h2>
 <div class="question-block">
 <form onsubmit="event.preventDefault(); checkNumericAnswer('module4_num_q3')" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q3"><strong>A company’s bond has a beta of 0.1. The risk-free rate is 3.99% and the market risk premium is 6%. What is the expected return on debt using the CAPM?</strong></label> <input type="number" id="module4_num_q3" name="module4_num_q3" placeholder="Enter value" style="width: 150px;" data-correct-answer="4.57" data-tolerance="0.01">
+<label for="module4_num_q3"><strong>A company’s bond has a beta of 0.11. The risk-free rate is 4% and the market risk premium is 6%. What is the expected return on debt using the CAPM?</strong></label> <input type="number" id="module4_num_q3" name="module4_num_q3" placeholder="Enter value" style="width: 150px;" data-correct-answer="4.65" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q3" class="feedback" data-status="" style="display:none;">
-✅ Expected Return (CAPM) = r_f + β × MRP = <strong>4.57</strong>%.
+✅ Expected Return (CAPM) = r_f + β × MRP = <strong>4.65</strong>%.
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault(); checkNumericAnswer('module4_num_q3b')" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q3b"><strong>The bond has a Yield to Maturity (YTM) of 6.9%, probability of default of 0.5%, and expected loss given default of 60.3%. Estimate the expected return using the default method.</strong></label> <input type="number" id="module4_num_q3b" name="module4_num_q3b" placeholder="Enter value" style="width: 150px;" data-correct-answer="6.6" data-tolerance="0.01">
+<label for="module4_num_q3b"><strong>The bond has a Yield to Maturity (YTM) of 6.87%, probability of default of 0.5%, and expected loss given default of 59.8%. Estimate the expected return using the default method.</strong></label> <input type="number" id="module4_num_q3b" name="module4_num_q3b" placeholder="Enter value" style="width: 150px;" data-correct-answer="6.57" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q3b" class="feedback" data-status="" style="display:none;">
-✅ Expected Return (Default Method) = YTM − Default Probability × Loss Rate = <strong>6.6</strong>%.
+✅ Expected Return (Default Method) = YTM − Default Probability × Loss Rate = <strong>6.57</strong>%.
 </div>
 </div>
 </section>
@@ -901,14 +903,14 @@ Q7.
 <section id="portfolio-beta-with-multiple-divisions" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="portfolio-beta-with-multiple-divisions">Portfolio Beta with Multiple Divisions</h2>
 <p>An institutional investor holds two divisions of Aurora Technologies:<br>
-- Division A weight = <strong>56.72</strong>%, beta = <strong>1.42</strong><br>
-- Division B weight = <strong>43.28</strong>%, beta = <strong>0.8</strong></p>
+- Division A weight = <strong>59.94</strong>%, beta = <strong>1.29</strong><br>
+- Division B weight = <strong>40.06</strong>%, beta = <strong>0.77</strong></p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q8a"><strong>1. What is the overall portfolio beta?</strong></label> <input type="number" id="module4_num_q8a" name="module4_num_q8a" style="width: 150px;" data-correct-answer="1.15" data-tolerance="0.01">
+<label for="module4_num_q8a"><strong>1. What is the overall portfolio beta?</strong></label> <input type="number" id="module4_num_q8a" name="module4_num_q8a" style="width: 150px;" data-correct-answer="1.08" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q8a" class="feedback" style="display:none;">
-<p>✅ Portfolio Beta = w<sub>A</sub>β<sub>A</sub> + w<sub>B</sub>β<sub>B</sub> = <strong>1.15</strong>.<br>
+<p>✅ Portfolio Beta = w<sub>A</sub>β<sub>A</sub> + w<sub>B</sub>β<sub>B</sub> = <strong>1.08</strong>.<br>
 This shows how different risk exposures combine in a weighted portfolio.</p>
 </div>
 </div>
@@ -922,14 +924,14 @@ Q8.
 </div>
 <section id="after-tax-cost-of-debt" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="after-tax-cost-of-debt">After-tax Cost of Debt</h2>
-<p>Aurora Technologies issues new bonds with a yield to maturity of <strong>7.47</strong>%.<br>
-The corporate tax rate is <strong>22.58</strong>%.</p>
+<p>Aurora Technologies issues new bonds with a yield to maturity of <strong>5.8</strong>%.<br>
+The corporate tax rate is <strong>23.98</strong>%.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q9a"><strong>1. What is the after-tax cost of debt (in %)?</strong></label> <input type="number" id="module4_num_q9a" name="module4_num_q9a" style="width: 150px;" data-correct-answer="5.79" data-tolerance="0.01">
+<label for="module4_num_q9a"><strong>1. What is the after-tax cost of debt (in %)?</strong></label> <input type="number" id="module4_num_q9a" name="module4_num_q9a" style="width: 150px;" data-correct-answer="4.41" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q9a" class="feedback" style="display:none;">
-<p>✅ After-tax cost of debt = r<sub>D</sub> × (1 – tax) = <strong>5.79</strong>%.<br>
+<p>✅ After-tax cost of debt = r<sub>D</sub> × (1 – tax) = <strong>4.41</strong>%.<br>
 Interest is tax-deductible, so the effective cost of debt is lower than the nominal rate.</p>
 </div>
 </div>
@@ -944,15 +946,15 @@ Q9.
 <section id="project-specific-discount-rate" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="project-specific-discount-rate">Project-specific Discount Rate</h2>
 <p>Aurora Technologies considers investing in a high-risk digital platform.<br>
-- Risk-free rate = <strong>2.74</strong>%<br>
-- Market risk premium = <strong>5.32</strong>%<br>
-- Project beta = <strong>1.38</strong></p>
+- Risk-free rate = <strong>2.98</strong>%<br>
+- Market risk premium = <strong>4.81</strong>%<br>
+- Project beta = <strong>1.43</strong></p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module4_num_q10a"><strong>1. What is the appropriate discount rate for this project (in %)?</strong></label> <input type="number" id="module4_num_q10a" name="module4_num_q10a" style="width: 150px;" data-correct-answer="10.06" data-tolerance="0.01">
+<label for="module4_num_q10a"><strong>1. What is the appropriate discount rate for this project (in %)?</strong></label> <input type="number" id="module4_num_q10a" name="module4_num_q10a" style="width: 150px;" data-correct-answer="9.84" data-tolerance="0.01">
 </form>
 <div id="feedback-module4_num_q10a" class="feedback" style="display:none;">
-<p>✅ Discount Rate = r<sub>f</sub> + β<sub>project</sub> × MRP = <strong>10.06</strong>%.<br>
+<p>✅ Discount Rate = r<sub>f</sub> + β<sub>project</sub> × MRP = <strong>9.84</strong>%.<br>
 Projects with higher betas require higher discount rates to compensate investors for risk.</p>
 </div>
 </div>
