@@ -699,73 +699,102 @@ Enter
 <p><a id="btn-report" class="report-btn" href="#" role="button" aria-label="View my report"> <span class="report-icon" aria-hidden="true">⬇️</span> <span>View my Report</span> </a></p>
 </div>
 <script>
-(function(){
+(function () {
   const BTN  = document.getElementById("btn-report");
-  const BASE = REPORTS_BASE; // "https://course-chat.hcmrtns.workers.dev"
+  const BASE = "https://course-chat.hcmrtns.workers.dev";
+  const NEXT = "/reports/html";
 
-  // ---------- helpers ----------
+  // --- helpers ---
   const strip = s => (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
   const norm  = s => {
     const r = String(s||"").trim().toLowerCase();
-    if (!r) return "";
     return r.includes("@") ? r.split("@")[0] : r;
   };
-  // aceita ids tipo "ana_santos", "joao.silva-23"
-  const isStudentId = v =>
-    /^[a-z0-9._-]{3,40}$/i.test(v||"") &&
-    /[_\.]/.test(v) &&
-    !/^mod(ule)?\d+$/i.test(v||"");
+  const isSid = v => /^[a-z0-9._-]{3,40}$/i.test(v||"") && /[_\.]/.test(v) && !/^mod(ule)?\d+$/i.test(v||"");
+  const ensureSidInURL = (sid) => {
+    const u = new URL(location.href);
+    if (u.searchParams.get("sid") !== sid) {
+      u.searchParams.set("sid", sid);
+      history.replaceState(null, "", u.toString()); // mostra ?sid=... sem recarregar
+    }
+  };
+  const makeBridgeURL = (sid) => `${BASE}/session/start?sid=${encodeURIComponent(sid)}&next=${encodeURIComponent(NEXT)}`;
 
-  function fromQuery(){
-    const p = new URLSearchParams(location.search);
-    const v = norm(p.get("sid") || p.get("me") || "");
-    return isStudentId(v) ? v : "";
-  }
-  function getCookie(name){
-    try{
-      const m = document.cookie.match(new RegExp("(^|; )"+name.replace(/([.*+?^${}()|[\]\\])/g,"\\$1")+"=([^;]*)"));
-      return m ? decodeURIComponent(m[2]) : "";
-    }catch{ return ""; }
-  }
-  function fromCookies(){
-    const v = norm(getCookie("student_id") || getCookie("sid") || getCookie("hcm_student"));
-    return isStudentId(v) ? v : "";
-  }
-  function fromStorage(){
-    try{
-      const keys = [
-        "student_login","vhcm_current_user","hcm_current_user",
-        "current_user","user_login","login","user","sid","student","student_id"
-      ];
-      for (const k of keys){
-        const v = norm(strip(localStorage.getItem(k) || sessionStorage.getItem(k) || ""));
-        if (isStudentId(v)) return v;
-      }
-      if (isStudentId(norm(window.CURRENT_STUDENT))) return norm(window.CURRENT_STUDENT);
-      if (isStudentId(norm(window.__LOGIN?.studentId))) return norm(window.__LOGIN.studentId);
-    }catch{}
+  function findSidNow() {
+    // 1) query
+    const q = new URLSearchParams(location.search);
+    const fromQ = norm(q.get("sid") || q.get("me") || "");
+    if (isSid(fromQ)) return fromQ;
+
+    // 2) expostos pelo login-start.html
+    if (isSid(norm(window.studentId))) return norm(window.studentId);
+
+    // 3) storage que o seu login usa
+    try {
+      const fsu = norm(strip(localStorage.getItem("fs_user")||""));
+      if (isSid(fsu)) return fsu;
+      const st  = norm(strip(localStorage.getItem("studentId")||""));
+      if (isSid(st))  return st;
+    } catch(_) {}
+
+    // 4) cookies (se houver)
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)student_id=([^;]+)/i);
+      const c = norm(m ? decodeURIComponent(m[1]) : "");
+      if (isSid(c)) return c;
+    } catch(_) {}
+
     return "";
   }
-  function getStudent(){ 
-    return fromQuery() || fromCookies() || fromStorage() || "";
+
+  function armButtonFor(sid, autoGo=false) {
+    ensureSidInURL(sid);
+    const url = makeBridgeURL(sid);
+    BTN.href = url;
+    BTN.setAttribute("aria-disabled", "false");
+    BTN.addEventListener("click", () => { /* normal nav */ }, { once:true });
+
+    if (autoGo) {
+      // Se quiser entrar direto no relatório após o login, ative:
+      // window.location.href = url;
+    }
   }
 
-  // ---------- define o href do botão ----------
-  const sid = getStudent();
-  if (sid) {
-    // usa o bridge (cria cookie e redireciona)
-    const next = "/reports/html";
-    BTN.href = `${BASE}/session/start?sid=${encodeURIComponent(sid)}&next=${encodeURIComponent(next)}`;
-    BTN.setAttribute("aria-disabled", "false");
-  } else {
-    // sem SID: deixa link “desabilitado” e orienta o aluno
+  function waitForLogin() {
+    // Enquanto não tiver SID, deixamos o botão “bloqueado” e pedimos para o aluno logar
     BTN.href = "#";
     BTN.setAttribute("aria-disabled", "true");
     BTN.addEventListener("click", (e) => {
       e.preventDefault();
-      alert("Não encontrei seu login. Entre no site do curso ou adicione ?sid=seu_id à URL.");
+      alert("Faça login para ver seu relatório.");
     });
+
+    // Quando o login acontecer, esses eventos são disparados pelo seu login-start.html
+    const onSuccess = (sid) => { if (isSid(sid)) armButtonFor(sid, /*autoGo=*/false); };
+
+    document.addEventListener("auth:login", (ev) => {
+      const sid = norm(ev?.detail?.studentId || "");
+      onSuccess(sid);
+    });
+
+    window.addEventListener("login:success", (ev) => {
+      const sid = norm(ev?.detail?.studentId || window.studentId || "");
+      onSuccess(sid);
+    });
+
+    // Fallback: se por algum motivo window.onLoginSuccess for chamado diretamente
+    const orig = window.onLoginSuccess;
+    window.onLoginSuccess = function(studentId){
+      try { onSuccess(norm(studentId||"")); } catch(_) {}
+      if (typeof orig === "function") return orig.apply(this, arguments);
+    };
   }
+
+  // --- boot ---
+  const sid = findSidNow();
+  if (sid) armButtonFor(sid, /*autoGo=*/true);
+  else     waitForLogin();
+
 })();
 </script>
 </main></div>
