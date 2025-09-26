@@ -32,7 +32,6 @@ You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions
   const SLIDE_ID = "module5_selfquiz";
 </script>
 
-{{< include ../login-start.html >}}
 
 
 ```{=html}
@@ -89,6 +88,8 @@ main.content table th:nth-child(2) {
 
 
 ___
+
+{{< include ../login-start.html >}}
 
 
 <div class="sq-wrap">
