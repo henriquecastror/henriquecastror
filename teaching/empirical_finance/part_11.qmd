@@ -1,0 +1,643 @@
+---
+title: 'Empirical Methods in Finance'
+subtitle: 'Part 11'
+author: 'Henrique C. Martins'
+format:
+  revealjs: 
+    slide-number: true
+    theme: simple
+    chalkboard: true
+    preview-links: auto
+    logo: figs/background8.png
+    css: logo.css
+    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)][Do not use without permission]**  '
+    scrollable: true 
+title-slide-attributes:
+    data-background-color: "#b1cafa"
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+
+---
+
+
+
+
+
+```{r setup}
+#| include: false
+#| warning: false
+
+library(quantmod)
+library(tidyverse)
+```
+
+
+
+
+# Introduction {.smaller background="#bcd3f7"}
+
+## Introduction {.smaller background="#bcd3f7"}
+
+- *Event studies* measure the impact of a specific event on stock returns.  
+- Widely used in empirical finance:  
+  - Earnings announcements  
+  - Mergers and acquisitions  
+  - SEOs/IPOs  
+  - Credit rating downgrades  
+  - Regulatory changes  
+
+
+> “Using financial market data, an event study measures the impact of a specific event on the value of a firm.” (MacKinlay, 1997)
+
+
+## Introduction {.smaller background="#bcd3f7"}
+
+
+_The event study is probably the oldest and simplest causal inference research design._
+
+_It predates experiments. It predates statistics. It probably predates human language. It might predate humans._
+
+_The idea is this: at a certain time, an event occured, leading a treatment to be put into place at that time. Whatever changed from before the event to after is the effect of that treatment._
+
+[(The Effect)](https://theeffectbook.net/ch-EventStudies.html)
+
+
+
+## {.smaller background="#bcd3f7"}
+
+
+![](figs/eventstudies.png)
+
+## Introduction [(The Effect)](https://theeffectbook.net/ch-EventStudies.html) {.smaller background="#bcd3f7"}
+
+
+**The process for doing one of these event studies is as follows:**
+
+1) Pick an “estimation period” a fair bit before the event, and an “observation period” from just before the event to the period of interest after the event.
+
+. . .
+
+2) Use the data from the estimation period to estimate a model that can make a prediction of the stock’s return in each period. A popular way of doing this are:
+
+- Risk-adjusted returns model. Use the data from the estimation period to fit a regression describing how related the return 
+ is to other market portfolios, like the market return: $R=\alpha + \beta \times R_m$. Then, in the observation period, use that model and the actual 
+ to predict in each period.
+
+## Introduction [(The Effect)](https://theeffectbook.net/ch-EventStudies.html) {.smaller background="#bcd3f7"}
+
+3) In the observation period, subtract the prediction from the actual return to get the “abnormal return.” 
+
+ - $AR = R - \hat{R}$
+ 
+. . . 
+
+4) Look at $AR$ in the observation period. Nonzero values before the event imply the event was anticipated, and nonzero values after the event give the effect of the event on the stock’s return. 
+
+
+ 
+## Introduction {.smaller background="#bcd3f7"}
+
+ 
+![](figs/eventstudies2.png)
+
+
+
+
+
+
+
+
+
+
+# Methodology {.smaller background="#8eadde"}
+
+## Steps of an Event Study {.smaller background="#8eadde"}
+
+The central idea: measure **abnormal returns (AR)**.
+
+$$AR_{it} = R_{it} - E[R_{it}|X_t]$$
+
+
+1. Define **event date** (day 0).  
+2. Select **event window** (e.g., [-1,+1], [-5,+5]).  
+3. Select **estimation window** (e.g., -120 to -20 days).  
+4. Estimate expected returns (Market Model, CAPM, Fama-French).  
+5. Compute **abnormal returns (AR)**.  
+6. Compute **cumulative abnormal returns (CAR)**.  
+7. Test statistical significance.  
+
+
+
+
+## Expected Return Models {.smaller background="#8eadde"}
+
+- **Market Model**:  
+  $$R_{it} = \alpha_i + \beta_i R_{mt} + \epsilon_{it}$$  
+
+- **CAPM**: includes risk-free rate.  
+- **Fama-French**: adds size (SMB), value (HML), momentum (MOM).  
+
+. . .
+
+Choice of model depends on context, data availability, and assumptions.
+
+
+
+
+
+
+
+
+
+
+## Visualizing an Event {.smaller background="#d2e2fc"}
+
+
+
+
+- Day 0 = Event date  
+- Look at pre- and post-event stock returns  
+- Identify abnormal spikes relative to “normal” variation  
+
+
+
+
+
+
+
+
+## Example: Earnings Announcement {.smaller background="#d2e2fc"}
+
+**Objective:** Does Apple’s quarterly earnings announcement affect its stock price?  
+
+- Event: 15 July 2023  
+- Estimation window: 120 days before event  
+- Event window: [-5,+5]  
+
+
+
+
+
+
+
+# Example in R {.smaller background="#abc8f5"}
+
+---
+
+## Apple closing price (Adjusted) {.smaller background="#e9f7ef"}
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+
+library(quantmod)
+library(tidyverse)
+
+# Data
+getSymbols("AAPL", from = "2023-01-01", to = "2023-12-31", auto.assign = TRUE)
+
+# Ajustado (considera splits/dividendos). Se preferir o close "bruto", troque Ad(AAPL) por Cl(AAPL).
+aapl_xts <- Ad(AAPL)
+aapl_df  <- tibble(
+  date = as.Date(index(aapl_xts)),
+  adj_close = as.numeric(aapl_xts)
+)
+
+# Plot clean em azul-escuro
+ggplot(aapl_df, aes(x = date, y = adj_close)) +
+  geom_line(linewidth = 1.1, color = "#0b3d91") +
+  labs(title = "Apple – Adjusted Closing Price (2023)",
+       x = NULL, y = "USD") +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    axis.title.y = element_text(margin = margin(r = 8))
+  )
+```
+
+---
+
+## S&P 500 closing price (Adjusted) {.smaller background="#e9f7ef"}
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+
+library(quantmod)
+library(tidyverse)
+
+# Data
+getSymbols("^GSPC", from = "2023-01-01", to = "2023-12-31", auto.assign = TRUE)
+
+sp500_xts <- Ad(GSPC)
+sp500_df  <- tibble(
+  date = as.Date(index(sp500_xts)),
+  adj_close = as.numeric(sp500_xts)
+)
+
+# Plot clean em verde-escuro
+ggplot(sp500_df, aes(x = date, y = adj_close)) +
+  geom_line(linewidth = 1.1, color = "#006400") +
+  labs(title = "S&P 500 – Adjusted Closing Price (2023)",
+       x = NULL, y = "Index Points") +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    axis.title.y = element_text(margin = margin(r = 8))
+  )
+```
+
+
+
+
+
+
+## Apple vs S&P 500 (Normalized to 100) {.smaller background="#e9f7ef"}
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+
+library(quantmod)
+library(tidyverse)
+
+# Data
+getSymbols("AAPL", from = "2023-01-01", to = "2023-12-31", auto.assign = TRUE)
+getSymbols("^GSPC", from = "2023-01-01", to = "2023-12-31", auto.assign = TRUE)
+
+# Preços ajustados
+aapl_xts  <- Ad(AAPL)
+sp500_xts <- Ad(GSPC)
+
+# Normalizar para 100 no início
+aapl_norm  <- as.numeric(aapl_xts)  / as.numeric(first(aapl_xts))  * 100
+sp500_norm <- as.numeric(sp500_xts) / as.numeric(first(sp500_xts)) * 100
+
+df <- tibble(
+  date = as.Date(index(aapl_xts)),
+  Apple = aapl_norm,
+  SP500 = sp500_norm
+) %>% pivot_longer(-date, names_to = "Asset", values_to = "Index")
+
+# Plot
+ggplot(df, aes(x = date, y = Index, color = Asset)) +
+  geom_line(linewidth = 1.1) +
+  scale_color_manual(values = c("Apple" = "#0b3d91", "SP500" = "#006400")) +
+  labs(title = "Apple vs S&P 500 (Normalized Prices, 2023)",
+       x = NULL, y = "Index (start = 100)", color = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom",
+    axis.title.y = element_text(margin = margin(r = 8))
+  )
+```
+
+
+
+
+
+
+## Step 1 – Compute Returns and  Market Model {.smaller background="#e9f7ef"}
+
+We now move from **prices** to **daily returns**.  
+This allows us to estimate the *Market Model* using OLS on the **estimation window**.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+
+
+library(quantmod)
+library(tidyverse)
+
+# Compute daily returns
+ret_aapl <- dailyReturn(Ad(AAPL))
+ret_mkt  <- dailyReturn(Ad(GSPC))
+
+# Define event date and estimation window (120 days before)
+event_date <- as.Date("2023-07-15")
+estimation_window <- index(ret_aapl) < event_date & 
+                     index(ret_aapl) >= (event_date - 180)  # ~6 months before
+
+# Estimate Market Model via OLS
+fit <- lm(ret_aapl[estimation_window] ~ ret_mkt[estimation_window])
+
+summary(fit)
+```
+
+
+
+
+
+## Step 2 – Compute Abnormal Returns (AR) {.smaller background="#e9f7ef"}
+
+Once we have the estimated parameters ($\hat{\alpha}$, $\hat{\beta}$),we can compute **expected returns** and the **abnormal returns**:
+
+$\hat{R}_{i,t} = \hat{\alpha} + \hat{\beta} R_{m,t}$
+
+$AR_{i,t} = R_{i,t} - \hat{R}_{i,t}$
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+# Predicted returns from the Market Model
+pred <- predict(fit, newdata = data.frame(ret_mkt = ret_mkt))
+
+# Abnormal returns
+ar <- ret_aapl - pred
+
+head(ar, 10)   # first 10 abnormal returns
+```
+
+AR > 0: Apple outperformed the market on that day
+
+AR < 0: Apple underperformed the market on that day
+
+
+
+
+
+
+
+
+## Step 3 – Compute CAR {.smaller background="#e9f7ef"}
+
+To capture the **aggregate effect** of the event, we sum abnormal returns over the event window:
+
+$CAR_{i}(t_1,t_2) = \sum_{t=t_1}^{t_2} AR_{i,t}$
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+# Define event window: 5 days before and after
+window <- (index(ret_aapl) >= (event_date - 5)) &
+          (index(ret_aapl) <= (event_date + 5))
+
+# Cumulative abnormal returns
+car <- cumsum(ar[window])
+
+car
+```
+
+A positive CAR suggests good news (value creation).
+
+A negative CAR suggests bad news (value destruction).
+
+
+
+
+
+
+
+## Step 4 – Visualize CAR {.smaller background="#e9f7ef"}
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+# Extract abnormal returns only for the event window
+ar_window <- ar[window]
+
+# Recalculate CAR starting at 0
+car <- cumsum(as.numeric(ar_window))
+
+# Plot corrected CAR
+plot(index(ar_window), car, type = "l", col = "#0b3d91", lwd = 2,
+     main = "Cumulative Abnormal Returns (CAR) – Event Window",
+     xlab = "Date", ylab = "CAR")
+abline(v = event_date, col = "red", lwd = 2, lty = 2)
+```
+
+
+
+## {.smaller background="#e9f7ef"}
+
+What is the CAR in this window?
+
+- **Estimation window**: 120 trading days before the event (used to estimate the market model).  
+- **Event window**: [-5, +5] days around the event date (used to measure the abnormal impact).  
+- The **CAR (Cumulative Abnormal Return)** is the sum of abnormal returns across this event window.  
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-fold: true
+ar_window <- ar[window]                  # abnormal returns in the event window [-5,+5]
+car <- cumsum(as.numeric(ar_window))     # cumulative abnormal returns, starting at 0
+CAR_total <- last(car)                   # CAR over the full event window
+CAR_total
+
+
+```
+
+
+
+
+
+## Robustness table {.smaller background="#e9f7ef"}
+
+```{r}
+
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: true
+library(quantmod)
+library(tidyverse)
+library(broom)
+library(knitr)
+
+# 1) Garantir dados alinhados e sem NAs (usaremos 'ret_aapl' e 'ret_mkt' já criados)
+df_ret <- tibble(
+  date = as.Date(index(ret_aapl)),
+  aapl = as.numeric(ret_aapl),
+  mkt  = as.numeric(ret_mkt)
+) %>% drop_na()
+
+# 2) Parâmetros de robustez
+est_days_vec  <- c(60, 120, 180)                       # estimation windows (days before event)
+event_windows <- list(c(-3, 3), c(-5, 5), c(-10, 10))  # event windows [t1, t2]
+
+robust_tbl <- list()
+
+for (E in est_days_vec) {
+  # Estimation window: E dias antes do evento (usando datas do df_ret)
+  est_mask <- df_ret$date < event_date & df_ret$date >= (event_date - E)
+  df_est   <- df_ret[est_mask, ]
+
+  # Estima Market Model no período de estimação
+  fit_E <- lm(aapl ~ mkt, data = df_est)
+  summ  <- summary(fit_E)
+
+  alpha <- coef(fit_E)[1]
+  beta  <- coef(fit_E)[2]
+  r2    <- summ$r.squared
+  n_est <- nrow(df_est)
+
+  for (ew in event_windows) {
+    t1 <- ew[1]; t2 <- ew[2]
+    ev_mask <- df_ret$date >= (event_date + t1) & df_ret$date <= (event_date + t2)
+    df_ev   <- df_ret[ev_mask, ]
+    n_ev    <- nrow(df_ev)
+
+    # Predição no event window usando o MESMO nome de regressor ('mkt')
+    pred_ev <- predict(fit_E, newdata = df_ev)
+
+    # AR e CAR (CAR começa em 0 dentro da janela)
+    ar_ev     <- df_ev$aapl - pred_ev
+    CAR_total <- sum(ar_ev, na.rm = TRUE)
+
+    # t-stat didático para o CAR: t = CAR / (sd(AR) * sqrt(n))
+    t_car <- if (n_ev > 1 && sd(ar_ev, na.rm = TRUE) > 0) {
+      CAR_total / (sd(ar_ev, na.rm = TRUE) * sqrt(n_ev))
+    } else { NA_real_ }
+
+    robust_tbl[[length(robust_tbl) + 1]] <- tibble(
+      est_window_days = E,
+      event_window    = sprintf("[%+d,%+d]", t1, t2),
+      n_est           = n_est,
+      n_event         = n_ev,
+      alpha_hat       = alpha,
+      beta_hat        = beta,
+      CAR             = CAR_total,
+      t_CAR           = t_car
+    )
+  }
+}
+
+robust_tbl <- bind_rows(robust_tbl) %>% arrange(est_window_days, event_window)
+
+# 3) Tabela bonita
+robust_tbl %>%
+  mutate(
+    alpha_hat     = round(alpha_hat, 5),
+    beta_hat      = round(beta_hat, 3),
+    CAR           = round(CAR, 4),
+    t_CAR         = round(t_CAR, 2)
+  ) %>%
+  kable(caption = "CAR robustness across estimation and event windows")
+```
+
+
+
+# Extensions  {.smaller background="#e9f7ef"}
+
+
+## Extensions and Practical Challenges {.smaller background="#e9f7ef"}
+
+- **Multiple events**  
+  - Often researchers examine a *wave* of events (e.g., several M&As in one industry, multiple SEOs).  
+  - Challenge: heterogeneity across firms and event timing. Aggregation must be justified.  
+
+## Extensions and Practical Challenges {.smaller background="#e9f7ef"}
+
+- **Clustering of events**  
+  - Many events occur on the same date (e.g., quarterly earnings announcements).  
+  - Standard errors may be underestimated if cross-sectional dependence is ignored.  
+  - Solutions: event-time portfolios, clustered or robust standard errors.  
+
+## Extensions and Practical Challenges {.smaller background="#e9f7ef"}
+
+- **Confounding events**  
+  - Other major news may coincide with the focal event (e.g., macro policy change).  
+  - Makes it difficult to attribute abnormal returns exclusively to the event of interest.  
+
+## Extensions and Practical Challenges {.smaller background="#e9f7ef"}
+
+- **Long-horizon event studies**  
+  - Extending the event window to months/years raises econometric issues.  
+  - CARs accumulate model error and are sensitive to the choice of expected-return model.  
+  - Interpretation becomes less about short-term information effects, more about long-run performance.  
+
+
+
+
+
+
+# Final Comments {.smaller background="#95a9c7"}
+
+## Final Comments {.smaller background="#95a9c7"}
+
+- Event studies are powerful and widely used.  
+- Results depend heavily on:  
+  - Correct identification of the event  
+  - Appropriate choice of estimation model  
+  - Robustness checks  
+
+. . .
+
+**Easy to run, hard to interpret.**
+
+
+
+
+
+## 🙋‍♂️ **Any Questions?**{ .smaller  background="#fdf6e3"}
+
+::: columns
+::: {.column width="50%"}
+### Thank You!
+
+![](figs/qa2.png){width="110%" style="box-shadow: none;"}
+
+:::
+
+::: {.column width="50%"}
+<div style="text-align:right;">
+  <img src="figs/avatar.jpg" width="120px" style="border-radius:50%; box-shadow:0 4px 12px rgba(0,0,0,.25);" />
+</div>
+
+### **Henrique C. Martins**
+
+- 🌐 [FGV/EAESP](https://eaesp.fgv.br/en/people/henrique-castro-martins)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/henriquecastror/)  
+- 🧠 [Google Scholar](https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao)  
+- 📄 [Lattes CV](http://lattes.cnpq.br/6076997472159785)  
+- 🏠 [Personal Website](https://henriquemartins.net/)  
+:::
+:::
+
+
