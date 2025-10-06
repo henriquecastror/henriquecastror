@@ -14,8 +14,8 @@ format:
     include-in-header: ../login-start.html
     include-after-body:
       - ../chat-widget.html
-#      - ../comnents.html
-      - ../ranking-widget.html
+      - ../threads-gate.html
+      - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
     controls: true
@@ -331,29 +331,8 @@ Issue price: par (it means that the bond has been issued at face value).
 
 Treasury-Inflation-Protected Securities are called **TIPS**.
 
+[Tesouro Direto](https://www.tesourodireto.com.br/produtos/dados-sobre-titulos/rendimento-dos-titulos)
 
-
-
-
-
-
-
-
-## {.smaller background="#FFD6A4"}
-
-
-<center>
-![](../figs/td1.png)
-</center>
-
-
-
-
-##  {.smaller background="#FFD6A4"}
-
-<center>
-![](../figs/td2.png)
-</center>
 
 
 
@@ -699,6 +678,24 @@ Investment grad ~= Speculative grade ~= Default.
 
 
 
+
+
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
+     data-session="module6_checkout1"
+     data-page="module6_checkout1"
+     data-require-login="true"
+     data-open="2025-10-06 16:30"
+     data-close="2025-10-06 16:59">
+</div>
+
+{{< include ../checkout2.html >}}
 
 
 
