@@ -6,7 +6,7 @@
 # ==========================
 
 # ======== CONFIGURAÇÃO MÍNIMA ========
-QMD_DIR <- "module3/mcq"  # <<< ajuste a pasta com seus .qmd de MCQ
+QMD_DIR <- "module6/tf"  # <<< ajuste a pasta com seus .qmd de MCQ
 
 ENDPOINT_BASE       <- "https://course-chat.hcmrtns.workers.dev"
 ENDPOINT_ANSWER_KEY <- paste0(ENDPOINT_BASE, "/exercises/answer-key")

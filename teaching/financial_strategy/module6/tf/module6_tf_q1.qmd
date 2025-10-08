@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q001','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q001" name="module6_tf_q001" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q001"><strong>Corporate debt is typically considered a risk-free investment.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q001" class="feedback" data-status="" style="display:none;">
+This is FALSE. Corporate debt typically carries some level of risk, such as credit risk.
+</div>
+
+:::

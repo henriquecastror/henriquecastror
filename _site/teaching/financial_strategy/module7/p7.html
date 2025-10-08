@@ -803,7 +803,7 @@
     </div>
 </div>
 
-  <p class="date">16-08-2025</p>
+  <p class="date">07-10-2025</p>
 </section>
 <section>
 
@@ -2433,277 +2433,802 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
       });
     })();
     </script>
-    <!-- rankings-widget.html : Botão-ícone minimal + painel sofisticado -->
+    <!-- threads-gate.html -->
+    <!-- Gate + conteúdo inline do threads, injetado somente para logins permitidos -->
+
+    <script>
+      // ===== Allowlist (inclui professor) =====
+    //  const CHAT_ALLOWLIST = new Set([
+    //    'hcm','aula','aluno5','bruno_pereira','josé_allocca','ana_santos','eduardo_senedese','vanessa_meieler', 'leonardo_derviche','joão_coghi','luisa_fernandes','laura_nakama','ludmilla_moraes','jose_allocca', 'joao_coghi'
+    //  ]);
+
+      const stripDiacritics = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const normalizeLogin  = s => {
+        const raw = String(s || '').trim().toLowerCase();
+        if (!raw) return '';
+        return raw.includes('@') ? raw.split('@')[0] : raw;
+      };
+
+      function getCurrentUser(){
+        try{
+          const seq = [
+            () => localStorage.getItem('studentId'),
+            () => localStorage.getItem('login'),
+            () => (window.VHCM && window.VHCM.user) ? String(window.VHCM.user) : '',
+          ];
+          for (const f of seq){
+            const out = normalizeLogin(f());
+            if (out) return out;
+          }
+          const m = document.cookie.match(/(?:^|;\s*)(studentId|login|vhcm_user|vhcm_login|user)=([^;]+)/i);
+          if (m) return normalizeLogin(decodeURIComponent(m[2]));
+        }catch(_){}
+        return '';
+      }
+
+    //  function isAllowed(){
+    //    const user  = getCurrentUser();
+    //    const ascii = stripDiacritics(user);
+    //    return CHAT_ALLOWLIST.has(user) || CHAT_ALLOWLIST.has(ascii);}
+
+
+    // threads-gate.html
+    function isAllowed(){ return true } // libera para todos
+
+
+      // Injeta o conteúdo do template apenas se permitido
+
+      async function injectIfAllowed(){
+        if (!isAllowed()){
+          console.debug('[threads-gate] user not allowed, chat hidden');
+          return;
+        }
+        if (document.querySelector('[data-vhcm-chat="threads"]')) return;
+
+        const tpl = document.getElementById('vhcm-threads-tpl');
+        if (!tpl){ console.warn('[threads-gate] template não encontrado'); return; }
+
+        // 1) injeta o HTML
+        const holder = document.createElement('div');
+        holder.setAttribute('data-vhcm-chat','threads');
+        holder.innerHTML = tpl.innerHTML;
+        document.body.appendChild(holder);
+
+        // 2) força execução de TODOS os <script> recém-inseridos (na ordem)
+        const scripts = holder.querySelectorAll('script');
+        for (const old of scripts) {
+          const s = document.createElement('script');
+          // copia atributos (type, etc.)
+          for (const {name, value} of Array.from(old.attributes)) s.setAttribute(name, value);
+          if (old.src) {
+            s.src = old.src;              // se um dia você usar scripts externos
+            s.async = false;
+          } else {
+            s.textContent = old.textContent; // inline JS
+          }
+          old.replaceWith(s);             // substitui para preservar a ordem de execução
+        }
+
+        console.debug('[threads-gate] chat injected & scripts executed');
+      }
+
+
+
+
+
+      document.addEventListener('DOMContentLoaded', () => {
+        injectIfAllowed();
+        // se o login for setado um pouco depois:
+        setTimeout(injectIfAllowed, 400);
+        setTimeout(injectIfAllowed, 1000);
+        // se disparar evento de login
+        document.addEventListener('auth:login', () => setTimeout(injectIfAllowed, 50));
+        // se outra aba/setter atualizar credenciais
+        window.addEventListener('storage', (e)=>{
+          if (['studentId','login','vhcm_user','vhcm_login','user'].includes(e.key||'')){
+            setTimeout(injectIfAllowed, 50);
+          }
+        });
+      });
+    </script>
+
+    <!-- ============== CONTEÚDO ORIGINAL DO threads.html, INATIVO EM TEMPLATE ============== -->
+    <template id="vhcm-threads-tpl">
+      <!-- ===================== CLASS CHAT (Widget) ===================== -->
+      <script>
+      function onLoginSuccess(studentId) {
+        window.studentId = String(studentId || '').trim();
+        localStorage.setItem('studentId', window.studentId);
+        document.dispatchEvent(new CustomEvent('auth:login', { detail: { studentId: window.studentId }}));
+        console.debug('[Login] onLoginSuccess →', window.studentId);
+      }
+      </script>
+
+      <div id="cmt-root">
+        <button id="cmt-bubble" aria-label="Open class chat">
+          <span class="cmt-icon">💬</span><span class="cmt-badge" id="cmt-count">0</span>
+        </button>
+
+        <aside id="cmt-panel" aria-hidden="true" aria-label="Class chat panel">
+          <header class="cmt-header">
+            <div class="cmt-title"><span class="cmt-dot"></span><span>Class chat</span></div>
+            <div class="cmt-actions">
+              <select id="cmt-target" class="cmt-filter" style="display:none"></select>
+              <button id="cmt-find" class="cmt-ghost" title="Buscar/abrir login (Ctrl+K)" aria-label="Find student" style="display:none">🔎</button>
+              <button id="cmt-key" class="cmt-ghost" title="Set admin token" aria-label="Set admin token" style="display:none">🔑</button>
+              <button id="cmt-close" class="cmt-ghost" title="Close" aria-label="Close">✕</button>
+            </div>
+          </header>
+
+          <div id="cmt-list" class="cmt-body" role="list"></div>
+
+          <footer class="cmt-input">
+            <textarea id="cmt-text" placeholder="Write anything to your instructor…"></textarea>
+            <div class="cmt-row cmt-end">
+              <button id="cmt-send" class="cmt-primary" aria-label="Send">Send</button>
+            </div>
+          </footer>
+        </aside>
+      </div>
+
+      <style>
+      /* === seu CSS original === */
+      #cmt-root { all: initial; }
+      #cmt-root * { box-sizing: border-box; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; }
+      #cmt-root button { display:inline-flex; align-items:center; justify-content:center; cursor:pointer; }
+      #cmt-root input, #cmt-root textarea, #cmt-root select { display:block; }
+
+      /* Bubble */
+      #cmt-root #cmt-bubble{
+        position: fixed; left:max(20px,env(safe-area-inset-left)); bottom:max(20px,env(safe-area-inset-bottom));
+        display:inline-flex; gap:8px; background:linear-gradient(135deg,#7c3aed 0%,#06b6d4 100%); color:#fff;
+        border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:10px 12px; box-shadow:0 18px 40px rgba(0,0,0,.28);
+        z-index:11000; transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      }
+      #cmt-root #cmt-bubble:hover{ transform: translateY(-2px) }
+      #cmt-root .cmt-icon{ font-size:18px; line-height:1; }
+      #cmt-root .cmt-badge{ min-width:20px; height:20px; padding:0 6px; display:inline-flex; align-items:center; justify-content:center;
+        background:rgba(255,255,255,.95); color:#1f2937; font-size:12px; font-weight:800; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,.18); }
+      #cmt-root .cmt-badge.alert{ background:#dc2626 !important; color:#fff !important; }
+
+      /* Panel */
+      #cmt-root #cmt-panel{
+        position: fixed; left:max(20px,env(safe-area-inset-left));
+        bottom: calc(max(20px,env(safe-area-inset-bottom)) + 56px);
+        width: 360px; height: 600px; min-width:300px; min-height:360px; max-width:94vw; max-height:84vh;
+        display:grid; grid-template-rows:auto 1fr auto; background:rgba(248,250,252,.85); color:#0f172a;
+        -webkit-backdrop-filter:saturate(140%) blur(10px); backdrop-filter:saturate(140%) blur(10px);
+        border:1px solid rgba(30,41,59,.12); box-shadow:0 16px 50px rgba(0,0,0,.35); border-radius:18px; overflow:hidden; z-index:12000;
+        opacity:0; transform:translateY(8px) scale(.98); pointer-events:none; transition:opacity .22s ease, transform .22s ease; resize:both;
+      }
+      #cmt-root #cmt-panel.open{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+
+      /* Header */
+      #cmt-root .cmt-header{ display:flex; align-items:center; gap:10px; padding:12px 14px; background:linear-gradient(180deg,#334155 0%,#475569 100%); color:#fff; }
+      #cmt-root .cmt-title{ display:flex; align-items:center; gap:8px; font-weight:700; letter-spacing:.2px;}
+      #cmt-root .cmt-dot{ width:10px; height:10px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 3px rgba(34,197,94,.22); }
+      #cmt-root .cmt-dot.alert{ background:#f97316; }
+      #cmt-root .cmt-dot.pulse{ animation:cmtPing 1.5s ease-out infinite; }
+      @keyframes cmtPing{
+        0%{box-shadow:0 0 0 0 rgba(249,115,22,.45);}
+        70%{box-shadow:0 0 0 12px rgba(249,115,22,0);}
+        100%{box-shadow:0 0 0 0 rgba(249,115,22,0);}
+      }
+      #cmt-root .cmt-actions{ margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:nowrap; }
+      #cmt-root .cmt-ghost{ padding:6px 10px; border-radius:10px; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.25); }
+      #cmt-root .cmt-ghost:hover{ background:rgba(255,255,255,.28); }
+
+      /* Select */
+      #cmt-root .cmt-filter{
+        max-width:260px; padding:6px 8px; border-radius:8px; font-size:12px;
+        background:#fff; color:#0f172a; border:1px solid rgba(30,41,59,.25);
+        appearance:auto;
+      }
+      #cmt-root .cmt-filter option{ color:#0f172a; background:#fff; }
+
+      /* Body */
+      #cmt-root .cmt-body{ padding:12px 10px 16px 10px; overflow:auto; }
+
+      /* Mensagens */
+      #cmt-root .cmt-msg{
+        position:relative; display:flex; align-items:flex-end; gap:8px; margin:12px 6px;
+        width:auto; max-width:calc(100% - 20px);
+      }
+      #cmt-root .cmt-msg.other{ flex-direction:row; justify-content:flex-start; margin-right:auto; margin-left:0; }
+      #cmt-root .cmt-msg.me   { flex-direction:row-reverse; justify-content:flex-end; margin-left:auto; margin-right:0 !important; }
+
+      #cmt-root .cmt-avatar{
+        width:28px; height:28px; min-width:28px; min-height:28px; border-radius:50%; color:#fff; font-weight:700;
+        display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,.12);
+        font-size:12px;
+      }
+      #cmt-root .cmt-avatar.instr{ background:#7c3aed; font-size:10.5px; } /* 'hcm' */
+
+      #cmt-root .cmt-meta-wrap{ position:relative; display:flex; flex-direction:column; align-items:flex-start; max-width:78%; }
+      #cmt-root .cmt-msg.me .cmt-meta-wrap{ align-items:flex-end; }
+      #cmt-root .cmt-msg.me .cmt-meta{ text-align:right; justify-content:flex-end; width:100%; }
+      #cmt-root .cmt-meta{ display:flex; align-items:center; gap:8px; font-size:11px; color:#64748b; margin:0 4px 6px 4px; line-height:1.2; word-break:break-word; overflow-wrap:anywhere; }
+      #cmt-root .cmt-url{ font-size:11px; margin:0 4px 6px 4px; word-break:break-all; }
+      #cmt-root .cmt-url a{ color:#0ea5e9; }
+
+      #cmt-root .cmt-bubble{ display:inline-block; max-width:100%; padding:10px 12px; border-radius:14px; border:1px solid rgba(30,41,59,.12);
+        background:rgba(255,255,255,.92); box-shadow:0 6px 14px rgba(0,0,0,.06); line-height:1.45; white-space:pre-wrap; word-break:break-word; overflow-wrap:anywhere; font-size:12px; }
+      #cmt-root .cmt-msg.me .cmt-bubble{ background:#eef2ff; border-color:rgba(79,70,229,.20); margin-left:auto; }
+
+      /* Delete */
+      #cmt-root .cmt-del{
+        position:absolute; top:-2px; opacity:0; transform:translateY(-2px);
+        padding:4px 6px; font-size:11px; border-radius:8px; line-height:1;
+        background:rgba(244,63,94,.12); color:#ef4444; border:1px solid rgba(239,68,68,.25);
+        transition:opacity .15s ease, transform .15s ease;
+      }
+      #cmt-root .cmt-msg.other .cmt-del{ left:-26px; }
+      #cmt-root .cmt-msg.me .cmt-del{ right:-26px; }
+      #cmt-root .cmt-msg:hover .cmt-del{ opacity:1; transform:translateY(0); }
+
+      /* Input */
+      #cmt-root .cmt-input{ border-top:1px solid rgba(30,41,59,.12); padding:12px; display:flex; flex-direction:column; gap:8px; background:rgba(255,255,255,.6); }
+      #cmt-root .cmt-row{ display:flex; gap:8px; }
+      #cmt-root .cmt-end{ justify-content:flex-end; }
+      #cmt-root .cmt-input textarea{ width:100%; font-size:14px; padding:10px 12px; border-radius:12px; border:1px solid rgba(30,41,59,.15);
+        color:#0f172a; background:rgba(255,255,255,.9); outline:none; min-height:100px; max-height:160px; resize:vertical; }
+      #cmt-root .cmt-primary{ background:#6366f1; color:#fff; border:none; padding:10px 14px; border-radius:12px; font-weight:600;
+        box-shadow:0 6px 18px rgba(99,102,241,.35); transition:transform .15s ease, box-shadow .2s ease, opacity .2s ease; }
+      #cmt-root .cmt-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(99,102,241,.42); }
+      </style>
+
+      <script>
+      /* Slide id helper */
+      window.__getSlideId = window.__getSlideId || function(){
+        if (window.Reveal?.getCurrentSlide) {
+          const s = Reveal.getCurrentSlide();
+          if (s?.getAttribute('id')) return s.getAttribute('id');
+          if (Reveal.getIndices) { const idx = Reveal.getIndices(); return `h${idx.h}_v${idx.v||0}`; }
+        }
+        const hash = (location.hash||'').replace(/^#\/?/, '');
+        return hash || 'slide-unknown';
+      };
+      </script>
+
+      <script>
+      (function(){
+        const COMMENTS_SCOPE = 'presentation';
+        const scriptURL = 'https://course-chat.hcmrtns.workers.dev';
+        const INSTRUCTOR_KEY = (document.querySelector('meta[name="cmt-instructor-login"]')?.content || 'hcm').toLowerCase();
+
+        const root=document.getElementById('cmt-root'),
+              bubble=root.querySelector('#cmt-bubble'),
+              bubbleCt=root.querySelector('#cmt-count'),
+              panel=root.querySelector('#cmt-panel'),
+              closeBtn=root.querySelector('#cmt-close'),
+              listEl=root.querySelector('#cmt-list'),
+              textIn=root.querySelector('#cmt-text'),
+              sendBtn=root.querySelector('#cmt-send'),
+              targetSel=root.querySelector('#cmt-target'),
+              keyBtn=root.querySelector('#cmt-key'),
+              findBtn=root.querySelector('#cmt-find'),
+              dot=root.querySelector('.cmt-dot');
+
+        let __lastTsMs=0, __haveInitial=false, __posting=false, __lastSent={sig:'',at:0}, pollTimer=null;
+        let inboxTimer=null, __inboxMs=0;
+
+        const loadJSON = (k, def)=> { try{ return JSON.parse(localStorage.getItem(k) || 'null') ?? def; }catch{ return def; } };
+        const saveJSON = (k, v)=> localStorage.setItem(k, JSON.stringify(v));
+        let unread = loadJSON('cmt_unread', {});
+        let newUntil = loadJSON('cmt_new_until', {});
+        let selfUnread = Number(localStorage.getItem('cmt_unread_self')||'0') || 0;
+
+        const forceInstructor = localStorage.getItem('cmt_force_instructor') === '1';
+        function setForceInstructor(on){ localStorage.setItem('cmt_force_instructor', on ? '1' : '0'); }
+
+        const loggedLogin = ()=>{
+          const seq=[
+            ()=> (window.studentId||'').toString().trim(),
+            ()=> (localStorage.getItem('studentId')||'').toString().trim(),
+            ()=> (window.__auth?.student?.login||'').toString().trim(),
+            ()=> (document.getElementById('student-id')?.value||'').toString().trim(),
+            ()=> (localStorage.getItem('login')||'').toString().trim(),
+          ];
+          for (const f of seq){ const v=f(); if (v) return v; }
+          return '';
+        };
+
+        const adminToken = ()=> (localStorage.getItem('cmt_admin_token')||'').trim();
+        const isInstructorMode = ()=> forceInstructor || (loggedLogin()||'').toLowerCase().includes(INSTRUCTOR_KEY);
+
+        const scopeId = ()=> COMMENTS_SCOPE==='slide'
+          ? (window.__getSlideId ? window.__getSlideId() : 'slide-unknown')
+          : (location.origin + location.pathname + location.search);
+
+        function detectModuleId(){
+          const meta = document.querySelector('meta[name="module-id"]');
+          if (meta?.content) return String(meta.content).trim();
+          const d = document.body?.dataset?.moduleId; if (d) return String(d).trim();
+          const m = (location.pathname||'').match(/mod(?:ulo)?[-_]?(\d+)/i) || (location.pathname||'').match(/(mod\d+)/i);
+          return m ? (m[1] ? `mod${m[1]}` : m[0]) : '';
+        }
+        function hashColor(s){ let h=0; for(let i=0;i<s.length;i++) h=((h<<5)-h)+s.charCodeAt(i)|0; return `hsl(${Math.abs(h)%360},70%,50%)`; }
+        function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;', '"':'&quot;', "'":'&#39;' }[m])); }
+        function stripUrls(text){ return String(text||'').replace(/https?:\/\/[^\s)]+/g,'').trim(); }
+        const looksLikeUrl = (s)=> /^https?:\/\//i.test(String(s||'').trim());
+        function itemKey(c){ const id=(c.id||'').trim(); if (id) return id; const who=(c.student||'').trim(), ts=(String(c.ts||c.timestamp)||'').trim(), txt=(c.comment||'').slice(0,24); return `k_${who}__${ts}__${txt}`; }
+
+        const unreadTotal = ()=> Object.values(unread).reduce((a,b)=> a + (Number(b)||0), 0);
+        function clearAlerts(){ bubbleCt.classList.remove('alert'); if (dot) dot.classList.remove('alert','pulse'); }
+        function updateBubbleCount(){ bubbleCt.textContent = String(isInstructorMode() ? unreadTotal() : selfUnread); }
+        function maybeAlert(){
+          const count = isInstructorMode() ? unreadTotal() : selfUnread;
+          if (!panel.classList.contains('open') && count>0){
+            bubbleCt.classList.add('alert'); if (dot) dot.classList.add('alert','pulse');
+          } else { clearAlerts(); }
+        }
+
+        function optionLabel(login){
+          const n = unread[login] || 0;
+          const isNew = (newUntil[login]||0) > Date.now();
+          return `${isNew ? 'NEW – ' : ''}${login}${n>0 ? ' ['+n+']' : ''}`;
+        }
+        function renderSelect(){
+          if (!isInstructorMode()) { targetSel.style.display='none'; findBtn.style.display='none'; return; }
+          const current = localStorage.getItem('cmt_last_target') || '';
+          const base = Object.keys(unread).filter(Boolean);
+          if (current && !base.includes(current)) base.unshift(current);
+          const ordered = [...new Set(base)].sort((a,b)=> ((unread[b]||0)-(unread[a]||0)) || a.localeCompare(b));
+          if (!ordered.length){
+            targetSel.innerHTML = `<option disabled>— sem novas —</option>`;
+            targetSel.style.display=''; findBtn.style.display=''; return;
+          }
+          targetSel.innerHTML = ordered.map(s=>`<option value="${escapeHtml(s)}">${escapeHtml(optionLabel(s))}</option>`).join('');
+          const hasCurrent = ordered.includes(current);
+          if (hasCurrent) targetSel.value=current; else targetSel.selectedIndex=0;
+          targetSel.style.display=''; findBtn.style.display='';
+        }
+
+        targetSel.addEventListener('change', ()=>{
+          const sel = targetSel.value || '';
+          localStorage.setItem('cmt_last_target', sel);
+          if (unread[sel]) { delete unread[sel]; saveJSON('cmt_unread', unread); }
+          if (newUntil[sel]) { delete newUntil[sel]; saveJSON('cmt_new_until', newUntil); }
+          clearAlerts(); renderSelect(); updateBubbleCount(); hardReload();
+        });
+
+        function askLogin(){
+          const v = prompt('Digite o login do aluno:', localStorage.getItem('cmt_last_target')||'') || '';
+          const login = v.trim(); if (!login) return;
+          localStorage.setItem('cmt_last_target', login);
+          if (unread[login]) { delete unread[login]; saveJSON('cmt_unread', unread); }
+          if (newUntil[login]) { delete newUntil[login]; saveJSON('cmt_new_until', newUntil); }
+          clearAlerts(); renderSelect(); updateBubbleCount(); hardReload();
+        }
+        findBtn.addEventListener('click', askLogin);
+        window.addEventListener('keydown', (e)=>{ if (e.ctrlKey && (e.key==='k' || e.key==='K')){ e.preventDefault(); askLogin(); } });
+
+        function startInboxWatch(){
+          if (!isInstructorMode()) return;
+          if (inboxTimer) { clearInterval(inboxTimer); inboxTimer=null; }
+          const headers = adminToken()? {'x-admin-token': adminToken()} : {};
+          __inboxMs = Date.now() - 60000;
+
+          inboxTimer = setInterval(async ()=>{
+            try{
+              const url = `${scriptURL}/comments?all=1&since_ms=${__inboxMs}`;
+              const r = await fetch(url, { headers });
+              if (!r.ok) return;
+              const j = await r.json();
+              const items = (j.items||[]).map(x=>{ if(!x.ts && x.timestamp){ const ms=Date.parse(x.timestamp); if (isFinite(ms)) x.ts=ms; } return x; });
+              if (!items.length) return;
+
+              for (const it of items){ const ms=Number(it.ts||0); if (isFinite(ms) && ms > __inboxMs) __inboxMs=ms; }
+
+              const viewing = (targetSel.value || localStorage.getItem('cmt_last_target') || '').trim();
+              const isOpen = panel.classList.contains('open');
+
+              let changed=false, anyAlert=false;
+              for (const it of items){
+                const isStudent = String(it.author||'').toLowerCase()==='student';
+                const who = String(it.student||'').trim();
+                if (!who || !isStudent) continue;
+
+                if (isOpen && who === viewing) continue;
+
+                unread[who] = (unread[who]||0) + 1;
+                if (!newUntil[who]) newUntil[who] = Date.now() + 10*60*1000;
+                changed=true; anyAlert=true;
+              }
+
+              if (changed){
+                saveJSON('cmt_unread', unread);
+                saveJSON('cmt_new_until', newUntil);
+                renderSelect();
+                updateBubbleCount();
+                if (anyAlert) { maybeAlert(); }
+              }
+            }catch(_){}
+          }, 4000);
+        }
+
+        function buildMsgHTML(c, viewer){
+          const who = String(c.student||'').trim();
+          const author = String(c.author||'').toLowerCase();
+          const isInstr = author === 'instructor';
+
+          const whenMs=c.ts?Number(c.ts):(c.timestamp?Date.parse(c.timestamp):NaN);
+          const when=isFinite(whenMs)? new Date(whenMs).toLocaleString() : (c.timestamp||'');
+
+          const whoLabel = isInstr ? 'hcm' : who;
+
+          const asInstructor = viewer.mode==='instructor';
+          const loginLower = (viewer.login||'').toLowerCase();
+          const isMe = asInstructor ? isInstr : (!isInstr && who.toLowerCase()===loginLower);
+
+          const metaParts=[when, whoLabel, (c.module_id||''), (c.slide_id||'')].filter(p=>p && !looksLikeUrl(p));
+          const meta=metaParts.join(' • ');
+
+          const urlHtml = (!isInstr && c.page_url)
+            ? `<div class="cmt-url"><a href="${escapeHtml(c.page_url)}" target="_blank" rel="noopener">${escapeHtml(c.page_url)}</a></div>` : '';
+
+          const safe=escapeHtml(stripUrls(String(c.comment||'')));
+
+          const cls=isMe?'me':'other';
+          const init = isInstr ? 'hcm' : (who||'Anonymous').slice(0,2).toUpperCase();
+          const avatarCls = isInstr ? 'cmt-avatar instr' : 'cmt-avatar';
+          const col=isInstr?'#7c3aed':hashColor(who||'Anonymous');
+          const key=itemKey(c);
+
+          const canDelete = !!(viewer.canDelete && (c.id||'').trim());
+          const delBtn = canDelete ? `<button class="cmt-del" data-del="${escapeHtml(c.id)}" title="Delete">🗑️</button>` : '';
+
+          return `<div class="cmt-msg ${cls}" role="listitem" data-id="${key}">
+            <div class="${avatarCls}" style="background:${col}">${init}</div>
+            <div class="cmt-meta-wrap">
+              ${delBtn}
+              <div class="cmt-meta"><span>${meta}</span></div>
+              ${urlHtml}
+              <div class="cmt-bubble">${safe}</div>
+            </div>
+          </div>`;
+        }
+
+        function render(items, viewer){ listEl.innerHTML = items.map(c=> buildMsgHTML(c, viewer)).join(''); }
+        const isNearBottom=()=> listEl.scrollHeight - (listEl.scrollTop + listEl.clientHeight) < 120;
+        const scrollToBottom=()=>{ listEl.scrollTop = listEl.scrollHeight; };
+
+        const BASE_POLL_MS=3000;
+        function scheduleNextPoll(delay){
+          if (pollTimer) clearTimeout(pollTimer);
+          if (document.hidden) return;
+          pollTimer=setTimeout(()=> load({forceScroll:isNearBottom()}), delay ?? BASE_POLL_MS);
+        }
+        function normalizeItems(arr){ return (arr||[]).map(x=>{ if(!x.ts && x.timestamp){ const ms=Date.parse(x.timestamp); if (isFinite(ms)) x.ts=ms; } return x; }); }
+
+        async function deleteComment(id){
+          if (!adminToken()){ alert('Admin token ausente. Clique no 🔑 para setar.'); return; }
+          if (!confirm('Excluir este comentário?')) return;
+          const headers = {'x-admin-token': adminToken()};
+          let ok=false;
+          try{ const r = await fetch(`${scriptURL}/comments/${encodeURIComponent(id)}`, { method:'DELETE', headers }); ok = r.ok; }catch(_){}
+          if (!ok){
+            try{
+              const r2 = await fetch(`${scriptURL}/comments/delete`, { method:'POST', headers:{...headers,'Content-Type':'application/json'}, body:JSON.stringify({id}) });
+              ok = r2.ok || (await r2.json().catch(()=>({}))).status==='success';
+            }catch(_){}
+          }
+          if (!ok){ alert('Falha ao excluir. Verifique o token e as permissões.'); return; }
+          const msg = listEl.querySelector(`[data-id="${CSS.escape(id)}"]`) || listEl.querySelector(`[data-del="${CSS.escape(id)}"]`)?.closest('.cmt-msg');
+          if (msg) msg.remove();
+        }
+        listEl.addEventListener('click', (e)=>{
+          const btn = e.target.closest('button.cmt-del');
+          if (!btn) return;
+          const id = btn.getAttribute('data-del');
+          if (id) deleteComment(id);
+        });
+
+        function load({forceScroll=false}={}){
+          const shouldStick = forceScroll || isNearBottom();
+          const meLogin=(loggedLogin()||'').trim();
+
+          const viewer = {
+            mode: isInstructorMode() ? 'instructor' : 'student',
+            login: meLogin,
+            canDelete: isInstructorMode() && !!adminToken()
+          };
+
+          let viewing = meLogin;
+          if (isInstructorMode()){
+            viewing = targetSel.value || localStorage.getItem('cmt_last_target') || meLogin;
+          }
+          if (!viewing){ scheduleNextPoll(); return; }
+
+          const base=`${scriptURL}/comments?student=${encodeURIComponent(viewing)}&limit=1000`;
+          const url=(__haveInitial && __lastTsMs) ? `${base}&since_ms=${__lastTsMs}` : base;
+
+          fetch(url).then(r=>r.json()).then(d=>{
+            const incoming=normalizeItems(Array.isArray(d.items)? d.items.slice() : []);
+            incoming.sort((a,b)=> (Number(a.ts||0)-Number(b.ts||0)));
+            for (const it of incoming){ const ms=Number(it.ts||0); if (ms > __lastTsMs) __lastTsMs=ms; }
+
+            if (!__haveInitial){
+              render(incoming, viewer);
+              __haveInitial=true; if (shouldStick) scrollToBottom();
+            } else if (incoming.length){
+              const fresh=incoming.filter(c=> !listEl.querySelector(`[data-id="${itemKey(c)}"]`));
+              if (fresh.length){
+                const frag=fresh.map(c=> buildMsgHTML(c, viewer)).join('');
+                const keepBottom=isNearBottom();
+                listEl.insertAdjacentHTML('beforeend', frag);
+                if (keepBottom) scrollToBottom();
+
+                const instrFreshCount = fresh.filter(c => String(c.author||'').toLowerCase() === 'instructor').length;
+                if (viewer.mode==='student' && instrFreshCount>0 && !panel.classList.contains('open')){
+                  selfUnread += instrFreshCount;
+                  localStorage.setItem('cmt_unread_self', String(selfUnread));
+                  updateBubbleCount();
+                  maybeAlert();
+                }
+              }
+            }
+          }).catch(()=>{}).finally(()=> scheduleNextPoll());
+        }
+
+        function updateKeyBtnLabel(){
+          const tok = adminToken();
+          if (tok) { keyBtn.title = `Admin token set (…${tok.slice(-4)})`; keyBtn.textContent='🔑✓'; }
+          else     { keyBtn.title='Set admin token'; keyBtn.textContent='🔑'; }
+        }
+
+        function setInstructorUI(){
+          const on = isInstructorMode();
+          keyBtn.style.display  = (on || !!adminToken()) ? '' : 'none';
+          findBtn.style.display = on ? '' : 'none';
+          if (on){ updateKeyBtnLabel(); renderSelect(); startInboxWatch(); }
+          updateBubbleCount();
+        }
+
+        keyBtn.addEventListener('click', ()=>{
+          const current = adminToken();
+          const next = prompt(current ? 'Replace admin token (vazio para limpar):' : 'Cole o admin token:', current || '');
+          if (next === null) return;
+          const v = String(next||'').trim();
+          if (v) localStorage.setItem('cmt_admin_token', v);
+          else   localStorage.removeItem('cmt_admin_token');
+          updateKeyBtnLabel(); clearAlerts(); renderSelect(); updateBubbleCount(); startInboxWatch();
+        });
+
+        function hardReload(){ __haveInitial=false; __lastTsMs=0; load({forceScroll:true}); }
+
+        const openPanel=()=>{ 
+          panel.classList.add('open'); 
+          panel.setAttribute('aria-hidden','false'); 
+          clearAlerts();
+
+          if (isInstructorMode()){
+            unread = {}; newUntil = {};
+            saveJSON('cmt_unread', unread);
+            saveJSON('cmt_new_until', newUntil);
+          } else {
+            selfUnread = 0;
+            localStorage.setItem('cmt_unread_self', '0');
+          }
+
+          renderSelect(); 
+          updateBubbleCount(); 
+          startInboxWatch(); 
+          hardReload(); 
+          setTimeout(scrollToBottom,80); 
+        };
+
+        const closePanel=()=>{ 
+          panel.classList.remove('open'); 
+          panel.setAttribute('aria-hidden','true'); 
+          maybeAlert(); 
+        };
+
+        bubble.addEventListener('click', ()=> panel.classList.contains('open') ? closePanel() : openPanel());
+        closeBtn.addEventListener('click', closePanel);
+        sendBtn.addEventListener('click', post);
+        textIn.addEventListener('keydown', e=>{ if (e.key==='Enter' && !e.shiftKey){ e.preventDefault(); post(); } });
+
+        window.addEventListener('keydown', (e)=>{
+          if (e.ctrlKey && e.altKey && (e.key==='i' || e.key==='I')){
+            const now = !(localStorage.getItem('cmt_force_instructor')==='1');
+            setForceInstructor(now);
+            alert(`Instructor UI: ${now ? 'ON' : 'OFF'}`);
+            setInstructorUI();
+            if (now) startInboxWatch();
+          }
+          if (e.ctrlKey && (e.key==='k' || e.key==='K')){ e.preventDefault(); askLogin(); }
+        });
+
+        document.addEventListener('visibilitychange', ()=>{
+          if (document.hidden){
+            if (pollTimer){ clearTimeout(pollTimer); pollTimer=null; }
+          } else {
+            renderSelect(); startInboxWatch(); updateBubbleCount(); scheduleNextPoll(100);
+          }
+        });
+
+        function post(){
+          if (__posting) return;
+          const s=loggedLogin(); const t=(textIn.value||'').trim();
+          if (!t){ alert('Please write a comment.'); return; }
+
+          const asInstructor=isInstructorMode();
+          const targetStudent= asInstructor ? (targetSel.value||localStorage.getItem('cmt_last_target')||s) : s;
+          if (asInstructor && !targetStudent){ alert("Selecione ou busque o login do aluno (🔎)."); return; }
+          if (!asInstructor && !s){ alert('Faça login para comentar.'); return; }
+
+          const now=Date.now(); const sig=`${targetStudent}__${scopeId()}__${t}`;
+          if (__lastSent.sig===sig && (now-__lastSent.at)<12000){ textIn.focus(); return; }
+          __lastSent={sig,at:now};
+
+          __posting=true; sendBtn.disabled=true; sendBtn.setAttribute('aria-busy','true'); sendBtn.style.opacity='.7';
+
+          const tempId='temp-'+now, temp={ id:tempId, ts:now, student:targetStudent, author: asInstructor?'instructor':'student',
+            slide_id:scopeId(), module_id:detectModuleId(), page_url:location.href, comment:t };
+
+          if (panel.classList.contains('open')){
+            const viewer = asInstructor ? {mode:'instructor', canDelete:isInstructorMode()&&!!adminToken()} : {mode:'student', login:s, canDelete:false};
+            const html=buildMsgHTML(temp, viewer);
+            const keepBottom=isNearBottom(); listEl.insertAdjacentHTML('beforeend', html); if (keepBottom) scrollToBottom();
+          }
+
+          fetch(`${scriptURL}/comments`,{
+            method:'POST',
+            headers:{ 'Content-Type':'application/json', ...(asInstructor? {'x-admin-token': adminToken()} : {}) },
+            body:JSON.stringify({ student:targetStudent, author:temp.author, slide_id:scopeId(), page_url:temp.page_url, module_id:temp.module_id, comment:t, user_agent:navigator.userAgent })
+          }).then(r=>r.json()).then(d=>{
+            if (d.status==='success'){
+              textIn.value='';
+              const tempEl=listEl.querySelector(`[data-id="${tempId}"]`); if (tempEl) tempEl.setAttribute('data-id', d.id||tempId);
+              scheduleNextPoll(200);
+            } else {
+              const el=listEl.querySelector(`[data-id="${tempId}"]`); if (el) el.remove(); alert('Error: '+(d.message||'Unable to post'));
+            }
+          }).catch(()=>{
+            const el=listEl.querySelector(`[data-id="${tempId}"]`); if (el) el.remove(); alert('Network error: failed to send');
+          }).finally(()=>{
+            __posting=false; sendBtn.disabled=false; sendBtn.removeAttribute('aria-busy'); sendBtn.style.opacity='';
+          });
+        }
+
+        setInstructorUI();
+        updateBubbleCount();
+        load();
+      })();
+      </script>
+    </template>
+    <!-- ranking-widgets2.html : Minimal icon button + ranking panel (Cloudflare) -->
     <style>
-      /* Esconde tudo que exigir auth enquanto a página estiver bloqueada pelo login-start */
-      html.locked .requires-auth,
-      body.locked .requires-auth { display: none !important; }
+      html.locked .requires-auth, body.locked .requires-auth { display: none !important; }
 
       :root{
         --chatbot-gap: 350px;
-
-        /* meio-termo: mais escuro que o claro, mais claro que o grafite */
-        --lb-bg: rgba(46, 58, 78, 0.72);         /* slate-700 ~ 72% */
+        --lb-bg: rgba(46, 58, 78, 0.72);
         --lb-border: rgba(255,255,255,0.10);
         --lb-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.18);
         --lb-radius: 18px;
-
-        /* acentos (lilás/azul) */
-        --lb-accent: #a78bfa;                    /* lilás */
+        --lb-accent: #a78bfa;
         --lb-accent-weak: rgba(167,139,250,0.18);
-
-        /* degradê do botão, combinando com seu tema */
-        --pill-start: #6d5df5;  /* violeta */
-        --pill-end:   #2ec5ff;  /* azul-ciano */
+        --pill-start: #6d5df5; --pill-end: #2ec5ff;
       }
+      .lb-panel{ position:fixed; bottom:20px; right:var(--chatbot-gap); z-index:2147483647; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
+      .lb-toggle{ width:40px; height:40px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; border:none;
+        background:linear-gradient(135deg,var(--pill-start),var(--pill-end)); color:#fff; box-shadow:0 10px 28px rgba(2,6,23,.30), inset 0 0 0 1px rgba(255,255,255,.14);
+        cursor:pointer; user-select:none; transition:transform .12s ease, box-shadow .12s ease, filter .12s ease; }
+      .lb-toggle:hover{ transform:translateY(-1px); filter:brightness(1.05); }
+      .lb-toggle:active{ transform:translateY(0); filter:brightness(.98); }
+      .lb-icon{ font-size:20px; line-height:1; }
 
-      .lb-panel{
-        position: fixed;
-        bottom: 20px;
-        right: var(--chatbot-gap);
-        z-index: 2147483647;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      }
-
-      /* Botão só-ícone, circular (mesmo tom do chat/comentários) */
-      .lb-toggle{
-        width: 40px; height: 40px; border-radius: 999px;
-        display: inline-flex; align-items: center; justify-content: center;
-        border: none;
-        background: linear-gradient(135deg, var(--pill-start), var(--pill-end));
-        color: white;           /* ícone branco */
-        box-shadow: 0 10px 28px rgba(2,6,23,.30), inset 0 0 0 1px rgba(255,255,255,.14);
-        cursor: pointer; user-select: none;
-        transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
-      }
-      .lb-toggle:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-      .lb-toggle:active{ transform: translateY(0); filter: brightness(.98); }
-      .lb-icon{ font-size: 20px; line-height: 1; }
-
-      /* Cartão do ranking (glass) */
       .lb-card{
-        margin-top: 10px;
-        width: 360px; max-height: 62vh; overflow: auto;
-        border: 1px solid var(--lb-border); background: var(--lb-bg);
-        -webkit-backdrop-filter: saturate(160%) blur(10px);
-        backdrop-filter: saturate(160%) blur(10px);
-        border-radius: var(--lb-radius);
-        box-shadow: var(--lb-shadow);
-        display: none;
-        position: absolute; bottom: 52px; right: 0; /* abre acima do botão */
-        transform-origin: bottom right;
-        color: #e5e7eb; /* texto claro */
+        margin-top:10px; width:360px; max-height:62vh; overflow:auto; border:1px solid var(--lb-border); background:var(--lb-bg);
+        -webkit-backdrop-filter:saturate(160%) blur(10px); backdrop-filter:saturate(160%) blur(10px); border-radius:var(--lb-radius); box-shadow:var(--lb-shadow);
+        display:none; position:absolute; bottom:52px; right:0; transform-origin:bottom right; color:#e5e7eb;
       }
-      .lb-card.open{ display:block; animation: lbPop .18s cubic-bezier(.2,.9,.2,1); }
-      @keyframes lbPop { from { transform: scale(.98); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+      .lb-card.open{ display:block; animation:lbPop .18s cubic-bezier(.2,.9,.2,1); }
+      @keyframes lbPop{ from{ transform:scale(.98); opacity:0 } to{ transform:scale(1); opacity:1 } }
 
-      .lb-header{
-        padding: 12px 14px;
-        border-bottom: 1px solid rgba(255,255,255,.06);
-        display:flex; justify-content:space-between; align-items:center;
-        background: linear-gradient(180deg, rgba(167,139,250,.12), transparent 60%);
-        border-top-left-radius: var(--lb-radius);
-        border-top-right-radius: var(--lb-radius);
-        position: sticky; top: 0; backdrop-filter: blur(6px);
-      }
-      .lb-title{
-        font-weight: 800; letter-spacing:.2px; color:#f3f4f6;
-      }
-      .lb-refresh{
-        font-size: 12px; color: #d1d5db; display:flex; align-items:center; gap: 6px;
-      }
-      .lb-dot{
-        width:8px;height:8px;border-radius:999px;background:var(--lb-accent);
-        box-shadow: 0 0 0 4px var(--lb-accent-weak);
-      }
+      .lb-header{ padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.06); display:flex; justify-content:space-between; align-items:center;
+        background:linear-gradient(180deg, rgba(167,139,250,.12), transparent 60%); border-top-left-radius:var(--lb-radius); border-top-right-radius:var(--lb-radius);
+        position:sticky; top:0; backdrop-filter:blur(6px); }
+      .lb-title{ font-weight:800; letter-spacing:.2px; color:#f3f4f6; }
 
-      .lb-list{ list-style:none; margin:0; padding: 6px 0 8px; }
-      .lb-item{
-        display:flex; align-items:center; justify-content:space-between;
-        padding: 10px 14px;
-        border-bottom: 1px dashed rgba(255,255,255,.06);
-      }
-      .lb-item:last-child{ border-bottom: 0; }
+      .lb-list{ list-style:none; margin:0; padding:6px 0 8px; }
+      .lb-item{ display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px dashed rgba(255,255,255,.06); }
+      .lb-item:last-child{ border-bottom:0; }
 
       .lb-left{ display:flex; align-items:center; gap:10px; min-width:0; }
-      .lb-rank{
-        width: 28px; text-align:right; font-variant-numeric: tabular-nums;
-        color:#fde68a; font-weight:700; /* dourado p/ 1º */
-      }
-      .lb-item.top-2 .lb-rank{ color:#cbd5e1; } /* prata */
-      .lb-item.top-3 .lb-rank{ color:#d8b4fe; } /* lilás */
+      .lb-rank{ width:28px; text-align:right; font-variant-numeric:tabular-nums; color:#fde68a; font-weight:700; }
+      .lb-item.top-2 .lb-rank{ color:#cbd5e1; } .lb-item.top-3 .lb-rank{ color:#d8b4fe; }
 
-      .lb-name{
-        flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e5e7eb;
-      }
-      .lb-points{ font-variant-numeric: tabular-nums; font-weight:600; color:#f3f4f6; }
+      .lb-name{ flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e5e7eb; }
+      .lb-points{ font-variant-numeric:tabular-nums; font-weight:600; color:#f3f4f6; }
 
-      .lb-footer{
-        padding: 10px 14px;
-        display:flex; justify-content:space-between; align-items:center; gap:8px;
-        border-top: 1px solid rgba(255,255,255,.06);
-        background: linear-gradient(0deg, rgba(167,139,250,.10), transparent 60%);
-        border-bottom-left-radius: var(--lb-radius);
-        border-bottom-right-radius: var(--lb-radius);
-        position: sticky; bottom: 0; backdrop-filter: blur(6px);
-      }
-      .lb-badge-me{
-        background: var(--lb-accent-weak);
-        padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight:600;
-        color: #f5f3ff;
-      }
+      .lb-footer{ padding:10px 14px; display:flex; justify-content:space-between; align-items:center; gap:8px; border-top:1px solid rgba(255,255,255,.06);
+        background:linear-gradient(0deg, rgba(167,139,250,.10), transparent 60%); border-bottom-left-radius:var(--lb-radius); border-bottom-right-radius:var(--lb-radius);
+        position:sticky; bottom:0; backdrop-filter:blur(6px); }
+      .lb-badge-me{ background:var(--lb-accent-weak); padding:4px 8px; border-radius:999px; font-size:12px; font-weight:600; color:#f5f3ff; }
 
-      /* Mobile: bottom sheet */
-      @media (max-width: 820px){
-        .lb-panel{ right: 12px; bottom: 88px; }
-        .lb-card{
-          position: fixed; left: 12px; right: 12px; bottom: 88px;
-          width: auto; height: 58vh; max-height: none; transform-origin: bottom center;
-        }
-      }
-      @media (max-width: 380px){
-        .lb-card{ height: 62vh; }
-      }
+      @media (max-width:820px){ .lb-panel{ right:12px; bottom:88px; } .lb-card{ position:fixed; left:12px; right:12px; bottom:88px; width:auto; height:58vh; max-height:none; transform-origin:bottom center; } }
+      @media (max-width:380px){ .lb-card{ height:62vh; } }
     </style>
 
-    <!-- 🔒 Este wrapper esconde o widget até o login -->
     <div class="requires-auth">
-      <div class="lb-panel" id="lbPanel">
-        <button class="lb-toggle" id="lbToggle" title="Leaderboard" aria-label="Open leaderboard">
+      <div class="lb-panel" id="lbPanel2">
+        <button class="lb-toggle" id="lbToggle2" title="Ranking" aria-label="Open ranking">
           <span class="lb-icon">🏆</span>
         </button>
-        <div class="lb-card" id="lbCard" role="dialog" aria-modal="false" aria-label="Leaderboard">
+        <div class="lb-card" id="lbCard2" role="dialog" aria-modal="false" aria-label="Ranking">
           <div class="lb-header">
-            <div class="lb-title">Top <span id="lbTopN">10</span></div>
-            <div class="lb-refresh"><span class="lb-dot" aria-hidden="true"></span><span id="lbUpdated">Refresh —</span></div>
+            <div class="lb-title">Top <span id="lbTopN2">10</span></div>
           </div>
-
-          <ul class="lb-list" id="lbList"></ul>
-
-          <div class="lb-footer">
-            <span id="lbMe"></span>
-            <!-- (sem botões de fechar/refresh) -->
-          </div>
+          <ul class="lb-list" id="lbList2"></ul>
+          <div class="lb-footer"><span id="lbMe2"></span></div>
         </div>
       </div>
     </div>
 
     <script>
-      /************ CONFIG ************/
-      const LB_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
+      const LB_ENDPOINT = 'https://course-chat.hcmrtns.workers.dev/ranking';
       const LB_TOP = 10;
       const LB_POLL_MS = 3000;
 
-      // student/module/page com fallback, mas permitindo atualizar após login
       let LB_STUDENT = (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').toString();
-      const LB_MODULE  = (window.moduleId   || '').toString() || 'module1';
-      const LB_PAGE    = (window.pageId     || '').toString() || (location.pathname + location.hash);
-      /********************************/
 
-      const lbToggle  = document.getElementById('lbToggle');
-      const lbCard    = document.getElementById('lbCard');
-      const lbList    = document.getElementById('lbList');
-      const lbTopNEl  = document.getElementById('lbTopN');
-      const lbMeEl    = document.getElementById('lbMe');
-      const lbUpdated = document.getElementById('lbUpdated');
+      const $ = (id) => document.getElementById(id);
+      const lbToggle  = $('lbToggle2');
+      const lbCard    = $('lbCard2');
+      const lbList    = $('lbList2');
+      const lbTopNEl  = $('lbTopN2');
+      const lbMeEl    = $('lbMe2');
       lbTopNEl.textContent = LB_TOP;
 
-      // Se o login acontecer depois do load, atualiza student e faz refresh
       document.addEventListener('auth:login', (ev) => {
-        const sid = (ev && ev.detail && ev.detail.studentId) ? ev.detail.studentId : (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '');
-        if (sid) {
-          LB_STUDENT = String(sid);
-          // Se o card estiver aberto, recarrega; senão, só atualiza timestamp
-          if (lbCard.classList.contains('open')) fetchLeaderboard(); else setUpdated();
-        }
+        const sid = (ev && ev.detail && ev.detail.studentId) ? ev.detail.studentId :
+          (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '');
+        if (sid) { LB_STUDENT = String(sid); if (lbCard.classList.contains('open')) fetchRanking(); }
       });
 
-      // Toggle abrir/fechar
       lbToggle.addEventListener('click', () => {
         const open = lbCard.classList.contains('open');
-        if (open) lbCard.classList.remove('open');
-        else { lbCard.classList.add('open'); fetchLeaderboard(); }
+        if (open) lbCard.classList.remove('open'); else { lbCard.classList.add('open'); fetchRanking(); }
       });
-      // Fechar com Esc
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lbCard.classList.remove('open'); });
 
-      // Atualiza "Refresh HH:MM:SS"
-      function setUpdated(ts){
-        const d = ts ? new Date(ts) : new Date();
-        const hh = String(d.getHours()).padStart(2,'0');
-        const mm = String(d.getMinutes()).padStart(2,'0');
-        const ss = String(d.getSeconds()).padStart(2,'0');
-        lbUpdated.textContent = `Refresh ${hh}:${mm}:${ss}`;
-      }
-
-      // Carregar Top
-      async function fetchLeaderboard() {
+      async function fetchRanking() {
         try {
           const who = LB_STUDENT || 'anonymous';
-          const url = `${LB_ENDPOINT}?action=leaderboard_top&top=${LB_TOP}&who=${encodeURIComponent(who)}`;
+          const url = `${LB_ENDPOINT}?top=${LB_TOP}&who=${encodeURIComponent(who)}`;
           const res = await fetch(url, { method: 'GET' });
           const data = await res.json();
-          if (!data.ok) throw new Error(data.error || 'Failed');
-          renderTop(data.top, data.me, data.updated_at);
-          setUpdated(data.updated_at);
+          if (!data.ok && data.status !== 'success') throw new Error(data.error || 'Failed');
+          renderTop(data.top, data.me);
         } catch (e) {
-          console.error('Leaderboard error:', e);
-          lbList.innerHTML = '<li class="lb-item"><div class="lb-name">Não foi possível carregar o ranking.</div></li>';
-          setUpdated();
+          console.error('Ranking error:', e);
+          lbList.innerHTML = '<li class="lb-item"><div class="lb-name">Refreshing...</div></li>';
         }
       }
 
-      // Renderizar lista
-      function renderTop(top, me, updatedAt) {
+      function renderTop(top, me) {
         lbList.innerHTML = '';
         if (!top || !top.length){
-          lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">Ainda sem pontos por aqui.</div></li>';
+          lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">No points yet.</div></li>';
         } else {
           for (const row of top) {
             const li = document.createElement('li'); li.className = 'lb-item';
             if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
             const left = document.createElement('div'); left.className='lb-left';
             const rk = document.createElement('div'); rk.className='lb-rank'; rk.textContent = row.rank;
-            const nm = document.createElement('div'); nm.className='lb-name'; nm.textContent = row.name || row.studentId;
+            const nm = document.createElement('div'); nm.className='lb-name'; nm.textContent = row.name || row.studentId || row.student;
             left.appendChild(rk); left.appendChild(nm);
-            const pts = document.createElement('div'); pts.className='lb-points'; pts.textContent = row.total_points + ' pts';
+            const pts = document.createElement('div'); pts.className='lb-points'; pts.textContent = (row.total_points ?? row.points) + ' pts';
             li.appendChild(left); li.appendChild(pts);
             lbList.appendChild(li);
           }
         }
         lbMeEl.innerHTML = me ? `<span class="lb-badge-me">You: #${me.rank} · ${me.total_points} pts</span>` : '';
-        setUpdated(updatedAt);
       }
-      // expõe para uso externo se precisar
-      window.renderTop = renderTop;
-
-      // Auto-refresh
-      if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchLeaderboard, LB_POLL_MS);
-
-      // Logger de eventos (exponho global para uso em outras partes)
-      async function leaderboardLogEvent(event_type, { points=null, details='' } = {}) {
-        try {
-          const payload = {
-            action: 'leaderboard_log',
-            studentId: LB_STUDENT || 'anonymous',
-            event_type,
-            module: LB_MODULE,
-            page: LB_PAGE,
-            details,
-            points,
-            fingerprint: `${LB_STUDENT || 'anonymous'}-${event_type}-${LB_MODULE}-${LB_PAGE}`
-          };
-          const res = await fetch(LB_ENDPOINT, { method: 'POST', body: JSON.stringify(payload) });
-          const data = await res.json();
-          if (!data.ok) throw new Error(data.error || 'failed');
-          fetchLeaderboard();
-          return data;
-        } catch (e) {
-          console.error('logEvent error:', e);
-          return { ok:false, error: String(e) };
-        }
-      }
-      window.leaderboardLogEvent = leaderboardLogEvent;
+      if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchRanking, LB_POLL_MS);
     </script>
     <!-- notices-on-login.html -->
     <style>
@@ -2751,6 +3276,33 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         background: linear-gradient(180deg,#dc2626,#b91c1c);
         border-color: rgba(220,38,38,.35);
       }
+
+      /* Placar */
+      .notice-score{
+        margin-top:10px;
+        font-weight:600;
+        color:#0f766e; /* teal-700 */
+        font-size:.95rem;
+      }
+      .notice-accuracy{
+        display:flex; align-items:center; gap:8px;
+        margin-top:6px; font-size:.92rem; color:#334155;
+      }
+      .stars{
+        display:inline-flex; gap:2px; line-height:1;
+      }
+      .star{
+        font-size:1.05rem; user-select:none;
+        color:#e5e7eb; /* base (cinza claro para “vazio”) */
+        text-shadow: 0 1px 0 rgba(0,0,0,.05);
+      }
+      .star.filled{ color:#F59E0B; }     /* gold  */
+      .star.half::after{                  /* meia estrela simples (overlay) */
+        content:'★'; color:#FDE047; position:absolute; width:50%; overflow:hidden;
+      }
+      .pct{
+        font-weight:700; color:#0ea5e9; /* ciano/teal p/ combinar com seus azuis */
+      }
     </style>
 
     <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
@@ -2763,11 +3315,14 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
       </div>
     </div>
 
+    <!-- Confete -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer=""></script>
+
     <script>
     (function(){
       const ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1stXhHVbcinNcagloc6XNr3MYW9zn8EctaxxLuOJ086ODpCBvNCPwdfzbJxwl1XgDfw/exec';
       const SESSION_FLAG = 'notice_shown_this_load';
-      const FEEDBACK_AUTO_CLOSE_MS = 15000; // V/F: tempo p/ ler feedback (0 = fecha só no "Ok, got it")
+      const FEEDBACK_AUTO_CLOSE_MS = 18000;
       const DEBUG = false;
 
       /* Preconnect + dns-prefetch */
@@ -2802,6 +3357,7 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
           if (DEBUG) console.log('[notice] backdrop injected');
         }
       }
+
       function getStudentId(){
         try { return (localStorage.getItem('studentId') || sessionStorage.getItem('studentId') || window.__lastLoginStudentId || '').trim(); }
         catch(e){ return ''; }
@@ -2840,8 +3396,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         const qs2 = new URLSearchParams({ action:'ack', studentId, notice_id, t: Date.now().toString() });
         fireAndForget(`${ENDPOINT}?${qs2.toString()}`);
       }
-
-      /* Normaliza rótulos T/F em vários formatos */
       function normalizeTF(x){
         const s = String(x || '').trim().toLowerCase();
         if (['true','t','verdadeiro','v','yes','y','sim','✅','✔️'].includes(s)) return 'true';
@@ -2851,7 +3405,50 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         return '';
       }
 
-      /* Render de poll (normal e T/F) */
+      /* ===== Estrelas ===== */
+      function makeStars(rating /* 0..5, pode ser decimal */){
+        const full = Math.floor(rating);
+        const hasHalf = (rating - full) >= 0.5;
+        let html = '';
+        for (let i=1;i<=5;i++){
+          if (i <= full) html += '<span class="star filled" aria-hidden="true">★</span>';
+          else if (i === full+1 && hasHalf) html += '<span class="star filled" style="position:relative" aria-hidden="true">★<span style="position:absolute;inset:0;clip-path:inset(0 50% 0 0); color:#FDE047;">★</span></span>';
+          else html += '<span class="star" aria-hidden="true">★</span>';
+        }
+        return html;
+      }
+
+      /* ===== Placar do backend + UI ===== */
+      async function updateTFScore(studentId, module){
+        const box = document.getElementById('pollScore');
+        if (!box) return;
+
+        try{
+          const qs = new URLSearchParams({ action:'stats_tf', studentId });
+          if (module) qs.set('module', module);
+          const j = await fetchJSON(`${ENDPOINT}?${qs.toString()}`);
+          if (!j?.ok) return;
+
+          const src = j.stats ? j.stats : j;
+          const correct = Number(src.correct ?? 0);
+          const total   = Number(src.total   ?? 0);
+          const pct = total ? Math.round((correct/total)*100) : 0;
+
+          // converte % em nota 0..5 (ex.: 70% => 3.5 estrelas)
+          const starsValue = Math.max(0, Math.min(5, (pct/20)));
+
+          box.innerHTML = `
+            <div>Congrats, you have answered ${correct} of ${total} correctly.</div>
+            <div class="notice-accuracy" aria-label="Your accuracy">
+              <div class="stars" aria-hidden="true">${makeStars(starsValue)}</div>
+              <div class="pct">${pct}%</div>
+            </div>
+          `;
+          box.style.display = '';
+        }catch(_){ /* silencioso */ }
+      }
+
+      /* Render de poll */
       function renderPoll(notice, studentId, module){
         const body = document.getElementById('noticeBody');
         const okBtn = document.getElementById('noticeOkBtn');
@@ -2867,13 +3464,13 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
           <div style="margin:8px 0 12px 0;"><strong>${escapeHtml(q)}</strong></div>
           <div id="pollBtns" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
           <div id="pollFeedback" style="margin-top:10px;"></div>
+          <div id="pollScore" class="notice-score" style="display:none"></div>
         `;
         body.appendChild(pollWrap);
 
         const btns = pollWrap.querySelector('#pollBtns');
         const fb   = pollWrap.querySelector('#pollFeedback');
 
-        // T/F: deixa "Ok, got it" para leitura do feedback
         if (isQuizTF && okBtn) {
           okBtn.style.display = '';
           okBtn.onclick = (ev) => {
@@ -2906,25 +3503,27 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
             fireAndForget(`${ENDPOINT}?${qs.toString()}`);
 
             if (!isQuizTF) {
-              // Poll "opinião": só marca seleção e fecha já
               b.classList.add('is-selected');
               ackAndClose(studentId, notice.notice_id);
               return;
             }
 
-            // T/F: decide correto/errado usando normalização
+            // T/F: decide correto/errado
             const choiceKey = normalizeTF(label);
             const isCorrect = (choiceKey && choiceKey === correctKey);
 
             b.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+            if (isCorrect) celebrate();
 
-            // Feedback amigável
+            // feedback
             fb.style.color = isCorrect ? '#065f46' : '#b91c1c';
             fb.innerHTML = isCorrect
               ? (notice.feedback_correct_html || '<p><strong>✅ Correct.</strong></p>')
               : (notice.feedback_wrong_html  || '<p><strong>❌ Not quite.</strong></p>');
 
-            // Auto-fecha após leitura (se configurado)
+            // 👉 só agora buscamos e revelamos o placar completo
+            updateTFScore(studentId, module);
+
             if (FEEDBACK_AUTO_CLOSE_MS > 0) {
               autoTimer = setTimeout(() => {
                 autoTimer = null;
@@ -2965,7 +3564,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
           const correctKey = normalizeTF(notice.poll_correct);
           const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
 
-          // Para poll de opinião: esconda o "Ok, got it"
           okBtn.style.display = isQuizTF ? '' : 'none';
           if (!isQuizTF) {
             okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
@@ -2973,7 +3571,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 
           renderPoll(notice, studentId, module);
         } else {
-          // Aviso HTML simples
           okBtn.style.display = '';
           okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
         }
@@ -3014,6 +3611,19 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         document.addEventListener('DOMContentLoaded', () => { waitForLoginAndShow(); });
       } else {
         waitForLoginAndShow();
+      }
+
+      /* 🎊 Confete em estrelas */
+      function celebrate(){
+        const defaults = {
+          spread: 360, ticks: 55, gravity: 0.9, decay: 0.92, startVelocity: 35,
+          colors: ['#F59E0B','#FDE047','#22D3EE','#60A5FA','#A78BFA']
+        };
+        function shoot(scale, countStar=40, countCircle=12){
+          confetti({ ...defaults, particleCount: countStar, scalar: scale, shapes: ['star'] });
+          confetti({ ...defaults, particleCount: countCircle, scalar: scale*0.7, shapes: ['circle'] });
+        }
+        shoot(1.1); setTimeout(()=>shoot(1.0), 180); setTimeout(()=>shoot(0.9), 320);
       }
     })();
     </script>

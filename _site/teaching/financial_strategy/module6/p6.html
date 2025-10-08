@@ -803,7 +803,7 @@
     </div>
 </div>
 
-  <p class="date">06-10-2025</p>
+  <p class="date">07-10-2025</p>
 </section>
 <section>
 
@@ -979,6 +979,362 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 </ul></li>
 </ul>
 </div>
+</section>
+<section id="section-3" class="slide level2" data-background="#f7f9fc">
+<h2></h2>
+<div data-ticket="" data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts" data-session="module6_checkout1" data-page="module6_checkout1" data-require-login="true" data-open="2025-10-06 16:30" data-close="2025-10-06 16:59">
+
+</div>
+<!-- checkout2.html — Check-out → Cloudflare Worker (JSON, CORS-safe) -->
+<style>
+  /* ===== Tokens (light) — exit-checkout colors ===== */
+  :root{
+    --card-bg:#fff; --card-border:rgba(15,23,42,.06); --card-shadow:0 12px 30px rgba(17,24,39,.12);
+    --ink:#0b1220; --muted:#3a4a5c; --muted-2:#2b3a4a; --line:#e9eef5; --pill-bg:#f5f9ff;
+    --focus:rgba(59,130,246,.22);
+    --btn-bg-1:#4f46e5; --btn-bg-2:#60a5fa; --btn-ink:#fff;
+    --textarea-bg:#fff;
+
+    /* ribbon colors by state */
+    --ribbon-open-1: rgba(34,197,94,.18);   /* green */
+    --ribbon-open-2: rgba(16,185,129,.16);
+    --ribbon-soon-1: rgba(245,158,11,.18);  /* amber */
+    --ribbon-soon-2: rgba(251,191,36,.16);
+    --ribbon-closed-1: rgba(239,68,68,.20); /* red */
+    --ribbon-closed-2: rgba(248,113,113,.16);
+    --ribbon-default-1: rgba(99,102,241,.14); /* blue (fallback) */
+    --ribbon-default-2: rgba(96,165,250,.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --card-bg:rgba(15,23,42,.92); --card-border:rgba(148,163,184,.20); --card-shadow:0 16px 44px rgba(0,0,0,.55);
+      --line:rgba(148,163,184,.28); --pill-bg:rgba(148,163,184,.18);
+      --ink:#f8fafc; --muted:#e5edf6; --muted-2:#f1f5f9;
+      --btn-bg-1:#5b7fff; --btn-bg-2:#7cc5ff; --btn-ink:#0b1220;
+      --textarea-bg:rgba(2,6,23,.55);
+    }
+  }
+
+  /* Card */
+  [data-ticket] .tw-card{
+    position:relative;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;
+    padding:16px;box-shadow:var(--card-shadow);backdrop-filter:saturate(120%) blur(6px);-webkit-backdrop-filter:saturate(120%) blur(6px);
+    color:var(--ink);overflow:hidden;box-sizing:border-box;
+  }
+  [data-ticket] .tw-card::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:56px;
+    background:linear-gradient(135deg,var(--ribbon-default-1),var(--ribbon-default-2));
+    pointer-events:none;
+  }
+  /* ribbon by state */
+  [data-ticket].open   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-open-1),var(--ribbon-open-2)); }
+  [data-ticket].soon   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-soon-1),var(--ribbon-soon-2)); }
+  [data-ticket].closed .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-closed-1),var(--ribbon-closed-2)); }
+
+  /* Header */
+  [data-ticket] .tw-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;position:relative;z-index:1;}
+  [data-ticket] .tw-icon{
+    width:36px;height:36px;border-radius:12px;background:#1f2937;display:grid;place-items:center;flex:0 0 36px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);position:relative;
+  }
+  [data-ticket] .tw-icon::after{
+    content:"";position:absolute;inset:-3px;border-radius:14px;
+    background:conic-gradient(from 120deg,rgba(79,70,229,.35),rgba(6,182,212,.35),rgba(79,70,229,.35));
+    z-index:-1;filter:blur(6px);opacity:.55;
+  }
+  [data-ticket] .tw-icon svg{width:18px;height:18px;color:#fff;opacity:.96;}
+  [data-ticket] .tw-titles{display:flex;flex-direction:column;gap:2px;}
+  [data-ticket] .tw-title{font-weight:800;color:var(--ink);line-height:1.1;letter-spacing:.2px;}
+  [data-ticket] .tw-sub{color:var(--muted);font-size:.92rem;}
+
+  /* Badges */
+  [data-ticket] .tw-meta{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  [data-ticket] .tw-badge{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;
+    background:var(--pill-bg);color:var(--muted-2);font-size:.88rem;white-space:nowrap;box-shadow:0 1px 0 rgba(17,24,39,.04) inset;
+  }
+  [data-ticket] .tw-badge svg, [data-ticket] .tw-badge svg *, [data-ticket] .tw-badge .tw-window-text{
+    color:currentColor;stroke:currentColor!important;fill:none;
+  }
+  [data-ticket] .tw-window-text{white-space:pre-line;}
+
+  /* Status dot */
+  [data-ticket] .tw-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;}
+  [data-ticket].open  .tw-dot{background:#16a34a;}
+  [data-ticket].soon  .tw-dot{background:#f59e0b;}
+  [data-ticket].closed.tw-dot,[data-ticket].closed .tw-dot{background:#ff4d4f;}
+
+  /* Textarea */
+  [data-ticket] .tw-body{position:relative;z-index:1;box-sizing:border-box;}
+  [data-ticket] textarea.tw-text{
+    width:100%;border:1px solid var(--line);background:var(--textarea-bg);border-radius:14px;padding:12px 14px;
+    font-size:1rem;line-height:1.5;outline:none;transition:border-color .15s,box-shadow .15s,transform .06s;min-height:120px;
+    resize:vertical;color:var(--ink);box-sizing:border-box;
+  }
+  [data-ticket] textarea.tw-text:focus{border-color:#60a5fa;box-shadow:0 0 0 4px var(--focus);transform:translateY(-1px);}
+  [data-ticket] textarea.tw-text::placeholder{color:#60758a;opacity:.9;}
+
+  /* Footer & messages */
+  [data-ticket] .tw-footer{display:flex;align-items:center;gap:12px;margin-top:12px;}
+  [data-ticket] .tw-count{margin-left:auto;color:#60758a;font-size:.86rem;}
+  [data-ticket] .tw-msg{margin-top:8px;font-size:.93rem;min-height:1.2em;font-weight:700;letter-spacing:.2px;}
+  [data-ticket] .tw-msg.success{color:#059669!important;}
+  [data-ticket] .tw-msg.error{color:#ff4d4f!important;}
+  [data-ticket] .tw-msg.warning{color:#f59e0b!important;}
+  /* match dot color if no explicit class was set */
+  [data-ticket].open  .tw-msg:not(.success):not(.error):not(.warning){color:#16a34a!important;}
+  [data-ticket].soon  .tw-msg:not(.success):not(.error):not(.warning){color:#f59e0b!important;}
+  [data-ticket].closed.tw-msg,[data-ticket].closed .tw-msg:not(.success):not(.error):not(.warning){color:#ff4d4f!important;}
+
+  /* Button */
+  [data-ticket] .tw-btn{
+    padding:10px 16px;border-radius:12px;border:1px solid rgba(15,23,42,.12);
+    background:linear-gradient(135deg,var(--btn-bg-1),var(--btn-bg-2));color:var(--btn-ink);font-weight:800;cursor:pointer;
+    box-shadow:0 4px 14px rgba(59,130,246,.25);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease;letter-spacing:.2px;
+  }
+  [data-ticket] .tw-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(59,130,246,.35);filter:saturate(108%);}
+  [data-ticket] .tw-btn:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus);}
+  [data-ticket] .tw-btn:disabled{opacity:.85;cursor:not-allowed;transform:none;background:#e5f0ff;color:#6b7280;border-color:#dbeafe;box-shadow:none;}
+  [data-ticket] .tw-btn.sent{opacity:.92;cursor:default;}
+
+  /* Spinner */
+  [data-ticket] .spin:after{
+    content:"";display:inline-block;width:14px;height:14px;margin-left:8px;border:2px solid rgba(255,255,255,.65);
+    border-top-color:transparent;border-radius:50%;animation:twspin .8s linear infinite;vertical-align:-2px;
+  }
+  @keyframes twspin{to{transform:rotate(360deg)}}
+
+  /* Mini-login */
+  [data-ticket] .tw-login{display:flex;gap:8px;align-items:center;margin:8px 0 12px 0}
+  [data-ticket] .tw-login input{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--textarea-bg);color:var(--ink);outline:none}
+
+  /* Responsive */
+  @media (max-width:640px){
+    [data-ticket] .tw-card{border-radius:14px;padding:14px;}
+    [data-ticket] .tw-header{gap:10px;}
+    [data-ticket] .tw-badge{padding:5px 9px;font-size:.82rem;}
+  }
+</style>
+<script>
+(() => {
+  const $ = (sel, el=document) => el.querySelector(sel);
+
+  function mountAll(){
+    document.querySelectorAll('[data-ticket]:not([data-tw-mounted])').forEach(initOne);
+  }
+
+  function initOne(host){
+    host.setAttribute('data-tw-mounted','1');
+
+    // ---- Config/attrs
+    const bridge = (host.getAttribute('data-bridge') || window.BRIDGE_URL || '').trim();
+    const sessionTag = (host.getAttribute('data-session') || '').trim();
+    const pageAttr   = (host.getAttribute('data-page') || '').trim();
+    const winStartStr= (host.getAttribute('data-open') || '').trim();
+    const winEndStr  = (host.getAttribute('data-close') || '').trim();
+    const requireLogin = String(host.getAttribute('data-require-login') || 'true').toLowerCase() !== 'false';
+
+    // ---- Helpers
+    const parseLocal = (ts) => ts ? new Date(ts.replace(' ','T')) : null;
+    const winStart = parseLocal(winStartStr);
+    const winEnd   = parseLocal(winEndStr);
+
+    const fmtDur = (s) => { const m=Math.floor(s/60),r=s%60; if(m>=60){const h=Math.floor(m/60),mm=m%60;return `${h}h ${mm}m`;} if(m>0) return `${m}m ${r}s`; return `${r}s`; };
+    function statusNow(){
+      const now = new Date();
+      if (!winStart || !winEnd) return {state:'open', label:'Always available'};
+      if (now < winStart){ const s1=Math.max(0,Math.floor((winStart-now)/1000)); return {state:'soon', label:'Opens in '+fmtDur(s1)}; }
+      if (now > winEnd)   return {state:'closed', label:'Closed'};
+      const s2=Math.max(0,Math.floor((winEnd-now)/1000)); return {state:'open', label:'Closes in '+fmtDur(s2)};
+    }
+    const getStudentId = () => String(window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').trim();
+    const getPageId = () => pageAttr || window.pageId || (location.pathname + location.hash);
+
+    const setMsg = (el, text, cls) => { el.textContent = text || ''; el.className = 'tw-msg' + (cls ? ' ' + cls : ''); };
+    const doneKey = () => `ticket_done:exit:${(sessionTag || getPageId() || 'page')}:${(getStudentId() || 'anon')}`;
+    const isDone  = () => { try { return localStorage.getItem(doneKey()) === '1'; } catch(_) { return false; } };
+    const markDone = (btn) => { try{ localStorage.setItem(doneKey(), '1'); }catch(_){}; btn.classList.remove('spin'); btn.disabled = true; btn.classList.add('sent'); btn.textContent = 'Sent ✓'; };
+
+    // ---- UI skeleton
+    host.innerHTML = '';
+    const card = document.createElement('div'); card.className = 'tw-card';
+    const windowLabel = (winStartStr && winEndStr) ? (winStartStr + '\n→ ' + winEndStr) : 'No window set';
+    card.innerHTML = `
+      <div class="tw-header">
+        <div class="tw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 3M6 3h12a1 1 0 0 1 1 1v16l-7-3-7 3V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tw-titles">
+          <div class="tw-title">Check-out</div>
+          <div class="tw-sub"></div>
+        </div>
+        <div class="tw-meta">
+          <div class="tw-badge"><span class="tw-dot"></span><span class="tw-badge-text">—</span></div>
+          <div class="tw-badge" title="São Paulo time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="opacity:.8"><path d="M12 7v5l4 2" stroke="#334155" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#334155" stroke-width="1.5" fill="none"/></svg>
+            <span class="tw-window-text">${windowLabel}</span>
+          </div>
+        </div>
+      </div>
+      <div class="tw-login" style="display:none">
+        <input type="text" class="tw-login-input" placeholder="Digite seu ID / e-mail do curso"/>
+        <button type="button" class="tw-btn tw-login-btn">Entrar</button>
+      </div>
+      <div class="tw-body"></div>
+      <div class="tw-footer">
+        <button type="button" class="tw-btn tw-send">Send (click only 1x)</button>
+        <div class="tw-count">0/500</div>
+      </div>
+      <div class="tw-msg"></div>`;
+    host.appendChild(card);
+
+    // refs
+    const body = $('.tw-body', card);
+    const btn  = $('.tw-send', card);
+    const msg  = $('.tw-msg', card);
+    const badgeText = $('.tw-badge-text', card);
+    const count = $('.tw-count', card);
+    const loginRow = $('.tw-login', card);
+    const loginInp = $('.tw-login-input', card);
+    const loginBtn = $('.tw-login-btn', card);
+
+    // textarea
+    const ta = document.createElement('textarea');
+    ta.className = 'tw-text'; ta.maxLength = 500;
+    ta.placeholder = 'Your check-out (max 500): one thing you learned + one question…';
+    body.appendChild(ta);
+    ta.addEventListener('input', () => { count.textContent = `${ta.value.length}/500`; syncEnabled(); });
+    count.textContent = '0/500';
+
+    const successMsg = 'Check-out recorded. Thank you!';
+    const dupMsg     = 'You have already completed the check-out for this session. Thanks!';
+
+    function paintBadge(){
+      const st = statusNow();
+      host.classList.remove('open','soon','closed'); host.classList.add(st.state);
+      badgeText.textContent = st.label;
+    }
+
+    function showLoginIfNeeded(){
+      const need = requireLogin && !getStudentId();
+      loginRow.style.display = need ? 'flex' : 'none';
+    }
+
+    function syncEnabled(){
+      const logged = !requireLogin || !!getStudentId();
+      const st     = statusNow().state;
+      const filled = ta.value.trim().length>0;
+      const enabled= logged && (st==='open') && filled && !isDone();
+      btn.disabled = !enabled;
+
+      showLoginIfNeeded(); paintBadge();
+
+      if (isDone()){
+        setMsg(msg, dupMsg, 'success');
+        btn.textContent = 'Sent ✓'; btn.classList.add('sent'); btn.disabled = true;
+      } else if (!logged) setMsg(msg,'Please log in to submit.','warning');
+      else if (st==='soon') setMsg(msg,'Not open yet.','warning');
+      else if (st==='closed') setMsg(msg,'This activity is closed.','error');
+      else if (!filled) setMsg(msg,'Write something to submit.','warning');
+      else setMsg(msg,''); // ready
+    }
+
+    // mini-login
+    loginBtn?.addEventListener('click', () => {
+      const v = (loginInp.value || '').trim();
+      if (!v) { setMsg(msg,'Informe seu ID para continuar.','warning'); return; }
+      try { localStorage.setItem('studentId', v); } catch {}
+      window.studentId = v;
+      document.dispatchEvent(new Event('auth:login'));
+      setMsg(msg,''); syncEnabled();
+    });
+
+    // timers + cleanup
+    paintBadge(); syncEnabled();
+    const ticker = setInterval(() => { paintBadge(); syncEnabled(); }, 1000);
+    const obs = new MutationObserver(() => {
+      if(!document.body.contains(host)){ clearInterval(ticker); obs.disconnect(); }
+    });
+    obs.observe(document.body, {childList:true, subtree:true});
+    document.addEventListener('auth:login', syncEnabled);
+
+    // Submit
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault(); e.stopPropagation();
+
+      const sid = getStudentId();
+      if (requireLogin && !sid){ setMsg(msg,'Please log in to submit.','warning'); return; }
+      const text = ta.value.trim().slice(0,500);
+      if (!text){ setMsg(msg,'Write something to submit.','warning'); return; }
+      if (!bridge){ setMsg(msg,'Missing BRIDGE URL.','error'); return; }
+
+      btn.classList.add('spin'); btn.disabled = true; setMsg(msg,'');
+
+      const payload = {
+        student_id: sid,                 // ← alinha com D1
+        slide_id: (sessionTag || getPageId()),
+        ticket: text,
+        tsClient: new Date().toISOString(),
+        open:  winStartStr,
+        close: winEndStr,
+        user_agent: navigator.userAgent
+      };
+
+      try{
+        const res = await fetch(bridge, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify(payload),
+          keepalive:true
+        });
+
+        const raw = await res.text();
+        let data = null; try{ data = JSON.parse(raw); }catch(_){}
+
+        if (!res.ok){
+          if (data && data.status === 'closed_window'){
+            setMsg(msg,'This activity is closed now.','error');
+          } else {
+            setMsg(msg,'Failed to submit. Please try again.','error');
+          }
+          console.error('[checkout2] HTTP error:', res.status, raw);
+          btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+          return;
+        }
+
+        if (data && data.status === 'success'){
+          setMsg(msg, successMsg, 'success');
+          ta.value=''; count.textContent='0/500';
+          markDone(btn); clearInterval(ticker);
+          return;
+        }
+        if (data && data.status === 'duplicate'){
+          setMsg(msg, dupMsg, 'success'); markDone(btn); clearInterval(ticker); return;
+        }
+        if (data && data.status === 'closed_window'){
+          setMsg(msg,'This activity is closed now.','error');
+          btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+          return;
+        }
+
+        setMsg(msg,'Failed to submit. Please try again.','error');
+        console.error('[checkout2] unexpected response:', raw);
+        btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+      }catch(err){
+        console.error('[checkout2] submit error:', err);
+        setMsg(msg,'Network error. Please try again.','error');
+        btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', mountAll, { once:true });
+  } else {
+    mountAll();
+  }
+})();
+</script>
 </section></section>
 <section>
 <section id="other-types-of-debt" class="title-slide slide level1 smaller center" data-background="#FFD6A4">
@@ -1147,7 +1503,7 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 <li><p>Short video: <a href="https://www.youtube.com/watch?v=9xZx1lf2tvs">The Big Short</a>.</p></li>
 </ul>
 </section>
-<section id="section-4" class="slide level2 smaller" data-background="#96ffa8">
+<section id="section-5" class="slide level2 smaller" data-background="#96ffa8">
 <h2></h2>
 <center>
 <img data-src="../figs/ratings_theeconomist.png">
@@ -1186,9 +1542,220 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 <li>The rating agency typically conducts formal quarterly reviews and meets with management at least once annually.</li>
 </ul>
 </section>
-<section id="section-5" class="slide level2" data-background="#f7f9fc">
+<section id="section-6" class="slide level2 smaller" data-background="#FFFFFF">
 <h2></h2>
-<div data-ticket="" data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts" data-session="module6_checkout1" data-page="module6_checkout1" data-require-login="true" data-open="2025-10-06 16:30" data-close="2025-10-06 16:59">
+<div style="font-size: 40%; text-align: right;">
+<p>Key: <em>module6_tf_qu1</em></p>
+</div>
+<script>
+// Função auxiliar para verificar e definir o status de uma questão.
+function checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance = 0) {
+  const feedbackDiv = document.getElementById(feedbackDivId);
+  if (!feedbackDiv) return;
+
+  let isCorrect = false;
+
+  // Trata respostas numéricas com tolerância
+ if (typeof correctAnswer === 'number' && typeof userAnswer === 'number' && !isNaN(userAnswer)) {
+    const lowerBound = correctAnswer - tolerance;
+    const upperBound = correctAnswer + tolerance;
+    isCorrect = (userAnswer >= lowerBound && userAnswer <= upperBound);
+  } else if (typeof userAnswer === 'string') {
+    // Para respostas de texto (T/F, Múltipla Escolha)
+    isCorrect = (userAnswer.trim().toUpperCase() === correctAnswer.toUpperCase());
+  }
+  // Adicione outras lógicas de comparação aqui se necessário (ex: arrays para múltiplos checkboxes)
+
+  if (isCorrect) {
+    feedbackDiv.dataset.status = "correct";
+  } else {
+    feedbackDiv.dataset.status = "incorrect";
+  }
+  feedbackDiv.style.display = "none"; // Mantém o feedback oculto
+}
+
+// Função para obter a resposta de um grupo de radio buttons
+function getSelectedRadioValue(name) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${name}"]:checked`);
+    if (radios.length > 0) {
+        return radios[0].value;
+    }
+    return ''; // Retorna string vazia se nada for selecionado
+}
+
+function toggleFeedback() {
+  const questionBlocks = document.querySelectorAll('.question-block');
+  const feedbacks = document.querySelectorAll('.feedback');
+  const scoreDiv = document.getElementById('score-summary');
+  const toggleButton = document.getElementById('toggle-feedback-btn');
+
+  let showing = feedbacks.length > 0 && feedbacks[0].style.display === 'block';
+
+  if (showing) {
+    // Esconder feedback
+    feedbacks.forEach(f => {
+      f.style.display = 'none';
+      f.style.color = 'black'; // Reseta a cor ao esconder
+    });
+    scoreDiv.textContent = '';
+    toggleButton.textContent = 'Show Feedback';
+  } else {
+    // Mostrar feedback
+    let correctCount = 0;
+    let totalQuestions = 0;
+
+    questionBlocks.forEach(block => {
+      totalQuestions++;
+      const textInput = block.querySelector('input[type="text"]');
+      const numberInput = block.querySelector('input[type="number"]'); // Novo: input numérico
+      const form = block.querySelector('form');
+
+      let questionId, userAnswer, correctAnswer, tolerance = 0;
+      let feedbackDivId;
+
+      if (textInput && textInput.dataset.correctAnswer) {
+        // Questão de texto (T/F)
+        questionId = textInput.id;
+        userAnswer = textInput.value;
+        correctAnswer = textInput.dataset.correctAnswer;
+      } else if (numberInput && numberInput.dataset.correctAnswer) {
+        // Questão numérica
+        questionId = numberInput.id;
+        // Converte para número. Se não for um número válido, NaN.
+        userAnswer = parseFloat(numberInput.value);
+        correctAnswer = parseFloat(numberInput.dataset.correctAnswer);
+        if (numberInput.dataset.tolerance) {
+          tolerance = parseFloat(numberInput.dataset.tolerance);
+        }
+        // Se a resposta do usuário não for um número válido, trate como incorreta
+        if (isNaN(userAnswer)) {
+             userAnswer = null; // Mantém como valor numérico inválido
+        }
+      } else if (form && form.querySelector('input[type="radio"]') && form.dataset.correctAnswer) {
+        // Questão de múltipla escolha (radio)
+        questionId = form.querySelector('input[type="radio"]').name;
+        userAnswer = getSelectedRadioValue(questionId);
+        correctAnswer = form.dataset.correctAnswer;
+      } else {
+        // Se não for um tipo de questão reconhecido ou não tem resposta correta
+        totalQuestions--; // Não conta esta questão no total se não puder ser avaliada
+        return; // Pula para a próxima questão
+      }
+
+      feedbackDivId = 'feedback-' + questionId;
+      const feedbackDiv = document.getElementById(feedbackDivId);
+
+      if (feedbackDiv) { // Apenas processa se há um feedback div
+        checkAnswerAndSetStatus(questionId, userAnswer, correctAnswer, feedbackDivId, tolerance);
+
+        // Agora, exibe e colore o feedback após a verificação
+        if (feedbackDiv.dataset.status === 'correct') {
+          feedbackDiv.style.color = 'green';
+          correctCount++;
+        } else if (feedbackDiv.dataset.status === 'incorrect') {
+          feedbackDiv.style.color = 'red';
+        } else {
+          feedbackDiv.style.color = 'black'; // Se não foi respondida ou não tem status
+        }
+        feedbackDiv.style.display = 'block'; // Exibe o feedback
+      }
+    });
+
+    scoreDiv.textContent = `✅  You answered ${correctCount} out of  ${totalQuestions}  correctly.`;
+    toggleButton.textContent = 'Hide Feedback';
+  }
+}
+</script>
+<button id="toggle-feedback-btn" onclick="toggleFeedback()" style="background-color:#007BFF; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
+Show Feedback
+</button>
+<div id="score-summary" style="margin-top: 15px; font-weight: bold;">
+
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q001','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q001" name="module6_tf_q001" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F"> <label for="module6_tf_q001"><strong>Corporate debt is typically considered a risk-free investment.</strong></label>
+</form>
+<div id="feedback-module6_tf_q001" class="feedback" data-status="" style="display:none;">
+<p>This is FALSE. Corporate debt typically carries some level of risk, such as credit risk.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q007','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q007" name="module6_tf_q007" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="module6_tf_q007"><strong>Callable bonds give the issuer the right to redeem the bonds before their maturity date, while non-callable bonds cannot be redeemed by the issuer before maturity.</strong></label>
+</form>
+<div id="feedback-module6_tf_q007" class="feedback" data-status="" style="display:none;">
+<p>This is TRUE. Callable bonds can be redeemed early by the issuer, while non-callable bonds cannot.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q014','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q014" name="module6_tf_q014" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="module6_tf_q014"><strong>Asset-backed securities (ABS) are financial instruments backed by pools of assets such as credit card receivables, auto loans, or mortgages.</strong></label>
+</form>
+<div id="feedback-module6_tf_q014" class="feedback" data-status="" style="display:none;">
+<p>This is TRUE. ABS are created by pooling various types of assets and issuing securities backed by those pools.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q019','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q019" name="module6_tf_q019" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="module6_tf_q019"><strong>Investment banks often assist corporations in the process of issuing bonds to the public.</strong></label>
+</form>
+<div id="feedback-module6_tf_q019" class="feedback" data-status="" style="display:none;">
+<p>This is TRUE. Investment banks underwrite and distribute bond offerings to investors.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q029','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q029" name="module6_tf_q029" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="module6_tf_q029"><strong>If a bond is downgraded by a credit rating agency, its yield typically increases.</strong></label>
+</form>
+<div id="feedback-module6_tf_q029" class="feedback" data-status="" style="display:none;">
+<p>This is TRUE. A downgrade raises perceived credit risk, leading investors to demand a higher yield.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q031','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q031" name="module6_tf_q031" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="module6_tf_q031"><strong>Debt issuance costs reduce the net proceeds a firm receives from selling bonds.</strong></label>
+</form>
+<div id="feedback-module6_tf_q031" class="feedback" data-status="" style="display:none;">
+<p>This is TRUE. Issuance costs such as underwriting fees reduce the amount of cash received by the issuer.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q037','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q037" name="module6_tf_q037" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F"> <label for="module6_tf_q037"><strong>High-yield bonds are rated AAA or AA by credit rating agencies.</strong></label>
+</form>
+<div id="feedback-module6_tf_q037" class="feedback" data-status="" style="display:none;">
+<p>This is FALSE. High-yield bonds are rated below investment grade, typically below BBB-.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q039','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q039" name="module6_tf_q039" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T"> <label for="module6_tf_q039"><strong>Debt securities can be either secured or unsecured, depending on whether specific collateral backs them.</strong></label>
+</form>
+<div id="feedback-module6_tf_q039" class="feedback" data-status="" style="display:none;">
+<p>This is TRUE. Secured debt is backed by collateral, while unsecured debt relies solely on the issuer’s creditworthiness.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q027','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q027" name="module6_tf_q027" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F"> <label for="module6_tf_q027"><strong>Bond prices move in the same direction as market interest rates.</strong></label>
+</form>
+<div id="feedback-module6_tf_q027" class="feedback" data-status="" style="display:none;">
+<p>This is FALSE. Bond prices move inversely to market interest rates.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q008','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q008" name="module6_tf_q008" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F"> <label for="module6_tf_q008"><strong>Callable bonds usually offer a lower yield than non-callable bonds, which makes them less attractive to investors.</strong></label>
+</form>
+<div id="feedback-module6_tf_q008" class="feedback" data-status="" style="display:none;">
+<p>This is FALSE. Callable bonds typically offer a higher yield due to the call option that compensates investors for call risk.</p>
+</div>
+</div>
+</section>
+<section id="section-7" class="slide level2" data-background="#f7f9fc">
+<h2></h2>
+<div data-ticket="" data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts" data-session="module6_checkout2" data-page="module6_checkout2" data-require-login="true" data-open="2025-10-08 16:30" data-close="2025-10-08 16:59">
 
 </div>
 <!-- checkout2.html — Check-out → Cloudflare Worker (JSON, CORS-safe) -->

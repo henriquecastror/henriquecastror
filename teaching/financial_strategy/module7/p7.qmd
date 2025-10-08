@@ -14,8 +14,8 @@ format:
     include-in-header: ../login-start.html
     include-after-body:
       - ../chat-widget.html
-#      - ../comnents.html
-      - ../ranking-widget.html
+      - ../threads-gate.html
+      - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
     controls: true

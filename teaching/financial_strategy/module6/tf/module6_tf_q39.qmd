@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q039','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q039" name="module6_tf_q039" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q039"><strong>Debt securities can be either secured or unsecured, depending on whether specific collateral backs them.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q039" class="feedback" data-status="" style="display:none;">
+This is TRUE. Secured debt is backed by collateral, while unsecured debt relies solely on the issuer's creditworthiness.
+</div>
+
+:::

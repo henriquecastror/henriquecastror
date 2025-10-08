@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q015','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q015" name="module6_tf_q015" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q015"><strong>The debt-to-equity ratio measures a company's financial leverage by comparing its total debt to its total equity.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q015" class="feedback" data-status="" style="display:none;">
+This is TRUE. This ratio indicates how much debt a company uses to finance its assets relative to shareholder equity.
+</div>
+
+:::

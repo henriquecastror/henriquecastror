@@ -1,126 +1,622 @@
 ---
-title: "Part 6 (ch24)  Questions T/F & Multiple Choice"
+title: "Module 6:  True (T) or False (F) Questions"
 ---
 
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
 
-::: {style="display: flex; justify-content: space-between; width: 100%;"}
-[Go to previous chapter](p5tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p7tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
-:::
+```
 
 ::: {.callout-warning}
 ### For students
 
-**Last updated: `r format(Sys.time(), '%d/%m/%Y')`  **
+```{r}
+#| echo: false
+#| results: asis
+#| warning: false
+cat(paste0("**Last updated:** ", format(Sys.time(), '%d/%m/%Y %H:%M', tz = 'America/Sao_Paulo')))
+```
+
+The questions are based on or inspired by the following references:
+
+- [**Berk & DeMarzo, Corporate Finance, 5th ed. (2020)**](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154)  
+- [**Brealey & Myers, Principles of Corporate Finance, 13th ed. (2020)**](https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3)
+
+---
+
+💡 *You can also press `Ctrl + P` (or `Cmd + P` on Mac) to print or save your responses as a `.pdf` file.*
+
+---
+
+⚠️ _These exercises are **powered by AI-assisted technologies** and **may contain occasional formatting or logic errors**. Please report any issues you encounter so I can improve the experience._
 
 
-Below you find many questions to this chapter. 
+::: 
 
-*As this link is continuously updated with new questions, you might expect some changes from time to time.*
 
-The Questions are based or inspired on either [**Berk & DeMarzo, Corporate Finance, 5th ed. 2020**](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154) or 
-[**Brealey & Myers, Principles of Corporate Finance, 13th ed. 2020**](https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3).
-
-*If you are interest in getting a `.pdf` version of your answers, hit `Ctrl + P` to print*
-
-:::
 
 ___
 
+ 
+
+
+
+### 📘 Part 1 (until Midterm)
+
+
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
+| 6 | ch23 | [🎞️](p6.html) | [✅](p6tf.html) | [❓](p6mcq.html) | [🔢](p6num.html) | [📝](p6long.html) | [🧪](p6selfquiz.html) |
+
+
+___
 
 **Mark T (True) or F (False) in each of the following sentences.**
 
-::: {.webex-check .webex-box}
+<script>
+  const SLIDE_ID = "module6_p6tf";
+</script>
 
-```{r}
-#| eval: true
-#| results: asis
-#| echo: false
-#| warning: false
-library(webexercises)
-
-cat("1", fitb("F", num = FALSE, ignore_case = TRUE), "Corporate debt is typically considered a risk-free investment.",  "\n\n")
-cat("2", fitb("F", num = FALSE, ignore_case = TRUE), "Sovereign debt is a type of corporate debt.",  "\n\n")
-cat("3", fitb("F", num = FALSE, ignore_case = TRUE), "Private placement is a method of raising capital that involves selling securities to the general public.",  "\n\n")
-cat("4", fitb("T", num = FALSE, ignore_case = TRUE), "Collateralized Debt Obligations (CDOs) are financial instruments that are typically backed by a diversified pool of assets, such as mortgages and loans.",  "\n\n")
-cat("5", fitb("F", num = FALSE, ignore_case = TRUE), "Syndicated bank loans are typically provided by a single bank to a borrower.",  "\n\n")
-cat("6", fitb("F", num = FALSE, ignore_case = TRUE), "In a perfect capital market, a firm's market capitalization would change when it borrows to repurchase shares.",  "\n\n")
-cat("7", fitb("T", num = FALSE, ignore_case = TRUE), "Callable bonds give the issuer the right to redeem the bonds before their maturity date, while non-callable bonds cannot be redeemed by the issuer before maturity.",  "\n\n")
-cat("8", fitb("F", num = FALSE, ignore_case = TRUE), "Callable bonds usually offer a lower yield than non-callable bonds, which makes them less attractive to investors.",  "\n\n")
-cat("9", fitb("F", num = FALSE, ignore_case = TRUE), "Bond covenants are legally binding agreements that set specific terms and conditions for bond issuers and bondholders, but they cannot include restrictions on the issuer's activities.",  "\n\n")
-cat("10", fitb("F", num = FALSE, ignore_case = TRUE), "Junk bonds typically offer lower yields compared to investment-grade bonds.",  "\n\n")
-cat("11", fitb("T", num = FALSE, ignore_case = TRUE), "Commercial paper is a short-term debt instrument typically issued by large corporations to meet short-term obligations.",  "\n\n")
-cat("12", fitb("T", num = FALSE, ignore_case = TRUE), "Convertible bonds give bondholders the option to convert their bonds into a predetermined number of the issuer's common shares.",  "\n\n")
-cat("13", fitb("T", num = FALSE, ignore_case = TRUE), "Credit ratings provided by agencies like Moody's and Standard & Poor's assess the creditworthiness of corporate debt issuers.",  "\n\n")
-cat("14", fitb("T", num = FALSE, ignore_case = TRUE), "Asset-backed securities (ABS) are financial instruments backed by pools of assets such as credit card receivables, auto loans, or mortgages.",  "\n\n")
-cat("15", fitb("T", num = FALSE, ignore_case = TRUE), "The debt-to-equity ratio measures a company's financial leverage by comparing its total debt to its total equity.",  "\n\n")
-cat("16", fitb("T", num = FALSE, ignore_case = TRUE), "Bond indenture is a legal document outlining the terms and conditions of a bond issue, including its interest rate, maturity date, and any special features.",  "\n\n")
-cat("17", fitb("F", num = FALSE, ignore_case = TRUE), "Zero-coupon bonds pay periodic interest payments to bondholders.",  "\n\n")
-cat("18", fitb("F", num = FALSE, ignore_case = TRUE), "Treasury bills are long-term debt securities issued by the federal government with maturities typically ranging from 20 to 30 years.",  "\n\n")
-cat("19", fitb("T", num = FALSE, ignore_case = TRUE), "Investment banks often assist corporations in the process of issuing bonds to the public.", "\n\n")
-cat("20", fitb("F", num = FALSE, ignore_case = TRUE), "A sinking fund provision in a bond contract requires the issuer to pay off the entire bond issue at maturity without any intermediate payments.", "\n\n")
-cat("21", fitb("T", num = FALSE, ignore_case = TRUE), "In a private placement, securities are sold directly to a small number of investors rather than through a public offering.", "\n\n")
-cat("22", fitb("T", num = FALSE, ignore_case = TRUE), "An underwriter in a bond offering typically guarantees the purchase of the entire bond issue and resells it to investors.", "\n\n")
-cat("23", fitb("T", num = FALSE, ignore_case = TRUE), "The coupon rate of a bond is the interest rate the issuer agrees to pay each year.", "\n\n")
-cat("24", fitb("T", num = FALSE, ignore_case = TRUE), "The prospectus is a legal document provided to potential investors that describes a bond offering in detail.", "\n\n")
-cat("25", fitb("T", num = FALSE, ignore_case = TRUE), "Subordinated debt has lower priority than senior debt in the event of liquidation.", "\n\n")
-cat("26", fitb("F", num = FALSE, ignore_case = TRUE), "Debentures are secured by collateral such as property or equipment.", "\n\n")
-cat("27", fitb("F", num = FALSE, ignore_case = TRUE), "Bond prices move in the same direction as market interest rates.", "\n\n")
-cat("28", fitb("T", num = FALSE, ignore_case = TRUE), "An indenture may include restrictive covenants to protect bondholders.", "\n\n")
-cat("29", fitb("T", num = FALSE, ignore_case = TRUE), "If a bond is downgraded by a credit rating agency, its yield typically increases.", "\n\n")
-cat("30", fitb("F", num = FALSE, ignore_case = TRUE), "A call provision in a bond increases the value of the bond to investors.", "\n\n")
-cat("31", fitb("T", num = FALSE, ignore_case = TRUE), "Debt issuance costs reduce the net proceeds a firm receives from selling bonds.", "\n\n")
-cat("32", fitb("T", num = FALSE, ignore_case = TRUE), "A company's credit rating can affect the interest rate it must pay when issuing bonds.", "\n\n")
-cat("33", fitb("F", num = FALSE, ignore_case = TRUE), "Public bond offerings are exempt from securities regulations and do not require SEC or CVM registration.", "\n\n")
-cat("34", fitb("F", num = FALSE, ignore_case = TRUE), "Convertible bonds cannot be exchanged for equity under any circumstances.", "\n\n")
-cat("35", fitb("F", num = FALSE, ignore_case = TRUE), "Senior secured bonds have lower claim priority than subordinated bonds in bankruptcy proceedings.", "\n\n")
-cat("36", fitb("T", num = FALSE, ignore_case = TRUE), "The yield to maturity (YTM) is the total return an investor can expect if the bond is held until maturity.", "\n\n")
-cat("37", fitb("F", num = FALSE, ignore_case = TRUE), "High-yield bonds are rated AAA or AA by credit rating agencies.", "\n\n")
-cat("38", fitb("T", num = FALSE, ignore_case = TRUE), "A call provision allows a company to call bonds early but usually requires it to pay bondholders a premium.", "\n\n")
-cat("39", fitb("T", num = FALSE, ignore_case = TRUE), "Debt securities can be either secured or unsecured, depending on whether specific collateral backs them.", "\n\n")
-cat("40", fitb("F", num = FALSE, ignore_case = TRUE), "Debt offerings by corporations are always for terms longer than 10 years.", "\n\n")
-cat("41", fitb("F", num = FALSE, ignore_case = TRUE), "When a company issues public debt, it does not need to disclose financial information to investors.", "\n\n")
-cat("42", fitb("F", num = FALSE, ignore_case = TRUE), "Companies usually prefer issuing debt with restrictive covenants to maximize financial flexibility.", "\n\n")
-cat("43", fitb("F", num = FALSE, ignore_case = TRUE), "In debt financing, principal repayment schedules are always flexible and determined solely by the borrower’s preferences.", "\n\n")
-cat("44", fitb("T", num = FALSE, ignore_case = TRUE), "Syndicated loans help spread the credit risk of lending among several banks or financial institutions.", "\n\n")
-cat("45", fitb("F", num = FALSE, ignore_case = TRUE), "The primary market for debt securities refers to the buying and selling of bonds between investors after issuance.", "\n\n")
-cat("46", fitb("T", num = FALSE, ignore_case = TRUE), "The secondary market for bonds provides liquidity for investors who want to buy or sell debt securities after the initial issuance.", "\n\n")
-
-cat("47", fitb("T", num = FALSE, ignore_case = TRUE), "A bond's credit spread reflects the additional yield over a risk-free rate that compensates investors for credit risk.", "\n\n")
-cat("48", fitb("F", num = FALSE, ignore_case = TRUE), "Debt covenants are optional guidelines that companies can choose to follow but are not legally enforceable.", "\n\n")
-cat("49", fitb("T", num = FALSE, ignore_case = TRUE), "A bond with a higher duration is generally more sensitive to changes in interest rates.", "\n\n")
-cat("50", fitb("T", num = FALSE, ignore_case = TRUE), "Debt financing allows a company to raise capital without diluting ownership of existing shareholders.", "\n\n")
-
-
-```
-
-:::
+{{< include ../login-start.html >}}
 
 
 
+<div class="groups-wrap">
+  <button class="grp-btn" data-group="1"  onclick="showGroup(1)">1–10</button>
+  <button class="grp-btn" data-group="2"  onclick="showGroup(2)">11–20</button>
+  <button class="grp-btn" data-group="3"  onclick="showGroup(3)">21–30</button>
+  <button class="grp-btn" data-group="4"  onclick="showGroup(4)">31–40</button>
+  <button class="grp-btn" data-group="5"  onclick="showGroup(5)">41–50</button>
+
+</div>
+
+
+<style>
+/* Container dos botões */
+.groups-wrap{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;
+}
+
+/* Pílulas padrão */
+.grp-btn{
+  padding:8px 14px;
+  border:1px solid #e2e8f0;
+  background:#ffffff;
+  color:#0f172a;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  line-height:1;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.grp-btn:hover{ border-color:#94a3b8; }
+
+/* Pílula ativa (somente o botão selecionado) */
+.grp-btn.active{
+  background:#3b82f6;   /* azul */
+  color:#ffffff;
+  border-color:#3b82f6;
+}
+</style>
+
+
+:::{.webex-box .card .border-success .mb-4 .p-3}
 
 
 
-___
+<!-- Group 1: Q1–Q10 -->
+<div id="group1" class="question-group">
 
-<script src="https://giscus.app/client.js"
-        data-repo="henriquecastror/EF_permanent"
-        data-repo-id="R_kgDOLMIejg"
-        data-category="General"
-        data-category-id="DIC_kwDOLMIejs4Cc1yS"
-        data-mapping="number"
-        data-term="12"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q1.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q001.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q2.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q002.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q3.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q003.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q4.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q004.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q5.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q005.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q6.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q006.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q7.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q007.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q8.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q008.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q9.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q009.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q10.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q010.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+<!-- Group 2: Q11–Q20 -->
+<div id="group2" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q11.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q011.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q12.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q012.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q13.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q013.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q14.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q014.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q15.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q015.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q16.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q016.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q17.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q017.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q18.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q018.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q19.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q019.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q20.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q020.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Group 3: Q21–Q30 -->
+<div id="group3" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q21.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q021.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q22.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q022.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q23.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q023.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q24.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q024.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q25.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q025.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q26.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q026.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q27.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q027.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q28.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q028.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q29.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q029.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q30.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q030.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+<!-- Group 4: Q31–Q40 -->
+<div id="group4" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q31.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q031.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q32.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q032.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q33.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q033.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q34.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q034.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q35.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q035.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q36.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q036.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q37.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q037.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q38.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q038.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q39.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q039.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q40.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q040.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+<!-- Group 5: Q41–Q50 -->
+<div id="group5" class="question-group" style="display: none;">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q41.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q041.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q42.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q042.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q43.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q043.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q44.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q044.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q45.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q045.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q46.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q046.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q47.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q047.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q48.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q048.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q49.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q049.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q50.</div>
+  <div style="flex: 1;">
+    {{< include "tf/module6_tf_q050.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<<!-- Navegação entre os grupos -->
+<div style="margin-top: 25px; display: flex; justify-content: center; gap: 20px;">
+  <button onclick="prevGroup()" style="padding: 8px 16px;">Previous</button>
+  <span id="group-indicator" style="align-self: center; font-weight: bold;">Group 1 of 10</span>
+  <button onclick="nextGroup()" style="padding: 8px 16px;">Next</button>
+</div>
+
+<script>
+  let currentGroup = 1;
+  const totalGroups = 5;
+
+  function setActivePill(index){
+    document.querySelectorAll('.grp-btn[data-group]').forEach(btn=>{
+      const n = Number(btn.getAttribute('data-group'));
+      if(n === index){
+        btn.classList.add('active');
+        btn.setAttribute('aria-current','page');
+      }else{
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function setActiveGroupBox(index){
+    for(let i=1;i<=totalGroups;i++){
+      const box = document.getElementById(`group${i}`);
+      if(!box) continue;
+      box.style.display = (i===index)?'block':'none';
+      box.classList.toggle('active', i===index);
+    }
+  }
+
+  function showGroup(index){
+    currentGroup = Math.max(1, Math.min(totalGroups, index));
+    setActiveGroupBox(currentGroup);
+    setActivePill(currentGroup);
+    const ind = document.getElementById('group-indicator');
+    if(ind) ind.textContent = `Group ${currentGroup} of ${totalGroups}`;
+  }
+
+  function nextGroup(){ if(currentGroup < totalGroups) showGroup(currentGroup+1); }
+  function prevGroup(){ if(currentGroup > 1)        showGroup(currentGroup-1); }
+
+  // iniciar no 1
+  showGroup(currentGroup);
 </script>
 
 
-::: {style="display: flex; justify-content: space-between; width: 100%;"}
-[Go to previous chapter](p5tf.qmd){.btn .btn-primary role="button" data-toggle="tool" style="margin-right: 430px;"}
-[Go to next chapter](p7tf.qmd){.btn .btn-primary role="button" data-toggle="tool"}
+
+
+
+
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
+
 :::
+
+
+{{< include ../login-end.html >}}
+
+
+
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="/teaching/financial_strategy/" class="btn btn-outline-primary btn-lg">
+    🔙
+  </a>
+</div>
+
+

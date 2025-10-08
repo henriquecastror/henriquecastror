@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q010','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q010" name="module6_tf_q010" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q010"><strong>Junk bonds typically offer lower yields compared to investment-grade bonds.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q010" class="feedback" data-status="" style="display:none;">
+This is FALSE. High-yield (junk) bonds offer higher yields because they carry greater credit risk.
+</div>
+
+:::

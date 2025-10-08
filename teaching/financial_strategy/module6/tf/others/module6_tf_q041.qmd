@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q041','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q041" name="module6_tf_q041" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q041"><strong>When a company issues public debt, it does not need to disclose financial information to investors.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q041" class="feedback" data-status="" style="display:none;">
+This is FALSE. Public debt issuance requires full financial disclosure and adherence to securities regulations.
+</div>
+
+:::
