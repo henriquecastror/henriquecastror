@@ -1,11 +1,11 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q013','T')" style="display: flex; align-items: center; gap: 8px;">
-<input type="text" id="module6_tf_q013" name="module6_tf_q013" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
-<label for="module6_tf_q013"><strong>Credit ratings provided by agencies like Moody's and Standard & Poor's assess the creditworthiness of corporate debt issuers.</strong></label>
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q13','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q13" name="module6_tf_q13" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q13"><strong>Credit ratings provided by agencies like Moody's and Standard & Poor's assess the creditworthiness of corporate debt issuers.</strong></label>
 </form>
 
-<div id="feedback-module6_tf_q013" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module6_tf_q13" class="feedback" data-status="" style="display:none;">
 This is TRUE. Credit ratings measure the risk of default associated with debt issuers.
 </div>
 

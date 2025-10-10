@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q20','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q20" name="module6_tf_q20" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q20"><strong>A sinking fund provision in a bond contract requires the issuer to pay off the entire bond issue at maturity without any intermediate payments.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q20" class="feedback" data-status="" style="display:none;">
+This is FALSE. A sinking fund requires the issuer to make periodic payments to retire portions of the debt before maturity.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q73','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q73" name="module6_tf_q73" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q73"><strong>Negative covenants prevent the firm from taking specific actions, such as selling key assets or paying excessive dividends.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q73" class="feedback" style="display:none;">
+This is TRUE. Negative covenants restrict actions that could weaken the firm’s ability to repay debt.
+</div>
+
+:::

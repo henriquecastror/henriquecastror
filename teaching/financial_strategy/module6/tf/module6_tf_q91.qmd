@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q91','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q91" name="module6_tf_q91" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q91"><strong>The call price of a bond is typically set above its par value to compensate investors for early redemption risk.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q91" class="feedback" style="display:none;">
+This is TRUE. Call prices are often a few percent above face value, providing a small premium to investors.
+</div>
+
+:::

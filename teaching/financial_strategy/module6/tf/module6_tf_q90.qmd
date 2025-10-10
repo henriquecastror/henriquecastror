@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q90','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q90" name="module6_tf_q90" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q90"><strong>Higher-rated bonds usually offer higher yields to attract risk-averse investors.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q90" class="feedback" style="display:none;">
+This is FALSE. Higher-rated bonds have lower yields because they carry less risk.
+</div>
+
+:::

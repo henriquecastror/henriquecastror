@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q75','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q75" name="module6_tf_q75" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q75"><strong>A callable bond allows the issuer to repurchase the bond before maturity, typically when interest rates fall.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q75" class="feedback" style="display:none;">
+This is TRUE. When rates drop, issuers can call bonds and refinance at lower costs.
+</div>
+
+:::

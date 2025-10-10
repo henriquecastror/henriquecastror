@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q69','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q69" name="module6_tf_q69" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q69"><strong>Treasury Inflation-Protected Securities (TIPS) adjust their principal value according to changes in the consumer price index.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q69" class="feedback" style="display:none;">
+This is TRUE. TIPS are inflation-indexed bonds whose principal and coupon payments rise with CPI increases.
+</div>
+
+:::

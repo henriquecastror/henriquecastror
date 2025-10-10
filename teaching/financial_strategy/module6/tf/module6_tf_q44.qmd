@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q44','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q44" name="module6_tf_q44" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q44"><strong>Syndicated loans help spread the credit risk of lending among several banks or financial institutions.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q44" class="feedback" data-status="" style="display:none;">
+This is TRUE. Syndicated loans distribute risk by involving multiple lenders in a single credit agreement.
+</div>
+
+:::

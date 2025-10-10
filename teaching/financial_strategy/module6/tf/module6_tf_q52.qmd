@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q52','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q52" name="module6_tf_q52" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q52"><strong>Debentures are secured corporate bonds backed by specific assets.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q52" class="feedback" style="display:none;">
+This is FALSE. Debentures are unsecured debt and give claims only to unpledged assets.
+</div>
+
+:::

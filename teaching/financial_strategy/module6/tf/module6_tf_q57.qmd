@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q57','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q57" name="module6_tf_q57" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q57"><strong>Syndicated loans are funded by a group of banks rather than a single lender.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q57" class="feedback" style="display:none;">
+This is TRUE. Syndicated loans pool funds from multiple banks to spread risk and financing capacity.
+</div>
+
+:::

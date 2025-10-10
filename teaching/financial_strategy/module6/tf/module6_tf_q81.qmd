@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q81','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q81" name="module6_tf_q81" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q81"><strong>Credit ratings represent an independent opinion about the issuer’s likelihood of default.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q81" class="feedback" style="display:none;">
+This is TRUE. Ratings are assessments of default risk made by agencies like Moody’s or S&amp;P.
+</div>
+
+:::

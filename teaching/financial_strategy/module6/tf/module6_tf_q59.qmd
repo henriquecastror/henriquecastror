@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q59','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q59" name="module6_tf_q59" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q59"><strong>Subordinated debentures have lower priority in the event of default than senior debentures.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q59" class="feedback" style="display:none;">
+This is TRUE. Subordinated debt holders are paid only after senior debt is fully satisfied.
+</div>
+
+:::

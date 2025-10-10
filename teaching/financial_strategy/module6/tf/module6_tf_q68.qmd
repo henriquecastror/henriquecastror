@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q68','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q68" name="module6_tf_q68" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q68"><strong>Municipal bonds in Brazil are widely traded and represent a major segment of the domestic bond market.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q68" class="feedback" style="display:none;">
+This is FALSE. Municipal bonds are not common in Brazil, where local governments rarely issue debt to the public.
+</div>
+
+:::

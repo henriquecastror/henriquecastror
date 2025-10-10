@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q99','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q99" name="module6_tf_q99" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q99"><strong>Ratings agencies typically review a firm’s financials quarterly and may revise ratings based on new information.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q99" class="feedback" style="display:none;">
+This is TRUE. Agencies monitor performance and can upgrade or downgrade ratings accordingly.
+</div>
+
+:::

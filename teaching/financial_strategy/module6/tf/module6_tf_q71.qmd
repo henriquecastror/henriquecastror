@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q71','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q71" name="module6_tf_q71" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q71"><strong>Bond covenants are contractual clauses designed to protect creditors by restricting certain managerial actions.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q71" class="feedback" style="display:none;">
+This is TRUE. Covenants limit managerial behavior to reduce the risk faced by bondholders.
+</div>
+
+:::

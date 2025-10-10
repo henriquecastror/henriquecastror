@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q96','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q96" name="module6_tf_q96" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q96"><strong>A bond’s coupon rate adjusts automatically to market interest rate changes after issuance.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q96" class="feedback" style="display:none;">
+This is FALSE. Coupon rates are fixed at issuance; market yields adjust via bond price changes.
+</div>
+
+:::

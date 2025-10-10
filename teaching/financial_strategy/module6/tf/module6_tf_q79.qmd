@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q79','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q79" name="module6_tf_q79" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q79"><strong>The conversion ratio of a bond determines the number of shares a bondholder receives upon conversion.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q79" class="feedback" style="display:none;">
+This is TRUE. The conversion ratio specifies how many shares are obtained per bond converted.
+</div>
+
+:::

@@ -1,11 +1,11 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q004','T')" style="display: flex; align-items: center; gap: 8px;">
-<input type="text" id="module6_tf_q004" name="module6_tf_q004" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
-<label for="module6_tf_q004"><strong>Collateralized Debt Obligations (CDOs) are financial instruments that are typically backed by a diversified pool of assets, such as mortgages and loans.</strong></label>
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q4','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q4" name="module6_tf_q4" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q4"><strong>Collateralized Debt Obligations (CDOs) are financial instruments that are typically backed by a diversified pool of assets, such as mortgages and loans.</strong></label>
 </form>
 
-<div id="feedback-module6_tf_q004" class="feedback" data-status="" style="display:none;">
+<div id="feedback-module6_tf_q4" class="feedback" data-status="" style="display:none;">
 This is TRUE. CDOs are backed by pools of assets, which can include mortgages and loans.
 </div>
 

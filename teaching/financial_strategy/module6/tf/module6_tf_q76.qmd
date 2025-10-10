@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q76','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q76" name="module6_tf_q76" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q76"><strong>Callable bonds are more attractive to investors and therefore trade at higher prices than identical non-callable bonds.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q76" class="feedback" style="display:none;">
+This is FALSE. Callable bonds are less attractive due to call risk, so they trade at lower prices and higher yields.
+</div>
+
+:::

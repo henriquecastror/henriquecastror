@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q61','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q61" name="module6_tf_q61" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q61"><strong>Municipal bonds are often referred to as tax-exempt because their interest income is not taxable at the federal level.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q61" class="feedback" style="display:none;">
+This is TRUE. Municipal bonds usually provide tax advantages by exempting interest from federal taxation.
+</div>
+
+:::

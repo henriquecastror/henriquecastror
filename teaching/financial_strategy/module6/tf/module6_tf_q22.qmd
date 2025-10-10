@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q22','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q22" name="module6_tf_q22" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q22"><strong>An underwriter in a bond offering typically guarantees the purchase of the entire bond issue and resells it to investors.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q22" class="feedback" data-status="" style="display:none;">
+This is TRUE. Underwriters assume the risk of distributing the bond issue by purchasing it from the issuer and selling to the market.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q54','F')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q54" name="module6_tf_q54" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+<label for="module6_tf_q54"><strong>Bearer bonds require registration of the owner to receive coupon payments.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q54" class="feedback" style="display:none;">
+This is FALSE. Bearer bonds are unregistered—whoever holds the certificate receives the payments.
+</div>
+
+:::

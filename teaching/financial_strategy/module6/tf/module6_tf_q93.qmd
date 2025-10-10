@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q93','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q93" name="module6_tf_q93" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q93"><strong>The value of a convertible bond increases when the underlying stock price rises.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q93" class="feedback" style="display:none;">
+This is TRUE. The conversion option becomes more valuable when the stock price exceeds the conversion price.
+</div>
+
+:::

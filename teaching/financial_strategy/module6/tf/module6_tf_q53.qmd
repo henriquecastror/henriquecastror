@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q53','T')" style="display: flex; align-items: center; gap: 8px;">
+<input type="text" id="module6_tf_q53" name="module6_tf_q53" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+<label for="module6_tf_q53"><strong>Notes are unsecured corporate bonds that usually mature in less than ten years.</strong></label>
+</form>
+
+<div id="feedback-module6_tf_q53" class="feedback" style="display:none;">
+This is TRUE. Notes are unsecured debt instruments with shorter maturities than debentures.
+</div>
+
+:::
