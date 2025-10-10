@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q95')" data-correct-answer="C">
+<strong style="display: block;">What distinguishes a corporate bond from a government bond?</strong>
+
+<label><input type="radio" name="module6_mcq_q95" value="A"> A. Corporate bonds are always tax-free.</label><br>
+<label><input type="radio" name="module6_mcq_q95" value="B"> B. Government bonds carry higher default risk.</label><br>
+<label><input type="radio" name="module6_mcq_q95" value="C"> C. Corporate bonds are issued by private companies to raise capital.</label><br>
+<label><input type="radio" name="module6_mcq_q95" value="D"> D. Government bonds are always callable.</label><br>
+<label><input type="radio" name="module6_mcq_q95" value="E"> E. Corporate bonds cannot be traded publicly.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q95" class="feedback" style="display:none;">
+✅ Correct: C. Corporate bonds finance private sector operations, unlike government debt for fiscal policy.
+</div>
+
+:::

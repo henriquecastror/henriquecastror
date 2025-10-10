@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q77')" data-correct-answer="A">
+<strong style="display: block;">Which statement about yield to maturity (YTM) is correct?</strong>
+
+<label><input type="radio" name="module6_mcq_q77" value="A"> A. YTM is the discount rate that equates a bond’s price to the present value of its cash flows.</label><br>
+<label><input type="radio" name="module6_mcq_q77" value="B"> B. YTM measures only the annual coupon rate.</label><br>
+<label><input type="radio" name="module6_mcq_q77" value="C"> C. YTM excludes the effect of capital gains or losses.</label><br>
+<label><input type="radio" name="module6_mcq_q77" value="D"> D. YTM is determined solely by the issuer’s credit rating.</label><br>
+<label><input type="radio" name="module6_mcq_q77" value="E"> E. YTM equals the bond’s current yield for all maturities.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q77" class="feedback" style="display:none;">
+✅ Correct: A. YTM is the internal rate of return on a bond’s total future payments.
+</div>
+
+:::

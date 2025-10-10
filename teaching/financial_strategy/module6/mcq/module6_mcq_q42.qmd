@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q42')" data-correct-answer="A">
+<strong style="display: block;">What does it mean if a bond is trading at a discount?</strong>
+
+<label><input type="radio" name="module6_mcq_q42" value="A"> A. The bond’s market price is below its face value.</label><br>
+<label><input type="radio" name="module6_mcq_q42" value="B"> B. The bond’s coupon rate equals its yield to maturity.</label><br>
+<label><input type="radio" name="module6_mcq_q42" value="C"> C. The bond’s price exceeds its par value.</label><br>
+<label><input type="radio" name="module6_mcq_q42" value="D"> D. The bond was recently downgraded to default.</label><br>
+<label><input type="radio" name="module6_mcq_q42" value="E"> E. The bond has no coupon payments.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q42" class="feedback" style="display:none;">
+✅ Correct: A. A discount bond trades below par because its coupon rate is less than the market yield.
+</div>
+
+:::

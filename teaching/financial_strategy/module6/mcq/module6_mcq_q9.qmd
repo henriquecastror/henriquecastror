@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q9')" data-correct-answer="A">
+<strong style="display: block;">In case of bankruptcy, which claim has the highest repayment priority?</strong>
+
+<label><input type="radio" name="module6_mcq_q9" value="A"> A. Secured creditors</label><br>
+<label><input type="radio" name="module6_mcq_q9" value="B"> B. Subordinated bondholders</label><br>
+<label><input type="radio" name="module6_mcq_q9" value="C"> C. Preferred shareholders</label><br>
+<label><input type="radio" name="module6_mcq_q9" value="D"> D. Common shareholders</label><br>
+<label><input type="radio" name="module6_mcq_q9" value="E"> E. Unsecured creditors</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q9" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Secured creditors are repaid first, as they hold claims on pledged collateral.
+</div>
+
+:::

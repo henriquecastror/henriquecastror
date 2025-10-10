@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q57')" data-correct-answer="C">
+<strong style="display: block;">Which of the following bonds has the shortest duration?</strong>
+
+<label><input type="radio" name="module6_mcq_q57" value="A"> A. 10-year zero-coupon bond</label><br>
+<label><input type="radio" name="module6_mcq_q57" value="B"> B. 5-year fixed-rate bond</label><br>
+<label><input type="radio" name="module6_mcq_q57" value="C"> C. 2-year floating-rate note</label><br>
+<label><input type="radio" name="module6_mcq_q57" value="D"> D. 15-year low-coupon bond</label><br>
+<label><input type="radio" name="module6_mcq_q57" value="E"> E. 30-year Treasury bond</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q57" class="feedback" style="display:none;">
+✅ Correct: C. Floating-rate notes have very short durations since their coupons reset frequently.
+</div>
+
+:::

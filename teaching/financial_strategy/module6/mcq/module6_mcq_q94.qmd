@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q94')" data-correct-answer="E">
+<strong style="display: block;">Which of the following best defines a secured bond?</strong>
+
+<label><input type="radio" name="module6_mcq_q94" value="A"> A. A bond that pays variable coupons</label><br>
+<label><input type="radio" name="module6_mcq_q94" value="B"> B. A bond issued by a government</label><br>
+<label><input type="radio" name="module6_mcq_q94" value="C"> C. A bond that cannot default</label><br>
+<label><input type="radio" name="module6_mcq_q94" value="D"> D. A bond backed only by the issuer’s reputation</label><br>
+<label><input type="radio" name="module6_mcq_q94" value="E"> E. A bond backed by specific collateral assets</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q94" class="feedback" style="display:none;">
+✅ Correct: E. Secured bonds are collateralized by specific assets such as property or equipment.
+</div>
+
+:::

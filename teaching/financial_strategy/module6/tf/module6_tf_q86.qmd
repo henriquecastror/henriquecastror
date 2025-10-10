@@ -2,11 +2,11 @@
 
 <form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q86','F')" style="display: flex; align-items: center; gap: 8px;">
 <input type="text" id="module6_tf_q86" name="module6_tf_q86" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
-<label for="module6_tf_q86"><strong>Callable bonds are typically called when market interest rates increase above the bond’s coupon rate.</strong></label>
+<label for="module6_tf_q86"><strong>In Tesouro Direto, all government bonds guarantee the same fixed return regardless of inflation or interest rate changes.</strong></label>
 </form>
 
 <div id="feedback-module6_tf_q86" class="feedback" style="display:none;">
-This is FALSE. Issuers call bonds when market rates fall below the coupon rate, to refinance at lower cost.
+This is FALSE. Tesouro Direto offers different types of bonds — such as Tesouro Selic, Tesouro IPCA+, and Tesouro Prefixado — whose returns depend on interest rates or inflation dynamics.
 </div>
 
 :::

@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_multi_q001')" data-correct-answer="B">
+<strong style="display: block;">Consider the following statements about corporate bonds:</strong><br>
+
+I. Corporate bonds are always risk-free investments.<br>
+II. Bondholders have a prior claim over shareholders in bankruptcy.<br>
+III. Debentures are a type of unsecured corporate debt.<br><br>
+
+<label><input type="radio" name="module6_multi_q001" value="A"> A. I and II only</label><br>
+<label><input type="radio" name="module6_multi_q001" value="B"> B. II and III only</label><br>
+<label><input type="radio" name="module6_multi_q001" value="C"> C. I and III only</label><br>
+<label><input type="radio" name="module6_multi_q001" value="D"> D. All of the above</label><br>
+<label><input type="radio" name="module6_multi_q001" value="E"> E. None of the above</label><br>
+</form>
+
+<div id="feedback-module6_multi_q001" class="feedback" data-status="" style="display:none;">
+✅ Correct: <strong>B.</strong> Corporate bonds involve risk, bondholders have priority in bankruptcy, and debentures are unsecured debt.
+</div>
+
+:::

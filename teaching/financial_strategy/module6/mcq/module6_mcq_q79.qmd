@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q79')" data-correct-answer="C">
+<strong style="display: block;">Which type of bond is backed by a specific pool of assets such as mortgages or loans?</strong>
+
+<label><input type="radio" name="module6_mcq_q79" value="A"> A. Debenture</label><br>
+<label><input type="radio" name="module6_mcq_q79" value="B"> B. Treasury bill</label><br>
+<label><input type="radio" name="module6_mcq_q79" value="C"> C. Asset-backed security (ABS)</label><br>
+<label><input type="radio" name="module6_mcq_q79" value="D"> D. Convertible note</label><br>
+<label><input type="radio" name="module6_mcq_q79" value="E"> E. Eurobond</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q79" class="feedback" style="display:none;">
+✅ Correct: C. ABS instruments are secured by underlying financial assets that generate cash flows.
+</div>
+
+:::

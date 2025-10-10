@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q88')" data-correct-answer="B">
+<strong style="display: block;">What is the key characteristic of zero-coupon bonds?</strong>
+
+<label><input type="radio" name="module6_mcq_q88" value="A"> A. They pay semiannual interest.</label><br>
+<label><input type="radio" name="module6_mcq_q88" value="B"> B. They pay no periodic interest and are sold at a discount.</label><br>
+<label><input type="radio" name="module6_mcq_q88" value="C"> C. They pay variable coupons tied to inflation.</label><br>
+<label><input type="radio" name="module6_mcq_q88" value="D"> D. They pay interest quarterly.</label><br>
+<label><input type="radio" name="module6_mcq_q88" value="E"> E. They can only be issued by governments.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q88" class="feedback" style="display:none;">
+✅ Correct: B. Zero-coupon bonds have no periodic payments and mature at face value.
+</div>
+
+:::

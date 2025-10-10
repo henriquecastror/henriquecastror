@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q12')" data-correct-answer="B">
+<strong style="display: block;">What happens to a bond’s price when market interest rates rise?</strong>
+
+<label><input type="radio" name="module6_mcq_q12" value="A"> A. It increases.</label><br>
+<label><input type="radio" name="module6_mcq_q12" value="B"> B. It decreases.</label><br>
+<label><input type="radio" name="module6_mcq_q12" value="C"> C. It remains constant.</label><br>
+<label><input type="radio" name="module6_mcq_q12" value="D"> D. It becomes equal to its par value.</label><br>
+<label><input type="radio" name="module6_mcq_q12" value="E"> E. It doubles if the coupon is fixed.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q12" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Bond prices move inversely to interest rates.
+</div>
+
+:::

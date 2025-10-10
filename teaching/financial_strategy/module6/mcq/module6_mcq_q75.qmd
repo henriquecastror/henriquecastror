@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q75')" data-correct-answer="C">
+<strong style="display: block;">Which of the following is TRUE about callable bonds?</strong>
+
+<label><input type="radio" name="module6_mcq_q75" value="A"> A. They provide investors with the right to redeem early.</label><br>
+<label><input type="radio" name="module6_mcq_q75" value="B"> B. They typically have lower yields than comparable non-callable bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q75" value="C"> C. They give issuers flexibility to repay debt before maturity.</label><br>
+<label><input type="radio" name="module6_mcq_q75" value="D"> D. They cannot be issued by corporations.</label><br>
+<label><input type="radio" name="module6_mcq_q75" value="E"> E. They are only issued by governments.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q75" class="feedback" style="display:none;">
+✅ Correct: C. Callable bonds allow issuers to refinance debt when interest rates fall.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q34')" data-correct-answer="B">
+<strong style="display: block;">Which of the following best explains why callable bonds have higher yields than non-callable bonds?</strong>
+
+<label><input type="radio" name="module6_mcq_q34" value="A"> A. Callable bonds have lower credit risk.</label><br>
+<label><input type="radio" name="module6_mcq_q34" value="B"> B. Investors demand compensation for the reinvestment risk of early redemption.</label><br>
+<label><input type="radio" name="module6_mcq_q34" value="C"> C. Issuers cannot refinance callable bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q34" value="D"> D. Callable bonds are backed by government guarantees.</label><br>
+<label><input type="radio" name="module6_mcq_q34" value="E"> E. Callable bonds are tax-exempt.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q34" class="feedback" style="display:none;">
+✅ Correct: B. Investors receive a premium yield to offset the risk of the bond being called when rates fall.
+</div>
+
+:::

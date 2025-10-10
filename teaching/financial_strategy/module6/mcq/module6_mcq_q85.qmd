@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q85')" data-correct-answer="C">
+<strong style="display: block;">Which of the following best defines a callable bond?</strong>
+
+<label><input type="radio" name="module6_mcq_q85" value="A"> A. A bond that can be converted into equity by the investor.</label><br>
+<label><input type="radio" name="module6_mcq_q85" value="B"> B. A bond that allows investors to sell it back to the issuer before maturity.</label><br>
+<label><input type="radio" name="module6_mcq_q85" value="C"> C. A bond that allows the issuer to redeem it before maturity at a specified price.</label><br>
+<label><input type="radio" name="module6_mcq_q85" value="D"> D. A bond that pays coupons only upon demand.</label><br>
+<label><input type="radio" name="module6_mcq_q85" value="E"> E. A bond whose coupons adjust automatically with inflation.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q85" class="feedback" style="display:none;">
+✅ Correct: C. Callable bonds give the issuer the right to redeem early, typically when rates fall.
+</div>
+
+:::

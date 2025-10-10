@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q62')" data-correct-answer="C">
+<strong style="display: block;">What does a “rating outlook” from an agency typically indicate?</strong>
+
+<label><input type="radio" name="module6_mcq_q62" value="A"> A. The bond’s coupon rate</label><br>
+<label><input type="radio" name="module6_mcq_q62" value="B"> B. The maturity structure of the bond</label><br>
+<label><input type="radio" name="module6_mcq_q62" value="C"> C. The potential direction of future rating changes</label><br>
+<label><input type="radio" name="module6_mcq_q62" value="D"> D. The bond’s reinvestment policy</label><br>
+<label><input type="radio" name="module6_mcq_q62" value="E"> E. The expected market price trend</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q62" class="feedback" style="display:none;">
+✅ Correct: C. Rating outlooks (positive, stable, negative) signal the likely direction of upcoming rating actions.
+</div>
+
+:::

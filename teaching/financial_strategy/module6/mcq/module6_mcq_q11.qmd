@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q11')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements about bond ratings is correct?</strong>
+
+<label><input type="radio" name="module6_mcq_q11" value="A"> A. Ratings are fixed for the life of the bond and never change.</label><br>
+<label><input type="radio" name="module6_mcq_q11" value="B"> B. Ratings agencies base their assessments only on short-term profitability.</label><br>
+<label><input type="radio" name="module6_mcq_q11" value="C"> C. Ratings reflect the issuer’s creditworthiness and likelihood of default.</label><br>
+<label><input type="radio" name="module6_mcq_q11" value="D"> D. Ratings indicate future market price movements.</label><br>
+<label><input type="radio" name="module6_mcq_q11" value="E"> E. Ratings determine the coupon rate set by the Treasury.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q11" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Bond ratings measure credit risk and default probability, not price forecasts.
+</div>
+
+:::

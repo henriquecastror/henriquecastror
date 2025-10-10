@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q43')" data-correct-answer="E">
+<strong style="display: block;">Which of the following statements about yield curves is accurate?</strong>
+
+<label><input type="radio" name="module6_mcq_q43" value="A"> A. Yield curves are always upward sloping.</label><br>
+<label><input type="radio" name="module6_mcq_q43" value="B"> B. An inverted yield curve indicates rising economic growth.</label><br>
+<label><input type="radio" name="module6_mcq_q43" value="C"> C. The yield curve shows the relationship between credit ratings and default rates.</label><br>
+<label><input type="radio" name="module6_mcq_q43" value="D"> D. A flat yield curve suggests widening spreads between maturities.</label><br>
+<label><input type="radio" name="module6_mcq_q43" value="E"> E. The yield curve depicts yields across maturities for similar-risk bonds.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q43" class="feedback" style="display:none;">
+✅ Correct: E. The yield curve shows the term structure of interest rates for comparable credit quality.
+</div>
+
+:::

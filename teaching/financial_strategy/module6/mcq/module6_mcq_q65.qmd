@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q65')" data-correct-answer="B">
+<strong style="display: block;">Which type of corporate bond offers investors the option to convert debt into equity?</strong>
+
+<label><input type="radio" name="module6_mcq_q65" value="A"> A. Callable bond</label><br>
+<label><input type="radio" name="module6_mcq_q65" value="B"> B. Convertible bond</label><br>
+<label><input type="radio" name="module6_mcq_q65" value="C"> C. Putable bond</label><br>
+<label><input type="radio" name="module6_mcq_q65" value="D"> D. Secured bond</label><br>
+<label><input type="radio" name="module6_mcq_q65" value="E"> E. Debenture</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q65" class="feedback" style="display:none;">
+✅ Correct: B. Convertible bonds include an embedded option to exchange debt for stock.
+</div>
+
+:::

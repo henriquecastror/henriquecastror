@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q100')" data-correct-answer="C">
+<strong style="display: block;">What is the key distinction between public and private debt?</strong>
+
+<label><input type="radio" name="module6_mcq_q100" value="A"> A. Public debt is exempt from interest payments.</label><br>
+<label><input type="radio" name="module6_mcq_q100" value="B"> B. Private debt is issued through regulated exchanges.</label><br>
+<label><input type="radio" name="module6_mcq_q100" value="C"> C. Public debt is issued in markets accessible to all investors, while private debt is negotiated directly.</label><br>
+<label><input type="radio" name="module6_mcq_q100" value="D"> D. Only private debt requires credit ratings.</label><br>
+<label><input type="radio" name="module6_mcq_q100" value="E"> E. Public debt always has higher yields.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q100" class="feedback" style="display:none;">
+✅ Correct: C. Public debt is broadly traded, whereas private debt involves direct lender–borrower agreements.
+</div>
+
+:::

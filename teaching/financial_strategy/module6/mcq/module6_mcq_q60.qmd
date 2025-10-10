@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q60')" data-correct-answer="D">
+<strong style="display: block;">Which of the following accurately describes a bond’s par value?</strong>
+
+<label><input type="radio" name="module6_mcq_q60" value="A"> A. The bond’s issue price in the secondary market</label><br>
+<label><input type="radio" name="module6_mcq_q60" value="B"> B. The total interest paid during its life</label><br>
+<label><input type="radio" name="module6_mcq_q60" value="C"> C. The amount investors pay when purchasing the bond</label><br>
+<label><input type="radio" name="module6_mcq_q60" value="D"> D. The amount repaid to investors at maturity</label><br>
+<label><input type="radio" name="module6_mcq_q60" value="E"> E. The bond’s coupon yield</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q60" class="feedback" style="display:none;">
+✅ Correct: D. Par value (face value) is the amount repaid by the issuer at maturity.
+</div>
+
+:::

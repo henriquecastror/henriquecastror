@@ -1,0 +1,24 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkMCQAnswer('module6_multi_q004','B')" class="mcq-form">
+  <p><strong>Q4.</strong> Evaluate the following about debt issuance:</p>
+  <ol type="I">
+    <li>Public debt issuance requires registration with a regulatory authority.</li>
+    <li>Private placements are typically more liquid than public bonds.</li>
+    <li>Underwriters help in pricing and selling the bond issue.</li>
+  </ol>
+
+  <div class="options">
+    <label><input type="radio" name="module6_multi_q004" value="A"> A) I and II only</label><br>
+    <label><input type="radio" name="module6_multi_q004" value="B"> B) I and III only</label><br>
+    <label><input type="radio" name="module6_multi_q004" value="C"> C) II and III only</label><br>
+    <label><input type="radio" name="module6_multi_q004" value="D"> D) All of the above</label><br>
+    <label><input type="radio" name="module6_multi_q004" value="E"> E) None of the above</label>
+  </div>
+</form>
+
+<div id="feedback-module6_multi_q004" class="feedback" data-status="" style="display:none;">
+Correct answer: <strong>B</strong>. Public issues are regulated and underwriters assist in distribution; private placements are less liquid.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q36')" data-correct-answer="A">
+<strong style="display: block;">Which of the following is a characteristic of junk bonds?</strong>
+
+<label><input type="radio" name="module6_mcq_q36" value="A"> A. High yield and high credit risk</label><br>
+<label><input type="radio" name="module6_mcq_q36" value="B"> B. Guaranteed repayment by the Treasury</label><br>
+<label><input type="radio" name="module6_mcq_q36" value="C"> C. Issued only by investment-grade companies</label><br>
+<label><input type="radio" name="module6_mcq_q36" value="D"> D. Low default risk</label><br>
+<label><input type="radio" name="module6_mcq_q36" value="E"> E. Convertible into Treasury bills</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q36" class="feedback" style="display:none;">
+✅ Correct: A. Junk bonds offer high yields to compensate for elevated default risk.
+</div>
+
+:::

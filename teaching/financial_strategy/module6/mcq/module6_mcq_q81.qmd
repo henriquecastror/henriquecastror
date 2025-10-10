@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q81')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements about bond ratings is TRUE?</strong>
+
+<label><input type="radio" name="module6_mcq_q81" value="A"> A. Ratings remain constant once assigned.</label><br>
+<label><input type="radio" name="module6_mcq_q81" value="B"> B. Only government bonds receive ratings.</label><br>
+<label><input type="radio" name="module6_mcq_q81" value="C"> C. A downgrade increases the bond’s yield and lowers its price.</label><br>
+<label><input type="radio" name="module6_mcq_q81" value="D"> D. Ratings determine the bond’s market price exactly.</label><br>
+<label><input type="radio" name="module6_mcq_q81" value="E"> E. Ratings are based solely on past profitability.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q81" class="feedback" style="display:none;">
+✅ Correct: C. When a bond is downgraded, its credit risk rises, causing higher yields and lower prices.
+</div>
+
+:::

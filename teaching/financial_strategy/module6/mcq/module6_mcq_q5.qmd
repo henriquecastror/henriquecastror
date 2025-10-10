@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q5')" data-correct-answer="E">
+<strong style="display: block;">Which statement about secured and unsecured corporate debt is correct?</strong>
+
+<label><input type="radio" name="module6_mcq_q5" value="A"> A. Secured debt holders rank below unsecured bondholders</label><br>
+<label><input type="radio" name="module6_mcq_q5" value="B"> B. Unsecured debt is always rated higher than secured debt</label><br>
+<label><input type="radio" name="module6_mcq_q5" value="C"> C. Secured debt does not require collateral</label><br>
+<label><input type="radio" name="module6_mcq_q5" value="D"> D. Unsecured debt gives bondholders claim on specific assets</label><br>
+<label><input type="radio" name="module6_mcq_q5" value="E"> E. Secured debt is backed by collateral that can be seized in case of default</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q5" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Secured debt is supported by collateral, providing stronger protection to lenders.
+</div>
+
+:::

@@ -1,0 +1,324 @@
+---
+title: "Module 6: Multi-affirmative Questions"
+---
+
+```{=html}
+<style>
+/* ===== Estilo local: afeta somente esta página ===== */
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin: 1.2em 0;
+}
+/* Cabeçalho */
+main.content table thead th,
+main.content table tr:first-child th {
+  background: #1e293b;    /* Slate-800: mais claro que #0f172a */
+  color: #ffffff;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  border-top: 2px solid #0f172a; /* detalhe elegante */
+}
+/* Células */
+main.content table td {
+  padding: 9px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+/* Linhas alternadas */
+main.content table tbody tr:nth-child(even),
+main.content table tr:nth-child(even):not(:first-child) {
+  background: #f8fafc;
+}
+/* Hover highlight */
+main.content table tbody tr:hover,
+main.content table tr:hover:not(:first-child) {
+  background: #e0f2fe;
+}
+/* Ícones levemente maiores */
+main.content table td a {
+  font-size: 18px;
+  text-decoration: none;
+}
+main.content table td:first-child,
+main.content table th:first-child {
+  text-align: center;
+}
+main.content table td:nth-child(2),
+main.content table th:nth-child(2) {
+  text-align: center;
+}
+</style>
+
+```
+
+::: {.callout-warning}
+### For students
+
+```{r}
+#| echo: false
+#| results: asis
+#| warning: false
+cat(paste0("**Last updated:** ", format(Sys.time(), '%d/%m/%Y %H:%M', tz = 'America/Sao_Paulo')))
+```
+
+The questions are based on or inspired by the following references:
+
+- [**Berk & DeMarzo, Corporate Finance, 5th ed. (2020)**](https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154)  
+- [**Brealey & Myers, Principles of Corporate Finance, 13th ed. (2020)**](https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3)
+
+---
+
+💡 *You can also press `Ctrl + P` (or `Cmd + P` on Mac) to print or save your responses as a `.pdf` file.*
+
+---
+
+⚠️ _These exercises are **powered by AI-assisted technologies** and **may contain occasional formatting or logic errors**. Please report any issues you encounter so I can improve the experience._
+
+
+::: 
+
+
+
+___
+
+
+
+### 📘 Part 1 (until Midterm)
+
+| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
+|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
+| 6 | ch23 | [🎞️](p6.html) | [✅](p6tf.html) | [❓](p6mcq.html) | [🔢](p6num.html) | [📝](p6long.html) | [🧪](p6selfquiz.html) |
+
+
+
+
+___
+
+**Select the correct answers.**
+
+<script>
+  const SLIDE_ID = "module6_p6multi";
+</script>
+
+{{< include ../login-start.html >}}
+
+
+<!-- Botões de navegação (20 grupos, 5 questões por grupo) -->
+<div class="groups-wrap">
+  <button class="grp-btn" data-group="1"  onclick="showGroup(1)">1</button>
+  <button class="grp-btn" data-group="2"  onclick="showGroup(2)">2</button>
+  <button class="grp-btn" data-group="3"  onclick="showGroup(3)">3</button>
+  <button class="grp-btn" data-group="4"  onclick="showGroup(4)">4</button>
+  <button class="grp-btn" data-group="5"  onclick="showGroup(5)">5</button>
+  <button class="grp-btn" data-group="6"  onclick="showGroup(6)">6</button>
+  <button class="grp-btn" data-group="7"  onclick="showGroup(7)">7</button>
+  <button class="grp-btn" data-group="8"  onclick="showGroup(8)">8</button>
+  <button class="grp-btn" data-group="9"  onclick="showGroup(9)">9</button>
+  <button class="grp-btn" data-group="10" onclick="showGroup(10)">10</button>
+  <button class="grp-btn" data-group="11" onclick="showGroup(11)">11</button>
+  <button class="grp-btn" data-group="12" onclick="showGroup(12)">12</button>
+  <button class="grp-btn" data-group="13" onclick="showGroup(13)">13</button>
+  <button class="grp-btn" data-group="14" onclick="showGroup(14)">14</button>
+  <button class="grp-btn" data-group="15" onclick="showGroup(15)">15</button>
+  <button class="grp-btn" data-group="16" onclick="showGroup(16)">16</button>
+  <button class="grp-btn" data-group="17" onclick="showGroup(17)">17</button>
+  <button class="grp-btn" data-group="18" onclick="showGroup(18)">18</button>
+  <button class="grp-btn" data-group="19" onclick="showGroup(19)">19</button>
+  <button class="grp-btn" data-group="20" onclick="showGroup(20)">20</button>
+</div>
+
+
+
+<script>
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextGroup();
+    if (e.key === 'ArrowLeft')  prevGroup();
+  });
+</script>
+
+
+<style>
+/* Container dos botões */
+.groups-wrap{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;
+}
+
+/* Pílulas padrão */
+.grp-btn{
+  padding:8px 14px;
+  border:1px solid #e2e8f0;
+  background:#ffffff;
+  color:#0f172a;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  line-height:1;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.grp-btn:hover{ border-color:#94a3b8; }
+
+/* Pílula ativa (grupo selecionado) */
+.grp-btn.active{
+  background:#3b82f6;   /* azul */
+  color:#ffffff;
+  border-color:#3b82f6;
+}
+
+/* Card das questões (aplica em cada groupX) */
+.question-group{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:8px;
+  box-shadow:0 2px 4px rgba(0,0,0,.05);
+}
+
+/* Cada questão dentro do grupo vira uma “linha” com separador */
+.question-group > div{
+  padding:12px 8px;
+  border-top:1px solid #e5e7eb;
+}
+.question-group > div:first-child{ border-top:none; }
+
+/* Tipografia do número da questão (primeiro <div> da linha) */
+.question-group > div > div:first-child{
+  font-weight:800;
+  font-size:1.05rem;
+  min-width:44px !important;  /* um tiquinho maior */
+}
+</style>
+
+
+
+:::{.webex-box .card .mb-4 .p-3 style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px;"}
+<!-- Group 1: Q1–Q5 -->
+<div id="group1" class="question-group">
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q1.</div>
+  <div style="flex: 1;">
+    {{< include "multi/module6_multi_q1.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q2.</div>
+  <div style="flex: 1;">
+    {{< include "multi/module6_multi_q2.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q3.</div>
+  <div style="flex: 1;">
+    {{< include "multi/module6_multi_q3.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q4.</div>
+  <div style="flex: 1;">
+    {{< include "multi/module6_multi_q4.qmd" >}}
+  </div>
+</div>
+
+<div style="display: flex; align-items: start; gap: 8px;">
+  <div style="font-weight: bold; min-width: 40px;">Q5.</div>
+  <div style="flex: 1;">
+    {{< include "multi/module6_multi_q5.qmd" >}}
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Navegação entre os grupos -->
+<script>
+  let currentGroup = 1;
+  const totalGroups = 20;
+
+  function setActivePill(index){
+    const pills = document.querySelectorAll('.grp-btn[data-group]');
+    pills.forEach(btn => {
+      const n = Number(btn.getAttribute('data-group'));
+      if (n === index){
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'page');
+      } else {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function showGroup(index) {
+    for (let i = 1; i <= totalGroups; i++) {
+      const el = document.getElementById(`group${i}`);
+      if (el) el.style.display = (i === index) ? 'block' : 'none';
+    }
+    const ind = document.getElementById('group-indicator');
+    if (ind) ind.textContent = `Group ${index} of ${totalGroups}`;
+    currentGroup = index;
+    setActivePill(index);
+  }
+
+  function nextGroup() {
+    if (currentGroup < totalGroups) showGroup(currentGroup + 1);
+  }
+
+  function prevGroup() {
+    if (currentGroup > 1) showGroup(currentGroup - 1);
+  }
+
+  // Inicia no grupo 1 com pílula ativa
+  showGroup(currentGroup);
+</script>
+
+
+<div style="margin-top: 14px; display:flex; justify-content:center; gap:12px;">
+  <button class="grp-btn" onclick="prevGroup()">Previous</button>
+  <span id="group-indicator" style="align-self:center; font-weight:700;">Group 1 of 20</span>
+  <button class="grp-btn" onclick="nextGroup()">Next</button>
+</div>
+
+
+
+<div style="text-align: right;">
+{{< include "../quiz-utils.html" >}}
+</div>
+
+:::
+
+
+{{< include ../login-end.html >}}
+
+
+
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="/teaching/financial_strategy/" class="btn btn-outline-primary btn-lg">
+    🔙
+  </a>
+</div>
+
+

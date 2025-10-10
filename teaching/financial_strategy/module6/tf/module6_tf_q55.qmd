@@ -2,7 +2,7 @@
 
 <form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q55','T')" style="display: flex; align-items: center; gap: 8px;">
 <input type="text" id="module6_tf_q55" name="module6_tf_q55" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
-<label for="module6_tf_q55"><strong>Eurobonds are international bonds that are not denominated in the local currency of the country in which they are issued.</strong></label>
+<label for="module6_tf_q55"><strong>Eurobonds are international bonds that tipically are not denominated in the local currency of the country in which they are issued.</strong></label>
 </form>
 
 <div id="feedback-module6_tf_q55" class="feedback" style="display:none;">

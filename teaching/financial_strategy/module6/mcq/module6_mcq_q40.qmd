@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q40')" data-correct-answer="D">
+<strong style="display: block;">Which of the following best describes duration risk?</strong>
+
+<label><input type="radio" name="module6_mcq_q40" value="A"> A. The risk of reinvesting coupons at lower rates</label><br>
+<label><input type="radio" name="module6_mcq_q40" value="B"> B. The possibility that a bond will be called before maturity</label><br>
+<label><input type="radio" name="module6_mcq_q40" value="C"> C. The probability of issuer default</label><br>
+<label><input type="radio" name="module6_mcq_q40" value="D"> D. The sensitivity of bond price to changes in market interest rates</label><br>
+<label><input type="radio" name="module6_mcq_q40" value="E"> E. The effect of inflation on real yields</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q40" class="feedback" style="display:none;">
+✅ Correct: D. Duration measures a bond’s price responsiveness to interest rate movements.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q86')" data-correct-answer="A">
+<strong style="display: block;">What is a putable bond?</strong>
+
+<label><input type="radio" name="module6_mcq_q86" value="A"> A. A bond that gives investors the right to sell it back to the issuer before maturity.</label><br>
+<label><input type="radio" name="module6_mcq_q86" value="B"> B. A bond with zero-coupon payments.</label><br>
+<label><input type="radio" name="module6_mcq_q86" value="C"> C. A bond that is convertible into equity.</label><br>
+<label><input type="radio" name="module6_mcq_q86" value="D"> D. A bond callable by the issuer at par value.</label><br>
+<label><input type="radio" name="module6_mcq_q86" value="E"> E. A bond issued only by governments.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q86" class="feedback" style="display:none;">
+✅ Correct: A. Putable bonds protect investors by allowing them to sell the bond back before maturity.
+</div>
+
+:::

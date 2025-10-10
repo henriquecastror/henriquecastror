@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q92')" data-correct-answer="D">
+<strong style="display: block;">Which statement about interest rate risk is TRUE?</strong>
+
+<label><input type="radio" name="module6_mcq_q92" value="A"> A. It only affects short-term bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q92" value="B"> B. It is irrelevant for fixed-income investors.</label><br>
+<label><input type="radio" name="module6_mcq_q92" value="C"> C. It is higher for bonds with short maturities.</label><br>
+<label><input type="radio" name="module6_mcq_q92" value="D"> D. It increases with bond duration and maturity.</label><br>
+<label><input type="radio" name="module6_mcq_q92" value="E"> E. It decreases with lower coupon rates.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q92" class="feedback" style="display:none;">
+✅ Correct: D. Longer-duration bonds experience larger price changes when interest rates shift.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q68')" data-correct-answer="C">
+<strong style="display: block;">Which of the following correctly defines a Eurobond?</strong>
+
+<label><input type="radio" name="module6_mcq_q68" value="A"> A. A bond denominated in euros issued in the eurozone</label><br>
+<label><input type="radio" name="module6_mcq_q68" value="B"> B. A bond issued by the European Central Bank</label><br>
+<label><input type="radio" name="module6_mcq_q68" value="C"> C. A bond issued outside the home country in a currency not native to that market</label><br>
+<label><input type="radio" name="module6_mcq_q68" value="D"> D. A bond restricted to European investors only</label><br>
+<label><input type="radio" name="module6_mcq_q68" value="E"> E. A bond backed by European governments collectively</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q68" class="feedback" style="display:none;">
+✅ Correct: C. Eurobonds are issued in a foreign market and currency unrelated to the country of issuance.
+</div>
+
+:::

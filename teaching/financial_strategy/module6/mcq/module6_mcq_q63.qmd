@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q63')" data-correct-answer="A">
+<strong style="display: block;">Which of the following statements about credit spreads is TRUE?</strong>
+
+<label><input type="radio" name="module6_mcq_q63" value="A"> A. They widen when perceived credit risk increases.</label><br>
+<label><input type="radio" name="module6_mcq_q63" value="B"> B. They are constant across all maturities.</label><br>
+<label><input type="radio" name="module6_mcq_q63" value="C"> C. They narrow during financial crises.</label><br>
+<label><input type="radio" name="module6_mcq_q63" value="D"> D. They reflect inflation expectations only.</label><br>
+<label><input type="radio" name="module6_mcq_q63" value="E"> E. They are unaffected by liquidity conditions.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q63" class="feedback" style="display:none;">
+✅ Correct: A. Credit spreads expand when default risk rises or market confidence declines.
+</div>
+
+:::

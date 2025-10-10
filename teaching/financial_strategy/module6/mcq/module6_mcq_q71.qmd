@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q71')" data-correct-answer="A">
+<strong style="display: block;">What does the term “default risk premium” represent in bond pricing?</strong>
+
+<label><input type="radio" name="module6_mcq_q71" value="A"> A. The extra yield investors require for taking on credit risk.</label><br>
+<label><input type="radio" name="module6_mcq_q71" value="B"> B. The inflation-adjusted return on Treasury bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q71" value="C"> C. The spread between callable and non-callable bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q71" value="D"> D. The difference between current and nominal yields.</label><br>
+<label><input type="radio" name="module6_mcq_q71" value="E"> E. The compensation for interest rate risk only.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q71" class="feedback" style="display:none;">
+✅ Correct: A. The default risk premium compensates investors for the possibility of issuer default.
+</div>
+
+:::

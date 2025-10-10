@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q96')" data-correct-answer="B">
+<strong style="display: block;">Which of the following correctly defines the yield curve?</strong>
+
+<label><input type="radio" name="module6_mcq_q96" value="A"> A. A graph showing inflation and unemployment</label><br>
+<label><input type="radio" name="module6_mcq_q96" value="B"> B. A graph showing the relationship between bond yields and maturities</label><br>
+<label><input type="radio" name="module6_mcq_q96" value="C"> C. A chart comparing corporate and municipal bond spreads</label><br>
+<label><input type="radio" name="module6_mcq_q96" value="D"> D. A schedule of bond payment dates</label><br>
+<label><input type="radio" name="module6_mcq_q96" value="E"> E. A summary of historical bond prices</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q96" class="feedback" style="display:none;">
+✅ Correct: B. The yield curve shows yields across different maturities for similar-risk securities.
+</div>
+
+:::

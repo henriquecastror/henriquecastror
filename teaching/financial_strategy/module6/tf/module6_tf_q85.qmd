@@ -2,11 +2,11 @@
 
 <form onsubmit="event.preventDefault(); checkAnswerBox('module6_tf_q85','T')" style="display: flex; align-items: center; gap: 8px;">
 <input type="text" id="module6_tf_q85" name="module6_tf_q85" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
-<label for="module6_tf_q85"><strong>The yield to call (YTC) assumes that the bond will be called at the earliest opportunity allowed by the indenture.</strong></label>
+<label for="module6_tf_q85"><strong>In Brazil, Tesouro Direto allows individual investors to purchase government bonds directly from the Treasury through an online platform.</strong></label>
 </form>
 
 <div id="feedback-module6_tf_q85" class="feedback" style="display:none;">
-This is TRUE. YTC measures the annualized return assuming the issuer calls the bond as soon as possible.
+This is TRUE. Tesouro Direto is a Brazilian program that enables retail investors to buy and sell federal government bonds directly over the internet, promoting financial inclusion and education.
 </div>
 
 :::

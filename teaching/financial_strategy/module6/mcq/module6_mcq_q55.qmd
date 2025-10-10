@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q55')" data-correct-answer="A">
+<strong style="display: block;">What does it mean when a bond is “investment grade”?</strong>
+
+<label><input type="radio" name="module6_mcq_q55" value="A"> A. It has a credit rating of BBB–/Baa3 or higher.</label><br>
+<label><input type="radio" name="module6_mcq_q55" value="B"> B. It is guaranteed by the government.</label><br>
+<label><input type="radio" name="module6_mcq_q55" value="C"> C. It has no risk of default.</label><br>
+<label><input type="radio" name="module6_mcq_q55" value="D"> D. It trades only on primary markets.</label><br>
+<label><input type="radio" name="module6_mcq_q55" value="E"> E. It must be secured by collateral.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q55" class="feedback" style="display:none;">
+✅ Correct: A. Investment-grade bonds have moderate to low credit risk (BBB–/Baa3 or above).
+</div>
+
+:::

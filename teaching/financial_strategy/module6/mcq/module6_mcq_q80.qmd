@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q80')" data-correct-answer="E">
+<strong style="display: block;">Which of the following best describes the purpose of credit ratings?</strong>
+
+<label><input type="radio" name="module6_mcq_q80" value="A"> A. To determine a bond’s market price directly</label><br>
+<label><input type="radio" name="module6_mcq_q80" value="B"> B. To predict macroeconomic trends</label><br>
+<label><input type="radio" name="module6_mcq_q80" value="C"> C. To guarantee debt repayment by the issuer</label><br>
+<label><input type="radio" name="module6_mcq_q80" value="D"> D. To indicate the bond’s duration and volatility</label><br>
+<label><input type="radio" name="module6_mcq_q80" value="E"> E. To assess the issuer’s creditworthiness and default probability</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q80" class="feedback" style="display:none;">
+✅ Correct: E. Credit ratings evaluate the likelihood that a borrower will meet its debt obligations.
+</div>
+
+:::

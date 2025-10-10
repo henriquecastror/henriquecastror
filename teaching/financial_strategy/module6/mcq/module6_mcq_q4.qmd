@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q4')" data-correct-answer="A">
+<strong style="display: block;">What is the main role of a bond trustee in a corporate bond issue?</strong>
+
+<label><input type="radio" name="module6_mcq_q4" value="A"> A. To ensure that the issuer complies with the terms of the indenture</label><br>
+<label><input type="radio" name="module6_mcq_q4" value="B"> B. To provide insurance against default</label><br>
+<label><input type="radio" name="module6_mcq_q4" value="C"> C. To determine the coupon rate of the bond</label><br>
+<label><input type="radio" name="module6_mcq_q4" value="D"> D. To guarantee the resale price in the secondary market</label><br>
+<label><input type="radio" name="module6_mcq_q4" value="E"> E. To underwrite the entire bond issue</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q4" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. The trustee monitors compliance with the indenture and protects bondholders’ interests.
+</div>
+
+:::

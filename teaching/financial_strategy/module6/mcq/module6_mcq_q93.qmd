@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q93')" data-correct-answer="A">
+<strong style="display: block;">Which of the following statements best defines duration?</strong>
+
+<label><input type="radio" name="module6_mcq_q93" value="A"> A. The weighted average time to receive all bond cash flows</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="B"> B. The time until bond maturity</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="C"> C. The total number of coupon payments</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="D"> D. The difference between coupon and yield</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="E"> E. The number of years since issue date</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q93" class="feedback" style="display:none;">
+✅ Correct: A. Duration measures the average time-weighted value of a bond’s cash flows.
+</div>
+
+:::

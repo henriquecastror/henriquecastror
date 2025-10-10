@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q51')" data-correct-answer="C">
+<strong style="display: block;">Which of the following best explains the relationship between bond prices and yields?</strong>
+
+<label><input type="radio" name="module6_mcq_q51" value="A"> A. Bond prices and yields move in the same direction.</label><br>
+<label><input type="radio" name="module6_mcq_q51" value="B"> B. Bond prices are unaffected by yield changes.</label><br>
+<label><input type="radio" name="module6_mcq_q51" value="C"> C. Bond prices move inversely to yields.</label><br>
+<label><input type="radio" name="module6_mcq_q51" value="D"> D. Bond prices only change when ratings change.</label><br>
+<label><input type="radio" name="module6_mcq_q51" value="E"> E. Bond prices depend only on coupon frequency.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q51" class="feedback" style="display:none;">
+✅ Correct: C. When yields rise, bond prices fall, and vice versa — the fundamental inverse relationship.
+</div>
+
+:::

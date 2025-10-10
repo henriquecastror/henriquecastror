@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q84')" data-correct-answer="B">
+<strong style="display: block;">What is the typical relationship between bond prices and interest rates?</strong>
+
+<label><input type="radio" name="module6_mcq_q84" value="A"> A. They move together.</label><br>
+<label><input type="radio" name="module6_mcq_q84" value="B"> B. They move in opposite directions.</label><br>
+<label><input type="radio" name="module6_mcq_q84" value="C"> C. They are unrelated.</label><br>
+<label><input type="radio" name="module6_mcq_q84" value="D"> D. They only change during defaults.</label><br>
+<label><input type="radio" name="module6_mcq_q84" value="E"> E. They move randomly.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q84" class="feedback" style="display:none;">
+✅ Correct: B. Bond prices fall when interest rates rise and rise when rates fall.
+</div>
+
+:::

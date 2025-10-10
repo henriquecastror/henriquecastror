@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q2')" data-correct-answer="B">
+<strong style="display: block;">Which of the following is most clearly a negative (restrictive) covenant typically found in bond indentures?</strong>
+
+<label><input type="radio" name="module6_mcq_q2" value="A"> A. Maintain adequate insurance coverage</label><br>
+<label><input type="radio" name="module6_mcq_q2" value="B"> B. Do not incur additional debt beyond a specified leverage limit</label><br>
+<label><input type="radio" name="module6_mcq_q2" value="C"> C. Provide quarterly financial statements to bondholders</label><br>
+<label><input type="radio" name="module6_mcq_q2" value="D"> D. Keep a minimum interest coverage ratio of 3.0×</label><br>
+<label><input type="radio" name="module6_mcq_q2" value="E"> E. Appoint an independent trustee to represent bondholders</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q2" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. A prohibition or cap on additional borrowing is a classic negative covenant; items like reporting, insurance, and minimum coverage are affirmative (positive) covenants.
+</div>
+
+:::

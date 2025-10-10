@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q31')" data-correct-answer="A">
+<strong style="display: block;">Which of the following bonds typically offers the lowest yield due to minimal credit risk?</strong>
+
+<label><input type="radio" name="module6_mcq_q31" value="A"> A. U.S. Treasury bond</label><br>
+<label><input type="radio" name="module6_mcq_q31" value="B"> B. Municipal bond</label><br>
+<label><input type="radio" name="module6_mcq_q31" value="C"> C. Corporate debenture</label><br>
+<label><input type="radio" name="module6_mcq_q31" value="D"> D. High-yield bond</label><br>
+<label><input type="radio" name="module6_mcq_q31" value="E"> E. Subordinated note</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q31" class="feedback" style="display:none;">
+✅ Correct: A. Treasury bonds carry negligible credit risk and thus the lowest yields among major bond types.
+</div>
+
+:::

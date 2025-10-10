@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q6')" data-correct-answer="B">
+<strong style="display: block;">A callable bond gives the issuer which specific right?</strong>
+
+<label><input type="radio" name="module6_mcq_q6" value="A"> A. To exchange the bond for equity at any time</label><br>
+<label><input type="radio" name="module6_mcq_q6" value="B"> B. To repurchase the bond before maturity at a pre-specified price</label><br>
+<label><input type="radio" name="module6_mcq_q6" value="C"> C. To extend the maturity of the bond beyond the original term</label><br>
+<label><input type="radio" name="module6_mcq_q6" value="D"> D. To change the coupon rate based on inflation</label><br>
+<label><input type="radio" name="module6_mcq_q6" value="E"> E. To sell the bond to another issuer</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q6" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. A callable bond allows the issuer to redeem the bond early, usually when interest rates fall.
+</div>
+
+:::

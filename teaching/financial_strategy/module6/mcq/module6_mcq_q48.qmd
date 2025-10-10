@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q48')" data-correct-answer="D">
+<strong style="display: block;">Which of the following accurately describes a Treasury Inflation-Protected Security (TIPS)?</strong>
+
+<label><input type="radio" name="module6_mcq_q48" value="A"> A. Pays a fixed nominal return regardless of inflation</label><br>
+<label><input type="radio" name="module6_mcq_q48" value="B"> B. Provides tax-free interest income</label><br>
+<label><input type="radio" name="module6_mcq_q48" value="C"> C. Is issued only to institutional investors</label><br>
+<label><input type="radio" name="module6_mcq_q48" value="D"> D. Adjusts principal with inflation to preserve real purchasing power</label><br>
+<label><input type="radio" name="module6_mcq_q48" value="E"> E. Has no secondary market liquidity</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q48" class="feedback" style="display:none;">
+✅ Correct: D. TIPS increase their principal value with inflation, ensuring real returns for investors.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q46')" data-correct-answer="C">
+<strong style="display: block;">Which of the following best describes a bond’s current yield?</strong>
+
+<label><input type="radio" name="module6_mcq_q46" value="A"> A. The bond’s yield to maturity</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="B"> B. The total return including capital gains</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="C"> C. The annual coupon divided by the current market price</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="D"> D. The internal rate of return for all cash flows</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="E"> E. The yield spread between two maturities</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q46" class="feedback" style="display:none;">
+✅ Correct: C. Current yield measures annual income relative to market price, ignoring capital gains.
+</div>
+
+:::

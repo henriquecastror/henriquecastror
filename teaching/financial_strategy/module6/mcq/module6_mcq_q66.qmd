@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q66')" data-correct-answer="A">
+<strong style="display: block;">In bankruptcy proceedings, which party is paid first from the liquidation of assets?</strong>
+
+<label><input type="radio" name="module6_mcq_q66" value="A"> A. Secured creditors</label><br>
+<label><input type="radio" name="module6_mcq_q66" value="B"> B. Subordinated bondholders</label><br>
+<label><input type="radio" name="module6_mcq_q66" value="C"> C. Preferred shareholders</label><br>
+<label><input type="radio" name="module6_mcq_q66" value="D"> D. Common shareholders</label><br>
+<label><input type="radio" name="module6_mcq_q66" value="E"> E. Unsecured noteholders</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q66" class="feedback" style="display:none;">
+✅ Correct: A. Secured creditors have first claim on pledged assets during bankruptcy.
+</div>
+
+:::

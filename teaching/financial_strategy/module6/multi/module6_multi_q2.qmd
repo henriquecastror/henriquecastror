@@ -1,0 +1,24 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkMCQAnswer('module6_multi_q002','C')" class="mcq-form">
+  <p><strong>Q2.</strong> Regarding debt covenants, evaluate the following statements:</p>
+  <ol type="I">
+    <li>Covenants are contractual clauses that restrict the borrower's behavior.</li>
+    <li>They are primarily designed to protect shareholders from management.</li>
+    <li>Violating a covenant can trigger default or renegotiation.</li>
+  </ol>
+
+  <div class="options">
+    <label><input type="radio" name="module6_multi_q002" value="A"> A) I only</label><br>
+    <label><input type="radio" name="module6_multi_q002" value="B"> B) II only</label><br>
+    <label><input type="radio" name="module6_multi_q002" value="C"> C) I and III only</label><br>
+    <label><input type="radio" name="module6_multi_q002" value="D"> D) All of the above</label><br>
+    <label><input type="radio" name="module6_multi_q002" value="E"> E) None of the above</label>
+  </div>
+</form>
+
+<div id="feedback-module6_multi_q002" class="feedback" data-status="" style="display:none;">
+Correct answer: <strong>C</strong>. Covenants protect lenders, not shareholders, and their violation may lead to default.
+</div>
+
+:::

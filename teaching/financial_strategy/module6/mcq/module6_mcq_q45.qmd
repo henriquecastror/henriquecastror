@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q45')" data-correct-answer="B">
+<strong style="display: block;">What is the key risk faced by holders of callable bonds?</strong>
+
+<label><input type="radio" name="module6_mcq_q45" value="A"> A. Inflation risk</label><br>
+<label><input type="radio" name="module6_mcq_q45" value="B"> B. Reinvestment risk</label><br>
+<label><input type="radio" name="module6_mcq_q45" value="C"> C. Default risk</label><br>
+<label><input type="radio" name="module6_mcq_q45" value="D"> D. Liquidity risk</label><br>
+<label><input type="radio" name="module6_mcq_q45" value="E"> E. Conversion risk</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q45" class="feedback" style="display:none;">
+✅ Correct: B. Callable bonds expose investors to reinvestment risk if the issuer redeems the bond when rates fall.
+</div>
+
+:::

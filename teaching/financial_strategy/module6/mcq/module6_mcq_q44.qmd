@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q44')" data-correct-answer="D">
+<strong style="display: block;">Which statement about floating-rate notes (FRNs) is correct?</strong>
+
+<label><input type="radio" name="module6_mcq_q44" value="A"> A. Their coupons are fixed for the life of the bond.</label><br>
+<label><input type="radio" name="module6_mcq_q44" value="B"> B. They offer no protection against rising rates.</label><br>
+<label><input type="radio" name="module6_mcq_q44" value="C"> C. They have longer duration than fixed-rate bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q44" value="D"> D. Their coupon payments adjust periodically based on a benchmark rate.</label><br>
+<label><input type="radio" name="module6_mcq_q44" value="E"> E. They always pay lower yields than fixed bonds.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q44" class="feedback" style="display:none;">
+✅ Correct: D. FRNs reset their coupons periodically to reflect changes in reference interest rates.
+</div>
+
+:::

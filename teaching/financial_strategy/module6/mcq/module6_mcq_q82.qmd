@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q82')" data-correct-answer="A">
+<strong style="display: block;">What does the term “junk bond” refer to?</strong>
+
+<label><input type="radio" name="module6_mcq_q82" value="A"> A. A bond with a credit rating below investment grade.</label><br>
+<label><input type="radio" name="module6_mcq_q82" value="B"> B. A short-term Treasury bill.</label><br>
+<label><input type="radio" name="module6_mcq_q82" value="C"> C. A bond guaranteed by the government.</label><br>
+<label><input type="radio" name="module6_mcq_q82" value="D"> D. A tax-exempt municipal bond.</label><br>
+<label><input type="radio" name="module6_mcq_q82" value="E"> E. A high-rated Eurobond.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q82" class="feedback" style="display:none;">
+✅ Correct: A. Junk bonds are speculative-grade securities with higher yields and higher risk of default.
+</div>
+
+:::

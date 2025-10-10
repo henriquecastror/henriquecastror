@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q83')" data-correct-answer="E">
+<strong style="display: block;">Which of the following describes a Yankee bond?</strong>
+
+<label><input type="radio" name="module6_mcq_q83" value="A"> A. A bond issued in Japan by a U.S. corporation.</label><br>
+<label><input type="radio" name="module6_mcq_q83" value="B"> B. A bond denominated in euros but issued in the U.S.</label><br>
+<label><input type="radio" name="module6_mcq_q83" value="C"> C. A bond sold only to American retail investors.</label><br>
+<label><input type="radio" name="module6_mcq_q83" value="D"> D. A U.S. Treasury security issued to foreign investors.</label><br>
+<label><input type="radio" name="module6_mcq_q83" value="E"> E. A foreign bond issued in the U.S. in U.S. dollars by a non-U.S. entity.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q83" class="feedback" style="display:none;">
+✅ Correct: E. Yankee bonds are foreign issues sold in the U.S. market and denominated in U.S. dollars.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q21')" data-correct-answer="B">
+<strong style="display: block;">Which of the following best defines a debenture?</strong>
+
+<label><input type="radio" name="module6_mcq_q21" value="A"> A. A bond backed by physical collateral</label><br>
+<label><input type="radio" name="module6_mcq_q21" value="B"> B. An unsecured bond relying on the issuer’s creditworthiness</label><br>
+<label><input type="radio" name="module6_mcq_q21" value="C"> C. A short-term government security</label><br>
+<label><input type="radio" name="module6_mcq_q21" value="D"> D. A convertible note with equity features</label><br>
+<label><input type="radio" name="module6_mcq_q21" value="E"> E. A bond issued only by banks</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q21" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Debentures are unsecured corporate bonds supported by the issuer’s credit reputation.
+</div>
+
+:::

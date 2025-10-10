@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q23')" data-correct-answer="E">
+<strong style="display: block;">Which of the following statements about zero-coupon bonds is true?</strong>
+
+<label><input type="radio" name="module6_mcq_q23" value="A"> A. They pay annual coupons to investors.</label><br>
+<label><input type="radio" name="module6_mcq_q23" value="B"> B. Their duration is lower than comparable coupon bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q23" value="C"> C. They are immune to interest rate risk.</label><br>
+<label><input type="radio" name="module6_mcq_q23" value="D"> D. Their price equals their par value at issuance.</label><br>
+<label><input type="radio" name="module6_mcq_q23" value="E"> E. They sell at a discount and pay face value at maturity.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q23" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Zero-coupon bonds trade at a discount and return face value at maturity.
+</div>
+
+:::

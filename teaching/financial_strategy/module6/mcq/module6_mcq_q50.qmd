@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q50')" data-correct-answer="B">
+<strong style="display: block;">Which statement correctly compares yield to call (YTC) and yield to maturity (YTM)?</strong>
+
+<label><input type="radio" name="module6_mcq_q50" value="A"> A. YTC assumes the bond is held until maturity date.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="B"> B. YTC assumes the bond is called at the earliest call date.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="C"> C. YTC is always higher than YTM.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="D"> D. YTM accounts for reinvestment risk, YTC does not.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="E"> E. YTC is used only for zero-coupon bonds.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q50" class="feedback" style="display:none;">
+✅ Correct: B. YTC assumes the bond is redeemed on the first available call date, often used for callable issues.
+</div>
+
+:::

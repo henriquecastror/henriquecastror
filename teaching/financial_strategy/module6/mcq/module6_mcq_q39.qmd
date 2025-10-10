@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q39')" data-correct-answer="E">
+<strong style="display: block;">Which of the following bonds carries the greatest default risk?</strong>
+
+<label><input type="radio" name="module6_mcq_q39" value="A"> A. U.S. Treasury bond</label><br>
+<label><input type="radio" name="module6_mcq_q39" value="B"> B. Investment-grade corporate bond</label><br>
+<label><input type="radio" name="module6_mcq_q39" value="C"> C. Municipal bond</label><br>
+<label><input type="radio" name="module6_mcq_q39" value="D"> D. Secured debenture</label><br>
+<label><input type="radio" name="module6_mcq_q39" value="E"> E. Subordinated junk bond</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q39" class="feedback" style="display:none;">
+✅ Correct: E. Subordinated junk bonds rank lowest in repayment priority and have the highest credit risk.
+</div>
+
+:::

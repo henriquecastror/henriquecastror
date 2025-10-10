@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q98')" data-correct-answer="A">
+<strong style="display: block;">Which of the following statements about Treasury bills (T-bills) is TRUE?</strong>
+
+<label><input type="radio" name="module6_mcq_q98" value="A"> A. They are short-term government securities sold at a discount.</label><br>
+<label><input type="radio" name="module6_mcq_q98" value="B"> B. They pay semiannual interest.</label><br>
+<label><input type="radio" name="module6_mcq_q98" value="C"> C. They have maturities greater than 10 years.</label><br>
+<label><input type="radio" name="module6_mcq_q98" value="D"> D. They are issued only by corporations.</label><br>
+<label><input type="radio" name="module6_mcq_q98" value="E"> E. They are riskier than corporate bonds.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q98" class="feedback" style="display:none;">
+✅ Correct: A. T-bills are short-term, zero-coupon government securities sold below face value.
+</div>
+
+:::

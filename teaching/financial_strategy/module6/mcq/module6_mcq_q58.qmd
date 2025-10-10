@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q58')" data-correct-answer="A">
+<strong style="display: block;">What happens to the price of a bond if its credit rating is downgraded?</strong>
+
+<label><input type="radio" name="module6_mcq_q58" value="A"> A. The price typically decreases as investors demand higher yields.</label><br>
+<label><input type="radio" name="module6_mcq_q58" value="B"> B. The price remains unaffected because the coupon is fixed.</label><br>
+<label><input type="radio" name="module6_mcq_q58" value="C"> C. The price increases due to higher demand.</label><br>
+<label><input type="radio" name="module6_mcq_q58" value="D"> D. The price doubles immediately.</label><br>
+<label><input type="radio" name="module6_mcq_q58" value="E"> E. The rating downgrade affects only Treasury bonds.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q58" class="feedback" style="display:none;">
+✅ Correct: A. Downgrades increase credit risk, leading to falling prices and higher yields.
+</div>
+
+:::

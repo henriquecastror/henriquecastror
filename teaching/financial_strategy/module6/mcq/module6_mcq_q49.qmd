@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q49')" data-correct-answer="A">
+<strong style="display: block;">Which of the following statements about bond price volatility is true?</strong>
+
+<label><input type="radio" name="module6_mcq_q49" value="A"> A. Bonds with longer maturities and lower coupons are more volatile.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="B"> B. Bonds with shorter maturities are always more volatile.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="C"> C. Coupon rate has no effect on volatility.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="D"> D. Duration and volatility are unrelated.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="E"> E. Callable bonds are less volatile than non-callable ones.</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q49" class="feedback" style="display:none;">
+✅ Correct: A. Low-coupon, long-maturity bonds exhibit greater price sensitivity to yield changes.
+</div>
+
+:::

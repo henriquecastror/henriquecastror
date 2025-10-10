@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q3')" data-correct-answer="C">
+<strong style="display: block;">Which of the following best describes a subordinated debenture?</strong>
+
+<label><input type="radio" name="module6_mcq_q3" value="A"> A. A bond secured by specific collateral</label><br>
+<label><input type="radio" name="module6_mcq_q3" value="B"> B. A bond issued by a government entity</label><br>
+<label><input type="radio" name="module6_mcq_q3" value="C"> C. An unsecured bond with lower priority in case of liquidation</label><br>
+<label><input type="radio" name="module6_mcq_q3" value="D"> D. A convertible bond with a fixed conversion price</label><br>
+<label><input type="radio" name="module6_mcq_q3" value="E"> E. A bond backed by a pool of mortgages</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q3" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Subordinated debentures are unsecured and have lower seniority in bankruptcy claims.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q35')" data-correct-answer="D">
+<strong style="display: block;">Which bondholder would suffer the largest loss if interest rates suddenly increased?</strong>
+
+<label><input type="radio" name="module6_mcq_q35" value="A"> A. Holder of a short-term floating-rate note</label><br>
+<label><input type="radio" name="module6_mcq_q35" value="B"> B. Holder of a callable bond near maturity</label><br>
+<label><input type="radio" name="module6_mcq_q35" value="C"> C. Holder of a Treasury bill</label><br>
+<label><input type="radio" name="module6_mcq_q35" value="D"> D. Holder of a long-term, low-coupon bond</label><br>
+<label><input type="radio" name="module6_mcq_q35" value="E"> E. Holder of a high-coupon short bond</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q35" class="feedback" style="display:none;">
+✅ Correct: D. Long-term, low-coupon bonds have the highest duration and are most sensitive to rate increases.
+</div>
+
+:::

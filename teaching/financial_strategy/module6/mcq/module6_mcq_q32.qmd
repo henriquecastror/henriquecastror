@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q32')" data-correct-answer="C">
+<strong style="display: block;">Which of the following factors most directly influences a bond’s credit spread?</strong>
+
+<label><input type="radio" name="module6_mcq_q32" value="A"> A. Day count convention</label><br>
+<label><input type="radio" name="module6_mcq_q32" value="B"> B. Coupon frequency</label><br>
+<label><input type="radio" name="module6_mcq_q32" value="C"> C. Perceived default risk of the issuer</label><br>
+<label><input type="radio" name="module6_mcq_q32" value="D"> D. Market liquidity only</label><br>
+<label><input type="radio" name="module6_mcq_q32" value="E"> E. Call provision terms</label><br>
+</form>
+
+<div id="feedback-module6_mcq_q32" class="feedback" style="display:none;">
+✅ Correct: C. Credit spreads reflect the additional yield investors demand for taking on credit risk relative to Treasuries.
+</div>
+
+:::

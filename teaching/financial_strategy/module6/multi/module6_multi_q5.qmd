@@ -1,0 +1,24 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkMCQAnswer('module6_multi_q005','C')" class="mcq-form">
+  <p><strong>Q5.</strong> Consider the following statements about sovereign debt:</p>
+  <ol type="I">
+    <li>Sovereign debt is issued by private corporations.</li>
+    <li>Countries may default on sovereign debt under financial stress.</li>
+    <li>Sovereign bonds are risk-free because governments can print money.</li>
+  </ol>
+
+  <div class="options">
+    <label><input type="radio" name="module6_multi_q005" value="A"> A) I and II only</label><br>
+    <label><input type="radio" name="module6_multi_q005" value="B"> B) II and III only</label><br>
+    <label><input type="radio" name="module6_multi_q005" value="C"> C) II only</label><br>
+    <label><input type="radio" name="module6_multi_q005" value="D"> D) All of the above</label><br>
+    <label><input type="radio" name="module6_multi_q005" value="E"> E) None of the above</label>
+  </div>
+</form>
+
+<div id="feedback-module6_multi_q005" class="feedback" data-status="" style="display:none;">
+Correct answer: <strong>C</strong>. Sovereign debt is issued by governments, and defaults can occur under stress.
+</div>
+
+:::
