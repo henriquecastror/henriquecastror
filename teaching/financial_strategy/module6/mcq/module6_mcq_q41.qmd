@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q41')" data-correct-answer="C">
-<strong style="display: block;">Which of the following statements about bond convexity is correct?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q41')" data-correct-answer="B">
+<strong style="display: block;">Which of the following statements about Tesouro IPCA+ (NTN-B Principal) is correct?</strong>
 
-<label><input type="radio" name="module6_mcq_q41" value="A"> A. Convexity is negative for all standard bonds.</label><br>
-<label><input type="radio" name="module6_mcq_q41" value="B"> B. Convexity decreases as maturity increases.</label><br>
-<label><input type="radio" name="module6_mcq_q41" value="C"> C. Convexity measures the curvature of the price–yield relationship.</label><br>
-<label><input type="radio" name="module6_mcq_q41" value="D"> D. Convexity applies only to floating-rate notes.</label><br>
-<label><input type="radio" name="module6_mcq_q41" value="E"> E. Convexity eliminates duration risk completely.</label><br>
+<label><input type="radio" name="module6_mcq_q41" value="A"> A. Tesouro IPCA+ pays monthly interest based on the Selic rate.</label><br>
+<label><input type="radio" name="module6_mcq_q41" value="B"> B. Tesouro IPCA+ offers a real return above inflation, protecting the investor’s purchasing power.</label><br>
+<label><input type="radio" name="module6_mcq_q41" value="C"> C. Tesouro IPCA+ is a floating-rate bond linked to the CDI.</label><br>
+<label><input type="radio" name="module6_mcq_q41" value="D"> D. Tesouro IPCA+ guarantees nominal returns regardless of inflation.</label><br>
+<label><input type="radio" name="module6_mcq_q41" value="E"> E. Tesouro IPCA+ can only be purchased by institutional investors.</label><br>
 </form>
 
 <div id="feedback-module6_mcq_q41" class="feedback" style="display:none;">
-✅ Correct: C. Convexity captures how a bond’s duration changes as interest rates vary.
+✅ Correct: B. Tesouro IPCA+ provides a fixed real interest rate plus the inflation rate (IPCA), ensuring the preservation of purchasing power over time.
 </div>
 
 :::

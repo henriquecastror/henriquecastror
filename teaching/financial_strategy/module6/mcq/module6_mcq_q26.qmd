@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q26')" data-correct-answer="B">
-<strong style="display: block;">Which of the following best describes a bond’s nominal yield?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q26')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements about secured and unsecured corporate debt is correct?</strong>
 
-<label><input type="radio" name="module6_mcq_q26" value="A"> A. The bond’s yield after accounting for inflation</label><br>
-<label><input type="radio" name="module6_mcq_q26" value="B"> B. The coupon rate stated on the bond certificate</label><br>
-<label><input type="radio" name="module6_mcq_q26" value="C"> C. The yield to maturity adjusted for taxes</label><br>
-<label><input type="radio" name="module6_mcq_q26" value="D"> D. The current yield in the secondary market</label><br>
-<label><input type="radio" name="module6_mcq_q26" value="E"> E. The yield spread over Treasuries</label><br>
+<label><input type="radio" name="module6_mcq_q26" value="A"> A. Unsecured debt is always safer for investors than secured debt.</label><br>
+<label><input type="radio" name="module6_mcq_q26" value="B"> B. Secured debt holders have no claim on specific assets of the firm.</label><br>
+<label><input type="radio" name="module6_mcq_q26" value="C"> C. Secured debt is backed by specific collateral, while unsecured debt relies only on the issuer’s creditworthiness.</label><br>
+<label><input type="radio" name="module6_mcq_q26" value="D"> D. Debentures are a type of secured bond.</label><br>
+<label><input type="radio" name="module6_mcq_q26" value="E"> E. Mortgage bonds are examples of unsecured obligations.</label><br>
 </form>
 
 <div id="feedback-module6_mcq_q26" class="feedback" data-status="" style="display:none;">
-✅ Correct: B. The nominal yield is simply the stated annual coupon rate.
+✅ Correct: C. Secured debt is backed by collateral, whereas unsecured debt depends solely on the issuer’s promise to pay.
 </div>
 
 :::

@@ -390,7 +390,6 @@ table(iris$Species)
 
 
 
-# T-test {.smaller }
 
 ## T-test {.smaller }
 
@@ -429,7 +428,7 @@ mtcars <- mtcars
 
 ## T-test {.smaller }
 
-Then, use the binary variable to check if the other variables have similar means. In the following case, I am comparing the average of `mpg` (miles per gas) of an automatic with a manual car.
+Then, use the binary variable to see if other variables have similar means. The following case compares the average of `mpg` (miles p/ gas) of automatic vs. manual car.
 
 
 ```{r}
@@ -446,18 +445,324 @@ t.test(mpg ~ am, data=mtcars)
 ```
 
 - We see that the average in the automatic car is around 17.1 while the average of manual cars is 24.3.
-
-- These averages are statistically different, since the t-stat is high (-3.76) and p-value is low (0.001).
-
+- These averages are statistically different, since the t-stat is high (-3.76).
 - So, we can learn that automatic cars consume more gas than manual cars.
-
-- This type of test will be too important in your article.
-
+- This type of test will be very  important in your research.
 
 
 
 
-## 🙋‍♂️ **Any Questions?**{ .smaller  background="#fdf6e3"}
+
+
+
+## Dispersion {.smaller}
+
+These measures show how *spread out* the data are around the mean.  
+
+The coefficient of variation (CV) compares variability relative to the mean — useful in finance for comparing volatility across assets.
+
+Interquartile Range = $Q_3 - Q_1$
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+x <- iris$Sepal.Length
+range_x <- range(x)
+iqr_x   <- IQR(x)
+cv_x    <- sd(x) / mean(x)
+
+list(
+  range = diff(range_x),
+  IQR = iqr_x,
+  CV = cv_x
+)
+```
+
+
+
+
+
+
+
+## Quantiles & Percentiles {.smaller}
+
+Quantiles divide the data into equal parts (e.g., quartiles, percentiles).
+
+They are often used to identify thresholds or outliers.
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+quantile(iris$Sepal.Length, probs = c(.01,.05,.25,.50,.75,.95,.99))
+```
+
+
+
+
+
+## Distributions {.smaller}
+
+Visualizing the distribution helps you see its shape — whether symmetric, skewed, or concentrated.
+
+Empirical Cumulative Distribution Function (ECDF) = y-axis shows the accumulated proportion of observations below the x-value.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-height: 4
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+par(mfrow = c(1,3))
+hist(iris$Sepal.Length, breaks = 10, main = "Histogram", xlab = "Sepal.Length")
+plot(density(iris$Sepal.Length), main = "Kernel Density", xlab = "Sepal.Length")
+plot(ecdf(iris$Sepal.Length), main = "ECDF", xlab = "Sepal.Length")
+par(mfrow = c(1,1))
+```
+
+
+
+
+
+## Shape: Skewness & Kurtosis {.smaller}
+
+These measures describe the *shape* of a distribution.  
+- **Skewness:** measures symmetry (right- or left-tailed).  
+- **Kurtosis:** measures tail heaviness (fat tails → more extreme events).  
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-height: 4
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+set.seed(123)
+x_sym  <- rnorm(1000, mean = 0, sd = 1)        # symmetric (normal)
+x_right <- rexp(1000, rate = 1) - 1            # right-skewed
+x_fat  <- rt(1000, df = 3)                     # heavy tails (t-distribution)
+
+par(mfrow = c(1,3))
+hist(x_sym, breaks = 25, main = "Symmetric (Normal)", col = "lightgray", xlab = "")
+hist(x_right, breaks = 25, main = "Right-Skewed (Exponential)", col = "lightgray", xlab = "")
+hist(x_fat, breaks = 25, main = "Fat Tails (t, df=3)", col = "lightgray", xlab = "")
+par(mfrow = c(1,1))
+```
+
+
+## Shape: Skewness & Kurtosis {.smaller}
+
+Now, let's compute skewness and kurtosis for our actual data.
+
+
+- Skewness > 0 → right tail longer (positive skew).
+- Skewness < 0 → left tail longer (negative skew).
+- Kurtosis > 0 → heavier tails than normal (leptokurtic).
+- Kurtosis < 0 → lighter tails than normal (platykurtic).
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+skewness <- function(v){
+  m <- mean(v); s <- sd(v)
+  mean(((v - m)/s)^3)
+}
+kurtosis_excess <- function(v){
+  m <- mean(v); s <- sd(v)
+  mean(((v - m)/s)^4) - 3
+}
+c(
+  skewness = skewness(iris$Sepal.Length),
+  excess_kurtosis = kurtosis_excess(iris$Sepal.Length)
+)
+```
+
+
+
+## Outliers via IQR Rule {.smaller}
+
+Outliers are points far from most observations. The IQR rule defines them as values beyond 1.5 × IQR from the quartiles.
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+x <- iris$Sepal.Length
+Q1 <- quantile(x, .25); Q3 <- quantile(x, .75); I <- IQR(x)
+lower <- Q1 - 1.5*I; upper <- Q3 + 1.5*I
+out_idx <- which(x < lower | x > upper)
+list(
+  thresholds = c(lower = lower, upper = upper),
+  n_outliers = length(out_idx),
+  example_values  = head(x[out_idx], 5)
+)
+
+```
+
+
+
+
+## Transformations: log & z-score {.smaller}
+
+Transformations help stabilize variance and make variables comparable.
+
+- log(x) reduces skewness.
+- z-score standardizes scale.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-height: 4
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+x     <- iris$Sepal.Length
+x_log <- log(x)
+x_z   <- as.numeric(scale(x))
+par(mfrow = c(1,3))
+hist(x, main="Original", xlab="Sepal.Length")
+hist(x_log, main="log(x)", xlab="log(Sepal.Length)")
+hist(x_z, main="z-score", xlab="Standardized")
+par(mfrow = c(1,1))
+```
+
+
+
+
+
+
+
+
+# Confidence Intervals {.smaller}
+
+## What is a Confidence Interval? {.smaller}
+
+A confidence interval reflects the *uncertainty* around an estimate.  
+If we repeat the experiment many times, most intervals will capture the true mean, but some will miss it just by chance.
+
+Below, we simulate **100 random samples** (each with 30 observations from a true mean of 5).  
+Each horizontal line shows a 95% confidence interval for one sample mean.  
+The **red line** marks the *true mean (μ = 5)*.  
+
+- Gray dots: sample means  
+- Gray bars: confidence intervals  
+- Intervals that **miss** the red line show random sampling error  
+- About **5 out of 100** intervals are expected to miss (≈5%)
+
+👉 A 95% CI means: *if we repeated the experiment many times, 95% of the intervals would contain the true mean.*
+
+
+
+
+
+## Visual Intuition {.smaller}
+
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-height: 4.5
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+set.seed(123)
+n <- 30
+Nrep <- 100
+mu <- 5; sigma <- 1
+samples <- replicate(Nrep, rnorm(n, mu, sigma))
+means <- colMeans(samples)
+ses <- apply(samples, 2, sd) / sqrt(n)
+lower <- means - qt(0.975, df = n-1) * ses
+upper <- means + qt(0.975, df = n-1) * ses
+
+plot(1:Nrep, means, ylim = c(4,6), pch = 19, col = "gray40",
+     ylab = "Mean estimate", xlab = "Sample",
+     main = "100 simulated 95% Confidence Intervals")
+segments(1:Nrep, lower, 1:Nrep, upper, col = "gray60")
+abline(h = mu, col = "red", lwd = 2)
+legend("topright", legend="True mean", col="red", lwd=2, bty="n")
+```
+
+
+
+
+
+
+
+
+
+## Confidence Interval for Iris Data {.smaller}
+
+Compute a real example for Sepal.Length.
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+t.test(iris$Sepal.Length)
+```
+
+👉 The output shows:
+
+- Sample mean
+- Confidence limits
+- t-statistic and p-value
+
+You can visualize the result below.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-height: 4
+#| echo: true
+#| code-line-numbers: true
+#| eval: true
+x <- iris$Sepal.Length
+m <- mean(x)
+se <- sd(x)/sqrt(length(x))
+ci <- m + c(-1,1)*qt(0.975, df=length(x)-1)*se
+
+hist(x, breaks = 15, col = "lightgray",
+     main = "95% Confidence Interval for Sepal.Length",
+     xlab = "Sepal.Length")
+abline(v = m, col = "blue", lwd = 2)
+abline(v = ci, col = "red", lty = 2, lwd = 2)
+legend("topright", legend=c("Mean", "95% CI limits"), 
+       col=c("blue","red"), lwd=2, lty=c(1,2), bty="n")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+## 🙋️ **Any Questions?**{ .smaller  background="#fdf6e3"}
 
 ::: columns
 ::: {.column width="50%"}
