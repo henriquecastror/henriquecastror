@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q52','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q52" name="module7_tf_q52" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module7_tf_q52"><strong>Equity becomes less risky as a firm increases leverage in perfect capital markets.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q52" class="feedback" data-status="" style="display:none;">
+This is FALSE. Higher leverage raises equity risk, not lowers it.
+</div>
+
+:::

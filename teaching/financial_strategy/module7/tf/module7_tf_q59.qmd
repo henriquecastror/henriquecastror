@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q59','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q59" name="module7_tf_q59" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q59"><strong>A firm's total market value equals the present value of its future cash flows, independent of how those cash flows are divided between debt and equity.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q59" class="feedback" data-status="" style="display:none;">
+This is TRUE. MM I focuses on the value of the firm's assets, not its financing mix.
+</div>
+
+:::

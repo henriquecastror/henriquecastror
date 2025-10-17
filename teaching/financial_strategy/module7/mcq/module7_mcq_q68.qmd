@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q68')" data-correct-answer="B">
+<strong style="display: block;">In perfect capital markets with no taxes, which of the following statements best explains the relationship between leverage and the firm’s equity beta?</strong>
+
+<label><input type="radio" name="module7_mcq_q68" value="A"> A. The equity beta remains constant because total firm risk is unchanged.</label><br>
+<label><input type="radio" name="module7_mcq_q68" value="B"> B. The equity beta increases with leverage, reflecting the higher sensitivity of equity returns to market movements.</label><br>
+<label><input type="radio" name="module7_mcq_q68" value="C"> C. The equity beta decreases as more debt is used, since debt absorbs some of the risk.</label><br>
+<label><input type="radio" name="module7_mcq_q68" value="D"> D. The asset beta increases proportionally with leverage.</label><br>
+<label><input type="radio" name="module7_mcq_q68" value="E"> E. The equity beta changes only when the cost of debt increases.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q68" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. In the absence of taxes, leverage magnifies the volatility of equity returns without affecting total firm risk.  
+The relationship is $\beta_E = \beta_U(1 + \frac{D}{E})$, meaning that a higher debt-to-equity ratio directly increases the equity beta.
+</div>
+
+:::

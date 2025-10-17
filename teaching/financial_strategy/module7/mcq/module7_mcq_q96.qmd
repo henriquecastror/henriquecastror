@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q96')" data-correct-answer="C">
+<strong style="display: block;">A firm has unlevered (asset) beta $\beta_U = 0.9$ and $D/E = 1.1$ (no taxes). Debt is not risk-free: $\beta_D = 0.2$. What is the equity beta $\beta_E$?</strong>
+
+<label><input type="radio" name="module7_mcq_q96" value="A"> A. 1.62</label><br>
+<label><input type="radio" name="module7_mcq_q96" value="B"> B. 1.65</label><br>
+<label><input type="radio" name="module7_mcq_q96" value="C"> C. 1.67</label><br>
+<label><input type="radio" name="module7_mcq_q96" value="D"> D. 1.70</label><br>
+<label><input type="radio" name="module7_mcq_q96" value="E"> E. 1.75</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q96" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Use $\beta_A = (E/V)\beta_E + (D/V)\beta_D$ with no taxes.  
+From $D/E=1.1$, we get $E/V=\frac{1}{1+1.1}=0.4762$ and $D/V=0.5238$.  
+Solve for equity beta: $\beta_E=\dfrac{\beta_A - (D/V)\beta_D}{E/V}=\dfrac{0.9 - 0.5238\cdot0.2}{0.4762}\approx\dfrac{0.7952}{0.4762}\approx 1.67$.
+</div>
+
+:::

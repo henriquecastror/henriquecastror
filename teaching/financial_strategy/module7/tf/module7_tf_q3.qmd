@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q3','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q3" name="module7_tf_q3" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q3"><strong>Leverage can raise a firm’s expected earnings per share and its return on equity, but it also increases the volatility of earnings per share and the riskiness of its equity.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q3" class="feedback" data-status="" style="display:none;">
+This is TRUE. Leverage magnifies both expected EPS/ROE and their volatility (equity becomes riskier).
+</div>
+
+:::

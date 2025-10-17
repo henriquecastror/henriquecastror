@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q84')" data-correct-answer="C">
+<strong style="display: block;">Two firms are identical except for their financing choices. Firm X is unlevered with $r_U = 10\%$. Firm Y finances 60% of its value with debt at $r_D = 5\%$ and the remaining 40% with equity. Assuming no taxes and perfect capital markets, what must be the cost of equity for Firm Y so that both firms have the same value?</strong>
+
+<label><input type="radio" name="module7_mcq_q84" value="A"> A. 11%</label><br>
+<label><input type="radio" name="module7_mcq_q84" value="B"> B. 12%</label><br>
+<label><input type="radio" name="module7_mcq_q84" value="C"> C. 17.5%</label><br>
+<label><input type="radio" name="module7_mcq_q84" value="D"> D. 15%</label><br>
+<label><input type="radio" name="module7_mcq_q84" value="E"> E. 18%</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q84" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. In a no-tax world, Modigliani–Miller Proposition I implies both firms must have the same overall cost of capital ($r_U = 10\%$).  
+For Firm Y, $r_U = (E/V)r_E + (D/V)r_D$, so $0.10 = 0.4r_E + 0.6(0.05) \Rightarrow 0.10 = 0.4r_E + 0.03$.  
+Solving, $r_E = \frac{0.07}{0.4} = 0.175 = 17.5\%$.  
+The higher equity cost reflects the greater financial risk borne by shareholders due to leverage.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q42')" data-correct-answer="A">
+<strong style="display: block;">Which of the following statements correctly describes Modigliani–Miller Proposition II (no taxes)?</strong>
+
+<label><input type="radio" name="module7_mcq_q42" value="A"> A. The cost of equity increases linearly with leverage</label><br>
+<label><input type="radio" name="module7_mcq_q42" value="B"> B. The cost of debt increases faster than equity</label><br>
+<label><input type="radio" name="module7_mcq_q42" value="C"> C. WACC increases with debt</label><br>
+<label><input type="radio" name="module7_mcq_q42" value="D"> D. The cost of equity remains constant</label><br>
+<label><input type="radio" name="module7_mcq_q42" value="E"> E. Firm value increases with leverage</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q42" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. MM II shows a positive linear relationship between r<sub>E</sub> and D/E.
+</div>
+
+:::

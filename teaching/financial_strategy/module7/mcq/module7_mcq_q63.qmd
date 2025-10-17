@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q63')" data-correct-answer="D">
+<strong style="display: block;">In a world without taxes, what does an increase in the firm’s debt-to-equity ratio imply about the firm’s equity beta?</strong>
+
+<label><input type="radio" name="module7_mcq_q63" value="A"> A. The equity beta decreases because some risk is transferred to debt holders.</label><br>
+<label><input type="radio" name="module7_mcq_q63" value="B"> B. The equity beta remains constant since total firm risk does not change.</label><br>
+<label><input type="radio" name="module7_mcq_q63" value="C"> C. The equity beta decreases initially and then stabilizes as leverage grows.</label><br>
+<label><input type="radio" name="module7_mcq_q63" value="D"> D. The equity beta increases proportionally with leverage, as equity holders bear more risk per unit of capital invested.</label><br>
+<label><input type="radio" name="module7_mcq_q63" value="E"> E. The equity beta is independent of leverage in perfect capital markets.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q63" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. The equity beta rises with leverage because shareholders absorb all residual risk after debt obligations.  
+The relationship is $\beta_E = \beta_U(1 + \frac{D}{E})$, showing that financial leverage magnifies the firm’s systematic risk for equity investors.
+</div>
+
+:::

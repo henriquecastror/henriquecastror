@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q84','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q84" name="module7_tf_q84" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q84"><strong>The WACC can be interpreted as the expected return on the firm’s assets in perfect capital markets.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q84" class="feedback" data-status="" style="display:none;">
+This is TRUE. WACC = Ra = expected return on firm assets under MM assumptions.
+</div>
+
+:::

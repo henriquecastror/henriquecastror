@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q34')" data-correct-answer="E">
+<strong style="display: block;">Under MM assumptions, what determines the expected return on equity?</strong>
+
+<label><input type="radio" name="module7_mcq_q34" value="A"> A. The firm's dividend policy</label><br>
+<label><input type="radio" name="module7_mcq_q34" value="B"> B. Market interest rates</label><br>
+<label><input type="radio" name="module7_mcq_q34" value="C"> C. Tax rate and debt level</label><br>
+<label><input type="radio" name="module7_mcq_q34" value="D"> D. Management preferences</label><br>
+<label><input type="radio" name="module7_mcq_q34" value="E"> E. The firm’s leverage and unlevered cost of capital</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q34" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. MM II: $r_E = r_U + \frac{D}{E}(r_U - r_D)$; equity return depends on leverage and r<sub>U</sub>.
+</div>
+
+:::

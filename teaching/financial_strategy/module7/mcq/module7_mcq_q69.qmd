@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q69')" data-correct-answer="A">
+<strong style="display: block;">Under Modigliani and Miller Proposition I (no taxes), what happens to a firm's overall cost of capital when it changes its capital structure?</strong>
+
+<label><input type="radio" name="module7_mcq_q69" value="A"> A. The firm’s overall cost of capital remains constant because the benefits of cheaper debt are offset by the higher cost of equity.</label><br>
+<label><input type="radio" name="module7_mcq_q69" value="B"> B. The firm’s cost of capital decreases because debt is less expensive than equity.</label><br>
+<label><input type="radio" name="module7_mcq_q69" value="C"> C. The cost of capital increases because financial risk increases with leverage.</label><br>
+<label><input type="radio" name="module7_mcq_q69" value="D"> D. The cost of capital fluctuates depending on the firm’s debt ratio.</label><br>
+<label><input type="radio" name="module7_mcq_q69" value="E"> E. The firm’s cost of capital becomes unpredictable due to market conditions.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q69" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. MM Proposition I (no taxes) states that a firm’s value and its overall cost of capital ($r_U$) are independent of capital structure.  
+Although equity becomes riskier with more debt, the cheaper cost of debt exactly offsets this effect, keeping the weighted average cost of capital constant.
+</div>
+
+:::

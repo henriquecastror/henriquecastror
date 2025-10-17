@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q41','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q41" name="module7_tf_q41" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q41"><strong>In perfect capital markets, issuing debt does not change the total value of the firm.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q41" class="feedback" data-status="" style="display:none;">
+This is TRUE. Debt only changes the distribution of risk and return, not total value.
+</div>
+
+:::

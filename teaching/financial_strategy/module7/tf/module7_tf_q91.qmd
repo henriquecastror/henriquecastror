@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q91','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q91" name="module7_tf_q91" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module7_tf_q91"><strong>MM Proposition I in perfect capital markets states that increasing leverage increases firm value through interest tax shields.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q91" class="feedback" data-status="" style="display:none;">
+This is FALSE. That effect exists only with taxes; MM I assumes no taxes.
+</div>
+
+:::

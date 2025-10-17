@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q22','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q22" name="module7_tf_q22" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module7_tf_q22"><strong>In a world of perfect capital markets, there is an optimal capital structure that maximizes firm value.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q22" class="feedback" data-status="" style="display:none;">
+This is FALSE. MM I shows no optimal structure exists in perfect markets.
+</div>
+
+:::

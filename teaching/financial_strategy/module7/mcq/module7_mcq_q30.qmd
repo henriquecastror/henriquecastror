@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q30')" data-correct-answer="A">
+<strong style="display: block;">Two identical firms differ only in capital structure; one is unlevered, the other has D/E = 1. In perfect markets, which statement holds?</strong>
+
+<label><input type="radio" name="module7_mcq_q30" value="A"> A. Both firms have the same total value</label><br>
+<label><input type="radio" name="module7_mcq_q30" value="B"> B. The levered firm has higher total value due to interest tax shields</label><br>
+<label><input type="radio" name="module7_mcq_q30" value="C"> C. The unlevered firm has higher total value because it is safer</label><br>
+<label><input type="radio" name="module7_mcq_q30" value="D"> D. The levered firm’s WACC is lower</label><br>
+<label><input type="radio" name="module7_mcq_q30" value="E"> E. The unlevered firm’s equity has higher expected return</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q30" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. MM I: capital structure does not change total firm value when markets are perfect.
+</div>
+
+:::
+

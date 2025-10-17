@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q59')" data-correct-answer="A">
+<strong style="display: block;">If β<sub>U</sub> = 0.7, D/E = 1, and no taxes, then β<sub>E</sub> = ?</strong>
+
+<label><input type="radio" name="module7_mcq_q59" value="A"> A. 1.4</label><br>
+<label><input type="radio" name="module7_mcq_q59" value="B"> B. 1.2</label><br>
+<label><input type="radio" name="module7_mcq_q59" value="C"> C. 1.1</label><br>
+<label><input type="radio" name="module7_mcq_q59" value="D"> D. 1.5</label><br>
+<label><input type="radio" name="module7_mcq_q59" value="E"> E. 2.0</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q59" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. $\beta_E = 0.7(1 + 1) = 1.4$.
+</div>
+
+:::

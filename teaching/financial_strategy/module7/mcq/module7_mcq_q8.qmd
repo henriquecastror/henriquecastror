@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q8')" data-correct-answer="E">
+<strong style="display: block;">In perfect capital markets, issuing debt instead of equity:</strong>
+
+<label><input type="radio" name="module7_mcq_q8" value="A"> A. Creates value by lowering taxes</label><br>
+<label><input type="radio" name="module7_mcq_q8" value="B"> B. Increases value because interest is deductible</label><br>
+<label><input type="radio" name="module7_mcq_q8" value="C"> C. Destroys value by increasing financial risk</label><br>
+<label><input type="radio" name="module7_mcq_q8" value="D"> D. Changes firm value only if investors are risk-averse</label><br>
+<label><input type="radio" name="module7_mcq_q8" value="E"> E. Does not affect firm value at all</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q8" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. With no taxes or frictions, financing choice doesn’t change firm value.
+</div>
+
+:::

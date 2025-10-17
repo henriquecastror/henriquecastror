@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q39')" data-correct-answer="E">
+<strong style="display: block;">A firm has D = \$50m, E = \$100m, r<sub>U</sub> = 10%, r<sub>D</sub> = 6% (no taxes). What is r<sub>E</sub>?</strong>
+
+<label><input type="radio" name="module7_mcq_q39" value="A"> A. 10%</label><br>
+<label><input type="radio" name="module7_mcq_q39" value="B"> B. 11%</label><br>
+<label><input type="radio" name="module7_mcq_q39" value="C"> C. 11.5%</label><br>
+<label><input type="radio" name="module7_mcq_q39" value="D"> D. 12%</label><br>
+<label><input type="radio" name="module7_mcq_q39" value="E"> E. 12%</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q39" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. $r_E = 0.10 + (0.5)(0.10−0.06) = 0.12 = 12\%$
+</div>
+
+:::
+

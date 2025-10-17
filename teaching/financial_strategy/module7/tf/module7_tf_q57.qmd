@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q57','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q57" name="module7_tf_q57" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module7_tf_q57"><strong>If a firm's unlevered cost of capital is 10% and its debt costs 5%, using more debt will reduce its overall WACC in perfect markets.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q57" class="feedback" data-status="" style="display:none;">
+This is FALSE. In perfect markets, WACC remains constant regardless of leverage.
+</div>
+
+:::

@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q50')" data-correct-answer="B">
-<strong style="display: block;">Which statement correctly compares yield to call (YTC) and yield to maturity (YTM)?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q50')" data-correct-answer="A">
+<strong style="display: block;">Which of the following statements correctly compares secured and unsecured bonds?</strong>
 
-<label><input type="radio" name="module6_mcq_q50" value="A"> A. YTC assumes the bond is held until maturity date.</label><br>
-<label><input type="radio" name="module6_mcq_q50" value="B"> B. YTC assumes the bond is called at the earliest call date.</label><br>
-<label><input type="radio" name="module6_mcq_q50" value="C"> C. YTC is always higher than YTM.</label><br>
-<label><input type="radio" name="module6_mcq_q50" value="D"> D. YTM accounts for reinvestment risk, YTC does not.</label><br>
-<label><input type="radio" name="module6_mcq_q50" value="E"> E. YTC is used only for zero-coupon bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="A"> A. Secured bonds are backed by specific assets, while unsecured bonds are not.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="B"> B. Unsecured bonds are typically less risky than secured bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="C"> C. Secured bonds always have higher coupon rates than unsecured bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="D"> D. Secured bonds are issued exclusively by governments, while unsecured bonds are issued by corporations.</label><br>
+<label><input type="radio" name="module6_mcq_q50" value="E"> E. Secured bonds have lower priority than unsecured bonds in the event of bankruptcy.</label><br>
 </form>
 
 <div id="feedback-module6_mcq_q50" class="feedback" style="display:none;">
-✅ Correct: B. YTC assumes the bond is redeemed on the first available call date, often used for callable issues.
+✅ Correct: A. Secured bonds are backed by specific assets, which provides higher security and priority in case of liquidation compared to unsecured bonds.
 </div>
 
 :::

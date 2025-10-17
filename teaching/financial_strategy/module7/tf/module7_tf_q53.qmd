@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q53','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q53" name="module7_tf_q53" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q53"><strong>Firms with identical future cash flows must have the same value, regardless of leverage.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q53" class="feedback" data-status="" style="display:none;">
+This is TRUE. Under MM, identical cash flows imply identical firm values.
+</div>
+
+:::

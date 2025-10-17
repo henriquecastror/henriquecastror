@@ -1,0 +1,40 @@
+::: {.question}
+
+**Covenant Step-Up — Present Value of Incremental Coupons**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+library(knitr)
+set.seed(603)
+FV   <- 1000
+c1   <- round(runif(1, 0.08, 0.10), 3)
+step <- round(runif(1, 0.010, 0.020), 3)
+c2   <- c1 + step
+y    <- round(runif(1, 0.07, 0.10), 3)
+inc  <- FV * step
+pv   <- inc/(1+y)^3 + inc/(1+y)^4 + inc/(1+y)^5
+ans  <- round(pv, 2)
+cat(sprintf("Par: <b>R$ %d</b> | Base coupon: <b>%1.2f%%</b> | Step-up: <b>%1.2f%%</b> (yrs 3–5) | Discount rate: <b>%1.2f%%</b>",
+            FV, 100*c1, 100*step, 100*y))
+```
+
+Compute the **present value (R$)** of the **incremental coupons** due to the step-up in years 3–5, discounted at the given rate.
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module6_num_q2"><strong>PV of increment (R$):</strong></label>
+  <input type="number" id="module6_num_q2" name="module6_num_q2" step="0.01" style="width:220px;"
+         data-correct-answer=`r ans` data-tolerance="0.6" />
+</form>
+
+<div id="feedback-module6_num_q2" class="feedback" data-status="" style="display:none;">
+✅ Increment per year: \(R$ `r round(FV*step,2)`\).  
+\(PV = \sum_{t=3}^{5} \frac{R$ `r round(FV*step,2)`}{(1+`r y`)^t} \approx \) <b>R$ `r ans`</b>.
+</div>
+:::
+
+:::

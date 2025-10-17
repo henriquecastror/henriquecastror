@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q76')" data-correct-answer="B">
+<strong style="display: block;">A firm has D/V = 0.3, r<sub>D</sub> = 6%, and r<sub>E</sub> = 12%. Find r<sub>U</sub>.</strong>
+
+<label><input type="radio" name="module7_mcq_q76" value="A"> A. 8%</label><br>
+<label><input type="radio" name="module7_mcq_q76" value="B"> B. 10.2%</label><br>
+<label><input type="radio" name="module7_mcq_q76" value="C"> C. 9%</label><br>
+<label><input type="radio" name="module7_mcq_q76" value="D"> D. 11%</label><br>
+<label><input type="radio" name="module7_mcq_q76" value="E"> E. 9.8%</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q76" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. \( r_U = 0.3×0.06 + 0.7×0.12 = 10.2\% \).
+</div>
+
+:::

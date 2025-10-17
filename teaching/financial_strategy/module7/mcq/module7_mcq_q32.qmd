@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q32')" data-correct-answer="C">
+<strong style="display: block;">Which of the following is NOT implied by Modigliani–Miller Proposition I?</strong>
+
+<label><input type="radio" name="module7_mcq_q32" value="A"> A. Firm value is independent of leverage</label><br>
+<label><input type="radio" name="module7_mcq_q32" value="B"> B. WACC remains constant as leverage changes</label><br>
+<label><input type="radio" name="module7_mcq_q32" value="C"> C. The cost of equity remains constant with leverage</label><br>
+<label><input type="radio" name="module7_mcq_q32" value="D"> D. The risk of equity rises with leverage</label><br>
+<label><input type="radio" name="module7_mcq_q32" value="E"> E. Leverage redistributes risk between investors</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q32" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. MM I does not state that r<sub>E</sub> is constant; MM II shows it rises with leverage.
+</div>
+
+:::
+

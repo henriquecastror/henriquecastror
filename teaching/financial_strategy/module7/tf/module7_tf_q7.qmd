@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q7','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q7" name="module7_tf_q7" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module7_tf_q7"><strong>A firm’s net debt is equal to its debt plus its holdings of cash and other risk-free securities.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q7" class="feedback" data-status="" style="display:none;">
+This is FALSE. Net debt = debt **minus** cash and risk‑free holdings.
+</div>
+
+:::

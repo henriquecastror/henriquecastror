@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q66')" data-correct-answer="D">
+<strong style="display: block;">According to Modigliani and Miller Proposition II (no taxes), why does the cost of equity increase as a firm increases its leverage?</strong>
+
+<label><input type="radio" name="module7_mcq_q66" value="A"> A. Because the firm’s total risk increases with more debt financing.</label><br>
+<label><input type="radio" name="module7_mcq_q66" value="B"> B. Because the cost of debt increases more rapidly than the cost of equity.</label><br>
+<label><input type="radio" name="module7_mcq_q66" value="C"> C. Because higher leverage decreases the firm's weighted average cost of capital (WACC).</label><br>
+<label><input type="radio" name="module7_mcq_q66" value="D"> D. Because leverage concentrates the firm’s business risk on a smaller equity base, increasing the required return to compensate shareholders.</label><br>
+<label><input type="radio" name="module7_mcq_q66" value="E"> E. Because lenders require higher returns as the firm’s equity declines.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q66" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. As leverage increases, debt holders take a fixed claim while equity holders bear greater residual risk.  
+According to MM Proposition II (no taxes), $r_E = r_U + \frac{D}{E}(r_U - r_D)$ — showing that the expected return on equity rises linearly with leverage because of higher financial risk.
+</div>
+
+:::

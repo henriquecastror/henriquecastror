@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q61','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q61" name="module7_tf_q61" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q61"><strong>If an unlevered firm has an expected return of 14% and issues debt at 6%, a leverage ratio of D/E = 0.5 implies an equity cost of approximately 18%.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q61" class="feedback" data-status="" style="display:none;">
+This is TRUE. Re = 14% + 0.5*(14%-6%) = 18%.
+</div>
+
+:::

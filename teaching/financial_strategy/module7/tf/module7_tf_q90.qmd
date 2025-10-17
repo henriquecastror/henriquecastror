@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q90','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q90" name="module7_tf_q90" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q90"><strong>If the unlevered firm has a cost of capital of 10% and the risk-free rate is 4%, a D/E of 1 implies Re = 10% + (10%-4%)×1 = 16%.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q90" class="feedback" data-status="" style="display:none;">
+This is TRUE. Applying MM II formula Re = Ru + (D/E)(Ru−Rd).
+</div>
+
+:::

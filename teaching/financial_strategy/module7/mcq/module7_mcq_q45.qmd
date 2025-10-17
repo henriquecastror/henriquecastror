@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q45')" data-correct-answer="E">
+<strong style="display: block;">Which of the following is an implication of MM I?</strong>
+
+<label><input type="radio" name="module7_mcq_q45" value="A"> A. Higher leverage increases firm value</label><br>
+<label><input type="radio" name="module7_mcq_q45" value="B"> B. Equity is risk-free</label><br>
+<label><input type="radio" name="module7_mcq_q45" value="C"> C. Firm value depends on D/E ratio</label><br>
+<label><input type="radio" name="module7_mcq_q45" value="D"> D. WACC increases with debt</label><br>
+<label><input type="radio" name="module7_mcq_q45" value="E"> E. Firm value is determined by its assets’ cash flows</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q45" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Under MM I, firm value is driven only by asset cash flows, not capital structure.
+</div>
+
+:::

@@ -1,0 +1,22 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q58')" data-correct-answer="C">
+<strong style="display: block;">A firm operates with an unlevered cost of capital $r_U = 10\%$ and a cost of debt $r_D = 5\%$ (no taxes). The firm is considering increasing its debt-to-equity ratio from 0.5 to 1.5. According to Modigliani and Miller Proposition II, what will be the change in the firm’s cost of equity ($r_E$)?</strong>
+
+<label><input type="radio" name="module7_mcq_q58" value="A"> A. It will increase from 10% to 11.5%.</label><br>
+<label><input type="radio" name="module7_mcq_q58" value="B"> B. It will increase from 10% to 12.5%.</label><br>
+<label><input type="radio" name="module7_mcq_q58" value="C"> C. It will increase from 10% to 17.5%.</label><br>
+<label><input type="radio" name="module7_mcq_q58" value="D"> D. It will increase from 10% to 15%.</label><br>
+<label><input type="radio" name="module7_mcq_q58" value="E"> E. It will increase from 10% to 20%.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q58" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Under MM Proposition II (no taxes),  
+$r_E = r_U + \frac{D}{E}(r_U - r_D)$.  
+
+Initially, $r_E = 0.10 + 0.5(0.10 - 0.05) = 0.125 = 12.5\%$.  
+After leverage increases to $D/E = 1.5$, $r_E = 0.10 + 1.5(0.10 - 0.05) = 0.175 = 17.5\%$.  
+Thus, the cost of equity rises by **5 percentage points**, reflecting the additional financial risk to shareholders.
+</div>
+
+:::

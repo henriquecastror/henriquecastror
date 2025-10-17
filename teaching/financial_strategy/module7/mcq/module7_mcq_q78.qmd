@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q78')" data-correct-answer="E">
+<strong style="display: block;">Firm A and Firm B are identical except for their capital structures. Firm A is all-equity with $\beta_U = 1.0$. Firm B has a debt-to-equity ratio of $D/E = 0.3$, and debt is risk-free. Which statement best describes the relationship between their equity betas?</strong>
+
+<label><input type="radio" name="module7_mcq_q78" value="A"> A. Both firms have the same equity beta because total business risk is unchanged.</label><br>
+<label><input type="radio" name="module7_mcq_q78" value="B"> B. Firm B’s equity beta will be lower because debt absorbs part of the risk.</label><br>
+<label><input type="radio" name="module7_mcq_q78" value="C"> C. Firm A’s equity beta is higher because it bears all operating risk.</label><br>
+<label><input type="radio" name="module7_mcq_q78" value="D"> D. Firm B’s equity beta equals 1.0 since its debt is risk-free.</label><br>
+<label><input type="radio" name="module7_mcq_q78" value="E"> E. Firm B’s equity beta is higher (about 1.3) because leverage increases the sensitivity of equity returns to market risk.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q78" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. With no taxes and risk-free debt, financial leverage increases the volatility of equity returns even though total business risk is unchanged.  
+According to Modigliani–Miller Proposition II, $\beta_E = \beta_U(1 + \frac{D}{E}) = 1.0(1 + 0.3) = 1.3$.  
+Thus, Firm B’s equity is riskier than Firm A’s because leverage amplifies systematic risk for shareholders.
+</div>
+
+:::

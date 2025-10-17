@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q93')" data-correct-answer="A">
-<strong style="display: block;">Which of the following statements best defines duration?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q93')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements best describes the Tesouro Selic bond?</strong>
 
-<label><input type="radio" name="module6_mcq_q93" value="A"> A. The weighted average time to receive all bond cash flows</label><br>
-<label><input type="radio" name="module6_mcq_q93" value="B"> B. The time until bond maturity</label><br>
-<label><input type="radio" name="module6_mcq_q93" value="C"> C. The total number of coupon payments</label><br>
-<label><input type="radio" name="module6_mcq_q93" value="D"> D. The difference between coupon and yield</label><br>
-<label><input type="radio" name="module6_mcq_q93" value="E"> E. The number of years since issue date</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="A"> A. Tesouro Selic bonds are indexed to the inflation rate, providing protection against rising prices.</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="B"> B. Tesouro Selic bonds have a fixed coupon rate, offering a guaranteed return over time.</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="C"> C. Tesouro Selic bonds are short-term securities that track the Selic rate, the Brazilian central bank’s base interest rate.</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="D"> D. Tesouro Selic bonds can only be purchased by institutional investors.</label><br>
+<label><input type="radio" name="module6_mcq_q93" value="E"> E. Tesouro Selic bonds are exempt from taxes in Brazil.</label><br>
 </form>
 
 <div id="feedback-module6_mcq_q93" class="feedback" style="display:none;">
-✅ Correct: A. Duration measures the average time-weighted value of a bond’s cash flows.
+✅ Correct: C. Tesouro Selic bonds are short-term, government-issued securities that are pegged to the Selic rate, providing low-risk returns that fluctuate with this benchmark interest rate.
 </div>
 
 :::

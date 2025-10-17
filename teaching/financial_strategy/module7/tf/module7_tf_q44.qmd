@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q44','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q44" name="module7_tf_q44" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q44"><strong>Perfect capital markets allow investors to undo the firm's financial choices.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q44" class="feedback" data-status="" style="display:none;">
+This is TRUE. Homemade leverage means investors can reverse firm leverage decisions.
+</div>
+
+:::

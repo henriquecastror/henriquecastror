@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q100')" data-correct-answer="C">
+<strong style="display: block;">Consider a company with β<sub>U</sub> = 1.1 and a capital structure consisting of 40% debt and 60% equity. The debt is risk-free with an interest rate of 5%, and the market risk premium is 6%. The firm's debt-to-equity ratio (D/E) is 0.9. Given the above, find the firm's equity beta (β<sub>E</sub>) using the Modigliani-Miller theorem, assuming no taxes. </strong>
+
+<label><input type="radio" name="module7_mcq_q100" value="A"> A. 1.65</label><br>
+<label><input type="radio" name="module7_mcq_q100" value="B"> B. 1.8</label><br>
+<label><input type="radio" name="module7_mcq_q100" value="C"> C. 2.01</label><br>
+<label><input type="radio" name="module7_mcq_q100" value="D"> D. 2.3</label><br>
+<label><input type="radio" name="module7_mcq_q100" value="E"> E. 1.95</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q100" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. To calculate $\beta_E$, use the formula $\beta_E = \beta_U(1 + \frac{D}{E})$. With the given values, $\beta_E = 1.1(1 + 0.9) = 2.01$.
+</div>
+
+:::

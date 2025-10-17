@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q9')" data-correct-answer="A">
+<strong style="display: block;">What assumption is crucial for the Modigliani–Miller irrelevance theorem to hold?</strong>
+
+<label><input type="radio" name="module7_mcq_q9" value="A"> A. Investors can borrow and lend at the same rates as firms</label><br>
+<label><input type="radio" name="module7_mcq_q9" value="B"> B. Firms face progressive corporate tax rates</label><br>
+<label><input type="radio" name="module7_mcq_q9" value="C"> C. Markets are illiquid and costly to trade</label><br>
+<label><input type="radio" name="module7_mcq_q9" value="D"> D. Managers have private information about firm value</label><br>
+<label><input type="radio" name="module7_mcq_q9" value="E"> E. Investors cannot use leverage</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q9" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. MM requires perfect capital markets—no taxes, no frictions, and equal borrowing opportunities for firms and investors.
+</div>
+
+:::

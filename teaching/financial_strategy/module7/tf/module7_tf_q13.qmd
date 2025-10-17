@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q13','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q13" name="module7_tf_q13" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q13"><strong>Debt financing is a less expensive source of capital for a firm compared to equity financing.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q13" class="feedback" data-status="" style="display:none;">
+This is TRUE. Debt typically has a lower required return because it is less risky than equity.
+</div>
+
+:::

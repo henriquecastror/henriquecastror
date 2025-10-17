@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q29')" data-correct-answer="E">
+<strong style="display: block;">A levered firm has total value V = \$200 million and debt D = \$80 million (no taxes). Equity value E equals:</strong>
+
+<label><input type="radio" name="module7_mcq_q29" value="A"> A. \$80 million</label><br>
+<label><input type="radio" name="module7_mcq_q29" value="B"> B. \$100 million</label><br>
+<label><input type="radio" name="module7_mcq_q29" value="C"> C. \$110 million</label><br>
+<label><input type="radio" name="module7_mcq_q29" value="D"> D. \$120 million</label><br>
+<label><input type="radio" name="module7_mcq_q29" value="E"> E. \$120 million</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q29" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. \( E = V - D = 200 - 80 = \$120 \) million.
+</div>
+
+:::

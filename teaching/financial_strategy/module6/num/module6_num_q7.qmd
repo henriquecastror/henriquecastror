@@ -1,0 +1,49 @@
+
+::: {.question}
+
+**Convertible Bond — Conversion Value vs. Straight Value (Premium/Discount)**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+set.seed(807)
+ratio        <- round(runif(1, 18, 35), 0)
+stock_price  <- round(runif(1, 25, 75), 2)
+bond_price   <- round(runif(1, 900, 1250), 2)
+conv_value   <- round(ratio * stock_price, 2)
+premium      <- round(bond_price - conv_value, 2)
+
+```
+
+
+cat(sprintf("A convertible bond can be exchanged for <b>%d</b> shares. The stock trades at <b>$%1.2f</b> and the bond trades at <b>$%1.2f</b>.", 
+            ratio, stock_price, bond_price))
+            
+1) What is the <strong>conversion value</strong> of the bond?  
+2) What is the <strong>conversion premium</strong> (bond price − conversion value)? Use a negative sign if discount.
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module6_num_q7a"><strong>1) Conversion value ($):</strong></label>
+  <input type="number" id="module6_num_q7a" name="module6_num_q7a" step="0.01" style="width:220px;"
+         data-correct-answer=`r conv_value` data-tolerance="0.5" />
+</form>
+<div id="feedback-module6_num_q7a" class="feedback" data-status="" style="display:none;">
+✅ Conversion value = `r ratio` × `r stock_price` = <strong>$ `r conv_value`</strong>.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module6_num_q7b"><strong>2) Conversion premium ($):</strong></label>
+  <input type="number" id="module6_num_q7b" name="module6_num_q7b" step="0.01" style="width:220px;"
+         data-correct-answer=`r premium` data-tolerance="0.5" />
+</form>
+<div id="feedback-module6_num_q7b" class="feedback" data-status="" style="display:none;">
+✅ Premium = Bond price − Conversion value = `r bond_price` − `r conv_value` = <strong>`r premium`</strong>.
+</div>
+:::
+
+:::

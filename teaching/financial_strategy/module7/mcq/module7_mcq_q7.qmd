@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q7')" data-correct-answer="B">
+<strong style="display: block;">Which of the following statements about Modigliani and Miller Proposition II is correct?</strong>
+
+<label><input type="radio" name="module7_mcq_q7" value="A"> A. The firm’s total risk decreases with leverage</label><br>
+<label><input type="radio" name="module7_mcq_q7" value="B"> B. The firm’s equity becomes riskier as leverage increases</label><br>
+<label><input type="radio" name="module7_mcq_q7" value="C"> C. The cost of debt increases faster than the cost of equity</label><br>
+<label><input type="radio" name="module7_mcq_q7" value="D"> D. The unlevered cost of capital increases with debt</label><br>
+<label><input type="radio" name="module7_mcq_q7" value="E"> E. WACC rises with leverage</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q7" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. MM II shows that leverage raises equity risk and expected return while total firm risk remains unchanged.
+</div>
+
+:::

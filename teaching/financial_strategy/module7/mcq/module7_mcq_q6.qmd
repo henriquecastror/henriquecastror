@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q6')" data-correct-answer="D">
+<strong style="display: block;">Under perfect capital markets, what happens to earnings per share (EPS) when leverage increases?</strong>
+
+<label><input type="radio" name="module7_mcq_q6" value="A"> A. EPS always increases, implying higher firm value</label><br>
+<label><input type="radio" name="module7_mcq_q6" value="B"> B. EPS always decreases due to higher interest expense</label><br>
+<label><input type="radio" name="module7_mcq_q6" value="C"> C. EPS and firm value both stay constant</label><br>
+<label><input type="radio" name="module7_mcq_q6" value="D"> D. Expected EPS is unchanged, but its volatility increases</label><br>
+<label><input type="radio" name="module7_mcq_q6" value="E"> E. EPS becomes risk-free</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q6" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Leverage magnifies EPS variability—higher risk but unchanged expected value in perfect markets.
+</div>
+
+:::

@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q97')" data-correct-answer="D">
-<strong style="display: block;">Which factor most influences the slope of the yield curve?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q97')" data-correct-answer="B">
+<strong style="display: block;">Which factor most influences the returns of Tesouro IPCA+ bonds?</strong>
 
-<label><input type="radio" name="module6_mcq_q97" value="A"> A. The bond’s coupon rate</label><br>
-<label><input type="radio" name="module6_mcq_q97" value="B"> B. Credit spreads only</label><br>
-<label><input type="radio" name="module6_mcq_q97" value="C"> C. The issuer’s dividend policy</label><br>
-<label><input type="radio" name="module6_mcq_q97" value="D"> D. Expectations about future interest rates and inflation</label><br>
-<label><input type="radio" name="module6_mcq_q97" value="E"> E. Trading volume in the secondary market</label><br>
+<label><input type="radio" name="module6_mcq_q97" value="A"> A. The bond’s credit rating</label><br>
+<label><input type="radio" name="module6_mcq_q97" value="B"> B. Expectations about future inflation and the inflation index (IPCA)</label><br>
+<label><input type="radio" name="module6_mcq_q97" value="C"> C. The bond’s maturity period</label><br>
+<label><input type="radio" name="module6_mcq_q97" value="D"> D. The liquidity of the bond in the secondary market</label><br>
+<label><input type="radio" name="module6_mcq_q97" value="E"> E. The bond’s coupon rate compared to Tesouro Selic</label><br>
 </form>
 
 <div id="feedback-module6_mcq_q97" class="feedback" style="display:none;">
-✅ Correct: D. The yield curve’s shape reflects market expectations for future rates and inflation.
+✅ Correct: B. The returns of Tesouro IPCA+ bonds are closely tied to inflation expectations, as they offer a fixed real return above the inflation rate (IPCA).
 </div>
 
 :::

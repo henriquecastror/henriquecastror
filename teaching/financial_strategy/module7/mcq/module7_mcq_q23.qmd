@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q23')" data-correct-answer="B">
+<strong style="display: block;">According to Modigliani and Miller’s Proposition II (no taxes), how does increasing financial leverage (D/E) affect the cost of equity (r<sub>E</sub>)?</strong>
+
+<label><input type="radio" name="module7_mcq_q23" value="A"> A. It decreases the cost of equity because debt is cheaper.</label><br>
+<label><input type="radio" name="module7_mcq_q23" value="B"> B. It increases the cost of equity because equity becomes riskier.</label><br>
+<label><input type="radio" name="module7_mcq_q23" value="C"> C. It does not change the cost of equity.</label><br>
+<label><input type="radio" name="module7_mcq_q23" value="D"> D. It decreases the overall cost of capital.</label><br>
+<label><input type="radio" name="module7_mcq_q23" value="E"> E. It makes the cost of equity constant but increases beta.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q23" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. As leverage increases, equity holders face higher financial risk, which raises the required return on equity. 
+</div>
+
+:::

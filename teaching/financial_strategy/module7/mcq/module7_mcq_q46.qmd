@@ -1,0 +1,27 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q46')" data-correct-answer="D">
+<strong style="display: block;">A firm operates with no taxes and has a cost of equity $r_E = 15\%$, a cost of debt $r_D = 6\%$, and a weighted average cost of capital (WACC) of $10\%$. If the firm decides to gradually increase its leverage, what is its current proportion of debt in the firm’s value ($D/V$)?</strong>
+
+<label><input type="radio" name="module7_mcq_q46" value="A"> A. 0.30</label><br>
+<label><input type="radio" name="module7_mcq_q46" value="B"> B. 0.35</label><br>
+<label><input type="radio" name="module7_mcq_q46" value="C"> C. 0.40</label><br>
+<label><input type="radio" name="module7_mcq_q46" value="D"> D. 0.44</label><br>
+<label><input type="radio" name="module7_mcq_q46" value="E"> E. 0.50</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q46" class="feedback" data-status="" style="display:none;">
+✅ Correct: D.  
+The WACC in a no-tax world is a weighted average of debt and equity costs:  
+$WACC = (D/V)r_D + (1 - D/V)r_E$.  
+
+Substituting:  
+$0.10 = x(0.06) + (1 - x)(0.15)$  
+$\Rightarrow 0.10 = 0.06x + 0.15 - 0.15x$  
+$\Rightarrow 0.09x = 0.05$  
+$\Rightarrow D/V = 0.44$.  
+
+Thus, **44% of the firm’s value is financed by debt**, consistent with a WACC between the cost of equity and the cost of debt.
+</div>
+
+:::

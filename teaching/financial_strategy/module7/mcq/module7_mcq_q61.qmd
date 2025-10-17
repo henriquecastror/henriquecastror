@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q61')" data-correct-answer="E">
+<strong style="display: block;">Under Modigliani and Miller Proposition II (no taxes), which statement best explains how financial leverage affects shareholders’ expected return?</strong>
+
+<label><input type="radio" name="module7_mcq_q61" value="A"> A. The cost of equity falls as leverage rises because debt is cheaper than equity.</label><br>
+<label><input type="radio" name="module7_mcq_q61" value="B"> B. Leverage has no effect on shareholders’ expected return in perfect markets.</label><br>
+<label><input type="radio" name="module7_mcq_q61" value="C"> C. The expected return on equity remains equal to the firm’s unlevered cost of capital.</label><br>
+<label><input type="radio" name="module7_mcq_q61" value="D"> D. The expected return on equity decreases because risk is diversified with debt.</label><br>
+<label><input type="radio" name="module7_mcq_q61" value="E"> E. The expected return on equity increases with leverage because shareholders face higher financial risk.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q61" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. According to MM Proposition II (no taxes), leverage increases the risk borne by equity holders.  
+The cost of equity follows $r_E = r_U + \frac{D}{E}(r_U - r_D)$ — meaning that as the firm issues more debt, equity becomes riskier and investors demand a higher expected return.
+</div>
+
+:::

@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q46')" data-correct-answer="C">
-<strong style="display: block;">Which of the following best describes a bond’s current yield?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q46')" data-correct-answer="B">
+<strong style="display: block;">Which of the following best describes the coupon rate of a bond?</strong>
 
-<label><input type="radio" name="module6_mcq_q46" value="A"> A. The bond’s yield to maturity</label><br>
-<label><input type="radio" name="module6_mcq_q46" value="B"> B. The total return including capital gains</label><br>
-<label><input type="radio" name="module6_mcq_q46" value="C"> C. The annual coupon divided by the current market price</label><br>
-<label><input type="radio" name="module6_mcq_q46" value="D"> D. The internal rate of return for all cash flows</label><br>
-<label><input type="radio" name="module6_mcq_q46" value="E"> E. The yield spread between two maturities</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="A"> A. The total return on the bond, including both income and capital gains.</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="B"> B. The fixed annual interest rate paid by the bond, expressed as a percentage of the bond's face value.</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="C"> C. The yield the bond will provide if held until maturity, considering both coupon payments and price changes.</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="D"> D. The market interest rate for similar bonds in the market.</label><br>
+<label><input type="radio" name="module6_mcq_q46" value="E"> E. The risk premium of the bond based on its credit rating.</label><br>
 </form>
 
 <div id="feedback-module6_mcq_q46" class="feedback" style="display:none;">
-✅ Correct: C. Current yield measures annual income relative to market price, ignoring capital gains.
+✅ Correct: B. The coupon rate is the fixed interest rate paid annually by the bond issuer, based on the bond's face value.
 </div>
 
 :::

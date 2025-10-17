@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q58','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q58" name="module7_tf_q58" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q58"><strong>If a firm has $D/E = 1$, an unlevered cost of 12%, and a debt rate of 6%, its equity cost under MM II is 18%.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q58" class="feedback" data-status="" style="display:none;">
+This is TRUE. Re = 12% + (1)(12%-6%) = 18%.
+</div>
+
+:::

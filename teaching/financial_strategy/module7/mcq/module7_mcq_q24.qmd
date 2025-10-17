@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q24')" data-correct-answer="C">
+<strong style="display: block;">What happens to a firm’s equity beta (β<sub>E</sub>) when leverage increases, assuming no taxes?</strong>
+
+<label><input type="radio" name="module7_mcq_q24" value="A"> A. It remains equal to the unlevered beta (β<sub>U</sub>).</label><br>
+<label><input type="radio" name="module7_mcq_q24" value="B"> B. It decreases because debt absorbs part of the risk.</label><br>
+<label><input type="radio" name="module7_mcq_q24" value="C"> C. It increases proportionally with the debt-to-equity ratio.</label><br>
+<label><input type="radio" name="module7_mcq_q24" value="D"> D. It becomes zero.</label><br>
+<label><input type="radio" name="module7_mcq_q24" value="E"> E. It becomes negative.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q24" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Leverage magnifies the risk borne by equity investors. According to MM, beta increases proportionally with leverage, as debt raises financial risk.
+</div>
+
+:::

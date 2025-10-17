@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q18','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q18" name="module7_tf_q18" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q18"><strong>In perfect capital markets, firms do not face transaction costs when issuing or repurchasing securities.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q18" class="feedback" data-status="" style="display:none;">
+This is TRUE. Perfect markets assume frictionless trading and zero issuance costs.
+</div>
+
+:::

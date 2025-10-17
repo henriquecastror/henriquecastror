@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q11')" data-correct-answer="B">
+<strong style="display: block;">If a firm doubles its debt while maintaining constant assets, what happens to the equity beta (no taxes)?</strong>
+
+<label><input type="radio" name="module7_mcq_q11" value="A"> A. It decreases</label><br>
+<label><input type="radio" name="module7_mcq_q11" value="B"> B. It increases</label><br>
+<label><input type="radio" name="module7_mcq_q11" value="C"> C. It remains unchanged</label><br>
+<label><input type="radio" name="module7_mcq_q11" value="D"> D. It becomes zero</label><br>
+<label><input type="radio" name="module7_mcq_q11" value="E"> E. It equals the unlevered beta</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q11" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Leverage amplifies equity risk — as debt rises, β<sub>E</sub> increases.
+</div>
+
+:::

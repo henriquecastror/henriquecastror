@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q94','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q94" name="module7_tf_q94" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module7_tf_q94"><strong>In MM Proposition II, the firm’s cost of equity equals its cost of debt plus a constant premium independent of leverage.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q94" class="feedback" data-status="" style="display:none;">
+This is FALSE. The premium depends on D/E and rises with leverage.
+</div>
+
+:::

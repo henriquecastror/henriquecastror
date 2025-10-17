@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q16','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q16" name="module7_tf_q16" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q16"><strong>In perfect capital markets, all investors can borrow and lend at the same risk-free rate.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q16" class="feedback" data-status="" style="display:none;">
+This is TRUE. One of MM’s key assumptions is equal access to borrowing/lending at the same rate.
+</div>
+
+:::

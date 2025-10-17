@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q9','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q9" name="module7_tf_q9" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module7_tf_q9"><strong>The relative proportions of debt, equity, and other securities make up a firm's investment policy.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q9" class="feedback" data-status="" style="display:none;">
+This is FALSE. Those proportions define **capital structure**, not investment policy.
+</div>
+
+:::

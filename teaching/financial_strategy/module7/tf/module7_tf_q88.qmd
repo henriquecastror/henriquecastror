@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q88','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q88" name="module7_tf_q88" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q88"><strong>The risk premium on levered equity equals the firm’s unlevered risk premium multiplied by (1 + D/E).</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q88" class="feedback" data-status="" style="display:none;">
+This is TRUE. MM II implies Re − Rf = (1 + D/E)(Ru − Rf) when Rd = Rf.
+</div>
+
+:::

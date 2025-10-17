@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q98')" data-correct-answer="D">
+<strong style="display: block;">A firm has D/E = 0.9 (no taxes). Its equity costs r<sub>E</sub> = 16%. Debt is split into two tranches: 60% of total debt at 4% and 40% at 7%. What is the firm's unlevered cost of capital r<sub>U</sub>?</strong>
+
+<label><input type="radio" name="module7_mcq_q98" value="A"> A. 10.4%</label><br>
+<label><input type="radio" name="module7_mcq_q98" value="B"> B. 10.6%</label><br>
+<label><input type="radio" name="module7_mcq_q98" value="C"> C. 10.8%</label><br>
+<label><input type="radio" name="module7_mcq_q98" value="D"> D. 10.9%</label><br>
+<label><input type="radio" name="module7_mcq_q98" value="E"> E. 11.2%</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q98" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. First, convert $D/E=0.9$ into shares of value: $E/V=\frac{1}{1+0.9}\approx0.5263$ and $D/V\approx0.4737$. 
+Blend the debt tranches: $r_D=0.6\cdot0.04+0.4\cdot0.07=0.052$ (5.2%). 
+Then $r_U=(E/V)\,r_E+(D/V)\,r_D\approx0.5263\cdot0.16+0.4737\cdot0.052\approx0.1089\approx10.9\%$.
+</div>
+
+:::

@@ -1,17 +1,17 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q49')" data-correct-answer="A">
-<strong style="display: block;">Which of the following statements about bond price volatility is true?</strong>
+<form onsubmit="event.preventDefault(); checkAnswer('module6_mcq_q49')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements about secured and unsecured bonds is correct?</strong>
 
-<label><input type="radio" name="module6_mcq_q49" value="A"> A. Bonds with longer maturities and lower coupons are more volatile.</label><br>
-<label><input type="radio" name="module6_mcq_q49" value="B"> B. Bonds with shorter maturities are always more volatile.</label><br>
-<label><input type="radio" name="module6_mcq_q49" value="C"> C. Coupon rate has no effect on volatility.</label><br>
-<label><input type="radio" name="module6_mcq_q49" value="D"> D. Duration and volatility are unrelated.</label><br>
-<label><input type="radio" name="module6_mcq_q49" value="E"> E. Callable bonds are less volatile than non-callable ones.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="A"> A. Secured bonds have no priority over unsecured bonds in case of bankruptcy.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="B"> B. Unsecured bonds are typically backed by specific assets of the issuing company.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="C"> C. Secured bonds are backed by collateral, giving them higher priority in case of liquidation.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="D"> D. Secured bonds are always issued at a lower interest rate than unsecured bonds.</label><br>
+<label><input type="radio" name="module6_mcq_q49" value="E"> E. Unsecured bonds are less risky for investors than secured bonds.</label><br>
 </form>
 
 <div id="feedback-module6_mcq_q49" class="feedback" style="display:none;">
-✅ Correct: A. Low-coupon, long-maturity bonds exhibit greater price sensitivity to yield changes.
+✅ Correct: C. Secured bonds are backed by collateral, which makes them a safer investment and gives them higher priority in case of the issuer’s liquidation.
 </div>
 
 :::

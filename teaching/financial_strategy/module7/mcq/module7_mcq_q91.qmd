@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q91')" data-correct-answer="D">
+<strong style="display: block;">According to Modigliani and Miller's Proposition II (no taxes), what explains why the cost of equity increases with leverage?</strong>
+
+<label><input type="radio" name="module7_mcq_q91" value="A"> A. Because debt increases the firm's overall risk.</label><br>
+<label><input type="radio" name="module7_mcq_q91" value="B"> B. Because shareholders receive a fixed return regardless of leverage.</label><br>
+<label><input type="radio" name="module7_mcq_q91" value="C"> C. Because interest payments reduce the firm's cash flows.</label><br>
+<label><input type="radio" name="module7_mcq_q91" value="D"> D. Because leverage concentrates business risk on equity holders, increasing their required return.</label><br>
+<label><input type="radio" name="module7_mcq_q91" value="E"> E. Because the firm's unlevered cost of capital increases with debt.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q91" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Under Modigliani and Miller Proposition II (no taxes), leverage increases the expected return on equity because equity holders bear greater risk. The firm's overall cost of capital ($r_U$) stays constant, but $r_E$ rises linearly with leverage as risk shifts from debt to equity.
+</div>
+
+:::

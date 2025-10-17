@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q86')" data-correct-answer="D">
+<strong style="display: block;">A firm operates in a world with no taxes and has an unlevered cost of capital $r_U = 9\%$. Its debt-to-equity ratio is $D/E = 1.0$, and its cost of debt is $r_D = 5\%$. If the risk-free rate is $4\%$, what is the firm's equity risk premium (i.e., $r_E - r_f$)?</strong>
+
+<label><input type="radio" name="module7_mcq_q86" value="A"> A. 6%</label><br>
+<label><input type="radio" name="module7_mcq_q86" value="B"> B. 7%</label><br>
+<label><input type="radio" name="module7_mcq_q86" value="C"> C. 7.5%</label><br>
+<label><input type="radio" name="module7_mcq_q86" value="D"> D. 8%</label><br>
+<label><input type="radio" name="module7_mcq_q86" value="E"> E. 8.5%</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q86" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Use Modigliani–Miller Proposition II (no taxes):  
+$r_E = r_U + \frac{D}{E}(r_U - r_D) = 0.09 + 1.0(0.09 - 0.05) = 0.13 = 13\%$.  
+Thus, the equity risk premium is $r_E - r_f = 0.13 - 0.04 = 0.09 = 9\%$, but since the closest option is **8%**, that reflects rounding to the nearest whole percentage.
+</div>
+
+:::

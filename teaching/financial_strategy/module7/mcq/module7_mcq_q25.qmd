@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q25')" data-correct-answer="C">
+<strong style="display: block;">In a world without taxes, how does increasing leverage affect the firm’s overall cost of capital (WACC)?</strong>
+
+<label><input type="radio" name="module7_mcq_q25" value="A"> A. It decreases because debt is cheaper.</label><br>
+<label><input type="radio" name="module7_mcq_q25" value="B"> B. It increases because equity becomes more expensive.</label><br>
+<label><input type="radio" name="module7_mcq_q25" value="C"> C. It remains constant because the higher r<sub>E</sub> offsets the cheaper r<sub>D</sub>.</label><br>
+<label><input type="radio" name="module7_mcq_q25" value="D"> D. It fluctuates depending on business risk.</label><br>
+<label><input type="radio" name="module7_mcq_q25" value="E"> E. It cannot be determined without taxes.</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q25" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Under MM Proposition I (no taxes), the firm’s overall cost of capital (WACC) is unaffected by capital structure. The lower cost of debt is exactly offset by the higher cost of equity.
+</div>
+
+:::

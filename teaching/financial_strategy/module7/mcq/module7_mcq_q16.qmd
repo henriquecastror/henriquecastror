@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module7_mcq_q16')" data-correct-answer="B">
+<strong style="display: block;">If a firm's debt-to-equity ratio decreases, according to MM II (no taxes):</strong>
+
+<label><input type="radio" name="module7_mcq_q16" value="A"> A. The cost of equity increases</label><br>
+<label><input type="radio" name="module7_mcq_q16" value="B"> B. The cost of equity decreases</label><br>
+<label><input type="radio" name="module7_mcq_q16" value="C"> C. The cost of equity remains constant</label><br>
+<label><input type="radio" name="module7_mcq_q16" value="D"> D. The unlevered cost of capital decreases</label><br>
+<label><input type="radio" name="module7_mcq_q16" value="E"> E. The WACC increases</label><br>
+</form>
+
+<div id="feedback-module7_mcq_q16" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Lower leverage means less risk for equity holders, so their required return declines.
+</div>
+
+:::

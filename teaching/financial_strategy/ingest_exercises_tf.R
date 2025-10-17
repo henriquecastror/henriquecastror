@@ -300,10 +300,10 @@ for (i in seq_along(ak_chunks)) {
 }
 cat(sprintf("Resumo keys TF: %d OK, %d falhas\n", ak_ok, ak_fail))
 
-cat("\n=== [2/2] BANCO (selfquiz_bank — T/F) ===\n")
-rbank <- run_ingest_bank_tf(FILES)
-cat(sprintf("Resumo bank TF: enviados %d em %d lotes (último HTTP %s)\n",
-            rbank$sent, rbank$batches, rbank$status))
+#cat("\n=== [2/2] BANCO (selfquiz_bank — T/F) ===\n")
+#rbank <- run_ingest_bank_tf(FILES)
+#cat(sprintf("Resumo bank TF: enviados %d em %d lotes (último HTTP %s)\n",
+#           rbank$sent, rbank$batches, rbank$status))
 
 cat("\n=== CHECKPOINT FINAL ===\n")
 cat(sprintf("- Arquivos .qmd na pasta: %d\n", length(FILES)))

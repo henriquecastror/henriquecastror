@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module7_tf_q11','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module7_tf_q11" name="module7_tf_q11" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module7_tf_q11"><strong>Leverage refers to the practice of using debt or other financial instruments to magnify returns on equity investments, while unlevered equity means using only equity capital without debt.</strong></label>
+</form>
+
+<div id="feedback-module7_tf_q11" class="feedback" data-status="" style="display:none;">
+This is TRUE. Leverage amplifies equity returns and risk; unlevered means financed only with equity.
+</div>
+
+:::

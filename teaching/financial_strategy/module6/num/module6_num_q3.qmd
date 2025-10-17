@@ -1,0 +1,50 @@
+::: {.question}
+
+**Debt Issuance with Placement Fee — Sizing to Target Net Proceeds**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises); library(knitr)
+set.seed(605)
+target_net_m <- round(runif(1, 8, 20), 3)
+fee          <- round(runif(1, 0.012, 0.035), 4)
+gross_m      <- target_net_m / (1 - fee)
+fee_paid_m   <- gross_m * fee
+ansA <- round(gross_m, 3)
+ansB <- round(fee_paid_m, 3)
+cat(sprintf("Target net proceeds: <b>R$ %1.3f million</b> | Placement fee: <b>%1.2f%%</b>",
+            target_net_m, 100*fee))
+```
+
+The company issues bonds **at par** and pays a **placement fee** (as a % of face).  
+1) How much **face value** (million R$) must be issued to net the target?  
+2) How much is the **total fee paid** (million R$)?
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module6_num_q3a"><strong>3a. Face to issue (R$ million):</strong></label>
+  <input type="number" id="module6_num_q3a" name="module6_num_q3a" step="0.001" style="width:220px;"
+         data-correct-answer=`r ansA` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module6_num_q3a" class="feedback" data-status="" style="display:none;">
+✅ \( \text{Face} = \dfrac{\text{Target Net}}{1-\text{fee}} = \) <b>`r ansA`</b> million.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module6_num_q3b"><strong>3b. Total fee (R$ million):</strong></label>
+  <input type="number" id="module6_num_q3b" name="module6_num_q3b" step="0.001" style="width:220px;"
+         data-correct-answer=`r ansB` data-tolerance="0.01" />
+</form>
+
+<div id="feedback-module6_num_q3b" class="feedback" data-status="" style="display:none;">
+✅ Fee paid = Face × fee = <b>`r ansB`</b> million.
+</div>
+:::
+
+:::
