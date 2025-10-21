@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q7','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q7" name="module8_tf_q7" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q7"><strong>The Modigliani-Miller theorem with taxes states that the value of a levered firm is equal to the value of an unlevered firm plus the present value of the tax shield from debt</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q7" class="feedback" data-status="" style="display:none;">
+TRUE. V_L = V_U + PV(interest tax shield).
+</div>
+
+:::

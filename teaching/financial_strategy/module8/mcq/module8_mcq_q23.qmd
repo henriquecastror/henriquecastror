@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q23')" data-correct-answer="E">
+<strong style="display: block;">Which of the following correctly expresses the after-tax cost of debt?</strong>
+
+<label><input type="radio" name="module8_mcq_q23" value="A"> A. $r_D + τ_c$</label><br>
+<label><input type="radio" name="module8_mcq_q23" value="B"> B. $r_D / τ_c$</label><br>
+<label><input type="radio" name="module8_mcq_q23" value="C"> C. $r_D × τ_c$</label><br>
+<label><input type="radio" name="module8_mcq_q23" value="D"> D. $(1 - τ_c) / r_D$</label><br>
+<label><input type="radio" name="module8_mcq_q23" value="E"> E. $r_D(1 - τ_c)$</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q23" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. The after-tax cost of debt equals the pre-tax rate multiplied by $(1 - τ_c)$.
+</div>
+
+:::

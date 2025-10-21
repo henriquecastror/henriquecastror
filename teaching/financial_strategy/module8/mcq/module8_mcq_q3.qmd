@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q3')" data-correct-answer="A">
+<strong style="display: block;">The interest tax shield is best described as:</strong>
+
+<label><input type="radio" name="module8_mcq_q3" value="A"> A. The reduction in corporate taxes due to deductible interest expenses</label><br>
+<label><input type="radio" name="module8_mcq_q3" value="B"> B. The difference between EBIT and EBT</label><br>
+<label><input type="radio" name="module8_mcq_q3" value="C"> C. The cost of debt net of taxes</label><br>
+<label><input type="radio" name="module8_mcq_q3" value="D"> D. The excess return on equity due to leverage</label><br>
+<label><input type="radio" name="module8_mcq_q3" value="E"> E. The amount of taxable dividends paid to shareholders</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q3" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Interest tax shield refers to the reduction in taxes resulting from the deductibility of interest.
+</div>
+
+:::

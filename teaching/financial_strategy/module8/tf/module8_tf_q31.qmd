@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q31','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q31" name="module8_tf_q31" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q31"><strong>In the presence of taxes, issuing debt can be value-enhancing for firms with consistent profits.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q31" class="feedback" data-status="" style="display:none;">
+TRUE. Stable profits ensure the firm can fully use the interest tax shield.
+</div>
+
+:::

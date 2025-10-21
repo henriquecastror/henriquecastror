@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q84')" data-correct-answer="C">
+<strong style="display: block;">A company issues $100 million of debt with a 5-year maturity and a 6% interest rate. The corporate tax rate is 30%. If the appropriate discount rate for the tax shield is also 6%, what is the present value of the total tax shields over the debt’s life (assume annual interest payments)?</strong>
+
+<label><input type="radio" name="module8_mcq_q84" value="A"> A. $9 million</label><br>
+<label><input type="radio" name="module8_mcq_q84" value="B"> B. $15 million</label><br>
+<label><input type="radio" name="module8_mcq_q84" value="C"> C. $14.1 million</label><br>
+<label><input type="radio" name="module8_mcq_q84" value="D"> D. $18 million</label><br>
+<label><input type="radio" name="module8_mcq_q84" value="E"> E. $30 million</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q84" class="feedback" data-status="" style="display:none;">
+✅ Correct: C.  
+Annual tax shield = 100 × 0.06 × 0.30 = 1.8 million.  
+PV = 1.8 × [1 − (1 / 1.06⁵)] / 0.06 = **$14.1 million**.
+</div>
+
+:::
+

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q28')" data-correct-answer="E">
+<strong style="display: block;">If both corporate and personal taxes exist, the effective tax advantage of debt (τ*) will be:</strong>
+
+<label><input type="radio" name="module8_mcq_q28" value="A"> A. Equal to the corporate tax rate</label><br>
+<label><input type="radio" name="module8_mcq_q28" value="B"> B. Zero in all cases</label><br>
+<label><input type="radio" name="module8_mcq_q28" value="C"> C. Always greater than one</label><br>
+<label><input type="radio" name="module8_mcq_q28" value="D"> D. Independent of personal taxes</label><br>
+<label><input type="radio" name="module8_mcq_q28" value="E"> E. Lower than τ<sub>c</sub> if interest income is taxed more heavily than equity income</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q28" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Personal taxes on interest reduce the effective tax advantage of debt below the corporate tax rate.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q92')" data-correct-answer="E">
+<strong style="display: block;">In the Modigliani–Miller framework with corporate taxes, which expression best represents firm value?</strong>
+
+<label><input type="radio" name="module8_mcq_q92" value="A"> A. V<sub>L</sub> = V<sub>U</sub> − T<sub>C</sub>D</label><br>
+<label><input type="radio" name="module8_mcq_q92" value="B"> B. V<sub>L</sub> = V<sub>U</sub> × T<sub>C</sub></label><br>
+<label><input type="radio" name="module8_mcq_q92" value="C"> C. V<sub>L</sub> = V<sub>U</sub></label><br>
+<label><input type="radio" name="module8_mcq_q92" value="D"> D. V<sub>L</sub> = V<sub>U</sub> − PV(Tax Shield)</label><br>
+<label><input type="radio" name="module8_mcq_q92" value="E"> E. V<sub>L</sub> = V<sub>U</sub> + T<sub>C</sub>D</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q92" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. MM with taxes shows that firm value increases by the present value of the interest tax shield, T<sub>C</sub>D.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q29')" data-correct-answer="A">
+<strong style="display: block;">Which of the following would increase the total value of the firm under Modigliani–Miller with taxes?</strong>
+
+<label><input type="radio" name="module8_mcq_q29" value="A"> A. Increasing the level of debt</label><br>
+<label><input type="radio" name="module8_mcq_q29" value="B"> B. Reducing interest payments</label><br>
+<label><input type="radio" name="module8_mcq_q29" value="C"> C. Paying more dividends</label><br>
+<label><input type="radio" name="module8_mcq_q29" value="D"> D. Lowering the corporate tax rate</label><br>
+<label><input type="radio" name="module8_mcq_q29" value="E"> E. Paying less interest on equity</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q29" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. More debt means more deductible interest, raising the present value of the tax shield.
+</div>
+
+:::

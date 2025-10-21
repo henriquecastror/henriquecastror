@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q58','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q58" name="module8_tf_q58" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q58"><strong>The decline in WACC with leverage continues indefinitely as firms increase debt ratios.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q58" class="feedback" data-status="" style="display:none;">
+FALSE. Although WACC declines initially due to the tax shield, at high leverage the rising cost of equity and potential distress offset the benefit.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q9','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q9" name="module8_tf_q9" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q9"><strong>The tax shield from debt is equivalent to the amount of debt multiplied by the corporate tax rate.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q9" class="feedback" data-status="" style="display:none;">
+TRUE in the permanent‑debt case: PV(tax shield) ≈ τc × D. The yearly shield is interest × τc.
+</div>
+
+:::

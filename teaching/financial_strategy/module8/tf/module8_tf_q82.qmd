@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q82','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q82" name="module8_tf_q82" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q82"><strong>When valuing a levered firm, the interest tax shield should always be discounted at the cost of equity.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q82" class="feedback" data-status="" style="display:none;">
+FALSE. The correct rate depends on the risk of the shield; often approximated by the cost of debt if the shield is as risky as debt.
+</div>
+
+:::

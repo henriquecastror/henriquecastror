@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q74')" data-correct-answer="B">
+<strong style="display: block;">A firm plans to issue $150 million of 10-year debt at 8% interest. The tax rate is 25%, and the discount rate for the tax shield is 8%. What is the present value of the tax shields over the debt’s life?</strong>
+
+<label><input type="radio" name="module8_mcq_q74" value="A"> A. $25 million</label><br>
+<label><input type="radio" name="module8_mcq_q74" value="B"> B. $28.1 million</label><br>
+<label><input type="radio" name="module8_mcq_q74" value="C"> C. $32 million</label><br>
+<label><input type="radio" name="module8_mcq_q74" value="D"> D. $36 million</label><br>
+<label><input type="radio" name="module8_mcq_q74" value="E"> E. $40 million</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q74" class="feedback" data-status="" style="display:none;">
+✅ Correct: B.  
+Annual shield = 150 × 0.08 × 0.25 = 3.0 million.  
+PV = 3.0 × [1 − (1 / 1.08¹⁰)] / 0.08 = **$28.1 million**.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q51')" data-correct-answer="C">
+<strong style="display: block;">When is the corporate tax benefit of debt maximized?</strong>
+
+<label><input type="radio" name="module8_mcq_q51" value="A"> A. When the firm is unprofitable</label><br>
+<label><input type="radio" name="module8_mcq_q51" value="B"> B. When tax rates are low</label><br>
+<label><input type="radio" name="module8_mcq_q51" value="C"> C. When the firm is profitable and interest is fully deductible</label><br>
+<label><input type="radio" name="module8_mcq_q51" value="D"> D. When the firm issues only equity</label><br>
+<label><input type="radio" name="module8_mcq_q51" value="E"> E. When interest is not deductible</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q51" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The benefit is highest when the firm can fully apply interest deductions to reduce taxable income.
+</div>
+
+:::

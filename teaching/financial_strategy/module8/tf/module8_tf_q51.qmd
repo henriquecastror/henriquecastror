@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q51','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q51" name="module8_tf_q51" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q51"><strong>When valuing a levered firm, the present value of the interest tax shield should be discounted at a rate that reflects the risk of the tax shield itself.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q51" class="feedback" data-status="" style="display:none;">
+TRUE. If the shield is as risky as the debt, discount at r_d; if linked to firm risk, use r_u. The correct discount rate depends on the correlation between the tax benefit and firm cash flows.
+</div>
+
+:::

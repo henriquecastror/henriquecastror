@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q46','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q46" name="module8_tf_q46" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q46"><strong>A firm that does not pay taxes benefits from the same tax shield as a profitable firm.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q46" class="feedback" data-status="" style="display:none;">
+FALSE. Without taxes, there’s no benefit from interest deductibility.
+</div>
+
+:::

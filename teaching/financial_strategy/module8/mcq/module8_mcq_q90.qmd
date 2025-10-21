@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q90')" data-correct-answer="C">
+<strong style="display: block;">A firm’s corporate tax rate falls from 35% to 25%, while its debt remains at $200 million. By how much does the value of its interest tax shield change?</strong>
+
+<label><input type="radio" name="module8_mcq_q90" value="A"> A. Increases by $20 million</label><br>
+<label><input type="radio" name="module8_mcq_q90" value="B"> B. Decreases by $15 million</label><br>
+<label><input type="radio" name="module8_mcq_q90" value="C"> C. Decreases by $20 million</label><br>
+<label><input type="radio" name="module8_mcq_q90" value="D"> D. Increases by $10 million</label><br>
+<label><input type="radio" name="module8_mcq_q90" value="E"> E. Remains unchanged</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q90" class="feedback" data-status="" style="display:none;">
+✅ Correct: C.  
+Under MM with taxes: PV(Tax Shield) = T<sub>C</sub> × D.  
+Before: 0.35 × 200 = 70 million  
+After: 0.25 × 200 = 50 million  
+Change = 70 − 50 = **$20 million decrease**.
+</div>
+
+:::

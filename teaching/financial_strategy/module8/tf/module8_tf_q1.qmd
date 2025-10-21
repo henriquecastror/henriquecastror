@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q1','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q1" name="module8_tf_q1" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q1"><strong>Holding stocks over bonds can provide a tax advantage due to the deferral of capital gains taxes until the asset is sold, which effectively lowers the capital gains tax rate.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q1" class="feedback" data-status="" style="display:none;">
+TRUE. Capital gains are taxed when realized, so deferral lowers the effective rate via time value; bonds usually generate interest taxed annually.
+</div>
+
+:::

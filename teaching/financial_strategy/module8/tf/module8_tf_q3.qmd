@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q3','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q3" name="module8_tf_q3" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q3"><strong>The interest tax shield with permanent debt implies that a company with a permanent level of debt will receive a consistent tax benefit due to the deductibility of interest expenses.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q3" class="feedback" data-status="" style="display:none;">
+TRUE. With permanent debt, the annual tax shield is approximately interest × corporate tax rate, giving a level stream whose PV is τc × D (under standard assumptions).
+</div>
+
+:::

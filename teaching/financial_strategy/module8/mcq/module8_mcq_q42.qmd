@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q42')" data-correct-answer="B">
+<strong style="display: block;">If a government removes the deductibility of interest, what will happen to firms’ leverage?</strong>
+
+<label><input type="radio" name="module8_mcq_q42" value="A"> A. Firms will increase their use of debt</label><br>
+<label><input type="radio" name="module8_mcq_q42" value="B"> B. Firms will reduce their use of debt</label><br>
+<label><input type="radio" name="module8_mcq_q42" value="C"> C. Leverage will remain constant</label><br>
+<label><input type="radio" name="module8_mcq_q42" value="D"> D. Equity will become more expensive</label><br>
+<label><input type="radio" name="module8_mcq_q42" value="E"> E. Dividend payments will increase</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q42" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Without interest deductibility, the tax advantage of debt disappears, leading firms to reduce leverage.
+</div>
+
+:::

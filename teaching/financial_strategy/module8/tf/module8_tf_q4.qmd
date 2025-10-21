@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q4','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q4" name="module8_tf_q4" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q4"><strong>The effective tax advantage of debt can be calculated by multiplying the firm's interest expense by the corporate tax rate.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q4" class="feedback" data-status="" style="display:none;">
+FALSE. That product gives the annual tax shield. The effective advantage parameter uses τ* = 1 − (1 − τc)(1 − τe)/(1 − τi).
+</div>
+
+:::

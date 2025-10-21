@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q96')" data-correct-answer="D">
+<strong style="display: block;">A firm has an unlevered cost of capital of 10%. It has USD 200 million in debt at 6% interest, the corporate tax rate is 30%, and the total firm value (V<sub>L</sub>) is 500 million. What is the levered cost of equity?</strong>
+
+<label><input type="radio" name="module8_mcq_q96" value="A"> A. 10.8%</label><br>
+<label><input type="radio" name="module8_mcq_q96" value="B"> B. 11.5%</label><br>
+<label><input type="radio" name="module8_mcq_q96" value="C"> C. 12.0%</label><br>
+<label><input type="radio" name="module8_mcq_q96" value="D"> D. 12.3%</label><br>
+<label><input type="radio" name="module8_mcq_q96" value="E"> E. 13.0%</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q96" class="feedback" data-status="" style="display:none;">
+✅ Correct: D.  
+Using the after-tax MM relation:  
+r<sub>E</sub> = r<sub>U</sub> + (D/E)(1 − T<sub>C</sub>)(r<sub>U</sub> − r<sub>D</sub>).  
+Here, E = V<sub>L</sub> − D = 500 − 200 = 300.  
+So r<sub>E</sub> = 10% + (200/300)(0.7)(10% − 6%) = 10% + 0.667 × 0.7 × 4% = **12.3%**.
+</div>
+
+:::

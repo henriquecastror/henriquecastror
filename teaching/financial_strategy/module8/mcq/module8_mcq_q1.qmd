@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q1')" data-correct-answer="D">
+<strong style="display: block;">The main reason why debt financing can increase firm value is that:</strong>
+
+<label><input type="radio" name="module8_mcq_q1" value="A"> A. It increases earnings per share</label><br>
+<label><input type="radio" name="module8_mcq_q1" value="B"> B. It reduces the firm’s business risk</label><br>
+<label><input type="radio" name="module8_mcq_q1" value="C"> C. It eliminates bankruptcy costs</label><br>
+<label><input type="radio" name="module8_mcq_q1" value="D"> D. Interest payments are tax-deductible</label><br>
+<label><input type="radio" name="module8_mcq_q1" value="E"> E. It increases total assets</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q1" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. The tax deductibility of interest creates a positive value effect known as the interest tax shield.
+</div>
+
+:::

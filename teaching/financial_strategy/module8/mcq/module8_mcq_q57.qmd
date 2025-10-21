@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q57')" data-correct-answer="A">
+<strong style="display: block;">A company finances itself with 50% equity and 50% debt. Its cost of equity is 12%, cost of debt is 8%, and corporate tax rate is 25%. What is its after-tax WACC?</strong>
+
+<label><input type="radio" name="module8_mcq_q57" value="A"> A. 8.5%</label><br>
+<label><input type="radio" name="module8_mcq_q57" value="B"> B. 9.0%</label><br>
+<label><input type="radio" name="module8_mcq_q57" value="C"> C. 8.0%</label><br>
+<label><input type="radio" name="module8_mcq_q57" value="D"> D. 10.0%</label><br>
+<label><input type="radio" name="module8_mcq_q57" value="E"> E. 7.0%</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q57" class="feedback" data-status="" style="display:none;">
+✅ Correct: A.  
+WACC = 0.5(12%) + 0.5(8%)(1 − 0.25) = 6.0% + 3.0% = **8.5%**.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q52','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q52" name="module8_tf_q52" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q52"><strong>The value of the tax shield is always exactly equal to τcD, regardless of the risk of debt or variability in future interest payments.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q52" class="feedback" data-status="" style="display:none;">
+FALSE. τcD applies under perpetual, risk-free, constant-debt assumptions. If debt or taxes change, the shield’s PV deviates from τcD.
+</div>
+
+:::

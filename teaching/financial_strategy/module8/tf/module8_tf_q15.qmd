@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q15','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q15" name="module8_tf_q15" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q15"><strong>The Modigliani-Miller theorem without taxes states that the value of a firm is dependent on its capital structure.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q15" class="feedback" data-status="" style="display:none;">
+FALSE. In a world without taxes or frictions, firm value is independent of leverage.
+</div>
+
+:::

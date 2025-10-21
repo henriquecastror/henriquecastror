@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q30')" data-correct-answer="D">
+<strong style="display: block;">The total value of a levered firm equals:</strong>
+
+<label><input type="radio" name="module8_mcq_q30" value="A"> A. The unlevered firm value minus the tax shield</label><br>
+<label><input type="radio" name="module8_mcq_q30" value="B"> B. The unlevered firm value only</label><br>
+<label><input type="radio" name="module8_mcq_q30" value="C"> C. The market value of equity plus interest payments</label><br>
+<label><input type="radio" name="module8_mcq_q30" value="D"> D. The unlevered firm value plus the present value of tax shields</label><br>
+<label><input type="radio" name="module8_mcq_q30" value="E"> E. The unlevered firm value plus total debt interest</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q30" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. In MM with taxes, $V_L = V_U + PV(\text{Tax Shields})$.
+</div>
+
+:::

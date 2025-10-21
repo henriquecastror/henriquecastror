@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q90','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q90" name="module8_tf_q90" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q90"><strong>A firm with volatile earnings may prefer short-term or adjustable-rate debt to maintain flexibility in managing tax shields and distress risk.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q90" class="feedback" data-status="" style="display:none;">
+TRUE. Short-term debt reduces long-term commitment and risk exposure under uncertain earnings.
+</div>
+
+:::

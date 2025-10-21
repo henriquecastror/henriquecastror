@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q69','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q69" name="module8_tf_q69" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q69"><strong>Corporate taxes make the cost of debt higher than the cost of equity for most firms.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q69" class="feedback" data-status="" style="display:none;">
+FALSE. Taxes make debt cheaper, since interest is deductible while equity returns are not.
+</div>
+
+:::

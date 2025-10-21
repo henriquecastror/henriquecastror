@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q65','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q65" name="module8_tf_q65" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q65"><strong>When personal taxes are introduced, the net tax advantage of debt may be reduced or even eliminated.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q65" class="feedback" data-status="" style="display:none;">
+TRUE. The effective tax advantage τ* can fall to zero or negative if personal taxes on interest are high relative to equity.
+</div>
+
+:::

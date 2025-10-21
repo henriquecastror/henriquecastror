@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q61')" data-correct-answer="B">
+<strong style="display: block;">A firm has an unlevered value of $500 million and permanent debt of $200 million. The corporate tax rate is 30%. According to Modigliani–Miller with taxes, what is the value of the levered firm?</strong>
+
+<label><input type="radio" name="module8_mcq_q61" value="A"> A. $520 million</label><br>
+<label><input type="radio" name="module8_mcq_q61" value="B"> B. $560 million</label><br>
+<label><input type="radio" name="module8_mcq_q61" value="C"> C. $600 million</label><br>
+<label><input type="radio" name="module8_mcq_q61" value="D"> D. $650 million</label><br>
+<label><input type="radio" name="module8_mcq_q61" value="E"> E. $700 million</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q61" class="feedback" data-status="" style="display:none;">
+✅ Correct: B.  
+Under MM with taxes:  
+V<sub>L</sub> = V<sub>U</sub> + T<sub>C</sub>D = 500 + (0.3 × 200) = **$560 million**.
+</div>
+
+:::

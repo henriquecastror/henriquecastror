@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q4')" data-correct-answer="E">
+<strong style="display: block;">Which of the following statements about personal taxes is TRUE?</strong>
+
+<label><input type="radio" name="module8_mcq_q4" value="A"> A. Personal taxes always increase the advantage of debt</label><br>
+<label><input type="radio" name="module8_mcq_q4" value="B"> B. Personal taxes do not affect capital structure decisions</label><br>
+<label><input type="radio" name="module8_mcq_q4" value="C"> C. Equity investors usually pay higher personal taxes than bondholders</label><br>
+<label><input type="radio" name="module8_mcq_q4" value="D"> D. Personal taxes make debt financing more attractive in all cases</label><br>
+<label><input type="radio" name="module8_mcq_q4" value="E"> E. Higher personal taxes on interest can reduce the net tax advantage of debt</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q4" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. When interest income is taxed more heavily than equity income, the overall tax benefit of debt declines.
+</div>
+
+:::

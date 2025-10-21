@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q57','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q57" name="module8_tf_q57" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q57"><strong>When a firm increases leverage, the total value of the firm always increases, regardless of potential bankruptcy or personal taxes.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q57" class="feedback" data-status="" style="display:none;">
+FALSE. The benefit from the interest tax shield can be offset by expected bankruptcy costs and personal tax disadvantages of debt, so firm value does not always rise with leverage.
+</div>
+
+:::

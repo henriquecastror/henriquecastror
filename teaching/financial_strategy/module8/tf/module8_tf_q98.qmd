@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q98','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q98" name="module8_tf_q98" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q98"><strong>The effective corporate tax rate relevant for valuation should reflect the firm’s ability to actually use tax deductions over time.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q98" class="feedback" data-status="" style="display:none;">
+TRUE. Temporary losses or tax credits can reduce the realizable tax benefit.
+</div>
+
+:::

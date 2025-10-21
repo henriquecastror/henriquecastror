@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q88')" data-correct-answer="C">
+<strong style="display: block;">A firm has EBIT of 120 million and a statutory corporate tax rate of 30%. It considers issuing debt that will generate 30 million of annual interest expense (permanent). By how many percentage points does the firm’s <em>effective</em> tax rate on EBIT fall after introducing the interest deduction?</strong>
+
+<label><input type="radio" name="module8_mcq_q88" value="A"> A. 3.0 percentage points</label><br>
+<label><input type="radio" name="module8_mcq_q88" value="B"> B. 5.0 percentage points</label><br>
+<label><input type="radio" name="module8_mcq_q88" value="C"> C. 7.5 percentage points</label><br>
+<label><input type="radio" name="module8_mcq_q88" value="D"> D. 10.0 percentage points</label><br>
+<label><input type="radio" name="module8_mcq_q88" value="E"> E. 12.0 percentage points</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q88" class="feedback" data-status="" style="display:none;">
+✅ Correct: C.  
+Without debt: Taxes = 0.30 × 120 = 36 → effective tax rate = 36/120 = 30%.  
+With debt: EBT = 120 − 30 = 90; Taxes = 0.30 × 90 = 27 → effective tax rate = 27/120 = 22.5%.  
+The firm’s effective tax rate therefore falls by **7.5 percentage points** due to interest deductibility.
+</div>
+
+:::

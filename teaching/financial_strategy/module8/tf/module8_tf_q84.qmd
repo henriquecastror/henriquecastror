@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q84','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q84" name="module8_tf_q84" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q84"><strong>Reducing leverage increases the total value of the firm because it lowers bankruptcy risk and preserves the tax shield.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q84" class="feedback" data-status="" style="display:none;">
+FALSE. Reducing leverage lowers financial risk but also diminishes the tax benefit of debt.
+</div>
+
+:::

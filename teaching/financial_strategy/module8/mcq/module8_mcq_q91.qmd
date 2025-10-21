@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q91')" data-correct-answer="A">
+<strong style="display: block;">A firm has debt of $400 million with an interest rate of 7%, and the corporate tax rate is 30%. What is the annual tax shield from interest deductibility?</strong>
+
+<label><input type="radio" name="module8_mcq_q91" value="A"> A. $8.4 million</label><br>
+<label><input type="radio" name="module8_mcq_q91" value="B"> B. $10.5 million</label><br>
+<label><input type="radio" name="module8_mcq_q91" value="C"> C. $12 million</label><br>
+<label><input type="radio" name="module8_mcq_q91" value="D"> D. $16 million</label><br>
+<label><input type="radio" name="module8_mcq_q91" value="E"> E. $28 million</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q91" class="feedback" data-status="" style="display:none;">
+✅ Correct: A.  
+Interest expense = 400 × 0.07 = 28 million  
+Tax shield = 28 × 0.30 = **$8.4 million** annual tax benefit.
+</div>
+
+:::

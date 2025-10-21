@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q71')" data-correct-answer="C">
+<strong style="display: block;">In Modigliani–Miller with taxes, what happens to firm value as debt increases?</strong>
+
+<label><input type="radio" name="module8_mcq_q71" value="A"> A. Firm value decreases</label><br>
+<label><input type="radio" name="module8_mcq_q71" value="B"> B. Firm value remains constant</label><br>
+<label><input type="radio" name="module8_mcq_q71" value="C"> C. Firm value increases due to the interest tax shield</label><br>
+<label><input type="radio" name="module8_mcq_q71" value="D"> D. Firm value declines due to higher interest costs</label><br>
+<label><input type="radio" name="module8_mcq_q71" value="E"> E. Firm value depends on dividends</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q71" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. With taxes, debt adds value because interest is deductible, increasing firm value by the present value of tax shields.
+</div>
+
+:::

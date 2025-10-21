@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q68')" data-correct-answer="D">
+<strong style="display: block;">Firm X increases its debt-to-equity ratio from 0.5 to 1.0 while maintaining a 30% tax rate and a cost of debt of 6%. By how much does its WACC change if the unlevered cost of capital is 10%?</strong>
+
+<label><input type="radio" name="module8_mcq_q68" value="A"> A. WACC rises to 11%</label><br>
+<label><input type="radio" name="module8_mcq_q68" value="B"> B. WACC remains 10%</label><br>
+<label><input type="radio" name="module8_mcq_q68" value="C"> C. WACC decreases slightly to 9.7%</label><br>
+<label><input type="radio" name="module8_mcq_q68" value="D"> D. WACC decreases to about 9.3%</label><br>
+<label><input type="radio" name="module8_mcq_q68" value="E"> E. WACC falls below 8%</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q68" class="feedback" data-status="" style="display:none;">
+✅ Correct: D.  
+With taxes, WACC = r<sub>U</sub>(1 − T<sub>C</sub>D/V).  
+When D/V rises from 0.33 to 0.50,  
+WACC falls from 10 × (1 − 0.3 × 0.33) = 9.0%  
+to 10 × (1 − 0.3 × 0.50) = **9.3%**, a small decrease due to higher leverage.
+</div>
+
+:::

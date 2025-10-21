@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q98')" data-correct-answer="C">
+<strong style="display: block;">A firm has debt of $400 million at an interest rate of 6% and faces a corporate tax rate of 25%. If the government limits the deductibility of interest to 70% of total interest expense, what is the value of the firm’s annual tax shield?</strong>
+
+<label><input type="radio" name="module8_mcq_q98" value="A"> A. $18 million</label><br>
+<label><input type="radio" name="module8_mcq_q98" value="B"> B. $20 million</label><br>
+<label><input type="radio" name="module8_mcq_q98" value="C"> C. $4.2 million</label><br>
+<label><input type="radio" name="module8_mcq_q98" value="D"> D. $6.0 million</label><br>
+<label><input type="radio" name="module8_mcq_q98" value="E"> E. $10.5 million</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q98" class="feedback" data-status="" style="display:none;">
+✅ Correct: C.  
+Interest = 400 × 6% = 24 million  
+Deductible portion = 70% × 24 = 16.8 million  
+Tax shield = 16.8 × 0.25 = **$4.2 million**.
+</div>
+
+:::

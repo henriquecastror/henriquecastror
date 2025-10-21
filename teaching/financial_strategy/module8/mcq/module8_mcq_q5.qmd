@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q5')" data-correct-answer="C">
+<strong style="display: block;">If the corporate tax rate increases, ceteris paribus, the value of the interest tax shield:</strong>
+
+<label><input type="radio" name="module8_mcq_q5" value="A"> A. Decreases</label><br>
+<label><input type="radio" name="module8_mcq_q5" value="B"> B. Remains constant</label><br>
+<label><input type="radio" name="module8_mcq_q5" value="C"> C. Increases</label><br>
+<label><input type="radio" name="module8_mcq_q5" value="D"> D. Becomes negative</label><br>
+<label><input type="radio" name="module8_mcq_q5" value="E"> E. Disappears</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q5" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. The tax shield equals $τ_c × 	ext{Interest}$, so higher tax rates raise its value.
+</div>
+
+:::

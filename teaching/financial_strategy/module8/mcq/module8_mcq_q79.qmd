@@ -1,0 +1,20 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q79')" data-correct-answer="B">
+<strong style="display: block;">A firm’s pre-tax cost of debt is 9%, its equity cost is 15%, and its debt-to-equity ratio is 1. The corporate tax rate is 30%. What is the after-tax weighted average cost of capital (WACC)?</strong>
+
+<label><input type="radio" name="module8_mcq_q79" value="A"> A. 9.0%</label><br>
+<label><input type="radio" name="module8_mcq_q79" value="B"> B. 10.8%</label><br>
+<label><input type="radio" name="module8_mcq_q79" value="C"> C. 11.5%</label><br>
+<label><input type="radio" name="module8_mcq_q79" value="D"> D. 12.0%</label><br>
+<label><input type="radio" name="module8_mcq_q79" value="E"> E. 13.2%</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q79" class="feedback" data-status="" style="display:none;">
+✅ Correct: B.  
+Weights: 50% debt, 50% equity.  
+After-tax cost of debt = 9% × (1 − 0.30) = 6.3%.  
+WACC = 0.5 × 6.3% + 0.5 × 15% = **10.8%**.
+</div>
+
+:::

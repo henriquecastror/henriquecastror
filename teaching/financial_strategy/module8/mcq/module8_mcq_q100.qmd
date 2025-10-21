@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q100')" data-correct-answer="B">
+<strong style="display: block;">A firm has perpetual debt of $150 million with an interest rate of 8%. The corporate tax rate is 35%. What is the present value of the firm’s interest tax shield?</strong>
+
+<label><input type="radio" name="module8_mcq_q100" value="A"> A. $35 million</label><br>
+<label><input type="radio" name="module8_mcq_q100" value="B"> B. $52.5 million</label><br>
+<label><input type="radio" name="module8_mcq_q100" value="C"> C. $12 million</label><br>
+<label><input type="radio" name="module8_mcq_q100" value="D"> D. $80 million</label><br>
+<label><input type="radio" name="module8_mcq_q100" value="E"> E. $150 million</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q100" class="feedback" data-status="" style="display:none;">
+✅ Correct: B.  
+For perpetual debt, the present value of the tax shield is:  
+PV(Tax Shield) = T<sub>C</sub> × D = 0.35 × 150 = **$52.5 million**.
+</div>
+
+:::

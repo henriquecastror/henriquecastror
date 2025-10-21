@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q66','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q66" name="module8_tf_q66" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q66"><strong>Firms should increase leverage indefinitely to exploit the tax advantage of debt.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q66" class="feedback" data-status="" style="display:none;">
+FALSE. Beyond a certain point, costs of financial distress and agency problems outweigh tax benefits.
+</div>
+
+:::

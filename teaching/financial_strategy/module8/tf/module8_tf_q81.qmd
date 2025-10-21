@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q81','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q81" name="module8_tf_q81" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q81"><strong>The interest tax shield adds value to the firm because it increases the after-tax cash flow to investors without changing pre-tax operating income.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q81" class="feedback" data-status="" style="display:none;">
+TRUE. Taxes are reduced, leaving more cash for investors while EBIT remains the same.
+</div>
+
+:::

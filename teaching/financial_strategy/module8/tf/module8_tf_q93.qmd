@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q93','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q93" name="module8_tf_q93" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q93"><strong>If personal taxes on interest income are higher than those on equity income, the overall tax advantage of debt increases.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q93" class="feedback" data-status="" style="display:none;">
+FALSE. Higher personal taxes on interest reduce the effective tax benefit of debt, since investors receive less after-tax income from debt securities.
+</div>
+
+:::

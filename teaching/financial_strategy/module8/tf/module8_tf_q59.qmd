@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q59','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q59" name="module8_tf_q59" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q59"><strong>The interest tax shield can be interpreted as a cash flow equivalent to the tax savings that would result from paying interest instead of taxes.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q59" class="feedback" data-status="" style="display:none;">
+TRUE. The shield represents a reduction in taxes, effectively an additional cash flow to investors each period.
+</div>
+
+:::

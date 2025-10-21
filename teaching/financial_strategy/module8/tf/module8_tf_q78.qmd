@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q78','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q78" name="module8_tf_q78" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q78"><strong>If a firm uses debt to repurchase shares, its total value declines because interest payments reduce after-tax profits.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q78" class="feedback" data-status="" style="display:none;">
+FALSE. Although interest reduces taxable income, the deductibility of interest creates a tax shield that can increase firm value.
+</div>
+
+:::

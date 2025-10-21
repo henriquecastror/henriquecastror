@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q87','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q87" name="module8_tf_q87" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q87"><strong>If the firm’s debt is entirely risk-free, the tax shield should be discounted at the cost of equity to reflect ownership risk.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q87" class="feedback" data-status="" style="display:none;">
+FALSE. For risk-free debt, the appropriate rate is the cost of debt, not the cost of equity.
+</div>
+
+:::

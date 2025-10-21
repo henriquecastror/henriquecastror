@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q96','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q96" name="module8_tf_q96" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q96"><strong>When evaluating a recapitalization, the value gain from the tax shield is independent of how the debt proceeds are used.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q96" class="feedback" data-status="" style="display:none;">
+TRUE. As long as debt is permanent, the PV(τ_c × D) is unaffected by the specific use of funds.
+</div>
+
+:::

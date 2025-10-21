@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q53','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q53" name="module8_tf_q53" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q53"><strong>If a firm maintains a constant debt-to-equity ratio, the value of the interest tax shield can be captured by discounting free cash flows using the after-tax WACC.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q53" class="feedback" data-status="" style="display:none;">
+TRUE. The WACC framework already embeds the present value of tax shields when leverage is proportional to firm value.
+</div>
+
+:::

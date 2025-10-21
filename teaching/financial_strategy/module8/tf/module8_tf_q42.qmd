@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q42','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q42" name="module8_tf_q42" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q42"><strong>Firms with stable cash flows are generally more suited to benefit from the tax shield of debt.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q42" class="feedback" data-status="" style="display:none;">
+TRUE. Predictable cash flows reduce risk of unused shields or distress.
+</div>
+
+:::

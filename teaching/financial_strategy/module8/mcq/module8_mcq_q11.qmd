@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q11')" data-correct-answer="C">
+<strong style="display: block;">In a world with corporate taxes, the value of a levered firm (V<sub>L</sub>) compared to an unlevered firm (V<sub>U</sub>) is:</strong>
+
+<label><input type="radio" name="module8_mcq_q11" value="A"> A. Always lower because of higher risk</label><br>
+<label><input type="radio" name="module8_mcq_q11" value="B"> B. The same regardless of taxes</label><br>
+<label><input type="radio" name="module8_mcq_q11" value="C"> C. Higher by the present value of the interest tax shield</label><br>
+<label><input type="radio" name="module8_mcq_q11" value="D"> D. Lower by the corporate tax rate</label><br>
+<label><input type="radio" name="module8_mcq_q11" value="E"> E. Higher by the total interest expense</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q11" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. With taxes, $V_L = V_U + PV(\text{Tax Shield})$, reflecting the value created by interest deductibility.
+</div>
+
+:::

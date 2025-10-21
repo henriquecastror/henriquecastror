@@ -1,0 +1,21 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q86')" data-correct-answer="B">
+<strong style="display: block;">A firm’s unlevered cost of capital is 10%, and its after-tax cost of debt is 4%. If the firm’s capital structure is 60% equity and 40% debt, what is its weighted average cost of capital (WACC)?</strong>
+
+<label><input type="radio" name="module8_mcq_q86" value="A"> A. 6.0%</label><br>
+<label><input type="radio" name="module8_mcq_q86" value="B"> B. 7.6%</label><br>
+<label><input type="radio" name="module8_mcq_q86" value="C"> C. 8.2%</label><br>
+<label><input type="radio" name="module8_mcq_q86" value="D"> D. 9.0%</label><br>
+<label><input type="radio" name="module8_mcq_q86" value="E"> E. 10.0%</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q86" class="feedback" data-status="" style="display:none;">
+✅ Correct: B.  
+WACC = (E/V) × r<sub>E</sub> + (D/V) × r<sub>D</sub>(1 − T<sub>C</sub>).  
+Assuming the after-tax debt cost is already 4%,  
+WACC = 0.6 × 10% + 0.4 × 4% = **7.6%**.
+</div>
+
+:::
+

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q34')" data-correct-answer="D">
+<strong style="display: block;">What is the main reason dividends are not deductible for corporate tax purposes?</strong>
+
+<label><input type="radio" name="module8_mcq_q34" value="A"> A. They represent interest paid to creditors</label><br>
+<label><input type="radio" name="module8_mcq_q34" value="B"> B. They are contractual obligations</label><br>
+<label><input type="radio" name="module8_mcq_q34" value="C"> C. They are taxed only at the investor level</label><br>
+<label><input type="radio" name="module8_mcq_q34" value="D"> D. They are distributions of after-tax profits, not operating expenses</label><br>
+<label><input type="radio" name="module8_mcq_q34" value="E"> E. They are tax credits</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q34" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Dividends are paid from after-tax earnings and thus do not reduce taxable income.
+</div>
+
+:::

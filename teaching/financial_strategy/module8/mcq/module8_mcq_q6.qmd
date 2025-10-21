@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q6')" data-correct-answer="B">
+<strong style="display: block;">When there are no taxes, Modigliani and Miller’s Proposition I states that:</strong>
+
+<label><input type="radio" name="module8_mcq_q6" value="A"> A. Firm value increases with leverage</label><br>
+<label><input type="radio" name="module8_mcq_q6" value="B"> B. Firm value is independent of leverage</label><br>
+<label><input type="radio" name="module8_mcq_q6" value="C"> C. The cost of equity is constant</label><br>
+<label><input type="radio" name="module8_mcq_q6" value="D"> D. The weighted average cost of capital rises with leverage</label><br>
+<label><input type="radio" name="module8_mcq_q6" value="E"> E. Dividends are tax-deductible</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q6" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Without taxes, MM Proposition I states that firm value does not depend on capital structure.
+</div>
+
+:::

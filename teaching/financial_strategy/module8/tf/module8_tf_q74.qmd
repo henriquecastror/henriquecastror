@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q74','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q74" name="module8_tf_q74" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module8_tf_q74"><strong>The expected value of the interest tax shield depends on the probability that the firm will be able to use the deductions in the future.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q74" class="feedback" data-status="" style="display:none;">
+TRUE. When debt is risky, the firm may not fully utilize interest deductions in states of distress, so the expected tax shield reflects the likelihood of remaining profitable enough to benefit from it.
+</div>
+
+:::

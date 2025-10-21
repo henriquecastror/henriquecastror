@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q78')" data-correct-answer="E">
+<strong style="display: block;">What does the term “full integration” of corporate and personal taxes mean?</strong>
+
+<label><input type="radio" name="module8_mcq_q78" value="A"> A. Firms and individuals file joint tax returns</label><br>
+<label><input type="radio" name="module8_mcq_q78" value="B"> B. Corporate income is exempt from taxation</label><br>
+<label><input type="radio" name="module8_mcq_q78" value="C"> C. Dividends are taxed twice</label><br>
+<label><input type="radio" name="module8_mcq_q78" value="D"> D. Interest is taxed at a higher rate than dividends</label><br>
+<label><input type="radio" name="module8_mcq_q78" value="E"> E. Corporate and personal taxes are combined, eliminating double taxation</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q78" class="feedback" data-status="" style="display:none;">
+✅ Correct: E. Under full integration, investors are taxed only once on corporate income, removing the bias toward debt.
+</div>
+
+:::

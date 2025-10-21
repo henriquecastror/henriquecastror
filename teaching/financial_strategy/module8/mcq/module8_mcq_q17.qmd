@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q17')" data-correct-answer="B">
+<strong style="display: block;">If a firm’s taxable income falls to zero, what happens to its interest tax shield?</strong>
+
+<label><input type="radio" name="module8_mcq_q17" value="A"> A. It remains unchanged</label><br>
+<label><input type="radio" name="module8_mcq_q17" value="B"> B. It becomes worthless until the firm earns taxable income again</label><br>
+<label><input type="radio" name="module8_mcq_q17" value="C"> C. It increases because losses are deductible</label><br>
+<label><input type="radio" name="module8_mcq_q17" value="D"> D. It turns into a dividend tax credit</label><br>
+<label><input type="radio" name="module8_mcq_q17" value="E"> E. It is automatically refunded by the tax authority</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q17" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. The firm cannot benefit from the interest tax deduction when it has no taxable income.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q24','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q24" name="module8_tf_q24" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q24"><strong>The corporate tax shield from debt financing is irrelevant in determining a firm's capital structure.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q24" class="feedback" data-status="" style="display:none;">
+FALSE. With taxes, the shield is a central driver of value/leverage incentives.
+</div>
+
+:::

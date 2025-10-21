@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q30','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q30" name="module8_tf_q30" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q30"><strong>The value of a firm's tax shield is independent of the corporate tax rate.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q30" class="feedback" data-status="" style="display:none;">
+FALSE. For permanent debt, PV(shield) ≈ τc × D; it depends directly on τc.
+</div>
+
+:::

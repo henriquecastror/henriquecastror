@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q99')" data-correct-answer="B">
+<strong style="display: block;">A firm expects to pay $12 million in annual interest on its debt. The corporate tax rate is 25%. What is the annual tax saving from the interest deduction?</strong>
+
+<label><input type="radio" name="module8_mcq_q99" value="A"> A. $2 million</label><br>
+<label><input type="radio" name="module8_mcq_q99" value="B"> B. $3 million</label><br>
+<label><input type="radio" name="module8_mcq_q99" value="C"> C. $6 million</label><br>
+<label><input type="radio" name="module8_mcq_q99" value="D"> D. $9 million</label><br>
+<label><input type="radio" name="module8_mcq_q99" value="E"> E. $12 million</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q99" class="feedback" data-status="" style="display:none;">
+✅ Correct: B.  
+Tax saving = Interest × Tax rate = 12 × 0.25 = **$3 million** in annual savings from the interest tax shield.
+</div>
+
+:::

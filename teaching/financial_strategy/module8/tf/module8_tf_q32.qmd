@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module8_tf_q32','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module8_tf_q32" name="module8_tf_q32" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module8_tf_q32"><strong>Tax shields are equally valuable regardless of a firm's ability to generate taxable income.</strong></label>
+</form>
+
+<div id="feedback-module8_tf_q32" class="feedback" data-status="" style="display:none;">
+FALSE. The benefit depends on having taxable income to offset.
+</div>
+
+:::

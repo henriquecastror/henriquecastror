@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module8_mcq_q75')" data-correct-answer="D">
+<strong style="display: block;">If a firm pays no taxes due to permanent exemptions, what is the expected value of the interest tax shield?</strong>
+
+<label><input type="radio" name="module8_mcq_q75" value="A"> A. Equal to the cost of debt</label><br>
+<label><input type="radio" name="module8_mcq_q75" value="B"> B. Negative</label><br>
+<label><input type="radio" name="module8_mcq_q75" value="C"> C. Equal to total interest</label><br>
+<label><input type="radio" name="module8_mcq_q75" value="D"> D. Zero</label><br>
+<label><input type="radio" name="module8_mcq_q75" value="E"> E. Doubled</label><br>
+</form>
+
+<div id="feedback-module8_mcq_q75" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. Without taxable income, there is no tax to offset—hence, no tax shield value.
+</div>
+
+:::
