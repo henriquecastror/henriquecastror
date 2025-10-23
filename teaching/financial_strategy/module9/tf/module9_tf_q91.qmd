@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q91','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q91" name="module9_tf_q91" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q91"><strong>Debt covenants are contractual clauses that restrict managerial actions to protect debtholders.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q91" class="feedback" data-status="" style="display:none;">
+TRUE. Covenants limit risk-taking or excessive payouts, aligning managerial behavior with creditor interests.
+</div>
+
+:::

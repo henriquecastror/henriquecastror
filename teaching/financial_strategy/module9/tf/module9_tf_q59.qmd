@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q59','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q59" name="module9_tf_q59" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q59"><strong>Debt financing can help align managerial incentives by committing the firm to regular interest payments.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q59" class="feedback" data-status="" style="display:none;">
+TRUE. Regular debt payments discipline managers by reducing excess cash flow and increasing the cost of inefficient decisions.
+</div>
+
+:::

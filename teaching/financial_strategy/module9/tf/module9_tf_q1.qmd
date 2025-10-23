@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q1','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q1" name="module9_tf_q1" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q1"><strong>Adverse selection occurs when firms face hidden information that could negatively affect the issuance of new equity.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q1" class="feedback" data-status="" style="display:none;">
+TRUE. Adverse selection happens when firms have private information that investors cannot access, causing the firm’s shares to be mispriced. This can make it more difficult for firms to raise funds at favorable terms.
+</div>
+
+:::

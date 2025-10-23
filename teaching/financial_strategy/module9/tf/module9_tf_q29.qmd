@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q29','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q29" name="module9_tf_q29" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q29"><strong>Firms with high expected financial distress costs tend to choose lower levels of leverage to protect firm value.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q29" class="feedback" data-status="" style="display:none;">
+TRUE. According to the trade-off theory, when financial distress costs are significant, firms reduce debt usage to avoid value losses from distress and bankruptcy risk.
+</div>
+
+:::

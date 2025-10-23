@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q16','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q16" name="module9_tf_q16" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q16"><strong>The presence of financial distress costs can limit the amount of debt a firm is willing to take on.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q16" class="feedback" data-status="" style="display:none;">
+TRUE. As financial distress costs rise, firms tend to limit their debt levels to avoid the risk of bankruptcy and the associated costs, which can erode firm value.
+</div>
+
+:::

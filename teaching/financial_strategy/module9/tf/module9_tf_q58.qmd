@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q58','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q58" name="module9_tf_q58" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q58"><strong>Debt can reduce managerial entrenchment by increasing external monitoring from creditors.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q58" class="feedback" data-status="" style="display:none;">
+TRUE. Leverage increases scrutiny from lenders and limits managerial discretion, reducing the likelihood of self-serving behavior.
+</div>
+
+:::

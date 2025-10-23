@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q68','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q68" name="module9_tf_q68" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q68"><strong>Firms with highly volatile earnings are ideal candidates for high leverage strategies.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q68" class="feedback" data-status="" style="display:none;">
+FALSE. Volatile earnings increase the probability of default, so such firms typically maintain lower debt levels.
+</div>
+
+:::

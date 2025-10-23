@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q52','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q52" name="module9_tf_q52" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q52"><strong>Indirect bankruptcy costs are usually smaller than direct costs and have little effect on firm value.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q52" class="feedback" data-status="" style="display:none;">
+FALSE. Indirect costs like lost customers, employee turnover, and supplier distrust often exceed direct legal costs, severely impacting firm value.
+</div>
+
+:::

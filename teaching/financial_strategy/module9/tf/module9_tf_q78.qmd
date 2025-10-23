@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q78','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q78" name="module9_tf_q78" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q78"><strong>Debt can act as a signal that managers are confident in the firm’s future cash flows.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q78" class="feedback" data-status="" style="display:none;">
+TRUE. Managers of strong firms may issue debt to show confidence in their ability to meet future interest obligations.
+</div>
+
+:::

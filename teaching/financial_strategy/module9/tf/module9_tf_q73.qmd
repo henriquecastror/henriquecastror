@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q73','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q73" name="module9_tf_q73" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q73"><strong>Debt financing has no impact on a firm’s flexibility to respond to investment opportunities.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q73" class="feedback" data-status="" style="display:none;">
+FALSE. High debt levels reduce financial flexibility and can limit a firm’s ability to take on new projects or respond to shocks.
+</div>
+
+:::

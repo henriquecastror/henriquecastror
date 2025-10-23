@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q63','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q63" name="module9_tf_q63" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q63"><strong>Debt overhang occurs when existing debt discourages shareholders from financing new, positive-NPV projects.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q63" class="feedback" data-status="" style="display:none;">
+TRUE. In debt overhang, shareholders avoid investing in valuable projects because most of the gains would go to creditors.
+</div>
+
+:::

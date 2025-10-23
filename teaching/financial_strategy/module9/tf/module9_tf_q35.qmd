@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q35','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q35" name="module9_tf_q35" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q35"><strong>The presence of bankruptcy costs can cause highly profitable firms to choose lower debt levels than tax savings alone would suggest.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q35" class="feedback" data-status="" style="display:none;">
+TRUE. Profitable firms often avoid excessive leverage because the potential costs of financial distress may outweigh the benefits of additional tax shields.
+</div>
+
+:::

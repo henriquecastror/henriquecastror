@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q26','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q26" name="module9_tf_q26" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q26"><strong>Equity holders may prefer riskier projects when the firm has high leverage because they benefit more from the upside, while debt holders bear more of the downside risk.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q26" class="feedback" data-status="" style="display:none;">
+TRUE. With high leverage, shareholders have incentives to take riskier projects since they enjoy the upside if successful, while debt holders absorb most losses if the firm fails.
+</div>
+
+:::

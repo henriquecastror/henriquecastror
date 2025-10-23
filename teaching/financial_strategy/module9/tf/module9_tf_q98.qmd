@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q98','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q98" name="module9_tf_q98" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q98"><strong>Debt financing has no effect on shareholder incentives once the funds are raised.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q98" class="feedback" data-status="" style="display:none;">
+FALSE. The presence of debt changes shareholder behavior, often increasing incentives for riskier decisions.
+</div>
+
+:::

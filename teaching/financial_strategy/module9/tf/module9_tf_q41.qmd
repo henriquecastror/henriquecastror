@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q41','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q41" name="module9_tf_q41" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q41"><strong>The higher the likelihood of financial distress, the lower the marginal benefit of additional debt financing.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q41" class="feedback" data-status="" style="display:none;">
+TRUE. As the probability of distress rises, the tax advantages of extra debt are outweighed by expected distress costs, reducing the incentive to borrow.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q3','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q3" name="module9_tf_q3" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q3"><strong>An increase in financial distress costs would increase the total value of a leveraged firm.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q3" class="feedback" data-status="" style="display:none;">
+FALSE. Financial distress costs reduce the value of a firm. As the likelihood of distress increases, the firm’s value typically decreases because these costs create friction that erodes value.
+</div>
+
+:::

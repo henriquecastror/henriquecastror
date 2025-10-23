@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q4','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q4" name="module9_tf_q4" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q4"><strong>In the context of optimal leverage with taxes and financial distress costs, the optimal debt level for a firm is solely determined by the tax benefits it can receive from interest deductions.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q4" class="feedback" data-status="" style="display:none;">
+FALSE. While tax benefits are important, the optimal debt level also considers the trade-off with financial distress costs. Too much debt can lead to increased bankruptcy risks.
+</div>
+
+:::

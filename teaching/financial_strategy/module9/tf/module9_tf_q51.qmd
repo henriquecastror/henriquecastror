@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q51','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q51" name="module9_tf_q51" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q51"><strong>Direct bankruptcy costs include legal and administrative fees that reduce the value received by investors.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q51" class="feedback" data-status="" style="display:none;">
+TRUE. Legal and professional fees are direct outflows during bankruptcy that lower the total recovery value available to creditors and shareholders.
+</div>
+
+:::

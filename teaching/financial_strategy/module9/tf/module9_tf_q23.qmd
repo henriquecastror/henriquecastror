@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q23','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q23" name="module9_tf_q23" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q23"><strong>In the presence of agency problems, firms may use short-term debt to reduce the risk of managers engaging in suboptimal long-term projects.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q23" class="feedback" data-status="" style="display:none;">
+TRUE. Short-term debt limits the amount of capital available to managers, which can reduce the likelihood of wasteful investments in long-term projects that do not maximize shareholder value.
+</div>
+
+:::

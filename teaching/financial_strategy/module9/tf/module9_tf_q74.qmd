@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q74','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q74" name="module9_tf_q74" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q74"><strong>Agency costs of equity arise when managers pursue personal goals rather than maximizing shareholder value.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q74" class="feedback" data-status="" style="display:none;">
+TRUE. When ownership and control are separated, managers may act in their own interest unless incentives align with shareholders.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q6','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q6" name="module9_tf_q6" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q6"><strong>According to the Modigliani and Miller theorem, market imperfections, such as taxes and bankruptcy costs, can lead to deviations from the theorem's conclusions in a frictionless world.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q6" class="feedback" data-status="" style="display:none;">
+TRUE. While Modigliani and Miller's theorem holds in a perfect world, market imperfections like taxes and bankruptcy costs can cause deviations, making capital structure decisions relevant.
+</div>
+
+:::

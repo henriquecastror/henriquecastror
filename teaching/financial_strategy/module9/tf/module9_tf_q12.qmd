@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q12','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q12" name="module9_tf_q12" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q12"><strong>Issuing new equity always signals to the market that a firm's stock is undervalued.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q12" class="feedback" data-status="" style="display:none;">
+FALSE. Issuing new equity can signal that a company is overvalued or in need of cash, and investors may interpret this as a sign of weakness, not necessarily undervaluation.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q32','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q32" name="module9_tf_q32" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q32"><strong>Debt overhang can discourage shareholders from financing positive-NPV projects because most benefits accrue to debt holders.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q32" class="feedback" data-status="" style="display:none;">
+TRUE. When a firm is highly leveraged, new projects primarily benefit creditors rather than shareholders, leading to underinvestment.
+</div>
+
+:::

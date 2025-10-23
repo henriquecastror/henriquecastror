@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q62','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q62" name="module9_tf_q62" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q62"><strong>High leverage eliminates all agency conflicts between shareholders and debtholders.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q62" class="feedback" data-status="" style="display:none;">
+FALSE. High leverage may reduce some conflicts but can also create new ones, such as risk-shifting and underinvestment problems.
+</div>
+
+:::

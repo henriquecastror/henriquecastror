@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q64','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q64" name="module9_tf_q64" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q64"><strong>Firms with more tangible assets generally have lower expected bankruptcy costs.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q64" class="feedback" data-status="" style="display:none;">
+TRUE. Tangible assets can be sold more easily in distress, reducing uncertainty and recovery losses for creditors.
+</div>
+
+:::

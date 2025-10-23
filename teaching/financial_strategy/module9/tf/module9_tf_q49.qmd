@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q49','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q49" name="module9_tf_q49" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q49"><strong>A firm's capital structure decision is unaffected by investor taxes in an imperfect market.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q49" class="feedback" data-status="" style="display:none;">
+FALSE. Investor taxes influence preferences for debt or equity, as different instruments have distinct tax treatments that affect returns.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q21','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q21" name="module9_tf_q21" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q21"><strong>The signaling effect of issuing new equity can lead to a decrease in the firm's stock price if investors believe the firm is overvalued.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q21" class="feedback" data-status="" style="display:none;">
+TRUE. Issuing new equity can signal to the market that the firm believes its stock is overvalued, causing investors to adjust their expectations and potentially driving the stock price down.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q79','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q79" name="module9_tf_q79" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q79"><strong>Asymmetric information problems are irrelevant in capital structure decisions.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q79" class="feedback" data-status="" style="display:none;">
+FALSE. Information asymmetry is central to financing choices, influencing whether firms issue debt or equity.
+</div>
+
+:::

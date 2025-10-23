@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q44','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q44" name="module9_tf_q44" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q44"><strong>Managers may avoid issuing equity because they believe investors interpret it as a signal that the firm's stock is overvalued.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q44" class="feedback" data-status="" style="display:none;">
+TRUE. Managers avoid issuing equity if they believe it signals overvaluation, which could lead to a drop in stock price due to investor skepticism.
+</div>
+
+:::

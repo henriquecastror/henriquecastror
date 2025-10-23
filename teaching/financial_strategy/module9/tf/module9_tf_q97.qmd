@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q97','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q97" name="module9_tf_q97" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q97"><strong>Managerial risk aversion can lead to lower leverage if managers prefer stability over potential shareholder gains.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q97" class="feedback" data-status="" style="display:none;">
+TRUE. Managers often value job security and may avoid debt that increases performance pressure or bankruptcy risk.
+</div>
+
+:::

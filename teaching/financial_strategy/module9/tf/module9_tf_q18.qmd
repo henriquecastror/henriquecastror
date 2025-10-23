@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q18','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q18" name="module9_tf_q18" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module9_tf_q18"><strong>Adverse selection can lead to a higher cost of equity because investors demand a premium for the risk of hidden information.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q18" class="feedback" data-status="" style="display:none;">
+TRUE. Investors demand a higher return to compensate for the uncertainty and potential risk of hidden information, which leads to a higher cost of equity for firms facing adverse selection.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module9_tf_q54','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module9_tf_q54" name="module9_tf_q54" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module9_tf_q54"><strong>The presence of financial distress costs implies that higher leverage always increases firm value.</strong></label>
+</form>
+
+<div id="feedback-module9_tf_q54" class="feedback" data-status="" style="display:none;">
+FALSE. Beyond a certain point, additional leverage increases the probability of distress, which can offset or exceed the benefits from tax shields.
+</div>
+
+:::
