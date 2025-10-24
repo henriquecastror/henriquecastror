@@ -1,0 +1,23 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q90')" data-correct-answer="D">
+<strong style="display: block;">A firm’s unlevered value is 500 million. The present value of tax shields increases by 10 million for each additional 100 million of debt. However, expected distress costs increase quadratically, adding 2 million, 8 million, and 18 million for the first three 100 million increments of debt, respectively. At what level of debt is firm value maximized?</strong>
+
+<label><input type="radio" name="module9_mcq_q90" value="A"> A. $100 million</label><br>
+<label><input type="radio" name="module9_mcq_q90" value="B"> B. $200 million</label><br>
+<label><input type="radio" name="module9_mcq_q90" value="C"> C. $300 million</label><br>
+<label><input type="radio" name="module9_mcq_q90" value="D"> D. $200 million</label><br>
+<label><input type="radio" name="module9_mcq_q90" value="E"> E. $0</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q90" class="feedback" data-status="" style="display:none;">
+✅ D is correct.  
+Net gain by level of debt:  
+- 100m → +10 − 2 = +8  
+- 200m → +20 − 8 = +12  
+- 300m → +30 − 18 = +12  
+Value peaks at $200m debt (first point of maximum gain). Beyond that, costs rise faster than benefits.
+</div>
+
+:::
+

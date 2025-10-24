@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q18')" data-correct-answer="B">
+<strong style="display: block;">What is the primary cause of asymmetric information between managers and investors?</strong>
+
+<label><input type="radio" name="module9_mcq_q18" value="A"> A. Investors’ irrational behavior in financial markets.</label><br>
+<label><input type="radio" name="module9_mcq_q18" value="B"> B. Managers having better access to internal information about firm prospects.</label><br>
+<label><input type="radio" name="module9_mcq_q18" value="C"> C. The lack of credit ratings for private firms.</label><br>
+<label><input type="radio" name="module9_mcq_q18" value="D"> D. The use of off-balance-sheet financing.</label><br>
+<label><input type="radio" name="module9_mcq_q18" value="E"> E. Differences in accounting standards across countries.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q18" class="feedback" data-status="" style="display:none;">
+✅ B is correct. Managers know more about firm operations and future performance than outside investors, leading to information asymmetry.
+</div>
+
+:::

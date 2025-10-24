@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q79')" data-correct-answer="B">
+<strong style="display: block;">A firm’s managers may waste 4% of firm value through poor investment decisions when leverage is low. If the firm is worth $500 million, what is the expected agency cost in dollars?</strong>
+
+<label><input type="radio" name="module9_mcq_q79" value="A"> A. $10 million</label><br>
+<label><input type="radio" name="module9_mcq_q79" value="B"> B. $20 million</label><br>
+<label><input type="radio" name="module9_mcq_q79" value="C"> C. $25 million</label><br>
+<label><input type="radio" name="module9_mcq_q79" value="D"> D. $15 million</label><br>
+<label><input type="radio" name="module9_mcq_q79" value="E"> E. $30 million</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q79" class="feedback" data-status="" style="display:none;">
+✅ B is correct. Agency loss = 0.04 × 500 = $20 million.
+</div>
+
+:::

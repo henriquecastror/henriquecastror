@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q5')" data-correct-answer="E">
+<strong style="display: block;">Which of the following best illustrates the debt overhang problem?</strong>
+
+<label><input type="radio" name="module9_mcq_q5" value="A"> A. Managers investing in risky projects to benefit shareholders.</label><br>
+<label><input type="radio" name="module9_mcq_q5" value="B"> B. Firms issuing more debt to finance new projects.</label><br>
+<label><input type="radio" name="module9_mcq_q5" value="C"> C. Shareholders preferring higher dividend payouts.</label><br>
+<label><input type="radio" name="module9_mcq_q5" value="D"> D. Debtholders refusing to refinance maturing bonds.</label><br>
+<label><input type="radio" name="module9_mcq_q5" value="E"> E. Shareholders rejecting a positive-NPV project because most gains would go to creditors.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q5" class="feedback" data-status="" style="display:none;">
+✅ E is correct. In debt overhang, equity holders avoid financing new profitable projects as the benefits mainly accrue to debtholders.
+</div>
+
+:::

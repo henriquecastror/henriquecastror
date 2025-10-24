@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q22')" data-correct-answer="E">
+<strong style="display: block;">What type of firm is most likely to suffer large indirect costs of financial distress?</strong>
+
+<label><input type="radio" name="module9_mcq_q22" value="A"> A. Firms with stable cash flows and tangible assets.</label><br>
+<label><input type="radio" name="module9_mcq_q22" value="B"> B. Firms in regulated industries.</label><br>
+<label><input type="radio" name="module9_mcq_q22" value="C"> C. Firms with few customers and low leverage.</label><br>
+<label><input type="radio" name="module9_mcq_q22" value="D"> D. Firms with diversified operations and high liquidity.</label><br>
+<label><input type="radio" name="module9_mcq_q22" value="E"> E. Firms with valuable intangible assets and customer relationships.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q22" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Firms relying on reputation or intangible assets suffer more from lost confidence and relationship breakdowns.
+</div>
+
+:::

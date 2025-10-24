@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q85')" data-correct-answer="B">
+<strong style="display: block;">Using the same scenario: debt due = 1,000,000; assets without the project = 900,000; the project requires 100,000 from equity and pays 150,000 for sure. What is the project's NPV from the shareholders’ perspective (ignoring discounting)?</strong>
+
+<label><input type="radio" name="module9_mcq_q85" value="A"> A. +$50,000</label><br>
+<label><input type="radio" name="module9_mcq_q85" value="B"> B. −$50,000</label><br>
+<label><input type="radio" name="module9_mcq_q85" value="C"> C. +$100,000</label><br>
+<label><input type="radio" name="module9_mcq_q85" value="D"> D. $0</label><br>
+<label><input type="radio" name="module9_mcq_q85" value="E"> E. −$100,000</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q85" class="feedback" data-status="" style="display:none;">
+✅ B is correct. Equity invests 100k. With the project, equity receives 1,050k − 1,000k = 50k (vs. 0 without). So NPV to shareholders = 50k − 100k = −50k → classic debt overhang.
+</div>
+
+:::

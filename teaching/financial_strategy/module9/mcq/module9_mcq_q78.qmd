@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q78')" data-correct-answer="E">
+<strong style="display: block;">A firm has an unlevered value of 900 million. It expects to gain 60 million in tax shields from debt but lose 20 million to agency and distress costs. What is the value of the levered firm?</strong>
+
+<label><input type="radio" name="module9_mcq_q78" value="A"> A. $900 million</label><br>
+<label><input type="radio" name="module9_mcq_q78" value="B"> B. $920 million</label><br>
+<label><input type="radio" name="module9_mcq_q78" value="C"> C. $940 million</label><br>
+<label><input type="radio" name="module9_mcq_q78" value="D"> D. $950 million</label><br>
+<label><input type="radio" name="module9_mcq_q78" value="E"> E. $940 million</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q78" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Value = 900 + 60 − 20 = $940 million.
+</div>
+
+:::

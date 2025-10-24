@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q30')" data-correct-answer="C">
+<strong style="display: block;">Which of the following factors increases the likelihood of financial distress?</strong>
+
+<label><input type="radio" name="module9_mcq_q30" value="A"> A. Low operating leverage and stable cash flows.</label><br>
+<label><input type="radio" name="module9_mcq_q30" value="B"> B. A high proportion of tangible assets.</label><br>
+<label><input type="radio" name="module9_mcq_q30" value="C"> C. High business risk and volatile cash flows.</label><br>
+<label><input type="radio" name="module9_mcq_q30" value="D"> D. Low fixed-cost structure.</label><br>
+<label><input type="radio" name="module9_mcq_q30" value="E"> E. High diversification across industries.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q30" class="feedback" data-status="" style="display:none;">
+✅ C is correct. Firms with volatile earnings face a higher probability of financial distress due to inconsistent cash flows.
+</div>
+
+:::

@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q98')" data-correct-answer="D">
+<strong style="display: block;">A firm can issue either debt or equity. High-quality firms (value 120) choose debt, while low-quality ones (value 80) choose equity. If investors observe a debt issue, what is the implied expected firm value?</strong>
+
+<label><input type="radio" name="module9_mcq_q98" value="A"> A. $80</label><br>
+<label><input type="radio" name="module9_mcq_q98" value="B"> B. $90</label><br>
+<label><input type="radio" name="module9_mcq_q98" value="C"> C. $100</label><br>
+<label><input type="radio" name="module9_mcq_q98" value="D"> D. $120</label><br>
+<label><input type="radio" name="module9_mcq_q98" value="E"> E. $110</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q98" class="feedback" data-status="" style="display:none;">
+✅ D is correct.  
+Choosing debt signals confidence → market infers firm is high-type (value $120).
+</div>
+
+:::

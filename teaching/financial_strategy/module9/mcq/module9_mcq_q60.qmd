@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q60')" data-correct-answer="E">
+<strong style="display: block;">Why are firms with high intangible assets often less leveraged?</strong>
+
+<label><input type="radio" name="module9_mcq_q60" value="A"> A. Because they have no use for tax shields.</label><br>
+<label><input type="radio" name="module9_mcq_q60" value="B"> B. Because intangible assets increase collateral value.</label><br>
+<label><input type="radio" name="module9_mcq_q60" value="C"> C. Because creditors prefer intangible assets for security.</label><br>
+<label><input type="radio" name="module9_mcq_q60" value="D"> D. Because intangible assets reduce bankruptcy probability.</label><br>
+<label><input type="radio" name="module9_mcq_q60" value="E"> E. Because intangible assets are difficult to use as collateral, raising potential distress costs.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q60" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Intangible-heavy firms face higher expected distress costs since such assets lose value in bankruptcy.
+</div>
+
+:::

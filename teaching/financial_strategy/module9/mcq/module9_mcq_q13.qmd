@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q13')" data-correct-answer="D">
+<strong style="display: block;">What is an agency cost of equity?</strong>
+
+<label><input type="radio" name="module9_mcq_q13" value="A"> A. The cost of issuing new shares.</label><br>
+<label><input type="radio" name="module9_mcq_q13" value="B"> B. The interest paid on outstanding loans.</label><br>
+<label><input type="radio" name="module9_mcq_q13" value="C"> C. The decline in value due to reduced tax shields.</label><br>
+<label><input type="radio" name="module9_mcq_q13" value="D"> D. The loss of value from managers pursuing personal goals instead of maximizing shareholder wealth.</label><br>
+<label><input type="radio" name="module9_mcq_q13" value="E"> E. The transaction costs of paying dividends.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q13" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Agency costs of equity arise when managers act in their own interest rather than in shareholders’ best interests.
+</div>
+
+:::

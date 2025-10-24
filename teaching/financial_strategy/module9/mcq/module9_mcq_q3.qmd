@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q3')" data-correct-answer="A">
+<strong style="display: block;">According to the trade-off theory, what determines a firm’s optimal debt level?</strong>
+
+<label><input type="radio" name="module9_mcq_q3" value="A"> A. The point where the present value of tax benefits equals the present value of financial distress and agency costs.</label><br>
+<label><input type="radio" name="module9_mcq_q3" value="B"> B. The firm’s ability to fully deduct interest expenses.</label><br>
+<label><input type="radio" name="module9_mcq_q3" value="C"> C. The lowest possible cost of equity financing.</label><br>
+<label><input type="radio" name="module9_mcq_q3" value="D"> D. The level of retained earnings available.</label><br>
+<label><input type="radio" name="module9_mcq_q3" value="E"> E. The industry average debt-to-equity ratio.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q3" class="feedback" data-status="" style="display:none;">
+✅ A is correct. The trade-off theory states that firms balance tax benefits of debt with expected costs of distress and agency conflicts.
+</div>
+
+:::

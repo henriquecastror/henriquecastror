@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q100')" data-correct-answer="A">
+<strong style="display: block;">After several years of high borrowing, a firm’s management considers repurchasing 100 million of outstanding debt to reduce leverage. Financial analysts estimate that this action would increase total firm value by 15 million because it lowers expected distress costs. However, it would also transfer 20 million of value from shareholders to debt holders, since creditors would gain from the safer balance sheet. According to the leverage ratchet effect, what is the likely decision by shareholders?</strong>
+
+<label><input type="radio" name="module9_mcq_q100" value="A"> A. Reject the repurchase and keep high leverage</label><br>
+<label><input type="radio" name="module9_mcq_q100" value="B"> B. Repurchase the debt to maximize total firm value</label><br>
+<label><input type="radio" name="module9_mcq_q100" value="C"> C. Issue new equity to finance the repurchase</label><br>
+<label><input type="radio" name="module9_mcq_q100" value="D"> D. Convert part of debt into equity</label><br>
+<label><input type="radio" name="module9_mcq_q100" value="E"> E. Defer the decision until debt matures</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q100" class="feedback" data-status="" style="display:none;">
+✅ A is correct.  
+Even though the firm’s total value would rise by 15 million, shareholders personally lose $5 million due to the value transfer to creditors.  
+They will therefore oppose deleveraging — a key implication of the *leverage ratchet effect*, where equity holders resist reducing leverage even when it increases firm value.
+</div>
+
+:::

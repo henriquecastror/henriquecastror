@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q77')" data-correct-answer="E">
+<strong style="display: block;">A firm’s value without leverage is 500 million. Debt adds 50 million in tax benefits but 10 million in expected distress costs. What is the firm’s value with leverage?</strong>
+
+<label><input type="radio" name="module9_mcq_q77" value="A"> A. $510 million</label><br>
+<label><input type="radio" name="module9_mcq_q77" value="B"> B. $520 million</label><br>
+<label><input type="radio" name="module9_mcq_q77" value="C"> C. $530 million</label><br>
+<label><input type="radio" name="module9_mcq_q77" value="D"> D. $540 million</label><br>
+<label><input type="radio" name="module9_mcq_q77" value="E"> E. $540 million</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q77" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Levered value = Unlevered + Tax benefits − Distress cost = 500 + 50 − 10 = 540.
+</div>
+
+:::

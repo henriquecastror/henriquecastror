@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q12')" data-correct-answer="A">
+<strong style="display: block;">Why might high leverage discourage managers from taking positive-NPV projects?</strong>
+
+<label><input type="radio" name="module9_mcq_q12" value="A"> A. Because most of the project’s benefits would go to debtholders, not shareholders.</label><br>
+<label><input type="radio" name="module9_mcq_q12" value="B"> B. Because leverage increases the cost of capital for all projects.</label><br>
+<label><input type="radio" name="module9_mcq_q12" value="C"> C. Because managers receive higher bonuses when leverage declines.</label><br>
+<label><input type="radio" name="module9_mcq_q12" value="D"> D. Because equity holders lose control in high-debt situations.</label><br>
+<label><input type="radio" name="module9_mcq_q12" value="E"> E. Because lenders demand dividends before new investment.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q12" class="feedback" data-status="" style="display:none;">
+✅ A is correct. This is the debt-overhang effect—shareholders may reject positive-NPV projects when gains mainly benefit creditors.
+</div>
+
+:::

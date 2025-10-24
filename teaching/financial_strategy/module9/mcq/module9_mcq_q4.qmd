@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q4')" data-correct-answer="C">
+<strong style="display: block;">What is the primary reason why shareholders may favor riskier projects when a firm is highly leveraged?</strong>
+
+<label><input type="radio" name="module9_mcq_q4" value="A"> A. Risky projects increase the firm’s credit rating.</label><br>
+<label><input type="radio" name="module9_mcq_q4" value="B"> B. Risky projects increase the firm’s tax benefits.</label><br>
+<label><input type="radio" name="module9_mcq_q4" value="C"> C. Shareholders benefit from upside gains, while debtholders bear more downside risk.</label><br>
+<label><input type="radio" name="module9_mcq_q4" value="D"> D. Creditors prefer riskier investment portfolios.</label><br>
+<label><input type="radio" name="module9_mcq_q4" value="E"> E. Risky projects guarantee higher free cash flows.</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q4" class="feedback" data-status="" style="display:none;">
+✅ C is correct. This is the classic “asset substitution” problem—shareholders gain from upside volatility while debt absorbs losses.
+</div>
+
+:::

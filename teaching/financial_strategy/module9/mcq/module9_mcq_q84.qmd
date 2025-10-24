@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q84')" data-correct-answer="D">
+<strong style="display: block;">A firm has face-value debt of 1,000,000 due at year-end. Without new investment, its assets will be worth 900,000. A project requires an equity-funded investment of 100,000 now and produces a certain payoff of 150,000 at year-end. If equity holders finance the project, how much of the project's gain accrues to debt holders?</strong>
+
+<label><input type="radio" name="module9_mcq_q84" value="A"> A. $20,000</label><br>
+<label><input type="radio" name="module9_mcq_q84" value="B"> B. $30,000</label><br>
+<label><input type="radio" name="module9_mcq_q84" value="C"> C. $40,000</label><br>
+<label><input type="radio" name="module9_mcq_q84" value="D"> D. $100,000</label><br>
+<label><input type="radio" name="module9_mcq_q84" value="E"> E. $150,000</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q84" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Without the project, creditors get 900k (short of 1m). With the project, firm value is 900k + 150k = 1,050k, so creditors get their full 1m. The increase in creditor payoff is 100k — exactly the first 100k of the project’s gain.
+</div>
+
+:::

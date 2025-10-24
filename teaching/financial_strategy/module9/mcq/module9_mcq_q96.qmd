@@ -1,0 +1,19 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q96')" data-correct-answer="C">
+<strong style="display: block;">A corporate bond has a face value of $1,000 and a 10% probability of default. In default, investors recover only 60% of the face value. What is the expected value of the bond, ignoring discounting?</strong>
+
+<label><input type="radio" name="module9_mcq_q96" value="A"> A. $920</label><br>
+<label><input type="radio" name="module9_mcq_q96" value="B"> B. $930</label><br>
+<label><input type="radio" name="module9_mcq_q96" value="C"> C. $960</label><br>
+<label><input type="radio" name="module9_mcq_q96" value="D"> D. $970</label><br>
+<label><input type="radio" name="module9_mcq_q96" value="E"> E. $990</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q96" class="feedback" data-status="" style="display:none;">
+✅ C is correct.  
+Expected payoff = 0.9×1,000 + 0.1×600 = 900 + 60 = $960.  
+This reflects the expected market value of risky debt before discounting.
+</div>
+
+:::

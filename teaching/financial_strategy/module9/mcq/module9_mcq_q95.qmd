@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q95')" data-correct-answer="C">
+<strong style="display: block;">A firm generates $60 million in free cash flow per year. Managers waste 8% of it on unproductive expenses. If new debt commitments force them to pay out 75% of cash flow to investors, what value is preserved?</strong>
+
+<label><input type="radio" name="module9_mcq_q95" value="A"> A. $2 million</label><br>
+<label><input type="radio" name="module9_mcq_q95" value="B"> B. $3 million</label><br>
+<label><input type="radio" name="module9_mcq_q95" value="C"> C. $3.6 million</label><br>
+<label><input type="radio" name="module9_mcq_q95" value="D"> D. $4.8 million</label><br>
+<label><input type="radio" name="module9_mcq_q95" value="E"> E. $6 million</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q95" class="feedback" data-status="" style="display:none;">
+✅ C is correct. Value saved = 60×0.08×0.75 = 3.6 million. Debt can discipline managers by reducing waste.
+</div>
+
+:::

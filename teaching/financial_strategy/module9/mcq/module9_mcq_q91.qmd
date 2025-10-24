@@ -1,0 +1,18 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module9_mcq_q91')" data-correct-answer="C">
+<strong style="display: block;">A firm has a 60% chance of remaining healthy with value 600 million, a 30% chance of moderate distress losing 40 million, and a 10% chance of bankruptcy losing 150 million. What is the expected firm value?</strong>
+
+<label><input type="radio" name="module9_mcq_q91" value="A"> A. $540 million</label><br>
+<label><input type="radio" name="module9_mcq_q91" value="B"> B. $550 million</label><br>
+<label><input type="radio" name="module9_mcq_q91" value="C"> C. $556 million</label><br>
+<label><input type="radio" name="module9_mcq_q91" value="D"> D. $560 million</label><br>
+<label><input type="radio" name="module9_mcq_q91" value="E"> E. $580 million</label><br>
+</form>
+
+<div id="feedback-module9_mcq_q91" class="feedback" data-status="" style="display:none;">
+✅ C is correct.  
+Expected value = 0.6×600 + 0.3×(600−40) + 0.1×(600−150) = 556 million.
+</div>
+
+:::
