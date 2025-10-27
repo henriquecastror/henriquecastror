@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q32')" data-correct-answer="E">
+<strong style="display: block;">How do taxes create a preference for capital gains over dividends for many investors?</strong>
+
+<label><input type="radio" name="module10_mcq_q32" value="A"> A. Dividend income is tax-exempt, while capital gains are taxed immediately.</label><br>
+<label><input type="radio" name="module10_mcq_q32" value="B"> B. Capital gains are taxed at higher rates than dividends.</label><br>
+<label><input type="radio" name="module10_mcq_q32" value="C"> C. Dividends can be deferred indefinitely for tax purposes.</label><br>
+<label><input type="radio" name="module10_mcq_q32" value="D"> D. Capital gains reduce the firm’s tax shield.</label><br>
+<label><input type="radio" name="module10_mcq_q32" value="E"> E. Capital gains taxes are deferred until realization and often taxed at lower rates.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q32" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Capital gains are typically taxed only when realized and often at lower rates, giving investors a tax advantage over immediately taxable dividends.
+</div>
+
+:::

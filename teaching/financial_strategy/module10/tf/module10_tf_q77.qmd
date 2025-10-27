@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q77','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q77" name="module10_tf_q77" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q77"><strong>In perfect markets, a firm that raises equity to pay a higher dividend today will have lower future dividends per share, leaving total value unchanged.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q77" class="feedback" data-status="" style="display:none;">
+TRUE.  Current payouts trade off against future payouts.
+</div>
+
+:::

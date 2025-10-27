@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q81')" data-correct-answer="C">
+<strong style="display: block;">Atlas Corp has $10 million in excess cash. It can either pay the dividend now or invest the funds in Treasury bills yielding 5% for one year. In a perfect capital market, what is the effect on shareholder wealth?</strong>
+
+<label><input type="radio" name="module10_mcq_q81" value="A"> A. Shareholders are better off if the firm retains the cash.</label><br>
+<label><input type="radio" name="module10_mcq_q81" value="B"> B. Shareholders are worse off if the firm retains the cash.</label><br>
+<label><input type="radio" name="module10_mcq_q81" value="C"> C. Shareholder wealth is unchanged regardless of payout timing.</label><br>
+<label><input type="radio" name="module10_mcq_q81" value="D"> D. Shareholders lose the interest income if the firm retains cash.</label><br>
+<label><input type="radio" name="module10_mcq_q81" value="E"> E. Shareholders gain double interest if the firm retains cash.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q81" class="feedback" data-status="" style="display:none;">
+✅ C is correct. In perfect markets, investors can replicate the firm’s actions by investing dividends themselves—timing of payout does not affect total wealth.
+</div>
+
+:::

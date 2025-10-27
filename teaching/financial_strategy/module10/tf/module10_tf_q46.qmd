@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q46','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q46" name="module10_tf_q46" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q46"><strong>A reduction or omission of dividends is often viewed negatively by investors and may signal financial trouble.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q46" class="feedback" data-status="" style="display:none;">
+TRUE.  Cuts are typically interpreted as bad news.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q47')" data-correct-answer="A">
+<strong style="display: block;">What is the likely effect of a stock split on a firm's market capitalization?</strong>
+
+<label><input type="radio" name="module10_mcq_q47" value="A"> A. Market capitalization remains unchanged, but the number of shares increases.</label><br>
+<label><input type="radio" name="module10_mcq_q47" value="B"> B. Market capitalization doubles because each share becomes more valuable.</label><br>
+<label><input type="radio" name="module10_mcq_q47" value="C"> C. Market capitalization declines by half due to dilution.</label><br>
+<label><input type="radio" name="module10_mcq_q47" value="D"> D. Market capitalization increases because of new cash inflows.</label><br>
+<label><input type="radio" name="module10_mcq_q47" value="E"> E. Market capitalization changes unpredictably due to investor behavior.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q47" class="feedback" data-status="" style="display:none;">
+✅ A is correct. A stock split increases the number of shares while proportionally reducing the share price, leaving total market capitalization unchanged.
+</div>
+
+:::

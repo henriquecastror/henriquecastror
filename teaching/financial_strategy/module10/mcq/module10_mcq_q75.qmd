@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q75')" data-correct-answer="C">
+<strong style="display: block;">Vega Motors’ shares trade at $200 each. The company wants to reduce the price to $80 through a stock split. What split ratio should it use?</strong>
+
+<label><input type="radio" name="module10_mcq_q75" value="A"> A. 2-for-1</label><br>
+<label><input type="radio" name="module10_mcq_q75" value="B"> B. 3-for-1</label><br>
+<label><input type="radio" name="module10_mcq_q75" value="C"> C. 5-for-2</label><br>
+<label><input type="radio" name="module10_mcq_q75" value="D"> D. 5-for-1</label><br>
+<label><input type="radio" name="module10_mcq_q75" value="E"> E. 5-for-4</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q75" class="feedback" data-status="" style="display:none;">
+✅ C is correct. Ratio = $200 / 80 = 2.5$, which corresponds to a 5-for-2 stock split.
+</div>
+
+:::

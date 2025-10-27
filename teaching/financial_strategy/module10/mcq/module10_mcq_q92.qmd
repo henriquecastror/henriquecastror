@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q92')" data-correct-answer="A">
+<strong style="display: block;">If Orion Ltd. stock rises from $40 to $44 and pays a $1 dividend during the year, what is the total return to shareholders?</strong>
+
+<label><input type="radio" name="module10_mcq_q92" value="A"> A. 12.5%</label><br>
+<label><input type="radio" name="module10_mcq_q92" value="B"> B. 10.0%</label><br>
+<label><input type="radio" name="module10_mcq_q92" value="C"> C. 11.0%</label><br>
+<label><input type="radio" name="module10_mcq_q92" value="D"> D. 9.5%</label><br>
+<label><input type="radio" name="module10_mcq_q92" value="E"> E. 8.5%</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q92" class="feedback" data-status="" style="display:none;">
+✅ A is correct. Total return = (44 − 40 + 1)/40 = 5/40 = 12.5%.
+</div>
+
+:::

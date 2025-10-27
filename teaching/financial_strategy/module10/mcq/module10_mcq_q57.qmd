@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q57')" data-correct-answer="A">
+<strong style="display: block;">Which of the following is TRUE regarding a reverse stock split (inplit)?</strong>
+
+<label><input type="radio" name="module10_mcq_q57" value="A"> A. It consolidates shares, raising the stock price per share while total value remains unchanged.</label><br>
+<label><input type="radio" name="module10_mcq_q57" value="B"> B. It creates new shares to attract small investors.</label><br>
+<label><input type="radio" name="module10_mcq_q57" value="C"> C. It increases total market capitalization.</label><br>
+<label><input type="radio" name="module10_mcq_q57" value="D"> D. It signals lower expected profitability.</label><br>
+<label><input type="radio" name="module10_mcq_q57" value="E"> E. It reduces liquidity by doubling the number of shares.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q57" class="feedback" data-status="" style="display:none;">
+✅ A is correct. A reverse split consolidates existing shares into fewer, higher-priced shares without changing total market capitalization.
+</div>
+
+:::

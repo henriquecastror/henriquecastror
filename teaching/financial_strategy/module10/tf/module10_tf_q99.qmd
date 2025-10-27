@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q99','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q99" name="module10_tf_q99" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q99"><strong>Record date determines which registered shareholders are entitled to receive the declared dividend.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q99" class="feedback" data-status="" style="display:none;">
+TRUE.  Only holders of record on that date receive the distribution.
+</div>
+
+:::

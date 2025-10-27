@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q89')" data-correct-answer="B">
+<strong style="display: block;">Orion Group executes a spin-off worth $60 million. Before the spin-off, total equity value was $600 million. What happens to shareholder wealth after the spin-off?</strong>
+
+<label><input type="radio" name="module10_mcq_q89" value="A"> A. Increases by $60 million</label><br>
+<label><input type="radio" name="module10_mcq_q89" value="B"> B. Remains at $600 million</label><br>
+<label><input type="radio" name="module10_mcq_q89" value="C"> C. Decreases by $60 million</label><br>
+<label><input type="radio" name="module10_mcq_q89" value="D"> D. Increases by $30 million</label><br>
+<label><input type="radio" name="module10_mcq_q89" value="E"> E. Decreases by $30 million</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q89" class="feedback" data-status="" style="display:none;">
+✅ B is correct. In a spin-off, shareholders receive new shares in the subsidiary; total value remains constant at $600M, only redistributed.
+</div>
+
+:::

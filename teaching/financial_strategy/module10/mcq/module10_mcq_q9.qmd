@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q9')" data-correct-answer="E">
+<strong style="display: block;">What is the main idea behind the dividend signaling hypothesis?</strong>
+
+<label><input type="radio" name="module10_mcq_q9" value="A"> A. Dividends are irrelevant in perfect markets.</label><br>
+<label><input type="radio" name="module10_mcq_q9" value="B"> B. Dividends are set randomly to surprise investors.</label><br>
+<label><input type="radio" name="module10_mcq_q9" value="C"> C. Firms pay dividends only when they lack investment opportunities.</label><br>
+<label><input type="radio" name="module10_mcq_q9" value="D"> D. Firms use dividends to manipulate earnings reports.</label><br>
+<label><input type="radio" name="module10_mcq_q9" value="E"> E. Changes in dividends convey management’s expectations about future earnings.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q9" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Under the dividend signaling hypothesis, increases or decreases in dividends reveal management’s private information about expected future profitability.
+</div>
+
+:::

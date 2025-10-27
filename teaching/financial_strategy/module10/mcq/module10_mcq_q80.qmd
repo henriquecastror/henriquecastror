@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q80')" data-correct-answer="D">
+<strong style="display: block;">Lumen Industries performs a 1-for-5 reverse split (inplit). If an investor holds 2,000 shares at $2 each before the split, how many shares and what price will they have afterward?</strong>
+
+<label><input type="radio" name="module10_mcq_q80" value="A"> A. 500 shares at $8 each</label><br>
+<label><input type="radio" name="module10_mcq_q80" value="B"> B. 400 shares at $10 each</label><br>
+<label><input type="radio" name="module10_mcq_q80" value="C"> C. 600 shares at $7 each</label><br>
+<label><input type="radio" name="module10_mcq_q80" value="D"> D. 400 shares at $10 each</label><br>
+<label><input type="radio" name="module10_mcq_q80" value="E"> E. 1,000 shares at $4 each</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q80" class="feedback" data-status="" style="display:none;">
+✅ D is correct. In a 1-for-5 reverse split, every 5 shares become 1. 2,000 ÷ 5 = 400 shares, each priced at $10 to keep value unchanged ($800 total).
+</div>
+
+:::

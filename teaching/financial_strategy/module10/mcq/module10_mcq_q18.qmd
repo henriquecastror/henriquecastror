@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q18')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements about share repurchases is FALSE?</strong>
+
+<label><input type="radio" name="module10_mcq_q18" value="A"> A. They reduce the number of shares outstanding.</label><br>
+<label><input type="radio" name="module10_mcq_q18" value="B"> B. They can signal that management believes the stock is undervalued.</label><br>
+<label><input type="radio" name="module10_mcq_q18" value="C"> C. They permanently increase the firm’s total market value.</label><br>
+<label><input type="radio" name="module10_mcq_q18" value="D"> D. They may be more tax-efficient than dividends.</label><br>
+<label><input type="radio" name="module10_mcq_q18" value="E"> E. They provide flexibility over the timing of cash distributions.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q18" class="feedback" data-status="" style="display:none;">
+✅ C is correct. Share repurchases do not inherently increase firm value—they merely redistribute cash to shareholders under certain tax and signaling conditions.
+</div>
+
+:::

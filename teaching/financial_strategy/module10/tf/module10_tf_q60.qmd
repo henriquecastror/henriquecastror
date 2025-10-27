@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q60','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q60" name="module10_tf_q60" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module10_tf_q60"><strong>Announcing a repurchase obligates a firm to repurchase the announced amount within the stated period.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q60" class="feedback" data-status="" style="display:none;">
+FALSE. False. Repurchase authorizations are not binding; firms may buy fewer or no shares.
+</div>
+
+:::

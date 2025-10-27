@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q42')" data-correct-answer="D">
+<strong style="display: block;">Which of the following best defines the ex-dividend date?</strong>
+
+<label><input type="radio" name="module10_mcq_q42" value="A"> A. The date the dividend is declared by the board of directors.</label><br>
+<label><input type="radio" name="module10_mcq_q42" value="B"> B. The date the dividend is paid to shareholders.</label><br>
+<label><input type="radio" name="module10_mcq_q42" value="C"> C. The date when the company records eligible shareholders.</label><br>
+<label><input type="radio" name="module10_mcq_q42" value="D"> D. The date when new buyers are no longer entitled to the upcoming dividend.</label><br>
+<label><input type="radio" name="module10_mcq_q42" value="E"> E. The date on which tax withholding on dividends is remitted.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q42" class="feedback" data-status="" style="display:none;">
+✅ D is correct. The ex-dividend date is when the stock starts trading without the right to receive the next dividend payment.
+</div>
+
+:::

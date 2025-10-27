@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q29')" data-correct-answer="B">
+<strong style="display: block;">Which statement about Interest on Equity (Juros sobre Capital Próprio, JCP) in Brazil is TRUE?</strong>
+
+<label><input type="radio" name="module10_mcq_q29" value="A"> A. JCP payments are exempt from all taxes for both the firm and shareholders.</label><br>
+<label><input type="radio" name="module10_mcq_q29" value="B"> B. JCP payments are tax-deductible for the firm but subject to withholding income tax for the shareholder.</label><br>
+<label><input type="radio" name="module10_mcq_q29" value="C"> C. JCP payments increase the firm’s total equity value by reducing its tax liabilities to zero.</label><br>
+<label><input type="radio" name="module10_mcq_q29" value="D"> D. JCP is equivalent to a stock split since it redistributes equity among investors.</label><br>
+<label><input type="radio" name="module10_mcq_q29" value="E"> E. JCP cannot be used by publicly traded companies in Brazil.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q29" class="feedback" data-status="" style="display:none;">
+✅ B is correct. Under Brazilian law, Interest on Equity (JCP) is tax-deductible for the firm—reducing taxable income—but it is subject to a withholding income tax for shareholders. This makes JCP a hybrid mechanism combining features of dividends and interest payments.
+</div>
+
+:::

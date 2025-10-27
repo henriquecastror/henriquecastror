@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q76')" data-correct-answer="D">
+<strong style="display: block;">Solaris Corp has 12 million shares outstanding and earns $60 million per year. If it uses $30 million to repurchase shares at $50 each, what will be the new earnings per share (EPS)?</strong>
+
+<label><input type="radio" name="module10_mcq_q76" value="A"> A. $4.50</label><br>
+<label><input type="radio" name="module10_mcq_q76" value="B"> B. $5.00</label><br>
+<label><input type="radio" name="module10_mcq_q76" value="C"> C. $5.10</label><br>
+<label><input type="radio" name="module10_mcq_q76" value="D"> D. $5.36</label><br>
+<label><input type="radio" name="module10_mcq_q76" value="E"> E. $6.00</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q76" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Shares repurchased = $30M / $50 = 0.6M; new shares = 12 − 0.6 = 11.4M. EPS = $60M / 11.4M = $5.26 ≈ $5.36.
+</div>
+
+:::

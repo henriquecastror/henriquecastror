@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q28','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q28" name="module10_tf_q28" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module10_tf_q28"><strong>Retaining earnings instead of paying dividends is always the best approach for maximizing firm value.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q28" class="feedback" data-status="" style="display:none;">
+FALSE.  Optimal payout depends on taxes, investment opportunities, agency issues, and investor preferences.
+</div>
+
+:::

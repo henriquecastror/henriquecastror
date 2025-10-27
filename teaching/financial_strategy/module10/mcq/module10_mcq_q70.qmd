@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q70')" data-correct-answer="C">
+<strong style="display: block;">Which of the following statements best describes the dividend puzzle?</strong>
+
+<label><input type="radio" name="module10_mcq_q70" value="A"> A. Firms avoid paying dividends despite investor preference.</label><br>
+<label><input type="radio" name="module10_mcq_q70" value="B"> B. Dividends have no signaling value to investors.</label><br>
+<label><input type="radio" name="module10_mcq_q70" value="C"> C. Firms continue paying dividends despite their apparent tax disadvantage.</label><br>
+<label><input type="radio" name="module10_mcq_q70" value="D"> D. Investors are indifferent to all forms of payout.</label><br>
+<label><input type="radio" name="module10_mcq_q70" value="E"> E. Dividends automatically maximize firm value.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q70" class="feedback" data-status="" style="display:none;">
+✅ C is correct. The dividend puzzle refers to the continued popularity of dividends even though they are often less tax-efficient than share repurchases.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q95')" data-correct-answer="C">
+<strong style="display: block;">An investor buys a stock for $80. After one year, the price is $84 and the firm pays a $2 dividend. What is the effective dividend yield?</strong>
+
+<label><input type="radio" name="module10_mcq_q95" value="A"> A. 2.0%</label><br>
+<label><input type="radio" name="module10_mcq_q95" value="B"> B. 2.2%</label><br>
+<label><input type="radio" name="module10_mcq_q95" value="C"> C. 2.5%</label><br>
+<label><input type="radio" name="module10_mcq_q95" value="D"> D. 3.0%</label><br>
+<label><input type="radio" name="module10_mcq_q95" value="E"> E. 3.5%</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q95" class="feedback" data-status="" style="display:none;">
+✅ C is correct. Dividend yield = $2 / 80 = 2.5\%.$
+</div>
+
+:::

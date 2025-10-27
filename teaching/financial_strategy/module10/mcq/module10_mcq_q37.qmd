@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q37')" data-correct-answer="D">
+<strong style="display: block;">What effect might a share repurchase have on earnings per share (EPS)?</strong>
+
+<label><input type="radio" name="module10_mcq_q37" value="A"> A. EPS decreases because total earnings decline.</label><br>
+<label><input type="radio" name="module10_mcq_q37" value="B"> B. EPS is unaffected since shares and earnings both rise equally.</label><br>
+<label><input type="radio" name="module10_mcq_q37" value="C"> C. EPS decreases because share count increases.</label><br>
+<label><input type="radio" name="module10_mcq_q37" value="D"> D. EPS increases because total earnings are divided among fewer shares.</label><br>
+<label><input type="radio" name="module10_mcq_q37" value="E"> E. EPS is random and unaffected by share count.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q37" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Share repurchases reduce the number of outstanding shares, which can raise EPS if total earnings remain constant.
+</div>
+
+:::

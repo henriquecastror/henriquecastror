@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q7')" data-correct-answer="A">
+<strong style="display: block;">Under the current Brazilian tax system, which statement about dividend taxation is correct?</strong>
+
+<label><input type="radio" name="module10_mcq_q7" value="A"> A. Cash dividends paid by Brazilian companies are exempt from personal income tax for resident individuals.</label><br>
+<label><input type="radio" name="module10_mcq_q7" value="B"> B. Dividends are taxed both at the corporate and individual levels, creating double taxation.</label><br>
+<label><input type="radio" name="module10_mcq_q7" value="C"> C. Dividends are generally taxed at higher rates than capital gains for individuals.</label><br>
+<label><input type="radio" name="module10_mcq_q7" value="D"> D. Capital gains are exempt from tax, while dividends are taxed for individuals.</label><br>
+<label><input type="radio" name="module10_mcq_q7" value="E"> E. Dividend taxation has no influence on payout policy preferences in Brazil.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q7" class="feedback" data-status="" style="display:none;">
+✅ A is correct. In Brazil, dividends distributed by domestic corporations are generally exempt from personal income tax for resident individuals, while capital gains are taxed and interest on equity (JCP) is subject to withholding tax. This can make dividends relatively more attractive than share repurchases for local investors.
+</div>
+
+:::

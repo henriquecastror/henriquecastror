@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q24')" data-correct-answer="A">
+<strong style="display: block;">According to the dividend capture theory, who benefits most from buying shares just before the ex-dividend date?</strong>
+
+<label><input type="radio" name="module10_mcq_q24" value="A"> A. Investors with lower dividend tax rates.</label><br>
+<label><input type="radio" name="module10_mcq_q24" value="B"> B. Investors with higher capital gains tax rates.</label><br>
+<label><input type="radio" name="module10_mcq_q24" value="C"> C. Investors seeking to defer tax payments.</label><br>
+<label><input type="radio" name="module10_mcq_q24" value="D"> D. Pension funds that are tax-exempt.</label><br>
+<label><input type="radio" name="module10_mcq_q24" value="E"> E. Investors who already hold large share blocks.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q24" class="feedback" data-status="" style="display:none;">
+✅ A is correct. Investors with low or no dividend tax liability may temporarily buy shares before the ex-dividend date to capture the dividend without suffering a tax disadvantage.
+</div>
+
+:::

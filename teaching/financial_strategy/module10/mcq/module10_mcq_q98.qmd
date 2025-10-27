@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q98')" data-correct-answer="D">
+<strong style="display: block;">If dividend per share is $3, earnings per share $6, and price $60, what is the payout ratio and dividend yield?</strong>
+
+<label><input type="radio" name="module10_mcq_q98" value="A"> A. 40% payout, 5% yield</label><br>
+<label><input type="radio" name="module10_mcq_q98" value="B"> B. 45% payout, 4% yield</label><br>
+<label><input type="radio" name="module10_mcq_q98" value="C"> C. 60% payout, 3% yield</label><br>
+<label><input type="radio" name="module10_mcq_q98" value="D"> D. 50% payout, 5% yield</label><br>
+<label><input type="radio" name="module10_mcq_q98" value="E"> E. 50% payout, 4% yield</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q98" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Payout = 3/6 = 50%; Yield = 3/60 = 5%.
+</div>
+
+:::

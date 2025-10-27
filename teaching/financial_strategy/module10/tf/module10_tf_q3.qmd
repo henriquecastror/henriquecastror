@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q3','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q3" name="module10_tf_q3" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q3"><strong>Modigliani-Miller theorem suggests that dividend policy is irrelevant in a world of perfect capital markets, as it doesn't affect the overall value of the firm.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q3" class="feedback" data-status="" style="display:none;">
+TRUE.  Holding investment policy fixed, payout choice does not change firm value in perfect capital markets.
+</div>
+
+:::

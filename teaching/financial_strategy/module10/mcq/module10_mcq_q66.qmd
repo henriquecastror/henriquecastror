@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q66')" data-correct-answer="A">
+<strong style="display: block;">Which statement best describes the tax preference for share repurchases?</strong>
+
+<label><input type="radio" name="module10_mcq_q66" value="A"> A. Capital gains are typically taxed at lower rates and can be deferred until realized.</label><br>
+<label><input type="radio" name="module10_mcq_q66" value="B"> B. Repurchases are taxed at higher rates than dividends.</label><br>
+<label><input type="radio" name="module10_mcq_q66" value="C"> C. Investors must pay taxes immediately upon announcement of a repurchase.</label><br>
+<label><input type="radio" name="module10_mcq_q66" value="D"> D. Dividends and capital gains always have identical tax treatment.</label><br>
+<label><input type="radio" name="module10_mcq_q66" value="E"> E. Share repurchases increase effective dividend tax rates.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q66" class="feedback" data-status="" style="display:none;">
+✅ A is correct. Share repurchases may be tax-preferred because capital gains are taxed at lower rates and only upon realization, unlike dividends taxed when received.
+</div>
+
+:::

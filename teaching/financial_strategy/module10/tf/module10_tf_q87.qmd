@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q87','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q87" name="module10_tf_q87" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q87"><strong>Because dividends are sticky, managers are cautious about raising them unless they believe higher payments are sustainable.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q87" class="feedback" data-status="" style="display:none;">
+TRUE.  The reputational cost of later cuts makes increases conservative.
+</div>
+
+:::

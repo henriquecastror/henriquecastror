@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q31','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q31" name="module10_tf_q31" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q31"><strong>Payout policy refers to the decision a firm makes regarding how much of its earnings to distribute to shareholders versus how much to retain for reinvestment.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q31" class="feedback" data-status="" style="display:none;">
+TRUE.  That is the definition of payout policy.
+</div>
+
+:::

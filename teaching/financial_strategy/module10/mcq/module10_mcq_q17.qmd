@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q17')" data-correct-answer="E">
+<strong style="display: block;">What happens to the stock price immediately after a firm pays a cash dividend in perfect capital markets?</strong>
+
+<label><input type="radio" name="module10_mcq_q17" value="A"> A. It increases by the amount of the dividend.</label><br>
+<label><input type="radio" name="module10_mcq_q17" value="B"> B. It doubles the dividend amount due to demand effects.</label><br>
+<label><input type="radio" name="module10_mcq_q17" value="C"> C. It remains unchanged since investors ignore dividends.</label><br>
+<label><input type="radio" name="module10_mcq_q17" value="D"> D. It falls by more than the dividend because of taxes.</label><br>
+<label><input type="radio" name="module10_mcq_q17" value="E"> E. It decreases by approximately the dividend amount.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q17" class="feedback" data-status="" style="display:none;">
+✅ E is correct. In perfect markets, when cash leaves the firm as a dividend, the stock price drops by roughly the same amount to reflect the reduced assets.
+</div>
+
+:::

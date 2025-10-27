@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q43')" data-correct-answer="A">
+<strong style="display: block;">What is the typical market reaction to an unexpected increase in dividends?</strong>
+
+<label><input type="radio" name="module10_mcq_q43" value="A"> A. A positive stock price reaction due to signaling effects.</label><br>
+<label><input type="radio" name="module10_mcq_q43" value="B"> B. No reaction, as dividends do not convey information.</label><br>
+<label><input type="radio" name="module10_mcq_q43" value="C"> C. A decline in stock price due to dilution.</label><br>
+<label><input type="radio" name="module10_mcq_q43" value="D"> D. A neutral reaction driven by market efficiency.</label><br>
+<label><input type="radio" name="module10_mcq_q43" value="E"> E. A delayed reaction after the next earnings announcement.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q43" class="feedback" data-status="" style="display:none;">
+✅ A is correct. An unexpected dividend increase is often interpreted as a positive signal about management’s expectations of future earnings.
+</div>
+
+:::

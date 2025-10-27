@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q3')" data-correct-answer="D">
+<strong style="display: block;">Which statement about share repurchases is true?</strong>
+
+<label><input type="radio" name="module10_mcq_q3" value="A"> A. Share repurchases increase total equity value by creating new shares.</label><br>
+<label><input type="radio" name="module10_mcq_q3" value="B"> B. They permanently reduce the firm’s free cash flow to equity.</label><br>
+<label><input type="radio" name="module10_mcq_q3" value="C"> C. They always signal financial distress.</label><br>
+<label><input type="radio" name="module10_mcq_q3" value="D"> D. They are an alternative to dividends for distributing cash to shareholders.</label><br>
+<label><input type="radio" name="module10_mcq_q3" value="E"> E. They always require shareholder approval.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q3" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Repurchases are a method for returning excess cash to shareholders, similar in purpose to dividends but with different tax and signaling effects.
+</div>
+
+:::

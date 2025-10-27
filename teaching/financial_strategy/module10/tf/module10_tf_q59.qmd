@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q59','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q59" name="module10_tf_q59" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q59"><strong>A firm with highly volatile cash flows may prefer lower regular dividends to reduce the risk of future dividend cuts.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q59" class="feedback" data-status="" style="display:none;">
+TRUE. True. Lower baseline payouts support dividend smoothing.
+</div>
+
+:::

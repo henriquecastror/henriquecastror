@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q20','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q20" name="module10_tf_q20" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q20"><strong>A reduction in dividend payments can signal financial distress to the market.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q20" class="feedback" data-status="" style="display:none;">
+TRUE.  Dividend cuts are often interpreted as negative news about future cash flows.
+</div>
+
+:::

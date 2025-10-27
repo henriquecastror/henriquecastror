@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q79')" data-correct-answer="E">
+<strong style="display: block;">NovaChem shares trade at $30 at the beginning of the year and $33 at the end. The company paid a $1 dividend during the year. What was the total shareholder return?</strong>
+
+<label><input type="radio" name="module10_mcq_q79" value="A"> A. 10%</label><br>
+<label><input type="radio" name="module10_mcq_q79" value="B"> B. 11%</label><br>
+<label><input type="radio" name="module10_mcq_q79" value="C"> C. 12%</label><br>
+<label><input type="radio" name="module10_mcq_q79" value="D"> D. 12.5%</label><br>
+<label><input type="radio" name="module10_mcq_q79" value="E"> E. 13.3%</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q79" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Return = (33 − 30 + 1) / 30 = 4 / 30 = 13.3%.
+</div>
+
+:::

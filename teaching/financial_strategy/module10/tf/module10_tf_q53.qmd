@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q53','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q53" name="module10_tf_q53" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q53"><strong>On the ex-dividend date, the stock price should drop approximately by the dividend amount in perfect capital markets.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q53" class="feedback" data-status="" style="display:none;">
+TRUE. True. Price adjusts mechanically by the dividend on the ex-date in a frictionless setting.
+</div>
+
+:::

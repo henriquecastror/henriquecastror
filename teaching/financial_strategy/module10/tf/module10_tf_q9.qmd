@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q9','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q9" name="module10_tf_q9" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q9"><strong>Dividend policy can signal management's confidence in the firm's future earnings to the market.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q9" class="feedback" data-status="" style="display:none;">
+TRUE.  Persistent or increased payouts can be interpreted as confidence in future earnings.
+</div>
+
+:::

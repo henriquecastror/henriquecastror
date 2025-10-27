@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q67','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q67" name="module10_tf_q67" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q67"><strong>When a firm retains excess cash and invests in financial assets, shareholder value can suffer if the firm pays corporate taxes on the interest while investors later face capital gains taxes.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q67" class="feedback" data-status="" style="display:none;">
+TRUE.  Retained cash can be tax-inefficient relative to paying shareholders.
+</div>
+
+:::

@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q88','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q88" name="module10_tf_q88" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q88"><strong>A reverse split reduces the number of shares outstanding and increases the stock price proportionally, without changing the total market value of shareholders’ holdings.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q88" class="feedback" data-status="" style="display:none;">
+TRUE. In a reverse split, a firm consolidates shares (for example, 1-for-5), raising the price per share so that total shareholder wealth remains unchanged in perfect markets. Companies often use reverse splits to meet exchange listing requirements or improve the perception of financial stability.
+</div>
+
+:::

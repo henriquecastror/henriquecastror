@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q78')" data-correct-answer="A">
+<strong style="display: block;">If Horizon Ltd. has 20 million shares trading at $25 each and decides to pay a $0.50 dividend, what is the firm’s market capitalization after the dividend payment (assuming no taxes)?</strong>
+
+<label><input type="radio" name="module10_mcq_q78" value="A"> A. $490 million</label><br>
+<label><input type="radio" name="module10_mcq_q78" value="B"> B. $495 million</label><br>
+<label><input type="radio" name="module10_mcq_q78" value="C"> C. $500 million</label><br>
+<label><input type="radio" name="module10_mcq_q78" value="D"> D. $505 million</label><br>
+<label><input type="radio" name="module10_mcq_q78" value="E"> E. $510 million</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q78" class="feedback" data-status="" style="display:none;">
+✅ A is correct. Total before = $25 × 20M = 500M; after payment, price drops by $0.50 → $24.5 × 20M = 490M.
+</div>
+
+:::

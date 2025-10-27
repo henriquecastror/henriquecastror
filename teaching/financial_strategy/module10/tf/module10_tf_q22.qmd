@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q22','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q22" name="module10_tf_q22" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q22"><strong>Firms might choose to pay special dividends during periods of exceptionally high earnings or excess cash reserves.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q22" class="feedback" data-status="" style="display:none;">
+TRUE.  Special dividends are one-time distributions of excess cash.
+</div>
+
+:::

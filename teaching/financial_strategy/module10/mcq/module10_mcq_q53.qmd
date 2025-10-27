@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q53')" data-correct-answer="E">
+<strong style="display: block;">Which of the following statements about Modigliani and Miller’s dividend irrelevance theory is TRUE?</strong>
+
+<label><input type="radio" name="module10_mcq_q53" value="A"> A. It assumes taxes and transaction costs exist.</label><br>
+<label><input type="radio" name="module10_mcq_q53" value="B"> B. It assumes information asymmetry between managers and investors.</label><br>
+<label><input type="radio" name="module10_mcq_q53" value="C"> C. It implies dividends directly affect firm value.</label><br>
+<label><input type="radio" name="module10_mcq_q53" value="D"> D. It states that high dividends increase shareholder wealth.</label><br>
+<label><input type="radio" name="module10_mcq_q53" value="E"> E. It assumes perfect capital markets with no taxes, transaction costs, or information asymmetry.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q53" class="feedback" data-status="" style="display:none;">
+✅ E is correct. MM’s theory holds that in perfect capital markets, dividend policy is irrelevant because investors can replicate payouts by selling shares (homemade dividends).
+</div>
+
+:::

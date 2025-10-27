@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q8','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q8" name="module10_tf_q8" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module10_tf_q8"><strong>Paying dividends reduces a firm's retained earnings, but it does not affect its cash reserves.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q8" class="feedback" data-status="" style="display:none;">
+FALSE.  Cash leaves the firm when dividends are paid; both cash and retained earnings decrease.
+</div>
+
+:::

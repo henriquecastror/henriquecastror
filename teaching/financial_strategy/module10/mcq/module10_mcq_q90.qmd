@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q90')" data-correct-answer="E">
+<strong style="display: block;">Helios Inc. expects free cash flows of $120 million per year and maintains a 40% payout ratio. With a 10% cost of capital and no growth, what is the firm’s equity value?</strong>
+
+<label><input type="radio" name="module10_mcq_q90" value="A"> A. $400 million</label><br>
+<label><input type="radio" name="module10_mcq_q90" value="B"> B. $800 million</label><br>
+<label><input type="radio" name="module10_mcq_q90" value="C"> C. $1.0 billion</label><br>
+<label><input type="radio" name="module10_mcq_q90" value="D"> D. $1.1 billion</label><br>
+<label><input type="radio" name="module10_mcq_q90" value="E"> E. $1.2 billion</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q90" class="feedback" data-status="" style="display:none;">
+✅ E is correct. Value = FCF / r = $120 / 0.10 = $1,200M = $1.2B$. Payout ratio does not change valuation in no-growth scenario.
+</div>
+
+:::

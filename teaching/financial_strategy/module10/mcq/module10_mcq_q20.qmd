@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q20')" data-correct-answer="D">
+<strong style="display: block;">What typically motivates a firm to announce a share repurchase?</strong>
+
+<label><input type="radio" name="module10_mcq_q20" value="A"> A. To comply with government payout regulations.</label><br>
+<label><input type="radio" name="module10_mcq_q20" value="B"> B. To increase the number of outstanding shares.</label><br>
+<label><input type="radio" name="module10_mcq_q20" value="C"> C. To replace all future dividend payments.</label><br>
+<label><input type="radio" name="module10_mcq_q20" value="D"> D. To signal confidence that the firm’s shares are undervalued.</label><br>
+<label><input type="radio" name="module10_mcq_q20" value="E"> E. To avoid future capital expenditures.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q20" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Firms often repurchase shares to signal that management believes the stock is undervalued, consistent with signaling theory.
+</div>
+
+:::

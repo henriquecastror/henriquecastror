@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q36','T')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q36" name="module10_tf_q36" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="T" /> 
+  <label for="module10_tf_q36"><strong>Firms may use dividends and repurchases to distribute excess cash and manage agency conflicts between managers and shareholders.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q36" class="feedback" data-status="" style="display:none;">
+TRUE.  Distributions reduce free cash flow under managerial discretion.
+</div>
+
+:::

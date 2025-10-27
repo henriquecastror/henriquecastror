@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q8')" data-correct-answer="D">
+<strong style="display: block;">Which of the following describes dividend smoothing?</strong>
+
+<label><input type="radio" name="module10_mcq_q8" value="A"> A. Rapidly adjusting dividends to follow earnings changes.</label><br>
+<label><input type="radio" name="module10_mcq_q8" value="B"> B. Paying dividends only in years with positive net income.</label><br>
+<label><input type="radio" name="module10_mcq_q8" value="C"> C. Setting a fixed payout ratio each quarter.</label><br>
+<label><input type="radio" name="module10_mcq_q8" value="D"> D. Maintaining stable dividends and changing them infrequently despite earnings fluctuations.</label><br>
+<label><input type="radio" name="module10_mcq_q8" value="E"> E. Replacing dividends with frequent share repurchases.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q8" class="feedback" data-status="" style="display:none;">
+✅ D is correct. Dividend smoothing refers to management’s tendency to maintain relatively stable dividend payments over time, even when earnings are volatile.
+</div>
+
+:::

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q40')" data-correct-answer="E">
+<strong style="display: block;">Which of the following is NOT a likely motivation for a firm to repurchase shares?</strong>
+
+<label><input type="radio" name="module10_mcq_q40" value="A"> A. To distribute excess cash to shareholders.</label><br>
+<label><input type="radio" name="module10_mcq_q40" value="B"> B. To signal that management believes the stock is undervalued.</label><br>
+<label><input type="radio" name="module10_mcq_q40" value="C"> C. To adjust the firm’s capital structure by increasing leverage.</label><br>
+<label><input type="radio" name="module10_mcq_q40" value="D"> D. To offset dilution from stock-based compensation plans.</label><br>
+<label><input type="radio" name="module10_mcq_q40" value="E"> E. To permanently increase firm value in perfect capital markets.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q40" class="feedback" data-status="" style="display:none;">
+✅ E is correct. In perfect markets, repurchases do not inherently increase firm value—they redistribute cash without changing total firm wealth.
+</div>
+
+:::

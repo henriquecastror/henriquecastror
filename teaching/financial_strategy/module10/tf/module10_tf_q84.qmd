@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q84','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q84" name="module10_tf_q84" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module10_tf_q84"><strong>A stock split increases the firm’s total market capitalization because more shares are outstanding.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q84" class="feedback" data-status="" style="display:none;">
+FALSE.  Price adjusts downward so total market cap remains unchanged (absent signaling/liquidity effects).
+</div>
+
+:::

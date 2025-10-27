@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q68','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q68" name="module10_tf_q68" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module10_tf_q68"><strong>Under payout irrelevance, dividend policy is irrelevant even if the firm’s investment policy changes because of the payout choice.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q68" class="feedback" data-status="" style="display:none;">
+FALSE.  MM requires investment policy to be fixed; changing investments can affect value.
+</div>
+
+:::

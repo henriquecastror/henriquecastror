@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q10')" data-correct-answer="B">
+<strong style="display: block;">Why might a firm perform a stock split?</strong>
+
+<label><input type="radio" name="module10_mcq_q10" value="A"> A. To increase total firm value by issuing new equity.</label><br>
+<label><input type="radio" name="module10_mcq_q10" value="B"> B. To keep the stock price within a range attractive to small investors and improve liquidity.</label><br>
+<label><input type="radio" name="module10_mcq_q10" value="C"> C. To distribute additional cash to shareholders.</label><br>
+<label><input type="radio" name="module10_mcq_q10" value="D"> D. To reduce the number of shares outstanding.</label><br>
+<label><input type="radio" name="module10_mcq_q10" value="E"> E. To avoid paying dividends.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q10" class="feedback" data-status="" style="display:none;">
+✅ B is correct. Stock splits make shares more affordable and can improve trading liquidity by keeping the price in a desirable range for retail investors.
+</div>
+
+:::

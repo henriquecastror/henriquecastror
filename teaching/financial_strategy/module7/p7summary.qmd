@@ -1,0 +1,88 @@
+---
+title: "Module 7 – (Ch. 14) Capital Structure in a Perfect Market"
+author: "Henrique C. Martins – henrique.martins@fgv.br"
+format: pdf
+fontsize: 11pt
+geometry: margin=1in
+mainfont: "Times New Roman"
+header-includes: |
+  \usepackage{graphicx}
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[L]{Module 7 – (Ch. 14) Capital Structure in a Perfect Market}
+  \fancyhead[R]{\includegraphics[height=1.2cm]{../figs/background7.png}}
+  \fancyfoot[C]{}
+  \fancypagestyle{firstpage}{
+    \fancyhf{}
+    \fancyhead[L]{Module 7 – (Ch. 14) Capital Structure in a Perfect Market}
+    \fancyhead[R]{\includegraphics[height=1.2cm]{../figs/background7.png}}
+    \fancyfoot[C]{}
+  }
+  \usepackage{tcolorbox}
+  \tcbset{colback=blue!5!white, colframe=blue!75!black, boxrule=0.6pt, arc=4pt, left=6pt, right=6pt, top=4pt, bottom=4pt}
+---
+
+\thispagestyle{firstpage}
+
+\begin{tcolorbox}
+\textbf{Note:} This summary will be delivered \textbf{in printed form only}. No PDF version is available.
+\end{tcolorbox}
+
+## Overview: Key points from Chapter 14 of *Berk & DeMarzo*
+
+1) **Equity vs. Debt and Capital Structure**  
+Firms raise funds through **equity**, **debt**, or a **mix** of both. The mix defines the firm’s **capital structure**. Main questions: Does leverage affect investment decisions? Does it change **firm value**?
+
+2) **Unlevered vs. Levered Equity**  
+Changing financing from all-equity to debt + equity only **reallocates risk and return** between investors—it does not change total enterprise value.  
+  • **Unlevered equity:** expected return $R_u$  
+  • **Debt:** expected return $R_d$ (close to risk-free)  
+  • **Levered equity:** riskier, so higher expected return.
+
+3) **MM Proposition I – Capital Structure Irrelevance**  
+In perfect markets: $V_L = V_U = \text{PV(Assets CFs)}$.   
+Investors can use **homemade leverage** (borrow or lend personally) to replicate any firm leverage; therefore **capital structure does not affect value**.
+
+4) **MM Proposition II – Leverage and the Cost of Equity**  
+$R_e = R_u + \dfrac{D}{E}(R_u - R_d)$.   
+As leverage rises, equity becomes riskier and investors require a higher expected return.
+
+5) **WACC in Perfect Markets (No Taxes)**  
+$R_u = R_a = R_{\mathrm{WACC}} = \dfrac{E}{D+E}R_e + \dfrac{D}{D+E}R_d$.   
+Even though debt has a lower cost of capital, the firm’s **WACC remains unchanged**, so enterprise value is independent of leverage.
+
+6) **Levered and Unlevered Betas**  
+$\beta_u = \dfrac{E}{D+E}\beta_e + \dfrac{D}{D+E}\beta_d$, and $\beta_e = \beta_u + \dfrac{D}{E}(\beta_u - \beta_d)$.   
+With risk-free debt ($\beta_d \approx 0$), $\beta_e \approx \beta_u\!\left(1 + \dfrac{D}{E}\right)$. Leverage amplifies systematic risk.
+
+7) **Common Capital Structure Fallacies**  
+  • **“Leverage raises EPS, so value increases.”** EPS may rise, but so does risk; $R_e$ increases and the **stock price is unchanged**.  
+  • **“Issuing equity dilutes shareholders.”** Issuing new equity at fair value for a zero-NPV project leaves the **share price unchanged**; only the project’s NPV affects value.
+
+---
+
+
+
+# Scan to Access Online Class Resources
+
+|![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module7/p7.html)|![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module7/p7tf.html)|![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module7/p7num.html)|![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module7/p7mcq.html)|![](https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://henriquemartins.net/teaching/financial_strategy/module7/p7long.html)|
+|:--:|:--:|:--:|:--:|:--:|
+|Slides|T/F|Numeric|MCQ|Long-form|
+
+---
+
+# Notes
+
+\newcommand{\drawline}{\noindent\rule{\linewidth}{0.4pt}\vspace{14pt}}
+
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+\drawline
+

@@ -1,0 +1,17 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswer('module10_mcq_q91')" data-correct-answer="B">
+<strong style="display: block;">Vega SA has shares trading at $60. The firm announces a $3 dividend or an equivalent $3 share repurchase. In perfect capital markets, what happens to the share price in each case?</strong>
+
+<label><input type="radio" name="module10_mcq_q91" value="A"> A. Dividend increases price; repurchase reduces price.</label><br>
+<label><input type="radio" name="module10_mcq_q91" value="B"> B. Price drops by $3 in both cases; investor wealth unchanged.</label><br>
+<label><input type="radio" name="module10_mcq_q91" value="C"> C. Price remains constant under both options.</label><br>
+<label><input type="radio" name="module10_mcq_q91" value="D"> D. Price rises by $3 under repurchase.</label><br>
+<label><input type="radio" name="module10_mcq_q91" value="E"> E. Repurchase causes a 5% gain relative to dividends.</label><br>
+</form>
+
+<div id="feedback-module10_mcq_q91" class="feedback" data-status="" style="display:none;">
+✅ B is correct. In perfect capital markets, payout form is irrelevant—price drops by the dividend amount in either case.
+</div>
+
+:::

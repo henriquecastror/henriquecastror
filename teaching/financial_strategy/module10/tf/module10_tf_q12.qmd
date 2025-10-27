@@ -1,0 +1,12 @@
+::: {.question-block}
+
+<form onsubmit="event.preventDefault(); checkAnswerBox('module10_tf_q12','F')" style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="module10_tf_q12" name="module10_tf_q12" maxlength="1" placeholder="T or F" style="width: 55px;" data-correct-answer="F" /> 
+  <label for="module10_tf_q12"><strong>Dividend irrelevance theory states that the choice between paying dividends and retaining earnings affects a firm's stock price in a perfect market.</strong></label>
+</form>
+
+<div id="feedback-module10_tf_q12" class="feedback" data-status="" style="display:none;">
+FALSE.  Irrelevance says payout choice does not affect value in perfect markets.
+</div>
+
+:::
