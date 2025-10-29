@@ -1,0 +1,31 @@
+::: {.question}
+
+**Expected Return without Leverage**
+
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+set.seed(1001)
+value_strong <- rnorm(1, mean = 600, sd = 3)
+value_weak <- rnorm(1, mean = 300, sd = 3)
+prob_strong <- 0.5
+prob_weak <- 0.5
+market_value_today <- rnorm(1, mean = 400, sd = 3)
+expected_future_value <- prob_strong * value_strong + prob_weak * value_weak
+expected_return <- (expected_future_value - market_value_today) / market_value_today * 100
+```
+
+A company has no debt. Its assets will be worth `r round(value_strong, 1)` million in one year if the economy is strong, but only `r round(value_weak, 1)` million if the economy is weak. Both events are equally likely.   The current market value of the company’s assets is `r round(market_value_today, 1)` million.   Compute the **expected return without leverage (in %)**.
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module7_num_q2"><strong>Expected return (%):</strong></label> <input type="number" id="module7_num_q2" name="module7_num_q2" style="width:160px;" data-correct-answer=`r round(expected_return, 1)` data-tolerance="0.5" step="0.1" /> </form> <div id="feedback-module7_num_q2" class="feedback" data-status="" style="display:none;"> ✅ Expected return = (`r round(expected_future_value,1)` − `r round(market_value_today,1)`) ÷ `r round(market_value_today,1)` = <strong>`r round(expected_return,1)`%</strong>. </div> 
+::: 
+::: 
+

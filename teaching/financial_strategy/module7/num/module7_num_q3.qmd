@@ -1,0 +1,27 @@
+::: {.question}
+
+**Deleveraging and Share Issuance**
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+set.seed(1002)
+shares_outstanding <- round(rnorm(1, mean = 50, sd = 2))
+market_cap <- round(rnorm(1, mean = 2.25, sd = 0.5))
+debt_outstanding <- round(rnorm(1, mean = 756, sd = 1.5))
+share_price <- market_cap * 1000 / shares_outstanding
+new_shares_to_issue <- debt_outstanding / share_price
+```
+
+
+Company Y has `r round(shares_outstanding , 2)` million shares outstanding and a market capitalization of `r round(market_cap, 2)` billion.  It also has `r round(debt_outstanding, 2)` million in debt outstanding. The company plans to **delever completely** by issuing new equity and repaying all outstanding debt.   Assume perfect capital markets.  How many new shares must the company issue (in million)?
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module7_num_q3"><strong>New shares to issue (millions):</strong></label> <input type="number" id="module7_num_q3" name="module7_num_q3" style="width:160px;" data-correct-answer=`r round(new_shares_to_issue, 2)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module7_num_q3" class="feedback" data-status="" style="display:none;"> ✅ New shares = Debt ÷ Price = `r round(debt_outstanding,2)` ÷ `r round(share_price,2)` = <strong>`r round(new_shares_to_issue,2)` million</strong>. </div> 
+::: 
+::: 

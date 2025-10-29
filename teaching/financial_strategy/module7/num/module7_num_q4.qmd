@@ -1,0 +1,32 @@
+::: {.question}
+
+**Stock Price under MM Proposition I**
+
+
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+library(webexercises)
+set.seed(1003)
+shares_without <- round(rnorm(1, mean = 2, sd = 1), 2)
+price_per_share_without <- round(rnorm(1, mean = 24, sd = 1), 2)
+shares_with <- round(rnorm(1, mean = 2, sd = 0.5))
+debt_with <- round(rnorm(1, mean = 12, sd = 5))
+interest_rate <- 0.05
+value_without <- shares_without * price_per_share_without
+equity_value_with <- value_without - debt_with
+price_per_share_with <- equity_value_with / shares_with
+
+```
+
+Consider two firms, **Leverage** and **NonLeverage**, that have identical assets and generate identical cash flows.   NonLeverage is an all-equity firm with `r shares_without` million shares outstanding trading at `r price_per_share_without` per share.   Leverage has `r shares_with` million shares outstanding and `r debt_with` million in debt, with an interest rate of 5%.  Under **Modigliani–Miller Proposition I (no taxes)**, compute the **stock price for Leverage (in $)**.
+
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module7_num_q4"><strong>Leverage stock price ($):</strong></label> <input type="number" id="module7_num_q4" name="module7_num_q4" style="width:160px;" data-correct-answer=`r round(price_per_share_with, 2)` data-tolerance="0.1" step="0.01" /> </form> <div id="feedback-module7_num_q4" class="feedback" data-status="" style="display:none;"> ✅ By MM I (no taxes): firm value unchanged. Equity value = Total assets − Debt = `r round(value_without,2)` − `r round(debt_with,2)` = `r round(equity_value_with,2)`; Stock price = `r round(equity_value_with,2)` ÷ `r shares_with` = <strong>`r round(price_per_share_with,2)`</strong>. </div> 
+::: 
+::: 

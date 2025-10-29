@@ -1,0 +1,15 @@
+{
+  "hash": "7cc4a574ed705c47a5a1dda877de7a07",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Deleveraging and Share Issuance**\n\n\n\n\n\n\n\nCompany Y has 50 million shares outstanding and a market capitalization of 2 billion.  It also has 756 million in debt outstanding. The company plans to **delever completely** by issuing new equity and repaying all outstanding debt.   Assume perfect capital markets.  How many new shares must the company issue (in million)?\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\"> <label for=\"module7_num_q3\"><strong>New shares to issue (millions):</strong></label> <input type=\"number\" id=\"module7_num_q3\" name=\"module7_num_q3\" style=\"width:160px;\" data-correct-answer=18.9 data-tolerance=\"1\" step=\"0.01\" /> </form> <div id=\"feedback-module7_num_q3\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ New shares = Debt ÷ Price = 756 ÷ 40 = <strong>18.9 million</strong>. </div> \n::: \n::: ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

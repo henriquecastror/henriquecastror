@@ -1,0 +1,15 @@
+{
+  "hash": "be6413f25d823e3c7b25bdfcaa841920",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Stock Price under MM Proposition I**\n\n\n\n\n\n\n\nConsider two firms, **Leverage** and **NonLeverage**, that have identical assets and generate identical cash flows.   NonLeverage is an all-equity firm with 1.93 million shares outstanding trading at 22.74 per share.   Leverage has 2 million shares outstanding and 26 million in debt, with an interest rate of 5%.  Under **Modigliani–Miller Proposition I (no taxes)**, compute the **stock price for Leverage (in $)**.\n\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\"> <label for=\"module7_num_q4\"><strong>Leverage stock price ($):</strong></label> <input type=\"number\" id=\"module7_num_q4\" name=\"module7_num_q4\" style=\"width:160px;\" data-correct-answer=8.94 data-tolerance=\"0.1\" step=\"0.01\" /> </form> <div id=\"feedback-module7_num_q4\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ By MM I (no taxes): firm value unchanged. Equity value = Total assets − Debt = 43.89 − 26 = 17.89; Stock price = 17.89 ÷ 2 = <strong>8.94</strong>. </div> \n::: \n::: ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

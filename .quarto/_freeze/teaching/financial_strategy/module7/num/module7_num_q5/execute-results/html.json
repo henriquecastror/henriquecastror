@@ -1,0 +1,15 @@
+{
+  "hash": "d26d7e08d5c57f1c81733a2f3d9a68be",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**MM I — WACC and Value (no taxes)**\n\n\n\n\n\n\nA firm operates in a perfect capital market (no taxes) with perpetual free cash flow to the firm (FCFF) of 39.53 million per year. Its unlevered cost of capital is r<sub>U</sub> = 7.44%, the cost of debt is r<sub>D</sub> = 4.07%,  and the target leverage is D/E = 1.16.  Compute: **(a)** the levered cost of equity r<sub>E</sub> (in %); **(b)** the WACC (in %); and **(c)** the levered firm value V<sub>L</sub> (in millions).\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\"> <label for=\"module7_num_q5a_single\"><strong>2a. r<sub>E</sub> (%):</strong></label> <input type=\"number\" id=\"module7_num_q5a_single\" name=\"module7_num_q5a_single\" style=\"width:160px;\" data-correct-answer=11.35 data-tolerance=\"0.1\" step=\"0.01\" /> </form> <div id=\"feedback-module7_num_q5a_single\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ $r_E = r_U + \\frac{D}{E}(r_U - r_D) =$ 11.35%. </div> \n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\"> <label for=\"module7_num_q5b_single\"><strong>2b. WACC (%):</strong></label> <input type=\"number\" id=\"module7_num_q5b_single\" name=\"module7_num_q5b_single\" style=\"width:160px;\" data-correct-answer=7.44 data-tolerance=\"0.1\" step=\"0.01\" /> </form> <div id=\"feedback-module7_num_q5b_single\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ $WACC = \\frac{E}{V}r_E + \\frac{D}{V}r_D =$ 7.44%. </div> \n:::\n\n::: {.question-block}\n\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\"> <label for=\"module7_num_q5c_single\"><strong>2c. V<sub>L</sub> (millions):</strong></label> <input type=\"number\" id=\"module7_num_q5c_single\" name=\"module7_num_q5c_single\" style=\"width:160px;\" data-correct-answer=531.32 data-tolerance=\"0.05\" step=\"0.01\" /> </form> <div id=\"feedback-module7_num_q5c_single\" class=\"feedback\" data-status=\"\" style=\"display:none;\"> ✅ By MM I (no taxes), $V_L = V_U = \\frac{FCFF}{r_U} =$ <strong>531.32</strong> (millions). </div> \n:::\n\n::: ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -6,7 +6,7 @@
 # ==========================
 
 # ======== CONFIGURAÇÃO ========
-QMD_DIR <- "module6/tf"  # pasta com seus .qmd de T/F
+QMD_DIR <- "module7/tf"  # pasta com seus .qmd de T/F
 
 ENDPOINT_BASE       <- "https://course-chat.hcmrtns.workers.dev"
 ENDPOINT_ANSWER_KEY <- paste0(ENDPOINT_BASE, "/exercises/answer-key")
