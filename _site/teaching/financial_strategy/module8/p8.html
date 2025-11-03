@@ -331,7 +331,7 @@
       margin-right: 0; 
     }
   </style>
-  <!-- === login-start.html (com proteção para páginas e slides + turbo + warmup) === -->
+  <!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
 
   <style>
     /* Card padrão (páginas normais) */
@@ -347,9 +347,23 @@
       box-sizing: border-box;
     }
     #login-form input {
-      width: 100%; padding: 10px; margin: 6px 0;
-      border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
     }
+    /* ✅ FIX layout do checkbox: não herdar width/padding dos inputs de texto */
+    #login-form input[type="checkbox"] {
+      width: auto !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      vertical-align: middle;
+    }
+
     #login-form button {
       width: 100%; padding: 10px; margin-top: 10px;
       background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
@@ -389,8 +403,7 @@
     }
     .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
 
-    /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim
-       enquanto locked. Evita vazamentos quando o tema injeta containers. */
+    /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim) */
     html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
       display: none !important;
     }
@@ -422,6 +435,20 @@
 
     /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
     html.locked, body.locked { overflow: hidden !important; }
+
+    /* 🔒 Blindagem extra contra webexercises esconder a checkbox */
+    #login-form .remember-row { display:flex !important; visibility:visible !important; }
+    #login-form #remember-me { display:inline-block !important; }
+
+    /* 🧼 Esconde imediatamente artefatos escapados (qualquer descendente code/pre/sourceCode etc) DENTRO do form */
+    #login-form pre,
+    #login-form code,
+    #login-form .sourceCode,
+    #login-form .sourcecode,
+    #login-form .quarto-code-cell,
+    #login-form .cell-output,
+    #login-form .cell-output-display,
+    #login-form .cell { display: none !important; }
   </style>
 
   <!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
@@ -464,16 +491,23 @@
     }
   </script>
 
-  <meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
+  <meta property="og:title" content="Henrique Castro Martins - Estratégia Financeira">
+<meta property="og:description" content="Part 8 - Ch 15 Debt and Taxes">
+<meta property="og:site_name" content="Henrique Castro Martins">
+<meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
 <meta name="twitter:description" content="Part 8 - Ch 15 Debt and Taxes">
 <meta name="twitter:card" content="summary">
 </head><body class="quarto-light"><form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
     <h3 style="text-align:center;">Login</h3>
     <input type="text" id="username" placeholder="Username" autocomplete="username" required="">
     <input type="password" id="password" placeholder="Password" autocomplete="current-password" required="">
+
+    <!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
     <div class="remember-row">
-      <label><input type="checkbox" id="remember-me" checked=""> Remember me</label>
+      <input type="checkbox" id="remember-me" checked="">
+      <label for="remember-me">Remember me</label>
     </div>
+
     <button type="submit" id="login-submit">Enter</button>
     <div id="loading-msg"></div>
     <div id="login-error"></div>
@@ -644,7 +678,7 @@
         else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
         else { err.textContent='Missing credentials.'; }
       }catch(_){
-        load.style.display='none'; err.textContent='Network error. Please try again.';
+        load.textContent=''; err.textContent='Network error. Please try again.';
       }finally{
         if (document.getElementById('login-form').style.display !== 'none') {
           setAuthLoading(false);
@@ -687,6 +721,67 @@
         console.warn('auto-wrap (non-reveal) warn:', e);
       }
     });
+
+    /* 🔒 Fallback: recria a checkbox se webexercises a remover (estrutura input+label) */
+    document.addEventListener('DOMContentLoaded', () => {
+      const form=document.getElementById('login-form');
+      if(!form) return;
+      if(!document.getElementById('remember-me')){
+        const row=document.createElement('div');
+        row.className='remember-row';
+
+        const input=document.createElement('input');
+        input.type='checkbox';
+        input.id='remember-me';
+        input.checked=true;
+
+        const label=document.createElement('label');
+        label.htmlFor='remember-me';
+        label.appendChild(document.createTextNode(' Remember me'));
+
+        row.appendChild(input);
+        row.appendChild(label);
+
+        const btn=document.getElementById('login-submit');
+        form.insertBefore(row, btn);
+      }
+    });
+
+    /* 🧹 Sanitizador: remove artefatos (pre/code/sourceCode/cell) do remember dentro do form (em QUALQUER profundidade) */
+    (function(){
+      function looksLikeRememberLine(txt){
+        if(!txt) return false;
+        const t = txt.trim();
+        return /<\s*input[^>]*type=["']checkbox["'][^>]*id=["']remember-me["']/i.test(t) ||
+               /<\s*label[^>]*for=["']remember-me["'][^>]*>/i.test(t);
+      }
+      function cleanRememberArtifacts(){
+        const form = document.getElementById('login-form');
+        if(!form) return;
+
+        // Remove blocos típicos do Quarto/knitr que contêm o HTML escapado
+        form.querySelectorAll('pre, code, .sourceCode, .sourcecode, .quarto-code-cell, .cell-output, .cell-output-display, .cell')
+          .forEach(el => { if(looksLikeRememberLine(el.textContent)) el.remove(); });
+
+        // Remove nós de texto “crus” em qualquer nível
+        const treeWalker = document.createTreeWalker(form, NodeFilter.SHOW_TEXT, null);
+        const toRemove = [];
+        while(treeWalker.nextNode()){
+          const n = treeWalker.currentNode;
+          if(looksLikeRememberLine(n.textContent)) toRemove.push(n);
+        }
+        toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
+      }
+
+      if (document.readyState !== 'loading') cleanRememberArtifacts();
+      else document.addEventListener('DOMContentLoaded', cleanRememberArtifacts);
+
+      // Observa mudanças no form inteiro (subtree) para limpar assim que surgir
+      const formObs = document.getElementById('login-form');
+      if (formObs) new MutationObserver(cleanRememberArtifacts)
+        .observe(formObs, { childList: true, subtree: true });
+    })();
+
   </script>
 
 
@@ -708,7 +803,7 @@
     </div>
 </div>
 
-  <p class="date">16-08-2025</p>
+  <p class="date">03-11-2025</p>
 </section>
 <section>
 
@@ -1060,7 +1155,363 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 </div>
 </section>
 
-</section>
+
+<section id="section-3" class="slide level2" data-background="#f7f9fc">
+<h2></h2>
+<div data-ticket="" data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts" data-session="module8_checkout1" data-page="module8_checkout1" data-require-login="true" data-open="2025-11-03 16:30" data-close="2025-11-03 16:59">
+
+</div>
+<!-- checkout2.html — Check-out → Cloudflare Worker (JSON, CORS-safe) -->
+<style>
+  /* ===== Tokens (light) — exit-checkout colors ===== */
+  :root{
+    --card-bg:#fff; --card-border:rgba(15,23,42,.06); --card-shadow:0 12px 30px rgba(17,24,39,.12);
+    --ink:#0b1220; --muted:#3a4a5c; --muted-2:#2b3a4a; --line:#e9eef5; --pill-bg:#f5f9ff;
+    --focus:rgba(59,130,246,.22);
+    --btn-bg-1:#4f46e5; --btn-bg-2:#60a5fa; --btn-ink:#fff;
+    --textarea-bg:#fff;
+
+    /* ribbon colors by state */
+    --ribbon-open-1: rgba(34,197,94,.18);   /* green */
+    --ribbon-open-2: rgba(16,185,129,.16);
+    --ribbon-soon-1: rgba(245,158,11,.18);  /* amber */
+    --ribbon-soon-2: rgba(251,191,36,.16);
+    --ribbon-closed-1: rgba(239,68,68,.20); /* red */
+    --ribbon-closed-2: rgba(248,113,113,.16);
+    --ribbon-default-1: rgba(99,102,241,.14); /* blue (fallback) */
+    --ribbon-default-2: rgba(96,165,250,.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --card-bg:rgba(15,23,42,.92); --card-border:rgba(148,163,184,.20); --card-shadow:0 16px 44px rgba(0,0,0,.55);
+      --line:rgba(148,163,184,.28); --pill-bg:rgba(148,163,184,.18);
+      --ink:#f8fafc; --muted:#e5edf6; --muted-2:#f1f5f9;
+      --btn-bg-1:#5b7fff; --btn-bg-2:#7cc5ff; --btn-ink:#0b1220;
+      --textarea-bg:rgba(2,6,23,.55);
+    }
+  }
+
+  /* Card */
+  [data-ticket] .tw-card{
+    position:relative;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;
+    padding:16px;box-shadow:var(--card-shadow);backdrop-filter:saturate(120%) blur(6px);-webkit-backdrop-filter:saturate(120%) blur(6px);
+    color:var(--ink);overflow:hidden;box-sizing:border-box;
+  }
+  [data-ticket] .tw-card::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:56px;
+    background:linear-gradient(135deg,var(--ribbon-default-1),var(--ribbon-default-2));
+    pointer-events:none;
+  }
+  /* ribbon by state */
+  [data-ticket].open   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-open-1),var(--ribbon-open-2)); }
+  [data-ticket].soon   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-soon-1),var(--ribbon-soon-2)); }
+  [data-ticket].closed .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-closed-1),var(--ribbon-closed-2)); }
+
+  /* Header */
+  [data-ticket] .tw-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;position:relative;z-index:1;}
+  [data-ticket] .tw-icon{
+    width:36px;height:36px;border-radius:12px;background:#1f2937;display:grid;place-items:center;flex:0 0 36px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);position:relative;
+  }
+  [data-ticket] .tw-icon::after{
+    content:"";position:absolute;inset:-3px;border-radius:14px;
+    background:conic-gradient(from 120deg,rgba(79,70,229,.35),rgba(6,182,212,.35),rgba(79,70,229,.35));
+    z-index:-1;filter:blur(6px);opacity:.55;
+  }
+  [data-ticket] .tw-icon svg{width:18px;height:18px;color:#fff;opacity:.96;}
+  [data-ticket] .tw-titles{display:flex;flex-direction:column;gap:2px;}
+  [data-ticket] .tw-title{font-weight:800;color:var(--ink);line-height:1.1;letter-spacing:.2px;}
+  [data-ticket] .tw-sub{color:var(--muted);font-size:.92rem;}
+
+  /* Badges */
+  [data-ticket] .tw-meta{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  [data-ticket] .tw-badge{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;
+    background:var(--pill-bg);color:var(--muted-2);font-size:.88rem;white-space:nowrap;box-shadow:0 1px 0 rgba(17,24,39,.04) inset;
+  }
+  [data-ticket] .tw-badge svg, [data-ticket] .tw-badge svg *, [data-ticket] .tw-badge .tw-window-text{
+    color:currentColor;stroke:currentColor!important;fill:none;
+  }
+  [data-ticket] .tw-window-text{white-space:pre-line;}
+
+  /* Status dot */
+  [data-ticket] .tw-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;}
+  [data-ticket].open  .tw-dot{background:#16a34a;}
+  [data-ticket].soon  .tw-dot{background:#f59e0b;}
+  [data-ticket].closed.tw-dot,[data-ticket].closed .tw-dot{background:#ff4d4f;}
+
+  /* Textarea */
+  [data-ticket] .tw-body{position:relative;z-index:1;box-sizing:border-box;}
+  [data-ticket] textarea.tw-text{
+    width:100%;border:1px solid var(--line);background:var(--textarea-bg);border-radius:14px;padding:12px 14px;
+    font-size:1rem;line-height:1.5;outline:none;transition:border-color .15s,box-shadow .15s,transform .06s;min-height:120px;
+    resize:vertical;color:var(--ink);box-sizing:border-box;
+  }
+  [data-ticket] textarea.tw-text:focus{border-color:#60a5fa;box-shadow:0 0 0 4px var(--focus);transform:translateY(-1px);}
+  [data-ticket] textarea.tw-text::placeholder{color:#60758a;opacity:.9;}
+
+  /* Footer & messages */
+  [data-ticket] .tw-footer{display:flex;align-items:center;gap:12px;margin-top:12px;}
+  [data-ticket] .tw-count{margin-left:auto;color:#60758a;font-size:.86rem;}
+  [data-ticket] .tw-msg{margin-top:8px;font-size:.93rem;min-height:1.2em;font-weight:700;letter-spacing:.2px;}
+  [data-ticket] .tw-msg.success{color:#059669!important;}
+  [data-ticket] .tw-msg.error{color:#ff4d4f!important;}
+  [data-ticket] .tw-msg.warning{color:#f59e0b!important;}
+  /* match dot color if no explicit class was set */
+  [data-ticket].open  .tw-msg:not(.success):not(.error):not(.warning){color:#16a34a!important;}
+  [data-ticket].soon  .tw-msg:not(.success):not(.error):not(.warning){color:#f59e0b!important;}
+  [data-ticket].closed.tw-msg,[data-ticket].closed .tw-msg:not(.success):not(.error):not(.warning){color:#ff4d4f!important;}
+
+  /* Button */
+  [data-ticket] .tw-btn{
+    padding:10px 16px;border-radius:12px;border:1px solid rgba(15,23,42,.12);
+    background:linear-gradient(135deg,var(--btn-bg-1),var(--btn-bg-2));color:var(--btn-ink);font-weight:800;cursor:pointer;
+    box-shadow:0 4px 14px rgba(59,130,246,.25);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease;letter-spacing:.2px;
+  }
+  [data-ticket] .tw-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(59,130,246,.35);filter:saturate(108%);}
+  [data-ticket] .tw-btn:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus);}
+  [data-ticket] .tw-btn:disabled{opacity:.85;cursor:not-allowed;transform:none;background:#e5f0ff;color:#6b7280;border-color:#dbeafe;box-shadow:none;}
+  [data-ticket] .tw-btn.sent{opacity:.92;cursor:default;}
+
+  /* Spinner */
+  [data-ticket] .spin:after{
+    content:"";display:inline-block;width:14px;height:14px;margin-left:8px;border:2px solid rgba(255,255,255,.65);
+    border-top-color:transparent;border-radius:50%;animation:twspin .8s linear infinite;vertical-align:-2px;
+  }
+  @keyframes twspin{to{transform:rotate(360deg)}}
+
+  /* Mini-login */
+  [data-ticket] .tw-login{display:flex;gap:8px;align-items:center;margin:8px 0 12px 0}
+  [data-ticket] .tw-login input{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--textarea-bg);color:var(--ink);outline:none}
+
+  /* Responsive */
+  @media (max-width:640px){
+    [data-ticket] .tw-card{border-radius:14px;padding:14px;}
+    [data-ticket] .tw-header{gap:10px;}
+    [data-ticket] .tw-badge{padding:5px 9px;font-size:.82rem;}
+  }
+</style>
+<script>
+(() => {
+  const $ = (sel, el=document) => el.querySelector(sel);
+
+  function mountAll(){
+    document.querySelectorAll('[data-ticket]:not([data-tw-mounted])').forEach(initOne);
+  }
+
+  function initOne(host){
+    host.setAttribute('data-tw-mounted','1');
+
+    // ---- Config/attrs
+    const bridge = (host.getAttribute('data-bridge') || window.BRIDGE_URL || '').trim();
+    const sessionTag = (host.getAttribute('data-session') || '').trim();
+    const pageAttr   = (host.getAttribute('data-page') || '').trim();
+    const winStartStr= (host.getAttribute('data-open') || '').trim();
+    const winEndStr  = (host.getAttribute('data-close') || '').trim();
+    const requireLogin = String(host.getAttribute('data-require-login') || 'true').toLowerCase() !== 'false';
+
+    // ---- Helpers
+    const parseLocal = (ts) => ts ? new Date(ts.replace(' ','T')) : null;
+    const winStart = parseLocal(winStartStr);
+    const winEnd   = parseLocal(winEndStr);
+
+    const fmtDur = (s) => { const m=Math.floor(s/60),r=s%60; if(m>=60){const h=Math.floor(m/60),mm=m%60;return `${h}h ${mm}m`;} if(m>0) return `${m}m ${r}s`; return `${r}s`; };
+    function statusNow(){
+      const now = new Date();
+      if (!winStart || !winEnd) return {state:'open', label:'Always available'};
+      if (now < winStart){ const s1=Math.max(0,Math.floor((winStart-now)/1000)); return {state:'soon', label:'Opens in '+fmtDur(s1)}; }
+      if (now > winEnd)   return {state:'closed', label:'Closed'};
+      const s2=Math.max(0,Math.floor((winEnd-now)/1000)); return {state:'open', label:'Closes in '+fmtDur(s2)};
+    }
+    const getStudentId = () => String(window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').trim();
+    const getPageId = () => pageAttr || window.pageId || (location.pathname + location.hash);
+
+    const setMsg = (el, text, cls) => { el.textContent = text || ''; el.className = 'tw-msg' + (cls ? ' ' + cls : ''); };
+    const doneKey = () => `ticket_done:exit:${(sessionTag || getPageId() || 'page')}:${(getStudentId() || 'anon')}`;
+    const isDone  = () => { try { return localStorage.getItem(doneKey()) === '1'; } catch(_) { return false; } };
+    const markDone = (btn) => { try{ localStorage.setItem(doneKey(), '1'); }catch(_){}; btn.classList.remove('spin'); btn.disabled = true; btn.classList.add('sent'); btn.textContent = 'Sent ✓'; };
+
+    // ---- UI skeleton
+    host.innerHTML = '';
+    const card = document.createElement('div'); card.className = 'tw-card';
+    const windowLabel = (winStartStr && winEndStr) ? (winStartStr + '\n→ ' + winEndStr) : 'No window set';
+    card.innerHTML = `
+      <div class="tw-header">
+        <div class="tw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 3M6 3h12a1 1 0 0 1 1 1v16l-7-3-7 3V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tw-titles">
+          <div class="tw-title">Check-out</div>
+          <div class="tw-sub"></div>
+        </div>
+        <div class="tw-meta">
+          <div class="tw-badge"><span class="tw-dot"></span><span class="tw-badge-text">—</span></div>
+          <div class="tw-badge" title="São Paulo time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="opacity:.8"><path d="M12 7v5l4 2" stroke="#334155" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#334155" stroke-width="1.5" fill="none"/></svg>
+            <span class="tw-window-text">${windowLabel}</span>
+          </div>
+        </div>
+      </div>
+      <div class="tw-login" style="display:none">
+        <input type="text" class="tw-login-input" placeholder="Digite seu ID / e-mail do curso"/>
+        <button type="button" class="tw-btn tw-login-btn">Entrar</button>
+      </div>
+      <div class="tw-body"></div>
+      <div class="tw-footer">
+        <button type="button" class="tw-btn tw-send">Send (click only 1x)</button>
+        <div class="tw-count">0/500</div>
+      </div>
+      <div class="tw-msg"></div>`;
+    host.appendChild(card);
+
+    // refs
+    const body = $('.tw-body', card);
+    const btn  = $('.tw-send', card);
+    const msg  = $('.tw-msg', card);
+    const badgeText = $('.tw-badge-text', card);
+    const count = $('.tw-count', card);
+    const loginRow = $('.tw-login', card);
+    const loginInp = $('.tw-login-input', card);
+    const loginBtn = $('.tw-login-btn', card);
+
+    // textarea
+    const ta = document.createElement('textarea');
+    ta.className = 'tw-text'; ta.maxLength = 500;
+    ta.placeholder = 'Your check-out (max 500): one thing you learned + one question…';
+    body.appendChild(ta);
+    ta.addEventListener('input', () => { count.textContent = `${ta.value.length}/500`; syncEnabled(); });
+    count.textContent = '0/500';
+
+    const successMsg = 'Check-out recorded. Thank you!';
+    const dupMsg     = 'You have already completed the check-out for this session. Thanks!';
+
+    function paintBadge(){
+      const st = statusNow();
+      host.classList.remove('open','soon','closed'); host.classList.add(st.state);
+      badgeText.textContent = st.label;
+    }
+
+    function showLoginIfNeeded(){
+      const need = requireLogin && !getStudentId();
+      loginRow.style.display = need ? 'flex' : 'none';
+    }
+
+    function syncEnabled(){
+      const logged = !requireLogin || !!getStudentId();
+      const st     = statusNow().state;
+      const filled = ta.value.trim().length>0;
+      const enabled= logged && (st==='open') && filled && !isDone();
+      btn.disabled = !enabled;
+
+      showLoginIfNeeded(); paintBadge();
+
+      if (isDone()){
+        setMsg(msg, dupMsg, 'success');
+        btn.textContent = 'Sent ✓'; btn.classList.add('sent'); btn.disabled = true;
+      } else if (!logged) setMsg(msg,'Please log in to submit.','warning');
+      else if (st==='soon') setMsg(msg,'Not open yet.','warning');
+      else if (st==='closed') setMsg(msg,'This activity is closed.','error');
+      else if (!filled) setMsg(msg,'Write something to submit.','warning');
+      else setMsg(msg,''); // ready
+    }
+
+    // mini-login
+    loginBtn?.addEventListener('click', () => {
+      const v = (loginInp.value || '').trim();
+      if (!v) { setMsg(msg,'Informe seu ID para continuar.','warning'); return; }
+      try { localStorage.setItem('studentId', v); } catch {}
+      window.studentId = v;
+      document.dispatchEvent(new Event('auth:login'));
+      setMsg(msg,''); syncEnabled();
+    });
+
+    // timers + cleanup
+    paintBadge(); syncEnabled();
+    const ticker = setInterval(() => { paintBadge(); syncEnabled(); }, 1000);
+    const obs = new MutationObserver(() => {
+      if(!document.body.contains(host)){ clearInterval(ticker); obs.disconnect(); }
+    });
+    obs.observe(document.body, {childList:true, subtree:true});
+    document.addEventListener('auth:login', syncEnabled);
+
+    // Submit
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault(); e.stopPropagation();
+
+      const sid = getStudentId();
+      if (requireLogin && !sid){ setMsg(msg,'Please log in to submit.','warning'); return; }
+      const text = ta.value.trim().slice(0,500);
+      if (!text){ setMsg(msg,'Write something to submit.','warning'); return; }
+      if (!bridge){ setMsg(msg,'Missing BRIDGE URL.','error'); return; }
+
+      btn.classList.add('spin'); btn.disabled = true; setMsg(msg,'');
+
+      const payload = {
+        student_id: sid,                 // ← alinha com D1
+        slide_id: (sessionTag || getPageId()),
+        ticket: text,
+        tsClient: new Date().toISOString(),
+        open:  winStartStr,
+        close: winEndStr,
+        user_agent: navigator.userAgent
+      };
+
+      try{
+        const res = await fetch(bridge, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify(payload),
+          keepalive:true
+        });
+
+        const raw = await res.text();
+        let data = null; try{ data = JSON.parse(raw); }catch(_){}
+
+        if (!res.ok){
+          if (data && data.status === 'closed_window'){
+            setMsg(msg,'This activity is closed now.','error');
+          } else {
+            setMsg(msg,'Failed to submit. Please try again.','error');
+          }
+          console.error('[checkout2] HTTP error:', res.status, raw);
+          btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+          return;
+        }
+
+        if (data && data.status === 'success'){
+          setMsg(msg, successMsg, 'success');
+          ta.value=''; count.textContent='0/500';
+          markDone(btn); clearInterval(ticker);
+          return;
+        }
+        if (data && data.status === 'duplicate'){
+          setMsg(msg, dupMsg, 'success'); markDone(btn); clearInterval(ticker); return;
+        }
+        if (data && data.status === 'closed_window'){
+          setMsg(msg,'This activity is closed now.','error');
+          btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+          return;
+        }
+
+        setMsg(msg,'Failed to submit. Please try again.','error');
+        console.error('[checkout2] unexpected response:', raw);
+        btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+      }catch(err){
+        console.error('[checkout2] submit error:', err);
+        setMsg(msg,'Network error. Please try again.','error');
+        btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', mountAll, { once:true });
+  } else {
+    mountAll();
+  }
+})();
+</script>
+</section></section>
 <section>
 <section id="personal-taxes" class="title-slide slide level1 smaller center" data-background="#cfd5ea">
 <h1>15.4 Personal Taxes</h1>
@@ -1084,7 +1535,7 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 </ul>
 </div>
 </section>
-<section id="section-3" class="slide level2 smaller" data-background="#cfd5ea">
+<section id="section-4" class="slide level2 smaller" data-background="#cfd5ea">
 <h2></h2>
 
 <img data-src="../figs/berk_demarzo_debt_personal_taxes.jpg" class="r-stretch"></section>
@@ -1113,12 +1564,12 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 <p><span class="math display">\[ (1-\tau_e) \times (1-\tau_c) = (1-\tau_i)\]</span></p>
 </div>
 </section>
-<section id="section-4" class="slide level2 smaller" data-background="#cfd5ea">
+<section id="section-5" class="slide level2 smaller" data-background="#cfd5ea">
 <h2></h2>
 <p><img data-src="../figs/bm_15_3.png"></p>
 <p><img data-src="../figs/presidents.png"></p>
 </section>
-<section id="section-5" class="slide level2 smaller" data-background="#cfd5ea">
+<section id="section-6" class="slide level2 smaller" data-background="#cfd5ea">
 <h2></h2>
 
 <img data-src="../figs/bm_15_4.jpg" class="r-stretch"></section>
@@ -1852,278 +2303,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
       });
     })();
     </script>
-    <!-- rankings-widget.html : Botão-ícone minimal + painel sofisticado -->
-    <style>
-      /* Esconde tudo que exigir auth enquanto a página estiver bloqueada pelo login-start */
-      html.locked .requires-auth,
-      body.locked .requires-auth { display: none !important; }
-
-      :root{
-        --chatbot-gap: 350px;
-
-        /* meio-termo: mais escuro que o claro, mais claro que o grafite */
-        --lb-bg: rgba(46, 58, 78, 0.72);         /* slate-700 ~ 72% */
-        --lb-border: rgba(255,255,255,0.10);
-        --lb-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.18);
-        --lb-radius: 18px;
-
-        /* acentos (lilás/azul) */
-        --lb-accent: #a78bfa;                    /* lilás */
-        --lb-accent-weak: rgba(167,139,250,0.18);
-
-        /* degradê do botão, combinando com seu tema */
-        --pill-start: #6d5df5;  /* violeta */
-        --pill-end:   #2ec5ff;  /* azul-ciano */
-      }
-
-      .lb-panel{
-        position: fixed;
-        bottom: 20px;
-        right: var(--chatbot-gap);
-        z-index: 2147483647;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      }
-
-      /* Botão só-ícone, circular (mesmo tom do chat/comentários) */
-      .lb-toggle{
-        width: 40px; height: 40px; border-radius: 999px;
-        display: inline-flex; align-items: center; justify-content: center;
-        border: none;
-        background: linear-gradient(135deg, var(--pill-start), var(--pill-end));
-        color: white;           /* ícone branco */
-        box-shadow: 0 10px 28px rgba(2,6,23,.30), inset 0 0 0 1px rgba(255,255,255,.14);
-        cursor: pointer; user-select: none;
-        transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
-      }
-      .lb-toggle:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-      .lb-toggle:active{ transform: translateY(0); filter: brightness(.98); }
-      .lb-icon{ font-size: 20px; line-height: 1; }
-
-      /* Cartão do ranking (glass) */
-      .lb-card{
-        margin-top: 10px;
-        width: 360px; max-height: 62vh; overflow: auto;
-        border: 1px solid var(--lb-border); background: var(--lb-bg);
-        -webkit-backdrop-filter: saturate(160%) blur(10px);
-        backdrop-filter: saturate(160%) blur(10px);
-        border-radius: var(--lb-radius);
-        box-shadow: var(--lb-shadow);
-        display: none;
-        position: absolute; bottom: 52px; right: 0; /* abre acima do botão */
-        transform-origin: bottom right;
-        color: #e5e7eb; /* texto claro */
-      }
-      .lb-card.open{ display:block; animation: lbPop .18s cubic-bezier(.2,.9,.2,1); }
-      @keyframes lbPop { from { transform: scale(.98); opacity: 0 } to { transform: scale(1); opacity: 1 } }
-
-      .lb-header{
-        padding: 12px 14px;
-        border-bottom: 1px solid rgba(255,255,255,.06);
-        display:flex; justify-content:space-between; align-items:center;
-        background: linear-gradient(180deg, rgba(167,139,250,.12), transparent 60%);
-        border-top-left-radius: var(--lb-radius);
-        border-top-right-radius: var(--lb-radius);
-        position: sticky; top: 0; backdrop-filter: blur(6px);
-      }
-      .lb-title{
-        font-weight: 800; letter-spacing:.2px; color:#f3f4f6;
-      }
-      .lb-refresh{
-        font-size: 12px; color: #d1d5db; display:flex; align-items:center; gap: 6px;
-      }
-      .lb-dot{
-        width:8px;height:8px;border-radius:999px;background:var(--lb-accent);
-        box-shadow: 0 0 0 4px var(--lb-accent-weak);
-      }
-
-      .lb-list{ list-style:none; margin:0; padding: 6px 0 8px; }
-      .lb-item{
-        display:flex; align-items:center; justify-content:space-between;
-        padding: 10px 14px;
-        border-bottom: 1px dashed rgba(255,255,255,.06);
-      }
-      .lb-item:last-child{ border-bottom: 0; }
-
-      .lb-left{ display:flex; align-items:center; gap:10px; min-width:0; }
-      .lb-rank{
-        width: 28px; text-align:right; font-variant-numeric: tabular-nums;
-        color:#fde68a; font-weight:700; /* dourado p/ 1º */
-      }
-      .lb-item.top-2 .lb-rank{ color:#cbd5e1; } /* prata */
-      .lb-item.top-3 .lb-rank{ color:#d8b4fe; } /* lilás */
-
-      .lb-name{
-        flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e5e7eb;
-      }
-      .lb-points{ font-variant-numeric: tabular-nums; font-weight:600; color:#f3f4f6; }
-
-      .lb-footer{
-        padding: 10px 14px;
-        display:flex; justify-content:space-between; align-items:center; gap:8px;
-        border-top: 1px solid rgba(255,255,255,.06);
-        background: linear-gradient(0deg, rgba(167,139,250,.10), transparent 60%);
-        border-bottom-left-radius: var(--lb-radius);
-        border-bottom-right-radius: var(--lb-radius);
-        position: sticky; bottom: 0; backdrop-filter: blur(6px);
-      }
-      .lb-badge-me{
-        background: var(--lb-accent-weak);
-        padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight:600;
-        color: #f5f3ff;
-      }
-
-      /* Mobile: bottom sheet */
-      @media (max-width: 820px){
-        .lb-panel{ right: 12px; bottom: 88px; }
-        .lb-card{
-          position: fixed; left: 12px; right: 12px; bottom: 88px;
-          width: auto; height: 58vh; max-height: none; transform-origin: bottom center;
-        }
-      }
-      @media (max-width: 380px){
-        .lb-card{ height: 62vh; }
-      }
-    </style>
-
-    <!-- 🔒 Este wrapper esconde o widget até o login -->
-    <div class="requires-auth">
-      <div class="lb-panel" id="lbPanel">
-        <button class="lb-toggle" id="lbToggle" title="Leaderboard" aria-label="Open leaderboard">
-          <span class="lb-icon">🏆</span>
-        </button>
-        <div class="lb-card" id="lbCard" role="dialog" aria-modal="false" aria-label="Leaderboard">
-          <div class="lb-header">
-            <div class="lb-title">Top <span id="lbTopN">10</span></div>
-            <div class="lb-refresh"><span class="lb-dot" aria-hidden="true"></span><span id="lbUpdated">Refresh —</span></div>
-          </div>
-
-          <ul class="lb-list" id="lbList"></ul>
-
-          <div class="lb-footer">
-            <span id="lbMe"></span>
-            <!-- (sem botões de fechar/refresh) -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      /************ CONFIG ************/
-      const LB_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
-      const LB_TOP = 10;
-      const LB_POLL_MS = 3000;
-
-      // student/module/page com fallback, mas permitindo atualizar após login
-      let LB_STUDENT = (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').toString();
-      const LB_MODULE  = (window.moduleId   || '').toString() || 'module1';
-      const LB_PAGE    = (window.pageId     || '').toString() || (location.pathname + location.hash);
-      /********************************/
-
-      const lbToggle  = document.getElementById('lbToggle');
-      const lbCard    = document.getElementById('lbCard');
-      const lbList    = document.getElementById('lbList');
-      const lbTopNEl  = document.getElementById('lbTopN');
-      const lbMeEl    = document.getElementById('lbMe');
-      const lbUpdated = document.getElementById('lbUpdated');
-      lbTopNEl.textContent = LB_TOP;
-
-      // Se o login acontecer depois do load, atualiza student e faz refresh
-      document.addEventListener('auth:login', (ev) => {
-        const sid = (ev && ev.detail && ev.detail.studentId) ? ev.detail.studentId : (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '');
-        if (sid) {
-          LB_STUDENT = String(sid);
-          // Se o card estiver aberto, recarrega; senão, só atualiza timestamp
-          if (lbCard.classList.contains('open')) fetchLeaderboard(); else setUpdated();
-        }
-      });
-
-      // Toggle abrir/fechar
-      lbToggle.addEventListener('click', () => {
-        const open = lbCard.classList.contains('open');
-        if (open) lbCard.classList.remove('open');
-        else { lbCard.classList.add('open'); fetchLeaderboard(); }
-      });
-      // Fechar com Esc
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lbCard.classList.remove('open'); });
-
-      // Atualiza "Refresh HH:MM:SS"
-      function setUpdated(ts){
-        const d = ts ? new Date(ts) : new Date();
-        const hh = String(d.getHours()).padStart(2,'0');
-        const mm = String(d.getMinutes()).padStart(2,'0');
-        const ss = String(d.getSeconds()).padStart(2,'0');
-        lbUpdated.textContent = `Refresh ${hh}:${mm}:${ss}`;
-      }
-
-      // Carregar Top
-      async function fetchLeaderboard() {
-        try {
-          const who = LB_STUDENT || 'anonymous';
-          const url = `${LB_ENDPOINT}?action=leaderboard_top&top=${LB_TOP}&who=${encodeURIComponent(who)}`;
-          const res = await fetch(url, { method: 'GET' });
-          const data = await res.json();
-          if (!data.ok) throw new Error(data.error || 'Failed');
-          renderTop(data.top, data.me, data.updated_at);
-          setUpdated(data.updated_at);
-        } catch (e) {
-          console.error('Leaderboard error:', e);
-          lbList.innerHTML = '<li class="lb-item"><div class="lb-name">Não foi possível carregar o ranking.</div></li>';
-          setUpdated();
-        }
-      }
-
-      // Renderizar lista
-      function renderTop(top, me, updatedAt) {
-        lbList.innerHTML = '';
-        if (!top || !top.length){
-          lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">Ainda sem pontos por aqui.</div></li>';
-        } else {
-          for (const row of top) {
-            const li = document.createElement('li'); li.className = 'lb-item';
-            if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
-            const left = document.createElement('div'); left.className='lb-left';
-            const rk = document.createElement('div'); rk.className='lb-rank'; rk.textContent = row.rank;
-            const nm = document.createElement('div'); nm.className='lb-name'; nm.textContent = row.name || row.studentId;
-            left.appendChild(rk); left.appendChild(nm);
-            const pts = document.createElement('div'); pts.className='lb-points'; pts.textContent = row.total_points + ' pts';
-            li.appendChild(left); li.appendChild(pts);
-            lbList.appendChild(li);
-          }
-        }
-        lbMeEl.innerHTML = me ? `<span class="lb-badge-me">You: #${me.rank} · ${me.total_points} pts</span>` : '';
-        setUpdated(updatedAt);
-      }
-      // expõe para uso externo se precisar
-      window.renderTop = renderTop;
-
-      // Auto-refresh
-      if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchLeaderboard, LB_POLL_MS);
-
-      // Logger de eventos (exponho global para uso em outras partes)
-      async function leaderboardLogEvent(event_type, { points=null, details='' } = {}) {
-        try {
-          const payload = {
-            action: 'leaderboard_log',
-            studentId: LB_STUDENT || 'anonymous',
-            event_type,
-            module: LB_MODULE,
-            page: LB_PAGE,
-            details,
-            points,
-            fingerprint: `${LB_STUDENT || 'anonymous'}-${event_type}-${LB_MODULE}-${LB_PAGE}`
-          };
-          const res = await fetch(LB_ENDPOINT, { method: 'POST', body: JSON.stringify(payload) });
-          const data = await res.json();
-          if (!data.ok) throw new Error(data.error || 'failed');
-          fetchLeaderboard();
-          return data;
-        } catch (e) {
-          console.error('logEvent error:', e);
-          return { ok:false, error: String(e) };
-        }
-      }
-      window.leaderboardLogEvent = leaderboardLogEvent;
-    </script>
     <!-- notices-on-login.html -->
     <style>
       .notice-modal-backdrop{
@@ -2170,6 +2349,33 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         background: linear-gradient(180deg,#dc2626,#b91c1c);
         border-color: rgba(220,38,38,.35);
       }
+
+      /* Placar */
+      .notice-score{
+        margin-top:10px;
+        font-weight:600;
+        color:#0f766e; /* teal-700 */
+        font-size:.95rem;
+      }
+      .notice-accuracy{
+        display:flex; align-items:center; gap:8px;
+        margin-top:6px; font-size:.92rem; color:#334155;
+      }
+      .stars{
+        display:inline-flex; gap:2px; line-height:1;
+      }
+      .star{
+        font-size:1.05rem; user-select:none;
+        color:#e5e7eb; /* base (cinza claro para “vazio”) */
+        text-shadow: 0 1px 0 rgba(0,0,0,.05);
+      }
+      .star.filled{ color:#F59E0B; }     /* gold  */
+      .star.half::after{                  /* meia estrela simples (overlay) */
+        content:'★'; color:#FDE047; position:absolute; width:50%; overflow:hidden;
+      }
+      .pct{
+        font-weight:700; color:#0ea5e9; /* ciano/teal p/ combinar com seus azuis */
+      }
     </style>
 
     <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
@@ -2182,11 +2388,14 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
       </div>
     </div>
 
+    <!-- Confete -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer=""></script>
+
     <script>
     (function(){
       const ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1stXhHVbcinNcagloc6XNr3MYW9zn8EctaxxLuOJ086ODpCBvNCPwdfzbJxwl1XgDfw/exec';
       const SESSION_FLAG = 'notice_shown_this_load';
-      const FEEDBACK_AUTO_CLOSE_MS = 15000; // V/F: tempo p/ ler feedback (0 = fecha só no "Ok, got it")
+      const FEEDBACK_AUTO_CLOSE_MS = 18000;
       const DEBUG = false;
 
       /* Preconnect + dns-prefetch */
@@ -2221,6 +2430,7 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
           if (DEBUG) console.log('[notice] backdrop injected');
         }
       }
+
       function getStudentId(){
         try { return (localStorage.getItem('studentId') || sessionStorage.getItem('studentId') || window.__lastLoginStudentId || '').trim(); }
         catch(e){ return ''; }
@@ -2259,8 +2469,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         const qs2 = new URLSearchParams({ action:'ack', studentId, notice_id, t: Date.now().toString() });
         fireAndForget(`${ENDPOINT}?${qs2.toString()}`);
       }
-
-      /* Normaliza rótulos T/F em vários formatos */
       function normalizeTF(x){
         const s = String(x || '').trim().toLowerCase();
         if (['true','t','verdadeiro','v','yes','y','sim','✅','✔️'].includes(s)) return 'true';
@@ -2270,7 +2478,50 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         return '';
       }
 
-      /* Render de poll (normal e T/F) */
+      /* ===== Estrelas ===== */
+      function makeStars(rating /* 0..5, pode ser decimal */){
+        const full = Math.floor(rating);
+        const hasHalf = (rating - full) >= 0.5;
+        let html = '';
+        for (let i=1;i<=5;i++){
+          if (i <= full) html += '<span class="star filled" aria-hidden="true">★</span>';
+          else if (i === full+1 && hasHalf) html += '<span class="star filled" style="position:relative" aria-hidden="true">★<span style="position:absolute;inset:0;clip-path:inset(0 50% 0 0); color:#FDE047;">★</span></span>';
+          else html += '<span class="star" aria-hidden="true">★</span>';
+        }
+        return html;
+      }
+
+      /* ===== Placar do backend + UI ===== */
+      async function updateTFScore(studentId, module){
+        const box = document.getElementById('pollScore');
+        if (!box) return;
+
+        try{
+          const qs = new URLSearchParams({ action:'stats_tf', studentId });
+          if (module) qs.set('module', module);
+          const j = await fetchJSON(`${ENDPOINT}?${qs.toString()}`);
+          if (!j?.ok) return;
+
+          const src = j.stats ? j.stats : j;
+          const correct = Number(src.correct ?? 0);
+          const total   = Number(src.total   ?? 0);
+          const pct = total ? Math.round((correct/total)*100) : 0;
+
+          // converte % em nota 0..5 (ex.: 70% => 3.5 estrelas)
+          const starsValue = Math.max(0, Math.min(5, (pct/20)));
+
+          box.innerHTML = `
+            <div>Congrats, you have answered ${correct} of ${total} correctly.</div>
+            <div class="notice-accuracy" aria-label="Your accuracy">
+              <div class="stars" aria-hidden="true">${makeStars(starsValue)}</div>
+              <div class="pct">${pct}%</div>
+            </div>
+          `;
+          box.style.display = '';
+        }catch(_){ /* silencioso */ }
+      }
+
+      /* Render de poll */
       function renderPoll(notice, studentId, module){
         const body = document.getElementById('noticeBody');
         const okBtn = document.getElementById('noticeOkBtn');
@@ -2286,13 +2537,13 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
           <div style="margin:8px 0 12px 0;"><strong>${escapeHtml(q)}</strong></div>
           <div id="pollBtns" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
           <div id="pollFeedback" style="margin-top:10px;"></div>
+          <div id="pollScore" class="notice-score" style="display:none"></div>
         `;
         body.appendChild(pollWrap);
 
         const btns = pollWrap.querySelector('#pollBtns');
         const fb   = pollWrap.querySelector('#pollFeedback');
 
-        // T/F: deixa "Ok, got it" para leitura do feedback
         if (isQuizTF && okBtn) {
           okBtn.style.display = '';
           okBtn.onclick = (ev) => {
@@ -2325,25 +2576,27 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
             fireAndForget(`${ENDPOINT}?${qs.toString()}`);
 
             if (!isQuizTF) {
-              // Poll "opinião": só marca seleção e fecha já
               b.classList.add('is-selected');
               ackAndClose(studentId, notice.notice_id);
               return;
             }
 
-            // T/F: decide correto/errado usando normalização
+            // T/F: decide correto/errado
             const choiceKey = normalizeTF(label);
             const isCorrect = (choiceKey && choiceKey === correctKey);
 
             b.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+            if (isCorrect) celebrate();
 
-            // Feedback amigável
+            // feedback
             fb.style.color = isCorrect ? '#065f46' : '#b91c1c';
             fb.innerHTML = isCorrect
               ? (notice.feedback_correct_html || '<p><strong>✅ Correct.</strong></p>')
               : (notice.feedback_wrong_html  || '<p><strong>❌ Not quite.</strong></p>');
 
-            // Auto-fecha após leitura (se configurado)
+            // 👉 só agora buscamos e revelamos o placar completo
+            updateTFScore(studentId, module);
+
             if (FEEDBACK_AUTO_CLOSE_MS > 0) {
               autoTimer = setTimeout(() => {
                 autoTimer = null;
@@ -2384,7 +2637,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
           const correctKey = normalizeTF(notice.poll_correct);
           const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
 
-          // Para poll de opinião: esconda o "Ok, got it"
           okBtn.style.display = isQuizTF ? '' : 'none';
           if (!isQuizTF) {
             okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
@@ -2392,7 +2644,6 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 
           renderPoll(notice, studentId, module);
         } else {
-          // Aviso HTML simples
           okBtn.style.display = '';
           okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
         }
@@ -2433,6 +2684,19 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
         document.addEventListener('DOMContentLoaded', () => { waitForLoginAndShow(); });
       } else {
         waitForLoginAndShow();
+      }
+
+      /* 🎊 Confete em estrelas */
+      function celebrate(){
+        const defaults = {
+          spread: 360, ticks: 55, gravity: 0.9, decay: 0.92, startVelocity: 35,
+          colors: ['#F59E0B','#FDE047','#22D3EE','#60A5FA','#A78BFA']
+        };
+        function shoot(scale, countStar=40, countCircle=12){
+          confetti({ ...defaults, particleCount: countStar, scalar: scale, shapes: ['star'] });
+          confetti({ ...defaults, particleCount: countCircle, scalar: scale*0.7, shapes: ['circle'] });
+        }
+        shoot(1.1); setTimeout(()=>shoot(1.0), 180); setTimeout(()=>shoot(0.9), 320);
       }
     })();
     </script>
