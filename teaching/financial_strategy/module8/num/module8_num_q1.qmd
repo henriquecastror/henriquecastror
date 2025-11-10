@@ -1,0 +1,62 @@
+::: {.question}
+
+**WACC and Firm Value (with growth)**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(701)
+library(webexercises)
+library(knitr)
+
+# Randomized parameters
+fcf <- round(rnorm(1, mean = 8, sd = 0.2), 2)
+g <- 0.03
+cost_of_equity <- round(rnorm(1, mean = 0.13, sd = 0.005), 4)
+cost_of_debt <- round(rnorm(1, mean = 0.07, sd = 0.005), 4)
+tax_rate <- 0.35
+
+debt_to_equity <- 0.5
+debt_to_value <- debt_to_equity / (1 + debt_to_equity)
+equity_to_value <- 1 / (1 + debt_to_equity)
+
+# Pre-tax and after-tax WACC
+pre_tax_wacc <- debt_to_value * cost_of_debt + equity_to_value * cost_of_equity
+after_tax_wacc <- debt_to_value * cost_of_debt * (1 - tax_rate) + equity_to_value * cost_of_equity
+
+# Firm values
+value_unlevered <- fcf / (pre_tax_wacc - g)
+value_levered <- fcf / (after_tax_wacc - g)
+````
+
+
+Solar Technologies expects to generate free cash flow of `r fcf` million over the next year.  Free cash flow is expected to grow at a constant rate of `r g*100`% per year. The cost of equity is `r round(cost_of_equity*100, 2)`%, cost of debt is `r round(cost_of_debt*100, 2)`%, and the corporate tax rate is `r tax_rate*100`%. Assuming a debt-to-equity ratio of `r debt_to_equity`, compute:
+
+  - (a) the pre-tax WACC (in %)
+  - (b) the value of the unlevered firm (in million dollars)
+  - (c) the after-tax WACC (in %)
+  - (d) the value of the levered firm (in million dollars)
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module7_num_q1a_single"><strong>a. Pre-tax WACC (%):</strong></label> <input type="number" id="module7_num_q1a_single" name="module7_num_q1a_single" style="width:160px;" data-correct-answer=`r round(pre_tax_wacc*100, 2)` data-tolerance="0.1" step="0.01" /> </form> <div id="feedback-module7_num_q1a_single" class="feedback" data-status="" style="display:none;"> ✅ $WACC = w_D r_D + w_E r_E =$ <b>`r round(pre_tax_wacc*100, 2)`%</b>. </div>
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module7_num_q1b_single"><strong>b. $V_U$ (millions):</strong></label> <input type="number" id="module7_num_q1b_single" name="module7_num_q1b_single" style="width:160px;" data-correct-answer=`r round(value_unlevered, 0)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module7_num_q1b_single" class="feedback" data-status="" style="display:none;"> ✅ $V_U = \dfrac{FCF_1}{WACC_{pre-tax} - g} = \dfrac{`r fcf`}{`r round(pre_tax_wacc,4)` - `r g`} =$ <b>`r round(value_unlevered, 0)`</b> million. </div>
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module7_num_q1c_single"><strong>c. After-tax WACC (%):</strong></label> <input type="number" id="module7_num_q1c_single" name="module7_num_q1c_single" style="width:160px;" data-correct-answer=`r round(after_tax_wacc*100, 2)` data-tolerance="0.1" step="0.01" /> </form> <div id="feedback-module7_num_q1c_single" class="feedback" data-status="" style="display:none;"> ✅ $WACC_{after-tax} = w_E r_E + w_D r_D(1 - T_c) =$ <b>`r round(after_tax_wacc*100, 2)`%</b>. </div>
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module7_num_q1d_single"><strong>d. $V_L$ (millions):</strong></label> <input type="number" id="module7_num_q1d_single" name="module7_num_q1d_single" style="width:160px;" data-correct-answer=`r round(value_levered, 0)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module7_num_q1d_single" class="feedback" data-status="" style="display:none;"> ✅ $V_L = \dfrac{FCF_1}{WACC_{after-tax} - g} = \dfrac{`r fcf`}{`r round(after_tax_wacc,4)` - `r g`} =$ <b>`r round(value_levered, 0)`</b> million. </div>
+:::
+:::
