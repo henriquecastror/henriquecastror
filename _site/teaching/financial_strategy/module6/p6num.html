@@ -251,7 +251,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 15/10/2025 13:51</p>
+<p><strong>Last updated:</strong> 10/11/2025 09:53</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -265,8 +265,8 @@ For students
 </div>
 </div>
 <hr>
-<section id="part-1-until-midterm" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-until-midterm">📘 Part 1 (until Midterm)</h3>
+<section id="part-2-midterm-to-final" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-midterm-to-final">📙 Part 2 (Midterm to Final)</h3>
 <table class="table">
 <thead>
 <tr class="header">
@@ -752,15 +752,23 @@ Q1.
 </div>
 <div style="flex: 1;">
 <div class="question">
-<p><strong>Tesouro Selic — Daily Compounding (Business Days)</strong></p>
-<p>Initial amount: <b>R$ 11.915,02</b> &nbsp; | &nbsp; Annual rate: <b>11.74%</b> &nbsp; | &nbsp; Business days: <b>28</b></p>
-<p>Using the 252-day convention, compute the <strong>gross amount (R$)</strong> at the end of the period.</p>
+<p><strong>Ownership and Debt Financing</strong></p>
+<p>After Series A, founders own <b>59.0%</b> and Series A investors own <b>41.0%</b>.<br>Then the company raises <b>R$ 11.788 million</b> via <b>debt</b> (no equity issued).</p>
+<p>What are the <strong>final ownership percentages</strong> for founders and Series A investors after the <strong>debt</strong> raise?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q1"><strong>Answer (R$):</strong></label> &lt;input type=“number” id=“module6_num_q1” name=“module6_num_q1” step=“0.01” style=“width:220px;” data-correct-answer=1.2063^{4} data-tolerance=“25” /&gt;
+<label for="module6_num_q1a"><strong>1a. Founders’ final ownership (%):</strong></label> <input type="number" id="module6_num_q1a" name="module6_num_q1a" step="0.1" style="width:220px;" data-correct-answer="59" data-tolerance="0.1">
 </form>
-<div id="feedback-module6_num_q1" class="feedback" data-status="" style="display:none;">
-<p>✅ Using (V = P,(1+r)^{d/252}) gives approximately <b>R$ 12.063</b> (tolerance ± R$ 25).</p>
+<div id="feedback-module6_num_q1a" class="feedback" data-status="" style="display:none;">
+<p>✅ Debt financing does not issue new shares. Founders remain at <b>59%</b>.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+<label for="module6_num_q1b"><strong>1b. Series A investors’ final ownership (%):</strong></label> <input type="number" id="module6_num_q1b" name="module6_num_q1b" step="0.1" style="width:220px;" data-correct-answer="41" data-tolerance="0.1">
+</form>
+<div id="feedback-module6_num_q1b" class="feedback" data-status="" style="display:none;">
+<p>✅ No new equity issued ⇒ Series A remains at <b>41%</b>.</p>
 </div>
 </div>
 </div>
@@ -774,16 +782,14 @@ Q2.
 </div>
 <div style="flex: 1;">
 <div class="question">
-<p><strong>Covenant Step-Up — Present Value of Incremental Coupons</strong></p>
-<p>Par: <b>R$ 1000</b> | Base coupon: <b>9.90%</b> | Step-up: <b>1.80%</b> (yrs 3–5) | Discount rate: <b>8.10%</b></p>
-<p>Compute the <strong>present value (R$)</strong> of the <strong>incremental coupons</strong> due to the step-up in years 3–5, discounted at the given rate.</p>
+<p><strong>Convertible Bond — Conversion Price</strong></p>
+<p>You own a bond with a face value of $1000 and a conversion ratio of 40.46. What is the conversion price?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q2"><strong>PV of increment (R$):</strong></label> <input type="number" id="module6_num_q2" name="module6_num_q2" step="0.01" style="width:220px;" data-correct-answer="39.62" data-tolerance="0.6">
+<label for="module6_num_q2"><strong>Answer (conversion price, $):</strong></label> <input type="number" id="module6_num_q2" name="module6_num_q2" step="0.01" style="width:220px;" data-correct-answer="25" data-tolerance="1">
 </form>
 <div id="feedback-module6_num_q2" class="feedback" data-status="" style="display:none;">
-<p>✅ Increment per year: (R$ 18).<br>
-(PV = _{t=3}^{5} ) <b>R$ 39.62</b>.</p>
+<p>✅ <strong>Conversion price</strong> = Face / Ratio = 1000 / 40.46 = <strong>$ 24.72</strong>.</p>
 </div>
 </div>
 </div>
@@ -798,24 +804,26 @@ Q3.
 <div style="flex: 1;">
 <div class="question">
 <p><strong>Debt Issuance with Placement Fee — Sizing to Target Net Proceeds</strong></p>
-<p>Target net proceeds: <b>R$ 11.342 million</b> | Placement fee: <b>1.85%</b></p>
-<p>The company issues bonds <strong>at par</strong> and pays a <strong>placement fee</strong> (as a % of face).<br>
-1) How much <strong>face value</strong> (million R<span class="math inline">\() must be issued to net the target?
-2) How much is the **total fee paid** (million R\)</span>)?</p>
+<p>The company plans to raise <strong>R$ 11.34 million</strong> in net proceeds from a bond issue sold <strong>at par</strong>, but must pay a <strong>placement fee</strong> of 2% of the total face value issued.</p>
+<p>Because the fee is deducted from the proceeds, the company must issue <strong>more than the target amount</strong> to achieve its goal.</p>
+<ol type="1">
+<li><p>How much <strong>face value</strong> (million R$) must be issued to net the target?</p></li>
+<li><p>How much is the <strong>total fee paid</strong> (million R$)?</p></li>
+</ol>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q3a"><strong>3a. Face to issue (R$ million):</strong></label> <input type="number" id="module6_num_q3a" name="module6_num_q3a" step="0.001" style="width:220px;" data-correct-answer="11.556" data-tolerance="0.01">
+<label for="module6_num_q3a"><strong>3a. Face to issue (R$ million):</strong></label> <input type="number" id="module6_num_q3a" name="module6_num_q3a" step="0.001" style="width:220px;" data-correct-answer="11.57" data-tolerance="0.01">
 </form>
 <div id="feedback-module6_num_q3a" class="feedback" data-status="" style="display:none;">
-<p>✅ ( = = ) <b>11.556</b> million.</p>
+<p>✅ <span class="math inline">\(\text{Face} = \frac{\text{Target Net}}{1 - \text{fee}} =\)</span> <b>11.57</b> million.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q3b"><strong>3b. Total fee (R$ million):</strong></label> <input type="number" id="module6_num_q3b" name="module6_num_q3b" step="0.001" style="width:220px;" data-correct-answer="0.214" data-tolerance="0.01">
+<label for="module6_num_q3b"><strong>3b. Total fee (R$ million):</strong></label> <input type="number" id="module6_num_q3b" name="module6_num_q3b" step="0.001" style="width:220px;" data-correct-answer="0.23" data-tolerance="0.01">
 </form>
 <div id="feedback-module6_num_q3b" class="feedback" data-status="" style="display:none;">
-<p>✅ Fee paid = Face × fee = <b>0.214</b> million.</p>
+<p>✅ Fee paid = Face × fee = <b>0.23</b> million.</p>
 </div>
 </div>
 </div>
@@ -829,23 +837,14 @@ Q4.
 </div>
 <div style="flex: 1;">
 <div class="question">
-<p><strong>Ownership and Debt Financing (No Dilution)</strong></p>
-<p>After Series A, founders own <b>59.0%</b> and Series A investors own <b>41.0%</b>.<br>Then the company raises <b>R$ 11.788 million</b> via <b>debt</b> (no equity issued).</p>
-<p>What are the <strong>final ownership percentages</strong> for founders and Series A investors after the <strong>debt</strong> raise?</p>
+<p><strong>Convertible Bond — Conversion Ratio </strong></p>
+<p>You own a bond with a face value of $1000 and a conversion ratio of $26.27. What is the conversion ratio?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q4a"><strong>4a. Founders’ final ownership (%):</strong></label> <input type="number" id="module6_num_q4a" name="module6_num_q4a" step="0.1" style="width:220px;" data-correct-answer="59" data-tolerance="0.1">
+<label for="module6_num_q4"><strong>Answer (conversion ratio):</strong></label> <input type="number" id="module6_num_q4" name="module6_num_q4" step="0.01" style="width:220px;" data-correct-answer="38" data-tolerance="1">
 </form>
-<div id="feedback-module6_num_q4a" class="feedback" data-status="" style="display:none;">
-<p>✅ Debt financing does not issue new shares. Founders remain at <b>59%</b>.</p>
-</div>
-</div>
-<div class="question-block">
-<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q4b"><strong>4b. Series A investors’ final ownership (%):</strong></label> <input type="number" id="module6_num_q4b" name="module6_num_q4b" step="0.1" style="width:220px;" data-correct-answer="41" data-tolerance="0.1">
-</form>
-<div id="feedback-module6_num_q4b" class="feedback" data-status="" style="display:none;">
-<p>✅ No new equity issued ⇒ Series A remains at <b>41%</b>.</p>
+<div id="feedback-module6_num_q4" class="feedback" data-status="" style="display:none;">
+<p>✅ <strong>Conversion ratio</strong> = Face / Price = 1000 / 26.27 = <strong>38.06</strong>.</p>
 </div>
 </div>
 </div>
@@ -859,14 +858,27 @@ Q5.
 </div>
 <div style="flex: 1;">
 <div class="question">
-<p><strong>Convertible Bond — Conversion Price (Quiz-Utils Layout)</strong></p>
-<p>Q: You own a bond with a face value of $1000 and a conversion ratio of <b>40.46</b>.</p>
+<p><strong>Convertible Bond — Conversion Value vs.&nbsp;Straight Value (Premium/Discount)</strong></p>
+<p>A convertible bond can be exchanged for 19 shares. The stock trades at 35.55 and the bond trades at 1101.31.</p>
+<ol type="1">
+<li>What is the conversion value of the bond?<br>
+</li>
+<li>What is the conversion premium (bond price − conversion value)? Use a negative sign if discount.</li>
+</ol>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q5"><strong>Answer (conversion price, $):</strong></label> <input type="number" id="module6_num_q5" name="module6_num_q5" step="0.01" style="width:220px;" data-correct-answer="25" data-tolerance="1">
+<label for="module6_num_q5a"><strong>1) Conversion value:</strong></label> <input type="number" id="module6_num_q5a" name="module6_num_q5a" step="0.01" style="width:220px;" data-correct-answer="675.45" data-tolerance="0.5">
 </form>
-<div id="feedback-module6_num_q5" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Conversion price</strong> = Face / Ratio = 1000 / 40.46 = <strong>$ 24.72</strong>. (We accept rounded to the nearest dollar.)</p>
+<div id="feedback-module6_num_q5a" class="feedback" data-status="" style="display:none;">
+<p>✅ Conversion value = 19 * 35.55 = <strong>675.45</strong>.</p>
+</div>
+</div>
+<div class="question-block">
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+<label for="module6_num_q5b"><strong>2) Conversion premium:</strong></label> <input type="number" id="module6_num_q5b" name="module6_num_q5b" step="0.01" style="width:220px;" data-correct-answer="425.86" data-tolerance="0.5">
+</form>
+<div id="feedback-module6_num_q5b" class="feedback" data-status="" style="display:none;">
+<p>✅ Premium = Bond price − Conversion value = 1101.31 − 675.45 = <strong>425.86</strong>.</p>
 </div>
 </div>
 </div>
@@ -880,94 +892,33 @@ Q6.
 </div>
 <div style="flex: 1;">
 <div class="question">
-<p><strong>Convertible Bond — Conversion Ratio (Quiz-Utils Layout)</strong></p>
-<p>Q: You own a bond with a face value of $1000 and a conversion price of <b>$26.27</b>.</p>
+<p><strong>Convertible Bond — Conversion Parity Price</strong></p>
+<p>A convertible bond trades at $1359.43 and can be converted into 24 shares. What is the conversion parity price?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q6"><strong>Answer (conversion ratio):</strong></label> <input type="number" id="module6_num_q6" name="module6_num_q6" step="0.01" style="width:220px;" data-correct-answer="38" data-tolerance="1">
+<label for="module6_num_q8"><strong>Conversion parity price:</strong></label> <input type="number" id="module6_num_q8" name="module6_num_q8" step="0.01" style="width:220px;" data-correct-answer="56.64" data-tolerance="0.5">
 </form>
-<div id="feedback-module6_num_q6" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Conversion ratio</strong> = Face / Price = 1000 / 26.27 = <strong>38.06</strong>.</p>
+<div id="feedback-module6_num_q8" class="feedback" data-status="" style="display:none;">
+<p>✅ Parity price = Bond price / Ratio = 1359.43 / 24 = <strong> 56.64</strong>.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-::: {.webex-box}
+<div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
 Q7.
 </div>
 <div style="flex: 1;">
-
-<p>::: {.question}</p>
-<p><strong>Convertible Bond — Conversion Value vs.&nbsp;Straight Value (Premium/Discount)</strong></p>
-<p>cat(sprintf(“A convertible bond can be exchanged for <b>%d</b> shares. The stock trades at <b><span class="math inline">\(%1.2f&lt;/b&gt; and the bond trades at &lt;b&gt;\)</span>%1.2f</b>.”, ratio, stock_price, bond_price))</p>
-<ol type="1">
-<li>What is the <strong>conversion value</strong> of the bond?<br>
-</li>
-<li>What is the <strong>conversion premium</strong> (bond price − conversion value)? Use a negative sign if discount.</li>
-</ol>
-::: {.question-block}
-<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q7a"><strong>1) Conversion value (<span class="math inline">\():&lt;/strong&gt;&lt;/label&gt;
-  &lt;input type="number" id="module6_num_q7a" name="module6_num_q7a" step="0.01" style="width:220px;"
-         data-correct-answer=675.45 data-tolerance="0.5" /&gt;
-&lt;/form&gt;
-&lt;div id="feedback-module6_num_q7a" class="feedback" data-status="" style="display:none;"&gt;
-✅ Conversion value = 19 × 35.55 = &lt;strong&gt;\)</span> 675.45</strong>.
-</label></form></div>
-<p>:::</p>
-<div class="question-block">
-
-<label for="module6_num_q7b"><strong>2) Conversion premium ($):</strong></label> <input type="number" id="module6_num_q7b" name="module6_num_q7b" step="0.01" style="width:220px;" data-correct-answer="425.86" data-tolerance="0.5">
-
-<div id="feedback-module6_num_q7b" class="feedback" data-status="" style="display:none;">
-<p>✅ Premium = Bond price − Conversion value = 1101.31 − 675.45 = <strong>425.86</strong>.</p>
-</div>
-</div>
-<p>:::</p>
-</div>
-</section></main></div>
-<p>:::</p>
-::: {.webex-box}
-<div style="display: flex; align-items: start; gap: 8px;">
-<div style="font-weight: bold; min-width: 40px;">
-Q8.
-</div>
-<div style="flex: 1;">
-
-<p>::: {.question}</p>
-<p><strong>Convertible Bond — Conversion Parity Price (Quiz-Utils Layout)</strong></p>
-<p>A convertible bond trades at <b>$1359.43</b> and can be converted into <b>24</b> shares.</p>
-::: {.question-block}
-<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module6_num_q8"><strong>Conversion parity price (<span class="math inline">\(/share):&lt;/strong&gt;&lt;/label&gt;
-  &lt;input type="number" id="module6_num_q8" name="module6_num_q8" step="0.01" style="width:220px;"
-         data-correct-answer=56.64 data-tolerance="0.5" /&gt;
-&lt;/form&gt;
-&lt;div id="feedback-module6_num_q8" class="feedback" data-status="" style="display:none;"&gt;
-✅ Parity price = Bond price / Ratio = 1359.43 / 24 = &lt;strong&gt;\)</span> 56.64</strong>.
-</label></form></div>
-<p>:::</p>
-<p>:::</p>
-</div>
-
-<p>:::</p>
-<div class="webex-box">
-<div style="display: flex; align-items: start; gap: 8px;">
-<div style="font-weight: bold; min-width: 40px;">
-Q9.
-</div>
-<div style="flex: 1;">
 <div class="question">
-<p><strong>Convertible Bond — Immediate Conversion Gain (%) — Quiz-Utils Layout</strong></p>
-<p>A convertible bond can be converted into <b>19</b> shares. The stock is currently <b>$40.93</b> and the bond trades at <b>$1016.99</b>.</p>
+<p><strong>Convertible Bond — Immediate Conversion Gain (%)</strong></p>
+<p>A convertible bond can be converted into 19 shares. The stock is currently $40.93 and the bond trades at $1016.99. What is the Immediate conversion gain in percent?</p>
 <div class="question-block">
-
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
 <label for="module6_num_q9"><strong>Immediate conversion gain (%):</strong></label> <input type="number" id="module6_num_q9" name="module6_num_q9" step="0.01" style="width:220px;" data-correct-answer="-23.53" data-tolerance="0.2">
-
+</form>
 <div id="feedback-module6_num_q9" class="feedback" data-status="" style="display:none;">
 <p>✅ Gain(%) = (100) = 100 × (777.67 − 1016.99) / 1016.99 = <strong>-23.53%</strong>.</p>
 </div>
@@ -1103,7 +1054,7 @@ Show Feedback
 
 </div>
 </div>
-
+</section></main></div>
 <!-- Fecha #after-login-content -->
 <script>
   document.documentElement.classList.remove("locked");

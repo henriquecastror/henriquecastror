@@ -1,35 +1,48 @@
 ::: {.question}
 
-**Tesouro Selic — Daily Compounding (Business Days)**
+**Ownership and Debt Financing**
 
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
-library(webexercises) 
+library(webexercises)
 library(knitr)
-set.seed(601)
-P   <- round(runif(1, 8000, 15000), 2)
-r   <- round(runif(1, 0.09, 0.14), 4)
-du  <- sample(20:45, 1)
-Vdu <- P * (1 + r)^(du/252)
-ans <- round(Vdu, 0)
-cat(sprintf("Initial amount: <b>R$ %s</b> &nbsp; | &nbsp; Annual rate: <b>%1.2f%%</b> &nbsp; | &nbsp; Business days: <b>%d</b>",
-            format(P, big.mark=".", decimal.mark=","), 100*r, du))
+set.seed(607)
+founders <- round(runif(1, 0.55, 0.80), 3)
+seriesA  <- 1 - founders
+D_m      <- round(runif(1, 3, 12), 3)
+f_pct <- round(100*founders, 1)
+a_pct <- round(100*seriesA, 1)
+cat(sprintf("After Series A, founders own <b>%1.1f%%</b> and Series A investors own <b>%1.1f%%</b>.", 
+            f_pct, a_pct))
+cat(sprintf("<br>Then the company raises <b>R$ %1.3f million</b> via <b>debt</b> (no equity issued).", D_m))
 ```
 
-Using the 252-day convention, compute the **gross amount (R$)** at the end of the period.
+What are the **final ownership percentages** for founders and Series A investors after the **debt** raise?
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-  <label for="module6_num_q1"><strong>Answer (R$):</strong></label>
-  <input type="number" id="module6_num_q1" name="module6_num_q1" step="0.01" style="width:220px;"
-         data-correct-answer=`r ans` data-tolerance="25" />
+  <label for="module6_num_q1a"><strong>1a. Founders’ final ownership (%):</strong></label>
+  <input type="number" id="module6_num_q1a" name="module6_num_q1a" step="0.1" style="width:220px;"
+         data-correct-answer=`r f_pct` data-tolerance="0.1" />
 </form>
 
-<div id="feedback-module6_num_q1" class="feedback" data-status="" style="display:none;">
-✅ Using \(V = P\,(1+r)^{d/252}\) gives approximately <b>R$ `r format(ans, big.mark=".", decimal.mark=",")`</b> (tolerance ± R$ 25).
+<div id="feedback-module6_num_q1a" class="feedback" data-status="" style="display:none;">
+✅ Debt financing does not issue new shares. Founders remain at <b>`r f_pct`%</b>.
+</div>
+:::
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
+  <label for="module6_num_q1b"><strong>1b. Series A investors’ final ownership (%):</strong></label>
+  <input type="number" id="module6_num_q1b" name="module6_num_q1b" step="0.1" style="width:220px;"
+         data-correct-answer=`r a_pct` data-tolerance="0.1" />
+</form>
+
+<div id="feedback-module6_num_q1b" class="feedback" data-status="" style="display:none;">
+✅ No new equity issued ⇒ Series A remains at <b>`r a_pct`%</b>.
 </div>
 :::
 

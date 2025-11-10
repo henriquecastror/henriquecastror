@@ -1,39 +1,35 @@
+
 ::: {.question}
 
-**Covenant Step-Up — Present Value of Incremental Coupons**
+**Convertible Bond — Conversion Price**
 
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
-library(webexercises)
-library(knitr)
-set.seed(603)
-FV   <- 1000
-c1   <- round(runif(1, 0.08, 0.10), 3)
-step <- round(runif(1, 0.010, 0.020), 3)
-c2   <- c1 + step
-y    <- round(runif(1, 0.07, 0.10), 3)
-inc  <- FV * step
-pv   <- inc/(1+y)^3 + inc/(1+y)^4 + inc/(1+y)^5
-ans  <- round(pv, 2)
-cat(sprintf("Par: <b>R$ %d</b> | Base coupon: <b>%1.2f%%</b> | Step-up: <b>%1.2f%%</b> (yrs 3–5) | Discount rate: <b>%1.2f%%</b>",
-            FV, 100*c1, 100*step, 100*y))
+set.seed(805)
+face_value <- 1000
+conversion_ratio <- round(rnorm(1, mean = 40, sd = 3), 2)
+conversion_price <- face_value / conversion_ratio
+conv_price_round <- round(conversion_price, 2)
+conv_price_ans   <- round(conversion_price, 0)
+
 ```
 
-Compute the **present value (R$)** of the **incremental coupons** due to the step-up in years 3–5, discounted at the given rate.
+
+You own a bond with a face value of $`r face_value` and a conversion ratio of   `r conversion_ratio`. What is the conversion price?
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-  <label for="module6_num_q2"><strong>PV of increment (R$):</strong></label>
+  <label for="module6_num_q2"><strong>Answer (conversion price, $):</strong></label>
   <input type="number" id="module6_num_q2" name="module6_num_q2" step="0.01" style="width:220px;"
-         data-correct-answer=`r ans` data-tolerance="0.6" />
+         data-correct-answer=`r conv_price_ans` data-tolerance="1" />
 </form>
 
 <div id="feedback-module6_num_q2" class="feedback" data-status="" style="display:none;">
-✅ Increment per year: \(R$ `r round(FV*step,2)`\).  
-\(PV = \sum_{t=3}^{5} \frac{R$ `r round(FV*step,2)`}{(1+`r y`)^t} \approx \) <b>R$ `r ans`</b>.
+✅ <strong>Conversion price</strong> = Face / Ratio = `r face_value` / `r conversion_ratio` = 
+<strong>$ `r conv_price_round`</strong>. 
 </div>
 :::
 

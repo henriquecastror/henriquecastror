@@ -1,33 +1,30 @@
 
 ::: {.question}
 
-**Convertible Bond — Conversion Ratio (Quiz-Utils Layout)**
+**Convertible Bond — Conversion Parity Price**
 
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
-set.seed(806)
-face_value <- 1000
-# generate price first then implied ratio
-conversion_ratio_true <- round(rnorm(1, mean = 40, sd = 3), 2)
-conversion_price <- face_value / conversion_ratio_true
-conv_ratio_ans <- round(conversion_ratio_true, 0)
-cat(sprintf("Q: You own a bond with a face value of $%d and a conversion price of <b>$%1.2f</b>.", 
-            face_value, conversion_price))
+set.seed(808)
+bond_price  <- round(runif(1, 950, 1400), 2)
+ratio       <- round(runif(1, 20, 40), 0)
+parity_px   <- round(bond_price / ratio, 2)
+
 ```
 
+A convertible bond trades at \$`r bond_price`  and can be converted into `r ratio`  shares. What is the conversion parity price?
+            
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-  <label for="module6_num_q6"><strong>Answer (conversion ratio):</strong></label>
-  <input type="number" id="module6_num_q6" name="module6_num_q6" step="0.01" style="width:220px;"
-         data-correct-answer=`r conv_ratio_ans` data-tolerance="1" />
+  <label for="module6_num_q8"><strong>Conversion parity price:</strong></label>
+  <input type="number" id="module6_num_q8" name="module6_num_q8" step="0.01" style="width:220px;"
+         data-correct-answer=`r parity_px` data-tolerance="0.5" />
 </form>
-
-<div id="feedback-module6_num_q6" class="feedback" data-status="" style="display:none;">
-✅ <strong>Conversion ratio</strong> = Face / Price = `r face_value` / `r round(conversion_price,2)` = 
-<strong>`r round(conversion_ratio_true,2)`</strong>.
+<div id="feedback-module6_num_q8" class="feedback" data-status="" style="display:none;">
+✅ Parity price = Bond price / Ratio = `r bond_price` / `r ratio` = <strong> `r parity_px`</strong>.
 </div>
 :::
 

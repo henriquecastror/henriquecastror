@@ -1,48 +1,33 @@
 
 ::: {.question}
 
-**Convertible Bond — Conversion Value vs. Straight Value (Premium/Discount)**
+**Convertible Bond — Immediate Conversion Gain (%)**
 
 ```{r}
 #| eval: true
 #| results: asis
 #| echo: false
 #| warning: false
-set.seed(807)
-ratio        <- round(runif(1, 18, 35), 0)
-stock_price  <- round(runif(1, 25, 75), 2)
-bond_price   <- round(runif(1, 900, 1250), 2)
-conv_value   <- round(ratio * stock_price, 2)
-premium      <- round(bond_price - conv_value, 2)
+set.seed(809)
+ratio       <- round(runif(1, 18, 30), 0)
+stock_px    <- round(runif(1, 35, 85), 2)
+bond_mkt    <- round(runif(1, 950, 1250), 2)
+conv_value  <- round(ratio * stock_px, 2)
+gain_pct    <- round(100 * (conv_value - bond_mkt) / bond_mkt, 2)
 
 ```
 
-
-cat(sprintf("A convertible bond can be exchanged for <b>%d</b> shares. The stock trades at <b>$%1.2f</b> and the bond trades at <b>$%1.2f</b>.", 
-            ratio, stock_price, bond_price))
-            
-1) What is the <strong>conversion value</strong> of the bond?  
-2) What is the <strong>conversion premium</strong> (bond price − conversion value)? Use a negative sign if discount.
+A convertible bond can be converted into `r ratio`  shares. The stock is currently \$`r stock_px` and the bond trades at \$`r bond_mkt`. What is the Immediate conversion gain in percent?
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-  <label for="module6_num_q7a"><strong>1) Conversion value ($):</strong></label>
-  <input type="number" id="module6_num_q7a" name="module6_num_q7a" step="0.01" style="width:220px;"
-         data-correct-answer=`r conv_value` data-tolerance="0.5" />
+  <label for="module6_num_q9"><strong>Immediate conversion gain (%):</strong></label>
+  <input type="number" id="module6_num_q9" name="module6_num_q9" step="0.01" style="width:220px;"
+         data-correct-answer=`r gain_pct` data-tolerance="0.2" />
 </form>
-<div id="feedback-module6_num_q7a" class="feedback" data-status="" style="display:none;">
-✅ Conversion value = `r ratio` × `r stock_price` = <strong>$ `r conv_value`</strong>.
-</div>
-:::
-
-::: {.question-block}
-<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-  <label for="module6_num_q7b"><strong>2) Conversion premium ($):</strong></label>
-  <input type="number" id="module6_num_q7b" name="module6_num_q7b" step="0.01" style="width:220px;"
-         data-correct-answer=`r premium` data-tolerance="0.5" />
-</form>
-<div id="feedback-module6_num_q7b" class="feedback" data-status="" style="display:none;">
-✅ Premium = Bond price − Conversion value = `r bond_price` − `r conv_value` = <strong>`r premium`</strong>.
+<div id="feedback-module6_num_q9" class="feedback" data-status="" style="display:none;">
+✅ Gain(%) = \(100\times\frac{\text{conversion value} - \text{bond price}}{\text{bond price}}\) 
+= 100 × (`r conv_value` − `r bond_mkt`) / `r bond_mkt` = <strong>`r gain_pct`%</strong>.
 </div>
 :::
 

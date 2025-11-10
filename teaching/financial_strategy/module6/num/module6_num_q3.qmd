@@ -9,19 +9,24 @@
 #| warning: false
 library(webexercises); library(knitr)
 set.seed(605)
-target_net_m <- round(runif(1, 8, 20), 3)
-fee          <- round(runif(1, 0.012, 0.035), 4)
+target_net_m <- round(runif(1, 8, 20), 2)
+fee          <- round(runif(1, 0.012, 0.035), 2)
 gross_m      <- target_net_m / (1 - fee)
 fee_paid_m   <- gross_m * fee
-ansA <- round(gross_m, 3)
-ansB <- round(fee_paid_m, 3)
-cat(sprintf("Target net proceeds: <b>R$ %1.3f million</b> | Placement fee: <b>%1.2f%%</b>",
-            target_net_m, 100*fee))
+ansA <- round(gross_m, 2)
+ansB <- round(fee_paid_m, 2)
+
 ```
 
-The company issues bonds **at par** and pays a **placement fee** (as a % of face).  
+            
+The company plans to raise **R$ `r target_net_m` million** in net proceeds from a bond issue sold **at par**, but must pay a **placement fee** of `r round(100*fee, 2)`% of the total face value issued.
+
+Because the fee is deducted from the proceeds, the company must issue **more than the target amount** to achieve its goal. 
+
 1) How much **face value** (million R$) must be issued to net the target?  
+
 2) How much is the **total fee paid** (million R$)?
+
 
 ::: {.question-block}
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
@@ -31,7 +36,7 @@ The company issues bonds **at par** and pays a **placement fee** (as a % of face
 </form>
 
 <div id="feedback-module6_num_q3a" class="feedback" data-status="" style="display:none;">
-✅ \( \text{Face} = \dfrac{\text{Target Net}}{1-\text{fee}} = \) <b>`r ansA`</b> million.
+✅ $\text{Face} = \frac{\text{Target Net}}{1 - \text{fee}} =$ <b>`r ansA`</b> million.
 </div>
 :::
 

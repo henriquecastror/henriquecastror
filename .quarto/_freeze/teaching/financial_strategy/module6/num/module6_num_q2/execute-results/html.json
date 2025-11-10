@@ -1,0 +1,15 @@
+{
+  "hash": "724b5b1ba72ee7e8b082ee040d342e3f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Covenant Step-Up — Present Value of Incremental Coupons**\n\n\n\n\n\n\nThe company issued a debt of R$1,000. The annual coupon for the first two years is 9.9% per year. However, starting from the third year, the coupon increases (step-up) by 1.8% per year, reaching a total of 11.7% in years 3 to 5. The discount rate for the cash flows is 8.1% per year.\n\nBased on the coupon step-up from the third year, calculate the present value (R$) of the incremental coupons due to the step-up in years 3 to 5, discounted at the given rate of 9%.\n\nThe debt structure details are as follows: face value of R$1,000, base coupon rate of 9.9% per year, step-up of 1.8% in years 3 to 5, and a discount rate of 8.1% per year.\n\nCompute the **present value (R$)** of the **incremental coupons** due to the step-up in years 3–5, discounted at the given rate.\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\">\n  <label for=\"module6_num_q2\"><strong>PV of increment (R$):</strong></label>\n  <input type=\"number\" id=\"module6_num_q2\" name=\"module6_num_q2\" step=\"0.01\" style=\"width:220px;\"\n         data-correct-answer=39.62 data-tolerance=\"0.6\" />\n</form>\n\n<div id=\"feedback-module6_num_q2\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Increment per year: \\(R$ 18\\).  \n\\(PV = \\sum_{t=3}^{5} \\frac{R$ 18}{(1+0.081)^t} \\approx \\) <b>R$ 39.62</b>.\n</div>\n:::\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

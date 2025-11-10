@@ -1,0 +1,15 @@
+{
+  "hash": "2b815c4b5ec3ea67c68c6ce4428d55d7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.question}\n\n**Debt Issuance with Placement Fee — Sizing to Target Net Proceeds**\n\n\n\n\n\n            \nThe company plans to raise **R$ 11.342 million** in net proceeds from a bond issue sold **at par**, but must pay a **placement fee** of 1.85% of the total face value issued.\n\nBecause the fee is deducted from the proceeds, the company must issue **more than the target amount** to achieve its goal. The required face value is found by dividing the target net proceeds by $(1 - \\text{fee})$:\n\n$\\text{Face value} = \\frac{\\text{Target Net Proceeds}}{1 - \\text{fee}}$\n\n1) How much **face value** (million R$) must be issued to net the target?  \n\n2) How much is the **total fee paid** (million R$)?\n\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\">\n  <label for=\"module6_num_q3a\"><strong>3a. Face to issue (R$ million):</strong></label>\n  <input type=\"number\" id=\"module6_num_q3a\" name=\"module6_num_q3a\" step=\"0.001\" style=\"width:220px;\"\n         data-correct-answer=11.56 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module6_num_q3a\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ $\\text{Face} = \\frac{\\text{Target Net}}{1 - \\text{fee}} =$ <b>11.56</b> million.\n</div>\n:::\n\n::: {.question-block}\n<form onsubmit=\"event.preventDefault();\" style=\"display:flex; gap:8px; align-items:center;\">\n  <label for=\"module6_num_q3b\"><strong>3b. Total fee (R$ million):</strong></label>\n  <input type=\"number\" id=\"module6_num_q3b\" name=\"module6_num_q3b\" step=\"0.001\" style=\"width:220px;\"\n         data-correct-answer=0.21 data-tolerance=\"0.01\" />\n</form>\n\n<div id=\"feedback-module6_num_q3b\" class=\"feedback\" data-status=\"\" style=\"display:none;\">\n✅ Fee paid = Face × fee = <b>0.21</b> million.\n</div>\n:::\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
