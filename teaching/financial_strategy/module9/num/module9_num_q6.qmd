@@ -1,0 +1,68 @@
+::: {.question}
+
+**Asset Substitution — Risk Shifting by Equity Holders**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(952)
+library(webexercises)
+library(knitr)
+
+asset_today <- round(rnorm(1, mean = 120, sd = 3), 2)
+face_value  <- round(rnorm(1, mean = 110, sd = 2), 2)
+
+# Safe project (low variance)
+safe_payoff <- round(rnorm(1, mean = 18, sd = 1), 2)
+
+# Risky project (higher variance, lower EV for the firm)
+risky_high <- round(rnorm(1, mean = 54, sd = 3), 2)
+p_high <- 0.4
+p_low  <- 0.6
+
+# Equity payoff safe
+equity_safe <- max(asset_today + safe_payoff - face_value, 0)
+
+# Equity payoff risky
+equity_risky_high <- max(asset_today + risky_high - face_value, 0)
+equity_risky      <- p_high * equity_risky_high + p_low * 0
+
+# Firm values (expected)
+firm_safe  <- asset_today + safe_payoff
+firm_risky <- asset_today + p_high * risky_high + p_low * 0
+
+delta_equity <- equity_risky - equity_safe
+```
+
+A firm has assets worth `r asset_today`M and owes `r face_value`M tomorrow. It can invest in one of two mutually exclusive projects: a safe project paying `r safe_payoff`M for sure; or a risky project paying `r risky_high`M with probability `r p_high`, and 0 otherwise.
+
+Compute:
+
+  - (a) the equity value if the firm chooses the safe project
+  - (b) the expected equity value if it chooses the risky project
+  - (c) which project equity prefers (1 = risky, 0 = safe)
+  - (d) which project maximizes firm value (1 = risky, 0 = safe)
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q6a_single"><strong>a. Equity (safe) (millions):</strong></label> <input type="number" id="module9_num_q6a_single" name="module9_num_q6a_single" style="width:160px;" data-correct-answer=`r round(equity_safe,2)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q6a_single" class="feedback" data-status="" style="display:none;"> ✅ Equity(safe) = max(`r asset_today` + `r safe_payoff` − `r face_value`, 0) = <b>`r round(equity_safe, 2)`M</b>. </div>
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q6b_single"><strong>b. Equity (risky) (millions):</strong></label> <input type="number" id="module9_num_q6b_single" name="module9_num_q6b_single" style="width:160px;" data-correct-answer=`r round(equity_risky, 2)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q6b_single" class="feedback" data-status="" style="display:none;"> ✅ Equity(risky) = `r p_high`·max(`r asset_today` + `r risky_high` − `r face_value`, 0) + `r p_low`·0 = <b>`r round(equity_risky,2)`M</b>. </div>
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q6c_single"><strong>c. Equity prefers risky? (1/0):</strong></label> <input type="number" id="module9_num_q6c_single" name="module9_num_q6c_single" style="width:160px;" data-correct-answer=`r ifelse(delta_equity > 0, 1, 0)` data-tolerance="0.01" step="1" /> </form> <div id="feedback-module9_num_q6c_single" class="feedback" data-status="" style="display:none;"> ✅ Equity chooses the project with the higher expected equity payoff.  $E[E_{\text{risky}}] - E[E_{\text{safe}}] = `r round(delta_equity,2)`$M, equityholders prefer: <b>`r ifelse(delta_equity > 0, "risky", "safe")`</b>. </div>
+
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q6d_single"><strong>d. Project that maximizes firm value? (1 = risky, 0 = safe):</strong></label> <input type="number" id="module9_num_q6d_single" name="module9_num_q6d_single" style="width:160px;" data-correct-answer=`r ifelse(firm_risky > firm_safe, 1, 0)` data-tolerance="0.01" step="1" /> </form> <div id="feedback-module9_num_q6d_single" class="feedback" data-status="" style="display:none;"> ✅ Firm value (safe) = `r firm_safe`M; firm value (risky) = `r firm_risky`M. Max Value: <b>`r ifelse(firm_risky > firm_safe, "risky", "safe")`</b>. </div>
+
+:::
+:::
+

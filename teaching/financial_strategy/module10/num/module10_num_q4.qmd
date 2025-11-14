@@ -1,0 +1,37 @@
+::: {.question}
+
+**Share Repurchase and Market Value Impact (Asymmetric Information)**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(908)
+library(webexercises)
+library(knitr)
+
+# Randomized firm parameters with asymmetric information
+shares_outstanding <- round(rnorm(1, mean = 60, sd = 5), 2)  # random number of shares outstanding (million)
+stock_price <- round(rnorm(1, mean = 26, sd = 3), 2)  # random price per share (dollars)
+market_belief <- round(rnorm(1, mean = 1550, sd = 100), 2)  # market belief in firm value (million)
+true_value <- round(rnorm(1, mean = 1600, sd = 120), 2)  # true firm value (million)
+repurchase_amount <- round(rnorm(1, mean = 105, sd = 5), 2)  # random repurchase amount (million dollars)
+
+# Price calculations
+shares_repurchased <- round(repurchase_amount / stock_price, 2)  # shares repurchased in millions
+shares_remaining <- round(shares_outstanding - shares_repurchased, 2)  # shares outstanding after repurchase
+```
+
+
+Gamma Corp. has `r shares_outstanding` million shares outstanding, and its stock is currently trading at `r stock_price` per share. The true value of the firm is `r true_value` million, but the market believes it is worth `r market_belief` million. The company plans to repurchase `r repurchase_amount` million worth of its own shares. Calculate: (a) the number of shares repurchased; and (b) the number of shares outstanding after the repurchase.
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module10_num_q1a_single"><strong>a. Shares repurchased (millions):</strong></label> <input type="number" id="module10_num_q1a_single" name="module10_num_q1a_single" style="width:160px;" data-correct-answer=`r shares_repurchased` data-tolerance="0.1" step="0.01" /> </form> <div id="feedback-module10_num_q1a_single" class="feedback" data-status="" style="display:none;"> ✅ Shares repurchased = Repurchase amount / Stock price = `r repurchase_amount` / `r stock_price` = <b>`r shares_repurchased`M</b>. </div>
+:::
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module10_num_q1b_single"><strong>b. Shares outstanding after repurchase (millions):</strong></label> <input type="number" id="module10_num_q1b_single" name="module10_num_q1b_single" style="width:160px;" data-correct-answer=`r shares_remaining` data-tolerance="0.1" step="0.01" /> </form> <div id="feedback-module10_num_q1b_single" class="feedback" data-status="" style="display:none;"> ✅ Shares outstanding after repurchase = Shares outstanding - Shares repurchased = `r shares_outstanding` - `r shares_repurchased` = <b>`r shares_remaining`M</b>. </div>
+:::
+:::

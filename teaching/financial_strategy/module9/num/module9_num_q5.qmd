@@ -1,0 +1,58 @@
+::: {.question}
+
+**Debt Overhang — Positive-NPV Project Rejected by Equity**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(951)
+library(webexercises)
+library(knitr)
+
+# Base assets and debt
+asset_value <- round(rnorm(1, mean = 100, sd = 3), 2)
+face_value  <- round(rnorm(1, mean = 120, sd = 3), 2)   # under water
+
+# Project parameters
+project_cost   <- round(rnorm(1, mean = 10, sd = 1), 2)
+project_payoff <- round(rnorm(1, mean = 25, sd = 1), 2) # good for firm
+
+# Firm NPV
+firm_npv <- project_payoff - project_cost
+
+# Equity payoff without project
+equity_wo <- max(asset_value - face_value, 0)
+
+# Equity payoff with project
+equity_w <- max(asset_value + project_payoff - face_value, 0)
+
+delta_equity <- equity_w - equity_wo
+equity_npv <- delta_equity - project_cost
+
+```
+
+A firm has assets worth `r asset_value`M and outstanding zero-coupon debt with face value `r face_value`M due tomorrow. It can undertake a new project costing `r project_cost`M that will pay `r project_payoff`M tomorrow.  Compute:
+
+  - (a) the change in equity payoff if the firm invests
+  - (b) the NPV to equity of undertaking the project
+  - (c) whether equity will invest (1 = Yes, 0 = No)
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q5a_single"><strong>a. Δ Equity payoff (millions):</strong></label> <input type="number" id="module9_num_q5a_single" name="module9_num_q5a_single" style="width:160px;" data-correct-answer=`r round(delta_equity,2)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q5a_single" class="feedback" data-status="" style="display:none;"> ✅ ΔEquity = max(`r asset_value`+`r project_payoff`−`r face_value`,0) − max(`r asset_value`−`r face_value`,0) = <b>`r round(delta_equity,2)`M</b>. </div>
+
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q5b_single"><strong>b. Equity NPV (millions):</strong></label> <input type="number" id="module9_num_q5b_single" name="module9_num_q5b_single" style="width:160px;" data-correct-answer=`r round(equity_npv,2)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q5b_single" class="feedback" data-status="" style="display:none;"> ✅ NPV<sub>E</sub> = ΔEquity − cost = `r round(delta_equity,2)` − `r project_cost` = <b>`r round(equity_npv,2)`M</b>. </div> 
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q5c_single"><strong>c. Equity invests? (1 = Yes, 0 = No):</strong></label> <input type="number" id="module9_num_q5c_single" name="module9_num_q5c_single" style="width:160px;" data-correct-answer=`r ifelse(equity_npv>0,1,0)` data-tolerance="0.01" step="1" /> </form> <div id="feedback-module9_num_q5c_single" class="feedback" data-status="" style="display:none;"> ✅ Equity invests only if NPV<sub>E</sub> > 0 → <b>`r ifelse(equity_npv>0,"Yes","No")`</b>. </div> 
+
+:::
+
+:::

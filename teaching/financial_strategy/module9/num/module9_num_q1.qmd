@@ -1,0 +1,59 @@
+::: {.question}
+
+**Timing of Equity Issuance Under Asymmetric Information**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(908)
+library(webexercises)
+library(knitr)
+
+true_value_today  <- round(rnorm(1, mean = 210, sd = 6), 2)
+true_value_future <- true_value_today + round(rnorm(1, mean = 5, sd = 5), 2)
+
+market_belief_today  <- round(true_value_today - runif(1, 15, 40), 2)
+market_belief_future <- round(true_value_future - runif(1, 10, 25), 2)
+
+shares <- round(rnorm(1, mean = 12, sd = 1), 2)
+
+price_today  <- round(market_belief_today  / shares, 2)
+price_future <- round(market_belief_future / shares, 2)
+
+capital_needed <- round(rnorm(1, mean = 30, sd = 3), 2)
+
+shares_today  <- round(capital_needed / price_today, 2)
+shares_future <- round(capital_needed / price_future, 2)
+```
+
+A firm currently has `r shares`M shares. True firm value today is `r true_value_today`M, but the market believes it is only `r market_belief_today`M. In six months, the true value will be `r true_value_future`M, but markets will believe it is `r market_belief_future`M.
+
+The firm needs to raise `r capital_needed`M and is considering issuing equity today or in six months.
+
+Compute:
+
+- (a) share price today
+- (b) share price in six months
+- (c) shares issued today
+- (d) shares issued in six months
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q1a_single"><strong>a. Price today ($):</strong></label> <input type="number" id="module9_num_q1a_single" name="module9_num_q1a_single" style="width:160px;" data-correct-answer=`r price_today` data-tolerance="0.5" step="0.01" /> </form> <div id="feedback-module9_num_q1a_single" class="feedback" data-status="" style="display:none;"> ✅ Price today = Market belief / shares = `r market_belief_today` / `r shares` = <b>`r price_today`</b>. </div> 
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q1b_single"><strong>b. Price in six months ($):</strong></label> <input type="number" id="module9_num_q1b_single" name="module9_num_q1b_single" style="width:160px;" data-correct-answer=`r price_future` data-tolerance="0.5" step="0.01" /> </form> <div id="feedback-module9_num_q1b_single" class="feedback" data-status="" style="display:none;"> ✅ Price future = Market belief future / shares = `r market_belief_future` / `r shares` = <b>`r price_future`</b>. </div> 
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q1c_single"><strong>c. Shares issued today (millions):</strong></label> <input type="number" id="module9_num_q1c_single" name="module9_num_q1c_single" style="width:160px;" data-correct-answer=`r shares_today` data-tolerance="0.1" step="0.01" /> </form> <div id="feedback-module9_num_q1c_single" class="feedback" data-status="" style="display:none;"> ✅ Shares today = `r capital_needed` / `r price_today` = <b>`r shares_today`M</b>. </div> 
+:::
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q1d_single"><strong>d. Shares issued in six months (millions):</strong></label> <input type="number" id="module9_num_q1d_single" name="module9_num_q1d_single" style="width:160px;" data-correct-answer=`r shares_future` data-tolerance="0.1" step="0.01" /> </form> <div id="feedback-module9_num_q1d_single" class="feedback" data-status="" style="display:none;"> ✅ Shares future = `r capital_needed` / `r price_future` = <b>`r shares_future`M</b>. So issuing in the future seems better. </div> 
+:::
+:::

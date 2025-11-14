@@ -1,0 +1,39 @@
+::: {.question}
+
+**Dividend Payment and Share Price Adjustment**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(908)
+library(webexercises)
+library(knitr)
+
+# Firm parameters
+dividend_value <- round(rnorm(1, mean = 10, sd = 1), 2)  # dividend in millions
+shares <- round(rnorm(1, mean = 15, sd = 1), 2)  # shares outstanding in millions
+market_value <- round(rnorm(1, mean = 180, sd = 10), 2)  # market value in millions
+
+# Price calculations
+price_today <- round((market_value ) / shares, 2)  # Price before dividend
+price_ex_dividend <- round((market_value- dividend_value) / shares, 2)  # Price after dividend
+
+```
+
+The firm has `r shares` million shares outstanding, and the market values it at `r market_value` million. The dividend to be paid is `r dividend_value` million. Calculate: (a) the price of Alpha Corp. today, assuming the dividend is paid out; and (b) the price of Alpha Corp. after the dividend is paid (ex-dividend price).
+
+
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q1a_single"><strong>a. Price today ($):</strong></label> <input type="number" id="module9_num_q1a_single" name="module9_num_q1a_single" style="width:160px;" data-correct-answer=`r price_today` data-tolerance="0.5" step="0.01" /> </form> <div id="feedback-module9_num_q1a_single" class="feedback" data-status="" style="display:none;"> ✅ Price today = (Market value + Dividend value) / shares = `r market_value` / `r shares` = <b>`r price_today`</b>. </div> 
+::: 
+
+
+::: {.question-block}
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q1b_single"><strong>b. Price after dividend (ex-dividend price) ($):</strong></label> <input type="number" id="module9_num_q1b_single" name="module9_num_q1b_single" style="width:160px;" data-correct-answer=`r price_ex_dividend` data-tolerance="0.5" step="0.01" /> </form> <div id="feedback-module9_num_q1b_single" class="feedback" data-status="" style="display:none;"> ✅ Price after dividend = Market value / shares = `r market_value` - `r dividend_value` / `r shares` = <b>`r price_ex_dividend`</b>. </div>
+:::
+
+:::

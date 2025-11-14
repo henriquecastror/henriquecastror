@@ -1,0 +1,108 @@
+::: {.question}
+
+**Leverage, Bankruptcy Costs, and Equity Value**
+
+```{r}
+#| eval: true
+#| results: asis
+#| echo: false
+#| warning: false
+
+set.seed(902)
+library(webexercises)
+library(knitr)
+
+# Randomized firm values
+value_low  <- round(rnorm(1, mean = 100, sd = 3), 2)
+value_mid  <- round(rnorm(1, mean = 150, sd = 3), 2)
+value_high <- round(rnorm(1, mean = 191, sd = 3), 2)
+
+rf   <- 0.07
+prob <- 1/3
+
+# Unlevered value (no bankruptcy costs)
+expected_future_value <- prob*value_low + prob*value_mid + prob*value_high
+unlevered_value       <- expected_future_value / (1 + rf)
+
+# Debt and bankruptcy assumptions
+loss_rate  <- 0.25   # 25% loss in default
+face_value <- round(runif(1, min = value_low + 3, max = value_mid - 3), 2)
+
+# Payoffs to debt in each state
+debt_payoff_low  <- min(face_value, value_low  * (1 - loss_rate))  # default + loss
+debt_payoff_mid  <- face_value                                     # fully repaid
+debt_payoff_high <- face_value                                     # fully repaid
+
+expected_debt_payoff <- prob*debt_payoff_low +
+                        prob*debt_payoff_mid +
+                        prob*debt_payoff_high
+
+debt_value_today <- expected_debt_payoff / (1 + rf)
+
+# Payoffs to equity in each state
+equity_payoff_low  <- 0
+equity_payoff_mid  <- value_mid  - face_value
+equity_payoff_high <- value_high - face_value
+
+expected_equity_payoff <- prob*equity_payoff_low +
+                          prob*equity_payoff_mid +
+                          prob*equity_payoff_high
+
+equity_value_today <- expected_equity_payoff / (1 + rf)
+
+levered_value <- debt_value_today + equity_value_today
+pv_distress   <- unlevered_value - levered_value
+```
+
+
+Nimbus Devices will be worth either `r value_low`M, `r value_mid`M, or `r value_high`M in one year, with each outcome equally likely. Because the project risk is fully diversifiable, the discount rate is the risk-free rate of `r rf*100`%.
+
+Nimbus considers issuing zero-coupon debt with face value of `r face_value`M due in one year. If the firm defaults (which occurs only in the low state), bankruptcy costs destroy 25% of asset value before debtholders are paid. Compute:
+
+  - (a) the value of the firm today without leverage, $V_U$ (millions)
+  - (b) the value of debt today, $V_D$ (millions)
+  - (c) the value of equity today, $V_E$ (millions)
+  - (d) the present value of financial distress costs, $PV(\text{distress})$ (millions)
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q2a_single"><strong>a. Unlevered firm value $V_U$ (millions):</strong></label> <input type="number" id="module9_num_q2a_single" name="module9_num_q2a_single" style="width:160px;" data-correct-answer=`r round(unlevered_value, 2)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q2a_single" class="feedback" data-status="" style="display:none;"> ✅ $V_U = \dfrac{E[V_1]}{1+r_f} = \dfrac{`r round(expected_future_value,2)`}{1 + `r rf`} =$ <b>`r round(unlevered_value,2)`M</b>. </div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q2b_single"><strong>b. Debt value today $V_D$ (millions):</strong></label> <input type="number" id="module9_num_q2b_single" name="module9_num_q2b_single" style="width:160px;" data-correct-answer=`r round(debt_value_today,2)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q2b_single" class="feedback" data-status="" style="display:none;"> ✅ Debt payoff is the expected amount debtholders receive across all states, discounted at the risk-free rate.  
+  $V_D = \dfrac{E[\text{Debt Payoff}]}{1+r_f}
+      = \dfrac{`r round(expected_debt_payoff,2)`}{1 + `r rf`}
+      =$ <b>`r round(debt_value_today,2 )`M</b>.  
+  <br>
+  Here:  
+  • Debt payoffs = (`r round(debt_payoff_low,2)`, `r debt_payoff_mid`, `r debt_payoff_high`)  
+  • Expected payoff = (`r round(expected_debt_payoff,2)`)  
+  • Discounting at `r rf*100`% gives `r round(debt_value_today,2)`M. </div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q2c_single"><strong>c. Equity value today $V_E$ (millions):</strong></label> <input type="number" id="module9_num_q2c_single" name="module9_num_q2c_single" style="width:160px;" data-correct-answer=`r round(equity_value_today, 0)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q2c_single" class="feedback" data-status="" style="display:none;"> ✅✅ Equity holders receive only residual value after debtholders are paid.  
+  $V_E = \dfrac{E[\text{Equity Payoff}]}{1+r_f}
+      = \dfrac{`r round(equity_value_today*(1+rf),0)`}{1 + `r rf`}
+      =$ <b>`r round(equity_value_today, 0)`M</b>.  
+  <br>
+  Here:  
+  • Equity payoffs = (0, `r value_mid - face_value`, `r value_high - face_value`)  
+  • Expected equity payoff = `r round(equity_value_today*(1+rf),0)`  
+  • Discounting at `r rf*100`% gives `r round(equity_value_today,0)`M. </div>
+
+:::
+
+::: {.question-block}
+
+<form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;"> <label for="module9_num_q2d_single"><strong>d. $PV(\text{distress})$ (millions):</strong></label> <input type="number" id="module9_num_q2d_single" name="module9_num_q2d_single" style="width:160px;" data-correct-answer=`r round(pv_distress, 0)` data-tolerance="1" step="0.01" /> </form> <div id="feedback-module9_num_q2d_single" class="feedback" data-status="" style="display:none;"> ✅ $PV(\text{distress}) = V_U - V_L = `r round(unlevered_value,0)` - (`r round(debt_value_today,0)` + `r round(equity_value_today,0)`) =$ <b>`r round(pv_distress, 0)`M</b>. </div>
+
+:::
+
+
+:::
