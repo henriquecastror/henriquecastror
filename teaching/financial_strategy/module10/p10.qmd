@@ -14,8 +14,8 @@ format:
     include-in-header: ../login-start.html
     include-after-body:
       - ../chat-widget.html
-#      - ../comnents.html
-      - ../ranking-widget.html
+      - ../threads-gate.html
+      - ../ranking-widget2.html
       - ../notices-on-login.html
     touch: true
     controls: true
@@ -225,7 +225,7 @@ When the dividend is paid while liquidating the firm's business. Contrary to the
 
 
 
-## 17.1 Distributions to Shareholders {.smaller  background="#cfd5ea"}
+## 17.1 Distributions to Shareholders {.smaller  background="#cfd5ea" visibility="hidden" }
 
 **Tender Offer**
 
@@ -247,7 +247,7 @@ When the dividend is paid while liquidating the firm's business. Contrary to the
 
 
 
-## 17.1 Distributions to Shareholders {.smaller  background="#cfd5ea"}
+## 17.1 Distributions to Shareholders {.smaller  background="#cfd5ea" visibility="hidden" }
 
 
 **Targeted Repurchase**
@@ -263,7 +263,7 @@ When the dividend is paid while liquidating the firm's business. Contrary to the
 
 
 
-## 17.1 Distributions to Shareholders {.smaller  background="#cfd5ea" visibility="hidden"}
+## 17.1 Distributions to Shareholders {.smaller  background="#cfd5ea" }
 
 **Interest on equity**
 
@@ -476,7 +476,7 @@ Given a current market value of \$50 per share, you would need to sell $\frac{2,
 
 
 
-## 17.2 MM and Dividend Policy Irrelevance {.smaller  background="#eeffff"}
+## 17.2 Dividend Policy Irrelevance {.smaller  background="#eeffff"}
 
 **There is a tradeoff between current and future dividends.**
 
@@ -498,7 +498,7 @@ Given a current market value of \$50 per share, you would need to sell $\frac{2,
 
 
 
-## 17.2 MM and Dividend Policy Irrelevance {.smaller  background="#eeffff"}
+## 17.2  Dividend Policy Irrelevance {.smaller  background="#eeffff"}
 
 Furthermore, shareholders can create a **homemade dividend** by buying or selling shares themselves.
 
@@ -509,7 +509,6 @@ Furthermore, shareholders can create a **homemade dividend** by buying or sellin
 A firm’s **free cash flow** determines the level of payouts that it can make to its investors.
 
 - In a perfect capital market, the type of payout is irrelevant.
-- In reality, capital markets are not perfect, and it is these **imperfections** that should determine the firm’s payout policy.
 
 
 . . .
@@ -528,7 +527,7 @@ A firm’s **free cash flow** determines the level of payouts that it can make t
 **Taxes on Dividends and Capital Gains**
 
 - Shareholders must **pay taxes on the dividends** they receive, and they must also **pay capital gains taxes** when they sell their shares.
-- Dividends are typically taxed at a higher rate than capital gains. In fact, long-term investors can defer the capital gains tax forever by not selling.
+- Internationally, dividends are typically taxed at a higher rate than capital gains. In fact, long-term investors can defer the capital gains tax forever by not selling.
 
 . . .
 
@@ -915,6 +914,24 @@ If Altgreen repurchases shares, it will repurchase $\frac{300mil}{9.77}=30.71$ m
 
 
 
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
+     data-session="module10_checkout1"
+     data-page="module10_checkout1"
+     data-require-login="true"
+     data-open="2025-11-17 16:30"
+     data-close="2025-11-17 16:59">
+</div>
+
+{{< include ../checkout2.html >}}
+
+
+
+
+
 # 17.6 Signaling with Payout Policy {.smaller  background="#eeffff"}
  
 ## 17.6 Signaling with Payout Policy {.smaller  background="#eeffff"}
@@ -1049,6 +1066,25 @@ Sometimes, firms finance new shares. So, it is like shareholders have received c
 
 
 
+
+
+
+
+
+
+
+##  { background="#f7f9fc"}
+
+<div data-ticket
+     data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
+     data-session="module10_checkout2"
+     data-page="module10_checkout2"
+     data-require-login="true"
+     data-open="2025-11-19 16:30"
+     data-close="2025-11-19 16:59">
+</div>
+
+{{< include ../checkout2.html >}}
 
 
 
