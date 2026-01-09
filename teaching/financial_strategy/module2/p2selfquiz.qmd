@@ -20,16 +20,18 @@ You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions
 
 
 
-| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
-|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
-| 2 | ch10 | [🎞️](p2.html) | [✅](p2tf.html) | [❓](p2mcq.html) | [🔢](p2num.html) | [📝](p2long.html) | [🧪](p2selfquiz.html) |
+### 📘 Part 1 (until Midterm)
+
+| Module | Chapter |
+|:-------:|:--------:|
+| 2 | ch10 | 
+
 
 
 <script>
   const SLIDE_ID = "module2_selfquiz";
 </script>
 
-{{< include ../login-start.html >}}
 
 
 ```{=html}
@@ -187,7 +189,6 @@ main.content table th:nth-child(2) {
 </script>
 
 
-{{< include ../login-end.html >}}
 
 
 

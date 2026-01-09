@@ -19,10 +19,11 @@ You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions
 ::: 
 
 
+### 📘 Part 1 (until Midterm)
 
-| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
-|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
-| 3 | ch11 | [🎞️](p3.html) | [✅](p3tf.html) | [❓](p3mcq.html) | [🔢](p3num.html) | [📝](p3long.html) | [🧪](p3selfquiz.html) |
+| Module | Chapter | 
+|:-------:|:--------:|
+| 3 | ch11 | 
 
 
 
@@ -31,7 +32,6 @@ You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions
   const SLIDE_ID = "module3_selfquiz";
 </script>
 
-{{< include ../login-start.html >}}
 
 
 ```{=html}
@@ -192,7 +192,6 @@ ___
 
 
 
-{{< include ../login-end.html >}}
 
 
 

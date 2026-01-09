@@ -88,11 +88,9 @@ ___
 
 ### 📘 Part 1 (until Midterm)
 
-| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
-|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
-| 5 | ch13 | [🎞️](p5.html) | [✅](p5tf.html) | [❓](p5mcq.html) | [🔢](p5num.html) | [📝](p5long.html) | [🧪](p5selfquiz.html) |
-
-
+| Module | Chapter | 
+|:-------:|:--------:|
+| 5 | ch13 | 
 
 
 ___
@@ -103,7 +101,6 @@ ___
   const SLIDE_ID = "module5_p5num";
 </script>
 
-{{< include ../login-start.html >}}
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
@@ -172,16 +169,9 @@ ___
 :::
 
 
-
-
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
 </div>
-
-
-
-{{< include ../login-end.html >}}
-
 
 
 <div style="text-align: center; margin-top: 2rem;">

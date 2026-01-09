@@ -88,9 +88,9 @@ ___
 
 ### 📘 Part 1 (until Midterm)
 
-| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
-|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
-| 4 | ch12 | [🎞️](p4.html) | [✅](p4tf.html) | [❓](p4mcq.html) | [🔢](p4num.html) | [📝](p4long.html) | [🧪](p4selfquiz.html) |
+| Module | Chapter | 
+|:-------:|:--------:|
+| 4 | ch12 | 
 
 
 
@@ -102,7 +102,6 @@ ___
   const SLIDE_ID = "module4_p4num";
 </script>
 
-{{< include ../login-start.html >}}
 
 ::: {.webex-box}
 <div style="display: flex; align-items: start; gap: 8px;">
@@ -190,10 +189,6 @@ ___
 <div style="text-align: right;">
 {{< include "../quiz-utils.html" >}}
 </div>
-
-
-
-{{< include ../login-end.html >}}
 
 
 

@@ -222,7 +222,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 23/09/2025 22:44</p>
+<p><strong>Last updated:</strong> 09/01/2026 12:44</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -243,24 +243,12 @@ For students
 <tr class="header">
 <th style="text-align: center;">Module</th>
 <th style="text-align: center;">Chapter</th>
-<th style="text-align: center;">Slides</th>
-<th style="text-align: center;">T/F</th>
-<th style="text-align: center;">MCQ</th>
-<th style="text-align: center;">Numeric</th>
-<th style="text-align: center;">Long</th>
-<th style="text-align: center;">Self-quiz</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">ch11</td>
-<td style="text-align: center;"><a href="p3.html">🎞️</a></td>
-<td style="text-align: center;"><a href="p3tf.html">✅</a></td>
-<td style="text-align: center;"><a href="p3mcq.html">❓</a></td>
-<td style="text-align: center;"><a href="p3num.html">🔢</a></td>
-<td style="text-align: center;"><a href="p3long.html">📝</a></td>
-<td style="text-align: center;"><a href="p3selfquiz.html">🧪</a></td>
 </tr>
 </tbody>
 </table>
@@ -269,453 +257,6 @@ For students
 <script>
   const SLIDE_ID = "module3_p3num";
 </script>
-<!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
-<style>
-  /* Card padrão (páginas normais) */
-  #login-form {
-    max-width: 300px;
-    margin: 100px auto 40px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    background: #fff;
-    box-sizing: border-box;
-  }
-  #login-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  /* ✅ FIX layout do checkbox: não herdar width/padding dos inputs de texto */
-  #login-form input[type="checkbox"] {
-    width: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    vertical-align: middle;
-  }
-
-  #login-form button {
-    width: 100%; padding: 10px; margin-top: 10px;
-    background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
-  }
-  #login-error { color: red; text-align: center; margin-top: 10px; }
-  #loading-msg{ display:none; text-align:center; margin-top:10px; color:gray; }
-
-  /* Desabilitado durante autenticação */
-  #login-form button:disabled { opacity:.6; cursor:not-allowed; }
-  #login-form input:disabled  { opacity:.7; }
-
-  /* Conteúdo de páginas normais (fica atrás do login até destravar) */
-  html.locked #after-login-content,
-  body.locked #after-login-content { display: none !important; }
-
-  /* Slides (Reveal.js): desfoca deck e bloqueia interação */
-  html.locked.reveal-page .reveal,
-  body.locked.reveal-page .reveal { filter: blur(4px); pointer-events: none; user-select: none; }
-
-  #login-scrim { display:none; }
-  html.locked.reveal-page #login-scrim,
-  body.locked.reveal-page #login-scrim{
-    display:block; position:fixed; inset:0; background:rgba(255,255,255,.92); z-index:9998;
-  }
-  html.locked.reveal-page #login-form,
-  body.locked.reveal-page #login-form{
-    position: fixed; top:50%; left:50%; transform: translate(-50%,-50%);
-    margin:0; max-width:340px; width:min(340px,92vw); z-index:9999;
-  }
-
-  /* Oculta o "Welcome" nos slides */
-  .reveal-page #welcome-message { display: none !important; }
-
-  /* Remember me */
-  .remember-row{
-    display:flex; align-items:center; gap:8px; margin-top:6px; font-size:.95rem; color:#444; white-space:nowrap;
-  }
-  .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
-
-  /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim) */
-  html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
-    display: none !important;
-  }
-
-  /* Garante que o form fique acima de qualquer layout do tema */
-  #login-form { position: relative; z-index: 10000; }
-  #login-scrim { z-index: 9998; }
-
-  /* Scrim e formulário fixos também em páginas NÃO-reveal enquanto locked */
-  html.locked #login-scrim,
-  body.locked #login-scrim {
-    display: block !important;
-    position: fixed !important;
-    inset: 0 !important;
-    background: #ffffff !important;
-    z-index: 2147483646 !important;
-  }
-  html.locked #login-form,
-  body.locked #login-form {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    max-width: 340px !important;
-    width: min(340px, 92vw) !important;
-    z-index: 2147483647 !important;
-  }
-
-  /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
-  html.locked, body.locked { overflow: hidden !important; }
-
-  /* 🔒 Blindagem extra contra webexercises esconder a checkbox */
-  #login-form .remember-row { display:flex !important; visibility:visible !important; }
-  #login-form #remember-me { display:inline-block !important; }
-
-  /* 🧼 Esconde imediatamente artefatos escapados (qualquer descendente code/pre/sourceCode etc) DENTRO do form */
-  #login-form pre,
-  #login-form code,
-  #login-form .sourceCode,
-  #login-form .sourcecode,
-  #login-form .quarto-code-cell,
-  #login-form .cell-output,
-  #login-form .cell-output-display,
-  #login-form .cell { display: none !important; }
-</style>
-<!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
-<script>
-  (function(){
-    const addLocked = el => { if (el && !el.classList.contains('locked')) el.classList.add('locked'); };
-    addLocked(document.documentElement);
-    if (document.body) { addLocked(document.body); }
-    else { document.addEventListener('DOMContentLoaded', () => addLocked(document.body)); }
-
-    // preconnect/dns-prefetch para acelerar chamadas ao GAS de login
-    try {
-      const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
-      const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
-    } catch(_) {}
-  })();
-</script>
-<!-- shim seguro: define onLoginSuccess se ainda não existir -->
-<script>
-  if (typeof window.onLoginSuccess !== 'function') {
-    window.onLoginSuccess = function(studentId){
-      try {
-        const sid = String(studentId || '').trim();
-        window.studentId = sid;
-        localStorage.setItem('studentId', sid);
-        // compat com widgets antigos
-        document.dispatchEvent(new CustomEvent('auth:login',   { detail: { studentId: sid } }));
-        setTimeout(() => window.dispatchEvent(new CustomEvent('login:success', { detail:{ studentId: sid } })), 0);
-        // hook imediato para o notice center (se já carregado)
-        if (window.noticeCenter && typeof window.noticeCenter.onLogin === 'function') {
-          window.noticeCenter.onLogin(sid);
-        }
-        if (window.VHCM) window.VHCM.lastLoginAt = Date.now();
-        console.debug('[Login] onLoginSuccess →', sid);
-      } catch(e) {
-        console.warn('onLoginSuccess shim warn:', e);
-      }
-    };
-  }
-</script>
-<form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
-<h3 style="text-align:center;" class="anchored">
-Login
-</h3>
-<p><input type="text" id="username" placeholder="Username" autocomplete="username" required=""> <input type="password" id="password" placeholder="Password" autocomplete="current-password" required=""></p>
-<!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
-<div class="remember-row">
-<pre><code>&lt;input type="checkbox" id="remember-me" checked /&gt;
-&lt;label for="remember-me"&gt;Remember me&lt;/label&gt;</code></pre>
-</div>
-<button type="submit" id="login-submit">
-Enter
-</button>
-<div id="loading-msg">
-
-</div>
-<div id="login-error">
-
-</div>
-</form>
-<div id="login-scrim" aria-hidden="true">
-
-</div>
-<div id="after-login-content" style="display:none;">
-<h4 id="welcome-message" style="text-align:center; display:none; margin-top:10px; font-size:1.8em; color:#333;" class="anchored">
-</h4>
-</div>
-<script>
-  /***** CONFIG *****/
-  const REMEMBER_PASSWORD  = true;
-  const GAS_URL            = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
-  const SESSION_MAX_HOURS  = 8;     // validade do "lembrado"
-  const FAST_WINDOW_HOURS  = 2;     // turbo: libera instantâneo
-  const VALIDATE_TIMEOUTMS = 3000;  // timeout da validação
-
-  /* 🔥 Warm-up silencioso do GAS: acorda a função antes do 1º login real */
-  window.addEventListener('load', () => {
-    try {
-      const warm = new Image();
-      warm.referrerPolicy = 'no-referrer';
-      warm.src = `${GAS_URL}?username=&password=&page=WARMUP&t=${Date.now()}`;
-    } catch(_) {}
-  });
-
-  /***** Marca slides (se houver Reveal) *****/
-  document.addEventListener('DOMContentLoaded', () => {
-    if (document.querySelector('.reveal')) document.body.classList.add('reveal-page');
-  });
-
-  /***** Pré-preenche campos com Remember (se houver) *****/
-  document.addEventListener('DOMContentLoaded', () => {
-    try{
-      const u = localStorage.getItem('fs_user');
-      const p = localStorage.getItem('fs_pass');
-      if (u) document.getElementById('username').value = u;
-      if (REMEMBER_PASSWORD && p) document.getElementById('password').value = p;
-    }catch(_){}
-  });
-
-  /***** Storage helpers *****/
-  function saveRemember(u,p,checked){
-    try{
-      if(checked){
-        localStorage.setItem('fs_user', u);
-        localStorage.setItem('fs_last_login_at', Date.now().toString());
-        if (REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
-      }else{
-        localStorage.removeItem('fs_user'); localStorage.removeItem('fs_pass'); localStorage.removeItem('fs_last_login_at');
-      }
-    }catch(_){}
-  }
-  function getRemember(){
-    try{
-      const u=localStorage.getItem('fs_user');
-      const p=localStorage.getItem('fs_pass');
-      const t=parseInt(localStorage.getItem('fs_last_login_at')||'0',10);
-      if(!u||!t) return null; return {u,p,t};
-    }catch(_){ return null; }
-  }
-  const within=(ts,h)=> (Date.now()-ts) < h*3600*1000;
-
-  /* 🔒 Desativa/Reativa o form durante autenticação */
-  function setAuthLoading(isLoading){
-    const btn = document.getElementById('login-submit');
-    const u   = document.getElementById('username');
-    const p   = document.getElementById('password');
-    const cb  = document.getElementById('remember-me');
-    if (btn){
-      btn.disabled = isLoading;
-      btn.textContent = isLoading ? 'Signing in...' : 'Enter';
-    }
-    [u,p,cb].forEach(el => { if (el) el.disabled = isLoading; });
-  }
-
-  /***** GAS helpers *****/
-  function logWithImage(u,p,page){
-    const img=new Image(); img.referrerPolicy='no-referrer';
-    img.src=`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}&t=${Date.now()}`;
-  }
-  async function gasAuth(u,p,page,timeoutMs){
-    async function _once(ms){
-      const ctrl=new AbortController();
-      const timer=setTimeout(()=>ctrl.abort('timeout'), ms||0);
-      try{
-        const res=await fetch(`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}`, {signal:ctrl.signal, cache:'no-store'});
-        return (await res.text()||'').trim();
-      } finally { clearTimeout(timer); }
-    }
-    try{
-      return await _once(timeoutMs||12000);   // 1ª tentativa
-    }catch(_){
-      return await _once(15000);              // retry mais folgado
-    }
-  }
-
-  /***** UI helpers *****/
-  function unlockAs(u){
-    const welcome=document.getElementById('welcome-message');
-    if (welcome && !document.body.classList.contains('reveal-page')){
-      welcome.textContent=`Welcome, ${u}!`; welcome.style.display='block';
-    }
-    document.getElementById('login-form').style.display='none';
-    const after=document.getElementById('after-login-content'); if(after) after.style.display='block';
-
-    // Remover 'locked' de html e body
-    document.documentElement.classList.remove('locked');
-    if (document.body) document.body.classList.remove('locked');
-
-    const scrim=document.getElementById('login-scrim'); if(scrim) scrim.style.display='none';
-  }
-
-  /***** Auto-login com janela turbo (também nos slides) *****/
-  document.addEventListener('DOMContentLoaded', async () => {
-    const saved=getRemember(); if(!saved) return;
-    const page=location.pathname;
-
-    if (within(saved.t, FAST_WINDOW_HOURS)) {
-      // libera já e registra em background
-      unlockAs(saved.u);
-      onLoginSuccess(saved.u); // mantém studentId para outros scripts
-
-      saveRemember(saved.u, saved.p, true);
-      logWithImage(saved.u, saved.p, page);
-
-      // checagem silenciosa (opcional)
-      try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* opcional: relock */ } } catch(_) {}
-      return;
-    }
-
-    if (within(saved.t, SESSION_MAX_HOURS)) {
-      const loading=document.getElementById('loading-msg');
-      loading.textContent='Checking saved login...'; loading.style.display='block';
-      try{
-        const r=await gasAuth(saved.u, saved.p, page, VALIDATE_TIMEOUTMS);
-        loading.style.display='none';
-        if(r==='OK'){ unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); }
-      }catch(_){
-        // timeout: libera e registra em background
-        loading.style.display='none';
-        unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); logWithImage(saved.u, saved.p, page);
-      }
-    }
-  });
-
-  /***** Login manual *****/
-  async function validateLogin(rememberOverride){
-    const u=document.getElementById('username').value.trim();
-    const p=document.getElementById('password').value.trim();
-    const cb=document.getElementById('remember-me');
-    const remember = (rememberOverride!==undefined) ? rememberOverride : (cb? cb.checked : true);
-
-    const err=document.getElementById('login-error');
-    const load=document.getElementById('loading-msg');
-    err.textContent='';
-    load.textContent='Authenticating your credentials. This may take a few seconds...';
-    load.style.display='block';
-    setAuthLoading(true);
-
-    const page=location.pathname;
-    try{
-      const r=await gasAuth(u,p,page,VALIDATE_TIMEOUTMS);
-      load.style.display='none';
-      if (r==='OK'){ saveRemember(u,p,remember); unlockAs(u); onLoginSuccess(u); }
-      else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
-      else { err.textContent='Missing credentials.'; }
-    }catch(_){
-      load.textContent=''; err.textContent='Network error. Please try again.';
-    }finally{
-      if (document.getElementById('login-form').style.display !== 'none') {
-        setAuthLoading(false);
-      }
-    }
-  }
-
-  // Auto preenche (se já houver credenciais lembradas)
-  document.addEventListener('DOMContentLoaded', ()=>{
-    try{
-      const u=localStorage.getItem('fs_user'); const p=localStorage.getItem('fs_pass');
-      if(u){ document.getElementById('username').value=u; }
-      if(p && REMEMBER_PASSWORD){ document.getElementById('password').value=p; }
-      const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
-    }catch(_){}
-  });
-
-  /* Auto-wrap robusto — apenas para páginas NÃO-Reveal */
-  document.addEventListener('DOMContentLoaded', () => {
-    try {
-      if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) return;
-
-      const wrapper = document.getElementById('after-login-content');
-      if (!wrapper) return;
-
-      const root = wrapper.parentElement || document.body;
-      const loginForm  = document.getElementById('login-form');
-      const loginScrim = document.getElementById('login-scrim');
-
-      const isKeep = (el) =>
-        el === wrapper || el === loginForm || el === loginScrim ||
-        el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'LINK';
-
-      Array.from(root.children).forEach(el => {
-        if (!isKeep(el) && !wrapper.contains(el)) {
-          wrapper.appendChild(el);
-        }
-      });
-    } catch (e) {
-      console.warn('auto-wrap (non-reveal) warn:', e);
-    }
-  });
-
-  /* 🔒 Fallback: recria a checkbox se webexercises a remover (estrutura input+label) */
-  document.addEventListener('DOMContentLoaded', () => {
-    const form=document.getElementById('login-form');
-    if(!form) return;
-    if(!document.getElementById('remember-me')){
-      const row=document.createElement('div');
-      row.className='remember-row';
-
-      const input=document.createElement('input');
-      input.type='checkbox';
-      input.id='remember-me';
-      input.checked=true;
-
-      const label=document.createElement('label');
-      label.htmlFor='remember-me';
-      label.appendChild(document.createTextNode(' Remember me'));
-
-      row.appendChild(input);
-      row.appendChild(label);
-
-      const btn=document.getElementById('login-submit');
-      form.insertBefore(row, btn);
-    }
-  });
-
-  /* 🧹 Sanitizador: remove artefatos (pre/code/sourceCode/cell) do remember dentro do form (em QUALQUER profundidade) */
-  (function(){
-    function looksLikeRememberLine(txt){
-      if(!txt) return false;
-      const t = txt.trim();
-      return /<\s*input[^>]*type=["']checkbox["'][^>]*id=["']remember-me["']/i.test(t) ||
-             /<\s*label[^>]*for=["']remember-me["'][^>]*>/i.test(t);
-    }
-    function cleanRememberArtifacts(){
-      const form = document.getElementById('login-form');
-      if(!form) return;
-
-      // Remove blocos típicos do Quarto/knitr que contêm o HTML escapado
-      form.querySelectorAll('pre, code, .sourceCode, .sourcecode, .quarto-code-cell, .cell-output, .cell-output-display, .cell')
-        .forEach(el => { if(looksLikeRememberLine(el.textContent)) el.remove(); });
-
-      // Remove nós de texto “crus” em qualquer nível
-      const treeWalker = document.createTreeWalker(form, NodeFilter.SHOW_TEXT, null);
-      const toRemove = [];
-      while(treeWalker.nextNode()){
-        const n = treeWalker.currentNode;
-        if(looksLikeRememberLine(n.textContent)) toRemove.push(n);
-      }
-      toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
-    }
-
-    if (document.readyState !== 'loading') cleanRememberArtifacts();
-    else document.addEventListener('DOMContentLoaded', cleanRememberArtifacts);
-
-    // Observa mudanças no form inteiro (subtree) para limpar assim que surgir
-    const formObs = document.getElementById('login-form');
-    if (formObs) new MutationObserver(cleanRememberArtifacts)
-      .observe(formObs, { childList: true, subtree: true });
-  })();
-
-</script>
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
 <div style="font-weight: bold; min-width: 40px;">
@@ -723,31 +264,31 @@ Q1.
 </div>
 <section id="expected-return-variance-and-standard-deviation-of-a-portfolio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="expected-return-variance-and-standard-deviation-of-a-portfolio">Expected Return, Variance, and Standard Deviation of a Portfolio</h2>
-<p>What is the <strong>expected return</strong> of a portfolio that invests <strong>30.48</strong>% in Asset&nbsp;1 (expected return = <strong>11.18</strong>%) and the remaining <strong>69.52</strong>% in Asset&nbsp;2 (expected return = <strong>3.27</strong>% )?</p>
+<p>What is the <strong>expected return</strong> of a portfolio that invests <strong>22.84</strong>% in Asset&nbsp;1 (expected return = <strong>13.62</strong>%) and the remaining <strong>77.16</strong>% in Asset&nbsp;2 (expected return = <strong>6.74</strong>% )?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q1a"><strong>1. What is the expected return of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1a" name="module3_num_q1a" placeholder="Enter value" style="width: 150px;" data-correct-answer="5.68" data-tolerance="0.01">
+<label for="module3_num_q1a"><strong>1. What is the expected return of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1a" name="module3_num_q1a" placeholder="Enter value" style="width: 150px;" data-correct-answer="8.31" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q1a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = w₁×r₁ + w₂×r₂ = <strong>5.68</strong>%.</p>
+<p>✅ Expected return = w₁×r₁ + w₂×r₂ = <strong>8.31</strong>%.</p>
 </div>
 </div>
-<p>What is the <strong>variance</strong> of the portfolio above, given correlation <strong>0.21</strong>, standard deviation of Asset&nbsp;1 = <strong>32.38</strong>% and of Asset&nbsp;2 = <strong>15.2</strong>%?</p>
+<p>What is the <strong>variance</strong> of the portfolio above, given correlation <strong>0.68</strong>, standard deviation of Asset&nbsp;1 = <strong>30.17</strong>% and of Asset&nbsp;2 = <strong>19.02</strong>%?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q1b"><strong>2. What is the variance of the portfolio (in squared %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1b" name="module3_num_q1b" placeholder="Enter value" style="width: 150px;" data-correct-answer="2.53" data-tolerance="0.01">
+<label for="module3_num_q1b"><strong>2. What is the variance of the portfolio (in squared %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1b" name="module3_num_q1b" placeholder="Enter value" style="width: 150px;" data-correct-answer="4" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q1b" class="feedback" data-status="" style="display:none;">
-<p>✅ Variance = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂ = <strong>2.53</strong>.</p>
+<p>✅ Variance = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂ = <strong>4</strong>.</p>
 </div>
 </div>
 <p>What is the <strong>standard deviation</strong> of the portfolio above?</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q1c"><strong>3. What is the standard deviation of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1c" name="module3_num_q1c" placeholder="Enter value" style="width: 150px;" data-correct-answer="15.9" data-tolerance="0.01">
+<label for="module3_num_q1c"><strong>3. What is the standard deviation of the portfolio (in %)?</strong></label> <!-- Only two decimal places in the answer --> <input type="number" id="module3_num_q1c" name="module3_num_q1c" placeholder="Enter value" style="width: 150px;" data-correct-answer="19.99" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q1c" class="feedback" data-status="" style="display:none;">
-<p>✅ Standard deviation = √(variance) = <strong>15.9</strong>%.</p>
+<p>✅ Standard deviation = √(variance) = <strong>19.99</strong>%.</p>
 </div>
 </div>
 </section>
@@ -760,13 +301,13 @@ Q2.
 </div>
 <section id="portfolio-weight-calculation-for-multiple-stocks" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="portfolio-weight-calculation-for-multiple-stocks">Portfolio Weight Calculation for Multiple Stocks</h2>
-<p>Suppose you purchase <strong>226</strong> shares of Company&nbsp;A at $<strong>34.83</strong> per share, <strong>118</strong> shares of Company&nbsp;B at $<strong>48.58</strong> per share, and <strong>141</strong> shares of Company&nbsp;C at $<strong>45.4</strong> per share.</p>
+<p>Suppose you purchase <strong>232</strong> shares of Company&nbsp;A at $<strong>55.55</strong> per share, <strong>149</strong> shares of Company&nbsp;B at $<strong>38.62</strong> per share, and <strong>26</strong> shares of Company&nbsp;C at $<strong>51.42</strong> per share.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q2a"><strong>1. What is the weight on Company&nbsp;A in your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q2a" name="module3_num_q2a" placeholder="Enter value" style="width: 150px;" data-correct-answer="39.35" data-tolerance="0.01">
+<label for="module3_num_q2a"><strong>1. What is the weight on Company&nbsp;A in your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q2a" name="module3_num_q2a" placeholder="Enter value" style="width: 150px;" data-correct-answer="64.51" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q2a" class="feedback" data-status="" style="display:none;">
-<p>✅ Weight on Company A = value_A / total_value × 100 = <strong>39.35</strong>%.</p>
+<p>✅ Weight on Company A = value_A / total_value × 100 = <strong>64.51</strong>%.</p>
 </div>
 </div>
 </section>
@@ -779,21 +320,21 @@ Q3.
 </div>
 <section id="portfolio-variance-and-standard-deviation-calculation" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="portfolio-variance-and-standard-deviation-calculation">Portfolio Variance and Standard Deviation Calculation</h2>
-<p>You invest <strong>84.18%</strong> of your funds in Asset A (volatility = <strong>18.26%</strong>) and <strong>15.82%</strong> in Asset B (volatility = <strong>22.76%</strong>). The correlation between the two assets is <strong>0.65</strong>.</p>
+<p>You invest <strong>23.16%</strong> of your funds in Asset A (volatility = <strong>14.97%</strong>) and <strong>76.84%</strong> in Asset B (volatility = <strong>18.62%</strong>). The correlation between the two assets is <strong>0.61</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q3a"><strong>1. What is the variance of your portfolio (in squared %)?</strong></label> <input type="number" id="module3_num_q3a" name="module3_num_q3a" placeholder="Enter value" style="width: 150px;" data-correct-answer="321.77" data-tolerance="0.01">
+<label for="module3_num_q3a"><strong>1. What is the variance of your portfolio (in squared %)?</strong></label> <input type="number" id="module3_num_q3a" name="module3_num_q3a" placeholder="Enter value" style="width: 150px;" data-correct-answer="277.78" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q3a" class="feedback" data-status="" style="display:none;">
-<p>✅ Portfolio variance = w²×sd₁² + (1−w)²×sd₂² + 2×w×(1−w)×sd₁×sd₂×ρ = <strong>321.77</strong>.</p>
+<p>✅ Portfolio variance = w²×sd₁² + (1−w)²×sd₂² + 2×w×(1−w)×sd₁×sd₂×ρ = <strong>277.78</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q3b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q3b" name="module3_num_q3b" placeholder="Enter value" style="width: 150px;" data-correct-answer="17.94" data-tolerance="0.01">
+<label for="module3_num_q3b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q3b" name="module3_num_q3b" placeholder="Enter value" style="width: 150px;" data-correct-answer="16.67" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q3b" class="feedback" data-status="" style="display:none;">
-<p>✅ Portfolio standard deviation = √(variance) = <strong>17.94</strong>%.</p>
+<p>✅ Portfolio standard deviation = √(variance) = <strong>16.67</strong>%.</p>
 </div>
 </div>
 </section>
@@ -806,13 +347,13 @@ Q4.
 </div>
 <section id="calculating-beta-using-covariance-and-market-variance" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="calculating-beta-using-covariance-and-market-variance">Calculating Beta Using Covariance and Market Variance</h2>
-<p>Given that the covariance between a stock and the market is <strong>5.02</strong> and the variance of the market is <strong>5.68</strong>,</p>
+<p>Given that the covariance between a stock and the market is <strong>4.47</strong> and the variance of the market is <strong>5.2</strong>,</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q4a"><strong>1. What is the beta of the stock?</strong></label> <!-- Two decimal places for the beta --> <input type="number" id="module3_num_q4a" name="module3_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.88" data-tolerance="0.01">
+<label for="module3_num_q4a"><strong>1. What is the beta of the stock?</strong></label> <!-- Two decimal places for the beta --> <input type="number" id="module3_num_q4a" name="module3_num_q4a" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.86" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q4a" class="feedback" data-status="" style="display:none;">
-<p>✅ Beta = Cov(asset, market) / Var(market) = <strong>0.88</strong>.</p>
+<p>✅ Beta = Cov(asset, market) / Var(market) = <strong>0.86</strong>.</p>
 </div>
 </div>
 </section>
@@ -825,21 +366,21 @@ Q5.
 </div>
 <section id="risk-premium-and-sharpe-ratio-calculation" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="risk-premium-and-sharpe-ratio-calculation">Risk Premium and Sharpe Ratio Calculation</h2>
-<p>An investment has an expected return of <strong>8.63%</strong>, a risk‑free rate of <strong>1.77%</strong>, and a volatility (standard deviation) of <strong>13.36%</strong>.</p>
+<p>An investment has an expected return of <strong>7.32%</strong>, a risk‑free rate of <strong>2.18%</strong>, and a volatility (standard deviation) of <strong>16.25%</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q5a"><strong>1. What is the risk premium (in %)?</strong></label> <!-- Two decimal places for the risk premium --> <input type="number" id="module3_num_q5a" name="module3_num_q5a" placeholder="Enter value" style="width: 150px;" data-correct-answer="6.86" data-tolerance="0.01">
+<label for="module3_num_q5a"><strong>1. What is the risk premium (in %)?</strong></label> <!-- Two decimal places for the risk premium --> <input type="number" id="module3_num_q5a" name="module3_num_q5a" placeholder="Enter value" style="width: 150px;" data-correct-answer="5.14" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q5a" class="feedback" data-status="" style="display:none;">
-<p>✅ Risk premium = expected return − risk‑free rate = <strong>6.86</strong>%.</p>
+<p>✅ Risk premium = expected return − risk‑free rate = <strong>5.14</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q5b"><strong>2. What is the Sharpe ratio (return per unit of risk)?</strong></label> <!-- Two decimal places for the Sharpe ratio --> <input type="number" id="module3_num_q5b" name="module3_num_q5b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.51" data-tolerance="0.01">
+<label for="module3_num_q5b"><strong>2. What is the Sharpe ratio (return per unit of risk)?</strong></label> <!-- Two decimal places for the Sharpe ratio --> <input type="number" id="module3_num_q5b" name="module3_num_q5b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.32" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q5b" class="feedback" data-status="" style="display:none;">
-<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.51</strong>.</p>
+<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.32</strong>.</p>
 </div>
 </div>
 </section>
@@ -852,21 +393,21 @@ Q6.
 </div>
 <section id="combining-risky-asset-and-riskfree-rate" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="combining-risky-asset-and-riskfree-rate">Combining Risky Asset and Risk‑Free Rate</h2>
-<p>You invest <strong>99.31%</strong> of your funds in a risky portfolio (expected return = <strong>9.48%</strong>, volatility = <strong>29.85%</strong>) and the remainder <strong>0.69%</strong> in the risk‑free asset (rate = <strong>2.92%</strong>).</p>
+<p>You invest <strong>40.29%</strong> of your funds in a risky portfolio (expected return = <strong>5.69%</strong>, volatility = <strong>12.4%</strong>) and the remainder <strong>59.71%</strong> in the risk‑free asset (rate = <strong>3.88%</strong>).</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q6a"><strong>1. What is the expected return of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6a" name="module3_num_q6a" placeholder="Enter value" style="width: 150px;" data-correct-answer="9.43" data-tolerance="0.01">
+<label for="module3_num_q6a"><strong>1. What is the expected return of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6a" name="module3_num_q6a" placeholder="Enter value" style="width: 150px;" data-correct-answer="4.61" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q6a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = w×ret_risky + (1−w)×Rf = <strong>9.43</strong>%.</p>
+<p>✅ Expected return = w×ret_risky + (1−w)×Rf = <strong>4.61</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q6b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6b" name="module3_num_q6b" placeholder="Enter value" style="width: 150px;" data-correct-answer="29.64" data-tolerance="0.01">
+<label for="module3_num_q6b"><strong>2. What is the standard deviation of your portfolio (in %)?</strong></label> <input type="number" id="module3_num_q6b" name="module3_num_q6b" placeholder="Enter value" style="width: 150px;" data-correct-answer="5" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q6b" class="feedback" data-status="" style="display:none;">
-<p>✅ Since the risk‑free asset has zero volatility, the portfolio’s volatility equals w×σ_risky = <strong>29.64</strong>%.</p>
+<p>✅ Since the risk‑free asset has zero volatility, the portfolio’s volatility equals w×σ_risky = <strong>5</strong>%.</p>
 </div>
 </div>
 </section>
@@ -879,13 +420,13 @@ Q7.
 </div>
 <section id="beta-of-a-threeasset-portfolio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="beta-of-a-threeasset-portfolio">Beta of a Three‑Asset Portfolio</h2>
-<p>You hold a portfolio composed of three assets with betas <strong>0.99</strong>, <strong>1.37</strong>, and <strong>0.23</strong>, invested in proportions <strong>90.45%</strong>, <strong>7.26%</strong>, and <strong>2.29%</strong>, respectively.</p>
+<p>You hold a portfolio composed of three assets with betas <strong>0.53</strong>, <strong>1.09</strong>, and <strong>0.08</strong>, invested in proportions <strong>9.37%</strong>, <strong>76.54%</strong>, and <strong>14.09%</strong>, respectively.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q7a"><strong>1. What is the beta of the portfolio?</strong></label> <input type="number" id="module3_num_q7a" name="module3_num_q7a" placeholder="Enter value" style="width: 150px;" data-correct-answer="1" data-tolerance="0.1">
+<label for="module3_num_q7a"><strong>1. What is the beta of the portfolio?</strong></label> <input type="number" id="module3_num_q7a" name="module3_num_q7a" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.89" data-tolerance="0.1">
 </form>
 <div id="feedback-module3_num_q7a" class="feedback" data-status="" style="display:none;">
-<p>✅ Portfolio beta = w₁×β₁ + w₂×β₂ + w₃×β₃ = <strong>1</strong>.</p>
+<p>✅ Portfolio beta = w₁×β₁ + w₂×β₂ + w₃×β₃ = <strong>0.89</strong>.</p>
 </div>
 </div>
 </section>
@@ -898,13 +439,13 @@ Q8.
 </div>
 <section id="expected-return-via-capm" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="expected-return-via-capm">Expected Return via CAPM</h2>
-<p>The risk‑free rate is <strong>3.09%</strong>, the market risk premium is <strong>6.41%</strong>, and the beta of the investment is <strong>1.32</strong>.</p>
+<p>The risk‑free rate is <strong>2.98%</strong>, the market risk premium is <strong>6.13%</strong>, and the beta of the investment is <strong>1.08</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q8a"><strong>1. What is the expected return of the investment according to the CAPM (in %)?</strong></label> <input type="number" id="module3_num_q8a" name="module3_num_q8a" placeholder="Enter value" style="width: 150px;" data-correct-answer="11.54" data-tolerance="0.01">
+<label for="module3_num_q8a"><strong>1. What is the expected return of the investment according to the CAPM (in %)?</strong></label> <input type="number" id="module3_num_q8a" name="module3_num_q8a" placeholder="Enter value" style="width: 150px;" data-correct-answer="9.59" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q8a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = Rf + β × (market risk premium) = <strong>11.54</strong>%.</p>
+<p>✅ Expected return = Rf + β × (market risk premium) = <strong>9.59</strong>%.</p>
 </div>
 </div>
 </section>
@@ -917,21 +458,21 @@ Q9.
 </div>
 <section id="variance-and-volatility-of-a-threeasset-portfolio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="variance-and-volatility-of-a-threeasset-portfolio">Variance and Volatility of a Three‑Asset Portfolio</h2>
-<p>You invest <strong>37.95%</strong>, <strong>39.78%</strong>, and <strong>22.28%</strong> of your funds in three assets with volatilities <strong>14.2%</strong>, <strong>25%</strong>, and <strong>35.92%</strong>, respectively. The pairwise correlations are ρ₁₂ = <strong>0.79</strong>, ρ₁₃ = <strong>-0.13</strong>, and ρ₂₃ = <strong>0.66</strong>.</p>
+<p>You invest <strong>54.96%</strong>, <strong>32.37%</strong>, and <strong>12.67%</strong> of your funds in three assets with volatilities <strong>14.07%</strong>, <strong>23.99%</strong>, and <strong>14.44%</strong>, respectively. The pairwise correlations are ρ₁₂ = <strong>0</strong>, ρ₁₃ = <strong>-0.07</strong>, and ρ₂₃ = <strong>-0.09</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q9a"><strong>1. What is the variance of the portfolio?</strong></label> <input type="number" id="module3_num_q9a" name="module3_num_q9a" placeholder="Enter value" style="width: 150px;" data-correct-answer="369.81" data-tolerance="0.01">
+<label for="module3_num_q9a"><strong>1. What is the variance of the portfolio?</strong></label> <input type="number" id="module3_num_q9a" name="module3_num_q9a" placeholder="Enter value" style="width: 150px;" data-correct-answer="118.99" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q9a" class="feedback" data-status="" style="display:none;">
-<p>✅ Variance = Σwᵢ²σᵢ² + 2Σ wᵢwⱼσᵢσⱼρᵢⱼ = <strong>369.81</strong>.</p>
+<p>✅ Variance = Σwᵢ²σᵢ² + 2Σ wᵢwⱼσᵢσⱼρᵢⱼ = <strong>118.99</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q9b"><strong>2. What is the standard deviation of the portfolio (in %)?</strong></label> <input type="number" id="module3_num_q9b" name="module3_num_q9b" placeholder="Enter value" style="width: 150px;" data-correct-answer="19.23" data-tolerance="0.01">
+<label for="module3_num_q9b"><strong>2. What is the standard deviation of the portfolio (in %)?</strong></label> <input type="number" id="module3_num_q9b" name="module3_num_q9b" placeholder="Enter value" style="width: 150px;" data-correct-answer="10.91" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q9b" class="feedback" data-status="" style="display:none;">
-<p>✅ Standard deviation = √(variance) = <strong>19.23</strong>%.</p>
+<p>✅ Standard deviation = √(variance) = <strong>10.91</strong>%.</p>
 </div>
 </div>
 </section>
@@ -944,29 +485,29 @@ Q10.
 </div>
 <section id="riskfree-combination-and-sharpe-ratio" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="riskfree-combination-and-sharpe-ratio">Risk‑Free Combination and Sharpe Ratio</h2>
-<p>You build a portfolio by combining the risk‑free asset (rate = <strong>3.47%</strong>) with a tangent portfolio (expected return = <strong>15.33%</strong>, volatility = <strong>18.34%</strong>) using a weight of <strong>60.48%</strong> in the tangent portfolio (weights greater than 100% imply leverage).</p>
+<p>You build a portfolio by combining the risk‑free asset (rate = <strong>3.98%</strong>) with a tangent portfolio (expected return = <strong>11.8%</strong>, volatility = <strong>17.64%</strong>) using a weight of <strong>135.54%</strong> in the tangent portfolio (weights greater than 100% imply leverage).</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q10a"><strong>1. What is the expected return of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10a" name="module3_num_q10a" placeholder="Enter value" style="width: 150px;" data-correct-answer="10.64" data-tolerance="0.01">
+<label for="module3_num_q10a"><strong>1. What is the expected return of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10a" name="module3_num_q10a" placeholder="Enter value" style="width: 150px;" data-correct-answer="14.58" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q10a" class="feedback" data-status="" style="display:none;">
-<p>✅ Expected return = w×ret_tan + (1−w)×Rf = <strong>10.64</strong>%.</p>
+<p>✅ Expected return = w×ret_tan + (1−w)×Rf = <strong>14.58</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q10b"><strong>2. What is the standard deviation of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10b" name="module3_num_q10b" placeholder="Enter value" style="width: 150px;" data-correct-answer="11.09" data-tolerance="0.01">
+<label for="module3_num_q10b"><strong>2. What is the standard deviation of your combined portfolio (in %)?</strong></label> <input type="number" id="module3_num_q10b" name="module3_num_q10b" placeholder="Enter value" style="width: 150px;" data-correct-answer="23.92" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q10b" class="feedback" data-status="" style="display:none;">
-<p>✅ Standard deviation = |w|×σ_tan = <strong>11.09</strong>%.</p>
+<p>✅ Standard deviation = |w|×σ_tan = <strong>23.92</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module3_num_q10c"><strong>3. What is the Sharpe ratio of your combined portfolio?</strong></label> <input type="number" id="module3_num_q10c" name="module3_num_q10c" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.65" data-tolerance="0.01">
+<label for="module3_num_q10c"><strong>3. What is the Sharpe ratio of your combined portfolio?</strong></label> <input type="number" id="module3_num_q10c" name="module3_num_q10c" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.44" data-tolerance="0.01">
 </form>
 <div id="feedback-module3_num_q10c" class="feedback" data-status="" style="display:none;">
-<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.65</strong>.</p>
+<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.44</strong>.</p>
 </div>
 </div>
 </section>
@@ -979,21 +520,21 @@ Q11.
 </div>
 <section id="sharpe-calculation" class="level2" style="flex: 1;">
 <h2 class="anchored" data-anchor-id="sharpe-calculation">Sharpe Calculation</h2>
-<p>An investment has an expected return of <strong>8.13%</strong>, a risk‑free rate of <strong>2.3%</strong>, and a volatility (standard deviation) of <strong>15.97%</strong>.</p>
+<p>An investment has an expected return of <strong>7.02%</strong>, a risk‑free rate of <strong>2.15%</strong>, and a volatility (standard deviation) of <strong>11.44%</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module2_num_q11a"><strong>1. What is the risk premium (in %)?</strong></label> <input type="number" id="module2_num_q11a" name="module2_num_q11a" placeholder="Enter value" style="width: 150px;" data-correct-answer="5.83" data-tolerance="0.1">
+<label for="module2_num_q11a"><strong>1. What is the risk premium (in %)?</strong></label> <input type="number" id="module2_num_q11a" name="module2_num_q11a" placeholder="Enter value" style="width: 150px;" data-correct-answer="4.87" data-tolerance="0.1">
 </form>
 <div id="feedback-module2_num_q11a" class="feedback" data-status="" style="display:none;">
-<p>✅ Risk premium = expected return − risk‑free rate = <strong>5.83</strong>%.</p>
+<p>✅ Risk premium = expected return − risk‑free rate = <strong>4.87</strong>%.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: row; gap: 6px;">
-<label for="module2_num_q11b"><strong>2. What is the Sharpe ratio?</strong></label> <input type="number" id="module2_num_q11b" name="module2_num_q11b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.365" data-tolerance="0.01">
+<label for="module2_num_q11b"><strong>2. What is the Sharpe ratio?</strong></label> <input type="number" id="module2_num_q11b" name="module2_num_q11b" placeholder="Enter value" style="width: 150px;" data-correct-answer="0.426" data-tolerance="0.01">
 </form>
 <div id="feedback-module2_num_q11b" class="feedback" data-status="" style="display:none;">
-<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.365</strong>.</p>
+<p>✅ Sharpe ratio = risk premium / volatility = <strong>0.426</strong>.</p>
 </div>
 </div>
 </section>
@@ -1126,20 +667,14 @@ Show Feedback
 
 </div>
 </div>
-</section></main></div>
-<!-- Fecha #after-login-content -->
-<script>
-  document.documentElement.classList.remove("locked");
-  if (document.body) document.body.classList.remove("locked");
-</script>
 <div style="text-align: center; margin-top: 2rem;">
 <p><a href="../../../teaching/financial_strategy/" class="btn btn-outline-primary btn-lg"> 🔙 </a></p>
 </div>
 
 
+</section>
 
-
- <!-- /main -->
+</main> <!-- /main -->
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -1733,7 +1268,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
- <!-- /content -->
+</div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">

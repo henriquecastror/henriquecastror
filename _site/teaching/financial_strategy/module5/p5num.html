@@ -222,7 +222,7 @@ For students
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Last updated:</strong> 23/09/2025 23:04</p>
+<p><strong>Last updated:</strong> 09/01/2026 13:23</p>
 <p>The questions are based on or inspired by the following references:</p>
 <ul>
 <li><a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"><strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed.&nbsp;(2020)</strong></a><br>
@@ -243,24 +243,12 @@ For students
 <tr class="header">
 <th style="text-align: center;">Module</th>
 <th style="text-align: center;">Chapter</th>
-<th style="text-align: center;">Slides</th>
-<th style="text-align: center;">T/F</th>
-<th style="text-align: center;">MCQ</th>
-<th style="text-align: center;">Numeric</th>
-<th style="text-align: center;">Long</th>
-<th style="text-align: center;">Self-quiz</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">5</td>
 <td style="text-align: center;">ch13</td>
-<td style="text-align: center;"><a href="p5.html">🎞️</a></td>
-<td style="text-align: center;"><a href="p5tf.html">✅</a></td>
-<td style="text-align: center;"><a href="p5mcq.html">❓</a></td>
-<td style="text-align: center;"><a href="p5num.html">🔢</a></td>
-<td style="text-align: center;"><a href="p5long.html">📝</a></td>
-<td style="text-align: center;"><a href="p5selfquiz.html">🧪</a></td>
 </tr>
 </tbody>
 </table>
@@ -268,453 +256,6 @@ For students
 <p><strong>Answer the following questions based on the discussions in class.</strong></p>
 <script>
   const SLIDE_ID = "module5_p5num";
-</script>
-<!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
-<style>
-  /* Card padrão (páginas normais) */
-  #login-form {
-    max-width: 300px;
-    margin: 100px auto 40px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    background: #fff;
-    box-sizing: border-box;
-  }
-  #login-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  /* ✅ FIX layout do checkbox: não herdar width/padding dos inputs de texto */
-  #login-form input[type="checkbox"] {
-    width: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    vertical-align: middle;
-  }
-
-  #login-form button {
-    width: 100%; padding: 10px; margin-top: 10px;
-    background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
-  }
-  #login-error { color: red; text-align: center; margin-top: 10px; }
-  #loading-msg{ display:none; text-align:center; margin-top:10px; color:gray; }
-
-  /* Desabilitado durante autenticação */
-  #login-form button:disabled { opacity:.6; cursor:not-allowed; }
-  #login-form input:disabled  { opacity:.7; }
-
-  /* Conteúdo de páginas normais (fica atrás do login até destravar) */
-  html.locked #after-login-content,
-  body.locked #after-login-content { display: none !important; }
-
-  /* Slides (Reveal.js): desfoca deck e bloqueia interação */
-  html.locked.reveal-page .reveal,
-  body.locked.reveal-page .reveal { filter: blur(4px); pointer-events: none; user-select: none; }
-
-  #login-scrim { display:none; }
-  html.locked.reveal-page #login-scrim,
-  body.locked.reveal-page #login-scrim{
-    display:block; position:fixed; inset:0; background:rgba(255,255,255,.92); z-index:9998;
-  }
-  html.locked.reveal-page #login-form,
-  body.locked.reveal-page #login-form{
-    position: fixed; top:50%; left:50%; transform: translate(-50%,-50%);
-    margin:0; max-width:340px; width:min(340px,92vw); z-index:9999;
-  }
-
-  /* Oculta o "Welcome" nos slides */
-  .reveal-page #welcome-message { display: none !important; }
-
-  /* Remember me */
-  .remember-row{
-    display:flex; align-items:center; gap:8px; margin-top:6px; font-size:.95rem; color:#444; white-space:nowrap;
-  }
-  .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
-
-  /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim) */
-  html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
-    display: none !important;
-  }
-
-  /* Garante que o form fique acima de qualquer layout do tema */
-  #login-form { position: relative; z-index: 10000; }
-  #login-scrim { z-index: 9998; }
-
-  /* Scrim e formulário fixos também em páginas NÃO-reveal enquanto locked */
-  html.locked #login-scrim,
-  body.locked #login-scrim {
-    display: block !important;
-    position: fixed !important;
-    inset: 0 !important;
-    background: #ffffff !important;
-    z-index: 2147483646 !important;
-  }
-  html.locked #login-form,
-  body.locked #login-form {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    max-width: 340px !important;
-    width: min(340px, 92vw) !important;
-    z-index: 2147483647 !important;
-  }
-
-  /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
-  html.locked, body.locked { overflow: hidden !important; }
-
-  /* 🔒 Blindagem extra contra webexercises esconder a checkbox */
-  #login-form .remember-row { display:flex !important; visibility:visible !important; }
-  #login-form #remember-me { display:inline-block !important; }
-
-  /* 🧼 Esconde imediatamente artefatos escapados (qualquer descendente code/pre/sourceCode etc) DENTRO do form */
-  #login-form pre,
-  #login-form code,
-  #login-form .sourceCode,
-  #login-form .sourcecode,
-  #login-form .quarto-code-cell,
-  #login-form .cell-output,
-  #login-form .cell-output-display,
-  #login-form .cell { display: none !important; }
-</style>
-<!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
-<script>
-  (function(){
-    const addLocked = el => { if (el && !el.classList.contains('locked')) el.classList.add('locked'); };
-    addLocked(document.documentElement);
-    if (document.body) { addLocked(document.body); }
-    else { document.addEventListener('DOMContentLoaded', () => addLocked(document.body)); }
-
-    // preconnect/dns-prefetch para acelerar chamadas ao GAS de login
-    try {
-      const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
-      const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
-    } catch(_) {}
-  })();
-</script>
-<!-- shim seguro: define onLoginSuccess se ainda não existir -->
-<script>
-  if (typeof window.onLoginSuccess !== 'function') {
-    window.onLoginSuccess = function(studentId){
-      try {
-        const sid = String(studentId || '').trim();
-        window.studentId = sid;
-        localStorage.setItem('studentId', sid);
-        // compat com widgets antigos
-        document.dispatchEvent(new CustomEvent('auth:login',   { detail: { studentId: sid } }));
-        setTimeout(() => window.dispatchEvent(new CustomEvent('login:success', { detail:{ studentId: sid } })), 0);
-        // hook imediato para o notice center (se já carregado)
-        if (window.noticeCenter && typeof window.noticeCenter.onLogin === 'function') {
-          window.noticeCenter.onLogin(sid);
-        }
-        if (window.VHCM) window.VHCM.lastLoginAt = Date.now();
-        console.debug('[Login] onLoginSuccess →', sid);
-      } catch(e) {
-        console.warn('onLoginSuccess shim warn:', e);
-      }
-    };
-  }
-</script>
-<form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
-<h3 style="text-align:center;" class="anchored">
-Login
-</h3>
-<p><input type="text" id="username" placeholder="Username" autocomplete="username" required=""> <input type="password" id="password" placeholder="Password" autocomplete="current-password" required=""></p>
-<!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
-<div class="remember-row">
-<pre><code>&lt;input type="checkbox" id="remember-me" checked /&gt;
-&lt;label for="remember-me"&gt;Remember me&lt;/label&gt;</code></pre>
-</div>
-<button type="submit" id="login-submit">
-Enter
-</button>
-<div id="loading-msg">
-
-</div>
-<div id="login-error">
-
-</div>
-</form>
-<div id="login-scrim" aria-hidden="true">
-
-</div>
-<div id="after-login-content" style="display:none;">
-<h4 id="welcome-message" style="text-align:center; display:none; margin-top:10px; font-size:1.8em; color:#333;" class="anchored">
-</h4>
-</div>
-<script>
-  /***** CONFIG *****/
-  const REMEMBER_PASSWORD  = true;
-  const GAS_URL            = 'https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec';
-  const SESSION_MAX_HOURS  = 8;     // validade do "lembrado"
-  const FAST_WINDOW_HOURS  = 2;     // turbo: libera instantâneo
-  const VALIDATE_TIMEOUTMS = 3000;  // timeout da validação
-
-  /* 🔥 Warm-up silencioso do GAS: acorda a função antes do 1º login real */
-  window.addEventListener('load', () => {
-    try {
-      const warm = new Image();
-      warm.referrerPolicy = 'no-referrer';
-      warm.src = `${GAS_URL}?username=&password=&page=WARMUP&t=${Date.now()}`;
-    } catch(_) {}
-  });
-
-  /***** Marca slides (se houver Reveal) *****/
-  document.addEventListener('DOMContentLoaded', () => {
-    if (document.querySelector('.reveal')) document.body.classList.add('reveal-page');
-  });
-
-  /***** Pré-preenche campos com Remember (se houver) *****/
-  document.addEventListener('DOMContentLoaded', () => {
-    try{
-      const u = localStorage.getItem('fs_user');
-      const p = localStorage.getItem('fs_pass');
-      if (u) document.getElementById('username').value = u;
-      if (REMEMBER_PASSWORD && p) document.getElementById('password').value = p;
-    }catch(_){}
-  });
-
-  /***** Storage helpers *****/
-  function saveRemember(u,p,checked){
-    try{
-      if(checked){
-        localStorage.setItem('fs_user', u);
-        localStorage.setItem('fs_last_login_at', Date.now().toString());
-        if (REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
-      }else{
-        localStorage.removeItem('fs_user'); localStorage.removeItem('fs_pass'); localStorage.removeItem('fs_last_login_at');
-      }
-    }catch(_){}
-  }
-  function getRemember(){
-    try{
-      const u=localStorage.getItem('fs_user');
-      const p=localStorage.getItem('fs_pass');
-      const t=parseInt(localStorage.getItem('fs_last_login_at')||'0',10);
-      if(!u||!t) return null; return {u,p,t};
-    }catch(_){ return null; }
-  }
-  const within=(ts,h)=> (Date.now()-ts) < h*3600*1000;
-
-  /* 🔒 Desativa/Reativa o form durante autenticação */
-  function setAuthLoading(isLoading){
-    const btn = document.getElementById('login-submit');
-    const u   = document.getElementById('username');
-    const p   = document.getElementById('password');
-    const cb  = document.getElementById('remember-me');
-    if (btn){
-      btn.disabled = isLoading;
-      btn.textContent = isLoading ? 'Signing in...' : 'Enter';
-    }
-    [u,p,cb].forEach(el => { if (el) el.disabled = isLoading; });
-  }
-
-  /***** GAS helpers *****/
-  function logWithImage(u,p,page){
-    const img=new Image(); img.referrerPolicy='no-referrer';
-    img.src=`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}&t=${Date.now()}`;
-  }
-  async function gasAuth(u,p,page,timeoutMs){
-    async function _once(ms){
-      const ctrl=new AbortController();
-      const timer=setTimeout(()=>ctrl.abort('timeout'), ms||0);
-      try{
-        const res=await fetch(`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}`, {signal:ctrl.signal, cache:'no-store'});
-        return (await res.text()||'').trim();
-      } finally { clearTimeout(timer); }
-    }
-    try{
-      return await _once(timeoutMs||12000);   // 1ª tentativa
-    }catch(_){
-      return await _once(15000);              // retry mais folgado
-    }
-  }
-
-  /***** UI helpers *****/
-  function unlockAs(u){
-    const welcome=document.getElementById('welcome-message');
-    if (welcome && !document.body.classList.contains('reveal-page')){
-      welcome.textContent=`Welcome, ${u}!`; welcome.style.display='block';
-    }
-    document.getElementById('login-form').style.display='none';
-    const after=document.getElementById('after-login-content'); if(after) after.style.display='block';
-
-    // Remover 'locked' de html e body
-    document.documentElement.classList.remove('locked');
-    if (document.body) document.body.classList.remove('locked');
-
-    const scrim=document.getElementById('login-scrim'); if(scrim) scrim.style.display='none';
-  }
-
-  /***** Auto-login com janela turbo (também nos slides) *****/
-  document.addEventListener('DOMContentLoaded', async () => {
-    const saved=getRemember(); if(!saved) return;
-    const page=location.pathname;
-
-    if (within(saved.t, FAST_WINDOW_HOURS)) {
-      // libera já e registra em background
-      unlockAs(saved.u);
-      onLoginSuccess(saved.u); // mantém studentId para outros scripts
-
-      saveRemember(saved.u, saved.p, true);
-      logWithImage(saved.u, saved.p, page);
-
-      // checagem silenciosa (opcional)
-      try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* opcional: relock */ } } catch(_) {}
-      return;
-    }
-
-    if (within(saved.t, SESSION_MAX_HOURS)) {
-      const loading=document.getElementById('loading-msg');
-      loading.textContent='Checking saved login...'; loading.style.display='block';
-      try{
-        const r=await gasAuth(saved.u, saved.p, page, VALIDATE_TIMEOUTMS);
-        loading.style.display='none';
-        if(r==='OK'){ unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); }
-      }catch(_){
-        // timeout: libera e registra em background
-        loading.style.display='none';
-        unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); logWithImage(saved.u, saved.p, page);
-      }
-    }
-  });
-
-  /***** Login manual *****/
-  async function validateLogin(rememberOverride){
-    const u=document.getElementById('username').value.trim();
-    const p=document.getElementById('password').value.trim();
-    const cb=document.getElementById('remember-me');
-    const remember = (rememberOverride!==undefined) ? rememberOverride : (cb? cb.checked : true);
-
-    const err=document.getElementById('login-error');
-    const load=document.getElementById('loading-msg');
-    err.textContent='';
-    load.textContent='Authenticating your credentials. This may take a few seconds...';
-    load.style.display='block';
-    setAuthLoading(true);
-
-    const page=location.pathname;
-    try{
-      const r=await gasAuth(u,p,page,VALIDATE_TIMEOUTMS);
-      load.style.display='none';
-      if (r==='OK'){ saveRemember(u,p,remember); unlockAs(u); onLoginSuccess(u); }
-      else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
-      else { err.textContent='Missing credentials.'; }
-    }catch(_){
-      load.textContent=''; err.textContent='Network error. Please try again.';
-    }finally{
-      if (document.getElementById('login-form').style.display !== 'none') {
-        setAuthLoading(false);
-      }
-    }
-  }
-
-  // Auto preenche (se já houver credenciais lembradas)
-  document.addEventListener('DOMContentLoaded', ()=>{
-    try{
-      const u=localStorage.getItem('fs_user'); const p=localStorage.getItem('fs_pass');
-      if(u){ document.getElementById('username').value=u; }
-      if(p && REMEMBER_PASSWORD){ document.getElementById('password').value=p; }
-      const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
-    }catch(_){}
-  });
-
-  /* Auto-wrap robusto — apenas para páginas NÃO-Reveal */
-  document.addEventListener('DOMContentLoaded', () => {
-    try {
-      if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) return;
-
-      const wrapper = document.getElementById('after-login-content');
-      if (!wrapper) return;
-
-      const root = wrapper.parentElement || document.body;
-      const loginForm  = document.getElementById('login-form');
-      const loginScrim = document.getElementById('login-scrim');
-
-      const isKeep = (el) =>
-        el === wrapper || el === loginForm || el === loginScrim ||
-        el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'LINK';
-
-      Array.from(root.children).forEach(el => {
-        if (!isKeep(el) && !wrapper.contains(el)) {
-          wrapper.appendChild(el);
-        }
-      });
-    } catch (e) {
-      console.warn('auto-wrap (non-reveal) warn:', e);
-    }
-  });
-
-  /* 🔒 Fallback: recria a checkbox se webexercises a remover (estrutura input+label) */
-  document.addEventListener('DOMContentLoaded', () => {
-    const form=document.getElementById('login-form');
-    if(!form) return;
-    if(!document.getElementById('remember-me')){
-      const row=document.createElement('div');
-      row.className='remember-row';
-
-      const input=document.createElement('input');
-      input.type='checkbox';
-      input.id='remember-me';
-      input.checked=true;
-
-      const label=document.createElement('label');
-      label.htmlFor='remember-me';
-      label.appendChild(document.createTextNode(' Remember me'));
-
-      row.appendChild(input);
-      row.appendChild(label);
-
-      const btn=document.getElementById('login-submit');
-      form.insertBefore(row, btn);
-    }
-  });
-
-  /* 🧹 Sanitizador: remove artefatos (pre/code/sourceCode/cell) do remember dentro do form (em QUALQUER profundidade) */
-  (function(){
-    function looksLikeRememberLine(txt){
-      if(!txt) return false;
-      const t = txt.trim();
-      return /<\s*input[^>]*type=["']checkbox["'][^>]*id=["']remember-me["']/i.test(t) ||
-             /<\s*label[^>]*for=["']remember-me["'][^>]*>/i.test(t);
-    }
-    function cleanRememberArtifacts(){
-      const form = document.getElementById('login-form');
-      if(!form) return;
-
-      // Remove blocos típicos do Quarto/knitr que contêm o HTML escapado
-      form.querySelectorAll('pre, code, .sourceCode, .sourcecode, .quarto-code-cell, .cell-output, .cell-output-display, .cell')
-        .forEach(el => { if(looksLikeRememberLine(el.textContent)) el.remove(); });
-
-      // Remove nós de texto “crus” em qualquer nível
-      const treeWalker = document.createTreeWalker(form, NodeFilter.SHOW_TEXT, null);
-      const toRemove = [];
-      while(treeWalker.nextNode()){
-        const n = treeWalker.currentNode;
-        if(looksLikeRememberLine(n.textContent)) toRemove.push(n);
-      }
-      toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
-    }
-
-    if (document.readyState !== 'loading') cleanRememberArtifacts();
-    else document.addEventListener('DOMContentLoaded', cleanRememberArtifacts);
-
-    // Observa mudanças no form inteiro (subtree) para limpar assim que surgir
-    const formObs = document.getElementById('login-form');
-    if (formObs) new MutationObserver(cleanRememberArtifacts)
-      .observe(formObs, { childList: true, subtree: true });
-  })();
-
 </script>
 <div class="webex-box">
 <div style="display: flex; align-items: start; gap: 8px;">
@@ -814,30 +355,30 @@ Q2.
 <div style="flex: 1;">
 <div class="question">
 <p><strong>Informed vs.&nbsp;Fad Followers vs.&nbsp;Passive: Who Earns Alpha?</strong></p>
-<p>In a market with <strong>73% passive</strong>, <strong>3% informed</strong>, and <strong>24% fad followers</strong>, the informed trade a portfolio with <strong>β = 1.68</strong> and <strong>E[R] = 16%</strong>.<br>
-Given <strong>R<sub>f</sub> = 5%</strong>, <strong>E[R<sub>m</sub>] = 12%</strong> (<strong>MRP = 7%</strong>):</p>
+<p>In a market with <strong>79% passive</strong>, <strong>4% informed</strong>, and <strong>17% fad followers</strong>, the informed trade a portfolio with <strong>β = 1.39</strong> and <strong>E[R] = 16%</strong>.<br>
+Given <strong>R<sub>f</sub> = 5%</strong>, <strong>E[R<sub>m</sub>] = 11%</strong> (<strong>MRP = 6%</strong>):</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module5_num_q2a"><strong>2a. Informed investors’ alpha (bp):</strong></label> <input type="number" id="module5_num_q2a" name="module5_num_q2a" style="width:180px;" data-correct-answer="-76" data-tolerance="1" step="1">
+<label for="module5_num_q2a"><strong>2a. Informed investors’ alpha (bp):</strong></label> <input type="number" id="module5_num_q2a" name="module5_num_q2a" style="width:180px;" data-correct-answer="266" data-tolerance="1" step="1">
 </form>
 <div id="feedback-module5_num_q2a" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Informed α</strong><br> CAPM prediction = R<sub>f</sub> + β(R<sub>m</sub> − R<sub>f</sub>) = 16.76%.<br> Observed E[R] = 16%.<br> α<sub>informed</sub> = E[R] − CAPM = 16% − 16.76% = <strong>-76 bp</strong>.</p>
+<p>✅ <strong>Informed α</strong><br> CAPM prediction = R<sub>f</sub> + β(R<sub>m</sub> − R<sub>f</sub>) = 13.34%.<br> Observed E[R] = 16%.<br> α<sub>informed</sub> = E[R] − CAPM = 16% − 13.34% = <strong>266 bp</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q2b"><strong>2b. Fad followers’ expected return (in %):</strong></label> <input type="number" id="module5_num_q2b" name="module5_num_q2b" style="width:200px;" data-correct-answer="-9.6" data-tolerance="0.05" step="0.01">
+<label for="module5_num_q2b"><strong>2b. Fad followers’ expected return (in %):</strong></label> <input type="number" id="module5_num_q2b" name="module5_num_q2b" style="width:200px;" data-correct-answer="-7.89" data-tolerance="0.05" step="0.01">
 </form>
 <div id="feedback-module5_num_q2b" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Fad followers’ E[R]</strong><br> Within the <em>trading segment</em> (informed + fad), expected return must match the CAPM prediction for the counterparty exposure:<br> E[R]<sub>traded</sub> (CAPM) = R<sub>f</sub> − β(R<sub>m</sub> − R<sub>f</sub>) = <strong>-6.76%</strong>.<br> Let weights inside the trading segment be w<sub>I</sub>=11% and w<sub>F</sub>=89%. Then:<br> w<sub>I</sub>E[R]<sub>I</sub> + w<sub>F</sub>E[R]<sub>F</sub> = E[R]<sub>traded</sub> ⇒ E[R]<sub>F</sub> = (E[R]<sub>traded</sub> − w<sub>I</sub>E[R]<sub>I</sub>)/w<sub>F</sub> = <strong>-9.6%</strong>.</p>
+<p>✅ <strong>Fad followers’ E[R]</strong><br> Within the <em>trading segment</em> (informed + fad), expected return must match the CAPM prediction for the counterparty exposure:<br> E[R]<sub>traded</sub> (CAPM) = R<sub>f</sub> − β(R<sub>m</sub> − R<sub>f</sub>) = <strong>-3.34%</strong>.<br> Let weights inside the trading segment be w<sub>I</sub>=19% and w<sub>F</sub>=81%. Then:<br> w<sub>I</sub>E[R]<sub>I</sub> + w<sub>F</sub>E[R]<sub>F</sub> = E[R]<sub>traded</sub> ⇒ E[R]<sub>F</sub> = (E[R]<sub>traded</sub> − w<sub>I</sub>E[R]<sub>I</sub>)/w<sub>F</sub> = <strong>-7.89%</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center;">
-<label for="module5_num_q2c"><strong>2c. Fad followers’ alpha (bp) <em>(vs CAPM with β of informed)</em>:</strong></label> <input type="number" id="module5_num_q2c" name="module5_num_q2c" style="width:240px;" data-correct-answer="-2636.5" data-tolerance="1" step="1">
+<label for="module5_num_q2c"><strong>2c. Fad followers’ alpha (bp) <em>(vs CAPM with β of informed)</em>:</strong></label> <input type="number" id="module5_num_q2c" name="module5_num_q2c" style="width:240px;" data-correct-answer="-2123.1" data-tolerance="1" step="1">
 </form>
 <div id="feedback-module5_num_q2c" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Fad followers’ α</strong><br> We evaluate α against the same β used by the informed portfolio (as in the textbook exercise). CAPM benchmark = <strong>16.76%</strong>.<br> E[R]<sub>F</sub> = <strong>-9.6%</strong> ⇒ α<sub>F</sub> = E[R]<sub>F</sub> − CAPM = <strong>-2636.5 bp</strong>.<br> Interpretation: informed earn positive α (skill), the <em>counterparty</em> earns negative α; the passive investor (market) earns zero α.</p>
+<p>✅ <strong>Fad followers’ α</strong><br> We evaluate α against the same β used by the informed portfolio (as in the textbook exercise). CAPM benchmark = <strong>13.34%</strong>.<br> E[R]<sub>F</sub> = <strong>-7.89%</strong> ⇒ α<sub>F</sub> = E[R]<sub>F</sub> − CAPM = <strong>-2123.1 bp</strong>.<br> Interpretation: informed earn positive α (skill), the <em>counterparty</em> earns negative α; the passive investor (market) earns zero α.</p>
 </div>
 </div>
 </div>
@@ -852,22 +393,22 @@ Q3.
 <div style="flex: 1;">
 <div class="question">
 <p><strong>Skill, Fees, and Equilibrium AUM </strong></p>
-<p>A manager can generate <strong>α = 2.7%</strong> per year up to <strong>$747m</strong> of capital; above that, incremental α ≈ 0.<br>
-The fund charges <strong>0.7%</strong> on total AUM. Assume investors flock in until <strong>net α = 0</strong>.</p>
+<p>A manager can generate <strong>α = 1.3%</strong> per year up to <strong>$359m</strong> of capital; above that, incremental α ≈ 0.<br>
+The fund charges <strong>0.6%</strong> on total AUM. Assume investors flock in until <strong>net α = 0</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q3a"><strong>3a. Equilibrium AUM (in $ millions):</strong></label> <input type="number" id="module5_num_q3a" name="module5_num_q3a" style="width:220px;" data-correct-answer="2881" data-tolerance="1" step="1">
+<label for="module5_num_q3a"><strong>3a. Equilibrium AUM (in $ millions):</strong></label> <input type="number" id="module5_num_q3a" name="module5_num_q3a" style="width:220px;" data-correct-answer="778" data-tolerance="1" step="1">
 </form>
 <div id="feedback-module5_num_q3a" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Equilibrium AUM</strong><br> Dollar alpha at capacity: α × capacity = 2.7% × $747m = <strong>$20.17m</strong> per year.<br> At equilibrium, investors add capital until <strong>dollar α = fees</strong>:<br> fee × AUM = 0.7% × AUM = $20.17m ⇒ AUM = $2881m (rounded).</p>
+<p>✅ <strong>Equilibrium AUM</strong><br> Dollar alpha at capacity: α × capacity = 1.3% × $359m = <strong>$4.67m</strong> per year.<br> At equilibrium, investors add capital until <strong>dollar α = fees</strong>:<br> fee × AUM = 0.6% × AUM = $4.67m ⇒ AUM = $778m (rounded).</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q3b"><strong>3b. Annual fee revenue at equilibrium (in $ millions):</strong></label> <input type="number" id="module5_num_q3b" name="module5_num_q3b" style="width:240px;" data-correct-answer="20.17" data-tolerance="0.1" step="0.01">
+<label for="module5_num_q3b"><strong>3b. Annual fee revenue at equilibrium (in $ millions):</strong></label> <input type="number" id="module5_num_q3b" name="module5_num_q3b" style="width:240px;" data-correct-answer="4.67" data-tolerance="0.1" step="0.01">
 </form>
 <div id="feedback-module5_num_q3b" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Fee revenue at equilibrium</strong><br> Fee revenue = fee × AUM = 0.7% × $2881m = <strong>$20.17m</strong> per year.<br> Notice this equals the manager’s <strong>dollar α at capacity</strong>: $20.17m.<br>
+<p>✅ <strong>Fee revenue at equilibrium</strong><br> Fee revenue = fee × AUM = 0.6% × $778m = <strong>$4.67m</strong> per year.<br> Notice this equals the manager’s <strong>dollar α at capacity</strong>: $4.67m.<br>
 Intuition: competition drives <strong>net α to investors ≈ 0</strong>; skilled managers capture the rents via fees.</p>
 </div>
 </div>
@@ -883,13 +424,13 @@ Q4.
 <div style="flex: 1;">
 <div class="question">
 <p><strong>Cumulative Abnormal Return (CAR) Around News</strong></p>
-<p>A firm-specific news generates an <strong>event-day abnormal return = 0.59%</strong>, followed by <strong>4 days</strong> with an <strong>average abnormal return of 0.09% per day</strong>.</p>
+<p>A firm-specific news generates an <strong>event-day abnormal return = 1.35%</strong>, followed by <strong>3 days</strong> with an <strong>average abnormal return of 0.17% per day</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; flex-wrap:wrap;">
-<label for="module5_num_q4a"><strong>4a. CAR over the event window (%):</strong></label> <input type="number" id="module5_num_q4a" name="module5_num_q4a" style="width:200px;" data-correct-answer="0.95" data-tolerance="0.01" step="0.01" placeholder="e.g., 2.35 for 2.35%">
+<label for="module5_num_q4a"><strong>4a. CAR over the event window (%):</strong></label> <input type="number" id="module5_num_q4a" name="module5_num_q4a" style="width:200px;" data-correct-answer="1.86" data-tolerance="0.01" step="0.01" placeholder="e.g., 2.35 for 2.35%">
 </form>
 <div id="feedback-module5_num_q4a" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>CAR logic (in %):</strong> Sum abnormal returns over the window.<br> CAR = AR<sub>0</sub> + ∑<sub>t&gt;0</sub> AR<sub>t</sub> = 0.59% + 4 × 0.09% = <strong>0.95%</strong>.<br><br> <em>Interpretation:</em> Under semi-strong EMH, prices should adjust quickly to news.<br>
+<p>✅ <strong>CAR logic (in %):</strong> Sum abnormal returns over the window.<br> CAR = AR<sub>0</sub> + ∑<sub>t&gt;0</sub> AR<sub>t</sub> = 1.35% + 3 × 0.17% = <strong>1.86%</strong>.<br><br> <em>Interpretation:</em> Under semi-strong EMH, prices should adjust quickly to news.<br>
 A post-event drift (positive or negative) may indicate delayed reaction or under/overreaction.</p>
 </div>
 </div>
@@ -905,31 +446,31 @@ Q5.
 <div style="flex: 1;">
 <div class="question">
 <p><strong>Momentum Long–Short</strong></p>
-<p>A momentum strategy buys past <strong>winners</strong> and shorts <strong>losers</strong> (equal weights). Next period: winners return <strong>15%</strong>, losers return <strong>-1%</strong>; the strategy beta is <strong>β = 0.08</strong>.<br>
-Assume <strong>R<sub>f</sub> = 4%</strong>, <strong>MRP = 6%</strong>.</p>
+<p>A momentum strategy buys past <strong>winners</strong> and shorts <strong>losers</strong> (equal weights). Next period: winners return <strong>26%</strong>, losers return <strong>12%</strong>; the strategy beta is <strong>β = 0.08</strong>.<br>
+Assume <strong>R<sub>f</sub> = 5%</strong>, <strong>MRP = 6%</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q5a"><strong>5a. Long–short return (in %):</strong></label> <input type="number" id="module5_num_q5a" name="module5_num_q5a" style="width:200px;" data-correct-answer="16" data-tolerance="0.05" step="0.01">
+<label for="module5_num_q5a"><strong>5a. Long–short return (in %):</strong></label> <input type="number" id="module5_num_q5a" name="module5_num_q5a" style="width:200px;" data-correct-answer="14" data-tolerance="0.05" step="0.01">
 </form>
 <div id="feedback-module5_num_q5a" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Long–short return</strong><br> Spread = E[R]<sub>winners</sub> − E[R]<sub>losers</sub> = 15% − -1% = <strong>16%</strong>.</p>
+<p>✅ <strong>Long–short return</strong><br> Spread = E[R]<sub>winners</sub> − E[R]<sub>losers</sub> = 26% − 12% = <strong>14%</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q5b"><strong>5b. CAPM required return for this portfolio (in %):</strong></label> <input type="number" id="module5_num_q5b" name="module5_num_q5b" style="width:260px;" data-correct-answer="4.48" data-tolerance="0.05" step="0.01">
+<label for="module5_num_q5b"><strong>5b. CAPM required return for this portfolio (in %):</strong></label> <input type="number" id="module5_num_q5b" name="module5_num_q5b" style="width:260px;" data-correct-answer="5.48" data-tolerance="0.05" step="0.01">
 </form>
 <div id="feedback-module5_num_q5b" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>CAPM required return</strong><br> E[R]<sub>CAPM</sub> = R<sub>f</sub> + β × MRP = 4% + (0.08) × 6% = <strong>4.48%</strong>.<br>
+<p>✅ <strong>CAPM required return</strong><br> E[R]<sub>CAPM</sub> = R<sub>f</sub> + β × MRP = 5% + (0.08) × 6% = <strong>5.48%</strong>.<br>
 When β is near zero, CAPM says the expected long–short return should be close to the risk‑free rate.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q5c"><strong>5c. Alpha (in %):</strong></label> <input type="number" id="module5_num_q5c" name="module5_num_q5c" style="width:200px;" data-correct-answer="11.52" data-tolerance="0.05" step="0.01">
+<label for="module5_num_q5c"><strong>5c. Alpha (in %):</strong></label> <input type="number" id="module5_num_q5c" name="module5_num_q5c" style="width:200px;" data-correct-answer="8.52" data-tolerance="0.05" step="0.01">
 </form>
 <div id="feedback-module5_num_q5c" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Alpha</strong><br> α = Realized long–short return − CAPM required = 16% − 4.48% = <strong>11.52%</strong>.<br> If α &gt; 0 with β ≈ 0, momentum delivers returns not explained by market β → evidence of a factor or behavioral effect.</p>
+<p>✅ <strong>Alpha</strong><br> α = Realized long–short return − CAPM required = 14% − 5.48% = <strong>8.52%</strong>.<br> If α &gt; 0 with β ≈ 0, momentum delivers returns not explained by market β → evidence of a factor or behavioral effect.</p>
 </div>
 </div>
 </div>
@@ -965,10 +506,10 @@ Premium (%)
 MKT
 </td>
 <td style="text-align:right;">
-1.01
+1.08
 </td>
 <td style="text-align:right;">
-4
+8
 </td>
 </tr>
 <tr>
@@ -976,10 +517,10 @@ MKT
 SMB
 </td>
 <td style="text-align:right;">
-0.13
+-0.20
 </td>
 <td style="text-align:right;">
-2
+-1
 </td>
 </tr>
 <tr>
@@ -987,7 +528,7 @@ SMB
 HML
 </td>
 <td style="text-align:right;">
-0.13
+-0.11
 </td>
 <td style="text-align:right;">
 0
@@ -998,30 +539,30 @@ HML
 Mom
 </td>
 <td style="text-align:right;">
-0.08
+0.34
 </td>
 <td style="text-align:right;">
-1
+4
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Given <strong>R<sub>f</sub> = 4%</strong>, the table shows each factor’s <strong>beta</strong> and <strong>premium</strong>.</p>
+<p>Given <strong>R<sub>f</sub> = 3%</strong>, the table shows each factor’s <strong>beta</strong> and <strong>premium</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q6a"><strong>6a. Expected return E[R] (in %):</strong></label> <input type="number" id="module5_num_q6a" name="module5_num_q6a" style="width:220px;" data-correct-answer="8.38" data-tolerance="0.05" step="0.01">
+<label for="module5_num_q6a"><strong>6a. Expected return E[R] (in %):</strong></label> <input type="number" id="module5_num_q6a" name="module5_num_q6a" style="width:220px;" data-correct-answer="13.2" data-tolerance="0.05" step="0.01">
 </form>
 <div id="feedback-module5_num_q6a" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Expected return under FFC</strong><br> E[R] = R<sub>f</sub> + β<sub>MKT</sub>·MKT + β<sub>SMB</sub>·SMB + β<sub>HML</sub>·HML + β<sub>Mom</sub>·Mom.<br> = 4% + (1.01)×4% + (0.13)×2% + (0.13)×0% + (0.08)×1%<br> = 4% + 4.04% + 0.26% + 0% + 0.08% = <strong>8.38%</strong>.</p>
+<p>✅ <strong>Expected return under FFC</strong><br> E[R] = R<sub>f</sub> + β<sub>MKT</sub>·MKT + β<sub>SMB</sub>·SMB + β<sub>HML</sub>·HML + β<sub>Mom</sub>·Mom.<br> = 3% + (1.08)×8% + (-0.2)×-1% + (-0.11)×0% + (0.34)×4%<br> = 3% + 8.64% + 0.2% + 0% + 1.36% = <strong>13.2%</strong>.</p>
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q6b"><strong>6b. Contribution from Momentum factor (in %):</strong></label> <input type="number" id="module5_num_q6b" name="module5_num_q6b" style="width:260px;" data-correct-answer="0.08" data-tolerance="0.05" step="0.01">
+<label for="module5_num_q6b"><strong>6b. Contribution from Momentum factor (in %):</strong></label> <input type="number" id="module5_num_q6b" name="module5_num_q6b" style="width:260px;" data-correct-answer="1.36" data-tolerance="0.05" step="0.01">
 </form>
 <div id="feedback-module5_num_q6b" class="feedback" data-status="" style="display:none;">
-<p>✅ <strong>Momentum contribution</strong><br> Contribution = β<sub>Mom</sub> × Mom = (0.08) × 1% = <strong>0.08%</strong>.</p>
+<p>✅ <strong>Momentum contribution</strong><br> Contribution = β<sub>Mom</sub> × Mom = (0.34) × 4% = <strong>1.36%</strong>.</p>
 </div>
 </div>
 </div>
@@ -1077,16 +618,16 @@ Tax (BRL)
 Sell winner (gain)
 </td>
 <td style="text-align:right;">
-22796
+19931
 </td>
 <td style="text-align:right;">
-17297
+11615
 </td>
 <td style="text-align:right;">
-5499
+8316
 </td>
 <td style="text-align:right;">
-824.85
+0
 </td>
 </tr>
 <tr>
@@ -1094,13 +635,13 @@ Sell winner (gain)
 Sell loser (loss)
 </td>
 <td style="text-align:right;">
-22796
+19931
 </td>
 <td style="text-align:right;">
-30974
+21447
 </td>
 <td style="text-align:right;">
--8178
+-1516
 </td>
 <td style="text-align:right;">
 0
@@ -1113,26 +654,26 @@ Sell loser (loss)
 <strong>Rule:</strong> If <strong>monthly proceeds</strong> from stock sales <strong>&gt; BRL 20,000</strong>, <strong>all gains</strong> that month are taxed at <strong>15%</strong>; otherwise, <strong>exempt</strong>.</p>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q7tax_a"><strong>a. After-tax proceeds if selling the winner (BRL):</strong></label> <input type="number" id="module5_num_q7tax_a" name="module5_num_q7tax_a" style="width:240px;" data-correct-answer="21971.15" data-tolerance="1">
+<label for="module5_num_q7tax_a"><strong>a. After-tax proceeds if selling the winner (BRL):</strong></label> <input type="number" id="module5_num_q7tax_a" name="module5_num_q7tax_a" style="width:240px;" data-correct-answer="19931" data-tolerance="1">
 </form>
 <div id="feedback-module5_num_q7tax_a" class="feedback" data-status="" style="display:none;">
-✅ <strong>Step-by-step (winner leg with a gain)</strong><br> • <em>Check the threshold:</em> Monthly proceeds = <strong>22796</strong>. Condition: S &gt; 20,000 ⇒ gains are taxable at 15%.<br> • <em>Compute tax on the gain (if taxable):</em> Gain = <code>S − basis</code> = 22796 − 17297 = <strong>5499</strong>. Tax = 15% × Gain = 0.15 × 5499 = <strong>824.85</strong> BRL. (If the line above shows 0, it means the sale is <strong>exempt</strong> in this scenario.)<br> • <em>After-tax cash today:</em> Proceeds − Tax = 22796 − 824.85 = <strong>21971.15</strong> BRL.<br><br> <em>Why this matters:</em> If the threshold binds, selling a winner creates <strong>immediate tax outflow</strong>, reducing today’s cash.
+✅ <strong>Step-by-step (winner leg with a gain)</strong><br> • <em>Check the threshold:</em> Monthly proceeds = <strong>19931</strong>. Condition: S ≤ 20,000 ⇒ gains are exempt (0% tax).<br> • <em>Compute tax on the gain (if taxable):</em> Gain = <code>S − basis</code> = 19931 − 11615 = <strong>8316</strong>. Tax = 15% × Gain = 0.15 × 8316 = <strong>0</strong> BRL. (If the line above shows 0, it means the sale is <strong>exempt</strong> in this scenario.)<br> • <em>After-tax cash today:</em> Proceeds − Tax = 19931 − 0 = <strong>19931</strong> BRL.<br><br> <em>Why this matters:</em> If the threshold binds, selling a winner creates <strong>immediate tax outflow</strong>, reducing today’s cash.
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q7tax_b"><strong>b. After-tax proceeds if selling the loser (BRL):</strong></label> <input type="number" id="module5_num_q7tax_b" name="module5_num_q7tax_b" style="width:240px;" data-correct-answer="22796" data-tolerance="1">
+<label for="module5_num_q7tax_b"><strong>b. After-tax proceeds if selling the loser (BRL):</strong></label> <input type="number" id="module5_num_q7tax_b" name="module5_num_q7tax_b" style="width:240px;" data-correct-answer="19931" data-tolerance="1">
 </form>
 <div id="feedback-module5_num_q7tax_b" class="feedback" data-status="" style="display:none;">
-✅ <strong>Step-by-step (loser leg with a loss)</strong><br> • <em>Tax on losses:</em> Realizing a loss does <strong>not</strong> trigger capital gains tax now; the tax due on this sale is <strong>0</strong> BRL. • <em>After-tax cash today:</em> Proceeds − Tax = 22796 − 0 = <strong>22796</strong> BRL.<br><br> <em>Why this matters:</em> Selling the loser yields the <strong>same gross cash</strong> as selling the winner in this setup, but with <strong>no tax haircut</strong> today. (Separately from this exercise, a realized loss may be used to offset gains in the month/year depending on the rules in force.)
+✅ <strong>Step-by-step (loser leg with a loss)</strong><br> • <em>Tax on losses:</em> Realizing a loss does <strong>not</strong> trigger capital gains tax now; the tax due on this sale is <strong>0</strong> BRL. • <em>After-tax cash today:</em> Proceeds − Tax = 19931 − 0 = <strong>19931</strong> BRL.<br><br> <em>Why this matters:</em> Selling the loser yields the <strong>same gross cash</strong> as selling the winner in this setup, but with <strong>no tax haircut</strong> today. (Separately from this exercise, a realized loss may be used to offset gains in the month/year depending on the rules in force.)
 </div>
 </div>
 <div class="question-block">
 <form onsubmit="event.preventDefault();" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-<label for="module5_num_q7tax_c"><strong>c.&nbsp;Proceeds advantage (loser − winner) (BRL):</strong></label> <input type="number" id="module5_num_q7tax_c" name="module5_num_q7tax_c" style="width:260px;" data-correct-answer="824.85" data-tolerance="1">
+<label for="module5_num_q7tax_c"><strong>c.&nbsp;Proceeds advantage (loser − winner) (BRL):</strong></label> <input type="number" id="module5_num_q7tax_c" name="module5_num_q7tax_c" style="width:260px;" data-correct-answer="0" data-tolerance="1">
 </form>
 <div id="feedback-module5_num_q7tax_c" class="feedback" data-status="" style="display:none;">
-✅ <strong>Interpret and connect to investor behavior</strong><br> Because <strong>proceeds are equal</strong> (S for both legs), the difference in after-tax cash is <strong>purely the tax</strong> on the winner (if any):<br> • Advantage = After-tax(loser) − After-tax(winner) = 22796 − 21971.15 = <strong>824.85</strong> BRL.<br> • If S &gt; 20,000, then Advantage = the winner’s tax amount.<br><br> <em>Key intuition (disposition effect):</em> Many investors feel tempted to <strong>sell winners</strong> and <strong>hold losers</strong>. Under the Brazilian threshold rule, when <strong>S &gt; 20,000</strong>, selling the winner can be <strong>tax-inefficient today</strong> (you pay 15% on the gain), whereas selling the loser gives you the <strong>same cash</strong> without a tax haircut. This illustrates how <strong>tax rules</strong> and <strong>behavioral biases</strong> interact: sticking to “sell what went up” may <strong>reduce</strong> your <strong>net cash today</strong>, even if it feels psychologically rewarding.
+✅ <strong>Interpret and connect to investor behavior</strong><br> Because <strong>proceeds are equal</strong> (S for both legs), the difference in after-tax cash is <strong>purely the tax</strong> on the winner (if any):<br> • Advantage = After-tax(loser) − After-tax(winner) = 19931 − 19931 = <strong>0</strong> BRL.<br> • If S ≤ 20,000, then Advantage = 0.<br><br> <em>Key intuition (disposition effect):</em> Many investors feel tempted to <strong>sell winners</strong> and <strong>hold losers</strong>. Under the Brazilian threshold rule, when <strong>S &gt; 20,000</strong>, selling the winner can be <strong>tax-inefficient today</strong> (you pay 15% on the gain), whereas selling the loser gives you the <strong>same cash</strong> without a tax haircut. This illustrates how <strong>tax rules</strong> and <strong>behavioral biases</strong> interact: sticking to “sell what went up” may <strong>reduce</strong> your <strong>net cash today</strong>, even if it feels psychologically rewarding.
 </div>
 </div>
 </div>
@@ -1266,20 +807,14 @@ Show Feedback
 
 </div>
 </div>
-</section></main></div>
-<!-- Fecha #after-login-content -->
-<script>
-  document.documentElement.classList.remove("locked");
-  if (document.body) document.body.classList.remove("locked");
-</script>
 <div style="text-align: center; margin-top: 2rem;">
 <p><a href="../../../teaching/financial_strategy/" class="btn btn-outline-primary btn-lg"> 🔙 </a></p>
 </div>
 
 
+</section>
 
-
- <!-- /main -->
+</main> <!-- /main -->
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -1873,7 +1408,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
- <!-- /content -->
+</div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">

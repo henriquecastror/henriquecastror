@@ -4,8 +4,6 @@ title: "Self-quiz — Module 5"
 ---
 
 
-
-
 ::: {.callout-warning}
 ### For students
 
@@ -20,19 +18,15 @@ You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions
 ::: 
 
 
+### 📘 Part 1 (until Midterm)
 
-| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
-|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
-| 5 | ch13 | [🎞️](p5.html) | [✅](p5tf.html) | [❓](p5mcq.html) | [🔢](p5num.html) | [📝](p5long.html) | [🧪](p5selfquiz.html) |
-
-
-
+| Module | Chapter | 
+|:-------:|:--------:|
+| 5 | ch13 | 
 
 <script>
   const SLIDE_ID = "module5_selfquiz";
 </script>
-
-{{< include ../login-start.html >}}
 
 
 ```{=html}
@@ -190,12 +184,6 @@ ___
   }, TICK_MS);
 })();
 </script>
-
-
-{{< include ../login-end.html >}}
-
-
-
 
 
 <div style="text-align: center; margin-top: 2rem;">
