@@ -22,9 +22,9 @@ You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions
 ### 📙 Part 2 (Midterm to Final)
 
 
-| Module | Chapter | Slides | T/F | MCQ | Numeric | Long | Self-quiz |
-|:-------:|:--------:|:------:|:---:|:---:|:-------:|:----:|:---------:|
-| 6 | ch23 | [🎞️](p6.html) | [✅](p6tf.html) | [❓](p6mcq.html) | [🔢](p6num.html) | [📝](p6long.html) | [🧪](p6selfquiz.html) |
+| Module | Chapter | 
+|:-------:|:--------:|
+| 6 | ch23 | 
 
 
 
@@ -33,7 +33,6 @@ You have **20 minutes** to answer. This quiz randomly selects **10 MCQ questions
   const SLIDE_ID = "module6_selfquiz";
 </script>
 
-{{< include ../login-start.html >}}
 
 
 ```{=html}
@@ -193,7 +192,6 @@ ___
 </script>
 
 
-{{< include ../login-end.html >}}
 
 
 
