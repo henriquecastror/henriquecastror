@@ -11,12 +11,12 @@ format:
   revealjs:
     body-attributes:
       data-module: mod8
-    include-in-header: ../login-start.html
-    include-after-body:
-      - ../chat-widget.html
+#    include-in-header: ../login-start.html
+#    include-after-body:
+#      - ../chat-widget.html
 #      - ../comnents.html
-      - ../ranking-widget.html
-      - ../notices-on-login.html
+#      - ../ranking-widget.html
+#      - ../notices-on-login.html
     touch: true
     controls: true
     slide-number: true
@@ -63,7 +63,7 @@ include-after: |
 # Intro {visibility="hidden"}
 
 
-##  { background="#A91B0D"}
+##  { background="#A91B0D" visibility="hidden"}
 
 ::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
 
@@ -440,7 +440,7 @@ $$V^L - V^U = 59.73 - 35.50 = 24.23\;million$$
 
 
 
-##  { background="#f7f9fc"}
+##  { background="#f7f9fc" visibility="hidden"}
 
 <div data-ticket
      data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
@@ -931,7 +931,7 @@ To receive the full tax benefits of leverage, a firm need not use 100% debt fina
 
 
 
-##  { background="#f7f9fc"}
+##  { background="#f7f9fc" visibility="hidden"}
 
 <div data-ticket
      data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
@@ -970,6 +970,37 @@ To receive the full tax benefits of leverage, a firm need not use 100% debt fina
 
 
 
+
+## Now it is your turn... { background="#191f36"}
+
+
+<div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module8/p8tf.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    ✅ True / False Questions
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module8/p8num.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    🔢 Numeric Questions
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module8/p8mcq.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    📝 Multiple Choice
+  </a>
+
+  <a href="https://henriquemartins.net/teaching/financial_strategy/module8/p8long.html" target="_blank"
+     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
+    ✍️ Long-form Answers
+  </a>
+
+</div>
+
+
+::: footer
+:::
 
 
 
