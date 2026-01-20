@@ -11,12 +11,12 @@ format:
   revealjs:
     body-attributes:
       data-module: mod9
-    include-in-header: ../login-start.html
-    include-after-body:
-      - ../chat-widget.html
+#    include-in-header: ../login-start.html
+#    include-after-body:
+#      - ../chat-widget.html
 #      - ../comnents.html
-      - ../ranking-widget.html
-      - ../notices-on-login.html
+#      - ../ranking-widget.html
+#      - ../notices-on-login.html
     touch: true
     controls: true
     slide-number: true
@@ -65,7 +65,7 @@ include-after: |
 # Intro {visibility="hidden"}
 
 
-##  { background="#A91B0D"}
+##  { background="#A91B0D" visibility="hidden"}
 
 ::: {.callout-important title="⚠️ Disclaimer – Virtual HCM Responses"}
 
@@ -630,7 +630,7 @@ The level of debt that leads to the highest net benefit is 30 million. Holland w
 
 
 
-##  { background="#f7f9fc"}
+##  { background="#f7f9fc" visibility="hidden"}
 
 <div data-ticket
      data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
@@ -1286,7 +1286,7 @@ If the CEO announces that she is buying 10,000 additional shares, she must know 
 
 
 
-##  { background="#f7f9fc"}
+##  { background="#f7f9fc" visibility="hidden"}
 
 <div data-ticket
      data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
