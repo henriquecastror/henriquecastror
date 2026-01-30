@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q30"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q30')" data-correct-answer="C">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>In book building the underwriter collects indications of interest from investors</li>
+    <li>In book building there is no marketing and no interaction with investors</li>
+    <li>In book building demand information cannot affect the offer price</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q30" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q30" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q30" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q30" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q30" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q30" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Statements (2) and (3) are false (statement (1) is true).
+Why the false statements are false:
+- (2) Bookbuilding involves marketing (e.g., road shows) and collecting demand information from investors.
+- (3) In bookbuilding, demand information from investors is used to help set both allocation and the offer price.
+</div>
+
+:::

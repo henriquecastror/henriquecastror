@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q22"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q22')" data-correct-answer="C">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>Pre money valuation is the value of the firm before the new investment at the round price</li>
+    <li>Pre money valuation includes the new cash raised in the round by definition</li>
+    <li>Pre money valuation equals post money valuation plus the investment</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q22" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q22" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q22" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q22" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q22" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q22" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Statements (2) and (3) are false (statement (1) is true).
+Why the false statements are false:
+- (2) Pre-money valuation excludes the new investment; it is the value of the firm just before the new cash is added.
+- (3) Pre-money valuation is the value before the new investment: $Pre = Post - Investment$.
+</div>
+
+:::

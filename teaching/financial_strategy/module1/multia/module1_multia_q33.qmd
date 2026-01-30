@@ -1,0 +1,30 @@
+::: {.question-block}
+
+<form id="module1_multia_q33"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q33')" data-correct-answer="D">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>Underpricing means the offer price is set above the first day closing price on average</li>
+    <li>Money left on the table is zero when the first day closing price exceeds the offer price</li>
+    <li>Underpricing transfers value from old owners to new owners in a secondary offering by the firm</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q33" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q33" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q33" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q33" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q33" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q33" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. All three statements are false.
+Why the false statements are false:
+- (1) Underpricing refers to IPO shares being offered below their aftermarket value (first-day market price tends to be higher than the offer price).
+- (2) Money left on the table is typically the first-day price increase times the number of shares sold; it is positive when the first-day price exceeds the offer price.
+- (3) This statement is false because it contradicts standard equity issuance mechanics covered in the module (the correct relationship goes the other way).
+</div>
+
+:::

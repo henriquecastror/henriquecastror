@@ -1,0 +1,544 @@
+const profile = {
+  name: "Henrique Castro Martins",
+  title: "Assistant Professor @ FGV/EAESP",
+  bio: `I hold a Ph.D. in Finance, and I am currently an Assistant Professor at <a href="https://eaesp.fgv.br/" target="_blank">FGV/EAESP</a> (São Paulo, Brazil).<br><br>
+        I teach corporate finance, corporate governance and financial analysis at the undergraduate, MBA, Master, and Ph.D. levels. I am currently working on several projects on these topics.<br><br>
+        If you have any questions about my research, or if you want to work with me, contact me at <a href="mailto:henrique.martins@fgv.br">henrique.martins@fgv.br</a>.`,
+  links: [
+    { text: "Email", icon: "bi-envelope", href: "mailto:henrique.martins@fgv.br" },
+    { text: "Scholar", icon: "bi-mortarboard", href: "https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao" },
+    { text: "Linkedin", icon: "bi-linkedin", href: "https://www.linkedin.com/in/henriquecastror/" },
+    { text: "Lattes", icon: "bi-file-earmark-person", href: "http://lattes.cnpq.br/6076997472159785" },
+    { text: "Orcid", icon: "bi-person-badge", href: "https://orcid.org/0000-0002-3186-4245" },
+    { text: "Scopus", icon: "bi-journal-text", href: "https://www.scopus.com/authid/detail.uri?authorId=56179864100" },
+    { text: "WoS", icon: "bi-globe", href: "https://www.webofscience.com/wos/author/record/AAA-9293-2019" },
+    { text: "ResearchGate", icon: "bi-search", href: "https://www.researchgate.net/profile/Henrique_Castro_Martins" },
+    { text: "Academia", icon: "bi-book", href: "https://fgvsp.academia.edu/HenriqueMartins" }
+  ],
+  education: [
+    { degree: "PhD in Finance", year: "2016", school: "UFRGS" },
+    { degree: "Master in Finance", year: "2012", school: "UFRGS" },
+    { degree: "B.A. in Management", year: "2010", school: "PUCRS" }
+  ],
+  interests: ["Corporate Finance", "Corporate Governance", "Financial policies", "Empirical methods in finance"]
+};
+
+const REPORT_SQL = `WITH params AS (SELECT LOWER(TRIM(?1)) AS sid)
+SELECT json_object(
+  'student_id', (SELECT sid FROM params),
+  'generated_at', datetime('now', '-3 hours'),
+  'ranking', (
+     SELECT json_object('likes', likes_points, 'checkouts', checkouts_points, 'polls', poll_points, 'total', points)
+     FROM ranking_score_total WHERE student_id = (SELECT sid FROM params)
+  ),
+  'attendance', (
+    SELECT json_object('attended', attended, 'total', total_class, 'absences', absences, 'pct', pct)
+    FROM attendance_resume WHERE student_id = (SELECT sid FROM params)
+  ),
+  'attendance_history', (
+    SELECT json_group_array(json_object('date', date_class, 'status', status))
+    FROM attendance_dates WHERE student_id = (SELECT sid FROM params)
+    ORDER BY date_class DESC
+  ),
+  'polls_history', (
+    SELECT json_group_array(json_object(
+      'id', r.poll_id, 'question', a.question, 'options_json', a.options_json,
+      'your_answer', r.chosen_option, 'correct_answer', a.correct_option,
+      'is_correct', r.is_correct, 'when', r.ts_br
+    ))
+    FROM poll_responses r
+    JOIN poll_active a ON r.poll_id = a.poll_id
+    WHERE r.student_id = ?1
+    ORDER BY r.ts_br DESC
+  ),
+  'checkouts', (
+    SELECT json_group_array(json_object('slide_id', slide_id, 'ticket', ticket, 'when', timestamp_br))
+    FROM t_checkouts WHERE student_id = (SELECT sid FROM params)
+    ORDER BY timestamp_br DESC
+  ),
+  'likes_count', (SELECT COUNT(*) FROM likes WHERE student_id = (SELECT sid FROM params))
+) AS report_json;`;
+
+export default {
+  async fetch(req, env, ctx) {
+    const url = new URL(req.url);
+    const origin = env.ALLOWED_ORIGIN || req.headers.get("Origin") || "*";
+    const method = req.method;
+
+    if (method === "OPTIONS") return new Response(null, { status: 204, headers: cors(origin) });
+
+    const urlPath = url.pathname;
+    if (urlPath.match(/\.(html|css|js|mjs|map|json|png|jpg|jpeg|gif|webp|svg|ico|pdf|txt|xml|woff2?|ttf|eot|otf|wasm)$/i)) {
+      try {
+        let assetRes = await env.ASSETS.fetch(req);
+        if (assetRes.status === 200) return assetRes;
+        if (!urlPath.startsWith("/teaching/financial-strategy/")) {
+          const internalPath = "/teaching/financial-strategy" + (urlPath.startsWith("/") ? urlPath : "/" + urlPath);
+          const fallbackReq = new Request(new URL(internalPath, url.origin).toString(), req);
+          assetRes = await env.ASSETS.fetch(fallbackReq);
+          if (assetRes.status === 200) return assetRes;
+        }
+      } catch (e) { console.error("Assets Error:", e); }
+      return new Response("Arquivo não encontrado.", { status: 404 });
+    }
+
+    const path = urlPath.replace(/\/{2,}/g, "/").replace(/\/+$/, "") || "/";
+    const is = (p) => path === p;
+
+
+    // ROTA: HOME PAGE
+    if (path === "/") {
+      const html = `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>${profile.name}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <style>
+          :root { --accent: #1e3a8a; --text-main: #1e293b; --text-muted: #64748b; --bg: #fdfdfd; }
+          body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.7; }
+          header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); }
+          .nav-brand { font-size: 1.1rem; font-weight: 600; color: var(--text-main); text-decoration: none; }
+          nav { display: flex; gap: 25px; } nav a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+          .hero { max-width: 1100px; margin: 80px auto; display: grid; grid-template-columns: 1fr; gap: 60px; padding: 0 40px; }
+          @media (min-width: 768px) { .hero { grid-template-columns: 320px 1fr; } }
+          .avatar { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.08); margin-bottom: 25px; border: 4px solid white; }
+          .links-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+          .btn-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; text-decoration: none; color: var(--text-main); font-size: 0.8rem; background: white; transition: 0.2s; }
+          .btn-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+          .main-content h1 { font-size: 3.5rem; font-weight: 800; margin: 0; color: #0f172a; }
+          .subtitle { font-size: 1.2rem; color: var(--accent); font-weight: 600; margin-bottom: 25px; display: block; }
+          h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-top: 50px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+          .interest-tag { display: inline-block; background: #eff6ff; color: #1e40af; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-right: 8px; margin-bottom: 8px; border: 1px solid #dbeafe; }
+        </style>
+      </head>
+      <body>
+        <header>
+          <a href="/" class="nav-brand">Henrique Castro Martins</a>
+          <nav><a href="/teaching/">Teaching</a><a href="/research/">Research</a><a href="/cv/">CV</a></nav>
+        </header>
+        <div class="hero">
+          <div class="sidebar">
+            <img src="https://henriquemartins.net/avatar.jpg" class="avatar" alt="Henrique">
+            <div class="links-grid">
+              ${profile.links.map(l => `<a href="${l.href}" class="btn-link" target="_blank"><i class="bi ${l.icon}"></i> ${l.text}</a>`).join('')}
+            </div>
+          </div>
+          <div class="main-content">
+            <span class="subtitle">${profile.title}</span>
+            <p>${profile.bio}</p>
+            <h2>Education</h2>
+            ${profile.education.map(e => `<div><strong>${e.degree}</strong><br><span>${e.school} • ${e.year}</span></div>`).join('')}
+            <h2>Research Interests</h2>
+            <div class="interests-grid">${profile.interests.map(topic => `<span class="interest-tag">${topic}</span>`).join('')}</div>
+          </div>
+        </div>
+      </body>
+      </html>`;
+      return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
+    }
+
+    // ROTA: TEACHING (LISTA DE CURSOS)
+    if (path === "/teaching" || path === "/teaching/") {
+      const html = `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="utf-8"><title>Teaching - ${profile.name}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <style>
+          :root { --accent: #1e3a8a; --text-main: #1e293b; --bg: #fdfdfd; }
+          body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text-main); line-height: 1.7; }
+          header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: #fff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+          .container { max-width: 900px; margin: 60px auto; padding: 0 40px; }
+          table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+          th { background: #1e293b; color: white; padding: 12px; text-align: left; }
+          td { padding: 12px; border-bottom: 1px solid #f1f5f9; }
+          .tag-active { background: #dcfce7; color: #166534; font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; font-weight: 700; text-transform: uppercase; }
+        </style>
+      </head>
+      <body>
+        <header><a href="/" style="text-decoration:none; color:inherit; font-weight:600">Henrique Castro Martins</a></header>
+        <div class="container">
+          <h1>📚 Teaching Resources</h1>
+          <h2>2026</h2>
+          <table>
+            <thead><tr><th style="width: 120px;">Semester</th><th>Course</th></tr></thead>
+            <tbody><tr><td>01</td><td><a href="/teaching/financial-strategy" style="text-decoration:none; color:var(--accent); font-weight:600">🎯 Financial Strategy</a> <span class="tag-active">Active</span></td></tr></tbody>
+          </table>
+        </div>
+      </body></html>`;
+      return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
+    }
+// ROTA: FINANCIAL STRATEGY 2026/01
+if (path === "/teaching/financial-strategy") {
+  const html = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Financial Strategy - 2026/01</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+      :root { --accent: #1e3a8a; --text-main: #1e293b; --bg: #fdfdfd; }
+      body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.6; }
+      header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid #eee; }
+      .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+      table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 1.5em 0; background: white; border-radius: 8px; overflow: hidden; }
+      thead th { background: #1e293b; color: #ffffff; padding: 12px 8px; text-align: center; }
+      td { padding: 10px 8px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+      tbody tr:hover { background: #e0f2fe; }
+      .callout { background: #fff5f5; border-left: 5px solid #ef4444; padding: 20px; margin: 25px 0; border-radius: 4px; }
+      .legend { background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 30px; }
+    </style>
+  </head>
+  <body>
+    <header><a href="/" style="text-decoration:none; color:inherit; font-weight:600">Henrique Castro Martins</a></header>
+    <div class="container">
+      <h1>Financial Strategy - 2026/01</h1>
+      <div class="callout">
+        <h3><i class="bi bi-exclamation-triangle"></i> For students</h3>
+        <p>Persistent links to lectures. Contents may be updated periodically.</p>
+      </div>
+      <h3>📘 Part 1 (until Midterm)</h3>
+      <table>
+        <thead><tr><th>Module</th><th>Ch.</th><th>Slides</th><th>T/F</th><th>MCQ</th><th>Num.</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>ch23</td><td><a href="module1/p1.html">🎞️</a></td><td><a href="module1/p1tf.html">✅</a></td><td><a href="module1/p1mcq.html">❓</a></td><td><a href="module1/p1num.html">🔢</a></td></tr>
+          <tr><td>2</td><td>ch10</td><td><a href="module2/p2.html">🎞️</a></td><td><a href="module2/p2tf.html">✅</a></td><td><a href="module2/p2mcq.html">❓</a></td><td><a href="module2/p2num.html">🔢</a></td></tr>
+        </tbody>
+      </table>
+      <div class="legend"><strong>🔑 Legend:</strong> 🎞️ Slides | ✅ T/F | ❓ MCQ | 🔢 Numeric</div>
+    </div>
+  </body></html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
+}
+
+// --- BLOQUEIO DE SEGURANÇA ADMIN ---
+if (path.startsWith("/admin") || path === "/poll/export") { 
+  const clean = (s) => String(s ?? "").trim();
+  const hdr = clean(req.headers.get("x-admin-token"));
+  const bearer = clean((req.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""));
+  const qsTok = clean(url.searchParams.get("token") || url.searchParams.get("t"));
+  const sent = hdr || bearer || qsTok;
+  const master = clean(env.ADMIN_SEMESTER);
+  
+  if (!sent || sent !== master) {
+    return new Response("Unauthorized", { status: 401, headers: cors(origin) });
+  }
+}
+
+// ===== ENSURE SCHEMA E HELPERS INTERNOS =====
+try { await ensureSchema(env); } catch { }
+
+const isAdmin = () => {
+  const clean = (s) => String(s ?? "").trim();
+  const sent = clean(req.headers.get("x-admin-token") || url.searchParams.get("token") || url.searchParams.get("t"));
+  return sent === clean(env.ADMIN_SEMESTER);
+};
+
+const int = (v, d = 0) => {
+  const n = parseInt(String(v ?? ""), 10);
+  return Number.isFinite(n) ? n : d;
+};
+const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+const nowMs = () => Date.now();
+
+const rateLimit = (key, limit, windowMs) => {
+  const now = Date.now();
+  const buckets = globalThis.__rl_buckets || (globalThis.__rl_buckets = new Map());
+  const b = buckets.get(key) || [];
+  const keep = b.filter((t) => now - t < windowMs);
+  if (keep.length >= limit) return false;
+  keep.push(now); buckets.set(key, keep); return true;
+};
+// ===== BRIDGE DE SESSÃO: /session/start?sid=xxx =====
+if (path === "/session/start" && method === "GET") {
+  const sid = (url.searchParams.get("sid") || "").trim();
+  let nextQ = (url.searchParams.get("next") || "/reports").trim();
+  if (!sid || !/^[a-z0-9._-]{2,64}$/i.test(sid)) {
+    return new Response("Invalid sid", { status: 400 });
+  }
+  const headers = new Headers(cors(origin));
+  headers.set("Set-Cookie", `student_id=${encodeURIComponent(sid)}; Path=/; Secure; SameSite=Lax; HttpOnly; Max-Age=2592000`);
+  headers.set("Location", nextQ);
+  return new Response(null, { status: 303, headers });
+}
+
+// ===== ATTENDANCE (CHAMADA) =====
+if (is("/admin/attendance/save") && method === "POST") {
+  const { date, records } = await readJsonBody(req);
+  if (!date || !records) return json({ error: "Dados incompletos" }, origin, 400);
+  const statements = records.map(r => 
+    env.DB.prepare("INSERT OR REPLACE INTO attendance_dates (student_id, date_class, status) VALUES (?, ?, ?)")
+    .bind(r.sid, date, r.status)
+  );
+  await env.DB.batch(statements);
+  return json({ ok: true }, origin);
+}
+
+if (is("/admin/attendance") && method === "GET") {
+  const instructor = env.INSTRUCTOR_NAME || "Henrique";
+  const { results } = await env.DB.prepare("SELECT student_id, name FROM t_students_dim WHERE prof = ? ORDER BY name ASC").bind(instructor).all();
+  const studentRows = results.map(s => `
+    <div class="student-card" data-sid="${s.student_id}">
+      <span class="student-name">${s.name}</span>
+      <div class="status-toggle">
+        <button class="btn-status active" onclick="setStatus(this,'present')">P</button>
+        <button class="btn-status" onclick="setStatus(this,'partial')">½</button>
+        <button class="btn-status" onclick="setStatus(this,'absent')">A</button>
+      </div>
+    </div>`).join('');
+  
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Roll Call</title>
+    <style>body{font-family:sans-serif;background:#f8fafc;padding:20px}.student-card{background:white;padding:15px;margin:10px 0;display:flex;justify-content:space-between;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+    .btn-status{border:1px solid #ddd;padding:8px 12px;border-radius:6px;cursor:pointer}.btn-status.active{background:#1e3a8a;color:white}</style>
+    </head><body><div style="max-width:500px;margin:0 auto;"><h2>🗓️ Daily Roll Call</h2>
+    <input type="date" id="date" style="width:100%;padding:10px;margin-bottom:20px" value="${new Date().toISOString().split('T')[0]}">
+    <div id="list">${studentRows}</div><button onclick="save()" style="width:100%;padding:15px;background:#1e3a8a;color:white;border:none;border-radius:10px;margin-top:20px;font-weight:bold">SUBMIT</button>
+    </div><script>
+    function setStatus(btn,s){btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');btn.closest('.student-card').dataset.status=s;}
+    async function save(){
+      const date=document.getElementById('date').value;
+      const records=Array.from(document.querySelectorAll('.student-card')).map(c=>({sid:c.dataset.sid,status:c.dataset.status||'present'}));
+      const res=await fetch('/admin/attendance/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date,records})});
+      if(res.ok)alert('Saved!');
+    }
+    </script></body></html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html" } });
+}
+
+// ===== NOVO MOTOR DE LOGIN (D1) =====
+if (is("/auth/login") && method === "GET") {
+  const user = url.searchParams.get("username");
+  const pass = url.searchParams.get("password");
+  const page = url.searchParams.get("page") || "slide";
+
+  if (!user || !pass) return new Response("MISSING", { headers: cors(origin) });
+
+  const student = await env.DB.prepare("SELECT * FROM t_students_dim WHERE student_id = ? AND password = ?")
+    .bind(user.toLowerCase().trim(), pass.trim()).first();
+
+  let status = "fail";
+  if (student) status = student.active ? "success" : "denied";
+
+  // Log assíncrono
+  ctx.waitUntil(env.DB.prepare("INSERT INTO t_logins (student_id, status, page, prof, term_id) VALUES (?, ?, ?, ?, ?)")
+    .bind(user, status, page, student?.prof || "", student?.term_id || "").run());
+
+  return new Response(status === "success" ? "OK" : "FAIL", { headers: cors(origin) });
+}
+
+// ===== REPORTS (JSON) =====
+if (is("/reports/me") && method === "GET") {
+  const sid = await getStudentId(req, env);
+  if (!sid) return json({ error: "unauthorized" }, origin, 401);
+  const report = await buildReport(env.DB, sid);
+  return json(report, origin);
+}
+
+// ============================================================
+    // 5. LIVE POLL SYSTEM & QUESTION BANK
+    // ============================================================
+
+    // STATUS DA POLL (O que o aluno vê no slide)
+    if (is("/poll/status")) {
+      const student_id = url.searchParams.get("student_id");
+      const activePoll = await env.DB.prepare("SELECT * FROM poll_active WHERE is_active = 1 LIMIT 1").first();
+      if (!activePoll) return json(null, origin);
+
+      if (student_id) {
+        const already = await env.DB.prepare("SELECT 1 FROM poll_responses WHERE poll_id = ? AND student_id = ? LIMIT 1")
+          .bind(activePoll.poll_id, student_id).first();
+        if (already) return json({ ...activePoll, is_active: 0, already_answered: true }, origin);
+      }
+      return json(activePoll, origin);
+    }
+
+    // VOTO DO ALUNO (Com Margem de Erro)
+    if (is("/poll/vote") && method === "POST") {
+      const { student_id, poll_id, choice } = await readJsonBody(req) || {};
+      const poll = await env.DB.prepare("SELECT correct_option, poll_type, feedback_text FROM poll_active WHERE is_active = 1").first();
+      if (!poll) return json({ error: "No active poll" }, origin, 404);
+
+      const cleanChoice = (String(choice) || "").trim().replace(',', '.');
+      const cleanCorrect = (String(poll.correct_option) || "").trim().replace(',', '.');
+      let is_correct = 0;
+
+      if (poll.poll_type === 'numeric') {
+        const nChoice = parseFloat(cleanChoice), nCorrect = parseFloat(cleanCorrect);
+        is_correct = (!isNaN(nChoice) && !isNaN(nCorrect) && Math.abs(nChoice - nCorrect) <= 0.01) ? 1 : 0;
+      } else {
+        is_correct = (cleanChoice.toUpperCase() === cleanCorrect.toUpperCase() && cleanCorrect !== "") ? 1 : 0;
+      }
+
+      try {
+        await env.DB.prepare("INSERT INTO poll_responses (poll_id, student_id, chosen_option, is_correct, ts_br) VALUES (?, ?, ?, ?, ?)")
+          .bind(poll_id, student_id, choice, is_correct, tsBRString()).run();
+        return json({ status: "success", correct: is_correct, feedback: poll.feedback_text || "" }, origin);
+      } catch (e) { return json({ status: "error", message: "Already answered" }, origin, 400); }
+    }
+
+    // ADMIN POLL: PAINEL DE CONTROLE (Interface)
+    if (is("/admin/poll") && method === "GET") {
+      const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Poll Admin</title>
+        <style>body{font-family:sans-serif;padding:20px;background:#f1f5f9}.card{max-width:600px;margin:0 auto;background:white;padding:20px;border-radius:16px;border:1px solid #e2e8f0}
+        input,textarea,select{width:100%;padding:10px;margin:5px 0;border:1px solid #ddd;border-radius:8px;box-sizing:border-box}
+        button{padding:12px;border-radius:8px;border:none;font-weight:bold;cursor:pointer;width:100%;margin-top:10px}
+        .btn-launch{background:#1e3a8a;color:white}.poll-item{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #eee}</style>
+        </head><body><div class="card"><h2>🚀 Launch Poll</h2>
+        <input id="p_id" placeholder="ID (ex: q1)"><textarea id="q" placeholder="Question"></textarea>
+        <input id="correct" placeholder="Correct Answer"><button class="btn-launch" onclick="send()">LAUNCH</button>
+        <div id="poll_list" style="margin-top:20px"></div></div>
+        <script>
+          async function send(){
+            const params = new URLSearchParams({set:1,poll_id:document.getElementById('p_id').value,q:document.getElementById('q').value,correct:document.getElementById('correct').value,t:new URLSearchParams(location.search).get('t')});
+            await fetch('/poll/admin?'+params.toString()); location.reload();
+          }
+        </script></body></html>`;
+      return new Response(html, { headers: { "Content-Type": "text/html" } });
+    }
+
+    // GALERIA DE QUESTÕES (Question Bank)
+    if (is("/admin/poll/gallery") && method === "GET") {
+      const { results } = await env.DB.prepare("SELECT * FROM poll_active ORDER BY poll_id DESC").all();
+      const questionsHtml = results.map(p => `
+        <div style="background:white;padding:15px;margin-bottom:15px;border-radius:8px;border:1px solid #e2e8f0">
+          <small>ID: ${p.poll_id} | ${p.poll_type}</small><br><strong>${p.question}</strong>
+          <div style="color:green;margin-top:5px">Correct: ${p.correct_option}</div>
+        </div>`).join('');
+      
+      return new Response(`<html><body style="font-family:sans-serif;background:#f1f5f9;padding:40px">
+        <div style="max-width:800px;margin:0 auto"><h1>📚 Question Bank</h1>${questionsHtml}</div>
+        </body></html>`, { headers: { "Content-Type": "text/html" } });
+    }
+
+    // POLL ADMIN ACTIONS (API)
+    if (is("/poll/admin")) {
+      const activate = url.searchParams.get("set") === "1";
+      const p_id = url.searchParams.get("poll_id");
+      if (!activate) {
+        await env.DB.prepare("UPDATE poll_active SET is_active = 0").run();
+        return json({ status: "closed" }, origin);
+      }
+      const q = url.searchParams.get("q"), correct = url.searchParams.get("correct");
+      await env.DB.prepare("UPDATE poll_active SET is_active = 0").run(); // Desativa anteriores
+      await env.DB.prepare("INSERT INTO poll_active (poll_id, question, correct_option, is_active) VALUES (?, ?, ?, 1) ON CONFLICT(poll_id) DO UPDATE SET is_active=1, question=excluded.question, correct_option=excluded.correct_option")
+        .bind(p_id, q, correct).run();
+      return json({ status: "ok" }, origin);
+    }
+    // ---------- LIKES (REAÇÕES) ----------
+    if (is("/likes")) {
+      const page = (url.searchParams.get("page") || "").trim();
+      const student = (url.searchParams.get("student") || "").trim();
+
+      if (url.searchParams.get("like") || method === "POST") {
+        let p = page, s = student;
+        if (method === "POST") {
+          const body = await readJsonBody(req) || {};
+          p = String(body.page || p).trim();
+          s = String(body.student || s).trim();
+        }
+        if (!p || !s) return json({ status: "error" }, origin, 400);
+        try {
+          await env.DB.prepare("INSERT INTO likes (page, student_id, ts_local) VALUES (?, ?, ?)")
+            .bind(p, s, tsBRString()).run();
+          return json({ status: "liked" }, origin);
+        } catch { return json({ status: "already" }, origin); }
+      }
+
+      const cntRow = await env.DB.prepare("SELECT COUNT(*) AS c FROM likes WHERE page=?").bind(page).first();
+      return json({ count: Number(cntRow?.c || 0) }, origin);
+    }
+
+    // ---------- CHECKOUTS (RESUMOS DE AULA) ----------
+    if ((is("/checkouts") || is("/checkout")) && method === "POST") {
+      const body = await readJsonBody(req);
+      const student_id = String(body?.student_id || body?.student || "").trim();
+      const slide_id = String(body?.slide_id || body?.page || "").trim();
+      const ticket = String(body?.ticket || "").trim();
+
+      if (!student_id || !slide_id) return json({ error: "missing fields" }, origin, 400);
+
+      try {
+        await env.DB.prepare("INSERT INTO t_checkouts (timestamp_br, student_id, slide_id, ticket) VALUES (?, ?, ?, ?)")
+          .bind(tsBRString(), student_id, slide_id, ticket).run();
+        return json({ status: "success" }, origin);
+      } catch (e) { return json({ error: "duplicate or error" }, origin, 400); }
+    }
+
+    // ---------- RANKING (TOTAL) ----------
+    if (is("/ranking") && method === "GET") {
+      const who = (url.searchParams.get("who") || "").trim();
+      const topRows = (await env.DB.prepare("SELECT student_id, points FROM ranking_score_total ORDER BY points DESC LIMIT 10").all()).results || [];
+      
+      let me = null;
+      if (who) {
+        me = await env.DB.prepare("SELECT * FROM (SELECT student_id, points, ROW_NUMBER() OVER (ORDER BY points DESC) as rank FROM ranking_score_total) WHERE student_id = ?")
+          .bind(who).first();
+      }
+      return json({ top: topRows, me }, origin);
+    }
+
+    // ---------- VISUALIZAÇÃO DE CHECKOUTS (PARA O ALUNO) ----------
+    if (is("/student/checkouts") && method === "GET") {
+      const student = url.searchParams.get("student");
+      const rows = (await env.DB.prepare("SELECT * FROM t_checkouts WHERE student_id = ? ORDER BY timestamp_br DESC").bind(student).all()).results || [];
+      
+      const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>My Checkouts</title>
+        <style>body{font-family:sans-serif;padding:30px;background:#f8fafc}.card{background:white;padding:15px;margin-bottom:10px;border-radius:10px;border:1px solid #eee}</style>
+        </head><body><div style="max-width:700px;margin:0 auto">
+        <h1>Checkouts: ${student}</h1><button onclick="window.print()">Download PDF</button>
+        <div style="margin-top:20px">${rows.map(r=>`<div class="card"><strong>${r.slide_id}</strong><br><small>${r.timestamp_br}</small><p>${r.ticket}</p></div>`).join('')}</div>
+        </div></body></html>`;
+      return new Response(html, { headers: { "Content-Type": "text/html" } });
+    }
+
+    return env.ASSETS.fetch(req);
+  },
+};
+
+/* ===== FUNÇÕES UTILITÁRIAS (UTILS) ===== */
+function tsBRString(ms = Date.now()) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+  }).formatToParts(ms).reduce((acc, p) => ({ ...acc, [p.type]: p.value }), {});
+}
+
+const tsBRStringFormatted = (ms = Date.now()) => {
+  const t = tsBRString(ms);
+  return `${t.year}-${t.month}-${t.day} ${t.hour}:${t.minute}:${t.second}`;
+};
+
+function cors(origin) {
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, x-admin-token",
+  };
+}
+
+async function readJsonBody(req) {
+  try { return await req.clone().json(); } catch { return null; }
+}
+
+function json(obj, origin, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "Content-Type": "application/json", ...cors(origin) },
+  });
+}
+
+async function getStudentId(req) {
+  const cookie = req.headers.get("cookie") || "";
+  const match = cookie.match(/student_id=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+async function ensureSchema(env) {
+  const sqls = [
+    "CREATE TABLE IF NOT EXISTS t_logins (student_id TEXT, status TEXT, page TEXT, ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP);",
+    "CREATE TABLE IF NOT EXISTS t_checkouts (timestamp_br TEXT, student_id TEXT, slide_id TEXT, ticket TEXT, PRIMARY KEY(student_id, slide_id));"
+  ];
+  for (const s of sqls) { await env.DB.prepare(s).run(); }
+}

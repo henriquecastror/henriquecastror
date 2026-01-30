@@ -3,26 +3,44 @@ title: 'Estratégia Financeira'
 subtitle: 'Module 0'
 author:
   - name: ' **Henrique C. Martins** '
-    affiliation: '**[![](../figs/background6.png){width=300px}](https://eaesp.fgv.br/en)**'
+    affiliation: '**[![](../figs/background6.png){width=300px style="box-shadow: none;" }](https://eaesp.fgv.br/en)**'
 date: last-modified
 date-format: "DD-MM-YYYY"
 title-block-banner: true
 format:
-  revealjs: 
+  revealjs:
+    body-attributes:
+      data-module: mod0
+    include-in-header: ../login-start.html
+    include-after-body:
+      - ../chat-widget.html
+      - ../ranking-widget2.html
+      - ../notices-on-login.html
+      - ../polls.html
     touch: true
     controls: true
     slide-number: true
     theme: simple
-    chalkboard: true
+    chalkboard: false
+    menu: false
     preview-links: auto
     logo: ../figs/background8.png
     css: ../logo.css
-    footer: '**[**Henrique C. Martins**] [[henrique.martins@fgv.br](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)][Do not use without permission]**  '
+    footer: '<span style="font-size:10px"> [[Henrique C. Martins](mailto:henrique.martins@fgv.br)] [[Teaching Resources](https://henriquemartins.net/teaching/financial_strategy/)]**[Do not use without permission]**</span>'
     scrollable: true
 title-slide-attributes:
     data-background-color: "#b1cafa"
 include-after: |
-  <script type="text/javascript">
+  <script>
+    // Redundância leve: também define o módulo via JS neste deck
+    // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
+    window.VHCM = window.VHCM || {};
+    window.VHCM.module = "mod0";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try { localStorage.setItem('mod0','mod0'); } catch(_) {}
+    });
+
     Reveal.on('ready', event => {
       if (event.indexh === 0) {
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
@@ -33,7 +51,7 @@ include-after: |
         Reveal.configure({ slideNumber: null });
         document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
       }
-      if (event.indexh === 1) { 
+      if (event.indexh === 1) {
         Reveal.configure({ slideNumber: 'c' });
         document.querySelector("div.has-logo > img.slide-logo").style.display = null;
       }
@@ -53,7 +71,21 @@ include-after: |
 
 
 
-## Introduction {.smaller}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Introduction  {style="color: #000;"}
 
 <center>
 ![](../figs/changemymind.jpg)
@@ -62,7 +94,14 @@ include-after: |
 
 
 
-## Introduction {.smaller}
+
+{{< include ../like-button2.html >}}
+
+
+
+
+
+## Introduction  {style="color: #000;" .smaller}
 
 - **Today:**
 
@@ -76,7 +115,7 @@ include-after: |
 
 
 
-## Description {.smaller}
+## Description {style="color: #000;" .smaller}
 
 The purpose of the course is to familiarize students with the concepts and techniques related to the analysis and strategic decisions in the areas of investment and financing in a risky environment, always with the purpose of maximizing the company's value. 
 
@@ -100,7 +139,7 @@ At the end of the semester, the student should be able to master the:
 
 
 
-##  {.smaller}
+## {style="color: #000;" .smaller}
 
 **To Midterm:**
 
@@ -134,7 +173,7 @@ At the end of the semester, the student should be able to master the:
 
 
 
-## Setting expectations {.smaller}
+## Setting expectations {style="color: #000;" .smaller}
 
 
 **<span style="color:red;">Your mission (should you choose to accept it...)</span>**
@@ -155,13 +194,61 @@ At the end of the semester, the student should be able to master the:
     
  
 
+## New rules 2026/01 {style="color: #000;" .smaller}
+
+- *Art. 31º - Não existe abono de falta, mesmo que por razões justificadas, visto que o aluno tem o direito de faltar em até 25% das aulas oferecidas sem a necessidade de qualquer justificativa ou comprovação*.
+
+- Exemplos:
+    - situações familiares, problemas de saúde, problemas com pets, etc.
+- Exceções:
+    - Guarda religiosa
+    - Chamados judiciais/serviço militar
+    - Seleções esportivas oficiais do país
+
+
+
+
+## New rules 2026/01 {style="color: #000;" .smaller}
+
+Assim, a partir do 1o/2026, no caso de falta por Guarda Religiosa, o professor solicitará ao aluno uma "prestação alternativa" (termo mencionado na Lei 13.796, que trata da Guarda Religiosa).
+
+- Esta "prestação alternativa" tem a função de reduzir o prejuízo pedagógico que o aluno teve devido à sua falta na aula (por exemplo, indicação e conferência de leitura, exercícios dirigidos etc., sempre compatível com o conteúdo efetivamente perdido daquela aula).
+- A falta será efetivamente abonada pelo professor após o aluno cumprir sua "prestação alternativa", dentro de um prazo previamente combinado com o professor.
+
+
+## New rules 2026/01 {style="color: #000;" .smaller}
+
+- 7/4 (after 17h), 8/4 (all day), 9/4 (all day), 
+- 21/5 (after 17 h), 
+- 22/5 (all day) 
+- every Friday (after 17h), 
+- evey Saturday.
+
+
+
+## New rules 2026/01 {style="color: #000;" .smaller}
+
+There is no Reaval anymore
+
+- Instead, you can ask for a *Recuperação*
+- Still 5,00 to 5,99
+- Exams of summer/winter courses
+- You can follow the classes of summer/winter courses
+
+## New rules 2026/01 {style="color: #000;" .smaller}
+
+Stricter penalties for problems during exams
+
+- Weeks/Months of penaly
 
 
 
 
 
 
-## {.smaller}
+
+
+## {style="color: #000;" .smaller}
 
 BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, Boston, MA: Pearson, 2019. [https://amzn.to/3jl9YPl](https://amzn.to/3jl9YPl) 
 
@@ -173,14 +260,14 @@ BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, 
 
 
 
-## About the book {.smaller}
+## About the book {style="color: #000;" .smaller visibility="hidden"}
 
 <center>
 ![](forms1a.png){width=150% heigth=150%}
 </center>
 
 
-## About the book {.smaller}
+## About the book {style="color: #000;" .smaller visibility="hidden"}
 
 <center>
 ![](forms1b.png){width=150% heigth=150%}
@@ -196,7 +283,7 @@ BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, 
 
 
 
-## About notes {.smaller}
+## About notes {style="color: #000;" .smaller}
 
 <center>
 ![](../figs/share_slides.png)
@@ -206,13 +293,13 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## About notes {.smaller}
+## About notes {style="color: #000;" .smaller}
 
 <center>
 ![](paper0.png)
 </center>
 
-## About notes {.smaller}
+## About notes {style="color: #000;" .smaller}
 
 ::: {.incremental}
 
@@ -233,7 +320,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-##  {.smaller}
+## {style="color: #000;" .smaller}
 
 <center>
 ![](paper2.png)
@@ -242,7 +329,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## {.smaller}
+## {style="color: #000;" .smaller}
 
 <center>
 ![](paper3.png)
@@ -253,7 +340,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-##  {.smaller}
+##  {style="color: #000;" .smaller}
 
 <center>
 ![](paper1.png)
@@ -262,7 +349,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## About notes {.smaller}
+## About notes {style="color: #000;" .smaller}
 
 <center>
 ![](paper4.png)
@@ -272,7 +359,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## About notes {.smaller}
+## About notes {style="color: #000;" .smaller}
 
 <center>
 ![](forms1.png){width=140% heigth=140%}
@@ -285,7 +372,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## Performance assessment {.smaller}
+## Performance assessment {style="color: #000;" .smaller}
 
 1 Midterm Exam: **40%** 
 
@@ -308,7 +395,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## Read the Syllabus
+## Read the Syllabus {style="color: #000;" .smaller}
 
 <center>
 ![](../figs/syllabus.gif)
@@ -323,31 +410,31 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629)) 
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))  {style="color: #000;" .smaller}
 
 ![](../figs/howtostudy1.png) 
 
-## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629)) {style="color: #000;" .smaller}
 
 ![](../figs/howtostudy2.png)
 
-## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629)) {style="color: #000;" .smaller}
 
 ![](../figs/howtostudy3.png)
 
 
-## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629)) {style="color: #000;" .smaller}
 
 ![](../figs/howtostudy4.png)
  
 
 
-## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629)) {style="color: #000;" .smaller}
 
 ![](../figs/howtostudy5.png)
 
 
-## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629))
+## How to study?  ([Source](https://www.bbc.com/portuguese/geral-64354629)) {style="color: #000;" .smaller visibility="hidden"}
 
 ![](../figs/howtostudy6.png)
 
@@ -367,7 +454,8 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## About studying {.smaller}
+## About studying {style="color: #000;" .smaller visibility="hidden"}
+
 
 <center>
 ![](forms2.png){width=140% heigth=140%}
@@ -378,11 +466,6 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-##  {background="#b1cafa"}
-
-**QUESTIONS?**
-
-![](../figs/qa2.png){width=150% heigth=150%}
 
 
 
@@ -390,9 +473,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-
-
-## Warming up...
+## Warming up... {style="color: #000;" .smaller}
 
 ::: collumns
 
@@ -428,7 +509,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## Warming up...
+## Warming up... {style="color: #000;" .smaller}
 
 ::: collumns
 
@@ -493,22 +574,9 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-## {.smaller}
-
-::: {style="font-size: 40%; text-align: right;"}
-Key: *module0_long1*
-<input type="hidden" id="slide-id" value="module0_long1">
-:::
-
-{{< include "long1.qmd" >}}
-
-{{< include "../submit-to-sheets.html" >}}
 
 
- 
-
-
-## **What is Finance?** 
+## **What is Finance?**  {style="color: #000;" .smaller}
 
 
 ![](../figs/whatisfinance1.png) 
@@ -520,7 +588,7 @@ Key: *module0_long1*
 
 
 
-## **What is Finance?** 
+## **What is Finance?**   {style="color: #000;" .smaller}
 
 
 ![](../figs/whatisfinance2.png) 
@@ -534,7 +602,28 @@ Key: *module0_long1*
 
 
 
-## Finance is a time machine {.smaller}
+##  { background="#f7f9fc" }
+
+<div data-ticket
+     data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts"
+     data-session="What is Finance?"
+     data-page="What is Finance?"
+     data-require-login="true"
+     data-open="2025-02-02 15:30"
+     data-close="2026-02-02 16:59">
+</div>
+
+{{< include ../checkout2.html >}}
+
+
+
+
+
+
+
+
+
+## Finance is a time machine {style="color: #000;" .smaller}
 
 *Finance is an applied science that deals with the allocation of scarce resources over time under conditions of uncertainty.* ([Source](https://www.annualreviews.org/doi/pdf/10.1146/annurev-financial-011019-040506))
 
@@ -550,24 +639,6 @@ Key: *module0_long1*
 
 
 
-## Warming up... {.smaller visibility="hidden"}
-
-**Which topics from previous courses are important to remember?**
-
-- What is a corporation's goal?
-
-. . . 
-
-- *Financial products'* stuff:
-
-  - Compound interest, NPV, etc. 
-  - Time value of money
-
-. . .
-
-- Basic statistics (Beta, standard deviation, etc.)
-
-**If you don't remember these topics, spend some hours on them.**
 
 
 
@@ -587,41 +658,6 @@ Key: *module0_long1*
 
 
 
-
-
-
-## Now it is your turn... {.smaller background="#191f36"}
-
-This is an introductory part. You can start preparing yourself by checking the following lists of problems of the next chapter.
-
-
-<div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
-
-  <a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1tf.html" target="_blank"
-     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
-    ✅ True / False Questions
-  </a>
-
-  <a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1num.html" target="_blank"
-     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
-    🔢 Numeric Questions
-  </a>
-
-  <a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1mcq.html" target="_blank"
-     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
-    📝 Multiple Choice
-  </a>
-
-  <a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1long.html" target="_blank"
-     style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">
-    ✍️ Long-form Answers
-  </a>
-
-</div>
-
-
-::: footer
-:::
 
 
 

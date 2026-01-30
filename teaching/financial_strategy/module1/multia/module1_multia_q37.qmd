@@ -1,0 +1,30 @@
+::: {.question-block}
+
+<form id="module1_multia_q37"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q37')" data-correct-answer="D">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>Corporate investors never pursue strategic objectives</li>
+    <li>Institutional investors never invest directly in private firms</li>
+    <li>Institutional investors include only individual retail investors</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q37" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q37" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q37" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q37" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q37" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q37" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. All three statements are false.
+Why the false statements are false:
+- (1) Corporate investors may invest for strategic reasons (e.g., access to technology/markets) in addition to financial returns.
+- (2) Many institutional investors (e.g., pension funds, endowments) invest in private markets, often via funds and sometimes directly.
+- (3) Institutional investors are organizations (e.g., mutual funds, pensions, insurers), not individual retail investors.
+</div>
+
+:::

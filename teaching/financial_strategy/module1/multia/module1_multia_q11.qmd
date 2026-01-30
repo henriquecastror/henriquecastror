@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q11"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q11')" data-correct-answer="B">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>Carried interest is a fixed annual fee charged regardless of performance</li>
+    <li>A typical management fee is charged on committed capital</li>
+    <li>General partners are usually limited partners in the fund</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q11" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q11" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q11" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q11" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q11" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q11" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Statements (1) and (3) are false (statement (2) is true).
+Why the false statements are false:
+- (1) Carried interest is performance-based compensation (a share of profits), not a fixed annual fee.
+- (3) General partners and limited partners are different roles: GPs manage the fund; LPs provide capital and have limited control.
+</div>
+
+:::

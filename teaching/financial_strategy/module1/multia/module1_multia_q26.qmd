@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q26"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q26')" data-correct-answer="C">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>IPO issuance is highly cyclical with booms in good markets and droughts in bad markets</li>
+    <li>IPO issuance volume is constant across time and does not vary with market conditions</li>
+    <li>The number of IPOs rises in bad markets and falls in good markets</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q26" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q26" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q26" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q26" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q26" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q26" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Statements (2) and (3) are false (statement (1) is true).
+Why the false statements are false:
+- (2) IPO issuance is cyclical: it tends to increase in strong markets and fall in weak markets.
+- (3) IPOs tend to cluster in good markets; issuance typically falls during bad markets.
+</div>
+
+:::

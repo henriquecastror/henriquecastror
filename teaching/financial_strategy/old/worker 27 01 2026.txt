@@ -1,0 +1,2713 @@
+export default {
+  async fetch(req, env, ctx) {
+    const url = new URL(req.url);
+    const origin = env.ALLOWED_ORIGIN || req.headers.get("Origin") || "*";
+    const method = req.method;
+
+    // Preflight
+    if (method === "OPTIONS") {
+      return new Response(null, { status: 204, headers: cors(origin) });
+    }
+    
+    // ===== Normalização de path (evita '//' e barra final) =====
+    const rawPath = url.pathname;
+    const path = rawPath.replace(/\/{2,}/g, "/").replace(/\/+$/, "") || "/";
+    const is = (p) => path === p;
+    
+    // composição fixa por tipo
+    // ===== Ensure de índices/regras (idempotente; roda sempre) =====
+    try { await ensureSchema(env); } catch { /* ignora */ }
+    // Helpers
+    const isAdmin = () => {
+      const clean  = (s) => String(s ?? "").trim();
+      const hdr    = clean(req.headers.get("x-admin-token"));
+      const bearer = clean((req.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""));
+      const qsTok  = clean(url.searchParams.get("t") || url.searchParams.get("token")); // <-- mantém
+      const envTok = clean(env.ADMIN_TOKEN);
+      const sent   = hdr || bearer || qsTok;
+      return !!sent && sent === envTok;
+    };
+
+    // 🔧 Configuração central de trilhas
+    const TRACK_CONFIG = {
+      module:  { minutes: 20, quotaPerDay: Infinity }, // prática, sem cota
+      midterm: { minutes: 20, quotaPerDay: 3 },        // vale ponto (máx 2/dia)
+      final:   { minutes: 20, quotaPerDay: 3 },        // vale ponto (máx 2/dia)
+    };
+    // util: soma minutos em string BR "YYYY-MM-DD HH:MM:SS"
+    function addMinutesBR(brStr, minutes) {
+      const d = new Date(brStr.replace(' ', 'T') + '-03:00'); // SP
+      if (isNaN(d)) return '';
+      d.setMinutes(d.getMinutes() + minutes);
+      return tsBRString(+d);
+    }
+
+    // assinatura simples para janela (integridade)
+    async function signWindow(env, { open_br, close_br, exercise_id, student_id }) {
+      const secret = String(env.SIGNING_SECRET || env.ADMIN_TOKEN || '').trim();
+      const base = `${open_br}|${close_br}|${exercise_id}|${student_id}`;
+      const key = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(secret),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false,
+        ['sign']
+      );
+      const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(base));
+      return Array.from(new Uint8Array(sig)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    const int = (v, d = 0) => {
+      const n = parseInt(String(v ?? ""), 10);
+      return Number.isFinite(n) ? n : d;
+    };
+    const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+    const nowMs = () => Date.now();
+
+
+    // === time helpers (ISO) ===
+    const nowIso = () => new Date().toISOString();
+    const secsBetweenIso = (fromIso, toIso = nowIso()) => {
+      const a = new Date(fromIso), b = new Date(toIso);
+      if (isNaN(a) || isNaN(b)) return 0;
+      return Math.max(0, Math.floor((+b - +a) / 1000));
+    };
+
+    // Rate limit simples (memória da instância)
+    const buckets = globalThis.__rl_buckets || (globalThis.__rl_buckets = new Map());
+    const rateLimit = (key, limit, windowMs) => {
+      const now = Date.now();
+      const b = buckets.get(key) || [];
+      const keep = b.filter((t) => now - t < windowMs);
+      if (keep.length >= limit) { buckets.set(key, keep); return false; }
+      keep.push(now); buckets.set(key, keep); return true;
+    };
+
+                    // ===== Bridge de sessão: /session/start?sid=xxx&next=/reports/html =====
+                    if (path === "/session/start" && method === "GET") {
+                      const sid  = (url.searchParams.get("sid") || "").trim();
+                      let  nextQ = (url.searchParams.get("next") || "/reports/html").trim();
+            
+                      // 1) validação do SID
+                      if (!sid || !/^[a-z0-9._-]{2,64}$/i.test(sid)) {
+                        return new Response("Missing or invalid sid", { status: 400, headers: cors(origin) });
+                      }
+            
+                      // 2) normaliza e valida o "next" (evita open redirect)
+                      //    - só permite caminhos internos do próprio Worker
+                      //    - permite /reports/html e qualquer /selfquiz/m/<...>
+                      try {
+                        const u = new URL(nextQ, url.origin);     // resolve relativo ao próprio host
+                        nextQ = u.pathname + u.search;            // descartamos host para garantir interno
+                      } catch {
+                        nextQ = "/reports/html";
+                      }
+                      const allowed =
+                        nextQ === "/reports/html" ||
+                        nextQ.startsWith("/selfquiz/m/");
+                      const safeNext = allowed ? nextQ : "/reports/html";
+            
+                      // 3) (opcional) rate limit leve
+                      const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+                      if (!rateLimit(`sess:${ip}`, 10, 30_000)) {   // 10 req / 30s
+                        return new Response("Too many attempts", { status: 429, headers: cors(origin) });
+                      }
+            
+                      // 4) Set-Cookie + redirect
+                      const headers = new Headers(cors(origin));
+                      headers.set(
+                        "Set-Cookie",
+                        `student_id=${encodeURIComponent(sid)}; Path=/; Secure; SameSite=Lax; HttpOnly; Max-Age=2592000`
+                      );
+                      headers.set("Location", safeNext);
+            
+                      // 303 evita re-envio indesejado se o usuário der refresh
+                      return new Response(null, { status: 303, headers });
+                    }
+ 
+ 
+ 
+ 
+ 
+ // ---------- HEALTH ----------
+ if (is("/health")) {
+      return json({ ok: true, service: "threads", ts: nowMs() }, origin);
+ }
+
+
+
+
+
+
+    // ---------- REPORTS ----------
+    if (is("/reports/me") && method === "GET") {
+      const sid = await getStudentId(req, env);
+      if (!sid) return json({ error: "unauthorized" }, origin, 401);
+
+      const report = await buildReport(env.DB, sid);
+      return new Response(JSON.stringify(report, null, 2), {
+        status: 200,
+        headers: { ...cors(origin), "Content-Type": "application/json; charset=utf-8" },
+      });
+    }
+
+            // ===================== REPORTS — LOGIN NO WORKER (SEM SESSÃO) =====================
+            // Requer env.GAS_URL apontando para seu Apps Script (ou usa fallback abaixo).
+            // Fluxo:
+            //   GET  /reports        → mostra capa com form de login/senha (sempre)
+            //   POST /reports        → chama GAS; se OK: gera report e responde HTML; se FAIL: volta capa com erro
+            //   GET  /reports/html   → bloqueado; instrui a usar /reports (não aceita querystring; sem guest)
+
+            const GAS_URL_LOGIN = (env.GAS_URL || "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec").trim();
+
+            // normaliza student_id a partir do username recebido
+            function normalizeSid(raw) {
+              const s = String(raw || "").trim().toLowerCase();
+              // mantém letras, números, ponto, sublinhado e hífen (coerente com seu ecossistema)
+              return s.replace(/[^a-z0-9._-]/g, "");
+            }
+
+            // chamada ao GAS (timeout + 1 retry)
+            async function gasValidate(username, password, pageTag = "REPORTS") {
+              async function once(ms) {
+                const ctrl = new AbortController();
+                const t = setTimeout(() => ctrl.abort("timeout"), ms || 12000);
+                try {
+                  const qs = new URLSearchParams({
+                    username: username || "",
+                    password: password || "",
+                    page: pageTag
+                  }).toString();
+                  const url = `${GAS_URL_LOGIN}?${qs}`;
+                  const res = await fetch(url, {
+                    // server-to-server; sem credenciais do browser
+                    method: "GET",
+                    redirect: "follow",
+                    // evita qualquer hint de origem
+                    headers: { "User-Agent": "ReportLoginWorker/1.0" },
+                    cf: { cacheTtl: 0 }
+                  });
+                  const text = (await res.text() || "").trim().toUpperCase();
+                  return text; // "OK" | "FAIL" | "MISSING"
+                } finally { clearTimeout(t); }
+              }
+              try { return await once(8000); } catch { try { return await once(15000); } catch { return "FAIL"; } }
+            }
+
+            // HTML: capa simples (sem assets externos; tudo inline)
+            function reportsLoginPage({ message = "" } = {}) {
+              const msg = String(message || "").trim();
+              return `<!doctype html>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width,initial-scale=1"/>
+            <title>Dashboard — login</title>
+            <style>
+            :root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--card:#f8fafc;--brand:#1e3a8a;--warn:#b91c1c}
+            *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+            .page{max-width:420px;margin:6vh auto;padding:20px}
+            .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 12px rgba(15,23,42,.06);padding:18px}
+            h1{margin:0 0 10px;font-size:20px} .muted{color:var(--muted);font-size:13px;margin-bottom:12px}
+            input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font:inherit}
+            button{width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--brand);background:var(--brand);color:#fff;font-weight:600;cursor:pointer;margin-top:8px}
+            .err{color:#fff;background:#ef4444;border:1px solid #fecaca;padding:10px;border-radius:10px;margin:6px 0 8px; font-weight:600}
+            .hint{font-size:13px;color:var(--muted);margin-top:8px}
+            </style>
+            <section class="page">
+              <div class="card">
+                <h1>My Dashboard</h1>
+                <div class="muted">Enter your  <strong>username</strong> and <strong>password</strong> to access.</div>
+                ${msg ? `<div class="err" role="alert">${msg}</div>` : ""}
+                <form method="POST" action="/reports" autocomplete="off" spellcheck="false">
+                  <input type="text"     name="username" placeholder="Username" required autofocus autocomplete="username" />
+                  <input type="password" name="password" placeholder="Password" required autocomplete="current-password" />
+                  <button type="submit">Enter</button>
+                </form>
+            
+              </div>
+            </section>`;
+            }
+
+            // HTML: recado para quem tentar acessar /reports/html direto
+            function reportsHtmlGuardPage(){
+              return `<!doctype html>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width,initial-scale=1"/>
+            <title>Dashboard</title>
+            <style>body{font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;color:#0f172a}
+            .card{max-width:720px;margin:0 auto;border:1px solid #e2e8f0;border-radius:12px;padding:16px;background:#fff}
+            h1{margin:0 0 8px;font-size:20px} .muted{color:#64748b}
+            a.btn{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:10px;background:#1e3a8a;color:#fff;text-decoration:none}
+            </style>
+            <div class="card">
+              <h1>Login required</h1>
+              <p>To view your Dashboard, please sign in on the Dashboard login page.</p>
+              <p class="muted">For security reasons, the Dashboard does not accept URL parameters or keep a local session.</p>
+              <a class="btn" href="/reports">Go to login page</a>
+            </div>`;
+            }
+
+            // GET /reports → mostra capa SEMPRE
+            if (is("/reports") && method === "GET") {
+              const html = reportsLoginPage();
+              return new Response(html, {
+                status: 200,
+                headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+              });
+            }
+
+            // POST /reports → valida no GAS e, se OK, devolve o report como HTML (sem cookies/sessão)
+            if (is("/reports") && method === "POST") {
+              // lê credenciais (form ou JSON)
+              const ct = (req.headers.get("content-type") || "").toLowerCase();
+              let username = "", password = "";
+              if (ct.includes("application/json")) {
+                const body = await readJsonBody(req) || {};
+                username = String(body.username || body.user || body.id || "").trim();
+                password = String(body.password || body.pass || "").trim();
+              } else {
+                const fd = await req.formData().catch(()=>null);
+                username = String(fd?.get("username") || "").trim();
+                password = String(fd?.get("password") || "").trim();
+              }
+
+              // valida campos
+              if (!username || !password) {
+                const html = reportsLoginPage({ message: "Missing username or password." });
+                return new Response(html, { status: 400, headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+              }
+
+              // rate limit leve (por IP + usuário)
+              const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+              const key = `reportslogin:${ip}:${username.toLowerCase()}`;
+              if (!rateLimit(key, 5, 10_000)) {
+                const html = reportsLoginPage({ message: "Too many attempts. Please wait a moment and try again." });
+                return new Response(html, { status: 429, headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+              }
+
+              // chama GAS
+              const verdict = await gasValidate(username, password, "REPORTS"); // "OK" | "FAIL" | "MISSING"
+              if (verdict !== "OK") {
+                const html = reportsLoginPage({ message: (verdict === "MISSING" ? "Missing credentials." : "Invalid username or password.") });
+                return new Response(html, { status: 401, headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+              }
+
+              // credenciais OK → gera report do próprio aluno
+              const sid = normalizeSid(username); // este ID alimenta o seu buildReport
+              const r = await buildReport(env.DB, sid);
+              const logoUrl = String(env.FGV_LOGO_URL || "").trim();
+              const html = reportToHTML(r, {
+                logoUrl,
+                courseName: env.COURSE_NAME || "Financial Strategy (2025/02)",
+                instructorName: env.INSTRUCTOR_NAME || "Henrique C. Martins - henrique.martins@fgv.br"
+              });
+
+              return new Response(html, {
+                status: 200,
+                headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+              });
+            }
+
+            // GET /reports/html → bloqueado; instruir a usar /reports
+            if (is("/reports/html") && method === "GET") {
+              // 🔒 não aceitar query (?student/sid…), não criar guest
+              const html = reportsHtmlGuardPage();
+              return new Response(html, {
+                status: 401,
+                headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+              });
+            }
+
+
+
+
+
+
+
+
+        // --- NOVO MOTOR DE LOGIN (Substitui a dependência do GAS) ---
+        if (is("/auth/login") && method === "GET") {
+          const username = url.searchParams.get("username");
+          const password = url.searchParams.get("password");
+          const page     = url.searchParams.get("page") || "slide";
+
+          // 1. Validação básica
+          if (!username || !password) return new Response("MISSING", { headers: cors(origin) });
+
+          // 2. Consulta na sua nova tabela de 2026
+          const student = await env.DB.prepare(
+              "SELECT * FROM t_students_dim WHERE student_id = ? AND password = ?"
+          ).bind(username.toLowerCase().trim(), password.trim()).first();
+
+          let status = "fail";
+          if (student) {
+              status = student.active ? "success" : "denied";
+          }
+
+          // 3. Grava o Log na D1 (Substitui o log que o GAS fazia na planilha)
+          // Usamos waitUntil para a resposta ser instantânea para o aluno
+          ctx.waitUntil(env.DB.prepare(
+              "INSERT INTO t_logins (student_id, status, page, prof, term_id) VALUES (?, ?, ?, ?, ?)"
+          ).bind(username, status, page, student?.prof || "", student?.term_id || "").run());
+
+          // 4. Resposta para o seu HTML (mantendo o contrato "OK" ou "FAIL")
+          const responseText = (status === "success") ? "OK" : "FAIL";
+          return new Response(responseText, { 
+            headers: { ...cors(origin), "Cache-Control": "no-store" } 
+          });
+        }
+
+
+
+
+
+
+          // --- NOTICES ENGINE ---
+        // 1. Busca o aviso mais recente elegível
+        if (is("/auth/notices/get") && method === "GET") {
+          const sid = url.searchParams.get("studentId")?.toLowerCase().trim();
+          const module = url.searchParams.get("module")?.toLowerCase().trim();
+
+          const notice = await env.DB.prepare(`
+            SELECT n.* FROM t_notices n
+            LEFT JOIN t_notice_seen s ON n.notice_id = s.notice_id AND s.student_id = ?1
+            WHERE n.enabled = 1
+              AND (n.audience_student_id = 'ALL' OR n.audience_student_id = ?1)
+              AND (n.audience_module = 'ALL' OR n.audience_module = ?2)
+              AND (n.start_at IS NULL OR n.start_at <= datetime('now', '-3 hours'))
+              AND (n.end_at IS NULL OR n.end_at >= datetime('now', '-3 hours'))
+              AND s.notice_id IS NULL
+            ORDER BY n.created_at DESC LIMIT 1
+          `).bind(sid || "", module || "ALL").first();
+
+          return json({ ok: true, hasNotice: !!notice, notice }, origin);
+        }
+
+        // 2. Marca como visto (Ack)
+        if (is("/auth/notices/ack") && method === "GET") {
+          const sid = url.searchParams.get("studentId")?.toLowerCase().trim();
+          const nid = url.searchParams.get("notice_id");
+
+          if (sid && nid) {
+            await env.DB.prepare("INSERT OR IGNORE INTO t_notice_seen (student_id, notice_id) VALUES (?, ?)")
+              .bind(sid, nid).run();
+          }
+          return json({ ok: true }, origin);
+        }
+
+
+
+
+
+
+// ============================================================
+// LIVE POLL SYSTEM - CONSOLIDATED & FIXED
+// ============================================================
+
+// 1. STATUS DA POLL (O que o aluno vê no slide)
+if (is("/poll/status")) {
+  const activePoll = await env.DB.prepare("SELECT * FROM poll_active WHERE is_active = 1 LIMIT 1").first();
+  return json(activePoll, origin);
+}
+
+// 2. DADOS DO GRÁFICO
+if (is("/poll/results") && method === "GET") {
+  const activePoll = await env.DB.prepare("SELECT poll_id FROM poll_active WHERE is_active = 1").first();
+  if (!activePoll) return json({ error: "No active poll" }, origin);
+
+  const results = await env.DB.prepare(`
+    SELECT chosen_option, COUNT(*) as count 
+    FROM poll_responses 
+    WHERE poll_id = ? 
+    GROUP BY chosen_option
+  `).bind(activePoll.poll_id).all();
+
+  return json(results.results, origin);
+}
+
+// 3. VOTO DO ALUNO
+if (is("/poll/vote") && method === "POST") {
+  const body = await readJsonBody(req);
+  const { student_id, poll_id, choice } = body;
+  const poll = await env.DB.prepare("SELECT correct_option FROM poll_active WHERE is_active = 1").first();
+  
+  const cleanChoice = (choice || "").trim().toUpperCase();
+  const cleanCorrect = (poll?.correct_option || "").trim().toUpperCase();
+  const is_correct = (cleanChoice === cleanCorrect && cleanCorrect !== "") ? 1 : 0;
+
+  try {
+    await env.DB.prepare(
+      "INSERT INTO poll_responses (poll_id, student_id, chosen_option, is_correct, ts_br) VALUES (?, ?, ?, ?, ?)"
+    ).bind(poll_id, student_id, cleanChoice, is_correct, tsBRString(Date.now())).run();
+    return json({ status: "success", correct: is_correct }, origin);
+  } catch (e) {
+    return json({ status: "error", message: "Already answered" }, origin, 400);
+  }
+}
+
+// 4. ADMINISTRAÇÃO UNIFICADA
+if (is("/poll/admin")) {
+  if (url.searchParams.has("show")) {
+    const showResults = url.searchParams.get("show") === "1";
+    await env.DB.prepare("UPDATE poll_active SET show_results = ? WHERE is_active = 1").bind(showResults ? 1 : 0).run();
+    return json({ status: "visibility_updated" }, origin);
+  }
+
+  const activate = url.searchParams.get("set") === "1";
+  await env.DB.prepare("UPDATE poll_active SET is_active = 0, show_results = 0").run();
+  
+  if (activate) {
+    const p_id = url.searchParams.get("poll_id") || "poll_" + Date.now();
+    const q = url.searchParams.get("q");
+    const opts = url.searchParams.get("opts");
+    const correct = (url.searchParams.get("correct") || "").toUpperCase();
+    const type = url.searchParams.get("type") || "info"; // Pega o tipo (quiz ou info)
+
+    await env.DB.prepare(
+      `INSERT INTO poll_active (poll_id, question, options_json, correct_option, is_active, show_results, poll_type) 
+       VALUES (?, ?, ?, ?, 1, 0, ?)
+       ON CONFLICT(poll_id) DO UPDATE SET 
+         question=excluded.question, options_json=excluded.options_json, 
+         correct_option=excluded.correct_option, is_active=1, show_results=0, poll_type=excluded.poll_type`
+    ).bind(p_id, q, opts, correct, type).run();
+    
+    return json({ status: "poll_activated", id: p_id, type: type }, origin);
+  }
+  return json({ status: "all_polls_deactivated" }, origin);
+}
+
+// 5. PAINEL DE CONTROLE (Interface Admin)
+if (is("/admin/poll") && method === "GET") {
+  const html = `
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Poll Admin</title>
+      <style>
+        body { font-family: -apple-system, sans-serif; padding: 20px; background: #f1f5f9; color: #1e293b; }
+        .card { max-width: 400px; margin: 0 auto; background: white; padding: 24px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 4px; color: #64748b; }
+        input, textarea, select { width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 14px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
+        .btn-launch { background: #1e3a8a; color: white; }
+        .btn-results { background: #059669; color: white; }
+        .btn-hide { background: #64748b; color: white; }
+        .btn-close { background: #fee2e2; color: #b91c1c; }
+        #status { text-align: center; font-weight: bold; margin-top: 15px; }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h2>🚀 Launch Poll</h2>
+        
+        <label>Poll Mode</label>
+        <select id="poll_type">
+          <option value="info">ℹ️ Info (No Points)</option>
+          <option value="quiz">🏆 Quiz (Ranking/Points)</option>
+        </select>
+
+        <label>Poll ID</label>
+        <input id="p_id" type="text" placeholder="Ex: quiz_1">
+        
+        <label>Question</label>
+        <textarea id="q"></textarea>
+        
+        <label>Options</label>
+        <input id="a" placeholder="A"><input id="b" placeholder="B"><input id="c" placeholder="C">
+        
+        <label>Correct Answer</label>
+        <input id="correct" placeholder="Letter A, B or C">
+        
+        <button class="btn-launch" onclick="send(1)">Launch Poll</button>
+        <button class="btn-results" onclick="toggleRes(1)">📊 Show Results</button>
+        <button class="btn-hide" onclick="toggleRes(0)">🙈 Hide Results</button>
+        <button class="btn-close" onclick="send(0)">Close All</button>
+        
+        <p id="status"></p>
+      </div>
+
+      <script>
+        async function send(active) {
+          const statusEl = document.getElementById('status');
+          statusEl.innerText = "Sending...";
+          
+          const params = new URLSearchParams({
+            set: active,
+            poll_id: document.getElementById('p_id').value,
+            q: document.getElementById('q').value,
+            type: document.getElementById('poll_type').value,
+            opts: JSON.stringify({
+                A: document.getElementById('a').value, 
+                B: document.getElementById('b').value, 
+                C: document.getElementById('c').value
+            }),
+            correct: document.getElementById('correct').value
+          });
+
+          const res = await fetch("/poll/admin?" + params.toString());
+          statusEl.innerText = active ? "✅ Active!" : "🛑 Closed!";
+        }
+
+        async function toggleRes(show) {
+          await fetch("/poll/admin?show=" + show);
+          document.getElementById('status').innerText = show ? "📊 Showing results!" : "🙈 Results hidden!";
+        }
+      </script>
+    </body>
+  </html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html", ...cors(origin) } });
+}
+
+
+
+
+
+
+
+
+
+
+
+// ---------- LIKES (UNIFICADO E RESILIENTE) ----------
+if (is("/likes")) {
+  const page = (url.searchParams.get("page") || "").trim();
+  const student = (url.searchParams.get("student") || "").trim();
+
+  // Gravação (Aceita GET ?like=1 ou POST)
+  if (url.searchParams.get("like") || method === "POST") {
+    let p = page, s = student;
+    if (method === "POST") {
+      const body = await readJsonBody(req) || {};
+      p = String(body.page || p).trim();
+      s = String(body.student || s).trim();
+    }
+    if (!p || !s) return json({ status: "error", message: "missing page/student" }, origin, 400);
+
+    const ip = req.headers.get("CF-Connecting-IP") || "0.0.0.0";
+    if (!rateLimit(`like:${s}:${p}:${ip}`, 5, 10_000)) return json({ status: "error", message: "rate limit" }, origin, 429);
+
+    try {
+      await env.DB.prepare("INSERT INTO likes (page, student_id, ts_local) VALUES (?, ?, ?)")
+          .bind(p, s, tsBRString(Date.now())).run();
+      return json({ status: "liked" }, origin);
+    } catch { return json({ status: "already" }, origin); }
+  }
+
+  // Consulta (state ou count)
+    if (method === "GET" && (url.searchParams.get("state") || url.searchParams.get("count"))) {
+      // Conta o total de likes para a página específica
+      const cntRow = await env.DB.prepare(
+          "SELECT COUNT(*) AS c FROM likes WHERE page=?"
+      ).bind(page).first();
+
+      // Verifica se ESTE aluno específico deu like
+      const likedRow = student ? await env.DB.prepare(
+        "SELECT 1 FROM likes WHERE page=? AND student_id=? LIMIT 1"
+    ).bind(page, student).first() : null;
+
+      return json({ status: "success", count: Number(cntRow?.c || 0), liked: !!likedRow }, origin);
+    }
+}
+
+
+
+
+
+
+    // ---------- CHECKOUTS ----------
+    if (is("/checkouts/status") && method === "GET") {
+      const student = (
+        url.searchParams.get("student") ||
+        url.searchParams.get("student_id") ||
+        url.searchParams.get("studentId") ||
+        ""
+      ).trim();
+
+      const slideId = (
+        url.searchParams.get("slide_id") ||
+        url.searchParams.get("slideId") ||
+        url.searchParams.get("session") ||
+        url.searchParams.get("page") ||
+        ""
+      ).trim();
+
+      if (!student || !slideId) return json({ status:"error", message:"missing student/slide_id" }, origin, 400);
+      const row = await env.DB.prepare(
+        "SELECT 1 AS ok FROM checkouts WHERE student_id=? AND slide_id=? LIMIT 1"
+      ).bind(student, slideId).first();
+      return json({ status:"success", submitted: !!row }, origin);
+    }
+
+    // Envio com validação pela hora de SP
+    if ((is("/checkouts") || is("/checkout")) && method === "POST") {
+      const body = await readJsonBody(req);
+      if (!body) return json({ status:"error", message:"invalid json" }, origin, 400);
+
+      const student_id = String(body.student || body.student_id || "").trim();
+      const slide_id   = String(body.slide_id || body.session || body.page || "").trim();
+      const ticket     = String(body.ticket || body.text || body.answer || body.message || "").trim();
+      const ts_client  = String(body.tsClient || body.ts_client || body.client_ts || "").trim();
+      const user_agent = (req.headers.get("user-agent") || "").slice(0,256);
+
+      const wOpenStr   = String(body.open || body.window_open || body["data-open"] || "").trim();
+      const wCloseStr  = String(body.close || body.window_close || body["data-close"] || "").trim();
+
+      if (!student_id) return json({ status:"error", message:"missing student_id" }, origin, 400);
+      if (!slide_id)   return json({ status:"error", message:"missing slide_id" }, origin, 400);
+
+      // valida janela somente se ambos vierem
+      if (wOpenStr && wCloseStr) {
+        const nowStr   = tsBRString(Date.now());
+        const openStr  = normalizeBRLocal(wOpenStr);
+        const closeStr = normalizeBRLocal(wCloseStr);
+        if (!openStr || !closeStr) return json({ status:"error", message:"invalid window" }, origin, 400);
+        const nowKey = brKey(nowStr), openKey = brKey(openStr), closeKey = brKey(closeStr);
+        if (nowKey < openKey || nowKey > closeKey) {
+          return json({ status:"closed_window", now_br:nowStr, open_br:openStr, close_br:closeStr }, origin, 403);
+        }
+      }
+
+      const timestamp_iso = new Date().toISOString(); // UTC
+      const timestamp_br  = tsBRString(Date.now());   // America/Sao_Paulo
+
+      // Versão simplificada para a tabela t_checkouts
+      try {
+        // Omitimos o created_at/iso pois o D1 preenche automaticamente
+        await env.DB.prepare(
+          `INSERT INTO t_checkouts 
+            (timestamp_br, student_id, slide_id, ticket) 
+           VALUES (?, ?, ?, ?)`
+        ).bind(timestamp_br, student_id, slide_id, ticket).run();
+      
+        return json({ status:"success", student_id, slide_id, timestamp_br }, origin);
+      
+      } catch (e) {
+        if (String(e).includes("UNIQUE")) {
+          return json({ status:"duplicate", student_id, slide_id }, origin);
+        }
+        return json({ status:"error", message: String(e) }, origin, 500);
+      }
+    }
+
+
+
+
+
+    // ---------- RANKING (likes) ----------
+    if (is("/ranking/score") && method === "GET") {
+      const limit = clamp(int(url.searchParams.get("limit"), 100), 1, 1000);
+      const rows = (await env.DB.prepare(
+        `SELECT student, points, last_ts
+           FROM ranking_score_likes
+          ORDER BY points DESC, last_ts DESC
+          LIMIT ?`
+      ).bind(limit).all()).results || [];
+      return json({ status: "success", items: rows }, origin);
+    }
+
+
+
+
+
+    // ---------- EXERCISES: GET ----------
+    if (is("/exercises") && method === "GET") {
+      const student = (url.searchParams.get("student") || "").trim();
+      const exercise = (url.searchParams.get("exercise_id") || url.searchParams.get("slide") || "").trim();
+      if (!student || !exercise) return json({ status:"error", message:"missing student/exercise_id" }, origin, 400);
+      const row = await env.DB.prepare(
+        `SELECT timestamp_br, student_id, exercise_id, correct_count, total_count, score, max_score, status
+           FROM exercise_submissions  WHERE student_id=? AND exercise_id=? LIMIT 1`
+      ).bind(student, exercise).first();
+      return json({ status:"success", found: !!row, data: row || null }, origin);
+    }
+
+
+
+    
+// ---------- EXERCISES: POST (corrige só MCQ) ----------
+if (is("/exercises") && method === "POST") {
+  const body = await readJsonBody(req);
+  if (!body) return json({ status:"error", message:"invalid json" }, origin, 400);
+
+  const student_id  = String(body.student || body.student_id || "").trim();
+  const exercise_id = String(body.exercise_id || body.slide || body.page || "").trim();
+  const answers     = body.answers && typeof body.answers === "object" ? body.answers : {};
+  const ts_client   = String(body.tsClient || body.ts_client || "").trim();
+  const user_agent  = (req.headers.get("user-agent") || "").slice(0,256);
+
+  if (!student_id)  return json({ status:"error", message:"missing student_id" }, origin, 400);
+  if (!exercise_id) return json({ status:"error", message:"missing exercise_id" }, origin, 400);
+
+  // Self-quiz? (legado por slide id contendo "-selfquiz-")
+  const isSelfquiz = /-selfquiz-/.test(exercise_id);
+
+  // janela opcional (mantida)
+  const wOpenStr  = String(body.open  || body.window_open  || body["data-open"]  || "").trim();
+  const wCloseStr = String(body.close || body.window_close || body["data-close"] || "").trim();
+  if (wOpenStr || wCloseStr) {
+    const nowStr   = tsBRString(Date.now());
+    const openStr  = normalizeBRLocal(wOpenStr);
+    const closeStr = normalizeBRLocal(wCloseStr);
+    if ((wOpenStr && !openStr) || (wCloseStr && !closeStr)) {
+      return json({ status: "error", message: "invalid window" }, origin, 400);
+    }
+    const nowKey   = brKey(nowStr);
+    const openKey  = openStr  ? brKey(openStr)  : null;
+    const closeKey = closeStr ? brKey(closeStr) : null;
+    if ((openKey && nowKey < openKey) || (closeKey && nowKey > closeKey)) {
+      return json(
+        { status: "closed_window", now_br: nowStr, open_br: openStr || "", close_br: closeStr || "" },
+        origin, 403
+      );
+    }
+  }
+
+  // rate-limit
+  const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+  const rlKey = `ex:${student_id}:${exercise_id}:${ip}`;
+  if (!rateLimit(rlKey, 5, 10_000)) return json({ status: "error", message: "rate limit" }, origin, 429);
+
+  const qids = Object.keys(answers);
+  if (!qids.length)  return json({ status:"error", message:"no answers" }, origin, 400);
+
+  // total enviado pelo cliente (apenas p/ self-quiz legado)
+  const total_from_client = int(body.total ?? body.total_questions, 0);
+
+  // Carrega gabarito canônico (sem instances)
+  const placeholders = qids.map(_=>"?").join(",");
+     const akRows = await env.DB.prepare(
+       `SELECT question_id, qtype, correct_value, tolerance, points, slideid
+          FROM exercise_answer_key
+         WHERE question_id IN (${placeholders})`
+     ).bind(...qids).all().then(r => r.results || []);
+      
+  const ak = new Map(akRows.map(r => [r.question_id, r]));
+
+  // pontos participação (não self-quiz)
+  const pr = await env.DB.prepare(
+    "SELECT points FROM points_rules WHERE event_type='exercise_participation' LIMIT 1"
+  ).first();
+  const participation = isSelfquiz ? 0 : (pr?.points ?? 1);
+
+  // Máximo configurado por slide (não self-quiz)
+  const maxRow = isSelfquiz
+    ? { p: 0 }
+    : await env.DB.prepare("SELECT SUM(points) AS p FROM exercise_answer_key WHERE slideid=?")
+        .bind(exercise_id).first();
+  const slideMax = Number(maxRow?.p || 0);
+
+  // --- correção (NUM | TF | MCQ) ---
+  const toNumber = (raw) => {
+    const s = String(raw ?? "").trim();
+    const n = Number(s.replace(",", "."));     // aceita vírgula
+    return Number.isFinite(n) ? n : NaN;
+  };
+  const norm = (s) => String(s ?? "").trim().toLowerCase();
+
+  function isCorrectNumeric(userRaw, correctRaw, tolRaw) {
+    const u = toNumber(userRaw);
+    const c = toNumber(correctRaw);
+    let t = toNumber(tolRaw);
+    if (!Number.isFinite(t)) t = 0;            // fallback tolerância
+    if (!Number.isFinite(u) || !Number.isFinite(c)) return false;
+    return Math.abs(u - c) <= t;               // <= aceita acerto exato
+  }
+  function isCorrectTF(userRaw, correctRaw) {
+    const m = { t:"t", true:"t", verdadeiro:"t", v:"t",
+                f:"f", false:"f", falso:"f" };
+    return (m[norm(userRaw)] || norm(userRaw)) === (m[norm(correctRaw)] || norm(correctRaw));
+  }
+  function isCorrectMCQ(userRaw, correctRaw) {
+    return norm(userRaw) === norm(correctRaw);
+  }
+
+  const answer_map = {};
+  let corr_points = 0;   // só para não-selfquiz
+  let parts_total = 0, parts_correct = 0;
+
+  for (const pid of qids) {
+    parts_total++;
+    const entry = answers[pid];
+    const val   = (entry && typeof entry === "object") ? entry.value : entry;
+
+    const k = ak.get(pid);
+    let ok = false;
+
+    if (k) {
+      const qtype = String(k.qtype || "").toLowerCase();
+      if (qtype === "num")       ok = isCorrectNumeric(val, k.correct_value, k.tolerance);
+      else if (qtype === "tf")   ok = isCorrectTF(val, k.correct_value);
+      else if (qtype === "mcq")  ok = isCorrectMCQ(val, k.correct_value);
+      else                       ok = norm(val) === norm(k.correct_value); // fallback simples
+    }
+
+    if (ok) {
+      parts_correct++;
+      if (!isSelfquiz) {
+        const pts = Number(k?.points ?? 1);
+        corr_points += pts;
+      }
+    }
+    answer_map[pid] = { answer: String(val ?? ""), correct: !!ok };
+  }
+
+  // Para self-quiz baseado em slide-id (legado)
+  const question_total   = (total_from_client && total_from_client > 0) ? total_from_client : parts_total;
+  const question_correct = parts_correct;
+
+  const timestamp_iso = new Date().toISOString();
+  const timestamp_br  = tsBRString(Date.now());
+
+  const score     = isSelfquiz ? question_correct : (corr_points + participation);
+  const max_score = isSelfquiz ? question_total
+                               : (slideMax > 0 ? slideMax : corr_points + (parts_total - parts_correct)) + participation;
+
+  const ret_correct = isSelfquiz ? question_correct : parts_correct;
+  const ret_total   = isSelfquiz ? question_total   : parts_total;
+
+  try {
+    // responses_raw (best effort)
+    try {
+      const brNow = tsBRString(Date.now());
+      const [date, time] = brNow.split(" ");
+      for (const pid of qids) {
+        const ansVal  = String(answer_map[pid]?.answer ?? "");
+        const corrVal = String(ak.get(pid)?.correct_value ?? "");
+        await env.DB.prepare(
+          `INSERT INTO responses_raw (date, time, student, slide, question_id, answer, correct)
+           VALUES (?, ?, ?, ?, ?, ?, ?)`
+        ).bind(date, time, student_id, exercise_id, pid, ansVal, corrVal).run();
+      }
+    } catch (e) { console.error("❌ erro insert responses_raw:", e); }
+
+    if (isSelfquiz) {
+      // (legado) grava em exercise_submissions para manter compat
+      await env.DB.prepare(
+        `INSERT INTO exercise_submissions 
+          (timestamp_iso,timestamp_br,student_id,exercise_id,answer_json,correct_count,total_count,score,max_score,status,ts_client,user_agent,source)
+         VALUES (?,?,?,?,?,?,?,?,?,'submitted',?,?,'worker')
+         ON CONFLICT(student_id,exercise_id) DO NOTHING`
+      ).bind(
+        timestamp_iso, timestamp_br, student_id, exercise_id,
+        JSON.stringify(answer_map), ret_correct, ret_total, score, max_score,
+        ts_client, user_agent
+      ).run();
+    } else {
+      // exercícios normais
+      await env.DB.prepare(
+        `INSERT INTO exercise_submissions 
+          (timestamp_iso,timestamp_br,student_id,exercise_id,answer_json,correct_count,total_count,score,max_score,status,ts_client,user_agent,source)
+         VALUES (?,?,?,?,?,?,?,?,?,'submitted',?,?,'worker')
+         ON CONFLICT(student_id,exercise_id) DO NOTHING`
+      ).bind(
+        timestamp_iso, timestamp_br, student_id, exercise_id,
+        JSON.stringify(answer_map), ret_correct, ret_total, score, max_score,
+        ts_client, user_agent
+      ).run();
+    }
+
+    const ok = await env.DB.prepare(
+      "SELECT 1 AS ok FROM exercise_submissions WHERE student_id=? AND exercise_id=?"
+    ).bind(student_id, exercise_id).first();
+
+    return json({
+      status: ok ? "success" : "duplicate",
+      student_id, exercise_id,
+      correct_count: ret_correct,
+      total_count:   ret_total,
+      score, max_score
+    }, origin);
+
+  } catch (e) {
+    return json({ status:"error", message: String(e || "") }, origin, 500);
+  }
+}
+
+    // ---------- EXERCISES: ANSWER KEY (ADMIN) ----------
+// Rota de Ingestão de Gabaritos no Worker
+if (is("/exercises/answer-key") && method === "POST") {
+  if (!isAdmin()) return json({ error: "unauthorized" }, origin, 401);
+
+  const body = await readJsonBody(req);
+  // O seu script R envia um objeto com { items: [...] }
+  const items = Array.isArray(body.items) ? body.items : [];
+
+  for (const it of items) {
+    await env.DB.prepare(`
+      INSERT INTO exercise_answer_key 
+        (question_id, qtype, stem, correct_value, tolerance, module, slideid)
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+      ON CONFLICT(question_id) DO UPDATE SET
+        qtype = excluded.qtype,
+        stem = excluded.stem,
+        correct_value = excluded.correct_value,
+        tolerance = excluded.tolerance,
+        module = excluded.module,
+        slideid = excluded.slideid
+    `).bind(
+      it.question_id, 
+      it.qtype, 
+      it.stem || "", // Fallback se o stem vier vazio
+      it.correct_value, 
+      it.tolerance, 
+      it.module, 
+      it.slideid
+    ).run();
+  }
+
+  return json({ status: "ok", count: items.length }, origin);
+}
+
+    // ---------- EXERCISES: TEMPLATES (ADMIN) ----------
+    if (is("/exercises/templates") && method === "POST") {
+      if (!isAdmin()) return json({ status: "error", message: "unauthorized" }, origin, 401);
+
+      const body = await readJsonBody(req);
+      if (!body) return json({ status: "error", message: "invalid json" }, origin, 400);
+
+      const items = Array.isArray(body.items) ? body.items : [];
+      if (!items.length) return json({ status: "error", message: "empty items" }, origin, 400);
+
+      const norm = (s) => String(s ?? "").trim();
+      const toIntOrNull = (v) => (v === null || v === undefined || v === "" ? null : (Number.isFinite(Number(v)) ? Number(v) : null));
+
+      const results = [];
+      for (const it of items) {
+        const question_id   = norm(it.question_id);
+        const module        = norm(it.module);
+        const qtype         = norm(it.qtype).toLowerCase();
+        const points_default= toIntOrNull(it.points_default);
+        const tags          = norm(it.tags);
+        const source_file   = norm(it.source_file);
+        const source_url    = norm(it.source_url);
+        const version_hash  = norm(it.version_hash);
+        const active        = it.active === 0 ? 0 : 1;
+
+        if (!question_id || !qtype) {
+          results.push({ question_id, action: "skip", reason: "missing question_id/qtype" });
+          continue;
+        }
+
+        await env.DB.prepare(`
+          INSERT INTO exercise_templates
+            (question_id, module, qtype, points_default, tags, source_file, source_url, version_hash, active, updated_at)
+          VALUES (?1, NULLIF(?2,''), ?3, ?4, NULLIF(?5,''), NULLIF(?6,''), NULLIF(?7,''), NULLIF(?8,''), ?9, ?10)
+          ON CONFLICT(question_id) DO UPDATE SET
+            module         = COALESCE(NULLIF(excluded.module,''), exercise_templates.module),
+            qtype          = excluded.qtype,
+            points_default = COALESCE(excluded.points_default, exercise_templates.points_default),
+            tags           = COALESCE(NULLIF(excluded.tags,''), exercise_templates.tags),
+            source_file    = COALESCE(NULLIF(excluded.source_file,''), exercise_templates.source_file),
+            source_url     = COALESCE(NULLIF(excluded.source_url,''), exercise_templates.source_url),
+            version_hash   = COALESCE(NULLIF(excluded.version_hash,''), exercise_templates.version_hash),
+            active         = excluded.active,
+            updated_at     = excluded.updated_at
+        `).bind(
+          question_id, module, qtype, points_default, tags, source_file, source_url, version_hash, active, tsBRString()
+        ).run();
+
+        results.push({ question_id, action: "upsert" });
+      }
+
+      return json({ status: "ok", results }, origin);
+    }
+
+    // ---------- ADMIN: ping (diagnóstico) ----------
+    if (is("/admin/ping") && method === "GET") {
+      const clean = (s) => String(s ?? "").trim();
+      const hdr    = clean(req.headers.get("x-admin-token"));
+      const bearer = clean((req.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""));
+      const sent   = hdr || bearer;
+      const envTok = clean(env.ADMIN_TOKEN);
+
+      return json({
+        ok: true,
+        host: url.hostname,
+        envTokenLen: envTok.length,
+        sentTokenLen: sent.length
+      }, origin);
+    }
+
+   // ---------- RANKING (TOTAL) ----------
+if (is("/ranking") && method === "GET") {
+  try {
+    const topN = clamp(int(url.searchParams.get("top"), 10), 1, 100);
+    const who  = (url.searchParams.get("who") || "").trim();
+
+    // Busca o Top N da nossa nova VIEW unificada
+    const topRows = (await env.DB.prepare(
+      `SELECT student_id, points
+         FROM "ranking_score_total"
+        ORDER BY points DESC, student_id COLLATE NOCASE ASC
+        LIMIT ?`
+    ).bind(topN).all()).results || [];
+
+    const top = topRows.map((r, i) => ({
+      rank: i + 1,
+      studentId: r.student_id,
+      student:   r.student_id,
+      total_points: Number(r.points || 0)
+    }));
+
+    let me = null;
+    if (who) {
+      // Busca a posição específica do aluno logado
+       // No seu Worker, dentro de if (is("/ranking"))
+const meRow = await env.DB.prepare(
+  `WITH ranked AS (
+     SELECT *, ROW_NUMBER() OVER (ORDER BY points DESC, student_id ASC) AS pos
+     FROM ranking_score_total
+   )
+   SELECT * FROM ranked WHERE student_id = ?`
+).bind(who).first();
+
+if (meRow) {
+  me = {
+    rank: meRow.pos,
+    studentId: meRow.student_id,
+    points: meRow.points,
+    likes_points: meRow.likes_points,      // Garante o envio dos dados
+    checkouts_points: meRow.checkouts_points,
+    poll_points: meRow.poll_points,
+    exercises_points: meRow.exercises_points
+  };
+}
+    }
+
+    return json({ status: "success", ok: true, top, me, updated_at: new Date().toISOString() }, origin);
+  } catch (e) {
+    return json({ status: "error", message: "Ranking update in progress..." }, origin, 500);
+  }
+}
+
+    // ---------- STUDENT: CHECKOUTS (HTML/JSON) ----------
+    if (is("/student/checkouts") && method === "GET") {
+      if (!isAdmin()) return json({ status: "error", message: "unauthorized" }, origin, 401);
+
+      const student    = (url.searchParams.get("student") || "").trim();
+      const exerciseId = (url.searchParams.get("exercise_id") || url.searchParams.get("slide_id") || "").trim();
+      const q          = (url.searchParams.get("q") || "").trim();
+      const fromIso    = (url.searchParams.get("from") || "").trim();
+      const toIso      = (url.searchParams.get("to")   || "").trim();
+      const limit      = clamp(int(url.searchParams.get("limit"), 100), 1, 1000);
+      const format     = (url.searchParams.get("format") || "html").toLowerCase();
+
+      if (!student) return new Response("Missing ?student=", { status: 400, headers: cors(origin) });
+
+      const binds = [student];
+      const push = (v) => { binds.push(v); return `?${binds.length}`; };
+
+      let sql = "SELECT * FROM v_checkouts_feed WHERE student = ?1";
+      if (exerciseId) sql += ` AND exercise_id = ${push(exerciseId)}`;
+      if (fromIso)    sql += ` AND ts_iso >= ${push(fromIso)}`;
+      if (toIso)      sql += ` AND ts_iso <= ${push(toIso)}`;
+      if (q)          sql += ` AND ticket LIKE ${push(`%${q}%`)}`;
+      sql += ` ORDER BY ts_ms ASC LIMIT ${push(limit)}`;
+
+      const rows = (await env.DB.prepare(sql).bind(...binds).all()).results || [];
+
+      if (format === "json") {
+        return json({ status: "success", count: rows.length, items: rows }, origin);
+      }
+
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+      const items = rows.map(r => `
+        <div class="card">
+          <div class="row between">
+            <div class="pill">💬 Checkout ${r.exercise_id ? `<span class="mono">${esc(r.exercise_id)}</span>` : ""}</div>
+            <div class="ts"><time data-iso="${esc(r.ts_iso)}">${esc(r.ts_br || r.ts_iso)}</time></div>
+          </div>
+          <div class="bubble" style="margin-top:8px;">${esc(r.ticket)}</div>
+        </div>
+      `).join("");
+
+      const html = `<!doctype html>
+      <meta charset="utf-8" />
+      <title>Checkouts — ${esc(student)}</title>
+      <style>
+        :root{--bg:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--card:#f8fafc;--chip:#eef2ff}
+        @media print { .no-print{display:none} .page{box-shadow:none;border:none} }
+        body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+        .page{max-width:980px;margin:20px auto;padding:24px;background:#fff;border:1px solid var(--line);border-radius:12px}
+        h1{margin:0 0 6px;font-size:20px}
+        .sub{color:var(--muted);margin-bottom:14px}
+        .grid{display:grid;gap:12px}
+        .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+        .row{display:flex;gap:10px;align-items:center}
+        .between{justify-content:space-between}
+        .pill{display:inline-flex;gap:6px;align-items:center;background:var(--chip);border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-size:12px}
+        .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+        .bubble{background:#f3f4f6;border:1px solid var(--line);border-radius:12px;padding:10px 12px;white-space:pre-wrap}
+        .ts{color:var(--muted);font-size:12px}
+        .toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:0 0 12px}
+        .btn{padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--chip);cursor:pointer}
+        .hint{color:var(--muted);font-size:12px;margin-top:10px}
+        .filters{display:flex;gap:8px;flex-wrap:wrap}
+        input[type="text"]{padding:6px 8px;border:1px solid var(--line);border-radius:6px}
+
+        .list{margin:6px 0 0 18px;padding:0}
+        .list li{margin:2px 0}
+        .list code{font-family:ui-monospace,Menlo,Consolas,monospace}
+
+      </style>
+      <section class="page">
+        <div class="toolbar">
+          <div>
+            <h1>Checkouts do aluno</h1>
+            <div class="sub">ID: <span class="mono">${esc(student)}</span> • Itens: ${rows.length}</div>
+          </div>
+          <div>
+            <button class="btn no-print" onclick="window.print()">🖨️ Baixar PDF</button>
+          </div>
+        </div>
+
+        <div class="filters no-print">
+          <form id="f" onsubmit="event.preventDefault(); go();">
+            <input type="hidden" name="student" value="${esc(student)}"/>
+            <input type="text"   name="exercise_id" placeholder="exercise_id" value="${esc(exerciseId)}" />
+            <input type="text"   name="q"           placeholder="buscar texto…" value="${esc(q)}" />
+            <input type="text"   name="from"        placeholder="from ISO (2025-09-01)" value="${esc(fromIso)}" />
+            <input type="text"   name="to"          placeholder="to ISO   (2025-09-10)" value="${esc(toIso)}" />
+            <input type="text"   name="limit"       placeholder="limit" value="${esc(String(limit))}" style="width:80px" />
+            <button class="btn">Filtrar</button>
+          </form>
+        </div>
+
+        <div class="grid">${items || '<div class="hint">Sem checkouts para os filtros atuais.</div>'}</div>
+
+        <p class="hint">Fonte: view <span class="mono">v_checkouts_feed</span>. Timestamps exibidos em America/Sao_Paulo quando disponíveis.</p>
+      </section>
+      <script>
+      function go(){
+        const fd = new FormData(document.getElementById('f'));
+        const p = new URLSearchParams(fd).toString();
+        location.search = p;
+      }
+      (function formatTimes(){
+        try{
+          const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle:'medium', timeStyle:'medium', timeZone:'America/Sao_Paulo' });
+          document.querySelectorAll('time[data-iso]').forEach(t=>{
+            const iso = t.getAttribute('data-iso');
+            const d = new Date(iso);
+            if(!isNaN(d)) t.textContent = fmt.format(d);
+          });
+        }catch(_){}
+      })();
+      </script>
+      `;
+            return new Response(html, { status: 200, headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+          }
+
+            // === [INSERÇÃO #1] HTML do Self-Quiz por módulo/midterm ======================
+      function htmlSelfquizPage(moduleId) {
+        const safeId = String(moduleId || "").toLowerCase();
+        const isExam = (safeId === "midterm" || safeId === "final");
+        return `<!doctype html>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Self-quiz — ${safeId}</title>
+      <style>
+        :root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--card:#f8fafc;--brand:#4f46e5}
+        body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+        .page{max-width:860px;margin:0 auto;padding:20px}
+        header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 16px}
+        h1{font-size:18px;margin:0}
+        .muted{color:var(--muted);font-size:14px}
+        .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+        .qnum{font-weight:600;margin-bottom:6px}
+        .stem{margin:8px 0 10px}
+        .opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
+        .opt input{margin-top:3px}
+        .actions{display:flex;gap:10px;align-items:center;margin-top:16px}
+        .sid{min-width:220px;padding:9px 10px;border:1px solid var(--line);border-radius:10px}
+        button{padding:10px 14px;border-radius:10px;border:1px solid var(--line);cursor:pointer;background:#fff}
+        button.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+        .pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#eef2ff;font-size:12px}
+        .timer{font-variant-numeric:tabular-nums}
+        .msg{margin:10px 0;padding:10px;border-radius:10px}
+        .warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}
+        .err{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+        .ok{background:#ecfdf5;border:1px solid #bbf7d0;color:#065f46}
+
+        /* Option cards */
+        .opt{
+          display:flex;gap:10px;align-items:flex-start;
+          border:1px solid var(--line);border-radius:12px;
+          padding:12px;margin:10px 0;cursor:pointer;
+          transition: background-color .2s, border-color .2s, box-shadow .2s;
+        }
+        .opt:hover{ background:#f8fafc; }
+
+        /* Radio color */
+        .opt input{ margin-top:3px; accent-color: var(--brand); }
+
+        /* 🔵 Selected option highlight */
+        .opt:has(input:checked){
+          background:#eef2ff;
+          border-color:var(--brand);
+          box-shadow:0 0 0 3px rgba(79,70,229,.18) inset;
+        }
+        .opt:has(input:checked) strong{ color:var(--brand); }
+
+      </style>
+      <section class="page">
+        <header>
+          <div>
+            <h1>Self-quiz — ${safeId}</h1>
+            <div class="muted" id="subtitle">Preparando…</div>
+          </div>
+          <div class="pill timer" id="timer">--:--</div>
+        </header>
+
+        <div id="msgs"></div>
+        <div id="quiz"></div>
+        <div class="actions">
+         <input id="sid" class="sid" type="text" inputmode="text" autocomplete="username"
+              placeholder="Student ID (ex: joao.silva)" />
+          <button id="submit" class="primary" disabled>Send answers.</button>
+          <button id="save" disabled>Save draft</button>
+          <span class="muted" id="status"></span>
+        </div>
+      </section>
+
+      <script>
+      (function(){
+        // === Config: este HTML é servido pelo próprio Worker (mesmo domínio) ===
+        const API_BASE = ""; // vazio = mesmo host do Worker
+        const TRACK    = ${isExam ? `"${safeId}"` : `"module"`};
+        const MODULE   = ${isExam ? `""` : `"${safeId}"`};
+
+        // === Busca student_id do seu gate atual (local/sessionStorage) =========
+        const strip = s => (s||"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");
+        const norm  = s => {
+          const r = String(s||"").trim().toLowerCase();
+          if(!r) return "";
+          return r.includes("@") ? r.split("@")[0] : r;
+        };
+        function getStudent(){
+          try{
+            const keys = ["student_login","vhcm_current_user","current_user","user_login","login","user"];
+            for(const k of keys){
+              const v = norm(strip(localStorage.getItem(k) || sessionStorage.getItem(k) || ""));
+              if(v) return v;
+            }
+          }catch{}
+          return "";
+        }
+
+        // === UI ===
+        const $ = id => document.getElementById(id);
+        const subtitle = $("subtitle");
+        const msgs = $("msgs");
+        const quizRoot = $("quiz");
+        const btnSubmit = $("submit");
+        const sidInput  = $("sid");
+        const btnSave   = $("save");
+        const statusEl  = $("status");
+        const timerEl   = $("timer");
+        const say = (cls,txt)=>{ const d=document.createElement("div"); d.className = "msg "+cls; d.textContent = txt; msgs.appendChild(d); };
+
+        // === Fluxo ===
+        (async function init(){
+          // student_id pode vir vazio; o Worker cria guest_**** automaticamente
+            const student_id = getStudent() || "";
+            if (student_id && sidInput) sidInput.value = student_id;  // pré-preenche se houver
+
+            // 1) START (sem bloquear por falta de login)
+            const start = await post("/selfquiz/attempt/start", {
+              student_id, track: TRACK, module: MODULE
+            });
+
+            if(!student_id){
+              say("warn","Você está fazendo este quiz como convidado. Informe seu ID ao enviar para registrar na D1.");
+            }
+
+          if(!start || !start.ok){
+            subtitle.textContent = (start && (start.error||start.message)) || "Failed to initiate.";
+            say("err", subtitle.textContent); return;
+          }
+
+          const attempt_id = start.attempt_id;
+          const qids = Array.isArray(start.question_ids) ? start.question_ids : [];
+          const timeLimit = Number(start.time_left_sec ?? start.time_limit_sec ?? 1200);
+
+          subtitle.textContent = TRACK==="module" ? "Selfquiz started (module)." : "Selfquiz started (Midterm/Final).";
+
+          if(!qids.length){ say("warn","Nenhuma questão sorteada."); return; }
+
+          // 2) QUESTIONS
+          const qres = await get("/selfquiz/questions?ids="+encodeURIComponent(qids.join(",")));
+          const items = (qres && Array.isArray(qres.items)) ? qres.items : [];
+          if(!items.length){ say("err","Failed to load questions."); return; }
+
+          render(items);
+          enable(true);
+          restoreDraft(attempt_id);
+          timer(timeLimit, submitNow);
+
+          btnSave.onclick = () => { localStorage.setItem("sq_"+attempt_id, JSON.stringify(readAnswers())); statusEl.textContent="Rascunho salvo."; };
+          btnSubmit.onclick = submitNow;
+          
+          
+          async function submitNow(){
+            enable(false);
+            const answers = readAnswers();
+            const typedSid = (sidInput && sidInput.value || "").trim().toLowerCase();
+            const res = await post("/selfquiz/attempt/submit", {
+             attempt_id, answers, student_id: typedSid || undefined
+            });
+            if(!res || !res.ok){ statusEl.textContent = "Failed to send"; enable(true); return; }
+            statusEl.textContent = "Sent! You answered correctly "+res.score+" of "+res.max_score+".";
+            try{ localStorage.removeItem("sq_"+attempt_id); }catch{}
+          }
+        })();
+
+        // === Render/helpers ===
+        function render(items){
+          quizRoot.innerHTML = "";
+          const letters = ["A","B","C","D","E"];
+          items.forEach((q, i) => {
+            const card = document.createElement("div");
+            card.className = "card";
+            let opts = "";
+            for(const L of letters){
+              const t = (q.options && q.options[L]) || "";
+              if(!t) continue;
+              opts += '<label class="opt"><input type="radio" name="'+escapeAttr(q.question_id)+'" value="'+L+'"><div><strong>'+L+')</strong> '+escapeHtml(t)+'</div></label>';
+            }
+            card.innerHTML = '<div class="qnum">Q'+(i+1)+'</div><div class="stem">'+escapeHtml(q.stem || q.question || "")+'</div><div class="opts">'+opts+'</div>';
+            quizRoot.appendChild(card);
+          });
+        }
+        function readAnswers(){
+          const out = {};
+          quizRoot.querySelectorAll('input[type="radio"]:checked').forEach(inp => { out[inp.name] = inp.value; });
+          return out;
+        }
+        function restoreDraft(id){
+          try{
+            const raw = localStorage.getItem("sq_"+id);
+            if(!raw) return;
+            const saved = JSON.parse(raw) || {};
+            Object.entries(saved).forEach(([qid, L]) => {
+              const el = quizRoot.querySelector('input[type="radio"][name="'+CSSescape(qid)+'"][value="'+L+'"]');
+              if(el) el.checked = true;
+            });
+            say("ok","Rascunho recuperado.");
+          }catch{}
+        }
+        function enable(on){ btnSubmit.disabled = !on; btnSave.disabled = !on; }
+        function timer(s, onEnd){
+          let left = Number(s)||0;
+          const tick = () => {
+            const m = String(Math.floor(left/60)).padStart(2,"0");
+            const ss= String(left%60).padStart(2,"0");
+            timerEl.textContent = m+":"+ss;
+            if(left<=0) onEnd(); else { left--; setTimeout(tick,1000); }
+          };
+          tick();
+        }
+
+        async function get(p){ try{ const r=await fetch((API_BASE||"")+p); if(!r.ok) return null; return await r.json(); }catch{ return null; } }
+        async function post(p, body){
+          try{
+            const r=await fetch((API_BASE||"")+p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+            if(!r.ok) return null;
+            return await r.json();
+          }catch{ return null; }
+        }
+        function escapeHtml(s){ return String(s||"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+        function escapeAttr(s){ return String(s||"").replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function CSSescape(s){
+          return String(s || "").replace(/([^\w-])/g, "\\$1");
+        }
+        
+      })();
+      </script>`;
+      }
+
+      // Rota pública: /selfquiz/m/{module|midterm}
+      if (path.startsWith("/selfquiz/m/") && method === "GET") {
+        const id = path.split("/").pop();
+        if (!id) return new Response("missing module id", { status: 400, headers: cors(origin) });
+        const html = htmlSelfquizPage(id);
+        return new Response(html, { status: 200, headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+      }
+
+      if (is("/selfquiz/ping") && method === "GET") {
+        return json({ ok:true, here:"selfquiz-block" }, origin);
+      }
+
+      // --- ADMIN: upsert de banco de questões (MCQ)
+        if (is("/selfquiz/bank") && method === "POST") {
+          if (!isAdmin()) return json({ error: "unauthorized" }, origin, 401);
+
+          const body = await readJsonBody(req) || {};
+          const items = Array.isArray(body.items) ? body.items : [];
+          if (!items.length) return json({ error: "empty items" }, origin, 400);
+
+          const now = new Date().toISOString();
+          const results = [];
+          for (const it of items) {
+            const qid    = String(it.question_id || "").trim().toLowerCase();
+            const module = String(it.module || "").trim().toLowerCase();
+            const stem   = String(it.stem || "").trim();
+            const A = String(it.opt_a || "");
+            const B = String(it.opt_b || "");
+            const C = String(it.opt_c || "");
+            const D = String(it.opt_d || "");
+            const E = String(it.opt_e || "");
+            const active = it.active === 0 ? 0 : 1;
+            if (!qid || !module || !stem) { results.push({ qid, action:"skip" }); continue; }
+
+            await env.DB.prepare(`
+              INSERT INTO selfquiz_bank
+                (question_id, module, stem, opt_a, opt_b, opt_c, opt_d, opt_e, active, updated_at)
+              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)
+              ON CONFLICT(question_id) DO UPDATE SET
+                module    = excluded.module,
+                stem      = excluded.stem,
+                opt_a     = excluded.opt_a,
+                opt_b     = excluded.opt_b,
+                opt_c     = excluded.opt_c,
+                opt_d     = excluded.opt_d,
+                opt_e     = excluded.opt_e,
+                active    = excluded.active,
+                updated_at= excluded.updated_at
+            `).bind(qid, module, stem, A, B, C, D, E, active, now).run();
+
+            results.push({ qid, action:"upsert" });
+          }
+          return json({ ok:true, count: results.length, results }, origin);
+        }
+
+        // ===== SELFQUIZ v2 (MCQ-only, D1-backed) ====================================
+        // Requer: v_selfquiz_pool, selfquiz_papers, selfquiz_attempts, selfquiz_attempt_items
+        // ============================================================================
+
+        const _ulid = () => {
+          const t = Date.now().toString(36).padStart(8, "0");
+          const r = [...crypto.getRandomValues(new Uint8Array(10))]
+            .map(n => n.toString(36).padStart(2, "0")).join("").slice(0,12);
+          return `${t}${r}`;
+        };
+        const _int = (v, d) => { const n = parseInt(String(v ?? d), 10); return Number.isNaN(n) ? d : n; };
+
+        // --- PREVIEW (admin): sorteia sem gravar
+        if (is("/selfquiz/preview") && method === "GET") {
+          if (!isAdmin()) return json({ error: "unauthorized" }, origin, 401);
+          const track = (url.searchParams.get("track") || "module").toLowerCase();
+          const module = (url.searchParams.get("module") || "").toLowerCase();
+          const n = _int(url.searchParams.get("n"), 10);
+          const timeLimit = _int(url.searchParams.get("time_limit_sec"), 1200);
+          if (track === "module" && !module) return json({ error: "missing module" }, origin, 400);
+
+          const MIDTERM_MODULES = ['module1','module2','module3','module4','module5'];
+          const FINAL_MODULES   = ['module6','module7','module8','module9','module10'];
+          const toLower = a => a.map(s => s.toLowerCase());
+
+          let where = "";
+          let binds = [];
+          if (track === "module") {
+            where = "WHERE LOWER(module)=? ";
+            binds = [module];
+          } else if (track === "midterm") {
+            const ph = MIDTERM_MODULES.map(()=>"?").join(",");
+            where = `WHERE LOWER(module) IN (${ph}) `;
+            binds = [...toLower(MIDTERM_MODULES)];
+          } else if (track === "final") {
+            const ph = FINAL_MODULES.map(()=>"?").join(",");
+            where = `WHERE LOWER(module) IN (${ph}) `;
+            binds = [...toLower(FINAL_MODULES)];
+          }
+
+          const rows = (await env.DB.prepare(
+            `SELECT question_id FROM v_selfquiz_pool
+            ${where} 
+            ORDER BY RANDOM() LIMIT ?
+            `
+          ).bind(...binds, n).all()).results || [];
+
+          if (rows.length < n) return json({ error: `pool shortage: got ${rows.length}/${n}` }, origin, 400);
+          return json({
+            ok: true,
+            track, module,
+            n_mcq: n,
+            time_limit_sec: timeLimit,
+            question_ids: rows.map(r=>r.question_id)
+          }, origin);
+        }
+
+        // --- PAPER (admin): sorteia e grava
+        if (is("/selfquiz/paper") && method === "POST") {
+          if (!isAdmin()) return json({ error: "unauthorized" }, origin, 401);
+          const body = await readJsonBody(req) || {};
+          const track = String(body.track || "module").toLowerCase();
+          const module = String(body.module || "").toLowerCase();
+          const n = _int(body.n_mcq, 10);
+          const timeLimit = _int(body.time_limit_sec, 1200);
+          if (track === "module" && !module) return json({ error: "missing module" }, origin, 400);
+
+          const MIDTERM_MODULES = ['module1','module2','module3','module4','module5'];
+          const FINAL_MODULES   = ['module6','module7','module8','module9','module10'];
+          const toLower = a => a.map(s => s.toLowerCase());
+
+          let where = "";
+          let binds = [];
+          if (track === "module") {
+            where = "WHERE LOWER(module)=? ";
+            binds = [module];
+          } else if (track === "midterm") {
+            const ph = MIDTERM_MODULES.map(()=>"?").join(",");
+            where = `WHERE LOWER(module) IN (${ph}) `;
+            binds = [...toLower(MIDTERM_MODULES)];
+          } else if (track === "final") {
+            const ph = FINAL_MODULES.map(()=>"?").join(",");
+            where = `WHERE LOWER(module) IN (${ph}) `;
+            binds = [...toLower(FINAL_MODULES)];
+          }
+
+          const rows = (await env.DB.prepare(
+            `SELECT question_id FROM v_selfquiz_pool ${where}ORDER BY RANDOM() LIMIT ?`
+          ).bind(...binds, n).all()).results || [];
+          if (rows.length < n) return json({ error: `pool shortage: got ${rows.length}/${n}` }, origin, 400);
+
+          const paper_id = `paper_${_ulid()}`;
+
+          await env.DB.prepare(
+            `INSERT INTO selfquiz_papers
+              (paper_id, track, module, question_ids, n_mcq, time_limit_sec, created_by)
+             VALUES (?1, ?2, NULLIF(?3,''), json(?4), ?5, ?6, 'worker')`
+          ).bind(
+            paper_id,
+            track,
+            module,
+            JSON.stringify(rows.map(r => r.question_id)),
+            n,
+            timeLimit
+          ).run();
+          
+          return json({ ok: true, paper_id, track, module, n_mcq: n, time_limit_sec: timeLimit }, origin);
+          } 
+
+        // --- START (aluno): cria attempt (agora resolvendo paper por módulo/midterm)
+        if (is("/selfquiz/attempt/start") && method === "POST") {
+          const url  = new URL(req.url);
+          const body = await readJsonBody(req) || {};
+        // 🔽 ADICIONE AQUI
+        const trackIn  = String(body.track || "").trim().toLowerCase();
+        const moduleIn = String(body.module || "").trim().toLowerCase();
+        let   paper_id = String(body.paper_id || "").trim(); 
+        
+        
+        // 🔽 pega do body; se vier vazio, tenta cookie/header; se ainda vazio → guest_*
+          let student_id = String(body.student_id || body.student || "").trim().toLowerCase();
+          if (!student_id) {
+            student_id = (await getStudentId(req, env)) || "";
+          }
+          if (!student_id) {
+            student_id = "guest_" + crypto.randomUUID().slice(0, 8);
+          }
+
+         // define track efetivo; se veio módulo, é "module"; senão, default "midterm"
+          const track = trackIn || (moduleIn ? "module" : "midterm");
+          if (track === "module" && !moduleIn) return json({ error: "missing module" }, origin, 400);
+
+          // minutos -> segundos pela TRACK_CONFIG
+          const cfg = TRACK_CONFIG[track] || { minutes: (track === "module" ? 20 : 25) };
+          const TIME_LIMIT_SEC = Math.max(60, Number(cfg.minutes || 20) * 60);
+
+          // 0) Se já existe uma tentativa "started" do mesmo destino (e ainda no tempo), REUTILIZA
+          //    • destino = track + (module quando track='module')
+          {
+    const reuseSqlBase = `
+      SELECT a.attempt_id, a.paper_id, a.started_at, a.status,
+             p.track, p.module, p.n_mcq, p.time_limit_sec, p.question_ids
+        FROM selfquiz_attempts a
+        JOIN selfquiz_papers   p ON p.paper_id = a.paper_id
+       WHERE a.student_id = ? AND a.status = 'started' AND p.track = ?
+    `;
+    const reuseBinds = [student_id, track];
+    let reuseSql = reuseSqlBase;
+    if (track === "module") {
+      reuseSql += " AND LOWER(p.module) = ? ";
+      reuseBinds.push(moduleIn.toLowerCase());
+    }
+    reuseSql += " ORDER BY a.started_at DESC LIMIT 1";
+
+    const reuse = await env.DB.prepare(reuseSql).bind(...reuseBinds).first();
+    if (reuse) {
+      const lim = Number(reuse.time_limit_sec || TIME_LIMIT_SEC);
+      const elapsed = secsBetweenIso(reuse.started_at, nowIso());
+      const left = Math.max(0, lim - elapsed);
+
+      if (left > 0) {
+        // segue usando a mesma attempt/paper
+        const qids = Array.isArray(reuse.question_ids)
+          ? reuse.question_ids
+          : JSON.parse(String(reuse.question_ids || "[]"));
+
+        return json({
+          ok: true,
+          attempt_id: reuse.attempt_id,
+          paper_id:   reuse.paper_id,
+          student_id,
+          module: reuse.module,
+          track:  reuse.track,
+          n_mcq:  Number(reuse.n_mcq || qids.length || 10),
+          time_limit_sec: lim,
+          time_left_sec:  left,         // <- usado pelo HTML
+          started_at: reuse.started_at,
+          question_ids: qids
+        }, origin);
+      } else {
+        // expirou: marca para não ser reutilizada
+        try {
+          await env.DB.prepare(
+            `UPDATE selfquiz_attempts
+                SET status='expired', submitted_at=?
+              WHERE attempt_id=? AND status='started'`
+          ).bind(nowIso(), reuse.attempt_id).run();
+        } catch {}
+      }
+    }
+  }
+
+        // 1) paper_id explícito? (modo admin/teste) -> usa esse paper
+        if (paper_id) {
+          const p = await env.DB.prepare(
+            `SELECT paper_id, track, module, n_mcq, time_limit_sec, question_ids
+              FROM selfquiz_papers WHERE paper_id=?`
+          ).bind(paper_id).first();
+          if (!p) return json({ error: "paper not found" }, origin, 404);
+
+          const attempt_id = `att_${_ulid()}`;
+          const ts = nowIso();
+          await env.DB.prepare(
+            `INSERT INTO selfquiz_attempts
+              (attempt_id, paper_id, student_id, started_at, status, raw_score, max_score)
+            VALUES (?1, ?2, ?3, ?4, 'started', 0, 0)`
+          ).bind(attempt_id, paper_id, student_id, ts).run();
+
+          return json({
+            ok: true,
+            attempt_id, paper_id, student_id,
+            module: p.module, track: p.track,
+            n_mcq: p.n_mcq,
+            time_limit_sec: Number(p.time_limit_sec || TIME_LIMIT_SEC),
+            time_left_sec:  Number(p.time_limit_sec || TIME_LIMIT_SEC),
+            started_at: ts,
+            question_ids: Array.isArray(p.question_ids) ? p.question_ids : JSON.parse(String(p.question_ids || "[]"))
+          }, origin);
+        }
+
+        // 2) paper one-off (sorteio no START) — restrito ao destino
+        const MIDTERM_MODULES = ['module1','module2','module3','module4','module5'];
+        const FINAL_MODULES   = ['module6','module7','module8','module9','module10'];
+        const toLower = a => a.map(s => s.toLowerCase());
+
+        // tamanho do paper (padrão 10)
+        const N = 10;
+
+        let where = "", binds = [];
+        if (track === "module") {
+          where = "WHERE LOWER(module)=? ";
+          binds = [moduleIn.toLowerCase()];
+        } else if (track === "midterm") {
+          const ph = MIDTERM_MODULES.map(()=>"?").join(",");
+          where = `WHERE LOWER(module) IN (${ph}) `;
+          binds = [...toLower(MIDTERM_MODULES)];
+        } else if (track === "final") {
+          const ph = FINAL_MODULES.map(()=>"?").join(",");
+          where = `WHERE LOWER(module) IN (${ph}) `;
+          binds = [...toLower(FINAL_MODULES)];
+        } else {
+          return json({ error: "invalid track" }, origin, 400);
+        }
+
+        const rows = (await env.DB.prepare(
+          `SELECT question_id FROM v_selfquiz_pool ${where} ORDER BY RANDOM() LIMIT ?`
+        ).bind(...binds, N).all()).results || [];
+
+        if (rows.length < N) {
+          return json({ error: `pool shortage: got ${rows.length}/${N}` }, origin, 400);
+        }
+
+        const qids = rows.map(r => r.question_id);
+
+        // 3) grava paper efêmero (one-off) + attempt
+        const paper_oneoff = `paper_${_ulid()}`;
+        await env.DB.prepare(
+          `INSERT INTO selfquiz_papers
+            (paper_id, track, module, question_ids, n_mcq, time_limit_sec, created_by)
+          VALUES (?1, ?2, NULLIF(?3,''), json(?4), ?5, ?6, 'start')`
+        ).bind(
+          paper_oneoff,
+          track,
+          (track === "module" ? moduleIn : ""),
+          JSON.stringify(qids),
+          N,
+          TIME_LIMIT_SEC
+        ).run();
+
+        const attempt_id = `att_${_ulid()}`;
+        const ts = nowIso();
+        await env.DB.prepare(
+          `INSERT INTO selfquiz_attempts
+            (attempt_id, paper_id, student_id, started_at, status, raw_score, max_score)
+          VALUES (?1, ?2, ?3, ?4, 'started', 0, 0)`
+        ).bind(attempt_id, paper_oneoff, student_id, ts).run();
+
+        return json({
+          ok: true,
+          attempt_id, paper_id: paper_oneoff, student_id,
+          module: (track === "module" ? moduleIn : ""),
+          track,
+          n_mcq: N,
+          time_limit_sec: TIME_LIMIT_SEC,
+          time_left_sec:  TIME_LIMIT_SEC,   // novo campo p/ o HTML usar
+          started_at: ts,
+          question_ids: qids
+        }, origin);
+      }
+
+        // --- QUESTIONS: devolve enunciados e alternativas (MCQ)
+        if (is("/selfquiz/questions") && method === "GET") {
+          try {
+            const ids = String(url.searchParams.get("ids") || "").trim();
+            if (!ids) return json({ ok:false, error:"missing ids" }, origin, 400);
+
+            const list = ids.split(",").map(s => s.trim()).filter(Boolean);
+            if (!list.length) return json({ ok:false, error:"empty ids" }, origin, 400);
+
+            const ph = list.map(() => "?").join(",");
+            // pega tudo para não depender de nomes exatos de coluna
+            const rows = (await env.DB.prepare(
+              `SELECT * FROM v_selfquiz_pool WHERE question_id IN (${ph})`
+            ).bind(...list).all()).results || [];
+
+            const items = rows.map((r) => {
+              // stem / enunciado (pega o que existir)
+              const stem =
+                r.stem || r.question || r.text || r.prompt || r.enunciado || "";
+
+              // opções: tenta JSON em "options", senão variações de colunas
+              let opts = null;
+              if (r.options) {
+                try { opts = JSON.parse(r.options); } catch {}
+              }
+              const get = (k) => r[k] ?? r[k?.toUpperCase?.()] ?? r[k?.toLowerCase?.()];
+              if (!opts) {
+                opts = {
+                  A: get("opt_a") || get("choice_a") || get("a") || "",
+                  B: get("opt_b") || get("choice_b") || get("b") || "",
+                  C: get("opt_c") || get("choice_c") || get("c") || "",
+                  D: get("opt_d") || get("choice_d") || get("d") || "",
+                  E: get("opt_e") || get("choice_e") || get("e") || "",
+                };
+              }
+
+              return {
+                question_id: r.question_id,
+                stem,
+                question: stem,     // mantém campo "question" por compat
+                options: opts,
+              };
+            });
+
+            return json({ ok: true, count: items.length, items }, origin);
+          } catch (e) {
+            return json({ ok:false, error: "questions_fetch_failed", detail: String(e) }, origin, 500);
+          }
+        }
+
+          // --- SUBMIT (aluno): corrige e fecha
+          if (is("/selfquiz/attempt/submit") && method === "POST") {
+            const body = await readJsonBody(req) || {};
+
+            const attempt_id = String(body.attempt_id || "").trim();
+            const answers = (body.answers && typeof body.answers === "object" && !Array.isArray(body.answers))
+              ? body.answers : null;
+            if (!attempt_id) return json({ error: "missing attempt_id" }, origin, 400);
+            if (!answers)    return json({ error: "missing answers" }, origin, 400);
+
+            // Carrega a attempt COMPLETA (inclui student_id)
+            const attempt = await env.DB.prepare(
+              `SELECT a.attempt_id, a.student_id, a.paper_id, a.started_at, a.status,
+                      p.time_limit_sec, p.question_ids
+                FROM selfquiz_attempts a
+                JOIN selfquiz_papers   p ON p.paper_id = a.paper_id
+                WHERE a.attempt_id=?`
+            ).bind(attempt_id).first();
+            if (!attempt) return json({ error: "attempt not found" }, origin, 404);
+
+            // --- override opcional de student_id vindo do formulário (caixa de texto)
+            const sidRaw = String(body.student_id || body.sid || body.student || "").trim().toLowerCase();
+            const SID_RE = /^[a-z0-9._-]{3,30}$/;
+            const sidNew = (sidRaw && SID_RE.test(sidRaw)) ? sidRaw : "";
+            const wasGuest = /^guest_[a-z0-9]+$/i.test(String(attempt.student_id || ""));
+            if (sidNew && wasGuest) {
+              try {
+                await env.DB.prepare(
+                  `UPDATE selfquiz_attempts SET student_id=? WHERE attempt_id=?`
+                ).bind(sidNew, attempt.attempt_id).run();
+                attempt.student_id = sidNew; // mantém em memória o novo valor
+              } catch (_) { /* opcional: log */ }
+            }
+
+            // bloqueio se já não estiver mais 'started'
+            if (String(attempt.status || "").toLowerCase() !== 'started') {
+              return json({ error: "attempt_closed" }, origin, 400);
+            }
+
+            // verifica estouro do tempo (com 5s de tolerância)
+            const LIMIT = Number(attempt.time_limit_sec || 1200);
+            const elapsed = secsBetweenIso(attempt.started_at, nowIso());
+            if (elapsed > LIMIT + 5) {
+              await env.DB.prepare(
+                `UPDATE selfquiz_attempts
+                    SET status='expired', submitted_at=?, duration_sec = COALESCE((julianday(?) - julianday(started_at))*86400, NULL)
+                  WHERE attempt_id=? AND status='started'`
+              ).bind(nowIso(), nowIso(), attempt_id).run();
+              return json({ error: "time_expired", limit_sec: LIMIT, elapsed_sec: elapsed }, origin, 400);
+            }
+
+            // === correção ===
+            const qids = JSON.parse(attempt.question_ids || "[]");
+            if (!Array.isArray(qids) || !qids.length) {
+              return json({ error: "paper without questions" }, origin, 500);
+            }
+
+            const ph = qids.map(()=>"?").join(",");
+            const akRows = (await env.DB.prepare(
+              `SELECT question_id, UPPER(TRIM(correct_value)) AS correct_value
+                FROM exercise_answer_key
+                WHERE question_id IN (${ph})`
+            ).bind(...qids).all()).results || [];
+            const key = new Map(akRows.map(r => [r.question_id, r.correct_value]));
+
+            await env.DB.prepare(`DELETE FROM selfquiz_attempt_items WHERE attempt_id=?`)
+              .bind(attempt_id).run();
+
+            let correct = 0;
+            for (const qid of qids) {
+              const chosen = String(answers[qid] || "").toUpperCase();
+              const ok = chosen && chosen === (key.get(qid) || "") ? 1 : 0;
+              if (ok) correct++;
+              await env.DB.prepare(
+                `INSERT INTO selfquiz_attempt_items
+                  (attempt_item_id, attempt_id, question_id, chosen_value, is_correct)
+                VALUES (?1, ?2, ?3, ?4, ?5)`
+              ).bind(`attitem_${_ulid()}`, attempt_id, qid, chosen, ok).run();
+            }
+
+            const n = qids.length;
+            const ts = nowIso();
+            await env.DB.prepare(
+              `UPDATE selfquiz_attempts
+                  SET submitted_at=?, duration_sec = COALESCE((julianday(?) - julianday(started_at))*86400, NULL),
+                      raw_score=?, max_score=?, pct = CAST(? AS REAL)/CAST(? AS REAL), status='submitted'
+                WHERE attempt_id=? AND status='started'`
+            ).bind(ts, ts, correct, n, correct, n, attempt_id).run();
+
+            return json({
+              ok: true,
+              attempt_id,
+              student_id: attempt.student_id,   // ID final (pode ter trocado de guest_... para o informado)
+              score: correct,
+              max_score: n
+            }, origin);
+          }
+
+
+        // --- GET attempt (aluno/admin)
+        if (is("/selfquiz/attempt") && method === "GET") {
+          const id = (url.searchParams.get("id") || "").trim();
+          if (!id) return json({ error: "missing id" }, origin, 400);
+          const head = await env.DB.prepare(
+            `SELECT * FROM selfquiz_attempts WHERE attempt_id=?`
+          ).bind(id).first();
+          if (!head) return json({ error: "not found" }, origin, 404);
+          const items = (await env.DB.prepare(
+            `SELECT attempt_item_id, question_id, chosen_value, is_correct
+              FROM selfquiz_attempt_items
+              WHERE attempt_id=? ORDER BY attempt_item_id`
+          ).bind(id).all()).results || [];
+          return json({ ...head, items }, origin);
+        }
+        return json({ status: "error", message: "not found", path, method }, origin, 404);
+
+  },
+};
+
+/* ===== utils ===== */
+function tsBRString(ms = Date.now()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    hour12: false
+  }).formatToParts(ms);
+  const get = t => parts.find(p => p.type === t)?.value;
+  return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")}:${get("second")}`;
+}
+function normalizeBRLocal(s) {
+  if (!s) return "";
+  let str = String(s).trim();
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(str)) str += ":00";
+  if (/^\d{10,13}$/.test(str)) {
+    const n = Number(str); const ms = str.length === 13 ? n : n * 1000; return tsBRString(ms);
+  }
+  if (/[T]/.test(str)) { const d = new Date(str); if (!isNaN(d.getTime())) return tsBRString(d.getTime()); }
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(str)) return str;
+  const d2 = new Date(str); if (!isNaN(d2.getTime())) return tsBRString(d2.getTime());
+  return "";
+}
+const brKey = (s) => Number(s.replace(/[^\d]/g, ""));
+function cors(origin) {
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Vary": "Origin", 
+    "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type,Authorization,x-admin-token,x-student-id",
+    "Access-Control-Max-Age": "86400",
+  };
+}
+
+async function readJsonBody(req) {
+  try { return await req.clone().json(); } catch {}
+  try {
+    const fd = await req.clone().formData();
+    const p = fd.get("payload") || fd.get("data");
+    if (typeof p === "string" && p.trim()) {
+      try { return JSON.parse(p); } catch {}
+    }
+  } catch {}
+  try {
+    const raw = await req.text();
+    if (raw && raw.trim().startsWith("{")) return JSON.parse(raw);
+  } catch {}
+  return null;
+}
+
+function json(obj, origin, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "Content-Type": "application/json", ...cors(origin) },
+  });
+}
+
+// garante apenas bases e índices (pode rodar em toda request)
+// garante apenas bases e índices (pode rodar em toda request)
+async function ensureSchema(env) {
+  const stmts = [
+    // índices/constraints das tabelas existentes
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_likes ON likes(page, student);",
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_check_student_slide ON checkouts(student_id, slide_id);",
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_exercises_student_exercise ON exercise_submissions(student_id, exercise_id);",
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_answer_key_qid ON exercise_answer_key(question_id);",
+    "INSERT OR IGNORE INTO points_rules(event_type, points) VALUES ('exercise_participation', 1);",
+
+    // índices úteis p/ performance
+    "CREATE INDEX IF NOT EXISTS ix_checkouts_student_time ON checkouts(student_id, timestamp_iso);",
+    "CREATE INDEX IF NOT EXISTS ix_checkouts_slide_time   ON checkouts(slide_id,  timestamp_iso);",
+  ];
+
+  for (const sql of stmts) {
+    try { await env.DB.prepare(sql).run(); } catch {}
+  }
+}
+
+async function getStudentId(req, env) {
+  // 1) Header de teste (útil no Postman/Insomnia)
+  const hdr = (req.headers.get("x-student-id") || "").trim().toLowerCase();
+  if (hdr) return hdr;
+
+  // 2) Authorization: Bearer sid:<student>
+  const auth = req.headers.get("authorization") || "";
+  const m = auth.match(/^Bearer\s+(.+)$/i);
+  if (m && m[1].startsWith("sid:")) return m[1].slice(4).trim().toLowerCase();
+
+  // 3) Cookies (caso você já sincronize login no domínio do Worker)
+  const cookies = Object.fromEntries(
+    (req.headers.get("cookie") || "")
+      .split(/; */).filter(Boolean)
+      .map(kv => {
+        const i = kv.indexOf("="); 
+        return [decodeURIComponent(kv.slice(0, i)), decodeURIComponent(kv.slice(i+1))];
+      })
+  );
+  const byCookie = (cookies.student_id || cookies.sid || cookies.hcm_student || "").trim().toLowerCase();
+  if (byCookie) return byCookie;
+
+  // 4) (opcional) fallback para debug: ?sid=... só se mandar x-admin-token correto
+  const url = new URL(req.url);
+  const qsSid = (url.searchParams.get("sid") || "").trim().toLowerCase();
+  const admin = (req.headers.get("x-admin-token") || "").trim();
+  if (qsSid && admin && admin === String(env.ADMIN_TOKEN || "").trim()) return qsSid;
+
+  return null;
+}
+
+const REPORT_SQL = `
+WITH
+  params AS (SELECT LOWER(TRIM(?1)) AS sid),
+
+  -- contexto do aluno: último course/term visto em v_logins
+  ctx AS (
+    SELECT course_id, term_id
+    FROM v_logins
+    WHERE LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+    ORDER BY occurred_at DESC
+    LIMIT 1
+  ),
+
+  -- total de logins (success) do aluno no mesmo course/term
+  mine AS (
+    SELECT COUNT(*) AS c
+    FROM v_logins
+    WHERE status='success'
+      AND LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+      AND ( (SELECT course_id FROM ctx) IS NULL OR course_id = (SELECT course_id FROM ctx) )
+      AND ( (SELECT term_id  FROM ctx) IS NULL OR term_id  = (SELECT term_id  FROM ctx) )
+  ),
+
+  -- contagem por aluno (apenas alunos do instrutor Henrique) no mesmo course/term
+  class_counts AS (
+    SELECT LOWER(TRIM(student_id)) AS sid, COUNT(*) AS c
+    FROM v_logins
+    WHERE status='success'
+      AND LOWER(TRIM(instructor_name)) = LOWER('Henrique')   -- <— seu nome/base de turma
+      AND ( (SELECT course_id FROM ctx) IS NULL OR course_id = (SELECT course_id FROM ctx) )
+      AND ( (SELECT term_id  FROM ctx) IS NULL OR term_id  = (SELECT term_id  FROM ctx) )
+    GROUP BY LOWER(TRIM(student_id))
+  ),
+
+  -- top 3 páginas do aluno
+  top_pages AS (
+    SELECT page, COUNT(*) AS c
+    FROM v_logins
+    WHERE status='success'
+      AND LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+      AND page IS NOT NULL AND TRIM(page) <> ''
+    GROUP BY page
+    ORDER BY c DESC
+    LIMIT 3
+  ),
+
+  -- alunos da turma (como já usado em class_counts)
+  class_students AS (
+    SELECT sid FROM class_counts
+  ),
+
+  -- agregados por aluno (em todas as tabelas de pontos)
+  likes_by_student AS (
+    SELECT LOWER(TRIM(student)) AS sid, COUNT(*) AS c
+    FROM likes
+    GROUP BY LOWER(TRIM(student))
+  ),
+  checkouts_by_student AS (
+    SELECT LOWER(TRIM(student_id)) AS sid, COUNT(*) AS c
+    FROM checkouts
+    GROUP BY LOWER(TRIM(student_id))
+  ),
+  exercises_by_student AS (
+    SELECT LOWER(TRIM(student_id)) AS sid, COALESCE(SUM(score),0) AS s
+    FROM exercise_submissions
+    GROUP BY LOWER(TRIM(student_id))
+  ),
+
+  selfquiz_best AS (
+    SELECT
+      LOWER(TRIM(a.student_id)) AS sid,
+      MAX(CASE WHEN LOWER(p.track)='midterm' THEN a.pct END) AS pct_midterm,
+      MAX(CASE WHEN LOWER(p.track)='final'   THEN a.pct END) AS pct_final
+    FROM selfquiz_attempts a
+    JOIN selfquiz_papers   p ON p.paper_id = a.paper_id
+    WHERE a.status = 'submitted'
+    GROUP BY LOWER(TRIM(a.student_id))
+  ),
+
+  selfquiz_points_by_student AS (
+    SELECT LOWER(TRIM(student)) AS sid,
+           COALESCE(midterm_points,0) + COALESCE(final_points,0) AS pts
+    FROM ranking_score_selfquiz
+  ),
+  
+  -- médias da turma — conta 0 para quem não tem registro
+  class_points AS (
+    SELECT
+      ROUND((
+        SELECT AVG(COALESCE(l.c,0.0))
+        FROM class_students cs
+        LEFT JOIN likes_by_student l ON l.sid = cs.sid
+      ), 1) AS likes_avg,
+      ROUND((
+        SELECT AVG(COALESCE(k.c,0.0))
+        FROM class_students cs
+        LEFT JOIN checkouts_by_student k ON k.sid = cs.sid
+      ), 1) AS checkouts_avg,
+      ROUND((
+        SELECT AVG(COALESCE(e.s,0.0))
+        FROM class_students cs
+        LEFT JOIN exercises_by_student e ON e.sid = cs.sid
+      ), 1) AS exercises_avg,
+      ROUND((
+        SELECT AVG(COALESCE(sz.pts,0.0))
+        FROM class_students cs
+        LEFT JOIN selfquiz_points_by_student sz ON sz.sid = cs.sid
+      ), 1) AS selfquiz_avg
+  ),
+
+  class_grades AS (
+    SELECT
+      ROUND(AVG(g.quiz1), 2) AS quiz1_avg,
+      ROUND(AVG(g.quiz2), 2) AS quiz2_avg,
+      ROUND(AVG(g.quiz3), 2) AS quiz3_avg,
+      ROUND(AVG(g.quiz4), 2) AS quiz4_avg,
+      ROUND(AVG(
+        (COALESCE(g.quiz1,0)+COALESCE(g.quiz2,0)+COALESCE(g.quiz3,0)+COALESCE(g.quiz4,0))
+        / NULLIF( (g.quiz1 IS NOT NULL)+(g.quiz2 IS NOT NULL)+(g.quiz3 IS NOT NULL)+(g.quiz4 IS NOT NULL), 0)
+      ), 2) AS quiz_avg,
+      ROUND(AVG(g.midterm), 2) AS midterm_avg,
+      ROUND(AVG(g.final),   2) AS final_avg,
+      ROUND(AVG(g.monitored_activity), 2) AS monitored_activity_avg,
+      ROUND(AVG(
+        (COALESCE(g.midterm,0)+COALESCE(g.final,0))
+        / NULLIF( (g.midterm IS NOT NULL)+(g.final IS NOT NULL), 0)
+      ), 2) AS exam_avg
+    FROM class_students cs
+    LEFT JOIN grades_sheet g
+      ON LOWER(TRIM(g.student_id)) = cs.sid
+  )
+  
+SELECT json_object(
+  'student_id',   (SELECT sid FROM params),
+  'generated_at', strftime('%Y-%m-%dT%H:%M:%SZ','now'),
+
+  'points', json_object(
+    'likes',     (SELECT COUNT(*) FROM likes     WHERE LOWER(TRIM(student))    = (SELECT sid FROM params)),
+    'checkouts', (SELECT COUNT(*) FROM checkouts WHERE LOWER(TRIM(student_id)) = (SELECT sid FROM params)),
+    'exercises', COALESCE((SELECT SUM(score) FROM exercise_submissions WHERE LOWER(TRIM(student_id)) = (SELECT sid FROM params)), 0),
+    'selfquiz',  COALESCE((SELECT pts FROM selfquiz_points_by_student WHERE sid=(SELECT sid FROM params)), 0),
+    'total',     0
+  ),
+
+  'grades', COALESCE((
+    SELECT json_object(
+      'quiz1',    quiz1,
+      'quiz2',    quiz2,
+      'quiz3',    quiz3,
+      'quiz4',    quiz4,
+      'quiz_avg', ROUND(
+                    (COALESCE(quiz1,0)+COALESCE(quiz2,0)+COALESCE(quiz3,0)+COALESCE(quiz4,0))
+                    / NULLIF((quiz1 IS NOT NULL)+(quiz2 IS NOT NULL)+(quiz3 IS NOT NULL)+(quiz4 IS NOT NULL),0)
+                  , 2),
+      'midterm',  midterm,
+      'final',    final,
+      'monitored_activity', monitored_activity,
+      'exam_avg', ROUND(
+                    (COALESCE(midterm,0)+COALESCE(final,0))
+                    / NULLIF((midterm IS NOT NULL)+(final IS NOT NULL),0)
+                  , 2)
+    )
+    FROM grades_sheet
+    WHERE LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+    LIMIT 1
+  ), json_object(
+      'quiz1',NULL,'quiz2',NULL,'quiz3',NULL,'quiz4',NULL,'quiz_avg',NULL,
+      'midterm',NULL,'final',NULL,'exam_avg',NULL , 'monitored_activity', NULL
+  )),
+
+  'grades_class', json_object(
+    'quiz1',    (SELECT quiz1_avg   FROM class_grades),
+    'quiz2',    (SELECT quiz2_avg   FROM class_grades),
+    'quiz3',    (SELECT quiz3_avg   FROM class_grades),
+    'quiz4',    (SELECT quiz4_avg   FROM class_grades),
+    'quiz_avg', (SELECT quiz_avg    FROM class_grades),
+    'midterm',  (SELECT midterm_avg FROM class_grades),
+    'final',    (SELECT final_avg   FROM class_grades),
+    'exam_avg', (SELECT exam_avg    FROM class_grades),
+    'monitored_activity', (SELECT monitored_activity_avg FROM class_grades)
+  ),
+
+  'attendance', COALESCE((
+    SELECT json_object(
+      'attended',  COALESCE(attended, 0),
+      'total',     COALESCE(total_classes, 0),
+      'absences',  COALESCE(absences, 0),
+      'pct',       COALESCE(pct, CASE WHEN total_classes > 0 THEN 1.0*attended/total_classes ELSE NULL END)
+    )
+    FROM attendance
+    WHERE LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+    LIMIT 1
+  ), json_object('attended',0,'total',0,'absences',0,'pct',NULL)),
+
+  'logins', json_object(
+    'mine',       COALESCE((SELECT c FROM mine), 0),
+    'class_avg',  COALESCE((SELECT ROUND(AVG(c),1) FROM class_counts), 0.0),
+    'top_pages',  COALESCE(
+      (SELECT json_group_array(json_object('page',page,'count',c)) FROM top_pages),
+      json('[]')
+    )
+  ),
+
+  'logins_daily', COALESCE((
+    SELECT json_group_array(json_object('day', day, 'count', c))
+    FROM (
+      SELECT date(occurred_at) AS day, COUNT(*) AS c
+      FROM v_logins
+      WHERE status='success'
+        AND LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+        AND ( (SELECT course_id FROM ctx) IS NULL OR course_id = (SELECT course_id FROM ctx) )
+        AND ( (SELECT term_id  FROM ctx) IS NULL OR term_id  = (SELECT term_id  FROM ctx) )
+        AND date(occurred_at) >= date('now','-90 day')
+      GROUP BY date(occurred_at)
+      ORDER BY day ASC
+    )
+  ), json('[]')),
+
+
+  'points_class', json_object(
+    'likes_avg',     COALESCE((SELECT likes_avg     FROM class_points), 0.0),
+    'checkouts_avg', COALESCE((SELECT checkouts_avg FROM class_points), 0.0),
+    'exercises_avg', COALESCE((SELECT exercises_avg FROM class_points), 0.0),
+    'selfquiz_avg',  COALESCE((SELECT selfquiz_avg  FROM class_points), 0.0),
+    'total_avg',     COALESCE((
+                          SELECT likes_avg + checkouts_avg + exercises_avg + selfquiz_avg
+                          FROM class_points
+                        ), 0.0)
+  ),
+
+  'checkouts', COALESCE((
+    SELECT json_group_array(
+      json_object('when', COALESCE(timestamp_iso, timestamp_br), 'slide_id', slide_id, 'ticket', ticket)
+    )
+    FROM (
+      SELECT timestamp_iso, timestamp_br, slide_id, ticket
+      FROM checkouts
+      WHERE LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+      ORDER BY COALESCE(timestamp_iso, timestamp_br) ASC
+      LIMIT 50
+    )
+  ), json('[]')),
+
+  'submissions', COALESCE((
+    SELECT json_group_array(
+      json_object(
+        'exercise_id', exercise_id,
+        'correct',     correct_count,
+        'total',       total_count,
+        'score',       score,
+        'max_score',   max_score,
+        'status',      status,
+        'has_answers', CASE WHEN answer_json IS NOT NULL AND TRIM(answer_json) <> '' THEN 1 ELSE 0 END,
+        'when',        timestamp_iso
+      )
+    )
+
+    FROM (
+      SELECT exercise_id, correct_count, total_count, score, max_score, status, answer_json, timestamp_iso
+      FROM exercise_submissions
+      WHERE LOWER(TRIM(student_id)) = (SELECT sid FROM params)
+      ORDER BY timestamp_iso ASC
+      LIMIT 100
+    )
+  ), json('[]'))
+) AS report_json;
+`;
+
+async function buildReport(db, studentId) {
+  const row = await db.prepare(REPORT_SQL).bind(studentId).first();
+  let report = {};
+  try { report = JSON.parse(row?.report_json || "{}"); } catch {}
+
+  // garantias mínimas
+  report.logins ??= { mine: 0, class_avg: 0, top_pages: [] };
+  report.student_id   ??= String(studentId);
+  report.generated_at ??= new Date().toISOString();
+  report.points ??= { likes:0, checkouts:0, exercises:0, selfquiz:0, total:0 };
+  report.points_class ??= { likes_avg:0, checkouts_avg:0, exercises_avg:0, selfquiz_avg:0, total_avg:0 };
+  
+  report.points.total =
+    Number(report.points.likes||0) +
+    Number(report.points.checkouts||0) +
+    Number(report.points.exercises||0);
+
+  report.attendance   ??= { attended:0, total:0, absences:0, pct:null };
+  report.checkouts    ??= [];
+  report.submissions  ??= [];
+  
+  report.grades ??= {
+    quiz1:null, quiz2:null, quiz3:null, quiz4:null, quiz_avg:null,
+    midterm:null, final:null, exam_avg:null, monitored_activity:null
+  };
+  report.grades_class ??= {
+    quiz1:null, quiz2:null, quiz3:null, quiz4:null, quiz_avg:null,
+    midterm:null, final:null, exam_avg:null, monitored_activity:null
+  };
+  
+      // depois de parsear o report:
+    const days = (report.logins_daily||[]).map(d=>d.day);
+    let longest=0, current=0, prev=null;
+    for(const d of days){
+      if(prev && (new Date(d)-new Date(prev)===86400000)) current++; else current=1;
+      longest = Math.max(longest, current); prev=d;
+    }
+    report.login_streak = { current, longest };
+
+    return report;
+}
+
+// ---------- HTML renderer (escopo de módulo) ----------
+function reportToHTML(r, { logoUrl = "", courseName = "FGV", instructorName = "" } = {}) {
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const n = (x) => Number.isFinite(+x) ? +x : 0;
+
+  const fmtBR = (w) => {
+    const s = String(w || "").trim();
+    if (!s) return "";
+    if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}/.test(s)) {
+      const d = new Date(s.replace(' ', 'T') + '-03:00');
+      if (!isNaN(d)) {
+        try {
+          return new Intl.DateTimeFormat('pt-BR', {
+            dateStyle: 'medium', timeStyle: 'medium', timeZone: 'America/Sao_Paulo'
+          }).format(d);
+        } catch {}
+      }
+      return s;
+    }
+    const d = new Date(s);
+    if (isNaN(d)) return s;
+    try {
+      return new Intl.DateTimeFormat("pt-BR", {
+        dateStyle: "medium",
+        timeStyle: "medium",
+        timeZone: "America/Sao_Paulo",
+      }).format(d);
+    } catch { return tsBRString(+d); }
+  };
+
+  const genBR = (() => {
+    const d = new Date(r.generated_at || Date.now());
+    try {
+      return new Intl.DateTimeFormat('pt-BR', {
+        dateStyle:'medium', timeStyle:'medium', timeZone:'America/Sao_Paulo'
+      }).format(d);
+    } catch { return tsBRString(+d); }
+  })();
+
+  const logins = r.logins || { mine:0, class_avg:0, top_pages:[] };
+  const top3 = Array.isArray(logins.top_pages) ? logins.top_pages.slice(0,3) : [];
+  const topList = top3.length
+    ? top3.map(p =>
+        `<li>
+           <span class="path"><code>${esc(p.page||"")}</code></span>
+           <span class="cnt">${n(p.count)}</span>
+         </li>`).join("")
+    : `<li class="muted">Sem páginas recentes.</li>`;
+
+    const points = r.points || { likes:0, checkouts:0, exercises:0, selfquiz:0, total:0 };
+
+  const g = r.grades || {};
+  const gc = r.grades_class || {};
+  const fmtGrade = (x) => (x == null || x === '' ? '—' : Number(x).toFixed(2));
+  const classPts = r.points_class || { likes_avg:0, checkouts_avg:0, exercises_avg:0, total_avg:0 };
+  const att = r.attendance || { attended:0, total:0, absences:0, pct:null };
+  const checkouts = Array.isArray(r.checkouts) ? r.checkouts : [];
+  const subs = Array.isArray(r.submissions) ? r.submissions : [];
+  const pctTxt = att.pct == null ? "-" : (Math.round(Number(att.pct)*1000)/10) + "%";
+
+  const bubbles = checkouts.length
+    ? checkouts.map(c => `
+      <div class="bubble">
+        <div class="title">
+          <time datetime="${esc(c.when || "")}">${esc(fmtBR(c.when))}</time>
+          — ${esc(c.slide_id || "")}
+        </div>
+        <div class="text">${esc(String(c.ticket || "").trim())}</div>
+      </div>`).join("")
+    : `<div class="muted">Without recent checkouts.</div>`;
+
+  const subRows = subs.length
+    ? subs.map(s => `
+      <tr>
+        <td>${esc(s.exercise_id)}</td>
+        <td><time datetime="${esc(s.when || "")}">${esc(fmtBR(s.when))}</time></td>
+        <td>${n(s.correct)}/${n(s.total)}</td>
+        <td>${n(s.score)}/${n(s.max_score)}</td>
+      </tr>`).join("")
+    : `<tr><td colspan="4" class="muted">Sem submissions.</td></tr>`;
+
+  return `<!doctype html>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Relatório — ${esc(r.student_id)}</title>
+<style>
+:root{
+  --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --card:#f8fafc; --brand:#1e3a8a;
+  --chip:#eef2ff; --ok:#065f46; --warn:#9a3412; --bg:#ffffff;
+}
+@media print { .no-print{display:none} .page{box-shadow:none;border:none} }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.page{max-width:960px;margin:24px auto;padding:24px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 16px rgba(15,23,42,.06)}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}
+h1{margin:0 0 4px;font-size:22px}
+.sub{color:var(--muted);font-size:13px}
+.logo{height:36px;object-fit:contain}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.card{grid-column:span 12;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;page-break-inside:avoid}
+.card h2{margin:0 0 8px;font-size:16px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.k{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.k .lbl{color:var(--muted);font-size:12px}
+.k .val{font-weight:700;font-size:20px}
+.k .subval{color:var(--muted);font-size:12px;margin-top:2px}
+.table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.table th,.table td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}
+.table th{font-weight:600;color:#111827;background:#f1f5f9}
+.table tr:last-child td{border-bottom:none}
+.bubbles{display:grid;gap:12px}
+.bubble{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 12px}
+.bubble .title{font-weight:600;margin-bottom:6px;color:#0f172a}
+.bubble .text{white-space:pre-wrap}
+.actions{display:flex;gap:10px;align-items:center;margin-top:14px}
+.btn{padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.muted{color:var(--muted)}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+
+/* Timeline */
+.sparkwrap{margin-top:6px}
+.spark{height:64px; display:flex; align-items:flex-end; gap:2px}
+.spark .bar{width:6px; border-radius:3px}
+.spark .bar:hover{outline:1px solid var(--brand)}
+.legend{display:flex; gap:6px; align-items:center; color:var(--muted); font-size:12px; margin-top:6px}
+.legend .box{width:10px; height:10px; border-radius:2px}
+</style>
+
+<section class="page">
+  <header>
+    <div>
+      <h1>My Dashboard - ${esc(courseName)} </h1>
+      ${instructorName ? `<div class="sub">Professor: ${esc(instructorName)}</div>` : ""}
+      <div class="sub">My ID: <span class="mono">${esc(r.student_id)}</span></div>
+      <div class="sub">Created at: ${esc(genBR)} (São&nbsp;Paulo)</div>
+    </div>
+    ${logoUrl ? `<img class="logo" src="${esc(logoUrl)}" alt="FGV logo"/>` : ""}
+  </header>
+  <div class="grid">
+
+  <!-- Exams -->
+  <div class="card">
+    <h2>Exams <span class="muted" style="font-weight:400; font-size:13px;">(80% of final grade)</span></h2>
+    <div class="kpi" style="grid-template-columns: repeat(3,1fr);">
+    <div class="k">
+    <div class="lbl">Midterm  <span class="muted" style="font-weight:400; font-size:13px;">(40% of final grade)</span></div>
+    <div class="val">${fmtGrade(g.midterm)}</div>
+    <div class="subval">avg ${fmtGrade(gc.midterm)}</div>
+  </div>
+  <div class="k">
+  <div class="lbl">Final  <span class="muted" style="font-weight:400; font-size:13px;">(40% of final grade)</span></div>
+  <div class="val">${fmtGrade(g.final)}</div>
+    <div class="subval">avg ${fmtGrade(gc.final)}</div>
+  </div>
+  <div class="k">
+    <div class="lbl">Average</div>
+    <div class="val">${fmtGrade(g.exam_avg)}</div>
+    <div class="subval">avg ${fmtGrade(gc.exam_avg)}</div>
+  </div>
+    </div>
+  </div>
+  <!-- Quizzes -->
+  <div class="card">
+    <h2>Quizzes <span class="muted" style="font-weight:400; font-size:13px;">(10% of final grade)</span></h2>
+    <div class="kpi" style="grid-template-columns: repeat(5,1fr);">
+          <div class="k">
+          <div class="lbl">Quiz 1</div>
+          <div class="val">${fmtGrade(g.quiz1)}</div>
+          <div class="subval">avg ${fmtGrade(gc.quiz1)}</div>
+        </div>
+        <div class="k">
+          <div class="lbl">Quiz 2</div>
+          <div class="val">${fmtGrade(g.quiz2)}</div>
+          <div class="subval">avg ${fmtGrade(gc.quiz2)}</div>
+        </div>
+        <div class="k">
+          <div class="lbl">Quiz 3</div>
+          <div class="val">${fmtGrade(g.quiz3)}</div>
+          <div class="subval">avg ${fmtGrade(gc.quiz3)}</div>
+        </div>
+        <div class="k">
+          <div class="lbl">Quiz 4</div>
+          <div class="val">${fmtGrade(g.quiz4)}</div>
+          <div class="subval">avg ${fmtGrade(gc.quiz4)}</div>
+        </div>
+        <div class="k">
+          <div class="lbl">Average</div>
+          <div class="val">${fmtGrade(g.quiz_avg)}</div>
+          <div class="subval">avg ${fmtGrade(gc.quiz_avg)}</div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+  <h2>Ranking score <span class="muted" style="font-weight:400; font-size:13px;">(8% of final grade)</span></h2>
+  <div class="kpi" style="grid-template-columns: repeat(5,1fr);">
+    <div class="k">
+      <div class="lbl">Likes</div>
+      <div class="val">${n(points.likes)}</div>
+      <div class="subval">avg ${n(classPts.likes_avg)}</div>
+    </div>
+    <div class="k">
+      <div class="lbl">Checkouts</div>
+      <div class="val">${n(points.checkouts)}</div>
+      <div class="subval">avg ${n(classPts.checkouts_avg)}</div>
+    </div>
+    <div class="k">
+      <div class="lbl">Exercises</div>
+      <div class="val">${n(points.exercises)}</div>
+      <div class="subval">avg ${n(classPts.exercises_avg)}</div>
+    </div>
+
+    <div class="k">
+      <div class="lbl">Total</div>
+      <div class="val">${n(points.total)}</div>
+      <div class="subval">avg ${n(classPts.total_avg)}</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Monitored activity <span class="muted" style="font-weight:400; font-size:13px;">(2% of final grade)</span></h2>
+  <div class="kpi" style="grid-template-columns: 200px;">
+    <div class="k">
+      <div class="lbl">Score</div>
+      <div class="val">${fmtGrade(g.monitored_activity)}</div>
+      <div class="subval">avg ${fmtGrade(gc.monitored_activity)}</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+<h2>Attendance (classes)</h2>
+<table class="table">
+  <tr><th>Days attended</th><th>Total</th><th>Absences</th><th>%</th></tr>
+  <tr>
+    <td>${n(att.attended)}</td>
+    <td>${n(att.total)}</td>
+    <td>${n(att.absences)}</td>
+    <td>${pctTxt}</td>
+  </tr>
+</table>
+</div>
+
+  <div class="card">
+      <h2>Engagement (logins & top pages)</h2>
+      <div class="kpi kpi-eng" style="grid-template-columns:200px minmax(0,1fr)">
+        <div class="k">
+          <div class="lbl">My logins</div>
+          <div class="val">${n(logins.mine)}</div>
+          <div class="subval">avg ${n(logins.class_avg)}</div>
+        </div>
+        <div class="k">
+          <div class="lbl">Top 3 pages</div>
+          <ul class="list">${topList}</ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Activity timeline (90d)</h2>
+      <div class="muted">Current streak: ${n(r.login_streak?.current||0)} • Best: ${n(r.login_streak?.longest||0)}</div>
+
+      <div id="timeline" class="sparkwrap">
+        <div class="spark" id="spark"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+
+      <script id="logins-data" type="application/json">
+        ${JSON.stringify(r.logins_daily || []).replace(/<\/(script)/ig, '<\\/$1')}
+      </script>
+
+      <script>
+      (function(){
+        try{
+          const raw = (document.getElementById("logins-data").textContent || "[]").trim();
+          const sparse = JSON.parse(raw || "[]");
+
+          const spark  = document.getElementById("spark");
+          const legend = document.getElementById("legend");
+
+          const map = new Map();
+          if (Array.isArray(sparse)) sparse.forEach(d => { if (d && d.day) map.set(String(d.day), Number(d.count)||0); });
+
+          const anchor = new Date();
+          const full = [];
+          for (let i = 89; i >= 0; i--) {
+            const d = new Date(anchor); d.setDate(d.getDate() - i);
+            const yyyy = d.getFullYear(), mm = String(d.getMonth()+1).padStart(2,'0'), dd = String(d.getDate()).padStart(2,'0');
+            const key = \`\${yyyy}-\${mm}-\${dd}\`;
+            full.push({ day: key, count: map.get(key) || 0 });
+          }
+
+          const H = 64;
+          const max = Math.max(...full.map(d => d.count), 1);
+
+          function cssVarRGB(name){
+            const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+            if(!v) return [30,58,138];
+            if(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v)){
+              const hex = v.slice(1);
+              const norm = hex.length===3 ? hex.split('').map(c=>c+c).join('') : hex;
+              return [parseInt(norm.slice(0,2),16), parseInt(norm.slice(2,4),16), parseInt(norm.slice(4,6),16)];
+            }
+            const m = v.match(/rgb\\s*\\(\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\s*\\)/i);
+            return m ? [parseInt(m[1],10), parseInt(m[2],10), parseInt(m[3],10)] : [30,58,138];
+          }
+          const [R,G,B] = cssVarRGB('--brand');
+
+          full.forEach(d => {
+            const v = +d.count || 0;
+            const h = Math.max(2, Math.round(v/max * H));
+            const el = document.createElement("div");
+            el.className = "bar";
+            el.style.height = h + "px";
+            el.title = (d.day || "") + ": " + v;
+
+            const a = 0.18 + 0.77 * (v / max);
+            el.style.background = "rgba(" + R + "," + G + "," + B + "," + a.toFixed(3) + ")";
+            el.style.boxShadow  = "inset 0 0 0 1px rgba(255,255,255,.25)";
+            spark.appendChild(el);
+          });
+
+          legend.innerHTML = '0&nbsp;&nbsp;→&nbsp;&nbsp;' + max;
+        }catch(_){}
+      })();
+      </script>
+    </div>
+
+
+    <div class="card">
+      <h2>Checkouts</h2>
+      <div class="bubbles">${bubbles}</div>
+    </div>
+
+    <div class="card">
+      <h2>Exercises scores</h2>
+      <table class="table">
+        <tr><th>Exercises</th><th>Date</th><th>Correct/Total</th><th>Score</th></tr>
+        ${subRows}
+      </table>
+    </div>
+  </div>
+
+  <div class="actions no-print">
+    <button class="btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+  </div>
+</section>`;
+}

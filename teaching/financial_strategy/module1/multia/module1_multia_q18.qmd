@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q18"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q18')" data-correct-answer="B">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A lockup provision allows insiders to sell immediately after the IPO</li>
+    <li>A lockup restricts insiders from selling shares for about 180 days</li>
+    <li>A lockup increases the number of shares outstanding</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q18" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q18" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q18" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q18" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q18" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q18" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Statements (1) and (3) are false (statement (2) is true).
+Why the false statements are false:
+- (1) A lockup restricts insiders from selling their shares for a period after the IPO (often ~180 days).
+- (3) A lockup is a selling restriction; it does not change the number of shares outstanding.
+</div>
+
+:::

@@ -1,0 +1,30 @@
+::: {.question-block}
+
+<form id="module1_multia_q40"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q40')" data-correct-answer="D">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A seasoned equity offering occurs when a private firm sells stock to the public for the first time</li>
+    <li>In an SEO there is no existing market price for the stock</li>
+    <li>SEOs are more costly than IPOs because spreads are higher</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q40" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q40" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q40" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q40" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q40" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q40" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. All three statements are false.
+Why the false statements are false:
+- (1) A seasoned equity offering (SEO) is an equity issue by a firm that is already public (the first public sale is an IPO).
+- (2) Because the firm is already public, an SEO typically has an existing market price to reference.
+- (3) This statement is false because it contradicts standard equity issuance mechanics covered in the module (the correct relationship goes the other way).
+</div>
+
+:::

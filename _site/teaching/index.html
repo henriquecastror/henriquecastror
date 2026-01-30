@@ -162,26 +162,56 @@ gtag('config', 'G-771J5563G0', { 'anonymize_ip': true});
 
 
 <style>
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 90%;
-}
-table th, table td {
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-}
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-table th:first-child,
-table td:first-child {
-  border-right: 1px solid #ccc;
-}
+    /* Estilo do botão verde "Active" */
+    .btn-active {
+        display: inline-block;
+        padding: 4px 12px;
+        background-color: #28a745; 
+        color: white !important;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 6px;
+        text-decoration: none !important;
+        margin-left: 10px;
+        box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+        transition: all 0.2s ease;
+        vertical-align: middle;
+    }
+
+    .btn-active:hover {
+        background-color: #218838;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+    }
+
+    /* Estilo do botão vermelho opaco "Archived" */
+    .tag-archived {
+        display: inline-block;
+        padding: 4px 12px;
+        background-color: rgba(220, 53, 69, 0.15); /* Vermelho com opacidade baixa */
+        color: #dc3545 !important; /* Texto em vermelho sólido para leitura */
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 6px;
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+
+    /* Ajuste de cor para o link do curso */
+    .course-link {
+        color: #1e3a8a;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .course-link:hover {
+        text-decoration: underline;
+    }
 </style>
 <section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">📆 2025</h2>
+<h2 class="anchored" data-anchor-id="section">📆 2026</h2>
 <table class="table">
 <thead>
 <tr class="header">
@@ -191,26 +221,14 @@ table td:first-child {
 </thead>
 <tbody>
 <tr class="odd">
-<td>02</td>
-<td>🎯 <a href="../teaching/financial_strategy/index.html">Financial Strategy</a></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>📉 <a href="../teaching/empirical_finance/index.html">Empirical Methods for Finance</a></td>
-</tr>
-<tr class="odd">
 <td>01</td>
-<td>🎯 <a href="../teaching/202501_financial_strategy/index.html">Financial Strategy</a></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>📊 <a href="../teaching/202501_staii/index.html">STAII</a></td>
+<td>🎯 <a href="../teaching/financial_strategy/index.html" class="course-link">Financial Strategy</a> <a href="#" class="btn-active">Active</a></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1">📆 2024</h2>
+<h2 class="anchored" data-anchor-id="section-1">📆 2025</h2>
 <table class="table">
 <thead>
 <tr class="header">
@@ -220,18 +238,26 @@ table td:first-child {
 </thead>
 <tbody>
 <tr class="odd">
-<td>01</td>
-<td>🎯 <a href="../teaching/202401_financial_strategy/index.html">Financial Strategy</a></td>
+<td>02</td>
+<td>🎯 Financial Strategy <span class="tag-archived">Archived</span></td>
 </tr>
 <tr class="even">
-<td>Summer</td>
-<td>🎯 <a href="../teaching/202401s_financial_strategy/index.html">Financial Strategy</a></td>
+<td></td>
+<td>📉 <a href="../teaching/empirical_finance/index.html" class="course-link">Empirical Methods for Finance</a> <span class="tag-archived">Archived</span></td>
+</tr>
+<tr class="odd">
+<td>01</td>
+<td>🎯 Financial Strategy <span class="tag-archived">Archived</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>📊 <a href="../teaching/202501_staii/index.html" class="course-link">STAII</a> <span class="tag-archived">Archived</span></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2">📆 2023</h2>
+<h2 class="anchored" data-anchor-id="section-2">📆 2024</h2>
 <table class="table">
 <thead>
 <tr class="header">
@@ -242,56 +268,31 @@ table td:first-child {
 <tbody>
 <tr class="odd">
 <td>02</td>
-<td>🧮 <a href="../teaching/202302_empirical_finance/index.html">Econometrics for Finance (DPA)</a></td>
+<td>🧮 Econometrics for Finance (DPA) <span class="tag-archived">Archived</span></td>
 </tr>
 <tr class="even">
 <td></td>
-<td>🎯 <a href="../teaching/202302_financial_strategy/index.html">Financial Strategy</a></td>
+<td>🎯 Financial Strategy <span class="tag-archived">Archived</span></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td>🏛️ <a href="../teaching/empirical_finance/index.html">Causal Inference</a></td>
+<td>🏛️ Causal Inference <span class="tag-archived">Archived</span></td>
 </tr>
 <tr class="even">
 <td>Winter</td>
-<td>🎯 <a href="../teaching/202302w_financial_strategy/index.html">Financial Strategy</a></td>
+<td>🎯 Financial Strategy <span class="tag-archived">Archived</span></td>
 </tr>
 <tr class="odd">
 <td>01</td>
-<td>🎯 <a href="../teaching/202301_financial_strategy/index.html">Financial Strategy</a></td>
+<td>🎯 Financial Strategy <span class="tag-archived">Archived</span></td>
 </tr>
 <tr class="even">
 <td></td>
-<td>🌱 <a href="../teaching/202301_ESG/index.html">ESG &amp; Institutional Investment</a></td>
+<td>🌱 <a href="../teaching/202301_ESG/index.html" class="course-link">ESG &amp; Institutional Investment</a> <span class="tag-archived">Archived</span></td>
 </tr>
 <tr class="odd">
 <td>Summer</td>
-<td>🎯 <a href="../teaching/202301s_financial_strategy/index.html">Financial Strategy</a></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3">📆 2022</h2>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Semester</th>
-<th>Course</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>02</td>
-<td>📈 <a href="../teaching/202202_empirical_finance/index.html">Data &amp; Empirical Finance</a></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>🎯 <a href="../teaching/202202_financial_strategy/index.html">Financial Strategy</a></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>🌱 <a href="../teaching/202202_ESG/index.html">ESG &amp; Institutional Investment</a></td>
+<td>🎯 Financial Strategy <span class="tag-archived">Archived</span></td>
 </tr>
 </tbody>
 </table>

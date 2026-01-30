@@ -1,62 +1,139 @@
-<!-- ranking-widgets2.html : Minimal icon button + ranking panel (Cloudflare) -->
 <style>
   html.locked .requires-auth, body.locked .requires-auth { display: none !important; }
 
-  :root{
-    --chatbot-gap: 350px;
-    --lb-bg: rgba(46, 58, 78, 0.72);
-    --lb-border: rgba(255,255,255,0.10);
-    --lb-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.18);
+  :root {
+    --lb-bg: rgba(46, 58, 78, 0.85);
+    --lb-border: rgba(255, 255, 255, 0.12);
+    --lb-shadow: 0 18px 60px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.18);
     --lb-radius: 18px;
     --lb-accent: #a78bfa;
-    --lb-accent-weak: rgba(167,139,250,0.18);
-    --pill-start: #6d5df5; --pill-end: #2ec5ff;
+    --lb-accent-weak: rgba(167, 139, 250, 0.25);
+    --pill-start: #6d5df5; 
+    --pill-end: #2ec5ff;
   }
-  .lb-panel{ position:fixed; bottom:20px; right:var(--chatbot-gap); z-index:2147483647; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
-  .lb-toggle{ width:40px; height:40px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; border:none;
-    background:linear-gradient(135deg,var(--pill-start),var(--pill-end)); color:#fff; box-shadow:0 10px 28px rgba(2,6,23,.30), inset 0 0 0 1px rgba(255,255,255,.14);
-    cursor:pointer; user-select:none; transition:transform .12s ease, box-shadow .12s ease, filter .12s ease; }
-  .lb-toggle:hover{ transform:translateY(-1px); filter:brightness(1.05); }
-  .lb-toggle:active{ transform:translateY(0); filter:brightness(.98); }
-  .lb-icon{ font-size:20px; line-height:1; }
 
-  .lb-card{
-    margin-top:10px; width:360px; max-height:62vh; overflow:auto; border:1px solid var(--lb-border); background:var(--lb-bg);
-    -webkit-backdrop-filter:saturate(160%) blur(10px); backdrop-filter:saturate(160%) blur(10px); border-radius:var(--lb-radius); box-shadow:var(--lb-shadow);
-    display:none; position:absolute; bottom:52px; right:0; transform-origin:bottom right; color:#e5e7eb;
+  /* POSICIONAMENTO À ESQUERDA */
+  .lb-panel { 
+    position: fixed; 
+    bottom: 20px; 
+    left: 20px; 
+    z-index: 2147483647; 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
   }
-  .lb-card.open{ display:block; animation:lbPop .18s cubic-bezier(.2,.9,.2,1); }
-  @keyframes lbPop{ from{ transform:scale(.98); opacity:0 } to{ transform:scale(1); opacity:1 } }
 
-  .lb-header{ padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.06); display:flex; justify-content:space-between; align-items:center;
-    background:linear-gradient(180deg, rgba(167,139,250,.12), transparent 60%); border-top-left-radius:var(--lb-radius); border-top-right-radius:var(--lb-radius);
-    position:sticky; top:0; backdrop-filter:blur(6px); }
-  .lb-title{ font-weight:800; letter-spacing:.2px; color:#f3f4f6; }
+  /* BOTÃO ESTILO PÍLULA (IGUAL AO VIRTUAL HCM) */
+  .lb-toggle { 
+    height: 40px; 
+    padding: 0 16px 0 12px; 
+    border-radius: 999px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+    border: none;
+    background: linear-gradient(135deg, var(--pill-start), var(--pill-end)); 
+    color: #fff; 
+    box-shadow: 0 10px 28px rgba(2, 6, 23, 0.30), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    cursor: pointer; 
+    user-select: none; 
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease; 
+  }
+  
+  .lb-toggle:hover { transform: translateY(-1px); filter: brightness(1.05); }
+  .lb-toggle:active { transform: translateY(0); filter: brightness(.98); }
 
-  .lb-list{ list-style:none; margin:0; padding:6px 0 8px; }
-  .lb-item{ display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px dashed rgba(255,255,255,.06); }
-  .lb-item:last-child{ border-bottom:0; }
+  .lb-label-text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
 
-  .lb-left{ display:flex; align-items:center; gap:10px; min-width:0; }
-  .lb-rank{ width:28px; text-align:right; font-variant-numeric:tabular-nums; color:#fde68a; font-weight:700; }
-  .lb-item.top-2 .lb-rank{ color:#cbd5e1; } .lb-item.top-3 .lb-rank{ color:#d8b4fe; }
+  .lb-icon { font-size: 18px; line-height: 1; }
 
-  .lb-name{ flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e5e7eb; }
-  .lb-points{ font-variant-numeric:tabular-nums; font-weight:600; color:#f3f4f6; }
+  /* CARD AJUSTADO PARA ABRIR DA ESQUERDA */
+  .lb-card {
+    margin-top: 10px; 
+    width: 500px; 
+    max-height: 62vh; 
+    overflow: auto; 
+    border: 1px solid var(--lb-border); 
+    background: var(--lb-bg);
+    -webkit-backdrop-filter: saturate(160%) blur(12px); 
+    backdrop-filter: saturate(160%) blur(12px); 
+    border-radius: var(--lb-radius); 
+    box-shadow: var(--lb-shadow);
+    display: none; 
+    position: absolute; 
+    bottom: 52px; 
+    left: 0; 
+    transform-origin: bottom left; 
+    color: #e5e7eb;
+  }
+  
+  .lb-card.open { display: block; animation: lbPop .18s cubic-bezier(.2, .9, .2, 1); }
+  
+  @keyframes lbPop { 
+    from { transform: scale(.95); opacity: 0 } 
+    to { transform: scale(1); opacity: 1 } 
+  }
 
-  .lb-footer{ padding:10px 14px; display:flex; justify-content:space-between; align-items:center; gap:8px; border-top:1px solid rgba(255,255,255,.06);
-    background:linear-gradient(0deg, rgba(167,139,250,.10), transparent 60%); border-bottom-left-radius:var(--lb-radius); border-bottom-right-radius:var(--lb-radius);
-    position:sticky; bottom:0; backdrop-filter:blur(6px); }
-  .lb-badge-me{ background:var(--lb-accent-weak); padding:4px 8px; border-radius:999px; font-size:12px; font-weight:600; color:#f5f3ff; }
+  .lb-header { 
+    padding: 12px 14px; 
+    border-bottom: 1px solid rgba(255, 255, 255, .1); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: linear-gradient(180deg, rgba(167, 139, 250, .15), transparent 60%); 
+    border-top-left-radius: var(--lb-radius); 
+    border-top-right-radius: var(--lb-radius);
+    position: sticky; 
+    top: 0; 
+    z-index: 10;
+    backdrop-filter: blur(6px); 
+  }
 
-  @media (max-width:820px){ .lb-panel{ right:12px; bottom:88px; } .lb-card{ position:fixed; left:12px; right:12px; bottom:88px; width:auto; height:58vh; max-height:none; transform-origin:bottom center; } }
-  @media (max-width:380px){ .lb-card{ height:62vh; } }
+  .lb-title { font-weight: 800; letter-spacing: .2px; color: #fff; }
+
+  .lb-list { list-style: none; margin: 0; padding: 6px 0 8px; }
+  .lb-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px dashed rgba(255, 255, 255, .06); }
+  .lb-item:last-child { border-bottom: 0; }
+
+  .lb-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .lb-rank { width: 28px; text-align: right; font-variant-numeric: tabular-nums; color: #fde68a; font-weight: 700; }
+  .lb-item.top-2 .lb-rank { color: #cbd5e1; } 
+  .lb-item.top-3 .lb-rank { color: #d8b4fe; }
+
+  .lb-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #e5e7eb; }
+  .lb-points { font-variant-numeric: tabular-nums; font-weight: 600; color: #f3f4f6; }
+
+  .lb-footer { 
+    padding: 12px 14px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 8px; 
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    background: rgba(0, 0, 0, 0.2); 
+    border-bottom-left-radius: var(--lb-radius); 
+    border-bottom-right-radius: var(--lb-radius);
+    position: sticky; 
+    bottom: 0; 
+    backdrop-filter: blur(6px); 
+  }
+  
+  .lb-badge-me { background: var(--pill-start); padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff; }
+
+  @media (max-width: 820px) { 
+    .lb-panel { left: 12px; bottom: 88px; } 
+    .lb-card { position: fixed; left: 12px; right: 12px; bottom: 88px; width: auto; height: 58vh; max-height: none; transform-origin: bottom center; } 
+  }
 </style>
 
 <div class="requires-auth">
   <div class="lb-panel" id="lbPanel2">
     <button class="lb-toggle" id="lbToggle2" title="Ranking" aria-label="Open ranking">
       <span class="lb-icon">🏆</span>
+      <span class="lb-label-text">Ranking</span>
     </button>
     <div class="lb-card" id="lbCard2" role="dialog" aria-modal="false" aria-label="Ranking">
       <div class="lb-header">
@@ -86,14 +163,23 @@
   document.addEventListener('auth:login', (ev) => {
     const sid = (ev && ev.detail && ev.detail.studentId) ? ev.detail.studentId :
       (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '');
-    if (sid) { LB_STUDENT = String(sid); if (lbCard.classList.contains('open')) fetchRanking(); }
+    if (sid) { 
+      LB_STUDENT = String(sid); 
+      if (lbCard.classList.contains('open')) fetchRanking(); 
+    }
   });
 
   lbToggle.addEventListener('click', () => {
     const open = lbCard.classList.contains('open');
-    if (open) lbCard.classList.remove('open'); else { lbCard.classList.add('open'); fetchRanking(); }
+    if (open) {
+      lbCard.classList.remove('open');
+    } else {
+      lbCard.classList.add('open');
+      fetchRanking();
+    }
   });
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lbCard.classList.remove('open'); });
+  
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lbCard.classList.remove('open'); });
 
   async function fetchRanking() {
     try {
@@ -105,28 +191,69 @@
       renderTop(data.top, data.me);
     } catch (e) {
       console.error('Ranking error:', e);
-      lbList.innerHTML = '<li class="lb-item"><div class="lb-name">Refreshing...</div></li>';
+      lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.6">Updating ranking...</div></li>';
     }
   }
 
-  function renderTop(top, me) {
+function renderTop(top, me) {
     lbList.innerHTML = '';
-    if (!top || !top.length){
-      lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">No points yet.</div></li>';
+    
+    // 1. Renderiza a lista pública (Sem detalhes individuais)
+    if (!top || !top.length) {
+        lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">No points yet.</div></li>';
     } else {
-      for (const row of top) {
-        const li = document.createElement('li'); li.className = 'lb-item';
-        if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
-        const left = document.createElement('div'); left.className='lb-left';
-        const rk = document.createElement('div'); rk.className='lb-rank'; rk.textContent = row.rank;
-        const nm = document.createElement('div'); nm.className='lb-name'; nm.textContent = row.name || row.studentId || row.student;
-        left.appendChild(rk); left.appendChild(nm);
-        const pts = document.createElement('div'); pts.className='lb-points'; pts.textContent = (row.total_points ?? row.points) + ' pts';
-        li.appendChild(left); li.appendChild(pts);
-        lbList.appendChild(li);
-      }
+        for (const row of top) {
+            const li = document.createElement('li'); 
+            li.className = 'lb-item';
+            if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
+            
+            const left = document.createElement('div'); 
+            left.className = 'lb-left';
+            
+            const rk = document.createElement('div'); 
+            rk.className = 'lb-rank'; 
+            rk.textContent = row.rank;
+            
+            const nm = document.createElement('div'); 
+            nm.className = 'lb-name'; 
+            nm.textContent = row.name || row.studentId || row.student;
+            
+            left.appendChild(rk); 
+            left.appendChild(nm);
+            
+            const pts = document.createElement('div'); 
+            pts.className = 'lb-points'; 
+            pts.textContent = (row.total_points ?? row.points) + ' pts';
+            
+            li.appendChild(left); 
+            li.appendChild(pts);
+            lbList.appendChild(li);
+        }
     }
-    lbMeEl.innerHTML = me ? `<span class="lb-badge-me">You: #${me.rank} · ${me.total_points} pts</span>` : '';
-  }
+
+    // 2. Renderiza a faixa roxa (Privada com detalhamento completo)
+// 2. Renderiza a faixa roxa (Privada com dados reais do banco)
+    if (me) {
+        // Fonte aumentada para 13px para melhor leitura no projetor
+        const detailStyle = 'font-size: 12px; opacity: 0.9; margin-left: 10px; font-weight: 400;';
+        
+        // Mapeamento direto das colunas do seu banco
+        const likes = me.likes_points || 0;
+        const checkouts = me.checkouts_points || 0;
+        const pools = me.poll_points || 0;
+        const problems = me.exercises_points || 0;
+
+        const details = `Likes: ${likes} · Checkouts: ${checkouts} · Questions: ${pools} `;
+
+        lbMeEl.innerHTML = `
+            <span class="lb-badge-me">
+                Me: #${me.rank} · ${me.points} pts 
+                <span style="${detailStyle}">(${details})</span>
+            </span>`;
+    } else {
+        lbMeEl.innerHTML = '';
+    }
+}
+
   if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchRanking, LB_POLL_MS);
 </script>

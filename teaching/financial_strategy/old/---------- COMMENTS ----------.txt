@@ -1,0 +1,117 @@
+    // ---------- COMMENTS ----------
+    if (is("/comments") && method === "GET" && url.searchParams.get("all")) {
+      if (!isAdmin()) return json({ status: "error", message: "unauthorized" }, origin, 401);
+      const limit = clamp(int(url.searchParams.get("limit"), 200), 1, 5000);
+      const since = Math.max(0, int(url.searchParams.get("since_ms"), 0));
+      const stmt = since
+        ? env.DB.prepare(
+            `SELECT id, ts, student, author, slide_id, page_url, module_id, comment
+               FROM threads
+              WHERE status='active' AND author='student' AND ts>?
+              ORDER BY ts ASC LIMIT ?`
+          ).bind(since, limit)
+        : env.DB.prepare(
+            `SELECT id, ts, student, author, slide_id, page_url, module_id, comment
+               FROM threads
+              WHERE status='active' AND author='student'
+              ORDER BY ts ASC LIMIT ?`
+          ).bind(limit);
+      const rows = (await stmt.all()).results || [];
+      const max_ts = rows.length ? rows[rows.length - 1].ts : since;
+      return json({ status: "success", items: rows, max_ts }, origin);
+    }
+
+    if (is("/comments") && method === "GET") {
+      const student = (url.searchParams.get("student") || "").trim();
+      const limit = clamp(int(url.searchParams.get("limit"), 200), 1, 2000);
+      const since = Math.max(0, int(url.searchParams.get("since_ms"), 0));
+      if (!student) return json({ status: "error", message: "missing student" }, origin, 400);
+
+      const stmt = since
+        ? env.DB.prepare(
+            `SELECT id, ts, student, author, slide_id, page_url, module_id, comment
+               FROM threads
+              WHERE student=? AND status='active' AND ts>?
+              ORDER BY ts ASC LIMIT ?`
+          ).bind(student, since, limit)
+        : env.DB.prepare(
+            `SELECT id, ts, student, author, slide_id, page_url, module_id, comment
+               FROM threads
+              WHERE student=? AND status='active'
+              ORDER BY ts ASC LIMIT ?`
+          ).bind(student, limit);
+
+      const rows = (await stmt.all()).results || [];
+      const max_ts = rows.length ? rows[rows.length - 1].ts : since;
+      return json({ status: "success", items: rows, max_ts }, origin);
+    }
+
+    if (is("/comments") && method === "POST") {
+      const body = await req.json().catch(() => null);
+      if (!body) return json({ status: "error", message: "invalid json" }, origin, 400);
+
+      let { student, author = "student", slide_id = "", page_url = "", module_id = "",
+            comment = "", user_agent = "", token } = body;
+
+      student = (student || "").trim();
+      author = String(author || "student").toLowerCase().trim();
+      slide_id = String(slide_id || "").trim();
+      page_url = String(page_url || "").slice(0, 1024);
+      module_id = String(module_id || "").slice(0, 64);
+      comment = String(comment || "").trim();
+      user_agent = String(user_agent || "").slice(0, 256);
+
+      if (!student) return json({ status: "error", message: "missing student" }, origin, 400);
+      if (!slide_id) return json({ status: "error", message: "missing slide_id" }, origin, 400);
+      if (!comment) return json({ status: "error", message: "empty comment" }, origin, 400);
+      if (comment.length > 3000) return json({ status: "error", message: "comment too long" }, origin, 400);
+
+      const tokenOk = (token && token === env.ADMIN_TOKEN) || isAdmin();
+      if (author === "instructor" && !tokenOk) return json({ status: "error", message: "unauthorized" }, origin, 401);
+      if (tokenOk) author = "instructor";
+
+      const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+      const rlKey = `post:${author}:${student}:${ip}`;
+      if (!rateLimit(rlKey, 5, 10_000)) return json({ status: "error", message: "rate limit" }, origin, 429);
+
+      const id = crypto.randomUUID();
+      const ts = nowMs();
+
+      const ack = json({ status: "success", id, ts, async: true }, origin, 200);
+
+      ctx.waitUntil((async () => {
+        await env.DB.prepare(
+          `INSERT INTO threads
+             (id, ts, student, author, slide_id, page_url, module_id, comment, user_agent, ip, audience, status)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'private', 'active')`
+        ).bind(id, ts, student, author, slide_id, page_url, module_id, comment, user_agent, ip).run();
+      })());
+
+      return ack;
+    }
+
+    if (path.startsWith("/comments/") && method === "DELETE") {
+      if (!isAdmin()) return json({ status: "error", message: "unauthorized" }, origin, 401);
+      const id = decodeURIComponent(path.split("/")[2] || "");
+      if (!id) return json({ status: "error", message: "missing id" }, origin, 400);
+      await env.DB.prepare("UPDATE threads SET status='deleted' WHERE id=?").bind(id).run();
+      return json({ status: "success", id }, origin);
+    }
+
+    if (is("/comments/delete") && method === "POST") {
+      if (!isAdmin()) return json({ status: "error", message: "unauthorized" }, origin, 401);
+      const body = await req.json().catch(() => null);
+      const id = (body?.id || "").trim();
+      if (!id) return json({ status: "error", message: "missing id" }, origin, 400);
+      await env.DB.prepare("UPDATE threads SET status='deleted' WHERE id=?").bind(id).run();
+      return json({ status: "success", id }, origin);
+    }
+
+    if (is("/students") && method === "GET") {
+      if (!isAdmin()) return json({ status: "error", message: "unauthorized" }, origin, 401);
+      const rows = (await env.DB.prepare(
+        "SELECT DISTINCT student FROM threads WHERE status='active' ORDER BY student ASC"
+      ).all()).results || [];
+      const students = rows.map(r => r.student).filter(Boolean);
+      return json({ status: "success", students }, origin);
+    }

@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q9"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q9')" data-correct-answer="A">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A registration statement is prepared after trading begins in the aftermarket</li>
+    <li>A final prospectus is circulated before the offer price is determined</li>
+    <li>A final prospectus includes the offer price and the number of shares offered</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q9" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q9" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q9" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q9" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q9" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q9" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Statements (1) and (2) are false (statement (3) is true).
+Why the false statements are false:
+- (1) A registration statement (e.g., S-1) is filed before the offering; it is required for registered public offerings.
+- (2) The final prospectus includes the final offer terms (including the offer price) and is finalized after pricing.
+</div>
+
+:::

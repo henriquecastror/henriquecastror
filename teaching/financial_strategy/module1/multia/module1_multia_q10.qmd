@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q10"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q10')" data-correct-answer="A">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>In book building the offer price is set solely by a sealed bid auction rule</li>
+    <li>A road show occurs after the IPO shares start trading</li>
+    <li>Book building uses investor indications of interest to help set the offer price</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q10" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q10" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q10" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q10" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q10" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q10" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Statements (1) and (2) are false (statement (3) is true).
+Why the false statements are false:
+- (1) Bookbuilding relies on investor indications of interest and underwriter discretion; it is not a pure sealed-bid auction rule.
+- (2) The road show happens before IPO pricing/trading, as part of marketing to investors.
+</div>
+
+:::

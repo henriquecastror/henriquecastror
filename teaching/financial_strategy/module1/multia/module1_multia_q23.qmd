@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q23"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q23')" data-correct-answer="C">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A primary offering increases the number of shares outstanding</li>
+    <li>A secondary offering increases the number of shares outstanding</li>
+    <li>A secondary offering raises new cash for the firm</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q23" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q23" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q23" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q23" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q23" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q23" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Statements (2) and (3) are false (statement (1) is true).
+Why the false statements are false:
+- (2) A secondary offering sells existing shares (often by insiders); it typically does not increase shares outstanding or raise new cash for the firm.
+- (3) A secondary offering sells existing shares (often by insiders); it typically does not increase shares outstanding or raise new cash for the firm.
+</div>
+
+:::

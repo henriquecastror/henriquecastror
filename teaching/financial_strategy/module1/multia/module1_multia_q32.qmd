@@ -1,0 +1,30 @@
+::: {.question-block}
+
+<form id="module1_multia_q32"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q32')" data-correct-answer="D">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A firm commitment IPO means the issuer guarantees the shares will be sold</li>
+    <li>A best efforts IPO means the underwriter guarantees sale of all shares at the offer price</li>
+    <li>A firm commitment IPO removes all risk for the underwriter</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q32" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q32" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q32" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q32" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q32" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q32" class="feedback" data-status="" style="display:none;">
+✅ Correct: D. All three statements are false.
+Why the false statements are false:
+- (1) In a firm commitment IPO, the underwriter (not the issuer) bears the placement risk by committing to purchase the shares.
+- (2) In a best efforts IPO, the underwriter does not guarantee selling all shares; it only agrees to use its best effort to place them.
+- (3) Firm commitment reduces placement risk, but underwriters still face price/market risk when reselling the shares.
+</div>
+
+:::

@@ -10,13 +10,13 @@ title-block-banner: true
 format:
   revealjs:
     body-attributes:
-#      data-module: mod7
-#    include-in-header: ../login-start.html
-#    include-after-body:
-#      - ../chat-widget.html
-#      - ../threads-gate.html
-#      - ../ranking-widget2.html
-#      - ../notices-on-login.html
+      data-module: mod7
+    include-in-header: ../login-start.html
+    include-after-body:
+      - ../chat-widget.html
+      - ../ranking-widget2.html
+      - ../notices-on-login.html
+      - ../polls.html
     touch: true
     controls: true
     slide-number: true

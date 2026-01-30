@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q4"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q4')" data-correct-answer="A">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A greenshoe provision is a restriction that prevents insiders from selling shares after an IPO</li>
+    <li>A lockup provision allows the underwriter to sell extra shares at the offer price</li>
+    <li>A lockup restricts insiders from selling shares for a period after the IPO</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q4" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q4" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q4" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q4" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q4" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q4" class="feedback" data-status="" style="display:none;">
+✅ Correct: A. Statements (1) and (2) are false (statement (3) is true).
+Why the false statements are false:
+- (1) A greenshoe (overallotment) option lets the underwriter sell additional shares at the offer price; restrictions on insider sales are lockups.
+- (2) Selling extra shares at the offer price is the greenshoe; lockups restrict insider selling.
+</div>
+
+:::

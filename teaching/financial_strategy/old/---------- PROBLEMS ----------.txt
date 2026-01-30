@@ -1,0 +1,426 @@
+// ---------- PROBLEMS ----------
+// GET /problems/active -> Retorna a lista de questões para o slide
+if (is("/problems/active") && method === "GET") {
+  const { results } = await env.DB.prepare(
+    "SELECT ex_id, question, options_json, points FROM problems_active WHERE is_active = 1 ORDER BY created_at DESC"
+  ).all();
+
+  // Converte a string JSON do banco em objeto para o frontend
+  const problems = results.map(p => ({
+    ...p,
+    options: JSON.parse(p.options_json || "{}")
+  }));
+
+  return json(problems, origin);
+}
+
+// GET /admin/problems/export?id=demo_12
+if (is("/admin/problems/export") && method === "GET") {
+  const ex_id = url.searchParams.get("id");
+  const prob = await env.DB.prepare("SELECT * FROM problems_active WHERE ex_id = ?").bind(ex_id).first();
+
+  if (!prob) return new Response("Problem not found", { status: 404 });
+
+  const options = JSON.parse(prob.options_json || '{}');
+  
+  // Monta o template QMD conforme o seu modelo
+  const qmd = `::: {.question-block}
+
+<form id="${prob.ex_id}" onsubmit="event.preventDefault(); checkAnswer('${prob.ex_id}')" data-correct-answer="${prob.correct_option}">
+  <strong style="display: block;">${prob.question}</strong>
+
+  ${Object.entries(options)
+    .filter(([_, text]) => text && text.trim() !== "")
+    .map(([letter, text]) => `<label><input type="radio" name="${prob.ex_id}" value="${letter}"> ${letter}. ${text}</label><br>`)
+    .join('\n  ')}
+</form>
+
+<div id="feedback-${prob.ex_id}" class="feedback" data-status="" style="display:none;">
+✅ Correct: ${prob.correct_option}.
+</div>
+
+:::`;
+
+  return new Response(qmd, {
+    headers: {
+      "Content-Type": "text/markdown; charset=utf-8",
+      "Content-Disposition": `attachment; filename="${prob.ex_id}.qmd"`
+    }
+  });
+}
+
+// POST /problems/submit -> Aluno envia resposta de um problema específico
+if (is("/problems/submit") && method === "POST") {
+  const body = await readJsonBody(req);
+  const { student_id, ex_id, choice } = body || {};
+
+  if (!student_id || !ex_id || !choice) {
+    return json({ error: "Campos obrigatórios ausentes" }, origin, 400);
+  }
+
+  // 1. Verificar a resposta correta e pontuação
+  const problem = await env.DB.prepare(
+    "SELECT correct_option, points FROM problems_active WHERE ex_id = ? AND is_active = 1"
+  ).bind(ex_id).first();
+
+  if (!problem) {
+    return json({ error: "This question is no longer available to score points." }, origin, 404);
+  }
+
+  const is_correct = (choice.trim().toUpperCase() === problem.correct_option.toUpperCase()) ? 1 : 0;
+
+  try {
+    // 2. Salvar a resposta (O PK impede duplicidade aqui)
+    await env.DB.prepare(
+      `INSERT INTO problems_responses (ex_id, student_id, chosen_option, is_correct, ts_br) 
+       VALUES (?, ?, ?, ?, ?)`
+    ).bind(ex_id, student_id, choice.toUpperCase(), is_correct, tsBRString()).run();
+
+    // 3. Opcional: Aqui você pode disparar a lógica de somar pontos no ranking do aluno
+    
+    return json({ 
+      success: true, 
+      correct: !!is_correct,
+      message: is_correct ? "Correct!" : "Incorrect."
+    }, origin);
+
+  } catch (e) {
+    return json({ error: "You already answered this question." }, origin, 409);
+  }
+}
+
+
+
+// 3. ADMIN: Salvar ou Editar um Problema
+if (is("/admin/problems/save") && method === "POST") {
+  const body = await readJsonBody(req);
+  const { ex_id, question, options, correct_option, points, is_active } = body || {};
+
+  if (!ex_id) return json({ error: "Missing ex_id" }, origin, 400);
+
+  // Se question for 'keep', estamos apenas alternando o status (Deactivate/Activate)
+  if (question === 'keep') {
+    await env.DB.prepare("UPDATE problems_active SET is_active = ? WHERE ex_id = ?")
+      .bind(is_active ? 1 : 0, ex_id).run();
+    return json({ success: true, message: "Status updated" }, origin);
+  }
+
+  // Caso contrário, salvamento completo (Create/Edit)
+  await env.DB.prepare(`
+    INSERT INTO problems_active (ex_id, question, options_json, correct_option, points, is_active)
+    VALUES (?1, ?2, ?3, ?4, ?5, ?6)
+    ON CONFLICT(ex_id) DO UPDATE SET
+      question=?2, options_json=?3, correct_option=?4, points=?5, is_active=?6
+  `).bind(
+    ex_id.trim(), 
+    question.trim(), 
+    JSON.stringify(options), 
+    correct_option.trim().toUpperCase(), 
+    int(points, 1), 
+    is_active ? 1 : 0
+  ).run();
+
+  return json({ success: true }, origin);
+}
+
+// stats de acertos
+if (is("/admin/problems/stats") && method === "GET") {
+  const ex_id = url.searchParams.get("ex_id");
+  const stats = await env.DB.prepare(`
+    SELECT 
+      COUNT(*) as total,
+      SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END) as correct
+    FROM problems_responses WHERE ex_id = ?
+  `).bind(ex_id).first();
+
+  const percent = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+  return json({ ...stats, percent }, origin);
+}
+
+// 4. ADMIN: Deletar Problema (Opcional, mas útil)
+if (is("/admin/problems/delete") && method === "DELETE") {
+  // Pegamos o ex_id da URL: /admin/problems/delete?ex_id=xyz
+  const ex_id = url.searchParams.get("ex_id");
+  
+  if (!ex_id) return json({ error: "Missing ID" }, origin, 400);
+
+  // 1. Deleta as respostas primeiro (integridade referencial)
+  await env.DB.prepare("DELETE FROM problems_responses WHERE ex_id = ?").bind(ex_id).run();
+  
+  // 2. Deleta a questão
+  await env.DB.prepare("DELETE FROM problems_active WHERE ex_id = ?").bind(ex_id).run();
+
+  return json({ success: true }, origin);
+}
+
+// 1. Rota para visualizar a questão individualmente
+// URL: https://course-chat.hcmrtns.workers.dev/problems/view?id=demo_12
+if (is("/problems/view") && method === "GET") {
+  const ex_id = url.searchParams.get("id");
+  
+  // Busca o problema no banco
+  const prob = await env.DB.prepare(
+    "SELECT * FROM problems_active WHERE ex_id = ? AND is_active = 1"
+  ).bind(ex_id).first();
+
+  if (!prob) {
+    return new Response("Problem not found or inactive.", { status: 404 });
+  }
+
+  // Gera o HTML da questão
+  const html = `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background: #f8fafc; color: #1e293b; }
+      .card { background: white; border-radius: 12px; padding: 25px; max-width: 500px; margin: auto; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 6px solid #1e3a8a; }
+      h3 { margin-top: 0; color: #1e3a8a; font-size: 1.2em; line-height: 1.4; }
+      .btn-opt { display: block; width: 100%; text-align: left; padding: 12px 15px; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; cursor: pointer; transition: 0.2s; font-size: 1em; }
+      .btn-opt:hover { border-color: #1e3a8a; background: #eff6ff; }
+      #fb { margin-top: 15px; padding: 12px; border-radius: 8px; display: none; font-weight: bold; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h3>${prob.question}</h3>
+      <div id="options-container"></div>
+      <div id="fb"></div>
+    </div>
+
+    <script>
+      const API = "https://course-chat.hcmrtns.workers.dev";
+      const opts = ${prob.options_json};
+      const container = document.getElementById('options-container');
+
+      Object.entries(opts).forEach(([letter, text]) => {
+        if (!text) return;
+        const btn = document.createElement('button');
+        btn.className = 'btn-opt';
+        btn.innerHTML = '<b>' + letter + ':</b> ' + text;
+        btn.onclick = () => submitAnswer(letter);
+        container.appendChild(btn);
+      });
+
+      async function submitAnswer(choice) {
+        let sid = localStorage.getItem('student_id') || prompt("Student ID:");
+        if (sid) localStorage.setItem('student_id', sid);
+        if (!sid) return;
+
+        const res = await fetch(API + "/problems/submit", {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ student_id: sid, ex_id: "${ex_id}", choice })
+        });
+        const data = await res.json();
+        const fb = document.getElementById('fb');
+        fb.style.display = 'block';
+        fb.style.background = res.ok && data.correct ? '#dcfce7' : '#fee2e2';
+        fb.style.color = res.ok && data.correct ? '#166534' : '#b91c1c';
+        fb.innerText = data.message || data.error || "Done!";
+      }
+    <\/script>
+  </body>
+  </html>`;
+
+  return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
+}
+// GET /problems/chart -> Tela de resultados para projetar no slide
+if (is("/problems/chart") && method === "GET") {
+  const ex_id = url.searchParams.get("ex_id");
+  const results = await env.DB.prepare(`
+    SELECT chosen_option, COUNT(*) as count 
+    FROM problems_responses 
+    WHERE ex_id = ? 
+    GROUP BY chosen_option
+  `).bind(ex_id).all();
+
+  const html = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f7f9fc; }
+        .chart-container { width: 80%; max-width: 600px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h2 { color: #1e3a8a; }
+      </style>
+    </head>
+    <body>
+      <h2>Results: ${ex_id}</h2>
+      <div class="chart-container"><canvas id="myChart"></canvas></div>
+      <script>
+        const ctx = document.getElementById('myChart');
+        const data = ${JSON.stringify(results.results)};
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.map(d => d.chosen_option),
+            datasets: [{
+              label: '# of Votes',
+              data: data.map(d => d.count),
+              backgroundColor: '#1e3a8a'
+            }]
+          },
+          options: { scales: { y: { beginAtZero: true } } }
+        });
+      </script>
+    </body>
+  </html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html", ...cors(origin) } });
+}
+
+
+if (is("/admin/problems") && method === "GET") {
+  // Busca problemas existentes
+  const { results: existing } = await env.DB.prepare("SELECT * FROM problems_active ORDER BY created_at DESC").all();
+
+  const html = `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Problems Admin</title>
+    <style>
+      body { font-family: system-ui; padding: 20px; background: #f1f5f9; color: #1e293b; max-width: 900px; margin: 0 auto; }
+      .card { background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
+      h2 { margin-top: 0; color: #1e3a8a; display: flex; align-items: center; gap: 10px; }
+      label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 4px; color: #64748b; text-transform: uppercase; }
+      input, textarea, select { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; font-size: 15px; }
+      .grid-opts { display: grid; grid-template-columns: 40px 1fr; gap: 8px; align-items: center; margin-bottom: 8px; }
+      .btn { padding: 12px 20px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+      .btn-primary { background: #1e3a8a; color: white; width: 100%; margin-top: 15px; }
+      .btn-secondary { background: #e2e8f0; color: #475569; font-size: 12px; }
+      .btn-danger { background: #fee2e2; color: #b91c1c; font-size: 12px; }
+      .btn-stats { background: #dcfce7; color: #166534; font-size: 12px; }
+      .prob-item { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid #f1f5f9; }
+      .status-pill { padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; }
+      .active { background: #dcfce7; color: #166534; }
+      .off { background: #f1f5f9; color: #64748b; }
+      .actions { display: flex; gap: 8px; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>🆕 Create / Edit Problem</h2>
+      <label>Unique ID (ex: fin_strat_q1)</label>
+      <input id="ex_id" type="text" placeholder="Problem ID">
+      
+      <label>Question (Markdown supported)</label>
+      <textarea id="question" rows="3"></textarea>
+      
+      <label>Options</label>
+      ${['A','B','C','D','E'].map(l => `<div class="grid-opts"><span>${l}</span><input id="opt_${l.toLowerCase()}" class="opt"></div>`).join('')}
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <label>Correct Answer</label>
+          <select id="correct">
+            ${['A','B','C','D','E'].map(l => `<option value="${l}">${l}</option>`).join('')}
+          </select>
+        </div>
+        <div>
+          <label>Points</label>
+          <input id="points" type="number" value="1">
+        </div>
+      </div>
+
+      <label style="margin-top:20px;"><input type="checkbox" id="is_active" checked> Activate Immediately</label>
+      <button class="btn btn-primary" onclick="save()">Save Problem</button>
+    </div>
+
+    <div class="card">
+      <h2>📚 Registered Problems</h2>
+      <div id="list">
+        ${existing.map(p => `
+          <div class="prob-item">
+            <div>
+              <strong style="font-size:16px;">${p.ex_id}</strong> 
+              <span class="status-pill ${p.is_active ? 'active' : 'off'}">${p.is_active ? 'ACTIVE' : 'OFF'}</span>
+              <div style="font-size: 13px; color: #94a3b8; margin-top:4px;">${p.question.substring(0, 60)}...</div>
+            </div>
+
+            <div class="actions">
+               <button class="btn btn-stats" onclick="viewStats('${p.ex_id}')">📊 Stats</button>
+               <button class="btn btn-edit" onclick="edit('${p.ex_id}')">Edit</button>
+               <button class="btn" style="background: #e0f2fe; color: #0369a1;" onclick="window.location.href='/admin/problems/export?id=${p.ex_id}'">📥 Export QMD</button>
+               ${p.is_active 
+                 ? `<button class="btn" style="background:#fff7ed; color:#9a3412;" onclick="toggleStatus('${p.ex_id}', 0)">Deactivate</button>` 
+                 : `<button class="btn" style="background:#f0f9ff; color:#0369a1;" onclick="toggleStatus('${p.ex_id}', 1)">Activate</button>`
+               }
+               <button class="btn btn-del" onclick="del('${p.ex_id}')">Delete</button>
+            </div>
+            
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <script>
+      async function save() {
+        const data = {
+          ex_id: document.getElementById('ex_id').value,
+          question: document.getElementById('question').value,
+          options: {
+            A: document.getElementById('opt_a').value,
+            B: document.getElementById('opt_b').value,
+            C: document.getElementById('opt_c').value,
+            D: document.getElementById('opt_d').value,
+            E: document.getElementById('opt_e').value,
+          },
+          correct_option: document.getElementById('correct').value,
+          points: document.getElementById('points').value,
+          is_active: document.getElementById('is_active').checked
+        };
+        await fetch("/admin/problems/save", { method: "POST", body: JSON.stringify(data) });
+        location.reload();
+      }
+
+      async function toggleStatus(id, status) {
+        // Aproveita o endpoint de save enviando apenas a mudança de status
+        // Em um sistema real, buscaríamos os dados antes, mas aqui vamos via URL param para simplificar
+        await fetch("/admin/problems/save", { 
+          method: "POST", 
+          body: JSON.stringify({ ex_id: id, is_active: status, question: 'keep' }) // 'keep' sinaliza no banco se necessário
+        });
+        location.reload();
+      }
+
+      async function getStats(id) {
+        const res = await fetch("/admin/problems/stats?ex_id=" + id);
+        const data = await res.json();
+        alert(\`Problem: \${id}\\nTotal Responses: \${data.total}\\nCorrect: \${data.correct}\\nSuccess Rate: \${data.percent}%\`);
+      }
+
+      function edit(jsonStr) {
+        const p = JSON.parse(decodeURIComponent(jsonStr));
+        document.getElementById('ex_id').value = p.ex_id;
+        document.getElementById('question').value = p.question;
+        const opts = JSON.parse(p.options_json);
+        ['a','b','c','d','e'].forEach(l => document.getElementById('opt_'+l).value = opts[l.toUpperCase()] || '');
+        document.getElementById('correct').value = p.correct_option;
+        document.getElementById('points').value = p.points;
+        document.getElementById('is_active').checked = !!p.is_active;
+        window.scrollTo(0,0);
+      }
+
+      async function del(id) {
+        if (confirm('Delete ' + id + '? This will also erase student responses.')) {
+          const res = await fetch("/admin/problems/delete?ex_id=" + encodeURIComponent(id), { 
+            method: "DELETE" 
+          });
+          if (res.ok) location.reload();
+          else alert("Error deleting problem");
+        }
+      }
+    </script>
+  </body>
+  </html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html", ...cors(origin) } });
+}
+
+
+
+

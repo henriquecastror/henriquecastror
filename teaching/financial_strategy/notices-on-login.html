@@ -1,397 +1,72 @@
-<!-- notices-on-login.html -->
 <style>
-  .notice-modal-backdrop{
-    position:fixed; inset:0; background:rgba(15,23,42,.35);
-    display:none; align-items:center; justify-content:center;
-    z-index:2147483647; /* topo de tudo */
+  .notice-modal-backdrop {
+    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4);
+    display: none; align-items: center; justify-content: center;
+    z-index: 2147483647;
   }
-  .notice-modal{
-    width:min(92vw, 680px); background:#fff; border-radius:16px;
-    box-shadow:0 18px 50px rgba(0,0,0,.25);
-    padding:18px 18px 12px; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    border:1px solid rgba(0,0,0,.08);
+  .notice-modal {
+    width: min(92vw, 500px); background: #fff; border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    padding: 24px; font-family: system-ui, -apple-system, sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
-  .notice-title{ font-size:1.1rem; font-weight:700; margin:0 0 6px; color:#0f172a; }
-  .notice-body{ color:#334155; line-height:1.5; }
-  .notice-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
-
-  .notice-btn{
-    padding:10px 14px; border-radius:10px;
-    border:1px solid rgba(0,0,0,.1); background:#0ea5e9; color:#fff; cursor:pointer;
+  .notice-title { font-size: 1.25rem; font-weight: 700; margin: 0 0 10px; color: #1e3a8a; }
+  .notice-body { color: #334155; line-height: 1.6; font-size: 1rem; }
+  .notice-actions { display: flex; justify-content: flex-end; margin-top: 20px; }
+  .notice-btn {
+    padding: 10px 24px; border-radius: 8px; font-weight: 600;
+    border: none; background: #1e3a8a; color: #fff; cursor: pointer;
+    transition: background 0.2s;
   }
-
-  /* Botões das opções */
-  .notice-choice{
-    padding:10px 14px; border-radius:999px;
-    border:1px solid rgba(15,23,42,.08);
-    background: linear-gradient(180deg,#3b82f6,#2563eb);
-    color:#fff; cursor:pointer; box-shadow: 0 2px 0 rgba(0,0,0,.06);
-    transition: transform .12s ease, filter .12s ease, opacity .12s ease;
-  }
-  .notice-choice:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-  .notice-choice:disabled{ opacity:.7; cursor:default; transform:none; }
-
-  /* Estado visual após clique */
-  .notice-choice.is-selected{
-    background: linear-gradient(180deg,#2563eb,#1d4ed8);
-    border-color: rgba(37,99,235,.35);
-  }
-  .notice-choice.is-correct{
-    background: linear-gradient(180deg,#16a34a,#15803d);
-    border-color: rgba(22,163,74,.35);
-  }
-  .notice-choice.is-wrong{
-    background: linear-gradient(180deg,#dc2626,#b91c1c);
-    border-color: rgba(220,38,38,.35);
-  }
-
-  /* Placar */
-  .notice-score{
-    margin-top:10px;
-    font-weight:600;
-    color:#0f766e; /* teal-700 */
-    font-size:.95rem;
-  }
-  .notice-accuracy{
-    display:flex; align-items:center; gap:8px;
-    margin-top:6px; font-size:.92rem; color:#334155;
-  }
-  .stars{
-    display:inline-flex; gap:2px; line-height:1;
-  }
-  .star{
-    font-size:1.05rem; user-select:none;
-    color:#e5e7eb; /* base (cinza claro para “vazio”) */
-    text-shadow: 0 1px 0 rgba(0,0,0,.05);
-  }
-  .star.filled{ color:#F59E0B; }     /* gold  */
-  .star.half::after{                  /* meia estrela simples (overlay) */
-    content:'★'; color:#FDE047; position:absolute; width:50%; overflow:hidden;
-  }
-  .pct{
-    font-weight:700; color:#0ea5e9; /* ciano/teal p/ combinar com seus azuis */
-  }
+  .notice-btn:hover { background: #172e6b; }
 </style>
 
-<div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
+<div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true">
   <div class="notice-modal" role="dialog" aria-modal="true">
     <div class="notice-title" id="noticeTitle">Notice</div>
     <div class="notice-body" id="noticeBody"></div>
     <div class="notice-actions">
-      <button class="notice-btn" id="noticeOkBtn" type="button">Ok, got it</button>
+      <button class="notice-btn" id="noticeOkBtn" type="button">Got it!</button>
     </div>
   </div>
 </div>
 
-<!-- Confete -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
-
 <script>
 (function(){
-  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbw1stXhHVbcinNcagloc6XNr3MYW9zn8EctaxxLuOJ086ODpCBvNCPwdfzbJxwl1XgDfw/exec';
-  const SESSION_FLAG = 'notice_shown_this_load';
-  const FEEDBACK_AUTO_CLOSE_MS = 18000;
-  const DEBUG = false;
+  const API_BASE = 'https://course-chat.hcmrtns.workers.dev';
+  
+  async function checkNotices() {
+    const sid = localStorage.getItem('studentId') || '';
+    if (!sid) return;
 
-  /* Preconnect + dns-prefetch */
-  try {
-    const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
-    const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
-  } catch(_) {}
-
-  /* 🔥 Warm-up imediato do GAS */
-  try {
-    const warm = new Image();
-    warm.referrerPolicy = 'no-referrer';
-    warm.src = `${ENDPOINT}?action=ping&t=${Date.now()}`;
-  } catch(_) {}
-
-  /* Helpers básicos */
-  function ensureModal(){
-    let backdrop = document.getElementById('noticeBackdrop');
-    if (!backdrop) {
-      const tpl = document.createElement('div');
-      tpl.innerHTML = `
-        <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true" style="display:none">
-          <div class="notice-modal" role="dialog" aria-modal="true">
-            <div class="notice-title" id="noticeTitle">Notice</div>
-            <div class="notice-body" id="noticeBody"></div>
-            <div class="notice-actions">
-              <button class="notice-btn" id="noticeOkBtn" type="button">Ok, got it</button>
-            </div>
-          </div>
-        </div>`;
-      document.body.appendChild(tpl.firstElementChild);
-      if (DEBUG) console.log('[notice] backdrop injected');
-    }
-  }
-
-  function getStudentId(){
-    try { return (localStorage.getItem('studentId') || sessionStorage.getItem('studentId') || window.__lastLoginStudentId || '').trim(); }
-    catch(e){ return ''; }
-  }
-  function normalizeModule(m){
-    if (!m) return '';
-    const s = String(m).trim().toLowerCase();
-    const m1 = s.match(/^module(\d+)$/); if (m1) return `mod${m1[1]}`;
-    return s;
-  }
-  function getModule(){
     try {
-      const el = document.getElementById('current-module'); if (el && el.value) return normalizeModule(el.value);
-      const byStorage = localStorage.getItem('module') || sessionStorage.getItem('module'); if (byStorage) return normalizeModule(byStorage);
-      const dm = document.body && document.body.getAttribute('data-module'); if (dm) return normalizeModule(dm);
-      if (window.VHCM && window.VHCM.module) return normalizeModule(window.VHCM.module);
-      return '';
-    } catch(e){ return ''; }
-  }
-  function fetchJSON(url){
-    return fetch(url, { credentials:'omit', cache:'no-store' })
-      .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
-  }
-  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-  function personalize(s, studentId, module){
-    return String(s || '')
-      .replace(/\{\{\s*studentId\s*\}\}/gi, escapeHtml(studentId || ''))
-      .replace(/\{\{\s*module\s*\}\}/gi, escapeHtml(module || ''));
-  }
-  function fireAndForget(url){
-    try { const img = new Image(); img.referrerPolicy='no-referrer'; img.src = url; } catch(_) {}
-  }
-  function ackAndClose(studentId, notice_id){
-    const modal = document.getElementById('noticeBackdrop');
-    if (modal) modal.style.display = 'none';
-    const qs2 = new URLSearchParams({ action:'ack', studentId, notice_id, t: Date.now().toString() });
-    fireAndForget(`${ENDPOINT}?${qs2.toString()}`);
-  }
-  function normalizeTF(x){
-    const s = String(x || '').trim().toLowerCase();
-    if (['true','t','verdadeiro','v','yes','y','sim','✅','✔️'].includes(s)) return 'true';
-    if (['false','f','falso','no','n','nao','não','❌','✖️'].includes(s)) return 'false';
-    if (s.startsWith('true'))  return 'true';
-    if (s.startsWith('false')) return 'false';
-    return '';
-  }
+      const res = await fetch(`${API_BASE}/auth/notices/get?studentId=${sid}`);
+      const data = await res.json();
 
-  /* ===== Estrelas ===== */
-  function makeStars(rating /* 0..5, pode ser decimal */){
-    const full = Math.floor(rating);
-    const hasHalf = (rating - full) >= 0.5;
-    let html = '';
-    for (let i=1;i<=5;i++){
-      if (i <= full) html += '<span class="star filled" aria-hidden="true">★</span>';
-      else if (i === full+1 && hasHalf) html += '<span class="star filled" style="position:relative" aria-hidden="true">★<span style="position:absolute;inset:0;clip-path:inset(0 50% 0 0); color:#FDE047;">★</span></span>';
-      else html += '<span class="star" aria-hidden="true">★</span>';
-    }
-    return html;
-  }
-
-  /* ===== Placar do backend + UI ===== */
-  async function updateTFScore(studentId, module){
-    const box = document.getElementById('pollScore');
-    if (!box) return;
-
-    try{
-      const qs = new URLSearchParams({ action:'stats_tf', studentId });
-      if (module) qs.set('module', module);
-      const j = await fetchJSON(`${ENDPOINT}?${qs.toString()}`);
-      if (!j?.ok) return;
-
-      const src = j.stats ? j.stats : j;
-      const correct = Number(src.correct ?? 0);
-      const total   = Number(src.total   ?? 0);
-      const pct = total ? Math.round((correct/total)*100) : 0;
-
-      // converte % em nota 0..5 (ex.: 70% => 3.5 estrelas)
-      const starsValue = Math.max(0, Math.min(5, (pct/20)));
-
-      box.innerHTML = `
-        <div>Congrats, you have answered ${correct} of ${total} correctly.</div>
-        <div class="notice-accuracy" aria-label="Your accuracy">
-          <div class="stars" aria-hidden="true">${makeStars(starsValue)}</div>
-          <div class="pct">${pct}%</div>
-        </div>
-      `;
-      box.style.display = '';
-    }catch(_){ /* silencioso */ }
-  }
-
-  /* Render de poll */
-  function renderPoll(notice, studentId, module){
-    const body = document.getElementById('noticeBody');
-    const okBtn = document.getElementById('noticeOkBtn');
-    const opts = Array.isArray(notice.poll_options) ? notice.poll_options : [];
-    const q    = notice.poll_question || 'Vote:';
-
-    const correctKey = normalizeTF(notice.poll_correct);
-    const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
-    let autoTimer = null;
-
-    const pollWrap = document.createElement('div');
-    pollWrap.innerHTML = `
-      <div style="margin:8px 0 12px 0;"><strong>${escapeHtml(q)}</strong></div>
-      <div id="pollBtns" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
-      <div id="pollFeedback" style="margin-top:10px;"></div>
-      <div id="pollScore" class="notice-score" style="display:none"></div>
-    `;
-    body.appendChild(pollWrap);
-
-    const btns = pollWrap.querySelector('#pollBtns');
-    const fb   = pollWrap.querySelector('#pollFeedback');
-
-    if (isQuizTF && okBtn) {
-      okBtn.style.display = '';
-      okBtn.onclick = (ev) => {
-        ev.preventDefault(); ev.stopPropagation();
-        if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
-        ackAndClose(studentId, notice.notice_id);
-      };
-    }
-
-    opts.forEach((label) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'notice-choice';
-      b.textContent = label;
-
-      b.addEventListener('click', () => {
-        // desabilita todos imediatamente
-        const all = [...btns.querySelectorAll('button')];
-        all.forEach(x => x.disabled = true);
-
-        // envia voto (fire-and-forget)
-        const qs = new URLSearchParams({
-          action: 'poll_vote',
-          studentId,
-          module: module || '',
-          poll_id: notice.poll_id || '',
-          choice: label,
-          t: Date.now().toString()
-        });
-        fireAndForget(`${ENDPOINT}?${qs.toString()}`);
-
-        if (!isQuizTF) {
-          b.classList.add('is-selected');
-          ackAndClose(studentId, notice.notice_id);
-          return;
-        }
-
-        // T/F: decide correto/errado
-        const choiceKey = normalizeTF(label);
-        const isCorrect = (choiceKey && choiceKey === correctKey);
-
-        b.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
-        if (isCorrect) celebrate();
-
-        // feedback
-        fb.style.color = isCorrect ? '#065f46' : '#b91c1c';
-        fb.innerHTML = isCorrect
-          ? (notice.feedback_correct_html || '<p><strong>✅ Correct.</strong></p>')
-          : (notice.feedback_wrong_html  || '<p><strong>❌ Not quite.</strong></p>');
-
-        // 👉 só agora buscamos e revelamos o placar completo
-        updateTFScore(studentId, module);
-
-        if (FEEDBACK_AUTO_CLOSE_MS > 0) {
-          autoTimer = setTimeout(() => {
-            autoTimer = null;
-            ackAndClose(studentId, notice.notice_id);
-          }, FEEDBACK_AUTO_CLOSE_MS);
-        }
-      });
-
-      btns.appendChild(b);
-    });
-  }
-
-  /* Mostra aviso/poll */
-  async function showNotice(studentId){
-    try { if (sessionStorage.getItem(SESSION_FLAG)) return false; } catch(e){}
-
-    const module = getModule();
-    const qs = new URLSearchParams({ action:'get', studentId });
-    if (module) qs.set('module', module);
-
-    const data = await fetchJSON(`${ENDPOINT}?${qs.toString()}`);
-    if (!data.ok || !data.hasNotice || !data.notice) return false;
-
-    ensureModal();
-
-    const notice = data.notice;
-    const titleEl = document.getElementById('noticeTitle');
-    const bodyEl  = document.getElementById('noticeBody');
-    const okBtn   = document.getElementById('noticeOkBtn');
-    const modal   = document.getElementById('noticeBackdrop');
-    if (!titleEl || !bodyEl || !okBtn || !modal) return false;
-
-    titleEl.textContent = personalize(notice.title || (notice.type === 'poll' ? 'Quick poll' : 'Notice'), studentId, module);
-    bodyEl.innerHTML = personalize(notice.message_html || '', studentId, module);
-    modal.style.display = 'flex';
-
-    if (notice.type === 'poll' && !notice.already_voted) {
-      const correctKey = normalizeTF(notice.poll_correct);
-      const isQuizTF   = (correctKey === 'true' || correctKey === 'false');
-
-      okBtn.style.display = isQuizTF ? '' : 'none';
-      if (!isQuizTF) {
-        okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
+      if (data.ok && data.hasNotice) {
+        displayNotice(data.notice, sid);
       }
-
-      renderPoll(notice, studentId, module);
-    } else {
-      okBtn.style.display = '';
-      okBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); ackAndClose(studentId, notice.notice_id); };
-    }
-
-    try { sessionStorage.setItem(SESSION_FLAG, notice.notice_id); } catch(e){}
-    return true;
+    } catch (e) { console.error("Notice check failed", e); }
   }
 
-  /* API global opcional */
-  window.noticeCenter = {
-    onLogin: (studentId) => { try { window.__lastLoginStudentId = studentId; } catch(e){}; showNotice(String(studentId || '').trim()); },
-    showNow: () => { try{ sessionStorage.removeItem(SESSION_FLAG); }catch(_){};
-      const sid = getStudentId(); if (sid) showNotice(sid);
-    }
-  };
+  function displayNotice(notice, sid) {
+    const backdrop = document.getElementById('noticeBackdrop');
+    const title = document.getElementById('noticeTitle');
+    const body = document.getElementById('noticeBody');
+    const btn = document.getElementById('noticeOkBtn');
 
-  /* Espera login e mostra (fallback) */
-  async function waitForLoginAndShow(maxMs=20000){
-    const start = Date.now();
-    while (Date.now() - start < maxMs) {
-      const sid = getStudentId();
-      if (sid) { await showNotice(sid); return; }
-      await new Promise(r => setTimeout(r, 150));
-    }
-  }
+    title.textContent = notice.title;
+    body.innerHTML = notice.message_html;
+    backdrop.style.display = 'flex';
 
-  /* Gatilhos */
-  document.addEventListener('auth:login', (ev) => {
-    const sid = (ev && ev.detail && ev.detail.studentId) ? String(ev.detail.studentId).trim() : getStudentId();
-    if (sid) window.noticeCenter.onLogin(sid);
-  });
-  window.addEventListener('login:success', (ev) => {
-    const sid = (ev && ev.detail && ev.detail.studentId) ? String(ev.detail.studentId).trim() : getStudentId();
-    if (sid) window.noticeCenter.onLogin(sid);
-  });
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { waitForLoginAndShow(); });
-  } else {
-    waitForLoginAndShow();
-  }
-
-  /* 🎊 Confete em estrelas */
-  function celebrate(){
-    const defaults = {
-      spread: 360, ticks: 55, gravity: 0.9, decay: 0.92, startVelocity: 35,
-      colors: ['#F59E0B','#FDE047','#22D3EE','#60A5FA','#A78BFA']
+    btn.onclick = async () => {
+      // Registrar "visto" na D1
+      fetch(`${API_BASE}/auth/notices/ack?studentId=${sid}&notice_id=${notice.notice_id}`);
+      backdrop.style.display = 'none';
     };
-    function shoot(scale, countStar=40, countCircle=12){
-      confetti({ ...defaults, particleCount: countStar, scalar: scale, shapes: ['star'] });
-      confetti({ ...defaults, particleCount: countCircle, scalar: scale*0.7, shapes: ['circle'] });
-    }
-    shoot(1.1); setTimeout(()=>shoot(1.0), 180); setTimeout(()=>shoot(0.9), 320);
   }
+
+  if (document.readyState === 'complete') checkNotices();
+  else window.addEventListener('load', checkNotices);
 })();
 </script>

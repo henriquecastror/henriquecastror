@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q20"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q20')" data-correct-answer="B">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A corporate investor invests only for financial returns and never for strategic objectives</li>
+    <li>Corporate investors may invest for strategic objectives in addition to financial returns</li>
+    <li>Corporate investors are always prohibited from investing in private companies</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q20" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q20" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q20" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q20" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q20" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q20" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Statements (1) and (3) are false (statement (2) is true).
+Why the false statements are false:
+- (1) This statement is false because it contradicts standard equity issuance mechanics covered in the module (the correct relationship goes the other way).
+- (3) Corporate investors can and do invest in private companies (e.g., corporate venture capital).
+</div>
+
+:::

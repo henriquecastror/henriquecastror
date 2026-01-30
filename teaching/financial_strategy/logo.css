@@ -44,7 +44,7 @@
 ---------------------------------*/
 .reveal section img{
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 .reveal hr{
   border: none;

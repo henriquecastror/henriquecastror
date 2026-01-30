@@ -1,0 +1,1947 @@
+// ============================================================
+// WORKER — FULL FILE (PART 1/3)
+// Paste PART 1, then PART 2, then PART 3 (same file)
+// ============================================================
+
+const profile = {
+  name: "Henrique Castro Martins",
+  title: "Assistant Professor @ FGV/EAESP",
+  bio: `I hold a Ph.D. in Finance, and I am currently an Assistant Professor at <a href="https://eaesp.fgv.br/" target="_blank">FGV/EAESP</a> (São Paulo, Brazil).<br><br>
+I teach corporate finance, corporate governance and financial analysis at the undergraduate, MBA, Master, and Ph.D. levels. I am currently working on several projects on these topics.<br><br>
+If you have any questions about my research, or if you want to work with me, contact me at <a href="mailto:henrique.martins@fgv.br">henrique.martins@fgv.br</a>.`,
+  links: [
+    { text: "Email", icon: "bi-envelope", href: "mailto:henrique.martins@fgv.br" },
+    { text: "Scholar", icon: "bi-mortarboard", href: "https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao" },
+    { text: "Linkedin", icon: "bi-linkedin", href: "https://www.linkedin.com/in/henriquecastror/" },
+    { text: "Lattes", icon: "bi-file-earmark-person", href: "http://lattes.cnpq.br/6076997472159785" },
+    { text: "Orcid", icon: "bi-person-badge", href: "https://orcid.org/0000-0002-3186-4245" },
+    { text: "Scopus", icon: "bi-journal-text", href: "https://www.scopus.com/authid/detail.uri?authorId=56179864100" },
+    { text: "WoS", icon: "bi-globe", href: "https://www.webofscience.com/wos/author/record/AAA-9293-2019" },
+    { text: "ResearchGate", icon: "bi-search", href: "https://www.researchgate.net/profile/Henrique_Castro_Martins" },
+    { text: "Academia", icon: "bi-book", href: "https://fgvsp.academia.edu/HenriqueMartins" }
+  ],
+  education: [
+    { degree: "PhD in Finance", year: "2016", school: "UFRGS" },
+    { degree: "Master in Finance", year: "2012", school: "UFRGS" },
+    { degree: "B.A. in Management", year: "2010", school: "PUCRS" }
+  ],
+  interests: ["Corporate Finance", "Corporate Governance", "Financial policies", "Empirical methods in finance"]
+};
+
+// ============================================================
+// PARTE 1: SQL E LOGICA DE BUSCA
+// ============================================================
+const REPORT_SQL = `
+WITH params AS (SELECT LOWER(TRIM(?1)) AS sid)
+SELECT json_object(
+  'student_id', (SELECT sid FROM params),
+  'generated_at', datetime('now', '-3 hours'),
+  'ranking',
+    ( SELECT json_object(
+        'likes', likes_points,
+        'checkouts', checkouts_points,
+        'polls', poll_points,
+        'total', points
+      )
+      FROM ranking_score_total
+      WHERE student_id = (SELECT sid FROM params)
+    ),
+  'attendance',
+    ( SELECT json_object(
+        'attended', attended,
+        'total', total_class,
+        'absences', absences,
+        'pct', pct
+      )
+      FROM attendance_resume
+      WHERE student_id = (SELECT sid FROM params)
+    ),
+  'attendance_history',
+    ( SELECT json_group_array(json_object('date', date_class, 'status', status))
+      FROM attendance_dates
+      WHERE student_id = (SELECT sid FROM params)
+      ORDER BY date_class DESC
+    ),
+  'polls_history',
+    ( SELECT json_group_array(json_object(
+        'id', r.poll_id,
+        'question', a.question,
+        'options_json', a.options_json,
+        'your_answer', r.chosen_option,
+        'correct_answer', a.correct_option,
+        'is_correct', r.is_correct,
+        'when', r.ts_br
+      ))
+      FROM poll_responses r
+      JOIN poll_active a ON r.poll_id = a.poll_id
+      WHERE r.student_id = ?1
+      ORDER BY r.ts_br DESC
+    ),
+  'checkouts',
+    ( SELECT json_group_array(json_object('slide_id', slide_id, 'ticket', ticket, 'when', timestamp_br))
+      FROM t_checkouts
+      WHERE student_id = (SELECT sid FROM params)
+      ORDER BY timestamp_br DESC
+    ),
+  'likes_count',
+    (SELECT COUNT(*) FROM likes WHERE student_id = (SELECT sid FROM params))
+) AS report_json;
+`;
+
+// ============================================================
+// WORKER
+// ============================================================
+export default {
+  async fetch(req, env, ctx) {
+    const url = new URL(req.url);
+    const origin = env.ALLOWED_ORIGIN || req.headers.get("Origin") || "*";
+    const method = req.method;
+
+    // 1) Preflight
+    if (method === "OPTIONS") {
+      return new Response(null, { status: 204, headers: cors(origin) });
+    }
+
+    // ============================================================
+    // 2) BUSCA DE ARQUIVOS FÍSICOS (Slides, CSS, JS) - VERSÃO _SITE
+    // ============================================================
+    const urlPath = url.pathname;
+
+    if (urlPath.match(/\.(html|css|js|mjs|map|json|png|jpg|jpeg|gif|webp|svg|ico|pdf|txt|xml|woff2?|ttf|eot|otf|wasm)$/i)) {
+      try {
+        // Tentativa 1: Pages mapeia _site para raiz
+        let assetRes = await env.ASSETS.fetch(req);
+        if (assetRes.status === 200) return assetRes;
+
+        // Tentativa 2: fallback p/ prefixo /teaching/financial-strategy
+        if (!urlPath.startsWith("/teaching/financial-strategy/")) {
+          const internalPath =
+            "/teaching/financial-strategy" + (urlPath.startsWith("/") ? urlPath : "/" + urlPath);
+          const fallbackReq = new Request(new URL(internalPath, url.origin).toString(), req);
+          assetRes = await env.ASSETS.fetch(fallbackReq);
+          if (assetRes.status === 200) return assetRes;
+        }
+      } catch (e) {
+        console.error("Erro de Assets:", e);
+      }
+
+      // Se for arquivo e chegou aqui, não existe.
+      return new Response("Arquivo não encontrado no diretório de build.", { status: 404 });
+    }
+
+    // ============================================================
+    // 3) ROTAS DINÂMICAS
+    // ============================================================
+    const rawPath = url.pathname;
+    const path = rawPath.replace(/\/{2,}/g, "/").replace(/\/+$/, "") || "/";
+    const is = (p) => path === p;
+
+    // --- BLOQUEIO DE SEGURANÇA ADMIN ---
+    // Permitimos /poll/export para download funcionar via link direto
+    if (path.startsWith("/admin") || path === "/poll/export") {
+      const clean = (s) => String(s ?? "").trim();
+      const hdr = clean(req.headers.get("x-admin-token"));
+      const bearer = clean((req.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""));
+      const qsTok = clean(url.searchParams.get("token") || url.searchParams.get("t") || url.searchParams.get("tkn"));
+      const sent = hdr || bearer || qsTok;
+      const master = clean(env.ADMIN_SEMESTER || env.ADMIN_TOKEN || "");
+      if (!sent || sent !== master) {
+        return new Response("Unauthorized: Admin access required", { status: 401, headers: cors(origin) });
+      }
+    }
+
+    // ===== Ensure de índices/regras (idempotente; roda sempre) =====
+    try { await ensureSchema(env); } catch { /* ignora */ }
+
+    const isAdmin = () => {
+      const clean = (s) => String(s ?? "").trim();
+      const sent = clean(req.headers.get("x-admin-token") || url.searchParams.get("token") || url.searchParams.get("t"));
+      const master = clean(env.ADMIN_SEMESTER || env.ADMIN_TOKEN || "");
+      return !!sent && sent === master;
+    };
+
+    // ===== helpers de tempo / utils =====
+    const int = (v, d = 0) => {
+      const n = parseInt(String(v ?? ""), 10);
+      return Number.isFinite(n) ? n : d;
+    };
+    const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+    const nowMs = () => Date.now();
+
+    // Rate limit simples (memória da instância)
+    const buckets = globalThis.__rl_buckets || (globalThis.__rl_buckets = new Map());
+    const rateLimit = (key, limit, windowMs) => {
+      const now = Date.now();
+      const b = buckets.get(key) || [];
+      const keep = b.filter((t) => now - t < windowMs);
+      if (keep.length >= limit) {
+        buckets.set(key, keep);
+        return false;
+      }
+      keep.push(now);
+      buckets.set(key, keep);
+      return true;
+    };
+
+    // ============================================================
+    // HOME "/"
+    // ============================================================
+    if (path === "/") {
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${profile.name}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root { --accent: #1e3a8a; --text-main: #1e293b; --text-muted: #64748b; --bg: #fdfdfd; }
+    body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.7; }
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .nav-brand { font-size: 1.1rem; font-weight: 600; color: var(--text-main); text-decoration: none; }
+    nav { display: flex; gap: 25px; }
+    nav a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+    .hero { max-width: 1100px; margin: 80px auto; display: grid; grid-template-columns: 1fr; gap: 60px; padding: 0 40px; }
+    @media (min-width: 768px) { .hero { grid-template-columns: 320px 1fr; } }
+    .avatar { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.08); margin-bottom: 25px; border: 4px solid white; }
+    .links-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; text-decoration: none; color: var(--text-main); font-size: 0.8rem; background: white; transition: 0.2s; }
+    .btn-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .main-content h1 { font-size: 3.5rem; font-weight: 800; margin: 0; color: #0f172a; }
+    .subtitle { font-size: 1.2rem; color: var(--accent); font-weight: 600; margin-bottom: 25px; display: block; }
+    h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-top: 50px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+    .edu-card { padding: 8px 0; }
+    .edu-card strong { display: block; color: var(--text-main); }
+    .interest-tag { display: inline-block; background: #eff6ff; color: #1e40af; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-right: 8px; margin-bottom: 8px; border: 1px solid #dbeafe; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="nav-brand">Henrique Castro Martins</a>
+    <nav>
+      <a href="/teaching/">Teaching</a>
+      <a href="/research/">Research</a>
+      <a href="/cv/">CV</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="sidebar">
+      <img src="https://henriquemartins.net/avatar.jpg" class="avatar" alt="Henrique">
+      <div class="links-grid">
+        ${profile.links
+          .map(
+            (l) => `<a href="${l.href}" class="btn-link" target="_blank" rel="noopener">
+              <i class="bi ${l.icon}"></i> ${l.text}
+            </a>`
+          )
+          .join("")}
+      </div>
+    </div>
+
+    <div class="main-content">
+      <span class="subtitle">${profile.subtitle || profile.title}</span>
+      <p>${profile.bio}</p>
+
+      <h2>Education</h2>
+      <div class="edu-grid">
+        ${profile.education
+          .map(
+            (e) => `<div class="edu-card">
+              <strong>${e.degree}</strong>
+              <span>${e.school} • ${e.year}</span>
+            </div>`
+          )
+          .join("")}
+      </div>
+
+      <h2>Research Interests</h2>
+      <div class="interests-grid">
+        ${profile.interests.map((topic) => `<span class="interest-tag">${topic}</span>`).join("")}
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, {
+        headers: { "Content-Type": "text/html;charset=UTF-8", ...cors(origin) }
+      });
+    }
+
+    // ============================================================
+    // /teaching
+    // ============================================================
+    if (path === "/teaching" || path === "/teaching/") {
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teaching - ${profile.name}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root { --accent: #1e3a8a; --text-main: #1e293b; --text-muted: #64748b; --bg: #fdfdfd; }
+    body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.7; }
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .nav-brand { font-size: 1.1rem; font-weight: 600; color: var(--text-main); text-decoration: none; }
+    nav { display: flex; gap: 25px; }
+    nav a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+    .container { max-width: 900px; margin: 60px auto; padding: 0 40px; }
+    h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+    h2 { font-size: 1.5rem; color: var(--accent); margin-top: 40px; display: flex; align-items: center; gap: 10px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    th { background: #1e293b; color: white; padding: 12px; text-align: left; font-size: 0.9rem; }
+    td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
+    tr:hover { background: #f8fafc; }
+    .course-link { text-decoration: none; color: var(--accent); font-weight: 600; }
+    .tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; font-weight: 700; margin-left: 10px; text-transform: uppercase; }
+    .tag-active { background: #dcfce7; color: #166534; }
+    .tag-archived { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
+    .course-disabled { color: var(--text-muted); font-weight: 500; cursor: default; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="nav-brand">Henrique Castro Martins</a>
+    <nav>
+      <a href="/teaching" style="color:var(--accent)">Teaching</a>
+      <a href="/research">Research</a>
+      <a href="/cv">CV</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>📚 Teaching Resources</h1>
+    <p style="color: var(--text-muted); margin-bottom: 40px;">
+      Welcome! Below you will find the materials and resources for my current and past courses.
+    </p>
+
+    <h2><i class="bi bi-calendar3"></i> 2026</h2>
+    <table>
+      <thead><tr><th style="width: 120px;">Semester</th><th>Course</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>
+            <a href="/teaching/financial-strategy" class="course-link">🎯 Financial Strategy</a>
+            <span class="tag tag-active">Active</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2><i class="bi bi-clock-history"></i> 2025</h2>
+    <table>
+      <thead><tr><th style="width: 120px;">Semester</th><th>Course</th></tr></thead>
+      <tbody>
+        <tr><td>02</td><td><span class="course-disabled">🎯 Financial Strategy</span> <span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>02</td><td><span class="course-disabled">📉 Empirical Methods for Finance</span> <span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>01</td><td><span class="course-disabled">🎯 Financial Strategy</span> <span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>01</td><td><span class="course-disabled">📊 STAII</span> <span class="tag tag-archived">Archived</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2><i class="bi bi-clock-history"></i> 2024</h2>
+    <table>
+      <thead><tr><th style="width: 120px;">Semester</th><th>Course</th></tr></thead>
+      <tbody>
+        <tr><td>01 / Summer</td><td><span class="course-disabled">🎯 Financial Strategy</span> <span class="tag tag-archived">Archived</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, {
+        headers: { "Content-Type": "text/html;charset=UTF-8", ...cors(origin) }
+      });
+    }
+
+    // ============================================================
+    // /teaching/financial-strategy
+    // ============================================================
+    if (path === "/teaching/financial-strategy") {
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Financial Strategy - 2026/01</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root { --accent: #1e3a8a; --text-main: #1e293b; --bg: #fdfdfd; }
+    body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.6; }
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid #eee; }
+    .nav-brand { font-size: 1.1rem; font-weight: 600; text-decoration: none; color: var(--text-main); }
+    .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 1.5em 0; background: white; border-radius: 8px; overflow: hidden; }
+    thead th { background: #1e293b; color: #ffffff; padding: 12px 8px; text-align: center; font-weight: 700; border-top: 2px solid #0f172a; }
+    td { padding: 10px 8px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+    tbody tr:nth-child(even) { background: #f8fafc; }
+    tbody tr:hover { background: #e0f2fe; }
+    td a { font-size: 18px; text-decoration: none; }
+    th:nth-child(1), td:nth-child(1) { width: 80px; }
+    th:nth-child(2), td:nth-child(2) { width: 100px; }
+    .callout { background: #fff5f5; border-left: 5px solid #ef4444; padding: 20px; margin: 25px 0; border-radius: 4px; }
+    .callout h3 { margin-top: 0; color: #b91c1c; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+    .legend { background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 30px; }
+    hr { border: 0; border-top: 1px solid #e2e8f0; margin: 30px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="nav-brand">Henrique Castro Martins</a>
+    <nav style="display:flex; gap:20px;">
+      <a href="/teaching" style="text-decoration:none; color:var(--accent); font-weight:500;">Teaching</a>
+      <a href="/research" style="text-decoration:none; color:#64748b;">Research</a>
+      <a href="/cv" style="text-decoration:none; color:#64748b;">CV</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Financial Strategy - 2026/01</h1>
+
+    <div class="callout">
+      <h3><i class="bi bi-exclamation-triangle"></i> For students</h3>
+      <p>Below you find the persistent links to all lectures of the course. As they are continuously updated with fixes and new implementations, <strong>you might expect some changes from time to time in the contents of each file</strong>.</p>
+      <p>Questions inspired by:
+        <a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154" target="_blank" rel="noopener">Berk & DeMarzo</a>
+        and
+        <a href="https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556" target="_blank" rel="noopener">Brealey & Myers</a>.
+      </p>
+      <p><small>💡 You can also type e then Ctrl + P (or Cmd + P on Mac) to print or save your responses as a .pdf file.</small></p>
+    </div>
+
+    <h3>📗 Part 0 (Introduction)</h3>
+    <table>
+      <thead><tr><th>Slides</th></tr></thead>
+      <tbody><tr><td><a href="/teaching/financial-strategy/module0/p0.html">🎞️</a></td></tr></tbody>
+    </table>
+
+    <h3>📘 Part 1 (until Midterm)</h3>
+    <table>
+      <thead>
+        <tr><th>Module</th><th>Ch.</th><th>Slides</th><th>T/F</th><th>MCQ</th><th>MultiA</th><th>Num.</th><th>Long</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>ch23</td><td><a href="module1/p1.html">🎞️</a></td><td><a href="module1/p1tf.html">✅</a></td><td><a href="module1/p1mcq.html">❓</a></td><td><a href="module1/p1multia.html">📑</a></td><td><a href="module1/p1num.html">🔢</a></td><td><a href="module1/p1long.html">📝</a></td></tr>
+        <tr><td>2</td><td>ch10</td><td><a href="module2/p2.html">🎞️</a></td><td><a href="module2/p2tf.html">✅</a></td><td><a href="module2/p2mcq.html">❓</a></td><td>-</td><td><a href="module2/p2num.html">🔢</a></td><td><a href="module2/p2long.html">📝</a></td></tr>
+        <tr><td>3</td><td>ch11</td><td><a href="module3/p3.html">🎞️</a></td><td><a href="module3/p3tf.html">✅</a></td><td><a href="module3/p3mcq.html">❓</a></td><td>-</td><td><a href="module3/p3num.html">🔢</a></td><td><a href="module3/p3long.html">📝</a></td></tr>
+        <tr><td>4</td><td>ch12</td><td><a href="module4/p4.html">🎞️</a></td><td><a href="module4/p4tf.html">✅</a></td><td><a href="module4/p4mcq.html">❓</a></td><td>-</td><td><a href="module4/p4num.html">🔢</a></td><td><a href="module4/p4long.html">📝</a></td></tr>
+        <tr><td>5</td><td>ch13</td><td><a href="module5/p5.html">🎞️</a></td><td><a href="module5/p5tf.html">✅</a></td><td><a href="module5/p5mcq.html">❓</a></td><td>-</td><td><a href="module5/p5num.html">🔢</a></td><td><a href="module5/p5long.html">📝</a></td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <div class="legend">
+      <h2 style="font-size: 1.1rem; color: var(--text-main); text-transform: none; border: none; margin-bottom: 15px;"> 🔑 Legend </h2>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+        <li style="display: flex; align-items: center; gap: 10px;"><span>🎞️</span> : Slides</li>
+        <li style="display: flex; align-items: center; gap: 10px;"><span>✅</span> : True/False Questions</li>
+        <li style="display: flex; align-items: center; gap: 10px;"><span>❓</span> : Multiple Choice Questions</li>
+        <li style="display: flex; align-items: center; gap: 10px;"><span>📑</span> : Multi-Affirmative Questions</li>
+        <li style="display: flex; align-items: center; gap: 10px;"><span>🔢</span> : Numeric Questions</li>
+        <li style="display: flex; align-items: center; gap: 10px;"><span>📝</span> : Long Answer Questions</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, {
+        headers: { "Content-Type": "text/html;charset=UTF-8", ...cors(origin) }
+      });
+    }
+
+    // ============================================================
+    // Bridge de sessão: /session/start?sid=xxx&next=/reports/html
+    // ============================================================
+    if (path === "/session/start" && method === "GET") {
+      const sid = (url.searchParams.get("sid") || "").trim();
+      let nextQ = (url.searchParams.get("next") || "/reports/html").trim();
+
+      if (!sid || !/^[a-z0-9._-]{2,64}$/i.test(sid)) {
+        return new Response("Missing or invalid sid", { status: 400, headers: cors(origin) });
+      }
+
+      try {
+        const u = new URL(nextQ, url.origin);
+        nextQ = u.pathname + u.search;
+      } catch {
+        nextQ = "/reports/html";
+      }
+
+      const allowed = nextQ === "/reports/html";
+      const safeNext = allowed ? nextQ : "/reports/html";
+
+      const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+      if (!rateLimit(`sess:${ip}`, 10, 30_000)) {
+        return new Response("Too many attempts", { status: 429, headers: cors(origin) });
+      }
+
+      const headers = new Headers(cors(origin));
+      headers.set(
+        "Set-Cookie",
+        `student_id=${encodeURIComponent(sid)}; Path=/; Secure; SameSite=Lax; HttpOnly; Max-Age=2592000`
+      );
+      headers.set("Location", safeNext);
+      return new Response(null, { status: 303, headers });
+    }
+
+    // ============================================================
+    // ATTENDANCE
+    // ============================================================
+    if (is("/admin/attendance/save") && method === "POST") {
+      const body = await readJsonBody(req);
+      const { date, records } = body || {};
+      if (!date || !records) return json({ error: "Dados incompletos" }, origin, 400);
+
+      const statements = records.map((r) =>
+        env.DB.prepare(
+          "INSERT OR REPLACE INTO attendance_dates (student_id, date_class, status) VALUES (?, ?, ?)"
+        ).bind(String(r.sid || "").trim().toLowerCase(), date, String(r.status || "present"))
+      );
+
+      await env.DB.batch(statements);
+      return json({ ok: true }, origin);
+    }
+
+    if (is("/admin/attendance") && method === "GET") {
+      const instructor = env.INSTRUCTOR_NAME || "Henrique";
+
+      const { results } = await env.DB.prepare(
+        "SELECT student_id, name FROM t_students_dim WHERE prof = ? ORDER BY name ASC"
+      ).bind(instructor).all();
+
+      const studentRows = (results || [])
+        .map((s) => `
+          <div class="student-card" data-sid="${escapeHtml(s.student_id)}">
+            <div class="student-info">
+              <span class="student-name">${escapeHtml(s.name)}</span>
+            </div>
+            <div class="status-toggle">
+              <button type="button" class="btn-status present active" onclick="setStatus(this, 'present')">P</button>
+              <button type="button" class="btn-status partial" onclick="setStatus(this, 'partial')">½</button>
+              <button type="button" class="btn-status absent" onclick="setStatus(this, 'absent')">A</button>
+            </div>
+          </div>
+        `)
+        .join("");
+
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Attendance</title>
+  <style>
+    :root { --p-color:#10b981; --a-color:#ef4444; --pt-color:#f59e0b; --bg:#f8fafc; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; padding: 15px; }
+    .container { max-width: 500px; margin: 0 auto; }
+    h2 { text-align: center; color: #1e3a8a; }
+    .date-picker { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #cbd5e1; font-size: 18px; margin-bottom: 20px; box-sizing: border-box; }
+    .student-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .student-name { font-weight: 600; color: #334155; font-size: 16px; }
+    .status-toggle { display: flex; gap: 5px; }
+    .btn-status { border: 2px solid #e2e8f0; background: white; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; min-width: 45px; }
+    .btn-status.present.active { background: var(--p-color); color: white; border-color: var(--p-color); }
+    .btn-status.partial.active { background: var(--pt-color); color: white; border-color: var(--pt-color); }
+    .btn-status.absent.active { background: var(--a-color); color: white; border-color: var(--a-color); }
+    .btn-submit { width: 100%; padding: 20px; background: #1e3a8a; color: white; border: none; border-radius: 15px; font-size: 20px; font-weight: 800; margin-top: 20px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🗓️ Daily Roll Call</h2>
+    <input type="date" id="class_date" class="date-picker" value="${new Date().toISOString().split("T")[0]}">
+    <div id="student_list">${studentRows}</div>
+    <button class="btn-submit" onclick="submit()">SUBMIT ATTENDANCE</button>
+  </div>
+
+  <script>
+    function setStatus(btn, status) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.btn-status').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      btn.closest('.student-card').dataset.status = status;
+    }
+    async function submit() {
+      const date = document.getElementById('class_date').value;
+      const records = Array.from(document.querySelectorAll('.student-card')).map(card => ({
+        sid: card.dataset.sid,
+        status: card.dataset.status || 'present'
+      }));
+      const res = await fetch('/admin/attendance/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date, records })
+      });
+      if (res.ok) alert('Attendance saved successfully!');
+      else alert('Error saving attendance.');
+    }
+  </script>
+</body>
+</html>`;
+
+      return new Response(html, { headers: { "Content-Type": "text/html", ...cors(origin) } });
+    }
+
+    // ============================================================
+    // HEALTH
+    // ============================================================
+    if (is("/health")) {
+      return json({ ok: true, service: "threads", ts: nowMs() }, origin);
+    }
+
+    // ============================================================
+    // REPORTS
+    // ============================================================
+    if (is("/reports/me") && method === "GET") {
+      const sid = await getStudentId(req, env);
+      if (!sid) return json({ error: "unauthorized" }, origin, 401);
+      const report = await buildReport(env.DB, sid);
+      return new Response(JSON.stringify(report, null, 2), {
+        status: 200,
+        headers: { ...cors(origin), "Content-Type": "application/json; charset=utf-8" }
+      });
+    }
+
+    // ===================== REPORTS — LOGIN NO WORKER (SEM SESSÃO) =====================
+    const GAS_URL_LOGIN = String(env.GAS_URL || "https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec").trim();
+
+    function normalizeSid(raw) {
+      const s = String(raw || "").trim().toLowerCase();
+      return s.replace(/[^a-z0-9._-]/g, "");
+    }
+
+    async function gasValidate(username, password, pageTag = "REPORTS") {
+      async function once(ms) {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort("timeout"), ms || 12000);
+        try {
+          const qs = new URLSearchParams({ username: username || "", password: password || "", page: pageTag }).toString();
+          const u = `${GAS_URL_LOGIN}?${qs}`;
+          const res = await fetch(u, {
+            method: "GET",
+            redirect: "follow",
+            headers: { "User-Agent": "ReportLoginWorker/1.0" },
+            cf: { cacheTtl: 0 },
+            signal: ctrl.signal
+          });
+          const text = ((await res.text()) || "").trim().toUpperCase();
+          return text; // "OK" | "FAIL" | "MISSING"
+        } finally {
+          clearTimeout(t);
+        }
+      }
+      try { return await once(8000); }
+      catch {
+        try { return await once(15000); }
+        catch { return "FAIL"; }
+      }
+    }
+
+    function reportsLoginPage({ message = "" } = {}) {
+      const msg = String(message || "").trim();
+      return `<!doctype html>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard — login</title>
+<style>
+  :root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--brand:#1e3a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  .page{max-width:420px;margin:6vh auto;padding:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 12px rgba(15,23,42,.06);padding:18px}
+  h1{margin:0 0 10px;font-size:20px}
+  .muted{color:var(--muted);font-size:13px;margin-bottom:12px}
+  input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font:inherit}
+  button{width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--brand);background:var(--brand);color:#fff;font-weight:600;cursor:pointer;margin-top:8px}
+  .err{color:#fff;background:#ef4444;border:1px solid #fecaca;padding:10px;border-radius:10px;margin:6px 0 8px; font-weight:600}
+</style>
+<section class="page">
+  <div class="card">
+    <h1>My Dashboard</h1>
+    <div class="muted">Enter your <strong>username</strong> and <strong>password</strong> to access.</div>
+    ${msg ? `<div class="err" role="alert">${escapeHtml(msg)}</div>` : ""}
+    <form method="POST" action="/reports" autocomplete="off" spellcheck="false">
+      <input type="text" name="username" placeholder="Username" required autofocus autocomplete="username" />
+      <input type="password" name="password" placeholder="Password" required autocomplete="current-password" />
+      <button type="submit">Enter</button>
+    </form>
+  </div>
+</section>`;
+    }
+
+    function reportsHtmlGuardPage() {
+      return `<!doctype html>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard</title>
+<style>
+  body{font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;color:#0f172a}
+  .card{max-width:720px;margin:0 auto;border:1px solid #e2e8f0;border-radius:12px;padding:16px;background:#fff}
+  h1{margin:0 0 8px;font-size:20px}
+  .muted{color:#64748b}
+  a.btn{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:10px;background:#1e3a8a;color:#fff;text-decoration:none}
+</style>
+<div class="card">
+  <h1>Login required</h1>
+  <p>To view your Dashboard, please sign in on the Dashboard login page.</p>
+  <p class="muted">For security reasons, the Dashboard does not accept URL parameters or keep a local session.</p>
+  <a class="btn" href="/reports">Go to login page</a>
+</div>`;
+    }
+
+    if (is("/reports") && method === "GET") {
+      const html = reportsLoginPage();
+      return new Response(html, {
+        status: 200,
+        headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+      });
+    }
+
+    if (is("/reports") && method === "POST") {
+      const ct = (req.headers.get("content-type") || "").toLowerCase();
+      let username = "", password = "";
+
+      if (ct.includes("application/json")) {
+        const body = (await readJsonBody(req)) || {};
+        username = String(body.username || body.user || body.id || "").trim();
+        password = String(body.password || body.pass || "").trim();
+      } else {
+        const fd = await req.formData().catch(() => null);
+        username = String(fd?.get("username") || "").trim();
+        password = String(fd?.get("password") || "").trim();
+      }
+
+      if (!username || !password) {
+        const html = reportsLoginPage({ message: "Missing username or password." });
+        return new Response(html, {
+          status: 400,
+          headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+        });
+      }
+
+      const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+      const key = `reportslogin:${ip}:${username.toLowerCase()}`;
+      if (!rateLimit(key, 5, 10_000)) {
+        const html = reportsLoginPage({ message: "Too many attempts. Please wait a moment and try again." });
+        return new Response(html, {
+          status: 429,
+          headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+        });
+      }
+
+      const verdict = await gasValidate(username, password, "REPORTS");
+      if (verdict !== "OK") {
+        const html = reportsLoginPage({
+          message: verdict === "MISSING" ? "Missing credentials." : "Invalid username or password."
+        });
+        return new Response(html, {
+          status: 401,
+          headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+        });
+      }
+
+      const sid = normalizeSid(username);
+      const r = await buildReport(env.DB, sid);
+
+      const logoUrl = String(env.FGV_LOGO_URL || "").trim();
+      const html = reportToHTML(r, {
+        logoUrl,
+        courseName: env.COURSE_NAME || "Financial Strategy (2026/01)",
+        instructorName: env.INSTRUCTOR_NAME || "Henrique C. Martins - henrique.martins@fgv.br"
+      });
+
+      return new Response(html, {
+        status: 200,
+        headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+      });
+    }
+
+    if (is("/reports/html") && method === "GET") {
+      const html = reportsHtmlGuardPage();
+      return new Response(html, {
+        status: 401,
+        headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+      });
+    }
+
+    // ============================================================
+    // NOVO MOTOR DE LOGIN (Substitui dependência do GAS)
+    // ============================================================
+    if (is("/auth/login") && method === "GET") {
+      const username = url.searchParams.get("username");
+      const password = url.searchParams.get("password");
+      const page = url.searchParams.get("page") || "slide";
+
+      if (!username || !password) return new Response("MISSING", { headers: cors(origin) });
+
+      const student = await env.DB.prepare(
+        "SELECT * FROM t_students_dim WHERE student_id = ? AND password = ?"
+      ).bind(username.toLowerCase().trim(), password.trim()).first();
+
+      let status = "fail";
+      if (student) status = student.active ? "success" : "denied";
+
+      ctx.waitUntil(
+        env.DB.prepare(
+          "INSERT INTO t_logins (student_id, status, page, prof, term_id) VALUES (?, ?, ?, ?, ?)"
+        ).bind(username.toLowerCase().trim(), status, page, student?.prof || "", student?.term_id || "").run()
+      );
+
+      const responseText = (status === "success") ? "OK" : "FAIL";
+      return new Response(responseText, { headers: { ...cors(origin), "Cache-Control": "no-store" } });
+    }
+
+    // ============================================================
+    // NOTICES ENGINE
+    // ============================================================
+    if (is("/auth/notices/get") && method === "GET") {
+      const sid = url.searchParams.get("studentId")?.toLowerCase().trim() || "";
+      const module = url.searchParams.get("module")?.toLowerCase().trim() || "ALL";
+
+      const notice = await env.DB.prepare(`
+        SELECT n.* FROM t_notices n
+        LEFT JOIN t_notice_seen s
+          ON n.notice_id = s.notice_id AND s.student_id = ?1
+        WHERE n.enabled = 1
+          AND (n.audience_student_id = 'ALL' OR n.audience_student_id = ?1)
+          AND (n.audience_module = 'ALL' OR n.audience_module = ?2)
+          AND (n.start_at IS NULL OR n.start_at <= datetime('now', '-3 hours'))
+          AND (n.end_at IS NULL OR n.end_at >= datetime('now', '-3 hours'))
+          AND s.notice_id IS NULL
+        ORDER BY n.created_at DESC
+        LIMIT 1
+      `).bind(sid, module).first();
+
+      return json({ ok: true, hasNotice: !!notice, notice }, origin);
+    }
+
+    if (is("/auth/notices/ack") && method === "GET") {
+      const sid = url.searchParams.get("studentId")?.toLowerCase().trim();
+      const nid = url.searchParams.get("notice_id");
+      if (sid && nid) {
+        await env.DB.prepare("INSERT OR IGNORE INTO t_notice_seen (student_id, notice_id) VALUES (?, ?)")
+          .bind(sid, nid).run();
+      }
+      return json({ ok: true }, origin);
+    }
+
+    // ============================================================
+    // GALERIA DE QUESTÕES
+    // ============================================================
+    if (is("/admin/poll/gallery") && method === "GET") {
+      const { results } = await env.DB.prepare("SELECT * FROM poll_active ORDER BY poll_id DESC").all();
+
+      const questionsHtml = (results || []).map(p => {
+        let opts = {};
+        try { opts = JSON.parse(p.options_json || "{}"); } catch {}
+        const optionsHtml = Object.entries(opts).filter(([_, v]) => v).map(([k, v]) => {
+          const cls = (k === p.correct_option) ? "opt correct" : "opt";
+          return `<div class="${cls}"><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v)}</div>`;
+        }).join("");
+
+        return `<div class="q-card">
+          <div class="q-header">
+            <span class="q-id">ID: ${escapeHtml(p.poll_id)}</span>
+            <span class="q-type">${escapeHtml(String(p.poll_type || "").toUpperCase())}</span>
+          </div>
+          <div class="q-text"><strong>${escapeHtml(p.question)}</strong></div>
+          <div class="q-options">${optionsHtml}</div>
+          ${p.feedback_text ? `<div class="q-feedback">💡 ${escapeHtml(p.feedback_text)}</div>` : ""}
+        </div>`;
+      }).join("");
+
+      const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Question Bank — Financial Strategy</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f1f5f9; padding: 40px 20px; }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { color: #1e3a8a; text-align: center; margin-bottom: 30px; }
+    .q-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .q-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; color: #64748b; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
+    .q-id { color: #1e3a8a; }
+    .q-options { display: grid; gap: 8px; margin: 15px 0; }
+    .opt { padding: 8px 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 14px; }
+    .opt.correct { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
+    .q-feedback { background: #eff6ff; padding: 10px; border-radius: 8px; font-size: 13px; color: #1e40af; border: 1px solid #dbeafe; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Question Bank Gallery</h1>
+    ${questionsHtml || "<p>No questions found in database.</p>"}
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+    }
+
+    // ============================================================
+    // LIVE POLL SYSTEM - CONSOLIDATED & FIXED
+    // ============================================================
+    if (is("/poll/status")) {
+      const student_id = url.searchParams.get("student_id");
+      const activePoll = await env.DB.prepare("SELECT * FROM poll_active WHERE is_active = 1 LIMIT 1").first();
+      if (!activePoll) return json(null, origin);
+
+      if (student_id) {
+        const alreadyAnswered = await env.DB.prepare(
+          "SELECT 1 FROM poll_responses WHERE poll_id = ? AND student_id = ? LIMIT 1"
+        ).bind(activePoll.poll_id, student_id).first();
+
+        if (alreadyAnswered) {
+          return json({ ...activePoll, is_active: 0, already_answered: true }, origin);
+        }
+      }
+      return json(activePoll, origin);
+    }
+
+    if (is("/poll/results") && method === "GET") {
+      const activePoll = await env.DB.prepare("SELECT poll_id FROM poll_active WHERE is_active = 1").first();
+      if (!activePoll) return json([], origin);
+
+      const { results } = await env.DB.prepare(`
+        SELECT chosen_option, COUNT(*) as count
+        FROM poll_responses
+        WHERE poll_id = ?
+        GROUP BY chosen_option
+      `).bind(activePoll.poll_id).all();
+
+      return json(results || [], origin);
+    }
+
+    if (is("/poll/vote") && method === "POST") {
+      const body = await readJsonBody(req);
+      const { student_id, poll_id, choice } = body || {};
+
+      const poll = await env.DB.prepare(
+        "SELECT correct_option, poll_type, feedback_text FROM poll_active WHERE is_active = 1 LIMIT 1"
+      ).first();
+      if (!poll) return json({ error: "No active poll" }, origin);
+
+      const cleanChoice = (String(choice) || "").trim().replace(",", ".");
+      const cleanCorrect = (String(poll.correct_option) || "").trim().replace(",", ".");
+
+      let is_correct = 0;
+      if (poll.poll_type === "numeric") {
+        const nChoice = parseFloat(cleanChoice);
+        const nCorrect = parseFloat(cleanCorrect);
+        const tolerance = 0.01;
+        if (!isNaN(nChoice) && !isNaN(nCorrect)) {
+          is_correct = Math.abs(nChoice - nCorrect) <= tolerance ? 1 : 0;
+        }
+      } else {
+        is_correct = (cleanChoice.toUpperCase() === cleanCorrect.toUpperCase() && cleanCorrect !== "") ? 1 : 0;
+      }
+
+      try {
+        await env.DB.prepare(
+          "INSERT INTO poll_responses (poll_id, student_id, chosen_option, is_correct, ts_br) VALUES (?, ?, ?, ?, ?)"
+        ).bind(poll_id, student_id, choice, is_correct, tsBRString(Date.now())).run();
+
+        return json({ status: "success", correct: is_correct, feedback: poll.feedback_text || "" }, origin);
+      } catch (e) {
+        return json({ status: "error", message: "Already answered" }, origin, 400);
+      }
+    }
+
+    if (is("/poll/admin")) {
+      if (url.searchParams.has("get_poll")) {
+        const pollId = url.searchParams.get("get_poll");
+        const pollData = await env.DB.prepare("SELECT * FROM poll_active WHERE poll_id = ?").bind(pollId).first();
+        return json(pollData, origin);
+      }
+
+      if (url.searchParams.has("toggle_results")) {
+        const pollId = url.searchParams.get("toggle_results");
+        await env.DB.prepare("UPDATE poll_active SET show_results = NOT show_results WHERE poll_id = ?").bind(pollId).run();
+        return json({ status: "ok" }, origin);
+      }
+
+      if (url.searchParams.has("delete_id")) {
+        const pollId = url.searchParams.get("delete_id");
+        await env.DB.prepare("DELETE FROM poll_active WHERE poll_id = ?").bind(pollId).run();
+        return json({ status: "ok" }, origin);
+      }
+
+      const activate = url.searchParams.get("set") === "1";
+      const p_id = url.searchParams.get("poll_id");
+
+      if (!activate) {
+        if (p_id) {
+          await env.DB.prepare("UPDATE poll_active SET is_active = 0 WHERE poll_id = ?").bind(p_id).run();
+        } else {
+          await env.DB.prepare("UPDATE poll_active SET is_active = 0, show_results = 0").run();
+        }
+        return json({ status: "closed" }, origin);
+      }
+
+      if (activate && p_id) {
+        await env.DB.prepare("UPDATE poll_active SET is_active = 0 WHERE poll_id != ?").bind(p_id).run();
+
+        const q = url.searchParams.get("q");
+        if (!q || q === "undefined") {
+          await env.DB.prepare("UPDATE poll_active SET is_active = 1 WHERE poll_id = ?").bind(p_id).run();
+          return json({ status: "ok_activated_existing" }, origin);
+        }
+
+        const opts = url.searchParams.get("opts") || "{}";
+        const correct = (url.searchParams.get("correct") || "").trim();
+        const type = url.searchParams.get("type") || "info";
+        const feedback = url.searchParams.get("feedback") || "";
+
+        await env.DB.prepare(`
+          INSERT INTO poll_active (poll_id, question, options_json, correct_option, is_active, show_results, poll_type, feedback_text)
+          VALUES (?, ?, ?, ?, 1, 0, ?, ?)
+          ON CONFLICT(poll_id) DO UPDATE SET
+            question=excluded.question,
+            options_json=excluded.options_json,
+            correct_option=excluded.correct_option,
+            is_active=1,
+            poll_type=excluded.poll_type,
+            feedback_text=excluded.feedback_text
+        `).bind(p_id, q, opts, correct, type, feedback).run();
+
+        return json({ status: "ok_launched_new" }, origin);
+      }
+    }
+
+    if (is("/poll/export") && method === "GET") {
+      const id = url.searchParams.get("id");
+      const format = url.searchParams.get("format");
+
+      const poll = await env.DB.prepare("SELECT * FROM poll_active WHERE poll_id = ?").bind(id).first();
+      if (!poll) return new Response("Questão não encontrada no banco D1", { status: 404, headers: cors(origin) });
+
+      const content = (format === "qmd") ? generateQMD(poll) : generateBrightspaceCSV(poll);
+      const fileName = (format === "qmd") ? `${id}.qmd` : `${id}_brightspace.csv`;
+      const contentType = (format === "qmd") ? "text/plain" : "text/csv";
+
+      return new Response(content, {
+        headers: {
+          ...cors(origin),
+          "Content-Type": `${contentType}; charset=utf-8`,
+          "Content-Disposition": `attachment; filename="${fileName}"`
+        }
+      });
+    }
+
+    if (is("/poll/list")) {
+      const list = await env.DB.prepare("SELECT poll_id, question, is_active FROM poll_active ORDER BY poll_id DESC LIMIT 10").all();
+      return json(list.results || [], origin);
+    }
+
+    // ============================================================
+    // Admin panel: /admin/poll
+    // ============================================================
+    if (is("/admin/poll") && method === "GET") {
+      const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poll Admin</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 20px; background: #f1f5f9; color: #1e293b; }
+    .card { max-width: 600px; margin: 0 auto 20px auto; background: white; padding: 20px; border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+    h2 { margin-top: 0; color: #1e3a8a; font-size: 1.2rem; }
+    label { display: block; font-size: 10px; font-weight: 800; margin: 8px 0 2px; color: #64748b; text-transform: uppercase; }
+    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; font-size: 14px; margin-bottom: 4px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    button { padding: 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+    .btn-launch { background: #1e3a8a; color: white; width: 100%; margin-top: 10px; }
+    .btn-close { background: #fee2e2; color: #b91c1c; width: 100%; margin-top: 8px; }
+    #poll_list { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+    .poll-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #fff; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; }
+    .actions-gap { display: flex; gap: 4px; }
+    .btn-small { padding: 6px 8px; font-size: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-weight: 700; cursor: pointer; }
+    .btn-active { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+    .btn-danger { color: #ef4444; }
+    .import-area { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🚀 Launch Poll</h2>
+
+    <div class="import-area">
+      <label>Import from QMD/HTML or Brightspace CSV</label>
+      <textarea id="import_box" rows="3" placeholder="Paste QMD block or CSV line here..."></textarea>
+      <button class="btn-small" onclick="parseImport()" style="width:100%; margin-top:8px; background:#e2e8f0">Process Import</button>
+    </div>
+
+    <div class="grid">
+      <select id="poll_type" onchange="toggleMode()">
+        <option value="quiz">Quiz (A-E)</option>
+        <option value="numeric">Numeric (Input)</option>
+        <option value="info">Info</option>
+      </select>
+      <input id="p_id" placeholder="ID (ex: q1)">
+    </div>
+
+    <label>Question</label>
+    <textarea id="q" rows="2"></textarea>
+
+    <div id="options-section">
+      <label>Options (A-E)</label>
+      <div class="grid">
+        <input id="a" placeholder="A">
+        <input id="b" placeholder="B">
+        <input id="c" placeholder="C">
+        <input id="d" placeholder="D">
+        <input id="e" placeholder="E">
+      </div>
+    </div>
+
+    <label>Correct Answer / Target Value</label>
+    <input id="correct" placeholder="Correct (A-E or Number)">
+
+    <label>Feedback (Optional)</label>
+    <textarea id="feedback" rows="2"></textarea>
+
+    <button class="btn-launch" onclick="send(1)">Launch Poll</button>
+    <button class="btn-close" onclick="send(0)">Close All</button>
+
+    <div id="status" style="text-align:center; margin:10px; font-weight:bold; height: 20px;"></div>
+
+    <h3>History</h3>
+    <div id="poll_list">Loading database...</div>
+  </div>
+
+  <script>
+    async function load() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('t') || urlParams.get('token') || "";
+        const res = await fetch("/poll/list?_t=" + Date.now());
+        const data = await res.json();
+        const listDiv = document.getElementById('poll_list');
+        if (!data || data.length === 0) {
+          listDiv.innerHTML = '<div style="text-align:center;color:#64748b;padding:20px;">No history yet.</div>';
+          return;
+        }
+        listDiv.innerHTML = data.map(p => {
+          const statusIcon = p.is_active ? '🟢' : '⚪';
+          const btnClass = p.is_active ? 'btn-small btn-active' : 'btn-small';
+          const shortQ = p.question ? p.question.substring(0,40) : '';
+          return \`
+            <div class="poll-item">
+              <div>
+                <strong>\${statusIcon} \${p.poll_id}</strong>
+                <div style="font-size:11px; color:#64748b">\${shortQ}...</div>
+              </div>
+              <div class="actions-gap">
+                <button class="btn-small" style="background:#e0e7ff; color:#1e3a8a" onclick="window.open('/poll/export?id=\${p.poll_id}&format=qmd&t=\${token}')">QMD</button>
+                <button class="btn-small" style="background:#fef3c7; color:#92400e" onclick="window.open('/poll/export?id=\${p.poll_id}&format=csv&t=\${token}')">CSV</button>
+                <button class="\${btnClass}" onclick="toggleStatus('\${p.poll_id}', \${p.is_active ? 1 : 0})">\${p.is_active ? 'OFF' : 'ON'}</button>
+                <button class="btn-small" onclick="editPoll('\${p.poll_id}')">Edit</button>
+                <button class="btn-small btn-danger" onclick="del('\${p.poll_id}')">Del</button>
+              </div>
+            </div>\`;
+        }).join('');
+      } catch (e) {
+        console.error("Load error:", e);
+        document.getElementById('poll_list').innerHTML = 'Error loading history.';
+      }
+    }
+
+    async function toggleStatus(id, activeStatus) {
+      const newState = activeStatus === 1 ? 0 : 1;
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('t') || urlParams.get('token') || "";
+      await fetch("/poll/admin?poll_id=" + encodeURIComponent(id) + "&set=" + newState + "&t=" + encodeURIComponent(token));
+      load();
+    }
+
+    async function del(id) {
+      if(confirm('Delete?')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('t') || urlParams.get('token') || "";
+        await fetch("/poll/admin?delete_id=" + encodeURIComponent(id) + "&t=" + encodeURIComponent(token));
+        load();
+      }
+    }
+
+    async function editPoll(id) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('t') || urlParams.get('token') || "";
+      const res = await fetch("/poll/admin?get_poll=" + encodeURIComponent(id) + "&t=" + encodeURIComponent(token));
+      const p = await res.json();
+      if(p) {
+        document.getElementById('p_id').value = p.poll_id || "";
+        document.getElementById('q').value = p.question || "";
+        document.getElementById('poll_type').value = p.poll_type || "quiz";
+        document.getElementById('correct').value = p.correct_option || "";
+        document.getElementById('feedback').value = p.feedback_text || "";
+        const opts = JSON.parse(p.options_json || '{}');
+        document.getElementById('a').value = opts.A || '';
+        document.getElementById('b').value = opts.B || '';
+        document.getElementById('c').value = opts.C || '';
+        document.getElementById('d').value = opts.D || '';
+        document.getElementById('e').value = opts.E || '';
+        window.scrollTo(0,0);
+      }
+      toggleMode();
+    }
+
+    async function send(active) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('t') || urlParams.get('token') || "";
+
+      const params = new URLSearchParams({
+        set: String(active),
+        poll_id: document.getElementById('p_id').value,
+        q: document.getElementById('q').value,
+        type: document.getElementById('poll_type').value,
+        opts: JSON.stringify({
+          A: document.getElementById('a').value,
+          B: document.getElementById('b').value,
+          C: document.getElementById('c').value,
+          D: document.getElementById('d').value,
+          E: document.getElementById('e').value
+        }),
+        correct: document.getElementById('correct').value,
+        feedback: document.getElementById('feedback').value,
+        t: token
+      });
+
+      await fetch("/poll/admin?" + params.toString());
+      load();
+    }
+
+    function toggleMode() {
+      const type = document.getElementById('poll_type').value;
+      document.getElementById('options-section').style.display = (type === 'numeric') ? 'none' : 'block';
+    }
+
+    function parseImport() {
+      const raw = document.getElementById('import_box').value.trim();
+      if (!raw) return;
+
+      ['p_id','q','a','b','c','d','e','correct'].forEach(id => document.getElementById(id).value = "");
+
+      try {
+        if (raw.includes('NewQuestion') || raw.includes('Option')) {
+          const lines = raw.split('\\n');
+          let optIdx = 0;
+          const ids = ['a','b','c','d','e'];
+
+          lines.forEach(line => {
+            const parts = line.match(/(".*?"|[^",\\s]+)(?=\\s*,|\\s*$)/g)?.map(p => p.replace(/^"|"$/g, '').trim()) || [];
+            if (parts[0] === 'ID') document.getElementById('p_id').value = parts[1] || "";
+            if (parts[0] === 'QuestionText') document.getElementById('q').value = parts[1] || "";
+            if (parts[0] === 'Option') {
+              if (ids[optIdx]) {
+                document.getElementById(ids[optIdx]).value = parts[2] || "";
+                if (parts[1] === "100") document.getElementById('correct').value = ids[optIdx].toUpperCase();
+                optIdx++;
+              }
+            }
+          });
+          alert("✅ CSV Processed!");
+        } else if (raw.includes(':::') || raw.includes('<form')) {
+          const qM = raw.match(/<strong.*?>(.*?)<\\/strong>/is);
+          if (qM) document.getElementById('q').value = qM[1].trim();
+
+          const cM = raw.match(/data-correct-answer=["'](.*?)["']/i);
+          if (cM) document.getElementById('correct').value = cM[1].trim();
+
+          const idM = raw.match(/name=["'](.*?)["']/i) || raw.match(/checkAnswer\\(['"](.*?)['"]\\)/i);
+          if (idM) document.getElementById('p_id').value = idM[1].trim();
+
+          ['a','b','c','d','e'].forEach(l => {
+            const re = new RegExp(l.toUpperCase() + "\\\\.?\\s*(.*?)(?=<br|\\\\/label|\\\\/form|$)", "i");
+            const oM = raw.match(re);
+            if (oM) document.getElementById(l).value = oM[1].trim();
+          });
+
+          alert("✅ QMD Processed with ID!");
+        }
+
+        toggleMode();
+      } catch (e) {
+        console.error(e);
+        alert("❌ Import error.");
+      }
+    }
+
+    window.onload = () => { toggleMode(); load(); };
+  </script>
+</body>
+</html>`;
+
+      return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+    }
+
+    // ============================================================
+    // LIKES
+    // ============================================================
+    if (is("/likes")) {
+      const page = (url.searchParams.get("page") || "").trim();
+      const student = (url.searchParams.get("student") || "").trim();
+
+      if (url.searchParams.get("like") || method === "POST") {
+        let p = page, s = student;
+        if (method === "POST") {
+          const body = (await readJsonBody(req)) || {};
+          p = String(body.page || p).trim();
+          s = String(body.student || s).trim();
+        }
+        if (!p || !s) return json({ status: "error", message: "missing page/student" }, origin, 400);
+
+        const ip = req.headers.get("CF-Connecting-IP") || "0.0.0.0";
+        if (!rateLimit(`like:${s}:${p}:${ip}`, 5, 10_000)) return json({ status: "error", message: "rate limit" }, origin, 429);
+
+        try {
+          await env.DB.prepare("INSERT INTO likes (page, student_id, ts_local) VALUES (?, ?, ?)")
+            .bind(p, s, tsBRString(Date.now())).run();
+          return json({ status: "liked" }, origin);
+        } catch {
+          return json({ status: "already" }, origin);
+        }
+      }
+
+      if (method === "GET" && (url.searchParams.get("state") || url.searchParams.get("count"))) {
+        const cntRow = await env.DB.prepare("SELECT COUNT(*) AS c FROM likes WHERE page=?").bind(page).first();
+        const likedRow = student
+          ? await env.DB.prepare("SELECT 1 FROM likes WHERE page=? AND student_id=? LIMIT 1").bind(page, student).first()
+          : null;
+        return json({ status: "success", count: Number(cntRow?.c || 0), liked: !!likedRow }, origin);
+      }
+    }
+
+    // ============================================================
+    // CHECKOUTS
+    // ============================================================
+    if (is("/checkouts/status") && method === "GET") {
+      const student = (url.searchParams.get("student") || url.searchParams.get("student_id") || url.searchParams.get("studentId") || "").trim();
+      const slideId = (url.searchParams.get("slide_id") || url.searchParams.get("slideId") || url.searchParams.get("session") || url.searchParams.get("page") || "").trim();
+
+      if (!student || !slideId) return json({ status:"error", message:"missing student/slide_id" }, origin, 400);
+
+      const row = await env.DB.prepare("SELECT 1 AS ok FROM t_checkouts WHERE student_id=? AND slide_id=? LIMIT 1")
+        .bind(student, slideId).first();
+
+      return json({ status:"success", submitted: !!row }, origin);
+    }
+
+    if ((is("/checkouts") || is("/checkout")) && method === "POST") {
+      const body = await readJsonBody(req);
+      if (!body) return json({ status:"error", message:"invalid json" }, origin, 400);
+
+      const student_id = String(body.student || body.student_id || "").trim();
+      const slide_id = String(body.slide_id || body.session || body.page || "").trim();
+      const ticket = String(body.ticket || body.text || body.answer || body.message || "").trim();
+
+      const wOpenStr = String(body.open || body.window_open || body["data-open"] || "").trim();
+      const wCloseStr = String(body.close || body.window_close || body["data-close"] || "").trim();
+
+      if (!student_id) return json({ status:"error", message:"missing student_id" }, origin, 400);
+      if (!slide_id) return json({ status:"error", message:"missing slide_id" }, origin, 400);
+
+      if (wOpenStr && wCloseStr) {
+        const nowStr = tsBRString(Date.now());
+        const openStr = normalizeBRLocal(wOpenStr);
+        const closeStr = normalizeBRLocal(wCloseStr);
+        if (!openStr || !closeStr) return json({ status:"error", message:"invalid window" }, origin, 400);
+        const nowKey = brKey(nowStr), openKey = brKey(openStr), closeKey = brKey(closeStr);
+        if (nowKey < openKey || nowKey > closeKey) {
+          return json({ status:"closed_window", now_br:nowStr, open_br:openStr, close_br:closeStr }, origin, 403);
+        }
+      }
+
+      const timestamp_br = tsBRString(Date.now());
+
+      try {
+        await env.DB.prepare("INSERT INTO t_checkouts (timestamp_br, student_id, slide_id, ticket) VALUES (?, ?, ?, ?)")
+          .bind(timestamp_br, student_id, slide_id, ticket).run();
+        return json({ status:"success", student_id, slide_id, timestamp_br }, origin);
+      } catch (e) {
+        if (String(e).includes("UNIQUE")) return json({ status:"duplicate", student_id, slide_id }, origin);
+        return json({ status:"error", message: String(e) }, origin, 500);
+      }
+    }
+
+    // ============================================================
+    // RANKING (likes view)
+    // ============================================================
+    if (is("/ranking/score") && method === "GET") {
+      const limit = clamp(int(url.searchParams.get("limit"), 100), 1, 1000);
+      const rows = (await env.DB.prepare(`
+        SELECT student, points, last_ts
+        FROM ranking_score_likes
+        ORDER BY points DESC, last_ts DESC
+        LIMIT ?
+      `).bind(limit).all()).results || [];
+      return json({ status: "success", items: rows }, origin);
+    }
+
+    // ============================================================
+    // RANKING (TOTAL)
+    // ============================================================
+    if (is("/ranking") && method === "GET") {
+      try {
+        const topN = clamp(int(url.searchParams.get("top"), 10), 1, 100);
+        const who = (url.searchParams.get("who") || "").trim();
+
+        const topRows = (await env.DB.prepare(`
+          SELECT student_id, points
+          FROM ranking_score_total
+          ORDER BY points DESC, student_id COLLATE NOCASE ASC
+          LIMIT ?
+        `).bind(topN).all()).results || [];
+
+        const top = topRows.map((r, i) => ({
+          rank: i + 1,
+          studentId: r.student_id,
+          student: r.student_id,
+          total_points: Number(r.points || 0)
+        }));
+
+        let me = null;
+        if (who) {
+          const meRow = await env.DB.prepare(`
+            WITH ranked AS (
+              SELECT *, ROW_NUMBER() OVER (ORDER BY points DESC, student_id ASC) AS pos
+              FROM ranking_score_total
+            )
+            SELECT * FROM ranked WHERE student_id = ?
+          `).bind(who).first();
+
+          if (meRow) {
+            me = {
+              rank: meRow.pos,
+              studentId: meRow.student_id,
+              points: meRow.points,
+              likes_points: meRow.likes_points,
+              checkouts_points: meRow.checkouts_points,
+              poll_points: meRow.poll_points,
+              exercises_points: meRow.exercises_points
+            };
+          }
+        }
+
+        return json({ status: "success", ok: true, top, me, updated_at: new Date().toISOString() }, origin);
+      } catch (e) {
+        return json({ status: "error", message: "Ranking update in progress..." }, origin, 500);
+      }
+    }
+
+    // ============================================================
+    // EXERCISES: GET (submission summary)
+    // ============================================================
+    if (is("/exercises") && method === "GET") {
+      const student = (url.searchParams.get("student") || "").trim();
+      const exercise = (url.searchParams.get("exercise_id") || url.searchParams.get("slide") || "").trim();
+      if (!student || !exercise) return json({ status:"error", message:"missing student/exercise_id" }, origin, 400);
+
+      const row = await env.DB.prepare(`
+        SELECT timestamp_br, student_id, exercise_id, correct_count, total_count, score, max_score, status
+        FROM exercise_submissions
+        WHERE student_id=? AND exercise_id=?
+        LIMIT 1
+      `).bind(student, exercise).first();
+
+      return json({ status:"success", found: !!row, data: row || null }, origin);
+    }
+
+    // ============================================================
+    // ADMIN: ping
+    // ============================================================
+    if (is("/admin/ping") && method === "GET") {
+      const clean = (s) => String(s ?? "").trim();
+      const hdr = clean(req.headers.get("x-admin-token"));
+      const bearer = clean((req.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""));
+      const sent = hdr || bearer;
+      const envTok = clean(env.ADMIN_TOKEN || env.ADMIN_SEMESTER || "");
+      return json({ ok: true, host: url.hostname, envTokenLen: envTok.length, sentTokenLen: sent.length }, origin);
+    }
+
+    // ============================================================
+    // STUDENT: CHECKOUTS (HTML/JSON) — /student/checkouts
+    // ============================================================
+    if (is("/student/checkouts") && method === "GET") {
+      const student = (url.searchParams.get("student") || "").trim();
+      const exerciseId = (url.searchParams.get("exercise_id") || url.searchParams.get("slide_id") || "").trim();
+      const q = (url.searchParams.get("q") || "").trim();
+      const fromIso = (url.searchParams.get("from") || "").trim();
+      const toIso = (url.searchParams.get("to") || "").trim();
+      const limit = clamp(int(url.searchParams.get("limit"), 100), 1, 1000);
+      const format = (url.searchParams.get("format") || "html").toLowerCase();
+
+      if (!student) return new Response("Missing ?student=", { status: 400, headers: cors(origin) });
+
+      const binds = [student];
+      const push = (v) => { binds.push(v); return `?${binds.length}`; };
+
+      let sql = "SELECT * FROM v_checkouts_feed WHERE student = ?1";
+      if (exerciseId) sql += ` AND exercise_id = ${push(exerciseId)}`;
+      if (fromIso) sql += ` AND ts_iso >= ${push(fromIso)}`;
+      if (toIso) sql += ` AND ts_iso <= ${push(toIso)}`;
+      if (q) sql += ` AND ticket LIKE ${push(`%${q}%`)}`;
+      sql += ` ORDER BY ts_ms ASC LIMIT ${push(limit)}`;
+
+      const rows = (await env.DB.prepare(sql).bind(...binds).all()).results || [];
+
+      if (format === "json") return json({ status: "success", count: rows.length, items: rows }, origin);
+
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+      const items = rows.map(r => `
+        <div class="card">
+          <div class="row between">
+            <div class="pill">💬 Checkout ${r.exercise_id ? `<span class="mono">${esc(r.exercise_id)}</span>` : ""}</div>
+            <div class="ts"><time data-iso="${esc(r.ts_iso)}">${esc(r.ts_br || r.ts_iso)}</time></div>
+          </div>
+          <div class="bubble" style="margin-top:8px;">${esc(r.ticket)}</div>
+        </div>
+      `).join("");
+
+      const html = `<!doctype html>
+<meta charset="utf-8" />
+<title>Checkouts — ${esc(student)}</title>
+<style>
+  :root{--bg:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--card:#f8fafc;--chip:#eef2ff}
+  @media print { .no-print{display:none} .page{box-shadow:none;border:none} }
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  .page{max-width:980px;margin:20px auto;padding:24px;background:#fff;border:1px solid var(--line);border-radius:12px}
+  h1{margin:0 0 6px;font-size:20px}
+  .sub{color:var(--muted);margin-bottom:14px}
+  .grid{display:grid;gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .row{display:flex;gap:10px;align-items:center}
+  .between{justify-content:space-between}
+  .pill{display:inline-flex;gap:6px;align-items:center;background:var(--chip);border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-size:12px}
+  .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+  .bubble{background:#f3f4f6;border:1px solid var(--line);border-radius:12px;padding:10px 12px;white-space:pre-wrap}
+  .ts{color:var(--muted);font-size:12px}
+  .toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:0 0 12px}
+  .btn{padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--chip);cursor:pointer}
+  .hint{color:var(--muted);font-size:12px;margin-top:10px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  input[type="text"]{padding:6px 8px;border:1px solid var(--line);border-radius:6px}
+</style>
+<section class="page">
+  <div class="toolbar">
+    <div>
+      <h1>Checkouts do aluno</h1>
+      <div class="sub">ID: <span class="mono">${esc(student)}</span> • Itens: ${rows.length}</div>
+    </div>
+    <div><button class="btn no-print" onclick="window.print()">🖨️ Baixar PDF</button></div>
+  </div>
+
+  <div class="filters no-print">
+    <form id="f" onsubmit="event.preventDefault(); go();">
+      <input type="hidden" name="student" value="${esc(student)}"/>
+      <input type="text" name="exercise_id" placeholder="exercise_id" value="${esc(exerciseId)}" />
+      <input type="text" name="q" placeholder="buscar texto…" value="${esc(q)}" />
+      <input type="text" name="from" placeholder="from ISO (2025-09-01)" value="${esc(fromIso)}" />
+      <input type="text" name="to" placeholder="to ISO (2025-09-10)" value="${esc(toIso)}" />
+      <input type="text" name="limit" placeholder="limit" value="${esc(String(limit))}" style="width:80px" />
+      <button class="btn">Filtrar</button>
+    </form>
+  </div>
+
+  <div class="grid">${items || '<div class="hint">Sem checkouts para os filtros atuais.</div>'}</div>
+
+  <p class="hint">Fonte: view <span class="mono">v_checkouts_feed</span>. Timestamps exibidos em America/Sao_Paulo quando disponíveis.</p>
+</section>
+
+<script>
+  function go(){
+    const fd = new FormData(document.getElementById('f'));
+    const p = new URLSearchParams(fd).toString();
+    location.search = p;
+  }
+  (function formatTimes(){
+    try{
+      const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle:'medium', timeStyle:'medium', timeZone:'America/Sao_Paulo' });
+      document.querySelectorAll('time[data-iso]').forEach(t=>{
+        const iso = t.getAttribute('data-iso');
+        const d = new Date(iso);
+        if(!isNaN(d)) t.textContent = fmt.format(d);
+      });
+    }catch(_){}
+  })();
+</script>`;
+
+      return new Response(html, { status: 200, headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+    }
+
+    // ============================================================
+    // Default: Assets fetch (Pages)
+    // ============================================================
+    return env.ASSETS.fetch(req);
+  }
+};
+
+// ============================================================
+// WORKER — FULL FILE (PART 3/3)
+// ============================================================
+
+function tsBRString(ms = Date.now()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  }).formatToParts(ms);
+
+  const get = (t) => parts.find((p) => p.type === t)?.value;
+  return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")}:${get("second")}`;
+}
+
+function normalizeBRLocal(s) {
+  if (!s) return "";
+  let str = String(s).trim();
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(str)) str += ":00";
+  if (/^\d{10,13}$/.test(str)) {
+    const n = Number(str);
+    const ms = str.length === 13 ? n : n * 1000;
+    return tsBRString(ms);
+  }
+  if (/[T]/.test(str)) {
+    const d = new Date(str);
+    if (!isNaN(d.getTime())) return tsBRString(d.getTime());
+  }
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(str)) return str;
+
+  const d2 = new Date(str);
+  if (!isNaN(d2.getTime())) return tsBRString(d2.getTime());
+  return "";
+}
+
+const brKey = (s) => Number(String(s).replace(/[^\d]/g, ""));
+
+function cors(origin) {
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Vary": "Origin",
+    "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type,Authorization,x-admin-token,x-student-id",
+    "Access-Control-Max-Age": "86400"
+  };
+}
+
+async function readJsonBody(req) {
+  try { return await req.clone().json(); } catch {}
+  try {
+    const fd = await req.clone().formData();
+    const p = fd.get("payload") || fd.get("data");
+    if (typeof p === "string" && p.trim()) {
+      try { return JSON.parse(p); } catch {}
+    }
+  } catch {}
+  try {
+    const raw = await req.text();
+    if (raw && raw.trim().startsWith("{")) return JSON.parse(raw);
+  } catch {}
+  return null;
+}
+
+function json(obj, origin, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "Content-Type": "application/json", ...cors(origin) }
+  });
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[m]));
+}
+
+// garante bases e índices (idempotente)
+async function ensureSchema(env) {
+  const stmts = [
+    // likes
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_likes ON likes(page, student_id);",
+
+    // checkouts (t_checkouts)
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_check_student_slide ON t_checkouts(student_id, slide_id);",
+    "CREATE INDEX IF NOT EXISTS ix_checkouts_student_time ON t_checkouts(student_id, timestamp_br);",
+    "CREATE INDEX IF NOT EXISTS ix_checkouts_slide_time ON t_checkouts(slide_id, timestamp_br);",
+
+    // exercises
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_exercises_student_exercise ON exercise_submissions(student_id, exercise_id);",
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_answer_key_qid ON exercise_answer_key(question_id);",
+
+    // points_rules (se existir)
+    "INSERT OR IGNORE INTO points_rules(event_type, points) VALUES ('exercise_participation', 1);"
+  ];
+
+  for (const sql of stmts) {
+    try { await env.DB.prepare(sql).run(); } catch {}
+  }
+}
+
+async function getStudentId(req, env) {
+  const hdr = (req.headers.get("x-student-id") || "").trim().toLowerCase();
+  if (hdr) return hdr;
+
+  const auth = req.headers.get("authorization") || "";
+  const m = auth.match(/^Bearer\s+(.+)$/i);
+  if (m && m[1].startsWith("sid:")) return m[1].slice(4).trim().toLowerCase();
+
+  const cookieStr = req.headers.get("cookie") || "";
+  const cookies = Object.fromEntries(
+    cookieStr.split(/; */).filter(Boolean).map((kv) => {
+      const i = kv.indexOf("=");
+      return [decodeURIComponent(kv.slice(0, i)), decodeURIComponent(kv.slice(i + 1))];
+    })
+  );
+  const byCookie = (cookies.student_id || cookies.sid || cookies.hcm_student || "").trim().toLowerCase();
+  if (byCookie) return byCookie;
+
+  const url = new URL(req.url);
+  const qsSid = (url.searchParams.get("sid") || "").trim().toLowerCase();
+  const admin = (req.headers.get("x-admin-token") || "").trim();
+  if (qsSid && admin && admin === String(env.ADMIN_TOKEN || env.ADMIN_SEMESTER || "").trim()) return qsSid;
+
+  return null;
+}
+
+async function buildReport(db, studentId) {
+  const row = await db.prepare(REPORT_SQL).bind(studentId).first();
+  let report = {};
+  try { report = JSON.parse(row?.report_json || "{}"); } catch {}
+
+  report.student_id ??= String(studentId);
+  report.generated_at ??= new Date().toISOString();
+  report.ranking ??= { likes: 0, checkouts: 0, polls: 0, total: 0 };
+  report.attendance ??= { attended: 0, total: 0, absences: 0, pct: 0 };
+  report.attendance_history ??= [];
+  report.polls_history ??= [];
+  report.checkouts ??= [];
+  return report;
+}
+
+function reportToHTML(r, { logoUrl = "", courseName = "Financial Strategy (2026/01)", instructorName = "Henrique C. Martins - henrique.martins@fgv.br" } = {}) {
+  const esc = escapeHtml;
+  const n = (x) => Number.isFinite(+x) ? +x : 0;
+
+  const nowBR = new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "America/Sao_Paulo"
+  }).format(new Date());
+
+  const renderOptions = (optionsJson) => {
+    try {
+      const opts = JSON.parse(optionsJson);
+      if (!opts || Object.keys(opts).length === 0) return "";
+      return `<div class="options-container">
+        ${Object.entries(opts).filter(([_, val]) => val).map(([key, val]) =>
+          `<div class="option-pill"><strong>${esc(key)}:</strong> ${esc(val)}</div>`
+        ).join("")}
+      </div>`;
+    } catch {
+      return "";
+    }
+  };
+
+  const pollRows = (r.polls_history || []).map(p => `
+    <div class="card-item">
+      <div class="status-indicator ${p.is_correct ? "success" : "error"}"></div>
+      <div class="content">
+        <div class="activity-title"><strong>${esc(p.id)}</strong> — ${esc(p.question)}</div>
+        ${p.options_json ? renderOptions(p.options_json) : ""}
+        <div class="activity-result">
+          <span>Your Entry: <strong class="${p.is_correct ? "text-success" : "text-error"}">${esc(p.your_answer)}</strong></span>
+          ${!p.is_correct ? `<span class="correct-val"> / Correct: <strong>${esc(p.correct_answer)}</strong></span>` : ""}
+        </div>
+        <div class="timestamp">${esc(p.when)}</div>
+      </div>
+    </div>
+  `).join("") || `<p class="empty-state">No poll history available.</p>`;
+
+  const rk = r.ranking || { likes: 0, checkouts: 0, polls: 0, total: 0 };
+  const att = r.attendance || { attended: 0, total: 0, absences: 0, pct: 0 };
+
+  const attendanceHistoryHtml = (r.attendance_history || []).map(a => {
+    let colors = { bg: "#f0fff4", text: "#22543d", border: "#c6f6d5", badge: "#48bb78" };
+    if (a.status === "absent") colors = { bg: "#fff5f5", text: "#c53030", border: "#fed7d7", badge: "#f56565" };
+    else if (a.status === "partial") colors = { bg: "#fffaf0", text: "#9c4221", border: "#feebc8", badge: "#ed8936" };
+
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:${colors.bg};border:1px solid ${colors.border};border-radius:8px;margin-top:8px;font-size:13px;">
+      <span style="color:${colors.text};font-weight:600;">📅 ${esc(a.date)}</span>
+      <span style="background:${colors.badge};color:white;padding:2px 8px;border-radius:4px;font-weight:800;text-transform:uppercase;font-size:10px;">${esc(a.status)}</span>
+    </div>`;
+  }).join("") || `<p class="empty-state">No attendance records yet.</p>`;
+
+  const checkoutsHtml = (r.checkouts || []).map(c => `
+    <div class="checkout-card">
+      <div class="checkout-header">
+        <span class="slide-tag">Slide ${esc(c.slide_id)}</span>
+        <span class="checkout-time">${esc(c.when)}</span>
+      </div>
+      <div class="checkout-body">${esc(c.ticket)}</div>
+    </div>
+  `).join("") || `<p class="empty-state">No checkouts found.</p>`;
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Student Dashboard — ${esc(r.student_id)}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{ --primary:#1e3a8a; --bg:#f1f5f9; --card:#fff; --text:#1e293b; --muted:#64748b; --border:#e2e8f0; --success:#10b981; --error:#ef4444; }
+    @media print{ .no-print{display:none!important} body{background:white!important;padding:0!important} .container{max-width:100%!important;border:none!important} .card{box-shadow:none!important;border:1px solid var(--border)!important;page-break-inside:avoid} }
+    body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;padding:40px 20px;line-height:1.5}
+    .container{max-width:850px;margin:0 auto}
+    header{background:var(--card);padding:30px;border-radius:20px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+    .header-details h1{margin:0 0 15px 0;font-size:24px;font-weight:800;color:var(--primary)}
+    .header-details{font-size:14px;line-height:1.6}
+    .today-tag{color:var(--muted);font-size:12px;margin-top:8px}
+    .actions{display:flex;justify-content:flex-end;margin-bottom:15px}
+    .btn-print{background:var(--primary);color:white;border:none;padding:10px 20px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px}
+    .card{background:var(--card);border-radius:20px;padding:24px;margin-bottom:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);border:1px solid var(--border)}
+    h2{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 20px;text-transform:uppercase;letter-spacing:.05em}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .stat-card{background:#f8fafc;padding:15px;border-radius:12px;border:1px solid var(--border);text-align:center}
+    .stat-card.featured{background:#eff6ff;border-color:#bfdbfe}
+    .stat-val{font-size:22px;font-weight:800;color:var(--primary);display:block}
+    .stat-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase}
+    .att-summary{display:flex;gap:40px;font-weight:600;font-size:15px;border-bottom:1px solid var(--border);padding-bottom:15px}
+    .att-summary span b{color:var(--primary)}
+    .card-item{display:flex;gap:15px;padding:15px 0;border-bottom:1px solid #f1f5f9}
+    .card-item:last-child{border-bottom:none}
+    .status-indicator{width:6px;border-radius:10px;flex-shrink:0}
+    .status-indicator.success{background:var(--success)}
+    .status-indicator.error{background:var(--error)}
+    .activity-title{font-size:14px;font-weight:600;margin-bottom:8px}
+    .options-container{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+    .option-pill{background:#f1f5f9;padding:3px 8px;border-radius:6px;font-size:11px;color:var(--muted);border:1px solid #e2e8f0}
+    .activity-result{font-size:13px}
+    .text-success{color:var(--success)}
+    .text-error{color:var(--error)}
+    .timestamp{font-size:11px;color:var(--muted);margin-top:8px}
+    .checkout-card{background:#f8fafc;border-radius:15px;padding:15px;margin-bottom:15px;border:1px solid var(--border)}
+    .checkout-header{display:flex;justify-content:space-between;margin-bottom:8px;font-size:11px;font-weight:700}
+    .slide-tag{color:var(--primary);background:#e0e7ff;padding:2px 6px;border-radius:4px}
+    .checkout-body{font-size:13px;color:#334155;line-height:1.5}
+    .mono{font-family:ui-monospace,monospace;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="actions no-print"><button class="btn-print" onclick="window.print()">Download PDF Report</button></div>
+
+    <header>
+      <div class="header-details">
+        <h1>Performance Dashboard</h1>
+        <div><strong>${escapeHtml(courseName)}</strong></div>
+        <div>Instructor: ${esc(instructorName)}</div>
+        <div>Student ID: <span class="mono">${esc(r.student_id)}</span></div>
+        <div class="today-tag">Today: ${esc(nowBR)}</div>
+      </div>
+      ${logoUrl ? `<img src="${esc(logoUrl)}" style="height:45px;">` : ""}
+    </header>
+
+    <div class="card">
+      <h2>Engagement Scoreboard</h2>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-label">Likes</span><span class="stat-val">${n(rk.likes)}</span></div>
+        <div class="stat-card"><span class="stat-label">Checkouts</span><span class="stat-val">${n(rk.checkouts)}</span></div>
+        <div class="stat-card"><span class="stat-label">Polls</span><span class="stat-val">${n(rk.polls)}</span></div>
+        <div class="stat-card featured"><span class="stat-label">Total Credits</span><span class="stat-val">${n(rk.total)}</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Attendance Tracking</h2>
+      <div class="att-summary">
+        <span>Days Attended: <b>${n(att.attended)} / ${n(att.total)}</b></span>
+        <span>Presence Rate: <b>${(n(att.pct) * 100).toFixed(1)}%</b></span>
+      </div>
+      <div style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-top: 15px;">
+        Full Attendance History
+      </div>
+      ${attendanceHistoryHtml}
+    </div>
+
+    <div class="card">
+      <h2>Activity History (Polls)</h2>
+      ${pollRows}
+    </div>
+
+    <div class="card">
+      <h2>Knowledge Checkouts</h2>
+      ${checkoutsHtml}
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+// ============================================================
+// Export helpers
+// ============================================================
+function generateQMD(p) {
+  let opts = {};
+  try { opts = JSON.parse(p.options_json || "{}"); } catch {}
+
+  const cleanOpt = (text, letter) => {
+    if (!text) return "";
+    const prefix = letter + ". ";
+    return String(text).startsWith(prefix) ? String(text).replace(prefix, "") : String(text);
+  };
+
+  let optionsHtml = "";
+  ["A","B","C","D","E"].forEach((l) => {
+    if (opts[l]) {
+      const text = cleanOpt(opts[l], l);
+      optionsHtml += `<label><input type="radio" name="${escapeHtml(p.poll_id)}" value="${l}"> ${l}. ${escapeHtml(text)}</label><br>\n`;
+    }
+  });
+
+  return `::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('${escapeHtml(p.poll_id)}')" data-correct-answer="${escapeHtml(p.correct_option)}">
+  <strong style="display: block;">${escapeHtml(p.question)}</strong>
+  ${optionsHtml}
+</form>
+<div id="feedback-${escapeHtml(p.poll_id)}" class="feedback" data-status="" style="display:none;">
+  ✅ Correct: ${escapeHtml(p.correct_option)}. ${escapeHtml(p.feedback_text || "")}
+</div>
+:::`;
+}
+
+function generateBrightspaceCSV(p) {
+  let opts = {};
+  try { opts = JSON.parse(p.options_json || "{}"); } catch {}
+
+  const q = String(p.question || "").replace(/"/g, '""');
+  let csv = `NewQuestion,MC,,,,\nID,${p.poll_id},,,,\nQuestionText,"${q}",,,,\n`;
+
+  ["A","B","C","D","E"].forEach((l) => {
+    if (opts[l]) {
+      const weight = (l === p.correct_option) ? "100" : "0";
+      const txt = String(opts[l]).replace(/"/g, '""');
+      csv += `Option,${weight},"${txt}",,,,\n`;
+    }
+  });
+  return csv;
+}
+
+

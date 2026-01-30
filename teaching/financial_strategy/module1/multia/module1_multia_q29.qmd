@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q29"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q29')" data-correct-answer="C">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>A leveraged buyout can take a public firm private using debt and equity financing</li>
+    <li>A leveraged buyout is financed only with equity and uses no debt</li>
+    <li>A leveraged buyout is unrelated to taking a firm private</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q29" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q29" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q29" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q29" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q29" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q29" class="feedback" data-status="" style="display:none;">
+✅ Correct: C. Statements (2) and (3) are false (statement (1) is true).
+Why the false statements are false:
+- (2) A leveraged buyout is characterized by substantial use of debt alongside equity.
+- (3) LBOs are often used to take public firms private (though they can also occur for private firms).
+</div>
+
+:::

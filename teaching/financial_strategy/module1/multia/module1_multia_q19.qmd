@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q19"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q19')" data-correct-answer="B">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>The spread is paid only when the first day return is negative</li>
+    <li>The spread is the fee paid to underwriters and is often quoted as a percent of the issue price</li>
+    <li>A higher spread always implies lower underpricing</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q19" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q19" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q19" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q19" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q19" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q19" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Statements (1) and (3) are false (statement (2) is true).
+Why the false statements are false:
+- (1) The spread is the underwriters' fee (often a percent of the issue price) and is paid regardless of first-day returns.
+- (3) Spread and underpricing are different components of issuance cost; a higher spread does not mechanically imply lower underpricing.
+</div>
+
+:::

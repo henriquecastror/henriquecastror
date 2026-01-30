@@ -44,8 +44,6 @@
   <link href="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -333,11 +331,460 @@
       margin-right: 0; 
     }
   </style>
+  <!-- === login-start.html (com proteção para páginas e slides + turbo + warmup + remember blindado) === -->
+
+  <style>
+    /* Card padrão (páginas normais) */
+    #login-form {
+      max-width: 300px;
+      margin: 100px auto 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      box-sizing: border-box;
+    }
+    #login-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    /* ✅ FIX layout do checkbox: não herdar width/padding dos inputs de texto */
+    #login-form input[type="checkbox"] {
+      width: auto !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      vertical-align: middle;
+    }
+
+    #login-form button {
+      width: 100%; padding: 10px; margin-top: 10px;
+      background-color: #0066cc; color: #fff; border: 0; border-radius: 5px; cursor: pointer;
+    }
+    #login-error { color: red; text-align: center; margin-top: 10px; }
+    #loading-msg{ display:none; text-align:center; margin-top:10px; color:gray; }
+
+    /* Desabilitado durante autenticação */
+    #login-form button:disabled { opacity:.6; cursor:not-allowed; }
+    #login-form input:disabled  { opacity:.7; }
+
+    /* Conteúdo de páginas normais (fica atrás do login até destravar) */
+    html.locked #after-login-content,
+    body.locked #after-login-content { display: none !important; }
+
+    /* Slides (Reveal.js): desfoca deck e bloqueia interação */
+    html.locked.reveal-page .reveal,
+    body.locked.reveal-page .reveal { filter: blur(4px); pointer-events: none; user-select: none; }
+
+    #login-scrim { display:none; }
+    html.locked.reveal-page #login-scrim,
+    body.locked.reveal-page #login-scrim{
+      display:block; position:fixed; inset:0; background:rgba(255,255,255,.92); z-index:9998;
+    }
+    html.locked.reveal-page #login-form,
+    body.locked.reveal-page #login-form{
+      position: fixed; top:50%; left:50%; transform: translate(-50%,-50%);
+      margin:0; max-width:340px; width:min(340px,92vw); z-index:9999;
+    }
+
+    /* Oculta o "Welcome" nos slides */
+    .reveal-page #welcome-message { display: none !important; }
+
+    /* Remember me */
+    .remember-row{
+      display:flex; align-items:center; gap:8px; margin-top:6px; font-size:.95rem; color:#444; white-space:nowrap;
+    }
+    .remember-row label{ display:flex; align-items:center; gap:6px; cursor:pointer; }
+
+    /* Fallback duro para páginas comuns: esconde TUDO (qualquer descendente) menos o form/scrim) */
+    html.locked body:not(.reveal-page) :not(#login-form):not(#login-form *):not(#login-scrim):not(script):not(style):not(link) {
+      display: none !important;
+    }
+
+    /* Garante que o form fique acima de qualquer layout do tema */
+    #login-form { position: relative; z-index: 10000; }
+    #login-scrim { z-index: 9998; }
+
+    /* Scrim e formulário fixos também em páginas NÃO-reveal enquanto locked */
+    html.locked #login-scrim,
+    body.locked #login-scrim {
+      display: block !important;
+      position: fixed !important;
+      inset: 0 !important;
+      background: #ffffff !important;
+      z-index: 2147483646 !important;
+    }
+    html.locked #login-form,
+    body.locked #login-form {
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      margin: 0 !important;
+      max-width: 340px !important;
+      width: min(340px, 92vw) !important;
+      z-index: 2147483647 !important;
+    }
+
+    /* Evita rolagem/scroll do conteúdo ao fundo enquanto locked */
+    html.locked, body.locked { overflow: hidden !important; }
+
+    /* 🔒 Blindagem extra contra webexercises esconder a checkbox */
+    #login-form .remember-row { display:flex !important; visibility:visible !important; }
+    #login-form #remember-me { display:inline-block !important; }
+
+    /* 🧼 Esconde imediatamente artefatos escapados (qualquer descendente code/pre/sourceCode etc) DENTRO do form */
+    #login-form pre,
+    #login-form code,
+    #login-form .sourceCode,
+    #login-form .sourcecode,
+    #login-form .quarto-code-cell,
+    #login-form .cell-output,
+    #login-form .cell-output-display,
+    #login-form .cell { display: none !important; }
+  </style>
+
+  <!-- Aplica 'locked' em <html> imediatamente e em <body> quando disponível + preconnect -->
+  <script>
+    (function(){
+      const addLocked = el => { if (el && !el.classList.contains('locked')) el.classList.add('locked'); };
+      addLocked(document.documentElement);
+      if (document.body) { addLocked(document.body); }
+      else { document.addEventListener('DOMContentLoaded', () => addLocked(document.body)); }
+
+      // preconnect/dns-prefetch para acelerar chamadas ao GAS de login
+      try {
+        const l1=document.createElement('link'); l1.rel='preconnect';   l1.href='https://script.google.com'; document.head.appendChild(l1);
+        const l2=document.createElement('link'); l2.rel='dns-prefetch'; l2.href='https://script.google.com'; document.head.appendChild(l2);
+      } catch(_) {}
+    })();
+  </script>
+
+  <!-- shim seguro: define onLoginSuccess se ainda não existir -->
+  <script>
+    if (typeof window.onLoginSuccess !== 'function') {
+      window.onLoginSuccess = function(studentId){
+        try {
+          const sid = String(studentId || '').trim();
+          window.studentId = sid;
+          localStorage.setItem('studentId', sid);
+          // compat com widgets antigos
+          document.dispatchEvent(new CustomEvent('auth:login',   { detail: { studentId: sid } }));
+          setTimeout(() => window.dispatchEvent(new CustomEvent('login:success', { detail:{ studentId: sid } })), 0);
+          // hook imediato para o notice center (se já carregado)
+          if (window.noticeCenter && typeof window.noticeCenter.onLogin === 'function') {
+            window.noticeCenter.onLogin(sid);
+          }
+          if (window.VHCM) window.VHCM.lastLoginAt = Date.now();
+          console.debug('[Login] onLoginSuccess →', sid);
+        } catch(e) {
+          console.warn('onLoginSuccess shim warn:', e);
+        }
+      };
+    }
+  </script>
+
+  <meta property="og:title" content="Henrique Castro Martins - Estratégia Financeira">
+<meta property="og:description" content="Module 0">
+<meta property="og:site_name" content="Henrique Castro Martins">
 <meta name="twitter:title" content="Henrique Castro Martins - Estratégia Financeira">
 <meta name="twitter:description" content="Module 0">
 <meta name="twitter:card" content="summary">
-</head>
-<body class="quarto-light">
+</head><body class="quarto-light"><form id="login-form" onsubmit="event.preventDefault(); validateLogin();">
+    <h3 style="text-align:center;">Login</h3>
+    <input type="text" id="username" placeholder="Username" autocomplete="username" required="">
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" required="">
+
+    <!-- Remember: input separado + label com 'for' (alinhado como na 2ª imagem) -->
+    <div class="remember-row">
+      <input type="checkbox" id="remember-me" checked="">
+      <label for="remember-me">Remember me</label>
+    </div>
+
+    <button type="submit" id="login-submit">Enter</button>
+    <div id="loading-msg"></div>
+    <div id="login-error"></div>
+  </form>
+
+  <div id="login-scrim" aria-hidden="true"></div>
+
+  <div id="after-login-content" style="display:none;">
+    <h4 id="welcome-message" style="text-align:center; display:none; margin-top:10px; font-size:1.8em; color:#333;"></h4>
+  </div>
+
+  <script>
+    /***** CONFIG *****/
+    const REMEMBER_PASSWORD  = true;
+    const GAS_URL            = 'https://course-chat.hcmrtns.workers.dev/auth/login';
+    const SESSION_MAX_HOURS  = 8;     // validade do "lembrado"
+    const FAST_WINDOW_HOURS  = 2;     // turbo: libera instantâneo
+    const VALIDATE_TIMEOUTMS = 3000;  // timeout da validação
+
+    /* 🔥 Warm-up silencioso do GAS: acorda a função antes do 1º login real */
+    window.addEventListener('load', () => {
+      try {
+        const warm = new Image();
+        warm.referrerPolicy = 'no-referrer';
+        warm.src = `${GAS_URL}?username=&password=&page=WARMUP&t=${Date.now()}`;
+      } catch(_) {}
+    });
+
+    /***** Marca slides (se houver Reveal) *****/
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.querySelector('.reveal')) document.body.classList.add('reveal-page');
+    });
+
+    /***** Pré-preenche campos com Remember (se houver) *****/
+    document.addEventListener('DOMContentLoaded', () => {
+      try{
+        const u = localStorage.getItem('fs_user');
+        const p = localStorage.getItem('fs_pass');
+        if (u) document.getElementById('username').value = u;
+        if (REMEMBER_PASSWORD && p) document.getElementById('password').value = p;
+      }catch(_){}
+    });
+
+    /***** Storage helpers *****/
+    function saveRemember(u,p,checked){
+      try{
+        if(checked){
+          localStorage.setItem('fs_user', u);
+          localStorage.setItem('fs_last_login_at', Date.now().toString());
+          if (REMEMBER_PASSWORD) localStorage.setItem('fs_pass', p); else localStorage.removeItem('fs_pass');
+        }else{
+          localStorage.removeItem('fs_user'); localStorage.removeItem('fs_pass'); localStorage.removeItem('fs_last_login_at');
+        }
+      }catch(_){}
+    }
+    function getRemember(){
+      try{
+        const u=localStorage.getItem('fs_user');
+        const p=localStorage.getItem('fs_pass');
+        const t=parseInt(localStorage.getItem('fs_last_login_at')||'0',10);
+        if(!u||!t) return null; return {u,p,t};
+      }catch(_){ return null; }
+    }
+    const within=(ts,h)=> (Date.now()-ts) < h*3600*1000;
+
+    /* 🔒 Desativa/Reativa o form durante autenticação */
+    function setAuthLoading(isLoading){
+      const btn = document.getElementById('login-submit');
+      const u   = document.getElementById('username');
+      const p   = document.getElementById('password');
+      const cb  = document.getElementById('remember-me');
+      if (btn){
+        btn.disabled = isLoading;
+        btn.textContent = isLoading ? 'Signing in...' : 'Enter';
+      }
+      [u,p,cb].forEach(el => { if (el) el.disabled = isLoading; });
+    }
+
+    /***** GAS helpers *****/
+    function logWithImage(u,p,page){
+      const img=new Image(); img.referrerPolicy='no-referrer';
+      img.src=`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}&t=${Date.now()}`;
+    }
+    async function gasAuth(u,p,page,timeoutMs){
+      async function _once(ms){
+        const ctrl=new AbortController();
+        const timer=setTimeout(()=>ctrl.abort('timeout'), ms||0);
+        try{
+          const res=await fetch(`${GAS_URL}?username=${encodeURIComponent(u)}&password=${encodeURIComponent(p||'')}&page=${encodeURIComponent(page)}`, {signal:ctrl.signal, cache:'no-store'});
+          return (await res.text()||'').trim();
+        } finally { clearTimeout(timer); }
+      }
+      try{
+        return await _once(timeoutMs||12000);   // 1ª tentativa
+      }catch(_){
+        return await _once(15000);              // retry mais folgado
+      }
+    }
+
+    /***** UI helpers *****/
+    function unlockAs(u){
+      const welcome=document.getElementById('welcome-message');
+      if (welcome && !document.body.classList.contains('reveal-page')){
+        welcome.textContent=`Welcome, ${u}!`; welcome.style.display='block';
+      }
+      document.getElementById('login-form').style.display='none';
+      const after=document.getElementById('after-login-content'); if(after) after.style.display='block';
+
+      // Remover 'locked' de html e body
+      document.documentElement.classList.remove('locked');
+      if (document.body) document.body.classList.remove('locked');
+
+      const scrim=document.getElementById('login-scrim'); if(scrim) scrim.style.display='none';
+    }
+
+    /***** Auto-login com janela turbo (também nos slides) *****/
+    document.addEventListener('DOMContentLoaded', async () => {
+      const saved=getRemember(); if(!saved) return;
+      const page=location.pathname;
+
+      if (within(saved.t, FAST_WINDOW_HOURS)) {
+        // libera já e registra em background
+        unlockAs(saved.u);
+        onLoginSuccess(saved.u); // mantém studentId para outros scripts
+
+        saveRemember(saved.u, saved.p, true);
+        logWithImage(saved.u, saved.p, page);
+
+        // checagem silenciosa (opcional)
+        try { const r=await gasAuth(saved.u, saved.p, 'CHECK', 12000); if(r!=='OK'){ /* opcional: relock */ } } catch(_) {}
+        return;
+      }
+
+      if (within(saved.t, SESSION_MAX_HOURS)) {
+        const loading=document.getElementById('loading-msg');
+        loading.textContent='Checking saved login...'; loading.style.display='block';
+        try{
+          const r=await gasAuth(saved.u, saved.p, page, VALIDATE_TIMEOUTMS);
+          loading.style.display='none';
+          if(r==='OK'){ unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); }
+        }catch(_){
+          // timeout: libera e registra em background
+          loading.style.display='none';
+          unlockAs(saved.u); onLoginSuccess(saved.u); saveRemember(saved.u, saved.p, true); logWithImage(saved.u, saved.p, page);
+        }
+      }
+    });
+
+    /***** Login manual *****/
+    async function validateLogin(rememberOverride){
+      const u=document.getElementById('username').value.trim();
+      const p=document.getElementById('password').value.trim();
+      const cb=document.getElementById('remember-me');
+      const remember = (rememberOverride!==undefined) ? rememberOverride : (cb? cb.checked : true);
+
+      const err=document.getElementById('login-error');
+      const load=document.getElementById('loading-msg');
+      err.textContent='';
+      load.textContent='Authenticating your credentials. This may take a few seconds...';
+      load.style.display='block';
+      setAuthLoading(true);
+
+      const page=location.pathname;
+      try{
+        const r=await gasAuth(u,p,page,VALIDATE_TIMEOUTMS);
+        load.style.display='none';
+        if (r==='OK'){ saveRemember(u,p,remember); unlockAs(u); onLoginSuccess(u); }
+        else if (r==='FAIL'){ err.textContent='Invalid username or password.'; }
+        else { err.textContent='Missing credentials.'; }
+      }catch(_){
+        load.textContent=''; err.textContent='Network error. Please try again.';
+      }finally{
+        if (document.getElementById('login-form').style.display !== 'none') {
+          setAuthLoading(false);
+        }
+      }
+    }
+
+    // Auto preenche (se já houver credenciais lembradas)
+    document.addEventListener('DOMContentLoaded', ()=>{
+      try{
+        const u=localStorage.getItem('fs_user'); const p=localStorage.getItem('fs_pass');
+        if(u){ document.getElementById('username').value=u; }
+        if(p && REMEMBER_PASSWORD){ document.getElementById('password').value=p; }
+        const cb=document.getElementById('remember-me'); if(cb) cb.checked=true;
+      }catch(_){}
+    });
+
+    /* Auto-wrap robusto — apenas para páginas NÃO-Reveal */
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        if (document.querySelector('.reveal') || document.body.classList.contains('reveal-page')) return;
+
+        const wrapper = document.getElementById('after-login-content');
+        if (!wrapper) return;
+
+        const root = wrapper.parentElement || document.body;
+        const loginForm  = document.getElementById('login-form');
+        const loginScrim = document.getElementById('login-scrim');
+
+        const isKeep = (el) =>
+          el === wrapper || el === loginForm || el === loginScrim ||
+          el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'LINK';
+
+        Array.from(root.children).forEach(el => {
+          if (!isKeep(el) && !wrapper.contains(el)) {
+            wrapper.appendChild(el);
+          }
+        });
+      } catch (e) {
+        console.warn('auto-wrap (non-reveal) warn:', e);
+      }
+    });
+
+    /* 🔒 Fallback: recria a checkbox se webexercises a remover (estrutura input+label) */
+    document.addEventListener('DOMContentLoaded', () => {
+      const form=document.getElementById('login-form');
+      if(!form) return;
+      if(!document.getElementById('remember-me')){
+        const row=document.createElement('div');
+        row.className='remember-row';
+
+        const input=document.createElement('input');
+        input.type='checkbox';
+        input.id='remember-me';
+        input.checked=true;
+
+        const label=document.createElement('label');
+        label.htmlFor='remember-me';
+        label.appendChild(document.createTextNode(' Remember me'));
+
+        row.appendChild(input);
+        row.appendChild(label);
+
+        const btn=document.getElementById('login-submit');
+        form.insertBefore(row, btn);
+      }
+    });
+
+    /* 🧹 Sanitizador: remove artefatos (pre/code/sourceCode/cell) do remember dentro do form (em QUALQUER profundidade) */
+    (function(){
+      function looksLikeRememberLine(txt){
+        if(!txt) return false;
+        const t = txt.trim();
+        return /<\s*input[^>]*type=["']checkbox["'][^>]*id=["']remember-me["']/i.test(t) ||
+               /<\s*label[^>]*for=["']remember-me["'][^>]*>/i.test(t);
+      }
+      function cleanRememberArtifacts(){
+        const form = document.getElementById('login-form');
+        if(!form) return;
+
+        // Remove blocos típicos do Quarto/knitr que contêm o HTML escapado
+        form.querySelectorAll('pre, code, .sourceCode, .sourcecode, .quarto-code-cell, .cell-output, .cell-output-display, .cell')
+          .forEach(el => { if(looksLikeRememberLine(el.textContent)) el.remove(); });
+
+        // Remove nós de texto “crus” em qualquer nível
+        const treeWalker = document.createTreeWalker(form, NodeFilter.SHOW_TEXT, null);
+        const toRemove = [];
+        while(treeWalker.nextNode()){
+          const n = treeWalker.currentNode;
+          if(looksLikeRememberLine(n.textContent)) toRemove.push(n);
+        }
+        toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
+      }
+
+      if (document.readyState !== 'loading') cleanRememberArtifacts();
+      else document.addEventListener('DOMContentLoaded', cleanRememberArtifacts);
+
+      // Observa mudanças no form inteiro (subtree) para limpar assim que surgir
+      const formObs = document.getElementById('login-form');
+      if (formObs) new MutationObserver(cleanRememberArtifacts)
+        .observe(formObs, { childList: true, subtree: true });
+    })();
+
+  </script>
+
+
   <div class="reveal">
     <div class="slides">
 
@@ -351,22 +798,182 @@
 <strong>Henrique C. Martins</strong> 
 </div>
         <p class="quarto-title-affiliation">
-            <strong><a href="https://eaesp.fgv.br/en"><img data-src="../figs/background6.png" width="300"></a></strong>
+            <strong><a href="https://eaesp.fgv.br/en"><img data-src="../figs/background6.png" style="box-shadow: none;" width="300"></a></strong>
           </p>
     </div>
 </div>
 
-  <p class="date">04-08-2025</p>
+  <p class="date">30-01-2026</p>
 </section>
 <section>
 
-<section id="introduction-1" class="slide level2 smaller">
+<section id="introduction-1" class="slide level2" style="color: #000;">
 <h2>Introduction</h2>
 <center>
 <img data-src="../figs/changemymind.jpg">
 </center>
+<div class="like-container">
+<p><button class="like-btn" title="Click if you got this"> ✅ <span class="like-text">Got it</span> <span class="like-count">(0)</span> </button></p>
+</div>
+<script>
+(function () {
+  const root = document.currentScript && document.currentScript.previousElementSibling;
+  if (!root || !root.matches('.like-container')) return;
+
+  const btn = root.querySelector('.like-btn');
+  const textSpan = btn && btn.querySelector('.like-text');
+  const countSpan = btn && btn.querySelector('.like-count');
+  if (!btn || !textSpan || !countSpan) return;
+
+  const scriptURL = "https://course-chat.hcmrtns.workers.dev";
+
+  function pageId() {
+    const sec = root.closest('section');
+    function getSlideHashForSection(sec) {
+      if (sec && sec.id) return `#/${sec.id}`;
+      if (window.Reveal && Reveal.getIndices) {
+        const idx = Reveal.getIndices(sec || Reveal.getCurrentSlide());
+        if (idx && typeof idx.h === 'number') {
+          return (typeof idx.v === 'number' && idx.v > 0) ? `#/${idx.h}/${idx.v}` : `#/${idx.h}`;
+        }
+      }
+      return location.hash || '#';
+    }
+    const hash = getSlideHashForSection(sec);
+    return location.origin + location.pathname + location.search + hash;
+  }
+  function getStudentId(){
+    return (window.studentId || localStorage.getItem("studentId") || localStorage.getItem("fs_user") || "");
+  }
+  function hasLogin(){ return !!getStudentId(); }
+
+  function setGotItState() {
+    textSpan.textContent = "Got it ✔";
+    btn.classList.add("liked");
+    btn.title = "You have already confirmed";
+  }
+  function clearGotItState() {
+    textSpan.textContent = "Got it";
+    btn.classList.remove("liked");
+    btn.title = hasLogin() ? "Click if you got this" : "Please log in to confirm";
+  }
+
+  function syncButtonLock() {
+    if (!hasLogin()) {
+      btn.setAttribute('disabled', 'disabled');
+      btn.style.opacity = 0.6;
+      btn.title = "Please log in to confirm";
+    } else {
+      btn.removeAttribute('disabled');
+      btn.style.opacity = "";
+      btn.title = "Click if you got this";
+    }
+  }
+  syncButtonLock();
+  document.addEventListener('auth:login', () => { syncButtonLock(); updateCount(); });
+
+  // Envia ponto (opcional; não bloqueia)
+  async function awardLikePoint(student, pid){
+    try{
+      await fetch(`${scriptURL}/ranking`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          student,
+          event_type:'like',
+          module:(window.moduleId||'module'),
+          page: pid,
+          details:'source=like_button',
+          fingerprint:`${student}:like:${pid}`
+        })
+      });
+      if (typeof window.leaderboardLogEvent === 'function') {
+        window.leaderboardLogEvent('like', { details:'mirrored_to_cloudflare' });
+      }
+    }catch(_){}
+  }
+
+  btn.addEventListener('click', () => {
+    const pid = pageId();
+    if (!hasLogin()) { alert("Please log in first."); return; }
+    if (localStorage.getItem(`liked_${pid}`)) return;
+
+    btn.disabled = true;
+    btn.classList.add('pulse');
+    setTimeout(() => btn.classList.remove('pulse'), 300);
+
+    const student = getStudentId();
+    fetch(`${scriptURL}/likes?like=1&page=${encodeURIComponent(pid)}&student=${encodeURIComponent(student)}`)
+      .then(r=>r.json())
+      .then(async data=>{
+        if (data && data.status === 'liked') {
+          await awardLikePoint(student, pid);
+        }
+        if (data && (data.status === 'liked' || data.status === 'already')) {
+          localStorage.setItem(`liked_${pid}`,"true");
+          setGotItState();
+        }
+        updateCount();
+      })
+      .catch(console.error)
+      .finally(()=>{ btn.disabled = false; });
+  });
+
+  function updateCount(){
+    const pid = pageId();
+    const student = getStudentId() || "anon";
+    fetch(`${scriptURL}/likes?state=1&page=${encodeURIComponent(pid)}&student=${encodeURIComponent(student)}`)
+      .then(r=>r.json())
+      .then(data=>{
+        const count = Number(data && data.count) || 0;
+        countSpan.textContent = `(${count})`;
+        if (data && data.liked) {
+          // servidor confirma like → garante UI e storage
+          localStorage.setItem(`liked_${pid}`,"true");
+          setGotItState();
+        } else {
+          // servidor diz que NÃO há like → limpa UI e storage
+          localStorage.removeItem(`liked_${pid}`);
+          clearGotItState();
+        }
+      })
+      .catch(()=>{ /* ignora */ });
+  }
+
+  updateCount();
+  const interval = setInterval(updateCount, 3000);
+
+  const obs = new MutationObserver(() => {
+    if (!document.body.contains(root)) { clearInterval(interval); obs.disconnect(); }
+  });
+  obs.observe(document.body, { childList:true, subtree:true });
+
+  if (window.Reveal && Reveal.addEventListener) {
+    Reveal.addEventListener('slidechanged', updateCount);
+  }
+})();
+</script>
+<style>
+.like-container { position: relative; margin-top: 20px; text-align: right; }
+.like-btn {
+  background-color:#f0fdf4; border:2px solid #86efac; color:#15803d;
+  padding:8px 16px; font-size:16px; border-radius:25px;
+  display:inline-flex; align-items:center; gap:8px; font-weight:500;
+  box-shadow:1px 1px 4px rgba(0,0,0,0.08);
+  transition: background-color .2s, color .2s, opacity .2s, transform .15s;
+  cursor:pointer;
+}
+.like-btn:hover{ background-color:#dcfce7; border-color:#4ade80; color:#166534; }
+.like-btn.liked{ background:#f0f0f0; color:#888; border-color:#ddd; opacity:.6; cursor:default; }
+.like-btn .like-count{
+  background:#86efac; color:#064e3b; padding:2px 8px; border-radius:12px;
+  font-size:14px; font-weight:bold;
+}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.pulse{animation:pulse .3s ease;}
+</style>
 </section>
-<section id="introduction-2" class="slide level2 smaller">
+<section id="introduction-2" class="slide level2 smaller" style="color: #000;">
 <h2>Introduction</h2>
 <ul>
 <li><p><strong>Today:</strong></p>
@@ -379,7 +986,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="description" class="slide level2 smaller">
+<section id="description" class="slide level2 smaller" style="color: #000;">
 <h2>Description</h2>
 <p>The purpose of the course is to familiarize students with the concepts and techniques related to the analysis and strategic decisions in the areas of investment and financing in a risky environment, always with the purpose of maximizing the company’s value.</p>
 <p>At the end of the semester, the student should be able to master the:</p>
@@ -392,7 +999,7 @@
 <li>finding firm value.</li>
 </ul>
 </section>
-<section id="section" class="slide level2 smaller">
+<section id="section" class="slide level2 smaller" style="color: #000;">
 <h2></h2>
 <p><strong>To Midterm:</strong></p>
 <ul>
@@ -411,7 +1018,7 @@
 <li><p>Ch 17: <strong>Payout Policy</strong></p></li>
 </ul>
 </section>
-<section id="setting-expectations" class="slide level2 smaller">
+<section id="setting-expectations" class="slide level2 smaller" style="color: #000;">
 <h2>Setting expectations</h2>
 <p><strong><span style="color:red;">Your mission (should you choose to accept it…)</span></strong></p>
 <div class="fragment">
@@ -430,39 +1037,80 @@
 </ul>
 </div>
 </section>
-<section id="section-1" class="slide level2 smaller">
+<section id="new-rules-202601" class="slide level2 smaller" style="color: #000;">
+<h2>New rules 2026/01</h2>
+<ul>
+<li><p><em>Art. 31º - Não existe abono de falta, mesmo que por razões justificadas, visto que o aluno tem o direito de faltar em até 25% das aulas oferecidas sem a necessidade de qualquer justificativa ou comprovação</em>.</p></li>
+<li><p>Exemplos:</p>
+<ul>
+<li>situações familiares, problemas de saúde, problemas com pets, etc.</li>
+</ul></li>
+<li><p>Exceções:</p>
+<ul>
+<li>Guarda religiosa</li>
+<li>Chamados judiciais/serviço militar</li>
+<li>Seleções esportivas oficiais do país</li>
+</ul></li>
+</ul>
+</section>
+<section id="new-rules-202601-1" class="slide level2 smaller" style="color: #000;">
+<h2>New rules 2026/01</h2>
+<p>Assim, a partir do 1o/2026, no caso de falta por Guarda Religiosa, o professor solicitará ao aluno uma “prestação alternativa” (termo mencionado na Lei 13.796, que trata da Guarda Religiosa).</p>
+<ul>
+<li>Esta “prestação alternativa” tem a função de reduzir o prejuízo pedagógico que o aluno teve devido à sua falta na aula (por exemplo, indicação e conferência de leitura, exercícios dirigidos etc., sempre compatível com o conteúdo efetivamente perdido daquela aula).</li>
+<li>A falta será efetivamente abonada pelo professor após o aluno cumprir sua “prestação alternativa”, dentro de um prazo previamente combinado com o professor.</li>
+</ul>
+</section>
+<section id="new-rules-202601-2" class="slide level2 smaller" style="color: #000;">
+<h2>New rules 2026/01</h2>
+<ul>
+<li>7/4 (after 17h), 8/4 (all day), 9/4 (all day),</li>
+<li>21/5 (after 17 h),</li>
+<li>22/5 (all day)</li>
+<li>every Friday (after 17h),</li>
+<li>evey Saturday.</li>
+</ul>
+</section>
+<section id="new-rules-202601-3" class="slide level2 smaller" style="color: #000;">
+<h2>New rules 2026/01</h2>
+<p>There is no Reaval anymore</p>
+<ul>
+<li>Instead, you can ask for a <em>Recuperação</em></li>
+<li>Still 5,00 to 5,99</li>
+<li>Exams of summer/winter courses</li>
+<li>You can follow the classes of summer/winter courses</li>
+</ul>
+</section>
+<section id="new-rules-202601-4" class="slide level2 smaller" style="color: #000;">
+<h2>New rules 2026/01</h2>
+<p>Stricter penalties for problems during exams</p>
+<ul>
+<li>Weeks/Months of penaly</li>
+</ul>
+</section>
+<section id="section-1" class="slide level2 smaller" style="color: #000;">
 <h2></h2>
 <p>BERK, Jonathan, DeMARZO, Peter. Corporate Finance, Global Edition. 5th edition, Boston, MA: Pearson, 2019. <a href="https://amzn.to/3jl9YPl">https://amzn.to/3jl9YPl</a></p>
 <center>
 <img data-src="../figs/berkdemarzo.jpg">
 </center>
 </section>
-<section id="about-the-book" class="slide level2 smaller">
-<h2>About the book</h2>
-<center>
-<img data-src="forms1a.png" style="width:150.0%" data-heigth="150%">
-</center>
-</section>
-<section id="about-the-book-1" class="slide level2 smaller">
-<h2>About the book</h2>
-<center>
-<img data-src="forms1b.png" style="width:150.0%" data-heigth="150%">
-</center>
-</section>
-<section id="about-notes" class="slide level2 smaller">
+
+
+<section id="about-notes" class="slide level2 smaller" style="color: #000;">
 <h2>About notes</h2>
 <center>
 <img data-src="../figs/share_slides.png">
 </center>
 <p>Worthington, D. L., &amp; Levasseur, D. G. (2015). To provide or not to provide course PowerPoint slides? The impact of instructor-provided slides upon student attendance and performance. Computers &amp; Education, 85, 14-22.</p>
 </section>
-<section id="about-notes-1" class="slide level2 smaller">
+<section id="about-notes-1" class="slide level2 smaller" style="color: #000;">
 <h2>About notes</h2>
 <center>
 <img data-src="paper0.png">
 </center>
 </section>
-<section id="about-notes-2" class="slide level2 smaller">
+<section id="about-notes-2" class="slide level2 smaller" style="color: #000;">
 <h2>About notes</h2>
 <div>
 <ul>
@@ -474,37 +1122,37 @@
 </ul>
 </div>
 </section>
-<section id="section-2" class="slide level2 smaller">
+<section id="section-2" class="slide level2 smaller" style="color: #000;">
 <h2></h2>
 <center>
 <img data-src="paper2.png">
 </center>
 </section>
-<section id="section-3" class="slide level2 smaller">
+<section id="section-3" class="slide level2 smaller" style="color: #000;">
 <h2></h2>
 <center>
 <img data-src="paper3.png">
 </center>
 </section>
-<section id="section-4" class="slide level2 smaller">
+<section id="section-4" class="slide level2 smaller" style="color: #000;">
 <h2></h2>
 <center>
 <img data-src="paper1.png">
 </center>
 </section>
-<section id="about-notes-3" class="slide level2 smaller">
+<section id="about-notes-3" class="slide level2 smaller" style="color: #000;">
 <h2>About notes</h2>
 <center>
 <img data-src="paper4.png">
 </center>
 </section>
-<section id="about-notes-4" class="slide level2 smaller">
+<section id="about-notes-4" class="slide level2 smaller" style="color: #000;">
 <h2>About notes</h2>
 <center>
 <img data-src="forms1.png" style="width:140.0%" data-heigth="140%">
 </center>
 </section>
-<section id="performance-assessment" class="slide level2 smaller">
+<section id="performance-assessment" class="slide level2 smaller" style="color: #000;">
 <h2>Performance assessment</h2>
 <p>1 Midterm Exam: <strong>40%</strong></p>
 <div class="fragment">
@@ -518,7 +1166,7 @@
 </ul>
 </div>
 </section>
-<section id="read-the-syllabus" class="slide level2">
+<section id="read-the-syllabus" class="slide level2 smaller" style="color: #000;">
 <h2>Read the Syllabus</h2>
 <center>
 <img data-src="../figs/syllabus.gif">
@@ -526,42 +1174,29 @@
 </section></section>
 <section>
 
-<section id="how-to-study-source" class="slide level2">
+<section id="how-to-study-source" class="slide level2 smaller" style="color: #000;">
 <h2>How to study? (<a href="https://www.bbc.com/portuguese/geral-64354629">Source</a>)</h2>
 
 <img data-src="../figs/howtostudy1.png" class="r-stretch"></section>
-<section id="how-to-study-source-1" class="slide level2">
+<section id="how-to-study-source-1" class="slide level2 smaller" style="color: #000;">
 <h2>How to study? (<a href="https://www.bbc.com/portuguese/geral-64354629">Source</a>)</h2>
 
 <img data-src="../figs/howtostudy2.png" class="r-stretch"></section>
-<section id="how-to-study-source-2" class="slide level2">
+<section id="how-to-study-source-2" class="slide level2 smaller" style="color: #000;">
 <h2>How to study? (<a href="https://www.bbc.com/portuguese/geral-64354629">Source</a>)</h2>
 
 <img data-src="../figs/howtostudy3.png" class="r-stretch"></section>
-<section id="how-to-study-source-3" class="slide level2">
+<section id="how-to-study-source-3" class="slide level2 smaller" style="color: #000;">
 <h2>How to study? (<a href="https://www.bbc.com/portuguese/geral-64354629">Source</a>)</h2>
 
 <img data-src="../figs/howtostudy4.png" class="r-stretch"></section>
-<section id="how-to-study-source-4" class="slide level2">
+<section id="how-to-study-source-4" class="slide level2 smaller" style="color: #000;">
 <h2>How to study? (<a href="https://www.bbc.com/portuguese/geral-64354629">Source</a>)</h2>
 
 <img data-src="../figs/howtostudy5.png" class="r-stretch"></section>
-<section id="how-to-study-source-5" class="slide level2">
-<h2>How to study? (<a href="https://www.bbc.com/portuguese/geral-64354629">Source</a>)</h2>
 
-<img data-src="../figs/howtostudy6.png" class="r-stretch"></section>
-<section id="about-studying" class="slide level2 smaller">
-<h2>About studying</h2>
-<center>
-<img data-src="forms2.png" style="width:140.0%" data-heigth="140%">
-</center>
-</section>
-<section id="section-5" class="slide level2" data-background="#b1cafa">
-<h2></h2>
-<p><strong>QUESTIONS?</strong></p>
 
-<img data-src="../figs/qa2.png" style="width:150.0%" data-heigth="150%" class="r-stretch"></section>
-<section id="warming-up" class="slide level2">
+<section id="warming-up" class="slide level2 smaller" style="color: #000;">
 <h2>Warming up…</h2>
 <div class="collumns">
 <div class="column" style="width:30.5%;">
@@ -575,7 +1210,7 @@
 </div>
 </div>
 </section>
-<section id="warming-up-1" class="slide level2">
+<section id="warming-up-1" class="slide level2 smaller" style="color: #000;">
 <h2>Warming up…</h2>
 <div class="collumns">
 <div class="column" style="width:34%;">
@@ -590,174 +1225,377 @@
 </div>
 </section>
 
-<section id="section-6" class="slide level2 smaller">
-<h2></h2>
-<div style="font-size: 40%; text-align: right;">
-<p>Key: <em>module0_long1</em> <input type="hidden" id="slide-id" value="module0_long1"></p>
-</div>
-<div class="question-block">
-<p><label for="module0_long1"><strong>What is Finance?</strong></label><br><br></p>
-<textarea id="module0_long1" name="module0_long1" rows="4" cols="60" placeholder="Write your answer here..." style="width:90%; padding:25px;"></textarea>
-</div>
-<script>
-async function submitAnswers() {
-  const studentId = document.getElementById("student-id")?.value.trim();
-  const password = document.getElementById("student-password")?.value.trim();
-
-  if (!studentId || !password) {
-    alert("❗Please enter both your student ID and password.");
-    return;
-  }
-
-  const answers = {};
-
-  // T/F and numeric inputs
-  document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
-    const name = input.name || input.id;
-      if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
-      const value = input.value.trim();
-      const correct = input.dataset.correctAnswer;
-      answers[name] = correct !== undefined ? { value, correct } : value;
-    }
-  });
-
-// Radio buttons (MCQ)
-const radioNames = new Set();
-document.querySelectorAll('input[type="radio"]').forEach(input => {
-  if (input.name && (input.name.startsWith('q') || input.name.startsWith('module'))) {
-    radioNames.add(input.name);
-  }
-});
-
-radioNames.forEach(name => {
-  const selected = document.querySelector(`input[name="${name}"]:checked`);
-  const form = document.querySelector(`form input[name="${name}"]`)?.closest("form");
-  const correct = form?.dataset.correctAnswer;
-
-  if (selected) {
-    answers[name] = correct !== undefined ? { value: selected.value, correct } : selected.value;
-  } else {
-    answers[name] = "";
-  }
-});
-
-
-  // Long answer questions
-  document.querySelectorAll('textarea[id^="module"]').forEach(textarea => {
-    const name = textarea.id;
-    if (name) {
-      answers[name] = textarea.value.trim();
-    }
-  });
-
-  const slideId = document.getElementById("slide-id")?.value || "unknown";
-
-  const payload = {
-    studentId,
-    password,
-    timestamp: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-    slide: slideId,
-    answers
-  };
-
-  // Save in memory to allow download
-  window.lastSubmittedAnswers = payload;
-
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxb3Z73DvsgGiGwK-jVp89jA5EGEYk24nbPNblQiNxFZPYvvDTvO-v4S4N_L-4YZ8KZfQ/exec", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "text/plain" }
-    });
-
-    const result = await response.json();
-    if (result.success) {
-      alert("✅ Your answers were submitted successfully!");
-    } else {
-      alert("❌ Submission failed: " + (result.message || "Unknown error."));
-    }
-  } catch (error) {
-    alert("❌ Submission error: " + error.message);
-  }
-}
-
-
-function downloadAnswersAsText() {
-  if (!window.lastSubmittedAnswers) {
-    alert("⚠️ No answers available to download yet.");
-    return;
-  }
-
-  const payload = window.lastSubmittedAnswers;
-  let text = "📝 Student Answers Summary\n\n";
-  text += `Student ID: ${payload.studentId}\n`;
-  text += `Slide: ${payload.slide}\n`;
-  text += `Timestamp: ${payload.timestamp}\n\n`;
-  text += "Answers:\n";
-
-  for (const [questionId, entry] of Object.entries(payload.answers)) {
-    if (typeof entry === 'object' && entry !== null) {
-      text += `- ${questionId}: ${entry.value}\n`; // omit correct answer
-    } else {
-      text += `- ${questionId}: ${entry}\n`;
-    }
-  }
-
-  const blob = new Blob([text], { type: "text/plain" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-const safeTimestamp = payload.timestamp.replace(/[/:\s]/g, "-");
-link.download = `${payload.studentId}_${payload.slide}_${safeTimestamp}_answers.txt`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-</script>
-<!-- Login Fields -->
-<div style="margin-bottom: 10px;">
-<p><label><strong>Student ID:</strong></label> <input type="text" id="student-id" placeholder="Enter your ID"></p>
-</div>
-<div style="margin-bottom: 20px;">
-<p><label><strong>Password:</strong></label> <input type="password" id="student-password" placeholder="Enter your password"></p>
-</div>
-<!-- Submit Button -->
-<button onclick="submitAnswers()" style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer;">
-Submit Answers
-</button>
-<!-- Download Button -->
-<button onclick="downloadAnswersAsText()" style="background-color:#007bff; color:white; padding:8px 16px; border:none; border-radius:5px; cursor:pointer; margin-left: 10px;">
-📄 Download My Answers (TXT)
-</button>
-</section>
-<section id="what-is-finance" class="slide level2">
+<section id="what-is-finance" class="slide level2 smaller" style="color: #000;">
 <h2><strong>What is Finance?</strong></h2>
 
 <img data-src="../figs/whatisfinance1.png" class="r-stretch"><p><strong>What is missing?</strong></p>
 </section>
-<section id="what-is-finance-1" class="slide level2">
+<section id="what-is-finance-1" class="slide level2 smaller" style="color: #000;">
 <h2><strong>What is Finance?</strong></h2>
 
 <img data-src="../figs/whatisfinance2.png" class="r-stretch"><p><strong>Which of these answers is better?</strong></p>
 </section>
-<section id="finance-is-a-time-machine" class="slide level2 smaller">
+<section id="section-5" class="slide level2" data-background="#f7f9fc">
+<h2></h2>
+<div data-ticket="" data-bridge="https://course-chat.hcmrtns.workers.dev/checkouts" data-session="What is Finance?" data-page="What is Finance?" data-require-login="true" data-open="2025-02-02 15:30" data-close="2026-02-02 16:59">
+
+</div>
+<!-- checkout2.html — Check-out → Cloudflare Worker (JSON, CORS-safe) -->
+<style>
+  /* ===== Tokens (light) — exit-checkout colors ===== */
+  :root{
+    --card-bg:#fff; --card-border:rgba(15,23,42,.06); --card-shadow:0 12px 30px rgba(17,24,39,.12);
+    --ink:#0b1220; --muted:#3a4a5c; --muted-2:#2b3a4a; --line:#e9eef5; --pill-bg:#f5f9ff;
+    --focus:rgba(59,130,246,.22);
+    --btn-bg-1:#4f46e5; --btn-bg-2:#60a5fa; --btn-ink:#fff;
+    --textarea-bg:#fff;
+
+    /* ribbon colors by state */
+    --ribbon-open-1: rgba(34,197,94,.18);   /* green */
+    --ribbon-open-2: rgba(16,185,129,.16);
+    --ribbon-soon-1: rgba(245,158,11,.18);  /* amber */
+    --ribbon-soon-2: rgba(251,191,36,.16);
+    --ribbon-closed-1: rgba(239,68,68,.20); /* red */
+    --ribbon-closed-2: rgba(248,113,113,.16);
+    --ribbon-default-1: rgba(99,102,241,.14); /* blue (fallback) */
+    --ribbon-default-2: rgba(96,165,250,.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --card-bg:rgba(15,23,42,.92); --card-border:rgba(148,163,184,.20); --card-shadow:0 16px 44px rgba(0,0,0,.55);
+      --line:rgba(148,163,184,.28); --pill-bg:rgba(148,163,184,.18);
+      --ink:#f8fafc; --muted:#e5edf6; --muted-2:#f1f5f9;
+      --btn-bg-1:#5b7fff; --btn-bg-2:#7cc5ff; --btn-ink:#0b1220;
+      --textarea-bg:rgba(2,6,23,.55);
+    }
+  }
+
+  /* Card */
+  [data-ticket] .tw-card{
+    position:relative;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;
+    padding:16px;box-shadow:var(--card-shadow);backdrop-filter:saturate(120%) blur(6px);-webkit-backdrop-filter:saturate(120%) blur(6px);
+    color:var(--ink);overflow:hidden;box-sizing:border-box;
+  }
+  [data-ticket] .tw-card::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:56px;
+    background:linear-gradient(135deg,var(--ribbon-default-1),var(--ribbon-default-2));
+    pointer-events:none;
+  }
+  /* ribbon by state */
+  [data-ticket].open   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-open-1),var(--ribbon-open-2)); }
+  [data-ticket].soon   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-soon-1),var(--ribbon-soon-2)); }
+  [data-ticket].closed .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-closed-1),var(--ribbon-closed-2)); }
+
+  /* Header */
+  [data-ticket] .tw-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;position:relative;z-index:1;}
+  [data-ticket] .tw-icon{
+    width:36px;height:36px;border-radius:12px;background:#1f2937;display:grid;place-items:center;flex:0 0 36px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);position:relative;
+  }
+  [data-ticket] .tw-icon::after{
+    content:"";position:absolute;inset:-3px;border-radius:14px;
+    background:conic-gradient(from 120deg,rgba(79,70,229,.35),rgba(6,182,212,.35),rgba(79,70,229,.35));
+    z-index:-1;filter:blur(6px);opacity:.55;
+  }
+  [data-ticket] .tw-icon svg{width:18px;height:18px;color:#fff;opacity:.96;}
+  [data-ticket] .tw-titles{display:flex;flex-direction:column;gap:2px;}
+  [data-ticket] .tw-title{font-weight:800;color:var(--ink);line-height:1.1;letter-spacing:.2px;}
+  [data-ticket] .tw-sub{color:var(--muted);font-size:.92rem;}
+
+  /* Badges */
+  [data-ticket] .tw-meta{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  [data-ticket] .tw-badge{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;
+    background:var(--pill-bg);color:var(--muted-2);font-size:.88rem;white-space:nowrap;box-shadow:0 1px 0 rgba(17,24,39,.04) inset;
+  }
+  [data-ticket] .tw-badge svg, [data-ticket] .tw-badge svg *, [data-ticket] .tw-badge .tw-window-text{
+    color:currentColor;stroke:currentColor!important;fill:none;
+  }
+  [data-ticket] .tw-window-text{white-space:pre-line;}
+
+  /* Status dot */
+  [data-ticket] .tw-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;}
+  [data-ticket].open  .tw-dot{background:#16a34a;}
+  [data-ticket].soon  .tw-dot{background:#f59e0b;}
+  [data-ticket].closed.tw-dot,[data-ticket].closed .tw-dot{background:#ff4d4f;}
+
+  /* Textarea */
+  [data-ticket] .tw-body{position:relative;z-index:1;box-sizing:border-box;}
+  [data-ticket] textarea.tw-text{
+    width:100%;border:1px solid var(--line);background:var(--textarea-bg);border-radius:14px;padding:12px 14px;
+    font-size:1rem;line-height:1.5;outline:none;transition:border-color .15s,box-shadow .15s,transform .06s;min-height:120px;
+    resize:vertical;color:var(--ink);box-sizing:border-box;
+  }
+  [data-ticket] textarea.tw-text:focus{border-color:#60a5fa;box-shadow:0 0 0 4px var(--focus);transform:translateY(-1px);}
+  [data-ticket] textarea.tw-text::placeholder{color:#60758a;opacity:.9;}
+
+  /* Footer & messages */
+  [data-ticket] .tw-footer{display:flex;align-items:center;gap:12px;margin-top:12px;}
+  [data-ticket] .tw-count{margin-left:auto;color:#60758a;font-size:.86rem;}
+  [data-ticket] .tw-msg{margin-top:8px;font-size:.93rem;min-height:1.2em;font-weight:700;letter-spacing:.2px;}
+  [data-ticket] .tw-msg.success{color:#059669!important;}
+  [data-ticket] .tw-msg.error{color:#ff4d4f!important;}
+  [data-ticket] .tw-msg.warning{color:#f59e0b!important;}
+  /* match dot color if no explicit class was set */
+  [data-ticket].open  .tw-msg:not(.success):not(.error):not(.warning){color:#16a34a!important;}
+  [data-ticket].soon  .tw-msg:not(.success):not(.error):not(.warning){color:#f59e0b!important;}
+  [data-ticket].closed.tw-msg,[data-ticket].closed .tw-msg:not(.success):not(.error):not(.warning){color:#ff4d4f!important;}
+
+  /* Button */
+  [data-ticket] .tw-btn{
+    padding:10px 16px;border-radius:12px;border:1px solid rgba(15,23,42,.12);
+    background:linear-gradient(135deg,var(--btn-bg-1),var(--btn-bg-2));color:var(--btn-ink);font-weight:800;cursor:pointer;
+    box-shadow:0 4px 14px rgba(59,130,246,.25);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease;letter-spacing:.2px;
+  }
+  [data-ticket] .tw-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(59,130,246,.35);filter:saturate(108%);}
+  [data-ticket] .tw-btn:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus);}
+  [data-ticket] .tw-btn:disabled{opacity:.85;cursor:not-allowed;transform:none;background:#e5f0ff;color:#6b7280;border-color:#dbeafe;box-shadow:none;}
+  [data-ticket] .tw-btn.sent{opacity:.92;cursor:default;}
+
+  /* Spinner */
+  [data-ticket] .spin:after{
+    content:"";display:inline-block;width:14px;height:14px;margin-left:8px;border:2px solid rgba(255,255,255,.65);
+    border-top-color:transparent;border-radius:50%;animation:twspin .8s linear infinite;vertical-align:-2px;
+  }
+  @keyframes twspin{to{transform:rotate(360deg)}}
+
+  /* Mini-login */
+  [data-ticket] .tw-login{display:flex;gap:8px;align-items:center;margin:8px 0 12px 0}
+  [data-ticket] .tw-login input{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--textarea-bg);color:var(--ink);outline:none}
+
+  /* Responsive */
+  @media (max-width:640px){
+    [data-ticket] .tw-card{border-radius:14px;padding:14px;}
+    [data-ticket] .tw-header{gap:10px;}
+    [data-ticket] .tw-badge{padding:5px 9px;font-size:.82rem;}
+  }
+</style>
+<script>
+(() => {
+  const $ = (sel, el=document) => el.querySelector(sel);
+
+  function mountAll(){
+    document.querySelectorAll('[data-ticket]:not([data-tw-mounted])').forEach(initOne);
+  }
+
+  function initOne(host){
+    host.setAttribute('data-tw-mounted','1');
+
+    // ---- Config/attrs
+    const bridge = (host.getAttribute('data-bridge') || window.BRIDGE_URL || '').trim();
+    const sessionTag = (host.getAttribute('data-session') || '').trim();
+    const pageAttr   = (host.getAttribute('data-page') || '').trim();
+    const winStartStr= (host.getAttribute('data-open') || '').trim();
+    const winEndStr  = (host.getAttribute('data-close') || '').trim();
+    const requireLogin = String(host.getAttribute('data-require-login') || 'true').toLowerCase() !== 'false';
+
+    // ---- Helpers
+    const parseLocal = (ts) => ts ? new Date(ts.replace(' ','T')) : null;
+    const winStart = parseLocal(winStartStr);
+    const winEnd   = parseLocal(winEndStr);
+
+    const fmtDur = (s) => { const m=Math.floor(s/60),r=s%60; if(m>=60){const h=Math.floor(m/60),mm=m%60;return `${h}h ${mm}m`;} if(m>0) return `${m}m ${r}s`; return `${r}s`; };
+    function statusNow(){
+      const now = new Date();
+      if (!winStart || !winEnd) return {state:'open', label:'Always available'};
+      if (now < winStart){ const s1=Math.max(0,Math.floor((winStart-now)/1000)); return {state:'soon', label:'Opens in '+fmtDur(s1)}; }
+      if (now > winEnd)   return {state:'closed', label:'Closed'};
+      const s2=Math.max(0,Math.floor((winEnd-now)/1000)); return {state:'open', label:'Closes in '+fmtDur(s2)};
+    }
+    const getStudentId = () => String(window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').trim();
+    const getPageId = () => pageAttr || window.pageId || (location.pathname + location.hash);
+
+    const setMsg = (el, text, cls) => { el.textContent = text || ''; el.className = 'tw-msg' + (cls ? ' ' + cls : ''); };
+    const doneKey = () => `ticket_done:exit:${(sessionTag || getPageId() || 'page')}:${(getStudentId() || 'anon')}`;
+    const isDone  = () => { try { return localStorage.getItem(doneKey()) === '1'; } catch(_) { return false; } };
+    const markDone = (btn) => { try{ localStorage.setItem(doneKey(), '1'); }catch(_){}; btn.classList.remove('spin'); btn.disabled = true; btn.classList.add('sent'); btn.textContent = 'Sent ✓'; };
+
+    // ---- UI skeleton
+    host.innerHTML = '';
+    const card = document.createElement('div'); card.className = 'tw-card';
+    const windowLabel = (winStartStr && winEndStr) ? (winStartStr + '\n→ ' + winEndStr) : 'No window set';
+    card.innerHTML = `
+      <div class="tw-header">
+        <div class="tw-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 3M6 3h12a1 1 0 0 1 1 1v16l-7-3-7 3V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tw-titles">
+          <div class="tw-title">Check-out</div>
+          <div class="tw-sub"></div>
+        </div>
+        <div class="tw-meta">
+          <div class="tw-badge"><span class="tw-dot"></span><span class="tw-badge-text">—</span></div>
+          <div class="tw-badge" title="São Paulo time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="opacity:.8"><path d="M12 7v5l4 2" stroke="#334155" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#334155" stroke-width="1.5" fill="none"/></svg>
+            <span class="tw-window-text">${windowLabel}</span>
+          </div>
+        </div>
+      </div>
+      <div class="tw-login" style="display:none">
+        <input type="text" class="tw-login-input" placeholder="Digite seu ID / e-mail do curso"/>
+        <button type="button" class="tw-btn tw-login-btn">Entrar</button>
+      </div>
+      <div class="tw-body"></div>
+      <div class="tw-footer">
+        <button type="button" class="tw-btn tw-send">Send (click only 1x)</button>
+        <div class="tw-count">0/500</div>
+      </div>
+      <div class="tw-msg"></div>`;
+    host.appendChild(card);
+
+    // refs
+    const body = $('.tw-body', card);
+    const btn  = $('.tw-send', card);
+    const msg  = $('.tw-msg', card);
+    const badgeText = $('.tw-badge-text', card);
+    const count = $('.tw-count', card);
+    const loginRow = $('.tw-login', card);
+    const loginInp = $('.tw-login-input', card);
+    const loginBtn = $('.tw-login-btn', card);
+
+    // textarea
+    const ta = document.createElement('textarea');
+    ta.className = 'tw-text'; ta.maxLength = 500;
+    ta.placeholder = 'Your check-out (max 500): one thing you learned + one question…';
+    body.appendChild(ta);
+    ta.addEventListener('input', () => { count.textContent = `${ta.value.length}/500`; syncEnabled(); });
+    count.textContent = '0/500';
+
+    const successMsg = 'Check-out recorded. Thank you!';
+    const dupMsg     = 'You have already completed the check-out for this session. Thanks!';
+
+    function paintBadge(){
+      const st = statusNow();
+      host.classList.remove('open','soon','closed'); host.classList.add(st.state);
+      badgeText.textContent = st.label;
+    }
+
+    function showLoginIfNeeded(){
+      const need = requireLogin && !getStudentId();
+      loginRow.style.display = need ? 'flex' : 'none';
+    }
+
+    function syncEnabled(){
+      const logged = !requireLogin || !!getStudentId();
+      const st     = statusNow().state;
+      const filled = ta.value.trim().length>0;
+      const enabled= logged && (st==='open') && filled && !isDone();
+      btn.disabled = !enabled;
+
+      showLoginIfNeeded(); paintBadge();
+
+      if (isDone()){
+        setMsg(msg, dupMsg, 'success');
+        btn.textContent = 'Sent ✓'; btn.classList.add('sent'); btn.disabled = true;
+      } else if (!logged) setMsg(msg,'Please log in to submit.','warning');
+      else if (st==='soon') setMsg(msg,'Not open yet.','warning');
+      else if (st==='closed') setMsg(msg,'This activity is closed.','error');
+      else if (!filled) setMsg(msg,'Write something to submit.','warning');
+      else setMsg(msg,''); // ready
+    }
+
+    // mini-login
+    loginBtn?.addEventListener('click', () => {
+      const v = (loginInp.value || '').trim();
+      if (!v) { setMsg(msg,'Informe seu ID para continuar.','warning'); return; }
+      try { localStorage.setItem('studentId', v); } catch {}
+      window.studentId = v;
+      document.dispatchEvent(new Event('auth:login'));
+      setMsg(msg,''); syncEnabled();
+    });
+
+    // timers + cleanup
+    paintBadge(); syncEnabled();
+    const ticker = setInterval(() => { paintBadge(); syncEnabled(); }, 1000);
+    const obs = new MutationObserver(() => {
+      if(!document.body.contains(host)){ clearInterval(ticker); obs.disconnect(); }
+    });
+    obs.observe(document.body, {childList:true, subtree:true});
+    document.addEventListener('auth:login', syncEnabled);
+
+    // Submit
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault(); e.stopPropagation();
+
+      const sid = getStudentId();
+      if (requireLogin && !sid){ setMsg(msg,'Please log in to submit.','warning'); return; }
+      const text = ta.value.trim().slice(0,500);
+      if (!text){ setMsg(msg,'Write something to submit.','warning'); return; }
+      if (!bridge){ setMsg(msg,'Missing BRIDGE URL.','error'); return; }
+
+      btn.classList.add('spin'); btn.disabled = true; setMsg(msg,'');
+
+      const payload = {
+        student_id: sid,                 // ← alinha com D1
+        slide_id: (sessionTag || getPageId()),
+        ticket: text,
+        tsClient: new Date().toISOString(),
+        open:  winStartStr,
+        close: winEndStr,
+        user_agent: navigator.userAgent
+      };
+
+      try{
+        const res = await fetch(bridge, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify(payload),
+          keepalive:true
+        });
+
+        const raw = await res.text();
+        let data = null; try{ data = JSON.parse(raw); }catch(_){}
+
+        if (!res.ok){
+          if (data && data.status === 'closed_window'){
+            setMsg(msg,'This activity is closed now.','error');
+          } else {
+            setMsg(msg,'Failed to submit. Please try again.','error');
+          }
+          console.error('[checkout2] HTTP error:', res.status, raw);
+          btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+          return;
+        }
+
+        if (data && data.status === 'success'){
+          setMsg(msg, successMsg, 'success');
+          ta.value=''; count.textContent='0/500';
+          markDone(btn); clearInterval(ticker);
+          return;
+        }
+        if (data && data.status === 'duplicate'){
+          setMsg(msg, dupMsg, 'success'); markDone(btn); clearInterval(ticker); return;
+        }
+        if (data && data.status === 'closed_window'){
+          setMsg(msg,'This activity is closed now.','error');
+          btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+          return;
+        }
+
+        setMsg(msg,'Failed to submit. Please try again.','error');
+        console.error('[checkout2] unexpected response:', raw);
+        btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+      }catch(err){
+        console.error('[checkout2] submit error:', err);
+        setMsg(msg,'Network error. Please try again.','error');
+        btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', mountAll, { once:true });
+  } else {
+    mountAll();
+  }
+})();
+</script>
+</section>
+<section id="finance-is-a-time-machine" class="slide level2 smaller" style="color: #000;">
 <h2>Finance is a time machine</h2>
 <p><em>Finance is an applied science that deals with the allocation of scarce resources over time under conditions of uncertainty.</em> (<a href="https://www.annualreviews.org/doi/pdf/10.1146/annurev-financial-011019-040506">Source</a>)</p>
 
 <img data-src="../figs/time_machine.jpg" class="r-stretch"></section>
-
-<section id="now-it-is-your-turn" class="slide level2 smaller" data-background="#191f36">
-<h2>Now it is your turn…</h2>
-<p>This is an introductory part. You can start preparing yourself by checking the following lists of problems of the next chapter.</p>
-<div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px;">
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1tf.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> ✅ True / False Questions </a></p>
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1num.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> 🔢 Numeric Questions </a></p>
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1mcq.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> 📝 Multiple Choice </a></p>
-<p><a href="https://henriquemartins.net/teaching/financial_strategy/module1/p1long.html" target="_blank" style="text-decoration: none; width: 75%; background: white; color: #2c3e50; font-weight: bold; text-align: center; padding: 16px; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);"> ✍️ Long-form Answers </a></p>
-</div>
-<div class="footer">
-
-</div>
-</section>
 
 <section id="any-questions" class="slide level2" data-background="#b1cafa">
 <h2>🙋‍♂️ <strong>Any Questions?</strong></h2>
@@ -785,7 +1623,7 @@ Submit Answers
 <div class="quarto-auto-generated-content">
 <p><img src="../figs/background8.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><strong>[<strong>Henrique C. Martins</strong>] [<a href="mailto:henrique.martins@fgv.br">henrique.martins@fgv.br</a>] [<a href="https://henriquemartins.net/teaching/financial_strategy/">Teaching Resources</a>][Do not use without permission]</strong></p>
+<p><span style="font-size:10px"> [<a href="mailto:henrique.martins@fgv.br">Henrique C. Martins</a>] [<a href="https://henriquemartins.net/teaching/financial_strategy/">Teaching Resources</a>]<strong>[Do not use without permission]</strong></span></p>
 </div>
 </div>
 </section></section>
@@ -799,7 +1637,6 @@ Submit Answers
   <script src="../../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -820,8 +1657,7 @@ Submit Answers
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -992,7 +1828,7 @@ Submit Answers
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,
@@ -1000,6 +1836,873 @@ Submit Answers
           RevealZoom
         ]
       });
+    </script>
+    <!-- chat-widget-deluxe.html : Floating chat for all slides (Quarto + revealjs) -->
+    <style>
+      :root{
+        /* Fundo geral claro e elegante */
+        --bg: rgba(255,255,255,.88);
+        --border: rgba(15,23,42,.12);
+        --shadow: 0 12px 40px rgba(20,20,40,.18);
+
+        --brand1: #4f46e5; /* indigo */
+        --brand2: #06b6d4; /* cyan */
+        --brand-weak: rgba(79,70,229,.10);
+
+        --text: #0f172a;
+        --muted: #475569;
+        --danger: #b91c1c;
+
+        --bubble-user: #ffffff;
+        --bubble-ai:   #fbfdff;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg: rgba(19,26,42,.72);
+          --border: rgba(255,255,255,.10);
+          --shadow: 0 18px 50px rgba(0,0,0,.55);
+          --text: #e6e9ef;
+          --muted: #b6bfca;
+          --brand-weak: rgba(79,70,229,.20);
+
+          --bubble-user: rgba(255,255,255,.08);
+          --bubble-ai:   rgba(255,255,255,.06);
+        }
+      }
+
+      .vhcm-panel, .vhcm-input textarea, .vhcm-bubble {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: "liga" 1, "kern" 1;
+      }
+
+      /* FAB button */
+      .vhcm-fab{position:fixed; right:18px; bottom:18px; z-index:9999; display:flex; align-items:center; gap:10px}
+      .vhcm-fab button{border:none; border-radius:16px; padding:12px 14px; cursor:pointer; background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; box-shadow:var(--shadow); display:flex; align-items:center; gap:10px; font-weight:600}
+      .vhcm-fab svg{width:20px; height:20px}
+
+      /* Panel (redimensionável) */
+      .vhcm-panel{
+        position:fixed; right:18px; bottom:78px;
+        width:325px; height:600px;
+        min-width:280px; min-height:360px;
+        max-width:94vw; max-height:84vh;
+
+        display:none; flex-direction:column; border:1px solid var(--border);
+        border-radius:18px; box-shadow:var(--shadow); overflow:hidden; z-index:9999;
+        backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);
+        background: var(--bg); animation:vslide .25s ease-out;
+
+        /* permite redimensionar pelo canto inferior direito */
+        resize: both;
+      }
+      @keyframes vslide{from{transform: translateY(8px); opacity:0} to{transform:none; opacity:1}}
+
+      .vhcm-header{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--border); background:linear-gradient(135deg, rgba(79,70,229,.10), rgba(6,182,212,.08));}
+      .vhcm-brand{display:flex; align-items:center; gap:10px}
+      .vhcm-logo{width:28px; height:28px; border-radius:10px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; box-shadow:0 4px 16px var(--brand-weak)}
+      .vhcm-title{font-weight:700; letter-spacing:.2px; color:var(--text)}
+      .vhcm-status{display:flex; align-items:center; gap:6px; color:var(--muted); font-size:12px}
+      .vhcm-dot{width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 2px rgba(34,197,94,.25)}
+      .vhcm-close{border:none; background:transparent; font-size:18px; cursor:pointer; color:var(--muted)}
+
+      /* Botão meia tela */
+      .vhcm-half{
+        border:none; background:transparent; cursor:pointer;
+        font-size:16px; color:var(--muted); margin-right:6px;
+      }
+      .vhcm-half:hover{ color: var(--text); }
+
+      /* Painel em meia tela (50vw x 50vh) */
+      .vhcm-panel.vhcm--half{
+        width: 50vw !important;
+        height: 50vh !important;
+        max-width: 95vw;
+        max-height: 95vh;
+        border-radius: 12px;
+      }
+
+      .vhcm-body{flex:1; overflow:auto; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));}
+      .vhcm-typing{font-size:12px; color:var(--muted); display:none; padding:6px 2px}
+      .vhcm-dots{display:inline-flex; gap:3px; margin-left:4px}
+      .vhcm-dots span{width:6px; height:6px; border-radius:50%; background:var(--muted); opacity:.6; animation:blink 1.2s infinite}
+      .vhcm-dots span:nth-child(2){animation-delay:.2s}
+      .vhcm-dots span:nth-child(3){animation-delay:.4s}
+      @keyframes blink{0%,80%,100%{opacity:.2; transform:translateY(0)} 40%{opacity:.9; transform:translateY(-2px)}}
+
+      .vhcm-input{
+        display:flex; align-items:flex-end; gap:8px; padding:12px;
+        border-top:1px solid var(--border);
+        background:linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,.20));
+      }
+      .vhcm-input textarea{
+        flex:1;
+        resize:none;
+        min-height:44px;
+        max-height:140px;
+        padding:12px 14px;
+        border:1px solid var(--border);
+        border-radius:14px;
+        background:#ffffff;
+        color:#0f172a;
+        font: 500 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        caret-color: var(--brand1);
+        box-shadow: 0 1px 0 rgba(0,0,0,.02) inset;
+      }
+      .vhcm-input textarea::placeholder{ color:#475569; }
+
+      .vhcm-send{background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; border:none; border-radius:12px; padding:10px 14px; cursor:pointer; display:flex; align-items:center; gap:8px; font-weight:600}
+      .vhcm-send svg{width:18px; height:18px}
+
+      .vhcm-msg{display:flex; gap:10px; margin-bottom:12px; align-items:flex-end}
+      .vhcm-avatar{width:28px; height:28px; border-radius:10px; background:var(--brand-weak); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--text)}
+      .vhcm-bubble{
+        max-width:78%; padding:12px 14px; border-radius:14px; border:1px solid var(--border);
+        box-shadow: 0 6px 18px rgba(0,0,0,.06);
+        line-height:1.48; font-weight:500;
+      }
+      .vhcm-msg.user{justify-content:flex-end}
+      .vhcm-msg.user .vhcm-bubble{
+        background: var(--bubble-user);
+        color: var(--text);
+        border-color: rgba(15,23,42,.10);
+      }
+      .vhcm-msg.user .vhcm-avatar{display:none}
+      .vhcm-msg.ai .vhcm-bubble{
+        background: var(--bubble-ai);
+        color: var(--text);
+        border-color: rgba(15,23,42,.10);
+      }
+
+      .vhcm-error{color:var(--danger); font-size:12px; margin:6px 2px}
+    </style>
+
+    <div class="vhcm-fab">
+      <button id="vhcm-open" title="Virtual HCM">
+        <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c4.97 0 9-3.582 9-8 0-1.93-.71-3.706-1.92-5.126l.86-3.006-3.01.847C15.87 5.6 14 5 12 5 7.03 5 3 8.582 3 13s4.03 9 9 9Z" stroke="currentColor" stroke-width="1.2"></path></svg>
+        Virtual HCM
+      </button>
+    </div>
+
+    <div class="vhcm-panel" id="vhcm-panel" role="dialog" aria-label="Virtual HCM chat">
+      <div class="vhcm-header">
+        <div class="vhcm-brand">
+          <div class="vhcm-logo">VH</div>
+          <div>
+            <div class="vhcm-title">Virtual HCM</div>
+            <div class="vhcm-status"><span class="vhcm-dot"></span><span id="vhcm-module-label">module1</span></div>
+          </div>
+        </div>
+        <div>
+          <button id="vhcm-half" class="vhcm-half" aria-label="Half screen" title="Half screen">⤢</button>
+          <button id="vhcm-close" class="vhcm-close" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="vhcm-body" id="vhcm-body"></div>
+      <div class="vhcm-typing" id="vhcm-typing">Virtual HCM is typing <span class="vhcm-dots"><span></span><span></span><span></span></span></div>
+      <div class="vhcm-input">
+        <textarea id="vhcm-text" placeholder="Ask anything about this module…"></textarea>
+        <button class="vhcm-send" id="vhcm-send" title="Send">
+          <svg viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11l17-8-8 17-1-7-8-2Z" stroke="#fff" stroke-width="1.6"></path></svg>
+          Send
+        </button>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      // ====== CONFIG ======
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbza4kInsudyRFK_62VL8eULh3TiF_zMdleq4N0OpX4QunuU2rEryBnbE4S9zDHQkvB_/exec"; // troque se necessário
+      const DEFAULT_MODULE = "module1";
+      const STORAGE_OPEN   = "vhcm_open";
+      const STORAGE_SIZE   = "vhcm_size";
+      const STORAGE_HALF   = "vhcm_half_mode";
+      const STORAGE_SIZE_PREV = "vhcm_size_prev";
+
+      // ====== Elements ======
+      const btnOpen = document.getElementById('vhcm-open');
+      const btnClose = document.getElementById('vhcm-close');
+      const btnHalf = document.getElementById('vhcm-half');
+      const panel = document.getElementById('vhcm-panel');
+      const body = document.getElementById('vhcm-body');
+      const typing = document.getElementById('vhcm-typing');
+      const text = document.getElementById('vhcm-text');
+      const send = document.getElementById('vhcm-send');
+      const moduleLabel = document.getElementById('vhcm-module-label');
+
+      // ====== Module detection (robusta, sem quebrar compatibilidade) ======
+      function detectModule(){
+        try {
+          // 1) Override explícito via window.VHCM.module
+          if (window.VHCM && window.VHCM.module) {
+            const v = String(window.VHCM.module).trim();
+            if (v) return v;
+          }
+          // 2) Reveal slide atual com data-module
+          if (window.Reveal && typeof Reveal.getCurrentSlide === 'function') {
+            const s = Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+            const v = (s && (s.dataset.module || s.getAttribute('data-module'))) || '';
+            if (v && String(v).trim()) return String(v).trim();
+          }
+          // 3) <meta name="vhcm-module" content="moduleX">
+          const meta = document.querySelector('meta[name="vhcm-module"]');
+          if (meta && meta.content && meta.content.trim()) return meta.content.trim();
+          // 4) atributo data-module no <body>
+          const dm = document.body && document.body.getAttribute && document.body.getAttribute('data-module');
+          if (dm && dm.trim()) return dm.trim();
+          // 5) querystring ?module=moduleX
+          const qs = new URLSearchParams(location.search).get('module');
+          if (qs && qs.trim()) return qs.trim();
+          // 6) regex no caminho (module2, m2, p2.html)
+          const path = (location.pathname || '').toLowerCase();
+          let m = path.match(/module(\d+)/); if (m) return `module${m[1]}`;
+          m = path.match(/\/m(\d+)\b/);     if (m) return `module${m[1]}`;
+          m = path.match(/\/p(\d+)\.html/); if (m) return `module${m[1]}`;
+          // 7) compat: window.CURRENT_MODULE (caso você já defina em algum lugar)
+          if (window.CURRENT_MODULE) return String(window.CURRENT_MODULE).trim();
+        } catch(_){}
+        // 8) fallback
+        return DEFAULT_MODULE;
+      }
+
+      // ====== Helpers ======
+      // (ÚNICA MUDANÇA) → pega o aluno logado do localStorage, priorizando o ID salvo no login
+      function getStudent(){
+        try{
+          const u = (localStorage.getItem('fs_user')
+                  || localStorage.getItem('studentId')
+                  || localStorage.getItem('studentName')
+                  || 'Anonimo').trim();
+          return u || 'Anonimo';
+        }catch(_){
+          return 'Anonimo';
+        }
+      }
+      function currentModule(){ return detectModule(); }
+
+      function bubble(author, textHtml, isUser=false){
+        const wrap = document.createElement('div');
+        wrap.className = 'vhcm-msg' + (isUser ? ' user' : ' ai');
+        const avatar = document.createElement('div');
+        avatar.className = 'vhcm-avatar';
+        avatar.textContent = isUser ? 'You' : 'VH';
+        const bub = document.createElement('div');
+        bub.className = 'vhcm-bubble';
+        bub.innerHTML = String(textHtml || '').replace(/\n/g,'<br>');
+        if (isUser){ wrap.appendChild(bub); wrap.appendChild(avatar); }
+        else { wrap.appendChild(avatar); wrap.appendChild(bub); }
+        body.appendChild(wrap); body.scrollTop = body.scrollHeight;
+      }
+      function setOpen(open){ panel.style.display = open ? 'flex' : 'none'; localStorage.setItem(STORAGE_OPEN, open ? '1' : '0'); }
+
+      // ====== Restaurar tamanho salvo ======
+      (function restoreSize(){
+        try{
+          const saved = JSON.parse(localStorage.getItem(STORAGE_SIZE) || 'null');
+          if (saved?.w && saved?.h) {
+            panel.style.width = saved.w;
+            panel.style.height = saved.h;
+          }
+        }catch(_){}
+      })();
+
+      // ====== Observar e salvar mudanças de tamanho ======
+      (function watchSize(){
+        if (!('ResizeObserver' in window)) return;
+        const ro = new ResizeObserver(entries => {
+          for (const e of entries) {
+            const { width, height } = e.contentRect || {};
+            if (!width || !height) continue;
+            localStorage.setItem(STORAGE_SIZE, JSON.stringify({
+              w: Math.round(width) + 'px',
+              h: Math.round(height) + 'px'
+            }));
+          }
+        });
+        ro.observe(panel);
+      })();
+
+      // ====== Open/Close & persist state ======
+      btnOpen.addEventListener('click', ()=> setOpen(panel.style.display !== 'flex'));
+      btnClose.addEventListener('click', ()=> setOpen(false));
+      if (localStorage.getItem(STORAGE_OPEN) === '1') setOpen(true);
+
+      // ====== Module label sync ======
+      function updateModuleLabel(){ moduleLabel.textContent = currentModule(); }
+      updateModuleLabel();
+      if (window.Reveal && typeof Reveal.on === 'function'){ Reveal.on('slidechanged', updateModuleLabel); }
+      window.addEventListener('hashchange', updateModuleLabel); // caso mude via URL/anchor
+
+      // ====== Meia tela (toggle) ======
+      function readSize(){ try { return JSON.parse(localStorage.getItem(STORAGE_SIZE) || 'null'); } catch(_){ return null; } }
+      function savePrevSize(){
+        const rect = panel.getBoundingClientRect();
+        localStorage.setItem(STORAGE_SIZE_PREV, JSON.stringify({
+          w: Math.round(rect.width) + 'px',
+          h: Math.round(rect.height) + 'px'
+        }));
+      }
+      function readPrevSize(){ try { return JSON.parse(localStorage.getItem(STORAGE_SIZE_PREV) || 'null'); } catch(_){ return null; } }
+
+      function setHalfMode(on){
+        if (on){
+          // guarda tamanho atual antes de mudar
+          savePrevSize();
+          panel.classList.add('vhcm--half');
+          panel.style.width  = '50vw';
+          panel.style.height = '50vh';
+          localStorage.setItem(STORAGE_HALF, '1');
+          btnHalf.title = 'Exit half screen';
+        } else {
+          panel.classList.remove('vhcm--half');
+          localStorage.setItem(STORAGE_HALF, '0');
+          btnHalf.title = 'Half screen';
+          const prev = readPrevSize() || readSize();
+          if (prev?.w && prev?.h){
+            panel.style.width  = prev.w;
+            panel.style.height = prev.h;
+          } else {
+            panel.style.width  = '';
+            panel.style.height = '';
+          }
+        }
+      }
+
+      btnHalf.addEventListener('click', ()=>{
+        const isOn = panel.classList.contains('vhcm--half');
+        setHalfMode(!isOn);
+      });
+
+      // Restaurar modo meia tela se estava ativo
+      if (localStorage.getItem(STORAGE_HALF) === '1') {
+        setHalfMode(true);
+      }
+
+      // ====== Send logic ======
+      async function sendQuestion(){
+        const q = text.value.trim(); if (!q) return;
+        const mod = currentModule(); updateModuleLabel();
+        bubble('You', q, true); text.value=''; typing.style.display='block';
+        try{
+          const resp = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            // sem headers pra evitar preflight; servidor já aceita JSON puro
+            body: JSON.stringify({ question: q, student: getStudent(), module: mod })
+          });
+          const raw = await resp.text();
+          let data = {}; try { data = JSON.parse(raw); } catch(_){ data = { answer: 'Server returned an invalid response.' }; }
+          typing.style.display='none';
+          bubble('Virtual HCM', data.answer || 'No answer received.', false);
+        } catch(e){
+          typing.style.display='none';
+          bubble('Error', 'Could not contact the server.', false);
+        }
+      }
+
+      send.addEventListener('click', sendQuestion);
+      text.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendQuestion(); }
+      });
+    })();
+    </script>
+    <style>
+      html.locked .requires-auth, body.locked .requires-auth { display: none !important; }
+
+      :root {
+        --lb-bg: rgba(46, 58, 78, 0.85);
+        --lb-border: rgba(255, 255, 255, 0.12);
+        --lb-shadow: 0 18px 60px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.18);
+        --lb-radius: 18px;
+        --lb-accent: #a78bfa;
+        --lb-accent-weak: rgba(167, 139, 250, 0.25);
+        --pill-start: #6d5df5; 
+        --pill-end: #2ec5ff;
+      }
+
+      /* POSICIONAMENTO À ESQUERDA */
+      .lb-panel { 
+        position: fixed; 
+        bottom: 20px; 
+        left: 20px; 
+        z-index: 2147483647; 
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+      }
+
+      /* BOTÃO ESTILO PÍLULA (IGUAL AO VIRTUAL HCM) */
+      .lb-toggle { 
+        height: 40px; 
+        padding: 0 16px 0 12px; 
+        border-radius: 999px; 
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 8px; 
+        border: none;
+        background: linear-gradient(135deg, var(--pill-start), var(--pill-end)); 
+        color: #fff; 
+        box-shadow: 0 10px 28px rgba(2, 6, 23, 0.30), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+        cursor: pointer; 
+        user-select: none; 
+        transition: transform .12s ease, box-shadow .12s ease, filter .12s ease; 
+      }
+      
+      .lb-toggle:hover { transform: translateY(-1px); filter: brightness(1.05); }
+      .lb-toggle:active { transform: translateY(0); filter: brightness(.98); }
+
+      .lb-label-text {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+
+      .lb-icon { font-size: 18px; line-height: 1; }
+
+      /* CARD AJUSTADO PARA ABRIR DA ESQUERDA */
+      .lb-card {
+        margin-top: 10px; 
+        width: 500px; 
+        max-height: 62vh; 
+        overflow: auto; 
+        border: 1px solid var(--lb-border); 
+        background: var(--lb-bg);
+        -webkit-backdrop-filter: saturate(160%) blur(12px); 
+        backdrop-filter: saturate(160%) blur(12px); 
+        border-radius: var(--lb-radius); 
+        box-shadow: var(--lb-shadow);
+        display: none; 
+        position: absolute; 
+        bottom: 52px; 
+        left: 0; 
+        transform-origin: bottom left; 
+        color: #e5e7eb;
+      }
+      
+      .lb-card.open { display: block; animation: lbPop .18s cubic-bezier(.2, .9, .2, 1); }
+      
+      @keyframes lbPop { 
+        from { transform: scale(.95); opacity: 0 } 
+        to { transform: scale(1); opacity: 1 } 
+      }
+
+      .lb-header { 
+        padding: 12px 14px; 
+        border-bottom: 1px solid rgba(255, 255, 255, .1); 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        background: linear-gradient(180deg, rgba(167, 139, 250, .15), transparent 60%); 
+        border-top-left-radius: var(--lb-radius); 
+        border-top-right-radius: var(--lb-radius);
+        position: sticky; 
+        top: 0; 
+        z-index: 10;
+        backdrop-filter: blur(6px); 
+      }
+
+      .lb-title { font-weight: 800; letter-spacing: .2px; color: #fff; }
+
+      .lb-list { list-style: none; margin: 0; padding: 6px 0 8px; }
+      .lb-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px dashed rgba(255, 255, 255, .06); }
+      .lb-item:last-child { border-bottom: 0; }
+
+      .lb-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+      .lb-rank { width: 28px; text-align: right; font-variant-numeric: tabular-nums; color: #fde68a; font-weight: 700; }
+      .lb-item.top-2 .lb-rank { color: #cbd5e1; } 
+      .lb-item.top-3 .lb-rank { color: #d8b4fe; }
+
+      .lb-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #e5e7eb; }
+      .lb-points { font-variant-numeric: tabular-nums; font-weight: 600; color: #f3f4f6; }
+
+      .lb-footer { 
+        padding: 12px 14px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        gap: 8px; 
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        background: rgba(0, 0, 0, 0.2); 
+        border-bottom-left-radius: var(--lb-radius); 
+        border-bottom-right-radius: var(--lb-radius);
+        position: sticky; 
+        bottom: 0; 
+        backdrop-filter: blur(6px); 
+      }
+      
+      .lb-badge-me { background: var(--pill-start); padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff; }
+
+      @media (max-width: 820px) { 
+        .lb-panel { left: 12px; bottom: 88px; } 
+        .lb-card { position: fixed; left: 12px; right: 12px; bottom: 88px; width: auto; height: 58vh; max-height: none; transform-origin: bottom center; } 
+      }
+    </style>
+
+    <div class="requires-auth">
+      <div class="lb-panel" id="lbPanel2">
+        <button class="lb-toggle" id="lbToggle2" title="Ranking" aria-label="Open ranking">
+          <span class="lb-icon">🏆</span>
+          <span class="lb-label-text">Ranking</span>
+        </button>
+        <div class="lb-card" id="lbCard2" role="dialog" aria-modal="false" aria-label="Ranking">
+          <div class="lb-header">
+            <div class="lb-title">Top <span id="lbTopN2">10</span></div>
+          </div>
+          <ul class="lb-list" id="lbList2"></ul>
+          <div class="lb-footer"><span id="lbMe2"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const LB_ENDPOINT = 'https://course-chat.hcmrtns.workers.dev/ranking';
+      const LB_TOP = 10;
+      const LB_POLL_MS = 3000;
+
+      let LB_STUDENT = (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').toString();
+
+      const $ = (id) => document.getElementById(id);
+      const lbToggle  = $('lbToggle2');
+      const lbCard    = $('lbCard2');
+      const lbList    = $('lbList2');
+      const lbTopNEl  = $('lbTopN2');
+      const lbMeEl    = $('lbMe2');
+      lbTopNEl.textContent = LB_TOP;
+
+      document.addEventListener('auth:login', (ev) => {
+        const sid = (ev && ev.detail && ev.detail.studentId) ? ev.detail.studentId :
+          (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '');
+        if (sid) { 
+          LB_STUDENT = String(sid); 
+          if (lbCard.classList.contains('open')) fetchRanking(); 
+        }
+      });
+
+      lbToggle.addEventListener('click', () => {
+        const open = lbCard.classList.contains('open');
+        if (open) {
+          lbCard.classList.remove('open');
+        } else {
+          lbCard.classList.add('open');
+          fetchRanking();
+        }
+      });
+      
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lbCard.classList.remove('open'); });
+
+      async function fetchRanking() {
+        try {
+          const who = LB_STUDENT || 'anonymous';
+          const url = `${LB_ENDPOINT}?top=${LB_TOP}&who=${encodeURIComponent(who)}`;
+          const res = await fetch(url, { method: 'GET' });
+          const data = await res.json();
+          if (!data.ok && data.status !== 'success') throw new Error(data.error || 'Failed');
+          renderTop(data.top, data.me);
+        } catch (e) {
+          console.error('Ranking error:', e);
+          lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.6">Updating ranking...</div></li>';
+        }
+      }
+
+    function renderTop(top, me) {
+        lbList.innerHTML = '';
+        
+        // 1. Renderiza a lista pública (Sem detalhes individuais)
+        if (!top || !top.length) {
+            lbList.innerHTML = '<li class="lb-item"><div class="lb-name" style="opacity:.8">No points yet.</div></li>';
+        } else {
+            for (const row of top) {
+                const li = document.createElement('li'); 
+                li.className = 'lb-item';
+                if (row.rank <= 3) li.classList.add(`top-${row.rank}`);
+                
+                const left = document.createElement('div'); 
+                left.className = 'lb-left';
+                
+                const rk = document.createElement('div'); 
+                rk.className = 'lb-rank'; 
+                rk.textContent = row.rank;
+                
+                const nm = document.createElement('div'); 
+                nm.className = 'lb-name'; 
+                nm.textContent = row.name || row.studentId || row.student;
+                
+                left.appendChild(rk); 
+                left.appendChild(nm);
+                
+                const pts = document.createElement('div'); 
+                pts.className = 'lb-points'; 
+                pts.textContent = (row.total_points ?? row.points) + ' pts';
+                
+                li.appendChild(left); 
+                li.appendChild(pts);
+                lbList.appendChild(li);
+            }
+        }
+
+        // 2. Renderiza a faixa roxa (Privada com detalhamento completo)
+    // 2. Renderiza a faixa roxa (Privada com dados reais do banco)
+        if (me) {
+            // Fonte aumentada para 13px para melhor leitura no projetor
+            const detailStyle = 'font-size: 12px; opacity: 0.9; margin-left: 10px; font-weight: 400;';
+            
+            // Mapeamento direto das colunas do seu banco
+            const likes = me.likes_points || 0;
+            const checkouts = me.checkouts_points || 0;
+            const pools = me.poll_points || 0;
+            const problems = me.exercises_points || 0;
+
+            const details = `Likes: ${likes} · Checkouts: ${checkouts} · Questions: ${pools} `;
+
+            lbMeEl.innerHTML = `
+                <span class="lb-badge-me">
+                    Me: #${me.rank} · ${me.points} pts 
+                    <span style="${detailStyle}">(${details})</span>
+                </span>`;
+        } else {
+            lbMeEl.innerHTML = '';
+        }
+    }
+
+      if (LB_POLL_MS && Number(LB_POLL_MS) > 0) setInterval(fetchRanking, LB_POLL_MS);
+    </script>
+    <style>
+      .notice-modal-backdrop {
+        position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4);
+        display: none; align-items: center; justify-content: center;
+        z-index: 2147483647;
+      }
+      .notice-modal {
+        width: min(92vw, 500px); background: #fff; border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        padding: 24px; font-family: system-ui, -apple-system, sans-serif;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .notice-title { font-size: 1.25rem; font-weight: 700; margin: 0 0 10px; color: #1e3a8a; }
+      .notice-body { color: #334155; line-height: 1.6; font-size: 1rem; }
+      .notice-actions { display: flex; justify-content: flex-end; margin-top: 20px; }
+      .notice-btn {
+        padding: 10px 24px; border-radius: 8px; font-weight: 600;
+        border: none; background: #1e3a8a; color: #fff; cursor: pointer;
+        transition: background 0.2s;
+      }
+      .notice-btn:hover { background: #172e6b; }
+    </style>
+
+    <div class="notice-modal-backdrop" id="noticeBackdrop" aria-hidden="true">
+      <div class="notice-modal" role="dialog" aria-modal="true">
+        <div class="notice-title" id="noticeTitle">Notice</div>
+        <div class="notice-body" id="noticeBody"></div>
+        <div class="notice-actions">
+          <button class="notice-btn" id="noticeOkBtn" type="button">Got it!</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      const API_BASE = 'https://course-chat.hcmrtns.workers.dev';
+      
+      async function checkNotices() {
+        const sid = localStorage.getItem('studentId') || '';
+        if (!sid) return;
+
+        try {
+          const res = await fetch(`${API_BASE}/auth/notices/get?studentId=${sid}`);
+          const data = await res.json();
+
+          if (data.ok && data.hasNotice) {
+            displayNotice(data.notice, sid);
+          }
+        } catch (e) { console.error("Notice check failed", e); }
+      }
+
+      function displayNotice(notice, sid) {
+        const backdrop = document.getElementById('noticeBackdrop');
+        const title = document.getElementById('noticeTitle');
+        const body = document.getElementById('noticeBody');
+        const btn = document.getElementById('noticeOkBtn');
+
+        title.textContent = notice.title;
+        body.innerHTML = notice.message_html;
+        backdrop.style.display = 'flex';
+
+        btn.onclick = async () => {
+          // Registrar "visto" na D1
+          fetch(`${API_BASE}/auth/notices/ack?studentId=${sid}&notice_id=${notice.notice_id}`);
+          backdrop.style.display = 'none';
+        };
+      }
+
+      if (document.readyState === 'complete') checkNotices();
+      else window.addEventListener('load', checkNotices);
+    })();
+    </script>
+    <div id="live-poll-container" style="display:none; z-index:9999; transition: all 0.4s ease;"></div>
+    <script>
+    (function() {
+        const WORKER_URL = "https://course-chat.hcmrtns.workers.dev"; 
+        const pollContainer = document.getElementById('live-poll-container');
+        let lastPollId = null;
+
+        function applyResponsiveStyle() {
+            pollContainer.style.position = 'fixed';
+            pollContainer.style.top = '50%';
+            pollContainer.style.left = '50%';
+            pollContainer.style.transform = 'translate(-50%, -50%)';
+            pollContainer.style.width = '90%';
+            pollContainer.style.maxWidth = '700px';
+            pollContainer.style.display = 'block';
+        }
+
+        async function checkPoll() {
+            try {
+                const sid = localStorage.getItem("studentId") || localStorage.getItem("fs_user") || "guest";
+                const res = await fetch(`${WORKER_URL}/poll/status?student_id=${sid}`); // <-- Adicionei o ?student_id=
+                const data = await res.json();
+
+                if (!data || data.is_active !== 1) {
+                    pollContainer.style.display = 'none';
+                    return;
+                }
+
+                if (data.show_results === 1) {
+                    renderResults(data);
+                    applyResponsiveStyle();
+                    return;
+                }
+
+                if (!localStorage.getItem('answered_' + data.poll_id)) {
+                    if (data.poll_id !== lastPollId) {
+                        lastPollId = data.poll_id;
+                        renderPoll(data);
+                    }
+                    applyResponsiveStyle();
+                } else {
+                    // Se já respondeu e não é hora de mostrar resultados, mantém fechado
+                    pollContainer.style.display = 'none';
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        function renderPoll(data) {
+            const isNumeric = data.poll_type === 'numeric';
+            const accentColor = isNumeric ? "#0891b2" : (data.poll_type === 'quiz' ? "#b91c1c" : "#1e3a8a");
+            const icon = isNumeric ? "🔢 Numeric Question" : (data.poll_type === 'quiz' ? "🏆 Quiz" : "📊 Info");
+
+            let inputHtml = '';
+            if (isNumeric) {
+                inputHtml = `
+                    <div style="margin: 20px 0; text-align: center;">
+                        <input type="number" step="any" id="numeric_answer" placeholder="Use comma & two decimais (ex. 12,34)" 
+                            style="width:450px; padding:12px; border:2px solid #cbd5e1; border-radius:10px; font-size:1.4em; text-align:center;">
+                    </div>`;
+            } else {
+                const options = JSON.parse(data.options_json || '{}');
+                for (const [key, val] of Object.entries(options)) {
+                    if(!val) continue; 
+                    inputHtml += `
+                        <label style="display:flex; align-items:center; margin:12px 0; padding:15px; border:1px solid #cbd5e1; border-radius:10px; cursor:pointer; background:#f8fafc;">
+                            <input type="radio" name="poll_choice" value="${key}" style="width:18px; height:18px; margin-right:12px;"> 
+                            <span style="font-size:1.1em;"><strong>${key})</strong> ${val}</span>
+                        </label>`;
+                }
+            }
+
+            pollContainer.innerHTML = `
+                <div id="poll-inner-card" style="background:white; border-radius:15px; padding:30px; box-shadow:0 25px 50px rgba(0,0,0,0.3); border: 4px solid ${accentColor};">
+                    <h3 style="margin:0 0 15px; color:${accentColor}; font-size:1.4em;">${icon}</h3>
+                    <p style="font-size:1.2em; margin-bottom:20px; font-weight:600;">${data.question}</p>
+                    <form id="poll-form">
+                        ${inputHtml}
+                        <button type="submit" style="width:100%; background:${accentColor}; color:white; border:none; border-radius:8px; padding:15px; font-weight:bold; cursor:pointer; font-size:1.1em;">Submit Answer</button>
+                    </form>
+                </div>`;
+
+            document.getElementById('poll-form').onsubmit = async (e) => {
+                e.preventDefault();
+                const isNumericType = data.poll_type === 'numeric';
+                let choice = isNumericType ? document.getElementById('numeric_answer').value : document.querySelector('input[name="poll_choice"]:checked')?.value;
+                
+                if (!choice) return;
+
+                const student_id = localStorage.getItem("studentId") || localStorage.getItem("fs_user") || "guest";
+                const res = await fetch(`${WORKER_URL}/poll/vote`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ student_id, poll_id: data.poll_id, choice: choice })
+                });
+
+                if (res.ok) {
+                    localStorage.setItem('answered_' + data.poll_id, 'true');
+                    
+                    // Substitui o conteúdo da box pela mensagem de sucesso
+                    const innerCard = document.getElementById('poll-inner-card');
+                    innerCard.style.borderColor = "#059669";
+                    innerCard.innerHTML = `
+                        <div style="text-align:center; padding: 20px 0;">
+                            <div style="font-size:3em; margin-bottom:10px;">✅</div>
+                            <h3 style="color:#059669; margin-bottom:10px;">Answer Saved!</h3>
+                            <p style="font-size:1.1em; color:#475569;">Please wait for the professor to release the results.</p>
+                            <button onclick="document.getElementById('live-poll-container').style.display='none'" 
+                                style="margin-top:20px; background:#059669; color:white; border:none; padding:10px 25px; border-radius:8px; cursor:pointer; font-weight:bold;">
+                                Done
+                            </button>
+                        </div>`;
+                }
+            };
+        }
+
+        async function renderResults(pollData) {
+            const res = await fetch(`${WORKER_URL}/poll/results`);
+            const stats = await res.json();
+            const isNumeric = pollData.poll_type === 'numeric';
+            const total = stats.reduce((acc, curr) => acc + curr.count, 0);
+            
+            let chartHtml = '<div style="margin-top:20px;">';
+
+            if (isNumeric) {
+                chartHtml += `<p style="text-align:center; font-size:1.2em;">Correct Answer: <strong style="color:#059669;">${pollData.correct_option}</strong></p>`;
+                chartHtml += `<p style="text-align:center; color:#64748b;">Total participations: ${total}</p>`;
+            } else {
+                const definedOptions = JSON.parse(pollData.options_json || '{}');
+                const correctAns = (pollData.correct_option || "").trim().toUpperCase();
+                for (const [key, val] of Object.entries(definedOptions)) {
+                    if (!val) continue;
+                    const isCorrect = key.toUpperCase() === correctAns;
+                    const voteData = stats.find(s => s.chosen_option === key.toUpperCase()) || {count: 0};
+                    const percent = total > 0 ? Math.round((voteData.count / total) * 100) : 0;
+                    const barColor = isCorrect ? "#22c55e" : "#1e3a8a";
+
+                    chartHtml += `
+                        <div style="margin-bottom:15px;">
+                            <div style="display:flex; justify-content:between; margin-bottom:5px; font-weight:bold;">
+                                <span>Option ${key}: ${val} ${ (isCorrect) ? '✅' : ''}</span>
+                                <span style="margin-left:auto;">${percent}%</span>
+                            </div>
+                            <div style="background:#e2e8f0; border-radius:8px; height:20px; width:100%; overflow:hidden;">
+                                <div style="background:${barColor}; width:${percent}%; height:100%; transition:width 1s ease;"></div>
+                            </div>
+                        </div>`;
+                }
+            }
+            chartHtml += '</div>';
+
+            const feedbackHtml = pollData.feedback_text ? `
+                <div style="margin-top:20px; padding:15px; background:#f8fafc; border-left:4px solid #059669; color:#334155; font-size:0.95em;">
+                    <strong>Professor's Explanation:</strong><br>${pollData.feedback_text}
+                </div>` : '';
+
+            pollContainer.innerHTML = `
+                <div style="background:white; border-radius:15px; padding:30px; box-shadow:0 25px 50px rgba(0,0,0,0.4); border: 4px solid #059669;">
+                    <h3 style="margin:0; color:#059669; font-size:1.4em;">📊 Final Results</h3>
+                    ${chartHtml}
+                    ${feedbackHtml}
+                    <button onclick="document.getElementById('live-poll-container').style.display='none'" style="width:100%; margin-top:20px; padding:10px; border-radius:8px; border:none; background:#e2e8f0; cursor:pointer; font-weight:bold;">Close</button>
+                </div>`;
+        }
+
+        setInterval(checkPoll, 5000);
+        checkPoll();
+    })();
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1155,7 +2858,16 @@ Submit Answers
       }
     });
     </script>
-    <script type="text/javascript">
+    <script>
+      // Redundância leve: também define o módulo via JS neste deck
+      // (o notices-on-login reconhece body[data-module], localStorage e window.VHCM.module)
+      window.VHCM = window.VHCM || {};
+      window.VHCM.module = "mod0";
+
+      document.addEventListener('DOMContentLoaded', () => {
+        try { localStorage.setItem('mod0','mod0'); } catch(_) {}
+      });
+
       Reveal.on('ready', event => {
         if (event.indexh === 0) {
           document.querySelector("div.has-logo > img.slide-logo").style.display = "none";

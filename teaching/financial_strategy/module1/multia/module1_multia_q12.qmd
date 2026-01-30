@@ -1,0 +1,29 @@
+::: {.question-block}
+
+<form id="module1_multia_q12"
+  onsubmit="event.preventDefault(); checkAnswer('module1_multia_q12')" data-correct-answer="B">
+<strong style="display: block;">Consider the following statements:</strong>
+
+  <ol style="margin-top: 6px; margin-bottom: 10px;">
+    <li>Angel investors usually invest only after an IPO when market prices are stable</li>
+    <li>Angels sometimes use a SAFE or a convertible note to postpone valuation</li>
+    <li>A SAFE is common stock that pays a regular cash dividend</li>
+  </ol>
+
+  <strong style="display: block;">Which statements are FALSE?</strong>
+
+  <label><input type="radio" name="module1_multia_q12" value="A"> A. 1 and 2</label><br>
+  <label><input type="radio" name="module1_multia_q12" value="B"> B. 1 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q12" value="C"> C. 2 and 3</label><br>
+  <label><input type="radio" name="module1_multia_q12" value="D"> D. All of them</label><br>
+  <label><input type="radio" name="module1_multia_q12" value="E"> E. None of them</label><br>
+</form>
+
+<div id="feedback-module1_multia_q12" class="feedback" data-status="" style="display:none;">
+✅ Correct: B. Statements (1) and (3) are false (statement (2) is true).
+Why the false statements are false:
+- (1) Angel investors typically invest in early-stage private firms, well before any IPO.
+- (3) A SAFE is a contract that converts into equity in a future financing; it is not dividend-paying common stock.
+</div>
+
+:::
