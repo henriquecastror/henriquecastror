@@ -14,7 +14,9 @@ format:
     include-in-header: ../html/login-start.html
     include-after-body:
       - ../html/dm.html
-
+      - ../html/chat-widget.html
+      - ../html/ranking-widget2.html
+      - ../html/polls.html
     touch: true
     controls: true
     slide-number: true

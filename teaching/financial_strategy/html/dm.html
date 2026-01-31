@@ -1,82 +1,77 @@
 <script>
-(function() {
+(function () {
   try {
+    if (window.DM_INITIALIZED) return;
+    window.DM_INITIALIZED = true;
+
+    const WORKER_BASE = "https://course-chat.hcmrtns.workers.dev";
+
     const getCookie = (name) => {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
       return parts.length === 2 ? parts.pop().split(";").shift() : null;
     };
 
-    const sid = getCookie("student_id");
-    if (!sid) return; // Sai sem erro se não houver aluno logado
+    const getSid = () => {
+      const c = getCookie("student_id");
+      return (
+        (c ? decodeURIComponent(c) : "") ||
+        localStorage.getItem("studentId") ||
+        localStorage.getItem("fs_user") ||
+        localStorage.getItem("student_id") ||
+        ""
+      ).trim().toLowerCase();
+    };
 
-    fetch("/api/messages/check?sid=" + sid)
-      .then(r => r.json())
-      .then(data => {
-        if (data?.message) {
-          // Garante que o body existe antes de injetar
-          const inject = () => {
-            const m = data.message;
-            const toast = document.createElement("div");
-            toast.id = "dm-alert";
-            toast.style = "position:fixed; top:20px; right:20px; background:#1e3a8a; color:white; padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:999999; max-width:320px; font-family:sans-serif; border:2px solid #a78bfa;";
-            toast.innerHTML = `<strong>Mensagem:</strong><br>${m.message_text}<br><button id="btnDM" style="width:100%; margin-top:10px;">OK</button>`;
-            document.body.appendChild(toast);
-            document.getElementById("btnDM").onclick = () => {
-               fetch("/api/messages/mark-read", {
-                 method: "POST",
-                 headers: {"Content-Type":"application/json"},
-                 body: JSON.stringify({ message_id: m.id, student_id: sid })
-               }).then(() => toast.remove());
-            };
-          };
+    const sid = getSid();
+    if (!sid) return;
 
-          if (document.body) inject();
-          else window.addEventListener('DOMContentLoaded', inject);
-        }
-      });
+    const injectToast = (m) => {
+      if (document.getElementById("dm-toast-container")) return;
+
+      const toast = document.createElement("div");
+      toast.id = "dm-toast-container";
+      toast.setAttribute(
+        "style",
+        "position:fixed; top:20px; right:20px; background:#1e3a8a; color:white; padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2147483647; max-width:320px; font-family:sans-serif; border:2px solid #a78bfa; animation: dmSlideIn 0.5s ease-out;"
+      );
+
+      toast.innerHTML =
+        '<div style="font-weight:800; font-size:11px; color:#a78bfa; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Mensagem do Professor</div>' +
+        '<div style="font-size:14px; line-height:1.5; margin-bottom:12px; font-weight:500;"></div>' +
+        '<button id="dmReadBtn" style="background:#a78bfa; border:none; color:#0b1220; padding:10px; border-radius:6px; cursor:pointer; font-weight:800; width:100%; font-size:12px;">OK, ENTENDI</button>';
+
+      // evita XSS e problemas de HTML quebrado
+      toast.querySelector("div:nth-of-type(2)").textContent = m.message_text || "";
+
+      document.body.appendChild(toast);
+
+      document.getElementById("dmReadBtn").onclick = function () {
+        fetch(WORKER_BASE + "/api/messages/mark-read", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message_id: m.id, student_id: sid })
+        }).finally(() => toast.remove());
+      };
+    };
+
+    const init = () => {
+      fetch(WORKER_BASE + "/api/messages/check?sid=" + encodeURIComponent(sid), { cache: "no-store" })
+        .then((r) => r.json())
+        .then((data) => {
+          if (data && data.message) injectToast(data.message);
+        })
+        .catch((err) => console.error("DM fetch error:", err));
+    };
+
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+    else init();
+
+    const style = document.createElement("style");
+    style.textContent = "@keyframes dmSlideIn { from { transform:translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }";
+    document.head.appendChild(style);
   } catch (e) {
-    console.warn("Erro isolado no script de DM:", e);
+    console.warn("DM script error:", e);
   }
-})();
-</script>
-
-<script>
-(function() {
-  function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-  }
-  
-const sid = getCookie("student_id") || localStorage.getItem("studentId");
-if (!sid) return;
-
-  // Verifica se há mensagens novas para este aluno
-  fetch("/api/messages/check?sid=" + sid)
-    .then(r => r.json())
-    .then(data => {
-      if (data && data.message) {
-        const m = data.message;
-        const toast = document.createElement("div");
-        toast.style = "position:fixed; top:20px; right:20px; background:#1e3a8a; color:white; padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:100000; max-width:320px; font-family:sans-serif; border:2px solid #a78bfa; animation: dmSlideIn 0.5s ease-out;";
-        toast.innerHTML = '<div style="font-weight:800; font-size:11px; color:#a78bfa; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Mensagem do Professor</div>' + 
-                          '<div style="font-size:14px; line-height:1.5; margin-bottom:12px; font-weight:500;">' + m.message_text + '</div>' +
-                          '<button id="dmReadBtn" style="background:#a78bfa; border:none; color:#0b1220; padding:6px 12px; border-radius:6px; cursor:pointer; font-weight:800; font-size:12px; width:100%;">OK, ENTENDI</button>';
-        document.body.appendChild(toast);
-        
-        document.getElementById("dmReadBtn").onclick = function() {
-          fetch("/api/messages/mark-read", {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify({ message_id: m.id, student_id: sid })
-          }).then(() => toast.remove());
-        };
-      }
-    });
-
-  const style = document.createElement("style");
-  style.innerHTML = "@keyframes dmSlideIn { from { transform:translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }";
-  document.head.appendChild(style);
 })();
 </script>
