@@ -1928,80 +1928,183 @@
         ]
       });
     </script>
+    <!-- dm.html -->
     <script>
     (function () {
       try {
-        if (window.DM_INITIALIZED) return;
-        window.DM_INITIALIZED = true;
-
-        const WORKER_BASE = "https://course-chat.hcmrtns.workers.dev";
-
-        const getCookie = (name) => {
+        // -----------------------------
+        // Helpers
+        // -----------------------------
+        function getCookie(name) {
           const value = "; " + document.cookie;
           const parts = value.split("; " + name + "=");
-          return parts.length === 2 ? parts.pop().split(";").shift() : null;
-        };
+          if (parts.length === 2) return parts.pop().split(";").shift();
+          return null;
+        }
 
-        const getSid = () => {
-          const c = getCookie("student_id");
-          return (
-            (c ? decodeURIComponent(c) : "") ||
-            localStorage.getItem("studentId") ||
-            localStorage.getItem("fs_user") ||
-            localStorage.getItem("student_id") ||
-            ""
-          ).trim().toLowerCase();
-        };
+        function getSid() {
+          return (getCookie("student_id") || localStorage.getItem("studentId") || "")
+            .trim()
+            .toLowerCase();
+        }
 
-        const sid = getSid();
-        if (!sid) return;
+        function escapeHtml(str) {
+          return String(str ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
 
-        const injectToast = (m) => {
+        function isLocked() {
+          const htmlLocked = document.documentElement?.classList?.contains("locked");
+          const bodyLocked = document.body?.classList?.contains("locked"); // body pode ser null
+          const anyLockedEl = !!document.querySelector(".locked");
+          return !!(htmlLocked || bodyLocked || anyLockedEl);
+        }
+
+        // Se você já define WORKER_BASE em outro include, ótimo.
+        const WORKER_BASE =
+          (window.WORKER_BASE && String(window.WORKER_BASE).trim()) ||
+          "https://course-chat.hcmrtns.workers.dev";
+
+        // -----------------------------
+        // CSS animation (uma vez só)
+        // -----------------------------
+        function ensureStyle() {
+          if (document.getElementById("dm-toast-style")) return;
+          const style = document.createElement("style");
+          style.id = "dm-toast-style";
+          style.innerHTML =
+            "@keyframes dmSlideIn { from { transform:translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }";
+          document.head.appendChild(style);
+        }
+
+        // -----------------------------
+        // Inject toast
+        // -----------------------------
+        function injectToast(m, sid) {
           if (document.getElementById("dm-toast-container")) return;
+
+          const original = m && m.original_ticket ? String(m.original_ticket) : "";
+          const originalWhen = m && m.original_when ? String(m.original_when) : "";
 
           const toast = document.createElement("div");
           toast.id = "dm-toast-container";
           toast.setAttribute(
             "style",
-            "position:fixed; top:20px; right:20px; background:#1e3a8a; color:white; padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2147483647; max-width:320px; font-family:sans-serif; border:2px solid #a78bfa; animation: dmSlideIn 0.5s ease-out;"
+            [
+              "position:fixed",
+              "top:20px",
+              "right:20px",
+              "background:#1e3a8a",
+              "color:white",
+              "padding:18px",
+              "border-radius:12px",
+              "box-shadow:0 10px 30px rgba(0,0,0,0.5)",
+              "z-index:2147483647",
+              "max-width:360px",
+              "font-family:sans-serif",
+              "border:2px solid #a78bfa",
+              "animation: dmSlideIn 0.5s ease-out"
+            ].join(";")
           );
 
           toast.innerHTML =
-            '<div style="font-weight:800; font-size:11px; color:#a78bfa; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Mensagem do Professor</div>' +
-            '<div style="font-size:14px; line-height:1.5; margin-bottom:12px; font-weight:500;"></div>' +
-            '<button id="dmReadBtn" style="background:#a78bfa; border:none; color:#0b1220; padding:10px; border-radius:6px; cursor:pointer; font-weight:800; width:100%; font-size:12px;">OK, ENTENDI</button>';
+            '<div style="font-weight:800; font-size:11px; color:#a78bfa; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;">Mensagem do Professor</div>' +
 
-          // evita XSS e problemas de HTML quebrado
-          toast.querySelector("div:nth-of-type(2)").textContent = m.message_text || "";
+            (original
+              ? (
+                '<div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); padding:10px; border-radius:10px; margin-bottom:12px;">' +
+                  '<div style="font-size:10px; font-weight:800; color:#c7d2fe; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Sua mensagem (checkout)</div>' +
+                  '<div style="font-size:13px; line-height:1.45; color:#e5e7eb; white-space:pre-wrap;">' + escapeHtml(original) + "</div>" +
+                  (originalWhen
+                    ? '<div style="margin-top:6px; font-size:10px; color:#cbd5e1; opacity:0.95;">' + escapeHtml(originalWhen) + "</div>"
+                    : ""
+                  ) +
+                "</div>"
+              )
+              : ""
+            ) +
+
+            '<div style="font-size:14px; line-height:1.5; margin-bottom:12px; font-weight:500; white-space:pre-wrap;">' +
+              escapeHtml((m && m.message_text) || "") +
+            "</div>" +
+
+            '<button id="dmReadBtn" style="background:#a78bfa; border:none; color:#0b1220; padding:10px; border-radius:6px; cursor:pointer; font-weight:800; width:100%; font-size:12px;">OK, ENTENDI</button>';
 
           document.body.appendChild(toast);
 
-          document.getElementById("dmReadBtn").onclick = function () {
-            fetch(WORKER_BASE + "/api/messages/mark-read", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ message_id: m.id, student_id: sid })
-            }).finally(() => toast.remove());
+          const btn = document.getElementById("dmReadBtn");
+          if (btn) {
+            btn.onclick = function () {
+              fetch(WORKER_BASE + "/api/messages/mark-read", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message_id: m.id, student_id: sid })
+              })
+              .then(() => toast.remove())
+              .catch(() => toast.remove());
+            };
+          }
+        }
+
+        // -----------------------------
+        // DM check (só roda quando tiver sid e estiver unlocked)
+        // -----------------------------
+        let started = false; // evita duplicar loop
+        function startLoop() {
+          if (started) return;
+          started = true;
+
+          ensureStyle();
+
+          let tries = 0;
+          const maxTries = 240; // 240 * 500ms = 2 minutos (ajuste se quiser)
+
+          const tick = () => {
+            tries++;
+
+            // 1) espera login criar sid
+            const sid = getSid();
+            if (!sid) {
+              if (tries < maxTries) return setTimeout(tick, 500);
+              return; // desiste silenciosamente
+            }
+
+            // 2) espera unlock
+            if (isLocked()) {
+              if (tries < maxTries) return setTimeout(tick, 500);
+              return;
+            }
+
+            // 3) agora sim: faz fetch e tenta mostrar
+            fetch(WORKER_BASE + "/api/messages/check?sid=" + encodeURIComponent(sid))
+              .then((r) => r.json())
+              .then((data) => {
+                if (data && data.message) {
+                  injectToast(data.message, sid);
+                }
+              })
+              .catch((err) => console.error("DM Fetch Error:", err));
+
+            // Opcional: se quiser checar novas DMs de tempos em tempos:
+            // setTimeout(tick, 15000);
           };
-        };
 
-        const init = () => {
-          fetch(WORKER_BASE + "/api/messages/check?sid=" + encodeURIComponent(sid), { cache: "no-store" })
-            .then((r) => r.json())
-            .then((data) => {
-              if (data && data.message) injectToast(data.message);
-            })
-            .catch((err) => console.error("DM fetch error:", err));
-        };
+          tick();
+        }
 
-        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-        else init();
+        // Garante body pronto (porque vamos injetar toast)
+        if (document.readyState === "loading") {
+          window.addEventListener("DOMContentLoaded", startLoop);
+        } else {
+          startLoop();
+        }
 
-        const style = document.createElement("style");
-        style.textContent = "@keyframes dmSlideIn { from { transform:translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }";
-        document.head.appendChild(style);
       } catch (e) {
-        console.warn("DM script error:", e);
+        console.warn("Erro isolado no script de DM:", e);
       }
     })();
     </script>
