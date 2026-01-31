@@ -62,6 +62,20 @@
 
       const toast = document.createElement("div");
       toast.id = "dm-toast-container";
+
+      const isManual =
+  (String(m?.context_type || "").toLowerCase() === "manual") ||
+  !String(m?.checkout_id || "").trim(); // se não tem checkout_id, trata como DM manual
+
+
+      // escolha 1: teal (manual) vs lilás (checkout reply)
+      const accent = isManual ? "#2dd4bf" : "#a78bfa";
+      const header = isManual ? "DM from Instructor" : "Instructor's feedback";
+      const btnText = isManual ? "Got it!" : "Received";
+
+      // (opcional, mas recomendado): só mostra bloco "checkout" quando NÃO for manual
+      const showOriginal = !isManual && !!original;
+
       toast.setAttribute(
         "style",
         [
@@ -76,15 +90,15 @@
           "z-index:2147483647",
           "max-width:360px",
           "font-family:sans-serif",
-          "border:2px solid #a78bfa",
+          `border:2px solid ${accent}`,
           "animation: dmSlideIn 0.5s ease-out"
         ].join(";")
       );
 
       toast.innerHTML =
-        '<div style="font-weight:800; font-size:11px; color:#a78bfa; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;">Mensagem do Professor</div>' +
+        `<div style="font-weight:800; font-size:11px; color:${accent}; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;">${escapeHtml(header)}</div>` +
 
-        (original
+        (showOriginal
           ? (
             '<div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); padding:10px; border-radius:10px; margin-bottom:12px;">' +
               '<div style="font-size:10px; font-weight:800; color:#c7d2fe; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Sua mensagem (checkout)</div>' +
@@ -102,14 +116,14 @@
           escapeHtml((m && m.message_text) || "") +
         "</div>" +
 
-        '<button id="dmReadBtn" style="background:#a78bfa; border:none; color:#0b1220; padding:10px; border-radius:6px; cursor:pointer; font-weight:800; width:100%; font-size:12px;">OK, ENTENDI</button>';
+        `<button id="dmReadBtn" style="background:${accent}; border:none; color:#0b1220; padding:10px; border-radius:6px; cursor:pointer; font-weight:800; width:100%; font-size:12px;">${escapeHtml(btnText)}</button>`;
 
       document.body.appendChild(toast);
 
       const btn = document.getElementById("dmReadBtn");
       if (btn) {
         btn.onclick = function () {
-          fetch(WORKER_BASE + "/api/messages/mark-read", {
+          fetch(WORKER_BASE + "/api/dm/mark-read", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message_id: m.id, student_id: sid })
@@ -131,7 +145,7 @@
       ensureStyle();
 
       let tries = 0;
-      const maxTries = 240; // 240 * 500ms = 2 minutos (ajuste se quiser)
+      const maxTries = 240; // 240 * 500ms = 2 minutos
 
       const tick = () => {
         tries++;
@@ -140,7 +154,7 @@
         const sid = getSid();
         if (!sid) {
           if (tries < maxTries) return setTimeout(tick, 500);
-          return; // desiste silenciosamente
+          return;
         }
 
         // 2) espera unlock
@@ -150,7 +164,7 @@
         }
 
         // 3) agora sim: faz fetch e tenta mostrar
-        fetch(WORKER_BASE + "/api/messages/check?sid=" + encodeURIComponent(sid))
+        fetch(WORKER_BASE + "/api/dm/check?sid=" + encodeURIComponent(sid))
           .then((r) => r.json())
           .then((data) => {
             if (data && data.message) {
@@ -159,7 +173,7 @@
           })
           .catch((err) => console.error("DM Fetch Error:", err));
 
-        // Opcional: se quiser checar novas DMs de tempos em tempos:
+        // Se quiser checar novas DMs periodicamente:
         // setTimeout(tick, 15000);
       };
 
