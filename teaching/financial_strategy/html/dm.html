@@ -1,13 +1,56 @@
 <script>
 (function() {
+  try {
+    const getCookie = (name) => {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      return parts.length === 2 ? parts.pop().split(";").shift() : null;
+    };
+
+    const sid = getCookie("student_id");
+    if (!sid) return; // Sai sem erro se não houver aluno logado
+
+    fetch("/api/messages/check?sid=" + sid)
+      .then(r => r.json())
+      .then(data => {
+        if (data?.message) {
+          // Garante que o body existe antes de injetar
+          const inject = () => {
+            const m = data.message;
+            const toast = document.createElement("div");
+            toast.id = "dm-alert";
+            toast.style = "position:fixed; top:20px; right:20px; background:#1e3a8a; color:white; padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:999999; max-width:320px; font-family:sans-serif; border:2px solid #a78bfa;";
+            toast.innerHTML = `<strong>Mensagem:</strong><br>${m.message_text}<br><button id="btnDM" style="width:100%; margin-top:10px;">OK</button>`;
+            document.body.appendChild(toast);
+            document.getElementById("btnDM").onclick = () => {
+               fetch("/api/messages/mark-read", {
+                 method: "POST",
+                 headers: {"Content-Type":"application/json"},
+                 body: JSON.stringify({ message_id: m.id, student_id: sid })
+               }).then(() => toast.remove());
+            };
+          };
+
+          if (document.body) inject();
+          else window.addEventListener('DOMContentLoaded', inject);
+        }
+      });
+  } catch (e) {
+    console.warn("Erro isolado no script de DM:", e);
+  }
+})();
+</script>
+
+<script>
+(function() {
   function getCookie(name) {
     const value = "; " + document.cookie;
     const parts = value.split("; " + name + "=");
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
   
-  const sid = getCookie("student_id");
-  if (!sid) return;
+const sid = getCookie("student_id") || localStorage.getItem("studentId");
+if (!sid) return;
 
   // Verifica se há mensagens novas para este aluno
   fetch("/api/messages/check?sid=" + sid)

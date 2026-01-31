@@ -13,10 +13,8 @@ format:
       data-module: mod0
     include-in-header: ../html/login-start.html
     include-after-body:
-      - ../html/chat-widget.html
-      - ../html/ranking-widget2.html
-      - ../html/polls.html
       - ../html/dm.html
+
     touch: true
     controls: true
     slide-number: true
