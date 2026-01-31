@@ -11,12 +11,12 @@ format:
   revealjs:
     body-attributes:
       data-module: mod0
-    include-in-header: ../login-start.html
+    include-in-header: ../html/login-start.html
     include-after-body:
-      - ../chat-widget.html
-      - ../ranking-widget2.html
-      - ../notices-on-login.html
-      - ../polls.html
+      - ../html/chat-widget.html
+      - ../html/ranking-widget2.html
+      - ../html/notices-on-login.html
+      - ../html/polls.html
     touch: true
     controls: true
     slide-number: true
@@ -95,7 +95,7 @@ include-after: |
 
 
 
-{{< include ../like-button2.html >}}
+{{< include ../html/like-button2.html >}}
 
 
 
@@ -613,7 +613,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
      data-close="2026-02-02 16:59">
 </div>
 
-{{< include ../checkout2.html >}}
+{{< include ../html/checkout2.html >}}
 
 
 
