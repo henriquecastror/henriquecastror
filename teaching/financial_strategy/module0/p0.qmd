@@ -15,8 +15,8 @@ format:
     include-after-body:
       - ../html/chat-widget.html
       - ../html/ranking-widget2.html
-      - ../html/notices-on-login.html
       - ../html/polls.html
+      - ../html/dm.html
     touch: true
     controls: true
     slide-number: true
@@ -598,7 +598,7 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
 
 
 
-
+ 
 
 
 
@@ -609,17 +609,18 @@ Worthington, D. L., & Levasseur, D. G. (2015). To provide or not to provide cour
      data-session="What is Finance?"
      data-page="What is Finance?"
      data-require-login="true"
+     data-question="How confident are you about today's content?"
      data-open="2025-02-02 15:30"
      data-close="2026-02-02 16:59">
 </div>
 
-{{< include ../html/checkout2.html >}}
+{{< include ../html/checkout3.html >}}
 
 
 
 
-
-
+ 
+ 
 
 
 

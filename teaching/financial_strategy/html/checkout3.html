@@ -1,6 +1,5 @@
-<!-- checkout2.html — Check-out → Cloudflare Worker (JSON, CORS-safe) -->
+<!-- checkout3.html — Check-out → Cloudflare Worker (JSON, CORS-safe) + Likert required + custom question label via data-question -->
 <style>
-  /* ===== Tokens (light) — exit-checkout colors ===== */
   :root{
     --card-bg:#fff; --card-border:rgba(15,23,42,.06); --card-shadow:0 12px 30px rgba(17,24,39,.12);
     --ink:#0b1220; --muted:#3a4a5c; --muted-2:#2b3a4a; --line:#e9eef5; --pill-bg:#f5f9ff;
@@ -8,15 +7,19 @@
     --btn-bg-1:#4f46e5; --btn-bg-2:#60a5fa; --btn-ink:#fff;
     --textarea-bg:#fff;
 
-    /* ribbon colors by state */
-    --ribbon-open-1: rgba(34,197,94,.18);   /* green */
+    --ribbon-open-1: rgba(34,197,94,.18);
     --ribbon-open-2: rgba(16,185,129,.16);
-    --ribbon-soon-1: rgba(245,158,11,.18);  /* amber */
+    --ribbon-soon-1: rgba(245,158,11,.18);
     --ribbon-soon-2: rgba(251,191,36,.16);
-    --ribbon-closed-1: rgba(239,68,68,.20); /* red */
+    --ribbon-closed-1: rgba(239,68,68,.20);
     --ribbon-closed-2: rgba(248,113,113,.16);
-    --ribbon-default-1: rgba(99,102,241,.14); /* blue (fallback) */
+    --ribbon-default-1: rgba(99,102,241,.14);
     --ribbon-default-2: rgba(96,165,250,.14);
+
+    --likert-bg: rgba(15,23,42,.06);
+    --likert-border: rgba(15,23,42,.10);
+    --likert-selected: rgba(79,70,229,.18);
+    --likert-selected-border: rgba(79,70,229,.40);
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -25,10 +28,14 @@
       --ink:#f8fafc; --muted:#e5edf6; --muted-2:#f1f5f9;
       --btn-bg-1:#5b7fff; --btn-bg-2:#7cc5ff; --btn-ink:#0b1220;
       --textarea-bg:rgba(2,6,23,.55);
+
+      --likert-bg: rgba(148,163,184,.18);
+      --likert-border: rgba(148,163,184,.26);
+      --likert-selected: rgba(124,197,255,.22);
+      --likert-selected-border: rgba(124,197,255,.52);
     }
   }
 
-  /* Card */
   [data-ticket] .tw-card{
     position:relative;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;
     padding:16px;box-shadow:var(--card-shadow);backdrop-filter:saturate(120%) blur(6px);-webkit-backdrop-filter:saturate(120%) blur(6px);
@@ -39,12 +46,10 @@
     background:linear-gradient(135deg,var(--ribbon-default-1),var(--ribbon-default-2));
     pointer-events:none;
   }
-  /* ribbon by state */
   [data-ticket].open   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-open-1),var(--ribbon-open-2)); }
   [data-ticket].soon   .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-soon-1),var(--ribbon-soon-2)); }
   [data-ticket].closed .tw-card::before{ background:linear-gradient(135deg,var(--ribbon-closed-1),var(--ribbon-closed-2)); }
 
-  /* Header */
   [data-ticket] .tw-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;position:relative;z-index:1;}
   [data-ticket] .tw-icon{
     width:36px;height:36px;border-radius:12px;background:#1f2937;display:grid;place-items:center;flex:0 0 36px;
@@ -60,7 +65,6 @@
   [data-ticket] .tw-title{font-weight:800;color:var(--ink);line-height:1.1;letter-spacing:.2px;}
   [data-ticket] .tw-sub{color:var(--muted);font-size:.92rem;}
 
-  /* Badges */
   [data-ticket] .tw-meta{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   [data-ticket] .tw-badge{
     display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;
@@ -71,13 +75,11 @@
   }
   [data-ticket] .tw-window-text{white-space:pre-line;}
 
-  /* Status dot */
   [data-ticket] .tw-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;}
   [data-ticket].open  .tw-dot{background:#16a34a;}
   [data-ticket].soon  .tw-dot{background:#f59e0b;}
   [data-ticket].closed.tw-dot,[data-ticket].closed .tw-dot{background:#ff4d4f;}
 
-  /* Textarea */
   [data-ticket] .tw-body{position:relative;z-index:1;box-sizing:border-box;}
   [data-ticket] textarea.tw-text{
     width:100%;border:1px solid var(--line);background:var(--textarea-bg);border-radius:14px;padding:12px 14px;
@@ -87,19 +89,16 @@
   [data-ticket] textarea.tw-text:focus{border-color:#60a5fa;box-shadow:0 0 0 4px var(--focus);transform:translateY(-1px);}
   [data-ticket] textarea.tw-text::placeholder{color:#60758a;opacity:.9;}
 
-  /* Footer & messages */
-  [data-ticket] .tw-footer{display:flex;align-items:center;gap:12px;margin-top:12px;}
+  [data-ticket] .tw-footer{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;}
   [data-ticket] .tw-count{margin-left:auto;color:#60758a;font-size:.86rem;}
   [data-ticket] .tw-msg{margin-top:8px;font-size:.93rem;min-height:1.2em;font-weight:700;letter-spacing:.2px;}
   [data-ticket] .tw-msg.success{color:#059669!important;}
   [data-ticket] .tw-msg.error{color:#ff4d4f!important;}
   [data-ticket] .tw-msg.warning{color:#f59e0b!important;}
-  /* match dot color if no explicit class was set */
   [data-ticket].open  .tw-msg:not(.success):not(.error):not(.warning){color:#16a34a!important;}
   [data-ticket].soon  .tw-msg:not(.success):not(.error):not(.warning){color:#f59e0b!important;}
   [data-ticket].closed.tw-msg,[data-ticket].closed .tw-msg:not(.success):not(.error):not(.warning){color:#ff4d4f!important;}
 
-  /* Button */
   [data-ticket] .tw-btn{
     padding:10px 16px;border-radius:12px;border:1px solid rgba(15,23,42,.12);
     background:linear-gradient(135deg,var(--btn-bg-1),var(--btn-bg-2));color:var(--btn-ink);font-weight:800;cursor:pointer;
@@ -110,22 +109,47 @@
   [data-ticket] .tw-btn:disabled{opacity:.85;cursor:not-allowed;transform:none;background:#e5f0ff;color:#6b7280;border-color:#dbeafe;box-shadow:none;}
   [data-ticket] .tw-btn.sent{opacity:.92;cursor:default;}
 
-  /* Spinner */
   [data-ticket] .spin:after{
     content:"";display:inline-block;width:14px;height:14px;margin-left:8px;border:2px solid rgba(255,255,255,.65);
     border-top-color:transparent;border-radius:50%;animation:twspin .8s linear infinite;vertical-align:-2px;
   }
   @keyframes twspin{to{transform:rotate(360deg)}}
 
-  /* Mini-login */
   [data-ticket] .tw-login{display:flex;gap:8px;align-items:center;margin:8px 0 12px 0}
   [data-ticket] .tw-login input{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--textarea-bg);color:var(--ink);outline:none}
 
-  /* Responsive */
+  [data-ticket] .tw-likert{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:12px;border:1px solid var(--line);
+    background:var(--pill-bg);
+  }
+  [data-ticket] .tw-likert .tw-lab{
+    font-size:.86rem;font-weight:800;color:var(--muted-2);white-space:nowrap;
+  }
+  [data-ticket] .tw-likert .tw-boxes{display:flex;gap:6px;}
+  [data-ticket] .tw-likert button.tw-box{
+    width:28px;height:28px;border-radius:9px;
+    border:1px solid var(--likert-border);
+    background:var(--likert-bg);
+    color:var(--muted-2);
+    font-weight:900;
+    cursor:pointer;
+    display:grid;place-items:center;
+    transition:transform .06s, box-shadow .15s, border-color .15s, background .15s;
+    user-select:none;
+  }
+  [data-ticket] .tw-likert button.tw-box:hover{transform:translateY(-1px);}
+  [data-ticket] .tw-likert button.tw-box:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus);}
+  [data-ticket] .tw-likert button.tw-box.selected{
+    background:var(--likert-selected);
+    border-color:var(--likert-selected-border);
+  }
+
   @media (max-width:640px){
     [data-ticket] .tw-card{border-radius:14px;padding:14px;}
     [data-ticket] .tw-header{gap:10px;}
     [data-ticket] .tw-badge{padding:5px 9px;font-size:.82rem;}
+    [data-ticket] .tw-likert{width:100%;justify-content:space-between;}
   }
 </style>
 
@@ -140,10 +164,6 @@
   function initOne(host){
     host.setAttribute('data-tw-mounted','1');
 
-    // ===== NEW: min/max chars =====
-    const MIN_CHARS = 100;
-    const MAX_CHARS = 500;
-
     // ---- Config/attrs
     const bridge = (host.getAttribute('data-bridge') || window.BRIDGE_URL || '').trim();
     const sessionTag = (host.getAttribute('data-session') || '').trim();
@@ -151,6 +171,13 @@
     const winStartStr= (host.getAttribute('data-open') || '').trim();
     const winEndStr  = (host.getAttribute('data-close') || '').trim();
     const requireLogin = String(host.getAttribute('data-require-login') || 'true').toLowerCase() !== 'false';
+
+    // NEW: custom Likert question label
+    const questionLabel = (host.getAttribute('data-question') || 'Confidence').trim();
+
+    // limits
+    const MIN_CHARS = 100;
+    const MAX_CHARS = 500;
 
     // ---- Helpers
     const parseLocal = (ts) => ts ? new Date(ts.replace(' ','T')) : null;
@@ -177,6 +204,7 @@
     host.innerHTML = '';
     const card = document.createElement('div'); card.className = 'tw-card';
     const windowLabel = (winStartStr && winEndStr) ? (winStartStr + '\n→ ' + winEndStr) : 'No window set';
+
     card.innerHTML = `
       <div class="tw-header">
         <div class="tw-icon" aria-hidden="true">
@@ -194,15 +222,30 @@
           </div>
         </div>
       </div>
+
       <div class="tw-login" style="display:none">
         <input type="text" class="tw-login-input" placeholder="Digite seu ID / e-mail do curso"/>
         <button type="button" class="tw-btn tw-login-btn">Entrar</button>
       </div>
+
       <div class="tw-body"></div>
+
       <div class="tw-footer">
+        <div class="tw-likert" role="group" aria-label="Likert question">
+          <span class="tw-lab"></span>
+          <div class="tw-boxes">
+            <button type="button" class="tw-box" data-val="1" aria-label="1">1</button>
+            <button type="button" class="tw-box" data-val="2" aria-label="2">2</button>
+            <button type="button" class="tw-box" data-val="3" aria-label="3">3</button>
+            <button type="button" class="tw-box" data-val="4" aria-label="4">4</button>
+            <button type="button" class="tw-box" data-val="5" aria-label="5">5</button>
+          </div>
+        </div>
+
         <button type="button" class="tw-btn tw-send">Send (click only 1x)</button>
         <div class="tw-count">0/${MAX_CHARS}</div>
       </div>
+
       <div class="tw-msg"></div>`;
     host.appendChild(card);
 
@@ -215,21 +258,27 @@
     const loginRow = $('.tw-login', card);
     const loginInp = $('.tw-login-input', card);
     const loginBtn = $('.tw-login-btn', card);
+    const likertLabelEl = $('.tw-lab', card);
+    const likertBoxes = Array.from(card.querySelectorAll('.tw-box'));
+
+    // set label
+    likertLabelEl.textContent = questionLabel || 'Confidence';
+
+    // state
+    let likertValue = 0;
 
     // textarea
     const ta = document.createElement('textarea');
     ta.className = 'tw-text';
     ta.maxLength = MAX_CHARS;
-    ta.placeholder = `Your check-out (min ${MIN_CHARS}, max ${MAX_CHARS}): one thing you learned + one idea of application + one question…`;
+    ta.placeholder = `Your check-out (min ${MIN_CHARS}, max ${MAX_CHARS}): one thing you learned + one question…`;
     body.appendChild(ta);
 
-    const getLen = () => ta.value.trim().length;
-
-    ta.addEventListener('input', () => {
+    function updateCount(){
       count.textContent = `${ta.value.length}/${MAX_CHARS}`;
-      syncEnabled();
-    });
-    count.textContent = `0/${MAX_CHARS}`;
+    }
+    ta.addEventListener('input', () => { updateCount(); syncEnabled(); });
+    updateCount();
 
     const successMsg = 'Check-out recorded. Thank you!';
     const dupMsg     = 'You have already completed the check-out for this session. Thanks!';
@@ -245,12 +294,33 @@
       loginRow.style.display = need ? 'flex' : 'none';
     }
 
+    function setLikert(val){
+      likertValue = val;
+      likertBoxes.forEach(b => {
+        const v = parseInt(b.getAttribute('data-val'), 10);
+        b.classList.toggle('selected', v === likertValue);
+        b.setAttribute('aria-pressed', (v === likertValue) ? 'true' : 'false');
+      });
+    }
+
+    likertBoxes.forEach(b => {
+      b.addEventListener('click', () => {
+        const v = parseInt(b.getAttribute('data-val'), 10) || 0;
+        setLikert(v);
+        setMsg(msg, '');
+        syncEnabled();
+      });
+    });
+
     function syncEnabled(){
       const logged = !requireLogin || !!getStudentId();
       const st     = statusNow().state;
-      const len    = getLen();
-      const okLen  = len >= MIN_CHARS;
-      const enabled= logged && (st==='open') && okLen && !isDone();
+      const len    = ta.value.trim().length;
+
+      const filled = len >= MIN_CHARS;
+      const rated  = likertValue >= 1 && likertValue <= 5;
+
+      const enabled= logged && (st==='open') && filled && rated && !isDone();
       btn.disabled = !enabled;
 
       showLoginIfNeeded(); paintBadge();
@@ -261,9 +331,9 @@
       } else if (!logged) setMsg(msg,'Please log in to submit.','warning');
       else if (st==='soon') setMsg(msg,'Not open yet.','warning');
       else if (st==='closed') setMsg(msg,'This activity is closed.','error');
-      else if (len === 0) setMsg(msg, `Write your check-out (min ${MIN_CHARS} characters).`, 'warning');
-      else if (!okLen) setMsg(msg, `Keep going: ${MIN_CHARS - len} more characters needed.`, 'warning');
-      else setMsg(msg,''); // ready
+      else if (!filled) setMsg(msg, `Write at least ${MIN_CHARS} characters to submit.`, 'warning');
+      else if (!rated) setMsg(msg, `Please answer: ${questionLabel} (1–5).`, 'warning');
+      else setMsg(msg,'');
     }
 
     // mini-login
@@ -292,15 +362,9 @@
       const sid = getStudentId();
       if (requireLogin && !sid){ setMsg(msg,'Please log in to submit.','warning'); return; }
 
-      const trimmed = ta.value.trim();
-      const len = trimmed.length;
-
-      if (len < MIN_CHARS){
-        setMsg(msg, `Minimum is ${MIN_CHARS} characters. You need ${MIN_CHARS - len} more.`, 'warning');
-        return;
-      }
-
-      const text = trimmed.slice(0, MAX_CHARS);
+      const text = ta.value.trim().slice(0,MAX_CHARS);
+      if (text.length < MIN_CHARS){ setMsg(msg, `Write at least ${MIN_CHARS} characters to submit.`, 'warning'); return; }
+      if (!(likertValue >= 1 && likertValue <= 5)){ setMsg(msg, `Please answer: ${questionLabel} (1–5).`, 'warning'); return; }
       if (!bridge){ setMsg(msg,'Missing BRIDGE URL.','error'); return; }
 
       btn.classList.add('spin'); btn.disabled = true; setMsg(msg,'');
@@ -309,6 +373,11 @@
         student_id: sid,
         slide_id: (sessionTag || getPageId()),
         ticket: text,
+
+        // Likert (custom question)
+        likert_question: questionLabel,
+        likert_value: likertValue,
+
         tsClient: new Date().toISOString(),
         open:  winStartStr,
         close: winEndStr,
@@ -332,14 +401,15 @@
           } else {
             setMsg(msg,'Failed to submit. Please try again.','error');
           }
-          console.error('[checkout2] HTTP error:', res.status, raw);
+          console.error('[checkout3] HTTP error:', res.status, raw);
           btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
           return;
         }
 
         if (data && data.status === 'success'){
           setMsg(msg, successMsg, 'success');
-          ta.value=''; count.textContent=`0/${MAX_CHARS}`;
+          ta.value=''; updateCount();
+          setLikert(0);
           markDone(btn); clearInterval(ticker);
           return;
         }
@@ -353,10 +423,10 @@
         }
 
         setMsg(msg,'Failed to submit. Please try again.','error');
-        console.error('[checkout2] unexpected response:', raw);
+        console.error('[checkout3] unexpected response:', raw);
         btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
       }catch(err){
-        console.error('[checkout2] submit error:', err);
+        console.error('[checkout3] submit error:', err);
         setMsg(msg,'Network error. Please try again.','error');
         btn.classList.remove('spin'); btn.disabled = false; btn.textContent = 'Send (click only 1x)';
       }

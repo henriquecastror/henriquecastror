@@ -1,0 +1,39 @@
+<script>
+(function() {
+  function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+  
+  const sid = getCookie("student_id");
+  if (!sid) return;
+
+  // Verifica se há mensagens novas para este aluno
+  fetch("/api/messages/check?sid=" + sid)
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.message) {
+        const m = data.message;
+        const toast = document.createElement("div");
+        toast.style = "position:fixed; top:20px; right:20px; background:#1e3a8a; color:white; padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:100000; max-width:320px; font-family:sans-serif; border:2px solid #a78bfa; animation: dmSlideIn 0.5s ease-out;";
+        toast.innerHTML = '<div style="font-weight:800; font-size:11px; color:#a78bfa; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Mensagem do Professor</div>' + 
+                          '<div style="font-size:14px; line-height:1.5; margin-bottom:12px; font-weight:500;">' + m.message_text + '</div>' +
+                          '<button id="dmReadBtn" style="background:#a78bfa; border:none; color:#0b1220; padding:6px 12px; border-radius:6px; cursor:pointer; font-weight:800; font-size:12px; width:100%;">OK, ENTENDI</button>';
+        document.body.appendChild(toast);
+        
+        document.getElementById("dmReadBtn").onclick = function() {
+          fetch("/api/messages/mark-read", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({ message_id: m.id, student_id: sid })
+          }).then(() => toast.remove());
+        };
+      }
+    });
+
+  const style = document.createElement("style");
+  style.innerHTML = "@keyframes dmSlideIn { from { transform:translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }";
+  document.head.appendChild(style);
+})();
+</script>

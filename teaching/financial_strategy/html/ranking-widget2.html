@@ -137,7 +137,7 @@
     </button>
     <div class="lb-card" id="lbCard2" role="dialog" aria-modal="false" aria-label="Ranking">
       <div class="lb-header">
-        <div class="lb-title">Top <span id="lbTopN2">10</span></div>
+        <div class="lb-title">Top <span id="lbTopN2">5</span></div>
       </div>
       <ul class="lb-list" id="lbList2"></ul>
       <div class="lb-footer"><span id="lbMe2"></span></div>
@@ -147,7 +147,7 @@
 
 <script>
   const LB_ENDPOINT = 'https://course-chat.hcmrtns.workers.dev/ranking';
-  const LB_TOP = 10;
+  const LB_TOP = 5;
   const LB_POLL_MS = 3000;
 
   let LB_STUDENT = (window.studentId || localStorage.getItem('studentId') || localStorage.getItem('fs_user') || '').toString();
