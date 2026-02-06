@@ -1,0 +1,4080 @@
+
+// ============================================================
+// WORKER — FULL FILE (single file)
+// (Import box removed + /admin/poll fixed + admin-protected poll admin endpoints)
+// ============================================================
+
+const profile = {
+  name: "Henrique Castro Martins",
+  title: "Assistant Professor @ FGV/EAESP",
+  bio: `I hold a Ph.D. in Finance, and I am currently an Assistant Professor at <a href="https://eaesp.fgv.br/" target="_blank">FGV/EAESP</a> (São Paulo, Brazil).<br><br>
+I teach corporate finance, corporate governance and financial analysis at the undergraduate, MBA, Master, and Ph.D. levels. I am currently working on several projects on these topics.<br><br>
+If you have any questions about my research, or if you want to work with me, contact me at <a href="mailto:henrique.martins@fgv.br">henrique.martins@fgv.br</a>.`,
+  links: [
+    { text: "Email", icon: "bi-envelope", href: "mailto:henrique.martins@fgv.br" },
+    { text: "Scholar", icon: "bi-mortarboard", href: "https://scholar.google.com.br/citations?user=7gIfkRMAAAAJ&hl=pt-BR&oi=ao" },
+    { text: "Linkedin", icon: "bi-linkedin", href: "https://www.linkedin.com/in/henriquecastror/" },
+    { text: "Lattes", icon: "bi-file-earmark-person", href: "http://lattes.cnpq.br/6076997472159785" },
+    { text: "Orcid", icon: "bi-person-badge", href: "https://orcid.org/0000-0002-3186-4245" },
+    { text: "Scopus", icon: "bi-journal-text", href: "https://www.scopus.com/authid/detail.uri?authorId=56179864100" },
+    { text: "WoS", icon: "bi-globe", href: "https://www.webofscience.com/wos/author/record/AAA-9293-2019" },
+    { text: "ResearchGate", icon: "bi-search", href: "https://www.researchgate.net/profile/Henrique_Castro_Martins" },
+    { text: "Academia", icon: "bi-book", href: "https://fgvsp.academia.edu/HenriqueMartins" }
+  ],
+  education: [
+    { degree: "PhD in Finance", year: "2016", school: "UFRGS" },
+    { degree: "Master in Finance", year: "2012", school: "UFRGS" },
+    { degree: "B.A. in Management", year: "2010", school: "PUCRS" }
+  ],
+  interests: ["Corporate Finance", "Corporate Governance", "Financial policies", "Empirical methods in finance"]
+};
+
+
+const researchPapers = [
+  {
+    title: "Symbolic or substantive? How shareholder heterogeneity shapes the purpose of the corporation",
+    journal: "Long Range Planning, 102582, 2025",
+    date: "2025-09-22",
+    doi: "https://doi.org/10.1016/j.lrp.2025.102582",
+    categories: ["Research", "Strategy", "ESG Decoupling"],
+    description: "This study investigates how the heterogeneity of shareholders’ financial and social interests creates tension around competing interpretations of the purpose of the corporation, particularly regarding their incompatibility and relative prevalence of initiatives that extend beyond profit maximization."
+  },
+  {
+    title: "Competing Voices, Persistent Gaps: Shareholder Proposal Activism and ESG Decoupling",
+    journal: "Business & Society, 2025",
+    date: "2025-08-20",
+    doi: "https://doi.org/10.1177/00076503251357372",
+    categories: ["Shareholder Activism", "ESG", "Materiality"],
+    description: "We investigate the occurrence and the persistence of environmental, social, and governance (ESG) decoupling when firms are exposed to heterogeneity in shareholder proposal activism, reflected by the different orientation of shareholder activists and the competing nature of their demands."
+  },
+  {
+    title: "Inteligência Artificial: O que o Gestor deve saber",
+    journal: "GV-executivo, v. 23, n. 3, 2024",
+    date: "2024-11-20",
+    doi: "https://doi.org/10.12660/gvexec.v23n3.2024.91213",
+    categories: ["Management", "Artificial Intelligence"],
+    description: "Um guia prático e conceitual sobre os impactos da IA na gestão, voltado para líderes e tomadores de decisão."
+  },
+  {
+    title: "Creativity governance: A conceptual framework for tailoring governance to the creativity and uncertainty in entrepreneurial projects",
+    journal: "European Management Review, forthcoming, 2023",
+    date: "2023-09-10",
+    doi: "https://doi.org/10.1111/emre.12607",
+    categories: ["Research", "Corporate Governance", "Creativity"],
+    description: "In this article, we propose a typology of firms’ projects drawing on parameters stemming from recent advancements in creativity theory: opacity and unlikelihood."
+  },
+  {
+    title: "Financial materiality and corporate risk - evidence from an Instrumental Variables (IV) design",
+    journal: "Finance Research Letters, forthcoming, 2023",
+    date: "2023-09-07",
+    doi: "https://doi.org/10.1016/j.frl.2023.104433",
+    categories: ["Research", "Corporate Finance", "Materiality"],
+    description: "This article investigates how the disclosure of financially material information relates to corporate risk using the SASB materiality framework."
+  },
+  {
+    title: "Investment–cash flow sensitivity and investor protection",
+    journal: "Journal of Business, Finance and Accounting, V50, Issue 7-8, 2023",
+    date: "2023-08-16",
+    doi: "https://doi.org/10.1111/jbfa.12645",
+    categories: ["Research", "Corporate Governance", "Corporate Finance"],
+    description: "We examine the role of country-level legal investor protection (i.e., shareholder and creditor protection) on firm investment–cash flow sensitivity."
+  },
+  {
+    title: "Competition and ESG practices in emerging markets - Evidence from a difference-in-differences model",
+    journal: "Finance Research Letters, 46*(A), 102371, 2022",
+    date: "2022-05-01",
+    doi: "https://doi.org/10.1016/j.frl.2021.102371",
+    categories: ["Research", "Corporate Finance", "ESG"],
+    description: "This paper investigates how competition affects firms' environmental, social, and governance (ESG) practices in 22 emerging markets."
+  },
+  {
+    title: "Integrating uncertainty and governance into a capital structure puzzle: can risk-taking and rule-taking explain zero-leverage firms?",
+    journal: "Review of Managerial Science, 16, 1979–2034, 2022",
+    date: "2022-06-01",
+    doi: "https://doi.org/10.1007/s11846-021-00500-w",
+    categories: ["Research", "Corporate Governance"],
+    description: "Can risk-taking and rule-taking explain zero-leverage firms?"
+  },
+  {
+    title: "Blockholders and firm value: Evidence from Brazil",
+    journal: "Brazilian Review of Finance, 20, 48–76, 2022",
+    date: "2022-05-01",
+    doi: "https://doi.org/10.12660/rbfin.v20n2.2022.83645",
+    categories: ["Research", "Corporate Governance"],
+    description: "This research analyzes the relationship between the presence of blockholders and the value of Brazilian firms."
+  },
+  {
+    title: "Risk taking and Corporate Governance",
+    journal: "Working Paper / Conceptual Framework",
+    date: "2022-01-01",
+    doi: "#",
+    categories: ["Open Science"],
+    description: "A framework of uncertainty taking and its implications for Agency Theory."
+  },
+  {
+    title: "Does control concentration affect board busyness? International evidence",
+    journal: "Journal of Management and Governance, 24, 821–850, 2020",
+    date: "2020-09-01",
+    doi: "https://doi.org/10.1007/s10997-019-09487-9",
+    categories: ["Research", "Corporate Governance"],
+    description: "We investigate specific characteristics of the board of directors: the number of directors' directorships and the number of committee positions."
+  },
+  {
+    title: "Tutorial-Articles - The Importance of Data and Code Sharing",
+    journal: "Journal of Contemporary Administration - RAC, 25*(1), 2021",
+    date: "2020-09-09",
+    doi: "https://doi.org/10.1590/1982-7849rac2021200212",
+    categories: ["Research", "Corporate Finance"],
+    description: "About Open Science mechanisms, data sharing, and the context for tutorial-articles."
+  },
+  {
+    title: "The Brazilian bankruptcy law reform, corporate ownership concentration, and risk-taking",
+    journal: "Managerial and Decision Economics, 41*(4), 562-573, 2020",
+    date: "2020-06-01",
+    doi: "https://doi.org/10.1002/mde.3120",
+    categories: ["Research", "Corporate Finance"],
+    description: "We investigate whether a bankruptcy reform, which increased creditors' protection, affected the risk taking of Brazilian firms."
+  },
+  {
+    title: "Do shareholder protection and creditor rights have distinct effects on the association between debt maturity and ownership structure?",
+    journal: "Journal of Business, Finance and Accounting, 47*(5-6), 708-729, 2020",
+    date: "2020-06-01",
+    doi: "https://doi.org/10.1111/jbfa.12430",
+    categories: ["Research", "Corporate Governance", "Corporate Finance"],
+    description: "This study examines the effects of the firm's ownership concentration and its institutional environment on corporate debt maturity choices."
+  },
+  {
+    title: "Investor protection, managerial entrenchment, and cash holdings - Cross-country evidence",
+    journal: "International Finance, 22*(3), 422-438, 2019",
+    date: "2019-02-01",
+    doi: "https://doi.org/10.1111/infi.12343",
+    categories: ["Research", "Corporate Governance", "Corporate Finance"],
+    description: "We investigate whether investor protection is associated with how entrenched managers set corporate cash holdings."
+  },
+  {
+    title: "Country-level governance quality, ownership concentration, and debt maturity - A comparative study of Brazil and Chile",
+    journal: "Corporate Governance: An International Review, 25(4) 236-254, 2017",
+    date: "2017-06-01",
+    doi: "https://doi.org/10.1111/corg.12192",
+    categories: ["Research", "Corporate Governance"],
+    description: "This study investigates the interplay between country-level governance quality and the capital structure choice at the firm level in Brazil and Chile."
+  },
+  {
+    title: "Cross-National Governance Research - A Systematic Review and Assessment",
+    journal: "Corporate Governance: An International Review, 24(3), 181-199, 2016",
+    date: "2016-01-11",
+    doi: "https://doi.org/10.1111/corg.12158",
+    categories: ["Research", "Corporate Governance"],
+    description: "A Systematic Review surveying 192 cross-national comparative studies to synthesize the interplay between country- and firm-level governance."
+  }
+];
+
+
+
+
+// ============================================================
+// REPORT SQL
+// ============================================================
+const REPORT_SQL = `
+WITH params AS (SELECT LOWER(TRIM(?1)) AS sid)
+SELECT json_object(
+  'student_id', (SELECT sid FROM params),
+  'generated_at', datetime('now', '-3 hours'),
+  'ranking',
+    ( SELECT json_object(
+        'likes', likes_points,
+        'checkouts', checkouts_points,
+        'polls', poll_points,
+        'total', points
+      )
+      FROM ranking_score_total
+      WHERE student_id = (SELECT sid FROM params)
+    ),
+  'attendance',
+    ( SELECT json_object(
+        'attended', attended,
+        'total', total_class,
+        'absences', absences,
+        'pct', pct
+      )
+      FROM attendance_resume
+      WHERE student_id = (SELECT sid FROM params)
+    ),
+  'attendance_history',
+    ( SELECT json_group_array(json_object('date', date_class, 'status', status))
+      FROM attendance_dates
+      WHERE student_id = (SELECT sid FROM params)
+      ORDER BY date_class DESC
+    ),
+  'polls_history',
+    ( SELECT json_group_array(json_object(
+        'id', r.poll_id,
+        'question', a.question,
+        'options_json', a.options_json,
+        'your_answer', r.chosen_option,
+        'correct_answer', a.correct_option,
+        'is_correct', r.is_correct,
+        'when', r.ts_br
+      ))
+      FROM poll_responses r
+      LEFT JOIN poll_active a ON r.poll_id = a.poll_id
+      WHERE r.student_id = ?1
+      ORDER BY r.ts_br DESC
+      
+    ),
+    'checkouts',
+    ( SELECT json_group_array(json_object(
+        'slide_id', slide_id,
+        'ticket', ticket,
+        'when', timestamp_br,
+        'likert_question', likert_question,
+        'likert_value', likert_value
+      ))
+      FROM (
+        SELECT slide_id, ticket, timestamp_br, likert_question, likert_value
+        FROM t_checkouts
+        WHERE student_id = (SELECT sid FROM params)
+        ORDER BY timestamp_br DESC
+      )
+    ),
+
+    
+  'likes_count',
+    (SELECT COUNT(*) FROM likes WHERE student_id = (SELECT sid FROM params))
+) AS report_json;
+`;
+
+
+
+
+
+// ============================================================
+// WORKER
+// ============================================================
+export default {
+  async fetch(req, env, ctx) {
+    const url = new URL(req.url);
+    const origin = resolveOrigin(req, env); 
+    const method = req.method;
+    
+    // IMPORTANTE: Definir 'path' aqui no topo para as APIs funcionarem
+    const rawPath = url.pathname;
+    const path = rawPath.replace(/\/{2,}/g, "/").replace(/\/+$/, "") || "/";
+    const is = (p) => path === p;
+
+    // 1) Preflight (CORS)
+    if (method === "OPTIONS") {
+      return new Response(null, { status: 204, headers: cors(origin) });
+    }
+
+// --- API: Verificar Mensagens (Fica no topo para ser rápido) ---
+if (is("/api/dm/check") && method === "GET") {
+  const sid = String(url.searchParams.get("sid") || "").trim().toLowerCase();
+  if (!sid) return json({ error: "missing sid" }, origin, 400);
+
+  const row = await env.DB.prepare(`
+  SELECT
+    d.id,
+    d.student_id,
+    d.checkout_id,
+    d.message_text,
+    d.created_at,
+    d.is_read,
+
+    CASE
+      WHEN d.checkout_id IS NULL OR TRIM(d.checkout_id) = '' THEN 'manual'
+      ELSE 'checkout'
+    END AS context_type,
+
+    (
+      SELECT c.ticket
+      FROM t_checkouts c
+      WHERE c.student_id = d.student_id
+        AND c.slide_id = d.checkout_id
+      ORDER BY c.timestamp_br DESC
+      LIMIT 1
+    ) AS original_ticket,
+    (
+      SELECT COALESCE(c.timestamp_br, c.created_at)
+      FROM t_checkouts c
+      WHERE c.student_id = d.student_id
+        AND c.slide_id = d.checkout_id
+      ORDER BY c.timestamp_br DESC
+      LIMIT 1
+    ) AS original_when
+  FROM dm d
+  WHERE d.student_id = ?
+    AND COALESCE(d.is_read, 0) = 0
+  ORDER BY d.created_at DESC
+  LIMIT 1
+`).bind(sid).first();
+
+
+  return json({ message: row || null }, origin);
+}
+
+
+
+    // --- API: Marcar como Lida ---
+    if (is("/api/dm/mark-read") && method === "POST") {
+      const body = await readJsonBody(req);
+      const { message_id, student_id } = body || {};
+      const ua = req.headers.get("user-agent") || "";
+
+      await env.DB.batch([
+        env.DB.prepare("UPDATE dm SET is_read = 1 WHERE id = ?").bind(message_id),
+        env.DB.prepare("INSERT INTO dm_seen (message_id, student_id, user_agent) VALUES (?, ?, ?)")
+          .bind(message_id, student_id, ua)
+      ]);
+
+      return json({ status: "ok" }, origin);
+    }
+
+
+
+// ============================================================
+    // 2) STATIC ASSETS (Injeção de DM nos Slides)
+    // ============================================================
+    const urlPath = url.pathname;
+
+    if (
+      !urlPath.startsWith("/teaching/financial_strategy/") &&
+      urlPath.match(/\.(html|css|js|mjs|map|json|png|jpg|jpeg|gif|webp|svg|ico|pdf|txt|xml|woff2?|ttf|eot|otf|wasm)$/i)
+    ) {
+      try {
+        let assetRes = await env.ASSETS.fetch(req);
+    
+        if (assetRes.status !== 200 && !urlPath.startsWith("/teaching/financial_strategy/")) {
+          const internalPath = "/teaching/financial_strategy" + (urlPath.startsWith("/") ? urlPath : "/" + urlPath);
+          const fallbackUrl = new URL(internalPath, url.origin);
+          fallbackUrl.search = url.search;
+          const fallbackReq = new Request(fallbackUrl.toString(), req);
+          assetRes = await env.ASSETS.fetch(fallbackReq);
+        }
+    
+        return withCors(assetRes, origin);
+      } catch (e) {
+        console.error("Erro Assets:", e);
+      }
+    }
+    
+
+
+
+
+    // ============================================================
+    // 3) ROUTES
+    // ============================================================
+
+    // --- ADMIN GATE ---
+    // Protect /admin/* AND poll admin endpoints
+    if (
+      path.startsWith("/admin") ||
+      path === "/poll/export" ||
+      path === "/poll/admin" ||
+      path === "/poll/list"
+    ) {
+      const clean = (s) => String(s ?? "").trim();
+      const hdr = clean(req.headers.get("x-admin-token"));
+      const bearer = clean((req.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""));
+      const qsTok = clean(url.searchParams.get("token") || url.searchParams.get("t") || url.searchParams.get("tkn"));
+      const sent = hdr || bearer || qsTok;
+      const master = clean(env.ADMIN_SEMESTER || env.ADMIN_TOKEN || "");
+      if (!sent || sent !== master) {
+        return new Response("Unauthorized: Admin access required", { status: 401, headers: cors(origin) });
+      }
+    }
+
+
+    // Ensure schema (idempotent)
+    try { await ensureSchema(env); } catch { /* ignore */ }
+
+    const isAdmin = () => {
+      const clean = (s) => String(s ?? "").trim();
+      const sent = clean(req.headers.get("x-admin-token") || url.searchParams.get("token") || url.searchParams.get("t"));
+      const master = clean(env.ADMIN_SEMESTER || env.ADMIN_TOKEN || "");
+      return !!sent && sent === master;
+    };
+
+    // ===== helpers =====
+    const int = (v, d = 0) => {
+      const n = parseInt(String(v ?? ""), 10);
+      return Number.isFinite(n) ? n : d;
+    };
+    const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+    const nowMs = () => Date.now();
+
+    // Rate limit (in-memory)
+    const buckets = globalThis.__rl_buckets || (globalThis.__rl_buckets = new Map());
+    const rateLimit = (key, limit, windowMs) => {
+      const now = Date.now();
+      const b = buckets.get(key) || [];
+      const keep = b.filter((t) => now - t < windowMs);
+      if (keep.length >= limit) {
+        buckets.set(key, keep);
+        return false;
+      }
+      keep.push(now);
+      buckets.set(key, keep);
+      return true;
+    };
+
+// ============================================================
+// NOVO: Rota do Dashboard dentro da disciplina
+// ============================================================
+if (path === "/teaching/financial_strategy/dashboard") {
+  // Verificamos se o aluno tem o cookie de sessão
+  const sid = await getStudentIdFromSession(req);
+  
+  if (!sid) {
+    // Se não estiver logado, manda para a página de login do report
+    const html = reportsLoginPage({ 
+      message: "Please sign in to view your strategy report.",
+      next: "/teaching/financial_strategy/dashboard" 
+    });    return new Response(html, {
+      status: 200,
+      headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) }
+    });
+  }
+
+  // Se estiver logado, gera o Report
+  const r = await buildReport(env.DB, sid);
+  const chat = await fetchChatInteractionsFromD1(env.CHAT_DB || env.DB, sid, 500);
+  r.chat_interactions = chat;
+
+  const html = reportToHTML(r, {
+    logoUrl: String(env.FGV_LOGO_URL || "").trim(),
+    courseName: "Financial Strategy (2026/01)",
+    instructorName: "Henrique Castro Martins"
+  });
+
+  return new Response(html, {
+    status: 200,
+    headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) }
+  });
+}
+
+// ============================================================
+// PROXY SLIDES: serve /teaching/* from SLIDES worker
+// (mas NÃO proxy o /practice, porque é dinâmico e roda aqui)
+// ============================================================
+const isPractice = (path === "/teaching/financial_strategy/practice");
+
+if (path.startsWith("/teaching/financial_strategy/") && !isPractice) {
+  const u = new URL(req.url);
+  u.host = "slides.internal"; // dummy host
+
+  const upstreamReq = new Request(u.toString(), req);
+  const resp = await env.SLIDES.fetch(upstreamReq);
+
+  const headers = new Headers(resp.headers);
+  headers.set("X_Proxied_By", "course_chat");
+
+  return new Response(resp.body, { status: resp.status, headers });
+}
+
+
+
+
+
+
+    // ============================================================
+    // HOME "/"
+    // ============================================================
+    if (path === "/" ) {
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${profile.name}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root { --accent: #1e3a8a; --text-main: #1e293b; --text-muted: #64748b; --bg: #fdfdfd; }
+    body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.7; }
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .nav-brand { font-size: 1.1rem; font-weight: 600; color: var(--text-main); text-decoration: none; }
+    nav { display: flex; gap: 25px; }
+    nav a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+    .hero { max-width: 1100px; margin: 80px auto; display: grid; grid-template-columns: 1fr; gap: 60px; padding: 0 40px; }
+    @media (min-width: 768px) { .hero { grid-template-columns: 320px 1fr; } }
+    .avatar { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.08); margin-bottom: 25px; border: 4px solid white; }
+    .links-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; text-decoration: none; color: var(--text-main); font-size: 0.8rem; background: white; transition: 0.2s; }
+    .btn-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .main-content h1 { font-size: 3.5rem; font-weight: 800; margin: 0; color: #0f172a; }
+    .subtitle { font-size: 1.2rem; color: var(--accent); font-weight: 600; margin-bottom: 25px; display: block; }
+    h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-top: 50px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+    .edu-card { padding: 8px 0; }
+    .edu-card strong { display: block; color: var(--text-main); }
+    .interest-tag { display: inline-block; background: #eff6ff; color: #1e40af; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-right: 8px; margin-bottom: 8px; border: 1px solid #dbeafe; }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="nav-brand">Henrique Castro Martins</a>
+  <nav style="display:flex; gap:20px; align-items:center;">
+    <a href="/teaching" style="text-decoration:none; color:#64748b;">Teaching</a>
+    <a href="/research" style="text-decoration:none; color:#64748b;">Research</a>
+    <a href="https://www.linkedin.com/in/henriquecastror/" target="_blank" style="text-decoration:none; color:#64748b;" title="Linkedin">
+    <i class="bi bi-linkedin"></i>
+  </a>  </nav>
+</header>
+
+  <div class="hero">
+    <div class="sidebar">
+      <img src="https://henriquemartins.net/avatar.jpg" class="avatar" alt="Henrique">
+      <div class="links-grid">
+        ${profile.links.map((l) => `<a href="${l.href}" class="btn-link" target="_blank" rel="noopener">
+          <i class="bi ${l.icon}"></i> ${l.text}
+        </a>`).join("")}
+      </div>
+    </div>
+
+    <div class="main-content">
+      <span class="subtitle">${profile.subtitle || profile.title}</span>
+      <p>${profile.bio}</p>
+
+      <h2>Education</h2>
+      <div class="edu-grid">
+        ${profile.education.map((e) => `<div class="edu-card">
+          <strong>${e.degree}</strong>
+          <span>${e.school} • ${e.year}</span>
+        </div>`).join("")}
+      </div>
+
+      <h2>Research Interests</h2>
+      <div class="interests-grid">
+        ${profile.interests.map((topic) => `<span class="interest-tag">${topic}</span>`).join("")}
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, {
+        headers: {
+          "Content-Type": "text/html;charset=UTF-8",
+          ...cors(origin)
+        }
+      });
+    }
+
+    // ============================================================
+    // /teaching
+    // ============================================================
+    if (path === "/teaching" || path === "/teaching/") {
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teaching - ${profile.name}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root { --accent: #1e3a8a; --text-main: #1e293b; --text-muted: #64748b; --bg: #fdfdfd; }
+    body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.7; }
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .nav-brand { font-size: 1.1rem; font-weight: 600; color: var(--text-main); text-decoration: none; }
+    nav { display: flex; gap: 25px; }
+    nav a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+    .container { max-width: 900px; margin: 60px auto; padding: 0 40px; }
+    h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+    h2 { font-size: 1.5rem; color: var(--accent); margin-top: 40px; display: flex; align-items: center; gap: 10px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    th { background: #1e293b; color: white; padding: 12px; text-align: left; font-size: 0.9rem; }
+    td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
+    tr:hover { background: #f8fafc; }
+    .course-link { text-decoration: none; color: var(--accent); font-weight: 600; }
+    .tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; font-weight: 700; margin-left: 10px; text-transform: uppercase; }
+    .tag-active { background: #dcfce7; color: #166534; }
+    .tag-archived { background: rgba(220, 53, 69, 0.15); color: #dc3545; border: 1px solid #e2e8f0; }
+    .course-disabled { color: var(--text-muted); font-weight: 500; cursor: default; }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="nav-brand">Henrique Castro Martins</a>
+  <nav style="display:flex; gap:20px; align-items:center;">
+    <a href="/teaching" style="text-decoration:none; color:#64748b;">Teaching</a>
+    <a href="/research" style="text-decoration:none; color:#64748b;">Research</a>
+    <a href="https://www.linkedin.com/in/henriquecastror/" target="_blank" style="text-decoration:none; color:#64748b;" title="Linkedin">
+    <i class="bi bi-linkedin"></i>
+  </a>  </nav>
+</header>
+
+  <div class="container">
+    <h1>📚 Teaching Resources</h1>
+    <p style="color: var(--text-muted); margin-bottom: 40px;">
+      Welcome! Below you will find the materials and resources for my current and past courses.
+    </p>
+
+    <h2><i class="bi bi-calendar3"></i> 2026</h2>
+    <table>
+      <thead><tr><th style="width: 120px;">Semester</th><th>Course</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>
+            <a href="/teaching/financial_strategy" class="course-link">🎯 Financial Strategy</a>
+            <span class="tag tag-active">Active</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h2><i class="bi bi-calendar3"></i> 2025</h2>
+    <table>
+      <thead><tr><th style="width: 120px;">Semester</th><th>Course</th></tr></thead>
+      <tbody>
+        <tr><td>02</td><td><a Financial Strategy >🎯 Financial Strategy</a><span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>02</td><td><a Financial Strategy >📉 Empirical Methods for Finance</a><span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>01</td><td><a Financial Strategy >🎯 Financial Strategy</a><span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>01</td><td><a Financial Strategy >📊 STAII </a><span class="tag tag-archived">Archived</span></td></tr>
+      </tbody>
+    </table>
+
+
+    <h2><i class="bi bi-calendar3"></i> 2024</h2>
+    <table>
+      <thead><tr><th style="width: 120px;">Semester</th><th>Course</th></tr></thead>
+      <tbody>
+      <tr><td>02</td><td><a Financial Strategy >🧮 Econometrics for Finance (DPA)</a><span class="tag tag-archived">Archived</span></td></tr>
+      <tr><td>02</td><td><a Financial Strategy >🏛️ Causal Inference </a><span class="tag tag-archived">Archived</span></td></tr>
+      <tr><td>02</td><td><a Financial Strategy >🎯 Financial Strategy</a><span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>Winter</td><td><a Financial Strategy >🎯 Financial Strategy</a><span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>01</td><td><a Financial Strategy >🌱 ESG & Institutional Investment</a><span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>01</td><td><a Financial Strategy >🎯 Financial Strategy</a><span class="tag tag-archived">Archived</span></td></tr>
+        <tr><td>Summer</td><td><a Financial Strategy >🎯 Financial Strategy</a><span class="tag tag-archived">Archived</span></td></tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8", ...cors(origin) } });
+    }
+
+    // ============================================================
+    // /teaching/financial_strategy
+    // ============================================================
+    if (path === "/teaching/financial_strategy") {
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Financial Strategy - 2026/01</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root { --accent: #1e3a8a; --text-main: #1e293b; --bg: #fdfdfd; }
+    body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-main); background: var(--bg); line-height: 1.6; }
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid #eee; }
+    .nav-brand { font-size: 1.1rem; font-weight: 600; text-decoration: none; color: var(--text-main); }
+    .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 1.5em 0; background: white; border-radius: 8px; overflow: hidden; }
+    thead th { background: #1e293b; color: #ffffff; padding: 12px 8px; text-align: center; font-weight: 700; border-top: 2px solid #0f172a; }
+    td { padding: 10px 8px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+    tbody tr:nth-child(even) { background: #f8fafc; }
+    tbody tr:hover { background: #e0f2fe; }
+    td a { font-size: 18px; text-decoration: none; }
+    th:nth-child(1), td:nth-child(1) { width: 80px; }
+    th:nth-child(2), td:nth-child(2) { width: 100px; }
+    .callout { background: #fff5f5; border-left: 5px solid #ef4444; padding: 20px; margin: 25px 0; border-radius: 4px; }
+    .callout h3 { margin-top: 0; color: #b91c1c; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+    .legend { background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 30px; }
+    hr { border: 0; border-top: 1px solid #e2e8f0; margin: 30px 0; }
+    /* Callout "For students" (azul claro) */
+    .callout.callout-students{
+      background: #eff6ff;            /* azul bem claro */
+      border-left: 5px solid #3b82f6; /* azul */
+      padding: 20px;
+      border-radius: 4px;
+      margin: 25px 0;
+      font-size: 14px;
+    }
+    
+    .callout.callout-students .callout-header{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .callout.callout-students .callout-title{
+      margin: 0;
+      color: #1d4ed8;   /* azul forte */
+      font-weight: 800;
+      font-size: 1rem;
+    }
+    
+    .callout.callout-students .callout-icon{
+      color: #1d4ed8;
+      font-size: 1.1rem;
+    }
+    </style>
+</head>
+<body>
+<header>
+  <a href="/" class="nav-brand">Henrique Castro Martins</a>
+  <nav style="display:flex; gap:20px; align-items:center;">
+    <a href="/teaching" style="text-decoration:none; color:#64748b;">Teaching</a>
+    <a href="/research" style="text-decoration:none; color:#64748b;">Research</a>
+    <a href="https://www.linkedin.com/in/henriquecastror/" target="_blank" style="text-decoration:none; color:#64748b;" title="Linkedin">
+    <i class="bi bi-linkedin"></i>
+  </a>  </nav>
+</header>
+
+  <div class="container">
+    <h1>Financial Strategy - 2026/01</h1>
+
+    <div class="callout callout-students">
+    <div class="callout-header">
+      <span class="callout-icon">⚠️</span>
+      <h3 class="callout-title">For students</h3>
+    </div>
+  
+    <p>
+      Below you find the persistent links to all lectures of the course. As they are continuously updated with fixes and new implementations,
+      <strong>you might expect some changes from time to time in the contents of each file</strong>.
+    </p>
+  
+  
+    <p>The questions are based on or inspired by the following references:</p>
+  
+    <ul>
+      <li>
+        <a href="https://www.amazon.com.br/Corporate-Finance-Global-Jonathan-Berk/dp/1292304154"
+           target="_blank" rel="noopener noreferrer">
+          <strong>Berk &amp; DeMarzo, Corporate Finance, 5th ed. (2020)</strong>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.amazon.com.br/Principles-Corporate-Finance-Richard-Brealey/dp/1260565556/ref=sr_1_3?refinements=p_27%3ABrealey+Myers&s=books&sr=1-3"
+           target="_blank" rel="noopener noreferrer">
+          <strong>Brealey &amp; Myers, Principles of Corporate Finance, 13th ed. (2020)</strong>
+        </a>
+      </li>
+    </ul>
+  
+
+    <p class="callout-footnote">
+      💡 <em>You can also type <code>e</code> then <code>Ctrl + P</code> (or <code>Cmd + P</code> on Mac) to print or save your responses as a <code>.pdf</code> file.</em>
+    </p>
+  </div>
+  
+
+    <h3>📗 Part 0 (Introduction)</h3>
+    <table>
+      <thead><tr><th>Slides</th></tr></thead>
+      <tbody><tr><td><a href="/teaching/financial_strategy/module0/p0.html">🎞️</a></td></tr></tbody>
+    </table>
+
+    <h3>📘 Part 1 (until Midterm)</h3>
+    <table>
+      <thead>
+        <tr><th>Module</th><th>Ch.</th><th>Slides</th><th>T/F</th><th>MCQ</th><th>MultiA</th><th>Num.</th><th>Long</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>1</td>
+      <td>ch23</td>
+      <td><a href="/teaching/financial_strategy/module1/p1.html">🎞️</a></td>
+      <td><a href="/teaching/financial_strategy/practice?module=module1&type=tf">✅</a></td>
+      <td><a href="/teaching/financial_strategy/practice?module=module1&type=mcq">❓</a></td>
+      <td><a href="/teaching/financial_strategy/practice?module=module1&type=multia">📑</a></td>
+      <td><a href="/teaching/financial_strategy/practice?module=module1&type=num">🔢</a></td>
+      <td><a href="/teaching/financial_strategy/practice?module=module1&type=long">📝</a></td>
+      </tr>        
+      <tr><td>2</td><td>ch10</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      <tr><td>3</td><td>ch11</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      <tr><td>4</td><td>ch12</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      <tr><td>5</td><td>ch13</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h3>📙  Part 2 (after Midterm)</h3>
+    <table>
+      <thead>
+        <tr><th>Module</th><th>Ch.</th><th>Slides</th><th>T/F</th><th>MCQ</th><th>MultiA</th><th>Num.</th><th>Long</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+      <tr><td>6</td><td>ch24</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr> 
+      <tr><td>7</td><td>ch14</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      <tr><td>8</td><td>ch15</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      <tr><td>9</td><td>ch16</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      <tr><td>10</td><td>ch17</td><td></a></td><td><a</a></td><td><a </a></td><td></td><td><a </a></td><td><a </a></td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    </table>
+
+    <!-- ===== Dashboard box (ANTES da Legend) ===== -->
+    <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:12px; padding:20px; text-align:center; margin-top:30px;">
+      <h3 style="margin-top:0;">📊 My Dashboard</h3>
+      <p>Check your overall progress, ranking points, and quiz results.</p>
+      <a href="/teaching/financial_strategy/dashboard" 
+         style="background:#0ea5e9; color:white; padding:10px 20px; border-radius:8px; 
+                text-decoration:none; font-weight:600;">Open Dashboard</a>
+    </div>
+    
+    <!-- opcional: uma linha de separação antes da legenda -->
+    <hr style="border:0; border-top:1px solid #e2e8f0; margin:28px 0;">
+
+
+    <div class="legend-box" aria-label="Legend">
+      <div class="legend-title">
+        <span class="legend-emoji">🔑</span>
+        <span>Legend</span>
+        <a class="legend-link" href="#legend" aria-label="Link to legend">🔗</a>
+      </div>
+    
+      <ul class="legend-list" id="legend">
+        <li>🎞️ : Slides</li>
+        <li>✅ : True/False Questions</li>
+        <li>❓ : Multiple Choice Questions</li>
+        <li>🧾 : Multi-Affirmative Questions</li>
+        <li>🔢 : Numeric Questions</li>
+        <li>📝 : Long Answer Questions</li>
+      </ul>
+    </div>
+    
+    <hr>
+
+
+ </div>
+</body>
+</html>`;
+
+      return new Response(html, {
+        headers: { "Content-Type": "text/html;charset=UTF-8", ...cors(origin) }
+      });
+    }
+
+    // ============================================================
+    // Bridge de sessão: /session/start?sid=xxx&next=/reports/html
+    // ============================================================
+    if (path === "/session/start" && method === "GET") {
+      const sid = (url.searchParams.get("sid") || "").trim();
+      let nextQ = (url.searchParams.get("next") || "/reports/html").trim();
+
+      if (!sid || !/^[a-z0-9._-]{2,64}$/i.test(sid)) {
+        return new Response("Missing or invalid sid", { status: 400, headers: cors(origin) });
+      }
+
+      try {
+        const u = new URL(nextQ, url.origin);
+        nextQ = u.pathname + u.search;
+      } catch {
+        nextQ = "/reports/html";
+      }
+
+      const allowed = nextQ === "/reports/html";
+      const safeNext = allowed ? nextQ : "/reports/html";
+
+      const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+      if (!rateLimit(`sess:${ip}`, 10, 30_000)) {
+        return new Response("Too many attempts", { status: 429, headers: cors(origin) });
+      }
+
+      const headers = new Headers(cors(origin));
+      headers.set(
+        "Set-Cookie",
+        `student_id=${encodeURIComponent(sid)}; Path=/; Secure; SameSite=Lax; Max-Age=2592000`
+      );
+      headers.set("Location", safeNext);
+      return new Response(null, { status: 303, headers });
+    }
+
+          // --- NOVO MOTOR DE LOGIN (Substitui a dependência do GAS) ---
+          if (is("/auth/login") && method === "GET") {
+            const username = url.searchParams.get("username");
+            const password = url.searchParams.get("password");
+            const page     = url.searchParams.get("page") || "slide";
+  
+            // 1. Validação básica
+            if (!username || !password) return new Response("MISSING", { headers: cors(origin) });
+  
+            // 2. Consulta na sua nova tabela de 2026
+            const student = await env.DB.prepare(
+                "SELECT * FROM t_students_dim WHERE student_id = ? AND password = ?"
+            ).bind(username.toLowerCase().trim(), password.trim()).first();
+  
+            let status = "fail";
+            if (student) {
+                status = student.active ? "success" : "denied";
+            }
+  
+            // 3. Grava o Log na D1 (Substitui o log que o GAS fazia na planilha)
+            // Usamos waitUntil para a resposta ser instantânea para o aluno
+            ctx.waitUntil(env.DB.prepare(
+                "INSERT INTO t_logins (student_id, status, page, prof, term_id) VALUES (?, ?, ?, ?, ?)"
+            ).bind(username, status, page, student?.prof || "", student?.term_id || "").run());
+  
+            // 4. Resposta para o seu HTML (mantendo o contrato "OK" ou "FAIL")
+            const responseText = (status === "success") ? "OK" : "FAIL";
+            return new Response(responseText, { 
+              headers: { ...cors(origin), "Cache-Control": "no-store" } 
+            });
+          }
+
+
+
+// --- API: Salvar Progresso nos Exercícios (Practice) ---
+if (is("/api/practice/submit") && method === "POST") {
+  const sid = await getStudentIdFromSession(req);
+  if (!sid) return json({ error: "unauthorized" }, origin, 401);
+
+  const body = await readJsonBody(req);
+  const { exercise_id, module, is_correct, user_answer } = body || {};
+  const tsNow = tsBRString(Date.now());
+
+  try {
+    // Corrigido: Removido o "1" fixo e ajustado para as colunas timestamp_br e attempts
+    await env.DB.prepare(`
+      INSERT INTO questions_bank_progress (student_id, exercise_id, module, is_correct, user_answer, timestamp_br, attempts)
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, 1)
+      ON CONFLICT(student_id, exercise_id) DO UPDATE SET
+        is_correct = MAX(is_correct, excluded.is_correct),
+        user_answer = excluded.user_answer,
+        attempts = attempts + 1,
+        timestamp_br = excluded.timestamp_br
+    `).bind(
+      sid, 
+      exercise_id, 
+      module, 
+      is_correct ? 1 : 0, 
+      String(user_answer || ""), 
+      tsNow
+    ).run();
+
+    return json({ status: "success" }, origin);
+  } catch (e) {
+    return json({ error: "DB Error: " + e.message }, origin, 500);
+  }
+}
+
+
+
+ // ============================================================
+// REPORTS (D1-only, NO GAS)
+// Endpoints:
+//   GET  /reports         -> login page
+//   POST /reports         -> validate in D1, set cookie, redirect to /reports/html
+//   GET  /reports/html    -> render report HTML (requires cookie)
+//   GET  /reports/me      -> JSON report (requires cookie) [optional]
+//   GET  /reports/logout  -> clear cookie
+// ============================================================
+
+// normalize student_id (same style you already use elsewhere)
+function normalizeSid(raw) {
+  const s = String(raw || "").trim().toLowerCase();
+  return s.replace(/[^a-z0-9._-]/g, "");
+}
+
+function getCookie(req, name) {
+  const cookie = req.headers.get("Cookie") || "";
+  const parts = cookie.split(";").map((p) => p.trim());
+  for (const p of parts) {
+    if (p.startsWith(name + "=")) return decodeURIComponent(p.slice(name.length + 1));
+  }
+  return "";
+}
+
+async function getStudentIdFromSession(req) {
+  // priority: HttpOnly cookie set by /reports POST
+  const sid = normalizeSid(getCookie(req, "student_id"));
+  if (sid) return sid;
+  // fallback: allow header if you ever need it
+  const hdr = normalizeSid(req.headers.get("x-student-id"));
+  if (hdr) return hdr;
+  return "";
+}
+
+function practicesLoginPage({ message = "", next = "" } = {}) {
+  const msg = String(message || "").trim();
+  const baseUrl = "/teaching/financial_strategy/practice";
+  
+  // Se 'next' não vier preenchido, mandamos para o próprio practice
+  // Se vier (ex: redirecionado de um módulo), usamos a rota /reports para validar 
+  // e o parâmetro 'next' cuidará de levar o aluno de volta ao exercício.
+  const formAction = next 
+    ? `/reports?next=${encodeURIComponent(next)}` 
+    : `/reports?next=${encodeURIComponent(baseUrl)}`; 
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Practice — login</title>
+  <style>
+    :root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--brand:#1e3a8a}
+    *{box-sizing:border-box} 
+    body{
+      margin:0;background:#f8fafc;color:var(--ink);
+      font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      display: flex; align-items: center; justify-content: center; min-height: 100vh;
+    }
+    .page{max-width:420px; width: 100%; padding:20px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 12px rgba(15,23,42,.06);padding:24px}
+    h1{margin:0 0 10px;font-size:22px; font-weight: 800; color: var(--brand)}
+    .muted{color:var(--muted);font-size:13px;margin-bottom:12px}
+    input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font:inherit; outline-color: var(--brand)}
+    button{
+      width:100%;padding:12px;border-radius:10px;border:1px solid var(--brand);
+      background:var(--brand);color:#fff;font-weight:700;cursor:pointer;margin-top:10px;
+      transition: opacity 0.2s;
+    }
+    button:hover{opacity: 0.9}
+    .err{color:#991b1b;background:#fee2e2;border:1px solid #fecaca;padding:10px;border-radius:10px;margin:6px 0 12px;font-weight:700; font-size: 13px}
+    .small{font-size:12px;color:var(--muted);margin-top:15px; text-align: center}
+  </style>
+</head>
+<body>
+<section class="page">
+  <div class="card">
+    <h1>📝 Practice Login</h1>
+    <div class="muted">Sign in with your credentials to unlock the exercises.</div>
+    
+    ${msg ? `<div class="err" role="alert">${msg}</div>` : ""}
+    
+    <form method="POST" action="${formAction}" autocomplete="off">
+      <label style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase;">Username</label>
+      <input type="text" name="username" placeholder="e.g. aluno123" required autofocus />
+      
+      <label style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase;">Password</label>
+      <input type="password" name="password" placeholder="••••••••" required />
+      
+      <button type="submit">Unlock Exercises</button>
+    </form>
+    <div class="small">Contact the instructor if you need help.</div>
+  </div>
+</section>
+</body>
+</html>`;
+}
+
+
+
+
+function reportsLoginPage({ message = "", next = "/reports/html" } = {}) {
+  const msg = String(message || "").trim();
+  const formAction = next ? `/reports?next=${encodeURIComponent(next)}` : "/reports";
+  return `<!doctype html>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard — login</title>
+<style>
+:root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--brand:#1e3a8a}
+*{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.page{max-width:420px;margin:6vh auto;padding:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 12px rgba(15,23,42,.06);padding:18px}
+h1{margin:0 0 10px;font-size:20px}
+.muted{color:var(--muted);font-size:13px;margin-bottom:12px}
+input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font:inherit}
+button{width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--brand);background:var(--brand);color:#fff;font-weight:600;cursor:pointer;margin-top:8px}
+.err{color:#991b1b;background:#fee2e2;border:1px solid #fecaca;padding:10px;border-radius:10px;margin:6px 0 8px;font-weight:700}
+.small{font-size:12px;color:var(--muted);margin-top:10px}
+</style>
+<section class="page">
+  <div class="card">
+    <h1>My Dashboard</h1>
+    <div class="muted">Enter your <strong>username</strong> and <strong>password</strong> to access.</div>
+    ${msg ? `<div class="err" role="alert">${escapeHtml(msg)}</div>` : ""}
+    <form method="POST" action="/reports" autocomplete="off" spellcheck="false">
+      <input type="text" name="username" placeholder="Username" required autofocus autocomplete="username" />
+      <input type="password" name="password" placeholder="Password" required autocomplete="current-password" />
+      <button type="submit">Enter</button>
+    </form>
+    <div class="small">If you have issues, contact the instructor.</div>
+  </div>
+</section>`;
+}
+
+function reportsGuardPage() {
+  return `<!doctype html>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard</title>
+<style>
+body{font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;color:#0f172a}
+.card{max-width:720px;margin:0 auto;border:1px solid #e2e8f0;border-radius:12px;padding:16px;background:#fff}
+h1{margin:0 0 8px;font-size:20px}
+.muted{color:#64748b}
+a.btn{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:10px;background:#1e3a8a;color:#fff;text-decoration:none}
+</style>
+<div class="card">
+  <h1>Login required</h1>
+  <p>To view your Dashboard, please sign in.</p>
+  <p class="muted">This page requires an active session cookie.</p>
+  <a class="btn" href="/reports">Go to login page</a>
+</div>`;
+}
+
+// GET /reports -> always show login page
+if (is("/reports") && method === "GET") {
+  const html = reportsLoginPage();
+  return new Response(html, {
+    status: 200,
+    headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+  });
+}
+
+// POST /reports -> validate against D1, set cookie, redirect to /reports/html
+if (is("/reports") && method === "POST") {
+  const ct = (req.headers.get("content-type") || "").toLowerCase();
+  let username = "", password = "";
+
+  if (ct.includes("application/json")) {
+    const body = (await readJsonBody(req)) || {};
+    username = String(body.username || body.user || body.id || "").trim();
+    password = String(body.password || body.pass || "").trim();
+  } else {
+    const fd = await req.formData().catch(() => null);
+    username = String(fd?.get("username") || "").trim();
+    password = String(fd?.get("password") || "").trim();
+  }
+
+  if (!username || !password) {
+    const html = reportsLoginPage({ message: "Missing username or password." });
+    return new Response(html, { status: 400, headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+  }
+
+  // rate-limit (reuse your rateLimit helper if you already have it; else comment out)
+  const ip = req.headers.get("CF-Connecting-IP") || req.headers.get("x-forwarded-for") || "0.0.0.0";
+  if (typeof rateLimit === "function") {
+    const key = `reportslogin:${ip}:${username.toLowerCase()}`;
+    if (!rateLimit(key, 5, 10_000)) {
+      const html = reportsLoginPage({ message: "Too many attempts. Please wait and try again." });
+      return new Response(html, { status: 429, headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+    }
+  }
+
+  const sid = normalizeSid(username);
+
+  // validate on D1 (same contract as /auth/login)
+  const student = await env.DB.prepare(
+    "SELECT student_id, active FROM t_students_dim WHERE student_id = ? AND password = ?"
+  ).bind(sid, String(password).trim()).first();
+
+  if (!student) {
+    const html = reportsLoginPage({ message: "Invalid username or password." });
+    return new Response(html, { status: 401, headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+  }
+  if (!student.active) {
+    const html = reportsLoginPage({ message: "Access denied." });
+    return new Response(html, { status: 403, headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+  }
+
+  const nextStep = url.searchParams.get("next") || "/reports/html";
+
+  const headers = new Headers(cors(origin));
+  headers.set("Cache-Control", "no-store");
+  headers.set("Set-Cookie", `student_id=${encodeURIComponent(sid)}; Path=/; Secure; SameSite=Lax; HttpOnly; Max-Age=3600`);
+  headers.set("Location", nextStep); // <--- Mude de "/reports/html" para nextStep
+  return new Response(null, { status: 303, headers });
+}
+
+// GET /reports/html -> render HTML report (requires cookie)
+if (is("/reports/html") && method === "GET") {
+  const sid = await getStudentIdFromSession(req);
+  if (!sid) {
+    const html = reportsGuardPage();
+    return new Response(html, {
+      status: 401,
+      headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+    });
+  }
+
+  // build report JSON
+  const r = await buildReport(env.DB, sid);
+
+  // chat (optional)
+  const chatBase = String(env.CHATBOT_BASE_URL || "https://chatbot.hcmrtns.workers.dev").trim();
+  const chatTok  = String(env.CHAT_SERVICE_TOKEN || "").trim();
+
+  const chat = await fetchChatInteractionsFromD1(env.CHAT_DB || env.DB, sid, 500);
+
+
+  r.chat_interactions = chat;
+
+  const html = reportToHTML(r, {
+    logoUrl: String(env.FGV_LOGO_URL || "").trim(),
+    courseName: env.COURSE_NAME || "Financial Strategy (2026/01)",
+    instructorName: env.INSTRUCTOR_NAME || "Henrique Castro Martins (henrique.martins@fgv.br)"
+  });
+
+  return new Response(html, {
+    status: 200,
+    headers: { ...cors(origin), "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }
+  });
+}
+
+
+// GET /reports/me -> JSON report (optional)
+if (is("/reports/me") && method === "GET") {
+  const sid = await getStudentIdFromSession(req);
+  if (!sid) return json({ error: "unauthorized" }, origin, 401);
+  const report = await buildReport(env.DB, sid);
+  return new Response(JSON.stringify(report, null, 2), {
+    status: 200,
+    headers: { ...cors(origin), "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
+  });
+}
+
+// GET /reports/logout -> clear cookie
+if (is("/reports/logout") && method === "GET") {
+  const headers = new Headers(cors(origin));
+  headers.set("Cache-Control", "no-store");
+  headers.set("Set-Cookie", "student_id=; Path=/; Secure; SameSite=Lax; HttpOnly; Max-Age=0");
+  headers.set("Location", "/reports");
+  return new Response(null, { status: 303, headers });
+}
+
+
+
+    // ============================================================
+    // LIKES
+    // ============================================================
+    if (is("/likes")) {
+      const page = (url.searchParams.get("page") || "").trim();
+      const student = (url.searchParams.get("student") || "").trim();
+
+      if (url.searchParams.get("like") || method === "POST") {
+        let p = page, s = student;
+        if (method === "POST") {
+          const body = (await readJsonBody(req)) || {};
+          p = String(body.page || p).trim();
+          s = String(body.student || s).trim();
+        }
+        if (!p || !s) return json({ status: "error", message: "missing page/student" }, origin, 400);
+
+        const ip = req.headers.get("CF-Connecting-IP") || "0.0.0.0";
+        if (!rateLimit(`like:${s}:${p}:${ip}`, 5, 10_000)) return json({ status: "error", message: "rate limit" }, origin, 429);
+
+        try {
+          await env.DB.prepare("INSERT INTO likes (page, student_id, ts_local) VALUES (?, ?, ?)")
+            .bind(p, s, tsBRString(Date.now())).run();
+          return json({ status: "liked" }, origin);
+        } catch {
+          return json({ status: "already" }, origin);
+        }
+      }
+
+      if (method === "GET" && (url.searchParams.get("state") || url.searchParams.get("count"))) {
+        const cntRow = await env.DB.prepare("SELECT COUNT(*) AS c FROM likes WHERE page=?").bind(page).first();
+        const likedRow = student
+          ? await env.DB.prepare("SELECT 1 FROM likes WHERE page=? AND student_id=? LIMIT 1").bind(page, student).first()
+          : null;
+        return json({ status: "success", count: Number(cntRow?.c || 0), liked: !!likedRow }, origin);
+      }
+    }
+
+
+    // ---------- CHECKOUTS ----------
+    if (is("/checkouts/status") && method === "GET") {
+      const student = (
+        url.searchParams.get("student") ||
+        url.searchParams.get("student_id") ||
+        url.searchParams.get("studentId") ||
+        ""
+      ).trim();
+
+      const slideId = (
+        url.searchParams.get("slide_id") ||
+        url.searchParams.get("slideId") ||
+        url.searchParams.get("session") ||
+        url.searchParams.get("page") ||
+        ""
+      ).trim();
+
+      if (!student || !slideId) return json({ status:"error", message:"missing student/slide_id" }, origin, 400);
+      const row = await env.DB.prepare(
+        "SELECT 1 AS ok FROM t_checkouts WHERE student_id=? AND slide_id=? LIMIT 1"
+      ).bind(student, slideId).first();
+      return json({ status:"success", submitted: !!row }, origin);
+    }
+
+    // Envio com validação pela hora de SP
+    if ((is("/checkouts") || is("/checkout")) && method === "POST") {
+      const body = await readJsonBody(req);
+      if (!body) return json({ status:"error", message:"invalid json" }, origin, 400);
+
+      const student_id = String(body.student || body.student_id || "").trim();
+      const slide_id   = String(body.slide_id || body.session || body.page || "").trim();
+      const ticket     = String(body.ticket || body.text || body.answer || body.message || "").trim();
+      const ts_client  = String(body.tsClient || body.ts_client || body.client_ts || "").trim();
+      const user_agent = (req.headers.get("user-agent") || "").slice(0,256);
+
+      const wOpenStr   = String(body.open || body.window_open || body["data-open"] || "").trim();
+      const wCloseStr  = String(body.close || body.window_close || body["data-close"] || "").trim();
+
+      const likertQuestion = String(body?.likert_question || "").trim();
+      const likertValueRaw = body?.likert_value;
+      const likertValue = Number.isFinite(Number(likertValueRaw)) ? Number(likertValueRaw) : null;
+
+      if (!student_id) return json({ status:"error", message:"missing student_id" }, origin, 400);
+      if (!slide_id)   return json({ status:"error", message:"missing slide_id" }, origin, 400);
+
+      // valida janela somente se ambos vierem
+      if (wOpenStr && wCloseStr) {
+        const nowStr   = tsBRString(Date.now());
+        const openStr  = normalizeBRLocal(wOpenStr);
+        const closeStr = normalizeBRLocal(wCloseStr);
+        if (!openStr || !closeStr) return json({ status:"error", message:"invalid window" }, origin, 400);
+        const nowKey = brKey(nowStr), openKey = brKey(openStr), closeKey = brKey(closeStr);
+        if (nowKey < openKey || nowKey > closeKey) {
+          return json({ status:"closed_window", now_br:nowStr, open_br:openStr, close_br:closeStr }, origin, 403);
+        }
+      }
+
+      const timestamp_iso = new Date().toISOString(); // UTC
+      const timestamp_br  = tsBRString(Date.now());   // America/Sao_Paulo
+
+      // Versão simplificada para a tabela t_checkouts
+      try {
+        // Omitimos o created_at/iso pois o D1 preenche automaticamente
+        await env.DB.prepare(`
+        INSERT INTO t_checkouts (timestamp_br,  student_id, slide_id, ticket, likert_question, likert_value)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `).bind(
+        timestamp_br,
+        student_id,
+        slide_id,
+        ticket,
+        likertQuestion,
+        likertValue
+      ).run();
+      
+        return json({ status:"success", student_id, slide_id, timestamp_br }, origin);
+      
+      } catch (e) {
+        if (String(e).includes("UNIQUE")) {
+          return json({ status:"duplicate", student_id, slide_id }, origin);
+        }
+        return json({ status:"error", message: String(e) }, origin, 500);
+      }
+    }
+
+
+
+    if (is("/admin/checkouts") && method === "GET") {
+      const adminKey = req.headers.get("x-admin-token") || url.searchParams.get("token") || url.searchParams.get("t") || "";
+    
+      const html = `<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <title>Admin · Checkouts</title>
+      <style>
+        :root{ --bg:#0b1220; --card:#111a2e; --muted:#93a4c7; --text:#e8eefc; --border:rgba(255,255,255,.10); --accent:#a78bfa; --bad:#fb7185; --success:#34d399; }
+        body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;padding:20px;}
+        .wrap{max-width:1200px;margin:0 auto;}
+        .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px;}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:15px;}
+        label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;}
+        select, button{padding:10px;border-radius:10px;border:1px solid var(--border);background:#0e1730;color:var(--text);font:inherit;}
+        button{background:rgba(167,139,250,.15);cursor:pointer;font-weight:700;}
+        .grid{display:grid;grid-template-columns:1fr;gap:15px;margin-bottom:15px;}
+        @media(min-width:980px){ .grid{grid-template-columns:1.2fr .8fr;} }
+        table{width:100%;border-collapse:collapse;font-size:12px;}
+        th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;}
+        th { text-transform: uppercase; font-size: 10px; letter-spacing: 1px; color: var(--muted); }
+        .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .insight-box { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 12px; border: 1px solid var(--border); }
+        .insight-title { font-size: 11px; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+        .q-item { font-size: 12px; margin-bottom: 6px; padding-left: 10px; border-left: 2px solid var(--accent); color: #cbd5e1; }
+        .stat-val { font-size: 24px; font-weight: 800; color: var(--success); }
+        .btn-reply { 
+          padding: 4px 8px; 
+          font-size: 10px; 
+          cursor: pointer; 
+          background: var(--accent); 
+          color: #000; 
+          border: none; 
+          border-radius: 4px; 
+          margin-left: 8px;
+          font-weight: bold;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .btn-reply:hover { background: #fff; }
+      </style>
+    </head>
+    <body>
+      <div class="wrap">
+        <h1>Admin · Checkouts</h1>
+        <div class="row card">
+          <div>
+            <label>Available Dates</label>
+            <select id="dateSelect"><option value="">Loading days...</option></select>
+          </div>
+          <div><button id="btnLoad">Load Data</button></div>
+          <div id="status" style="font-size:12px;color:var(--muted);margin-left:auto;"></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:10px;">Responses <span id="countPill" class="card" style="padding:2px 8px;font-size:10px;">0</span></div>
+            <div style="overflow:auto;max-height:400px;">
+              <table>
+                <thead><tr><th>Time</th><th>Slide</th><th>Ticket</th><th style="text-align:center">Likert</th></tr></thead>
+                <tbody id="tbody"></tbody>
+              </table>
+            </div>
+            <div id="err" style="color:var(--bad)"></div>
+          </div>
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:10px;">Likert Distribution</div>
+            <div style="height:320px;"><canvas id="chart"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:15px;">Pedagogical Insights (Radar)</div>
+          <div class="analysis-grid">
+            <div class="insight-box">
+              <div class="insight-title">❓Student Questions</div>
+              <div id="questionsBox" style="max-height:200px; overflow:auto;"></div>
+            </div>
+            <div class="insight-box">
+              <div class="insight-title">📊 Average</div>
+              <div id="avgLikert" class="stat-val">0.0</div>
+              <div style="font-size:10px; color:var(--muted)">Baseado nos valores Likert (1-5)</div>
+            </div>
+            <div class="insight-box">
+              <div class="insight-title">🔑 Common words</div>
+              <div id="keywordsBox" style="display:flex; flex-wrap:wrap; gap:5px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+      <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token') || urlParams.get('t') || "${adminKey}";
+        const dateEl = document.getElementById("dateSelect");
+        const tbody = document.getElementById("tbody");
+        const errEl = document.getElementById("err");
+        let chart = null;
+    
+        function esc(s){ return s ? String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) : ""; }
+    
+        async function fetchJson(path){
+          const u = new URL(path, location.origin);
+          if(token) u.searchParams.set("token", token);
+          const r = await fetch(u);
+          if(!r.ok) throw new Error("Erro na API: " + r.status);
+          return r.json();
+        }
+    
+        async function sendDM(sid, slideId) {
+          const msg = prompt("Enviar resposta privada para " + sid + ":");
+          if (!msg) return;
+          try {
+            const res = await fetch("/admin/dm/send?token=" + token, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ student_id: sid, checkout_id: slideId, message_text: msg })
+            });
+            if (res.ok) alert("Mensagem enviada com sucesso!");
+            else alert("Erro ao enviar mensagem.");
+          } catch (e) { alert("Falha na conexão: " + e.message); }
+        }
+    
+        async function load(){
+          errEl.textContent = "";
+          try {
+            const day = dateEl.value;
+            if(!day) return;
+            const [dataRes, likertRes] = await Promise.all([
+              fetchJson("/admin/checkouts/data?date=" + day),
+              fetchJson("/admin/checkouts/likert?date=" + day)
+            ]);
+            const rows = dataRes.items || [];
+            tbody.innerHTML = rows.map(function(r) {
+              var time = r.timestamp_br ? r.timestamp_br.split(" ")[1] : "--:--";
+              var s_id = String(r.student_id || "");
+              var sl_id = String(r.slide_id || "");
+              return '<tr>' +
+                '<td style="color:var(--muted); font-family:monospace">' + esc(time) + '</td>' +
+                '<td><span style="background:rgba(167,139,250,0.1); color:var(--accent); padding:2px 6px; border-radius:4px; font-size:10px; font-weight:bold">' + esc(sl_id) + '</span></td>' +
+                '<td style="max-width:350px;">' +
+                  '<div style="display:flex; justify-content:space-between; align-items:center;">' +
+                    '<span style="word-wrap:break-word;">' + esc(r.ticket) + '</span>' +
+                    '<button class="btn-reply" onclick="sendDM(\\'' + esc(s_id) + '\\', \\'' + esc(sl_id) + '\\')">REPLY</button>' +
+                  '</div>' +
+                '</td>' +
+                '<td style="text-align:center; font-weight:800; color:var(--accent)">' + esc(r.likert_value || "-") + '</td>' +
+              '</tr>';
+            }).join("");
+            
+            document.getElementById("countPill").textContent = rows.length;
+            if(likertRes) renderChart(likertRes);
+            runAnalysis(rows);
+          } catch(e) { errEl.textContent = e.message; }
+        }
+    
+        function runAnalysis(rows) {
+          const questions = rows.filter(r => (r.ticket || "").includes("?"));
+          document.getElementById("questionsBox").innerHTML = questions.length 
+            ? questions.map(q => '<div class="q-item">' + esc(q.ticket) + '</div>').join("")
+            : '<div style="color:var(--muted); font-size:12px;">Nenhuma pergunta direta.</div>';
+          const vals = rows.map(r => parseInt(r.likert_value)).filter(v => !isNaN(v));
+          const avg = vals.length ? (vals.reduce((a,b) => a+b, 0) / vals.length).toFixed(2) : "0.0";
+          document.getElementById("avgLikert").textContent = avg;
+          const allText = rows.map(r => r.ticket || "").join(" ").toLowerCase();
+          const words = allText.match(/[a-zà-ÿ]+/g) || [];
+          const stopWords = ["esse", "como", "por", "esta", "para", "que", "com", "uma", "mais", "pela", "pelo", "sobre", "aula", "hoje", "vimos", "aprendi", "muito", "pode"];
+          const counts = {};
+          words.forEach(w => { if (w.length >= 3 && !stopWords.includes(w)) counts[w] = (counts[w] || 0) + 1; });
+          const sorted = Object.keys(counts).map(key => ({ word: key, count: counts[key] }))
+            .sort((a, b) => b.count - a.count).slice(0, 10);
+          document.getElementById("keywordsBox").innerHTML = sorted.map(f => 
+            '<span style="background:rgba(167,139,250,0.1); padding:4px 8px; border-radius:6px; font-size:11px; border:1px solid var(--border); font-weight:600;">' + 
+            f.word.toUpperCase() + ' (' + f.count + ')</span>'
+          ).join("") || '-';
+        }
+    
+        function renderChart(data){
+          if(chart) chart.destroy();
+          if(!data.questions || data.questions.length === 0) return;
+          const labels = data.questions.map(q => q.question);
+          const ds = ["1","2","3","4","5"].map((v, i) => ({
+            label: v, data: data.questions.map(q => q.counts[v] || 0),
+            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"][i], borderRadius: 6
+          }));
+          chart = new Chart(document.getElementById("chart"), {
+            type: 'bar', data: { labels, datasets: ds },
+            options: { 
+              responsive:true, maintainAspectRatio:false, 
+              plugins: { legend: { position:'top', labels:{color:'#e8eefc', font:{size:11, weight:'bold'}}}},
+              scales: { 
+                x:{grid:{display:false}, ticks:{color:"#93a4c7"}}, 
+                y:{beginAtZero:true, grid:{color:"rgba(255,255,255,0.05)"}, ticks:{color:"#93a4c7", stepSize:1}}
+              }
+            }
+          });
+        }
+     
+        async function init(){
+          try {
+            const res = await fetchJson("/admin/checkouts/slides");
+            dateEl.innerHTML = res.items.map(d => '<option value="'+d+'">'+d+'</option>').join("") || '<option value="">No data</option>';
+            if(res.items.length) load();
+          } catch(e) { errEl.textContent = "Erro ao carregar datas: " + e.message; }
+        }
+    
+        document.getElementById("btnLoad").onclick = load;
+        dateEl.onchange = load;
+        init();
+      </script>
+    </body>
+    </html>`;
+      return new Response(html, { headers: { "content-type": "text/html;charset=utf-8" } });
+    }
+
+
+
+
+
+
+
+    if (is("/admin/dm/send") && method === "POST") {
+      const body = await readJsonBody(req);
+      const { student_id, checkout_id, message_text, context_type, context_id } = body || {};
+    
+      const sid = String(student_id || "").trim().toLowerCase();
+      const msg = String(message_text || "").trim();
+    
+      if (!sid || !msg) return json({ error: "Missing data" }, origin, 400);
+    
+      // Se vier checkout_id, tratamos como reply de checkout.
+      // Se não vier, é DM manual (checkout_id NULL).
+      const chk = checkout_id ? String(checkout_id).trim() : null;
+    
+      const ctype = String(context_type || (chk ? "checkout" : "manual")).trim();
+      const cid   = (context_id != null && String(context_id).trim() !== "") ? String(context_id).trim() : (chk ? chk : null);
+    
+      await env.DB.prepare(`
+        INSERT INTO dm (student_id, checkout_id, message_text, context_type, context_id)
+        VALUES (?, ?, ?, ?, ?)
+      `).bind(sid, chk, msg, ctype, cid).run();
+    
+      return json({ status: "success" }, origin);
+    }
+    
+    if (is("/admin/dm") && method === "GET") {
+      const adminKey = req.headers.get("x-admin-token") || url.searchParams.get("token") || url.searchParams.get("t") || "";
+    
+      const html = `<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <title>Admin · Send DM</title>
+      <style>
+        :root{ --bg:#0b1220; --card:#111a2e; --muted:#93a4c7; --text:#e8eefc; --border:rgba(255,255,255,.10); --accent:#a78bfa; --ok:#34d399; --bad:#fb7185;}
+        body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;padding:20px;}
+        .wrap{max-width:820px;margin:0 auto;}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;}
+        h1{margin:0 0 12px;}
+        label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;margin:10px 0 6px;}
+        input, textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0e1730;color:var(--text);font:inherit;}
+        textarea{min-height:120px;resize:vertical;}
+        .row{display:flex;gap:10px;flex-wrap:wrap;}
+        .row > div{flex:1;min-width:220px;}
+        button{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:rgba(167,139,250,.15);color:var(--text);font-weight:800;cursor:pointer;}
+        .status{margin-top:12px;font-size:12px;color:var(--muted);}
+        .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-weight:800;font-size:11px;}
+        .pill.ok{background:rgba(52,211,153,.18);color:var(--ok);border:1px solid rgba(52,211,153,.35);}
+        .pill.bad{background:rgba(251,113,133,.18);color:var(--bad);border:1px solid rgba(251,113,133,.35);}
+        .hint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4;}
+      </style>
+    </head>
+    <body>
+      <div class="wrap">
+        <div class="card">
+          <h1>Admin · Send Manual DM</h1>
+    
+          <div class="hint">
+            Use this page to send a <b>manual DM</b> to any student (not tied to a checkout).<br>
+            If you want to reply to a specific checkout, use <code>/admin/checkouts</code> (REPLY).
+          </div>
+    
+          <label>Student ID</label>
+          <input id="sid" placeholder="e.g., aluno123" />
+    
+          <div class="row">
+            <div>
+              <label>Context (optional)</label>
+              <input id="context" placeholder="leave blank for manual" />
+            </div>
+            <div>
+              <label>Type</label>
+              <input id="ctype" value="manual" />
+            </div>
+          </div>
+    
+          <label>Message</label>
+          <textarea id="msg" placeholder="Write your DM..."></textarea>
+    
+          <div class="row" style="margin-top:10px;">
+            <button id="btn">Send DM</button>
+          </div>
+    
+          <div id="out" class="status"></div>
+        </div>
+      </div>
+    
+      <script>
+        const params = new URLSearchParams(location.search);
+        const token = params.get("t") || params.get("token") || "${String(adminKey).replace(/"/g,'\\"')}";
+    
+        function show(ok, text){
+          const out = document.getElementById("out");
+          out.innerHTML = (ok
+            ? '<span class="pill ok">OK</span> '
+            : '<span class="pill bad">ERROR</span> '
+          ) + (text || "");
+        }
+    
+        async function sendDM(student_id, message_text, context_id){
+          const payload = {
+            student_id,
+            message_text,
+            context_type: (document.getElementById("ctype").value || "manual").trim()
+          };
+    
+          // Se você preencher "context", mandamos como context_id (não precisa ser checkout_id)
+          if (context_id && context_id.trim()) {
+            payload.context_id = context_id.trim();
+            // se você quiser que conte como reply de checkout, pode também setar checkout_id = context_id
+            // payload.checkout_id = context_id.trim();
+          }
+    
+          const res = await fetch("/admin/dm/send?t=" + encodeURIComponent(token), {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+    
+          const text = await res.text();
+          return { ok: res.ok, status: res.status, text };
+        }
+    
+        document.getElementById("btn").onclick = async () => {
+          const sid = (document.getElementById("sid").value || "").trim();
+          const msg = (document.getElementById("msg").value || "").trim();
+          const ctx = (document.getElementById("context").value || "").trim();
+    
+          if(!sid || !msg) return show(false, "Missing student_id or message.");
+    
+          try{
+            const r = await sendDM(sid, msg, ctx);
+            show(r.ok, "HTTP " + r.status + " — " + r.text);
+          }catch(e){
+            show(false, e.message);
+          }
+        };
+    
+        document.getElementById("btnTest").onclick = async () => {
+          document.getElementById("sid").value = "aluno123";
+          document.getElementById("msg").value = "teste DM";
+          document.getElementById("context").value = "";
+          document.getElementById("ctype").value = "manual";
+          document.getElementById("btn").click();
+        };
+      </script>
+    </body>
+    </html>`;
+    
+      return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+    }
+      
+    
+
+
+
+if (is("/admin/checkouts/slides") && method === "GET") {
+  try {
+    const { results } = await env.DB.prepare(`
+      SELECT DISTINCT substr(timestamp_br, 1, 10) as day
+      FROM t_checkouts
+      ORDER BY day DESC
+    `).all();
+    return json({ items: (results || []).map(r => r.day) }, origin);
+  } catch (e) {
+    return json({ error: e.message }, origin, 500);
+  }
+}
+
+// --- NO ENDPOINT: /admin/checkouts/data ---
+if (is("/admin/checkouts/data") && method === "GET") {
+  try {
+    const url = new URL(req.url);
+    const date = (url.searchParams.get("date") || "").trim();
+
+    // Se houver data, filtramos. Se não, mostramos tudo.
+    const sql = date 
+      ? "SELECT timestamp_br, student_id, slide_id, ticket, likert_question, likert_value FROM t_checkouts WHERE substr(timestamp_br, 1, 10) = ? ORDER BY timestamp_br ASC"
+      : "SELECT timestamp_br, student_id, slide_id, ticket, likert_question, likert_value FROM t_checkouts ORDER BY timestamp_br ASC";
+
+    const binds = date ? [date] : [];
+    const { results } = await env.DB.prepare(sql).bind(...binds).all();
+
+    return json({ items: results || [] }, origin);
+  } catch (e) {
+    return json({ error: "D1 Data Error: " + e.message }, origin, 500);
+  }
+}
+
+// --- NO ENDPOINT: /admin/checkouts/likert ---
+if (is("/admin/checkouts/likert") && method === "GET") {
+  try {
+    const url = new URL(req.url);
+    const date = (url.searchParams.get("date") || "").trim();
+
+    // Query fixa para evitar o erro do token "$"
+    let sql = "SELECT CAST(likert_question AS TEXT) AS question, CAST(likert_value AS TEXT) AS value, COUNT(*) AS n FROM t_checkouts WHERE likert_question IS NOT NULL AND likert_value IS NOT NULL";
+    const binds = [];
+
+    if (date) {
+      sql += " AND substr(timestamp_br, 1, 10) = ?";
+      binds.push(date);
+    }
+    sql += " GROUP BY question, value";
+
+    const { results } = await env.DB.prepare(sql).bind(...binds).all();
+
+    const map = new Map();
+    const totals = { "1":0, "2":0, "3":0, "4":0, "5":0, total: 0 };
+
+    for (const r of (results || [])) {
+      const q = String(r.question || "").trim();
+      const v = String(r.value || "").trim();
+      const n = Number(r.n || 0);
+      if (!["1","2","3","4","5"].includes(v)) continue;
+      if (!map.has(q)) map.set(q, { question: q, counts: { "1":0,"2":0,"3":0,"4":0,"5":0 }, total: 0 });
+      const obj = map.get(q);
+      obj.counts[v] += n;
+      obj.total += n;
+      totals[v] += n;
+      totals.total += n;
+    }
+
+    return json({ questions: Array.from(map.values()), totals }, origin);
+  } catch (e) {
+    return json({ error: "D1 Likert Error: " + e.message }, origin, 500);
+  }
+}
+
+
+
+
+    // ---------- RANKING (likes) ----------
+    if (is("/ranking/score") && method === "GET") {
+      const limit = clamp(int(url.searchParams.get("limit"), 100), 1, 1000);
+      const rows = (await env.DB.prepare(
+        `SELECT student, points, last_ts
+           FROM ranking_score_likes
+          ORDER BY points DESC, last_ts DESC
+          LIMIT ?`
+      ).bind(limit).all()).results || [];
+      return json({ status: "success", items: rows }, origin);
+    }
+
+
+    // ============================================================
+    // RANKING (TOTAL)
+    // ============================================================
+    if (is("/ranking") && method === "GET") {
+      try {
+        const topN = clamp(int(url.searchParams.get("top"), 10), 1, 100);
+        const who = (url.searchParams.get("who") || "").trim();
+
+        const topRows = (await env.DB.prepare(`
+          SELECT student_id, points
+          FROM ranking_score_total
+          ORDER BY points DESC, student_id COLLATE NOCASE ASC
+          LIMIT ?
+        `).bind(topN).all()).results || [];
+
+        const top = topRows.map((r, i) => ({
+          rank: i + 1,
+          studentId: r.student_id,
+          student: r.student_id,
+          total_points: Number(r.points || 0)
+        }));
+
+        let me = null;
+        if (who) {
+          const meRow = await env.DB.prepare(`
+            WITH ranked AS (
+              SELECT *, ROW_NUMBER() OVER (ORDER BY points DESC, student_id ASC) AS pos
+              FROM ranking_score_total
+            )
+            SELECT * FROM ranked WHERE student_id = ?
+          `).bind(who).first();
+
+          if (meRow) {
+            me = {
+              rank: meRow.pos,
+              studentId: meRow.student_id,
+              points: meRow.points,
+              likes_points: meRow.likes_points,
+              checkouts_points: meRow.checkouts_points,
+              poll_points: meRow.poll_points,
+            };
+          }
+        }
+
+        return json({ status: "success", ok: true, top, me, updated_at: new Date().toISOString() }, origin);
+      } catch (e) {
+        return json({ status: "error", message: "Ranking update in progress..." }, origin, 500);
+      }
+    }
+
+
+
+// ============================================================
+// ATTENDANCE
+// ============================================================
+if (is("/admin/attendance/save") && method === "POST") {
+  try {
+    const body = await readJsonBody(req);
+    const { date, records } = body || {};
+
+    if (!date || !Array.isArray(records)) {
+      return json({ ok: false, error: "Missing date or records[]" }, origin, 400);
+    }
+    if (records.length === 0) {
+      return json({ ok: false, error: "records is empty" }, origin, 400);
+    }
+
+    const statements = records.map((r) => {
+      const sid = String(r.sid || "").trim().toLowerCase();
+      const status = String(r.status || "present");
+
+      return env.DB
+        .prepare("INSERT OR REPLACE INTO attendance_dates (student_id, date_class, status) VALUES (?, ?, ?)")
+        .bind(sid, date, status);
+    });
+
+    const out = await env.DB.batch(statements);
+
+    return json(
+      { ok: true, inserted: statements.length },
+      origin
+    );
+  } catch (e) {
+    return json({ ok: false, error: String(e && e.message ? e.message : e) }, origin, 500);
+  }
+}
+
+
+    if (is("/admin/attendance") && method === "GET") {
+      const instructor = env.INSTRUCTOR_NAME || "Henrique";
+
+      const { results } = await env.DB.prepare(
+        "SELECT student_id, name FROM t_students_dim WHERE prof = ? ORDER BY name ASC"
+      ).bind(instructor).all();
+
+      const studentRows = (results || [])
+        .map((s) => `
+          <div class="student-card" data-sid="${escapeHtml(s.student_id)}">
+            <div class="student-info">
+              <span class="student-name">${escapeHtml(s.name)}</span>
+            </div>
+            <div class="status-toggle">
+              <button type="button" class="btn-status present active" onclick="setStatus(this, 'present')">P</button>
+              <button type="button" class="btn-status partial" onclick="setStatus(this, 'partial')">½</button>
+              <button type="button" class="btn-status absent" onclick="setStatus(this, 'absent')">A</button>
+            </div>
+          </div>
+        `)
+        .join("");
+
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Attendance</title>
+  <style>
+    :root { --p-color:#10b981; --a-color:#ef4444; --pt-color:#f59e0b; --bg:#f8fafc; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; padding: 15px; }
+    .container { max-width: 500px; margin: 0 auto; }
+    h2 { text-align: center; color: #1e3a8a; }
+    .date-picker { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #cbd5e1; font-size: 18px; margin-bottom: 20px; box-sizing: border-box; }
+    .student-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .student-name { font-weight: 600; color: #334155; font-size: 16px; }
+    .status-toggle { display: flex; gap: 5px; }
+    .btn-status { border: 2px solid #e2e8f0; background: white; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; min-width: 45px; }
+    .btn-status.present.active { background: var(--p-color); color: white; border-color: var(--p-color); }
+    .btn-status.partial.active { background: var(--pt-color); color: white; border-color: var(--pt-color); }
+    .btn-status.absent.active { background: var(--a-color); color: white; border-color: var(--a-color); }
+    .btn-submit { width: 100%; padding: 20px; background: #1e3a8a; color: white; border: none; border-radius: 15px; font-size: 20px; font-weight: 800; margin-top: 20px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🗓️ Daily Roll Call</h2>
+    <input type="date" id="class_date" class="date-picker" value="${new Date().toISOString().split("T")[0]}">
+    <div id="student_list">${studentRows}</div>
+    <button class="btn-submit" onclick="submit()">SUBMIT ATTENDANCE</button>
+  </div>
+
+  <script>
+    function setStatus(btn, status) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.btn-status').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      btn.closest('.student-card').dataset.status = status;
+    }
+
+
+    async function submit() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('t') || urlParams.get('token') || "";
+  
+      const date = document.getElementById('class_date').value;
+      const records = Array.from(document.querySelectorAll('.student-card')).map(card => ({
+        sid: card.dataset.sid,
+        status: card.dataset.status || 'present'
+      }));
+
+const res = await fetch('/admin/attendance/save?t=' + encodeURIComponent(token), {
+
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date, records })
+      });
+      if (res.ok) alert('Attendance saved successfully!');
+      else alert('Error saving attendance.');
+
+      let data = {};
+    try { data = await res.json(); } catch {}
+
+    if (res.ok) alert('Attendance saved successfully!');
+    else alert('Error saving attendance: ' + (data.error || res.status));
+
+
+    }
+  </script>
+</body>
+</html>`;
+
+      return new Response(html, { headers: { "Content-Type": "text/html", ...cors(origin) } });
+    }
+
+    // ============================================================
+    // HEALTH
+    // ============================================================
+    if (is("/health")) {
+      return json({ ok: true, service: "threads", ts: nowMs() }, origin);
+    }
+
+    // ============================================================
+    // POLL GALLERY (admin)
+    // ============================================================
+    if (is("/admin/poll/gallery") && method === "GET") {
+      const { results } = await env.DB.prepare("SELECT * FROM poll_active ORDER BY poll_id DESC").all();
+
+      const questionsHtml = results.map(q => {
+        const opts = JSON.parse(q.options_json || "{}");
+        const optionsHtml = Object.entries(opts).map(([letter, text]) => `
+          <label style="display:block; margin: 8px 0; cursor:pointer;">
+            <input type="radio" name="${q.exercise_id}" value="${letter}"> ${letter}. ${text}
+          </label>
+        `).join("");
+      
+        return `
+          <div class="question-block" id="block-${q.exercise_id}" data-correct="${q.correct_answer}">
+            <p><strong>${q.question_text}</strong></p>
+            <form id="form-${q.exercise_id}">${optionsHtml}</form>
+            <div id="feedback-${q.exercise_id}" class="feedback" style="display:none; padding:10px; margin-top:10px; border-radius:4px;">
+              <strong>Resposta: ${q.correct_answer}</strong><br>${q.feedback_text}
+            </div>
+          </div>
+        `;
+      }).join("<hr>");
+
+      const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Question Bank — Financial Strategy</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f1f5f9; padding: 40px 20px; }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { color: #1e3a8a; text-align: center; margin-bottom: 30px; }
+    .q-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .q-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; color: #64748b; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
+    .q-id { color: #1e3a8a; }
+    .q-options { display: grid; gap: 8px; margin: 15px 0; }
+    .opt { padding: 8px 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 14px; }
+    .opt.correct { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
+    .q-feedback { background: #eff6ff; padding: 10px; border-radius: 8px; font-size: 13px; color: #1e40af; border: 1px solid #dbeafe; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Question Bank Gallery</h1>
+    ${questionsHtml || "<p>No questions found in database.</p>"}
+  </div>
+</body>
+</html>`;
+
+      return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+    }
+
+    // ============================================================
+    // LIVE POLL SYSTEM
+    // ============================================================
+    if (is("/poll/status")) {
+      const student_id = url.searchParams.get("student_id");
+      const activePoll = await env.DB.prepare("SELECT * FROM poll_active WHERE is_active = 1 LIMIT 1").first();
+      if (!activePoll) return json(null, origin);
+
+      if (student_id) {
+        const alreadyAnswered = await env.DB.prepare(
+          "SELECT 1 FROM poll_responses WHERE poll_id = ? AND student_id = ? LIMIT 1"
+        ).bind(activePoll.poll_id, student_id).first();
+
+        if (alreadyAnswered) {
+          return json({ ...activePoll, is_active: 0, already_answered: true }, origin);
+        }
+      }
+      return json(activePoll, origin);
+    }
+
+    if (is("/poll/results") && method === "GET") {
+      const activePoll = await env.DB.prepare("SELECT poll_id FROM poll_active WHERE is_active = 1").first();
+      if (!activePoll) return json([], origin);
+
+      const { results } = await env.DB.prepare(`
+        SELECT chosen_option, COUNT(*) as count
+        FROM poll_responses
+        WHERE poll_id = ?
+        GROUP BY chosen_option
+      `).bind(activePoll.poll_id).all();
+
+      return json(results || [], origin);
+    }
+
+    if (is("/poll/vote") && method === "POST") {
+      const body = await readJsonBody(req);
+      const { student_id, poll_id, choice } = body || {};
+
+      const poll = await env.DB.prepare(
+        "SELECT poll_id, correct_option, poll_type, feedback_text FROM poll_active WHERE is_active = 1 LIMIT 1"
+      ).first();
+      if (!poll) return json({ error: "No active poll" }, origin);
+
+      const cleanChoice = (String(choice) || "").trim().replace(",", ".");
+      const cleanCorrect = (String(poll.correct_option) || "").trim().replace(",", ".");
+
+      let is_correct = 0;
+      if (poll.poll_type === "numeric") {
+        const nChoice = parseFloat(cleanChoice);
+        const nCorrect = parseFloat(cleanCorrect);
+        const tolerance = 0.01;
+        if (!isNaN(nChoice) && !isNaN(nCorrect)) {
+          is_correct = Math.abs(nChoice - nCorrect) <= tolerance ? 1 : 0;
+        }
+      } else {
+        is_correct = (cleanChoice.toUpperCase() === cleanCorrect.toUpperCase() && cleanCorrect !== "") ? 1 : 0;
+      }
+
+      try {
+        await env.DB.prepare(
+          "INSERT INTO poll_responses (poll_id, student_id, chosen_option, is_correct, ts_br) VALUES (?, ?, ?, ?, ?)"
+        ).bind(poll_id || poll.poll_id, student_id, choice, is_correct, tsBRString(Date.now())).run();
+
+        return json({ status: "success", correct: is_correct, feedback: poll.feedback_text || "" }, origin);
+      } catch (e) {
+        return json({ status: "error", message: "Already answered" }, origin, 400);
+      }
+    }
+
+    // ============================================================
+    // POLL ADMIN API (protected by admin gate)
+    // ============================================================
+    if (is("/poll/admin")) {
+      if (url.searchParams.has("get_poll")) {
+        const pollId = url.searchParams.get("get_poll");
+        const pollData = await env.DB.prepare("SELECT * FROM poll_active WHERE poll_id = ?").bind(pollId).first();
+        return json(pollData, origin);
+      }
+
+      if (url.searchParams.has("toggle_results")) {
+        const pollId = url.searchParams.get("toggle_results");
+        await env.DB.prepare("UPDATE poll_active SET show_results = NOT show_results WHERE poll_id = ?").bind(pollId).run();
+        return json({ status: "ok" }, origin);
+      }
+
+      if (url.searchParams.has("delete_id")) {
+        const pollId = url.searchParams.get("delete_id");
+        await env.DB.prepare("DELETE FROM poll_active WHERE poll_id = ?").bind(pollId).run();
+        return json({ status: "ok" }, origin);
+      }
+
+      const activate = url.searchParams.get("set") === "1";
+      const p_id = url.searchParams.get("poll_id");
+
+      if (!activate) {
+        if (p_id) {
+          await env.DB.prepare("UPDATE poll_active SET is_active = 0 WHERE poll_id = ?").bind(p_id).run();
+        } else {
+          await env.DB.prepare("UPDATE poll_active SET is_active = 0, show_results = 0").run();
+        }
+        return json({ status: "closed" }, origin);
+      }
+
+      if (activate && p_id) {
+        await env.DB.prepare("UPDATE poll_active SET is_active = 0 WHERE poll_id != ?").bind(p_id).run();
+
+        const q = url.searchParams.get("q");
+        if (!q || q === "undefined") {
+          await env.DB.prepare("UPDATE poll_active SET is_active = 1 WHERE poll_id = ?").bind(p_id).run();
+          return json({ status: "ok_activated_existing" }, origin);
+        }
+
+        const opts = url.searchParams.get("opts") || "{}";
+        const correct = (url.searchParams.get("correct") || "").trim();
+        const type = url.searchParams.get("type") || "info";
+        const feedback = url.searchParams.get("feedback") || "";
+
+        await env.DB.prepare(`
+          INSERT INTO poll_active (poll_id, question, options_json, correct_option, is_active, show_results, poll_type, feedback_text)
+          VALUES (?, ?, ?, ?, 1, 0, ?, ?)
+          ON CONFLICT(poll_id) DO UPDATE SET
+            question=excluded.question,
+            options_json=excluded.options_json,
+            correct_option=excluded.correct_option,
+            is_active=1,
+            poll_type=excluded.poll_type,
+            feedback_text=excluded.feedback_text
+        `).bind(p_id, q, opts, correct, type, feedback).run();
+
+        return json({ status: "ok_launched_new" }, origin);
+      }
+
+      return json({ status: "noop" }, origin);
+    }
+
+    // ============================================================
+    // POLL EXPORT (protected by admin gate)
+    // ============================================================
+    if (is("/poll/export") && method === "GET") {
+      const id = url.searchParams.get("id");
+      const format = url.searchParams.get("format");
+
+      const poll = await env.DB.prepare("SELECT * FROM poll_active WHERE poll_id = ?").bind(id).first();
+      if (!poll) return new Response("Questão não encontrada no banco D1", { status: 404, headers: cors(origin) });
+
+      const content = (format === "qmd") ? generateQMD(poll) : generateBrightspaceCSV(poll);
+      const fileName = (format === "qmd") ? `${id}.qmd` : `${id}_brightspace.csv`;
+      const contentType = (format === "qmd") ? "text/plain" : "text/csv";
+
+      return new Response(content, {
+        headers: {
+          ...cors(origin),
+          "Content-Type": `${contentType}; charset=utf-8`,
+          "Content-Disposition": `attachment; filename="${fileName}"`
+        }
+      });
+    }
+
+    // ============================================================
+    // POLL LIST (protected by admin gate)
+    // ============================================================
+    if (is("/poll/list") && method === "GET") {
+      const list = await env.DB.prepare("SELECT poll_id, question, is_active, poll_type FROM poll_active ORDER BY poll_id DESC LIMIT 50").all();
+      return json(list.results || [], origin);
+    }
+
+
+
+
+
+    // ============================================================
+    // ADMIN PANEL: /admin/poll  (IMPORT REMOVED + FIXED)
+    // ============================================================
+    if (is("/admin/poll") && method === "GET") {
+      const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poll Admin</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 20px; background: #f1f5f9; color: #1e293b; }
+    .card { max-width: 700px; margin: 0 auto 20px auto; background: white; padding: 20px; border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+    h2 { margin-top: 0; color: #1e3a8a; font-size: 1.2rem; }
+    label { display: block; font-size: 10px; font-weight: 800; margin: 8px 0 2px; color: #64748b; text-transform: uppercase; }
+    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; font-size: 14px; margin-bottom: 4px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .grid5 { display:grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    button { padding: 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+    .btn-launch { background: #1e3a8a; color: white; width: 100%; margin-top: 10px; }
+    .btn-close { background: #fee2e2; color: #b91c1c; width: 100%; margin-top: 8px; }
+    #poll_list { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+    .poll-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #fff; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; }
+    .actions-gap { display: flex; gap: 4px; flex-wrap: wrap; justify-content:flex-end; }
+    .btn-small { padding: 6px 8px; font-size: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-weight: 700; cursor: pointer; }
+    .btn-active { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+    .btn-danger { color: #ef4444; }
+    #status { text-align:center; margin:10px; font-weight:bold; min-height: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🚀 Launch / Edit Poll</h2>
+
+    <div class="grid">
+      <select id="poll_type" onchange="toggleMode()">
+        <option value="quiz">Quiz (A–E)</option>
+        <option value="numeric">Numeric (Input)</option>
+        <option value="info">Info</option>
+      </select>
+      <input id="p_id" placeholder="ID (ex: module1_mcq_q1)">
+    </div>
+
+    <label>Question</label>
+    <textarea id="q" rows="2" placeholder="Question text..."></textarea>
+
+    <div id="options-section">
+      <label>Options (A–E)</label>
+      <div class="grid5">
+        <input id="a" placeholder="A">
+        <input id="b" placeholder="B">
+        <input id="c" placeholder="C">
+        <input id="d" placeholder="D">
+        <input id="e" placeholder="E">
+      </div>
+    </div>
+
+    <label>Correct Answer / Target Value</label>
+    <input id="correct" placeholder="Correct (A-E or Number)">
+
+    <label>Feedback (Optional)</label>
+    <textarea id="feedback" rows="2" placeholder="Feedback..."></textarea>
+
+    <button class="btn-launch" onclick="send(1)">Save & Activate</button>
+    <button class="btn-close" onclick="send(0)">Deactivate (this or all)</button>
+
+    <div id="status"></div>
+
+    <h3>History</h3>
+    <div id="poll_list">Loading database...</div>
+  </div>
+
+  <script>
+    function escHtml(s){
+      return String(s ?? "").replace(/[&<>"']/g, function(m){
+        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+      });
+    }
+
+    function getToken(){
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('t') || urlParams.get('token') || '';
+    }
+
+    async function load() {
+      try {
+        const token = getToken();
+        const res = await fetch('/poll/list?t=' + encodeURIComponent(token), { method: 'GET' });
+        const data = await res.json();
+
+        const listDiv = document.getElementById('poll_list');
+        if (!data || data.length === 0) {
+          listDiv.innerHTML = '<div style="text-align:center;color:#64748b;padding:20px;">No history yet.</div>';
+          return;
+        }
+
+        listDiv.innerHTML = data.map(function(p){
+          const statusIcon = p.is_active ? '🟢' : '⚪';
+          const btnClass = p.is_active ? 'btn-small btn-active' : 'btn-small';
+          const shortQ = p.question ? String(p.question).substring(0,40) : '';
+          const pid = String(p.poll_id || '');
+          const token = getToken();
+          const qmdUrl = "/poll/export?id=" + encodeURIComponent(pid) + "&format=qmd&t=" + encodeURIComponent(token);
+          const csvUrl = "/poll/export?id=" + encodeURIComponent(pid) + "&format=csv&t=" + encodeURIComponent(token);
+
+          return ''
+            + '<div class="poll-item">'
+            +   '<div>'
+            +     '<strong>' + statusIcon + ' ' + escHtml(pid) + '</strong>'
+            +     '<div style="font-size:11px; color:#64748b">' + escHtml(shortQ) + '...</div>'
+            +   '</div>'
+            +   '<div class="actions-gap">'
+            +     '<button class="btn-small" style="background:#e0e7ff; color:#1e3a8a" onclick="window.open(\\'' + qmdUrl + '\\')">QMD</button>'
+            +     '<button class="btn-small" style="background:#fef3c7; color:#92400e" onclick="window.open(\\'' + csvUrl + '\\')">CSV</button>'
+            +     '<button class="' + btnClass + '" onclick="toggleStatus(\\'' + pid.replace(/'/g, \"\\\\'\") + '\\',' + (p.is_active ? 1 : 0) + ')">' + (p.is_active ? 'OFF' : 'ON') + '</button>'
+            +     '<button class="btn-small" onclick="editPoll(\\'' + pid.replace(/'/g, \"\\\\'\") + '\\')">Edit</button>'
+            +     '<button class="btn-small btn-danger" onclick="delPoll(\\'' + pid.replace(/'/g, \"\\\\'\") + '\\')">Del</button>'
+            +   '</div>'
+            + '</div>';
+        }).join('');
+      } catch (e) {
+        console.error("Load error:", e);
+        document.getElementById('poll_list').innerHTML = 'Error loading history.';
+      }
+    }
+
+    async function toggleStatus(id, activeStatus) {
+      const newState = activeStatus === 1 ? 0 : 1;
+      const token = getToken();
+      await fetch("/poll/admin?poll_id=" + encodeURIComponent(id) + "&set=" + newState + "&t=" + encodeURIComponent(token));
+      load();
+    }
+
+    async function delPoll(id) {
+      if(confirm('Delete?')) {
+        const token = getToken();
+        await fetch("/poll/admin?delete_id=" + encodeURIComponent(id) + "&t=" + encodeURIComponent(token));
+        load();
+      }
+    }
+
+    async function editPoll(id) {
+      const token = getToken();
+      const res = await fetch("/poll/admin?get_poll=" + encodeURIComponent(id) + "&t=" + encodeURIComponent(token));
+      const p = await res.json();
+      if(p) {
+        document.getElementById('p_id').value = p.poll_id || "";
+        document.getElementById('q').value = p.question || "";
+        document.getElementById('poll_type').value = p.poll_type || "quiz";
+        document.getElementById('correct').value = p.correct_option || "";
+        document.getElementById('feedback').value = p.feedback_text || "";
+        let opts = {};
+        try { opts = JSON.parse(p.options_json || '{}'); } catch {}
+        document.getElementById('a').value = opts.A || '';
+        document.getElementById('b').value = opts.B || '';
+        document.getElementById('c').value = opts.C || '';
+        document.getElementById('d').value = opts.D || '';
+        document.getElementById('e').value = opts.E || '';
+        window.scrollTo(0,0);
+      }
+      toggleMode();
+    }
+
+    async function send(active) {
+      const token = getToken();
+
+      const params = new URLSearchParams({
+        set: String(active),
+        poll_id: document.getElementById('p_id').value,
+        q: document.getElementById('q').value,
+        type: document.getElementById('poll_type').value,
+        opts: JSON.stringify({
+          A: document.getElementById('a').value,
+          B: document.getElementById('b').value,
+          C: document.getElementById('c').value,
+          D: document.getElementById('d').value,
+          E: document.getElementById('e').value
+        }),
+        correct: document.getElementById('correct').value,
+        feedback: document.getElementById('feedback').value,
+        t: token
+      });
+
+      const res = await fetch("/poll/admin?" + params.toString());
+      const out = await res.json().catch(()=>null);
+      document.getElementById('status').textContent = out?.status ? ("Status: " + out.status) : (res.ok ? "OK" : "Error");
+      load();
+    }
+
+    function toggleMode() {
+      const type = document.getElementById('poll_type').value;
+      document.getElementById('options-section').style.display = (type === 'numeric') ? 'none' : 'block';
+    }
+
+    window.onload = function(){ toggleMode(); load(); };
+  </script>
+</body>
+</html>`;
+
+      return new Response(html, {
+        headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) }
+      });
+    }
+
+
+// =============================
+// ADMIN: IMPORT ONE QUESTION
+// =============================
+if (is("/admin/questions/import-one") && method === "POST") {
+  const sent = req.headers.get("x-admin-token") || url.searchParams.get("t");
+  const master = env.ADMIN_SEMESTER || env.ADMIN_TOKEN;
+  if (sent !== master) return new Response("Unauthorized", { status: 401 });
+
+  const body = await readJsonBody(req);
+  const { raw, manual_id, module, type } = body;
+  
+  if (!raw || !raw.trim()) return json({ error: "Conteúdo vazio" }, origin, 400);
+
+  // 1. Parser extrai o conteúdo (texto, feedback, etc)
+  let tpl = parseQuestionBlock(raw);
+
+  // 2. Sobrescreve com os dados das caixas da interface
+  tpl.module = module;
+  tpl.type = type;
+
+  // 3. Lógica de Identificação (Onde a mágica acontece)
+  if (manual_id) {
+    // Se digitou algo na box de ID, usa o que você digitou
+    tpl.exercise_id = `${module}_${type}_${manual_id}`;
+  } else {
+    // Se deixou vazio, busca o último no banco para o próximo número
+    const lastIdRow = await env.DB.prepare(`
+      SELECT exercise_id FROM questions_bank 
+      WHERE module = ? AND type = ? 
+      ORDER BY CAST(SUBSTR(exercise_id, INSTR(exercise_id, '_q') + 2) AS INTEGER) DESC 
+      LIMIT 1
+    `).bind(module, type).first();
+
+    let nextNum = 1;
+    if (lastIdRow && lastIdRow.exercise_id) {
+      const parts = lastIdRow.exercise_id.split('_q');
+      if (parts.length > 1) {
+        nextNum = parseInt(parts[1], 10) + 1;
+      }
+    }
+    tpl.exercise_id = `${module}_${type}_q${nextNum}`;
+  }
+
+  // 4. Salva (upsert)
+  await upsertQuestionBank(env, tpl);
+
+  return json({ ok: true, parsed: tpl }, origin);
+}
+// ============================================================
+// INTERFACE VISUAL PARA IMPORTAÇÃO (GET)
+// ============================================================
+if (is("/admin/questions") && method === "GET") {
+  const adminKey = req.headers.get("x-admin-token") || url.searchParams.get("token") || url.searchParams.get("t") || "";
+  
+  const html = `<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Question Bank Architect</title>
+    <style>
+      body { font-family: sans-serif; background: #1a1a1a; color: white; padding: 20px; max-width: 900px; margin: auto; }
+      .control-panel { display: flex; gap: 10px; margin-bottom: 15px; background: #2a2a2a; padding: 15px; border-radius: 8px; border: 1px solid #444; }
+      .field { display: flex; flex-direction: column; flex: 1; }
+      label { font-size: 11px; color: #aaa; margin-bottom: 5px; font-weight: bold; }
+      input, select, textarea { background: #1a1a1a; color: white; border: 1px solid #444; padding: 10px; border-radius: 4px; }
+      textarea { width: 100%; height: 350px; color: #adff2f; font-family: monospace; box-sizing: border-box; }
+      button { background: #0ea5e9; color: white; border: none; padding: 15px; cursor: pointer; border-radius: 5px; width: 100%; font-weight: bold; font-size: 16px; margin-top: 10px; }
+      button:hover { background: #0284c7; }
+      #status { margin-top: 15px; padding: 15px; border-radius: 5px; display: none; font-family: monospace; }
+    </style>
+  </head>
+  <body>
+    <h1>🗄️ Question Bank Architect</h1>
+    
+    <div class="control-panel">
+      <div class="field">
+        <label>MANUAL ID</label>
+        <input type="text" id="manual_id" placeholder="Ex: q1 or v1 (empty = auto numeric)">
+      </div>
+      <div class="field">
+        <label>MODULE</label>
+        <select id="module_select">
+          ${[1,2,3,4,5,6,7,8,9,10].map(n => `<option value="module${n}">Module ${n}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field">
+        <label>Type</label>
+        <select id="type_select">
+          <option value="tf">True / False</option>
+          <option value="mcq">Multiple Choice (MCQ)</option>
+          <option value="multia">Multi-Affirmative</option>
+          <option value="num">Numeric / Input</option>
+          <option value="long">Long Answer</option>
+        </select>
+      </div>
+    </div>
+
+    <textarea id="inputQ" placeholder="Insert content .qmd or HTML here..."></textarea>
+    
+    <button onclick="importar()">Send to Database</button>
+    <div id="status"></div>
+
+    <script>
+      async function importar() {
+        const status = document.getElementById('status');
+        const inputQ = document.getElementById('inputQ');
+        const manualIdInput = document.getElementById('manual_id');
+        
+        const payload = {
+          raw: inputQ.value,
+          manual_id: manualIdInput.value.trim(),
+          module: document.getElementById('module_select').value,
+          type: document.getElementById('type_select').value
+        };
+
+        const token = new URLSearchParams(window.location.search).get('t') || "${adminKey}";
+        
+        status.style.display = 'block';
+        status.style.background = '#444';
+        status.innerText = '⏳ Enviando para o D1...';
+
+        try {
+          const res = await fetch('/admin/questions/import-one?t=' + token, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          
+          const data = await res.json();
+          
+          if (res.ok) {
+            status.style.background = '#28a745';
+            status.innerText = '✅ Success! Saved as: ' + data.parsed.exercise_id;
+            // LIMPEZA:
+            inputQ.value = '';        // Limpa a questão para a próxima
+            manualIdInput.value = '';  // Limpa o ID para não duplicar sem querer
+            // Módulo e Tipo permanecem selecionados!
+          } else {
+            status.style.background = '#dc3545';
+            status.innerText = '❌ ERRO: ' + (data.error || 'Falha desconhecida');
+          }
+        } catch (e) {
+          status.style.background = '#dc3545';
+          status.innerText = '❌ Erro de conexão: ' + e.message;
+        }
+      }
+    </script>
+  </body>
+  </html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
+}
+
+// Dentro do seu export default { fetch(request, env) } ...
+
+// ============================================================
+// PÁGINA DE ESTUDOS DINÂMICA (PRACTICE) - CORRIGIDA
+// ============================================================
+
+if (url.pathname === "/admin/view-database") {
+  // Verifica se o token 't' na URL é igual a '1831'
+  const token = url.searchParams.get("t");
+  
+  if (token !== "1831") {
+    return new Response("Acesso Negado", { status: 403 });
+  }
+
+  try {
+    // Busca todas as questões ordenadas por módulo e ID
+const { results } = await env.DB.prepare(`
+  SELECT exercise_id, module, type, question_text, options_json, correct_answer, feedback_text 
+  FROM questions_bank 
+  ORDER BY 
+    module ASC, 
+    type ASC, 
+    CAST(SUBSTR(exercise_id, INSTR(exercise_id, '_q') + 2) AS INTEGER) ASC
+`).all();
+
+// 1. ORDENAÇÃO: Primeiro por Tipo, depois por Número do ID
+const sortedResults = results.sort((a, b) => {
+  // Se os tipos forem diferentes, ordena por tipo (alfabético)
+  if (a.type !== b.type) {
+    return a.type.localeCompare(b.type);
+  }
+  // Se forem do mesmo tipo, ordena pelo número contido no ID
+  const numA = parseInt(a.exercise_id.replace(/\D/g, '')) || 0;
+  const numB = parseInt(b.exercise_id.replace(/\D/g, '')) || 0;
+  return numA - numB;
+});
+
+const html = `
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Questions Bank</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f0f2f5; }
+    .filter-bar { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; gap: 20px; align-items: center; position: sticky; top: 10px; z-index: 100; border: 1px solid #ddd; }
+    .filter-group { display: flex; flex-direction: column; }
+    label { font-size: 0.75rem; font-weight: bold; color: #4a5568; text-transform: uppercase; margin-bottom: 5px; }
+    select { padding: 10px; border-radius: 6px; border: 1px solid #cbd5e0; background: #fff; min-width: 180px; cursor: pointer; font-size: 0.9rem; }
+    select:hover { border-color: #3498db; }
+    
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; padding: 20px; border-left: 5px solid #3498db; }
+    .header-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .id-tag { font-weight: bold; color: #2d3748; background: #edf2f7; padding: 4px 10px; border-radius: 4px; }
+    .module-tag { background: #e17055; color: white; padding: 3px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
+    .type-tag { background: #6c5ce7; color: white; padding: 3px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-left: 5px; }
+    .question-text { font-size: 1.1rem; color: #1a202c; margin-bottom: 15px; font-weight: 500; }
+    .option-item { padding: 8px 12px; margin-bottom: 6px; border: 1px solid #e2e8f0; border-radius: 6px; display: flex; background: #f8fafc; }
+    .correct-option { background: #f0fff4; border-color: #68d391; font-weight: bold; }
+    .feedback-box { background: #fffaf0; border: 1px solid #fbd38d; padding: 12px; border-radius: 6px; margin-top: 15px; font-size: 0.9rem; color: #744210; }
+  </style>
+</head>
+<body>
+  <h1>Financial Strategy - Questions Bank</h1>
+
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Module</label>
+      <select id="moduleFilter" onchange="applyFilters()">
+        <option value="all">All</option>
+        ${[...Array(10)].map((_, i) => `<option value="module${i+1}">Module ${i+1}</option>`).join('')}
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label>Type</label>
+      <select id="typeFilter" onchange="applyFilters()">
+        <option value="all">All</option>
+        <option value="mcq">MCQ</option>
+        <option value="tf">T/F</option>
+        <option value="num">Numeric</option>
+        <option value="multia">Multiple Affirmations</option>
+        <option value="long">Long answer</option>
+      </select>
+    </div>
+
+    <div id="counter" style="margin-left: auto; font-size: 1.1rem; color: #2b6cb0;">
+        Showing: <strong>${sortedResults.length}</strong>
+    </div>
+  </div>
+
+  <div id="questionsContainer">
+    ${sortedResults.map(q => {
+      let options = {};
+      try { options = JSON.parse(q.options_json || '{}'); } catch (e) { options = {}; }
+
+      return `
+        <div class="card" data-module="${q.module}" data-type="${q.type}">
+          <div class="header-info">
+            <div>
+              <span class="module-tag">${q.module}</span>
+              <span class="type-tag">${q.type}</span>
+            </div>
+            <span class="id-tag">${q.exercise_id}</span>
+          </div>
+          <div class="question-text">${q.question_text}</div>
+          <div class="options-container">
+            ${Object.entries(options).map(([letter, text]) => `
+              <div class="option-item ${letter === q.correct_answer ? 'correct-option' : ''}">
+                <span style="margin-right:10px; color:#3182ce; font-weight:bold;">${letter})</span> ${text}
+              </div>
+            `).join('')}
+          </div>
+          <div style="margin-top:10px; font-size:0.9rem;"><strong>Answer:</strong> ${q.correct_answer}</div>
+          ${q.feedback_text ? `<div class="feedback-box"><strong>Feedback:</strong> ${q.feedback_text}</div>` : ''}
+        </div>
+      `;
+    }).join('')}
+  </div>
+
+  <script>
+    function applyFilters() {
+      const mVal = document.getElementById('moduleFilter').value;
+      const tVal = document.getElementById('typeFilter').value;
+      const cards = document.querySelectorAll('.card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const mCard = card.getAttribute('data-module');
+        const tCard = card.getAttribute('data-type');
+        
+        const mMatch = (mVal === 'all' || mCard === mVal);
+        const tMatch = (tVal === 'all' || tCard === tVal);
+        
+        if (mMatch && tMatch) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('counter').innerHTML = 'Showing: <strong>' + visibleCount + '</strong>';
+    }
+    
+    // Executa ao carregar para garantir que o contador esteja correto
+    window.onload = applyFilters;
+  </script>
+</body>
+</html>
+`;
+
+return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
+  } catch (err) {
+    return new Response("Erro ao acessar banco de dados: " + err.message, { status: 500 });
+  }
+}
+
+
+
+
+
+if (path === "/teaching/financial_strategy/practice") {
+  const sid = await getStudentIdFromSession(req);
+  if (!sid) {
+    const html = practicesLoginPage({ next: url.pathname + url.search });
+    return new Response(html, { status: 200, headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+  }
+
+  const moduleParam = url.searchParams.get("module") || "module1";
+  const typeParam = url.searchParams.get("type") || "tf"; 
+  const displayModule = moduleParam.replace('module', 'Module #');
+
+  // Contagem de progresso ignorando questões 'long'
+  const stats = await env.DB.prepare(`
+    SELECT 
+      (SELECT name FROM t_students_dim WHERE student_id = ?2 LIMIT 1) as student_name,
+      (SELECT COUNT(*) FROM questions_bank WHERE module = ?1 AND type != 'long') as total_module,
+      (SELECT COUNT(*) FROM questions_bank_progress WHERE student_id = ?2 AND module = ?1 AND is_correct = 1 AND exercise_id IN (SELECT exercise_id FROM questions_bank WHERE type != 'long')) as correct_module
+  `).bind(moduleParam, sid).first();
+
+  const rawName = stats?.student_name || sid;
+  const firstName = rawName.split(' ')[0].toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+  const totalModule = stats?.total_module || 0;
+  const correctModule = stats?.correct_module || 0;
+  const progressPct = totalModule > 0 ? Math.round((correctModule / totalModule) * 100) : 0;
+
+  const hideParam = url.searchParams.get("hide_completed");
+  const hideCompleted = hideParam === "true";
+
+  let query = `SELECT q.* FROM questions_bank q WHERE q.module = ?1`;
+  let binds = [moduleParam];
+
+  if (hideCompleted) {
+    query += ` AND q.exercise_id NOT IN (SELECT exercise_id FROM questions_bank_progress WHERE student_id = ?2 AND is_correct = 1)`;
+    binds.push(sid);
+  }
+
+  if (typeParam !== "all") {
+    query += ` AND q.type = ?${binds.length + 1}`;
+    binds.push(typeParam);
+  }
+
+  query += " ORDER BY CAST(SUBSTR(q.exercise_id, INSTR(q.exercise_id, '_q') + 2) AS INTEGER) ASC";
+  const { results } = await env.DB.prepare(query).bind(...binds).all();
+
+  const pageSize = 5;
+  const totalGroups = Math.ceil(results.length / pageSize);
+  let groupsHtml = "";
+  for (let i = 0; i < totalGroups; i++) {
+    const groupNum = i + 1;
+    const slice = results.slice(i * pageSize, (i + 1) * pageSize);
+    const questionsInGroup = slice.map((q, idx) => {
+      const qNum = (i * pageSize) + idx + 1;
+      let inputHtml = "";
+      let opts = {};
+      try { opts = JSON.parse(q.options_json || "{}"); } catch(e) {}
+
+      const isLong = q.type === "long";
+
+      if (q.type === "mcq" || q.type === "multia" || q.type === "tf") {
+        const currentOpts = q.type === "tf" ? { "A": "True", "B": "False" } : opts;
+        inputHtml = Object.entries(currentOpts).map(([letter, text]) => `
+          <label style="display:block; margin:8px 0; cursor:pointer;">
+            <input type="radio" name="${q.exercise_id}" value="${letter}" onchange="enableSubmit('${q.exercise_id}')">
+            <span style="font-weight:800; color:#1e3a8a; margin-right:5px;">${letter}.</span> ${text}
+          </label>
+        `).join("");
+      } else if (q.type === "num") {
+        inputHtml = `<input type="number" step="any" name="${q.exercise_id}" oninput="enableSubmit('${q.exercise_id}')" style="width:150px; padding:6px; border:1px solid #cbd5e1; border-radius:6px;">`;
+      }
+// Dentro do loop de geração das questões:
+if (q.type === "tf") {
+  // Alterado: agora o value é explicitamente 'T' e 'F' para bater com seu banco
+  inputHtml = `
+    <label style="display:block; margin:8px 0; cursor:pointer;">
+      <input type="radio" name="${q.exercise_id}" value="T" onchange="enableSubmit('${q.exercise_id}')">
+      <span style="font-weight:800; color:#1e3a8a; margin-right:5px;">A.</span> True
+    </label>
+    <label style="display:block; margin:8px 0; cursor:pointer;">
+      <input type="radio" name="${q.exercise_id}" value="F" onchange="enableSubmit('${q.exercise_id}')">
+      <span style="font-weight:800; color:#1e3a8a; margin-right:5px;">B.</span> False
+    </label>`;
+}
+
+// E na função submitOne(id) dentro do <script>:
+async function submitOne(id) {
+  const block = document.getElementById('block-' + id);
+  const status = document.getElementById('status-' + id);
+  const feedback = document.getElementById('feedback-' + id);
+  const type = block.dataset.type;
+  
+  // Normalização: Tira espaços e garante que T/F ou A/B/C sejam comparados corretamente
+  const correctAns = (block.dataset.correct || "").trim().toUpperCase();
+  let userAns = "";
+
+  if (type === "num") { 
+    userAns = document.querySelector('input[name="'+id+'"]').value; 
+  } else { 
+    const sel = document.querySelector('input[name="'+id+'"]:checked'); 
+    userAns = sel ? sel.value.toUpperCase() : ""; 
+  }
+
+  // Validação: Agora userAns será 'T' ou 'F' para questões TF
+  let isCorrect = (type === "num") ? Math.abs(parseFloat(userAns) - parseFloat(correctAns)) <= 0.01 : (userAns === correctAns);
+
+  feedback.style.display = 'block';
+  if(isCorrect) {
+    feedback.style.background = "#dcfce7"; feedback.style.color = "#166534";
+    status.innerHTML = "✅ Correct!"; status.style.color = "var(--success)";
+  } else {
+    feedback.style.background = "#fee2e2"; feedback.style.color = "#991b1b";
+    status.innerHTML = "❌ Try again!"; status.style.color = "var(--error)";
+  }
+
+  // Envio para o D1
+  try {
+    await fetch('/api/practice/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        exercise_id: id, 
+        module: '${moduleParam}', 
+        is_correct: isCorrect ? 1 : 0, 
+        user_answer: userAns 
+      })
+    });
+  } catch (e) { console.error("D1 Sync Error:", e); }
+}
+      return `
+        <div class="q-row">
+          <div class="q-label">Q${qNum}.</div>
+          <div class="q-body" id="block-${q.exercise_id}" data-type="${q.type}" data-correct="${q.correct_answer}">
+            <span class="exercise-id-watermark">${q.exercise_id}</span>
+            <div class="q-text">${q.question_text}</div>
+            ${!isLong ? `<div class="q-inputs">${inputHtml}</div>` : ""}
+            
+            ${!isLong ? `
+            <div style="margin-top:15px; display:flex; gap:12px; align-items:center;">
+              <button id="btn-${q.exercise_id}" class="btn-submit-q" disabled onclick="submitOne('${q.exercise_id}')">Submit & Validate</button>
+              <span id="status-${q.exercise_id}" style="font-size:12px; font-weight:bold;"></span>
+            </div>
+            <div id="feedback-${q.exercise_id}" class="feedback-box" style="display:none; margin-top:10px; padding:15px; border-radius:8px; background:#f8fafc; border:1px solid #e2e8f0; font-size:14px; color:#475569;">
+              ${q.feedback_text}
+            </div>` : ""}
+          </div>
+        </div>`;
+    }).join("");
+    groupsHtml += `<div id="group${groupNum}" class="question-group" style="display:${i === 0 ? 'block' : 'none'};">${questionsInGroup}</div>`;
+  }
+
+  const pillsHtml = Array.from({ length: totalGroups }, (_, i) => `<button class="grp-btn ${i === 0 ? 'active' : ''}" data-group="${i + 1}" onclick="showGroup(${i + 1})">${i + 1}</button>`).join("");
+  
+// Localize este bloco próximo à linha 1264 e substitua:
+const urlShowAll = new URL(req.url); 
+urlShowAll.searchParams.delete("hide_completed");
+
+const urlOnlyPending = new URL(req.url); 
+urlOnlyPending.searchParams.set("hide_completed", "true");
+
+  const typeNavHtml = [
+    { id: 'tf', label: 'T/F', icon: 'bi-check-circle' },
+    { id: 'mcq', label: 'MCQ', icon: 'bi-list-ul' },
+    { id: 'multia', label: 'MultiA', icon: 'bi-card-checklist' },
+    { id: 'num', label: 'Num.', icon: 'bi-hash' },
+    { id: 'long', label: 'Long', icon: 'bi-pencil-square' }
+  ].map(t => `<a href="?module=${moduleParam}&type=${t.id}${hideCompleted ? '&hide_completed=true' : ''}" class="type-nav-btn ${typeParam === t.id ? 'active' : ''}"><i class="bi ${t.icon}"></i> <span>${t.label}</span></a>`).join('');
+
+  const finalHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice - ${displayModule}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root { --accent: #1e3a8a; --text: #0f172a; --muted: #64748b; --success: #10b981; --error: #ef4444; }
+    body { font-family: 'Inter', sans-serif; background:#ffffff; color: var(--text); margin:0; }
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid #eee; }
+    .nav-brand { font-size: 1.1rem; font-weight: 600; text-decoration: none; color: #1e293b; }
+    .container { max-width:900px; margin:40px auto; padding:0 20px; }
+    .welcome-block { background: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; border-radius: 20px; margin-bottom: 30px; }
+    .progress-container { background: #e2e8f0; border-radius: 50px; height: 12px; width: 100%; overflow: hidden; margin-top:15px; }
+    .progress-bar { background: linear-gradient(90deg, #10b981, #34d399); height: 100%; transition: width 0.8s ease; }
+    .practice-info-bar { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 10px 15px; background: white; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 25px; flex-wrap: wrap; }
+    .type-navigation { display: flex; gap: 5px; background: #f1f5f9; padding: 4px; border-radius: 10px; }
+    .type-nav-btn { display: flex; align-items: center; gap: 6px; padding: 6px 12px; text-decoration: none; font-size: 12px; font-weight: 700; color: var(--muted); border-radius: 7px; }
+    .type-nav-btn.active { background: white; color: var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .filter-group { display: flex; gap: 5px; background: #f1f5f9; padding: 4px; border-radius: 10px; }
+    .filter-btn { padding: 6px 12px; font-size: 11px; font-weight: 800; text-decoration: none; color: var(--muted); border-radius: 7px; border: 1px solid transparent; }
+    .filter-btn.active { background: white; color: var(--success); box-shadow: 0 2px 4px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+    .q-row { display:flex; gap:10px; padding:25px 15px; border-top:1px solid #f1f5f9; position: relative; }
+    .q-label { font-weight:800; min-width:44px; color:#1e293b; font-size: 1.1rem; }
+    .q-text { font-weight:500; margin-bottom:15px; line-height:1.6; font-size: 1.05rem; }
+    .exercise-id-watermark { position: absolute; top: 5px; left: 10px; font-size: 9px; color: #cbd5e1; font-family: monospace; }
+    .btn-submit-q { background: #f1f5f9; color: #94a3b8; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    .btn-submit-q:not(:disabled) { background: var(--accent); color: white; border-color: var(--accent); }
+    .sticky-bar { position:sticky; bottom:20px; background:white; padding:15px 25px; border-radius:50px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 10px 30px rgba(0,0,0,0.1); border:1px solid #e2e8f0; z-index: 1000; }
+    .btn-fb { background:#007BFF; color:white; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; }
+    .grp-btn { padding:8px 14px; border:1px solid #e2e8f0; background:#fff; border-radius:999px; cursor:pointer; font-weight:600; margin-right:5px; }
+    .grp-btn.active { background:#3b82f6; color:#fff; }
+    .divider { width: 1px; height: 20px; background: #e5e7eb; }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="nav-brand">Henrique Castro Martins</a>
+  <nav style="display:flex; gap:20px; align-items:center;"><a href="/teaching" style="text-decoration:none; color:#64748b;">Teaching</a><a href="/research" style="text-decoration:none; color:#64748b;">Research</a></nav>
+</header>
+
+<div class="container">
+    <div class="welcome-block">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent);">Hello, ${firstName}! 👋</div>
+          <div style="font-size: 14px; color: var(--muted); margin-top: 4px;">You've mastered <b>${correctModule}</b> out of <b>${totalModule}</b> questions in this module.</div>
+        </div>
+        <div style="text-align: right;">
+          <span style="font-size: 22px; font-weight: 800; color: var(--success);">${progressPct}%</span>
+          <div style="font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase;">Completed</div>
+        </div>
+      </div>
+      <div class="progress-container"><div class="progress-bar" style="width: ${progressPct}%;"></div></div>
+    </div>
+
+    <div class="practice-info-bar">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <a href="/teaching/financial_strategy" class="type-nav-btn" style="background:#f1f5f9;"><i class="bi bi-arrow-left"></i> Back</a>
+        <span style="font-weight:800; color:var(--accent); font-size:13px;">${displayModule}</span>
+      </div>
+      <div class="divider"></div>
+      <div class="type-navigation">${typeNavHtml}</div>
+      <div class="divider"></div>
+      <div class="filter-group">
+        <a href="${urlShowAll.search}" class="filter-btn ${!hideCompleted ? 'active' : ''}">SHOW ALL</a>
+        <a href="${urlOnlyPending.search}" class="filter-btn ${hideCompleted ? 'active' : ''}">ONLY PENDING</a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span style="font-size:12px; font-weight:bold; color:var(--muted); margin-right:10px;">GROUPS:</span>
+      ${pillsHtml}
+    </div>
+    
+    <div id="quiz-container" style="background:white; border:1px solid #e2e8f0; border-radius:16px; margin-bottom:20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+      ${groupsHtml}
+    </div>
+
+    <div class="sticky-bar">
+        <div style="display:flex; gap:8px;">
+          <button class="grp-btn" onclick="prevGroup()">Prev</button>
+          <button class="grp-btn" onclick="nextGroup()">Next</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let currentGroup = 1;
+    const totalGroups = ${totalGroups};
+
+    function enableSubmit(id) { document.getElementById('btn-' + id).disabled = false; }
+
+    async function submitOne(id) {
+      const block = document.getElementById('block-' + id);
+      const status = document.getElementById('status-' + id);
+      const feedback = document.getElementById('feedback-' + id);
+      const type = block.dataset.type;
+      
+      // Normalização: Tira espaços e garante que T/F ou A/B/C sejam comparados corretamente
+      const correctAns = (block.dataset.correct || "").trim().toUpperCase();
+      let userAns = "";
+    
+      if (type === "num") { 
+        userAns = document.querySelector('input[name="'+id+'"]').value; 
+      } else { 
+        const sel = document.querySelector('input[name="'+id+'"]:checked'); 
+        userAns = sel ? sel.value.toUpperCase() : ""; 
+      }
+    
+      // Validação: Agora userAns será 'T' ou 'F' para questões TF
+      let isCorrect = (type === "num") ? Math.abs(parseFloat(userAns) - parseFloat(correctAns)) <= 0.01 : (userAns === correctAns);
+    
+      feedback.style.display = 'block';
+      if(isCorrect) {
+        feedback.style.background = "#dcfce7"; feedback.style.color = "#166534";
+        status.innerHTML = "✅ Correct!"; status.style.color = "var(--success)";
+      } else {
+        feedback.style.background = "#fee2e2"; feedback.style.color = "#991b1b";
+        status.innerHTML = "❌ Try again!"; status.style.color = "var(--error)";
+      }
+    
+      // Envio para o D1
+      try {
+        await fetch('/api/practice/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            exercise_id: id, 
+            module: '${moduleParam}', 
+            is_correct: isCorrect ? 1 : 0, 
+            user_answer: userAns 
+          })
+        });
+      } catch (e) { console.error("D1 Sync Error:", e); }
+    }
+
+    function showGroup(idx) {
+      if(idx < 1 || idx > totalGroups) return;
+      document.querySelectorAll('.question-group').forEach((g, i) => g.style.display = (i+1 === idx) ? 'block' : 'none');
+      document.querySelectorAll('.grp-btn[data-group]').forEach(b => b.classList.toggle('active', Number(b.dataset.group) === idx));
+      currentGroup = idx;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function nextGroup() { showGroup(currentGroup + 1); }
+    function prevGroup() { showGroup(currentGroup - 1); }
+    
+    function toggleFeedback() {
+      const btn = document.getElementById('toggle-feedback-btn');
+      const isShowing = btn.innerText.includes("Hide");
+      const currentBlocks = document.querySelector('.question-group[style*="block"]')?.querySelectorAll('.q-body') || [];
+      
+      currentBlocks.forEach(block => {
+        const id = block.id.replace('block-', '');
+        const fb = document.getElementById('feedback-' + id);
+        if(fb) fb.style.display = isShowing ? 'none' : 'block';
+      });
+      btn.innerText = isShowing ? "Show All Feedback" : "Hide All Feedback";
+    }
+    // Adicione ou verifique se existe no seu <script> final:
+window.onload = function() {
+  // Se quiser que ele volte ao grupo 1 sempre que mudar o filtro:
+  showGroup(1); 
+  
+  // Ou, se quiser ser sofisticado e ler da URL:
+  const params = new URLSearchParams(window.location.search);
+  const g = parseInt(params.get('group')) || 1;
+  showGroup(g);
+};
+
+// E atualize sua função showGroup para não dar erro se o grupo não existir:
+function showGroup(idx) {
+  if(idx < 1 || idx > totalGroups) idx = 1; // Fallback para o primeiro grupo
+  document.querySelectorAll('.question-group').forEach((g, i) => {
+    g.style.display = (i + 1 === idx) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.grp-btn[data-group]').forEach(b => {
+    b.classList.toggle('active', Number(b.dataset.group) === idx);
+  });
+  currentGroup = idx;
+}
+</script>
+</body>
+</html>`;
+
+  return new Response(finalHtml, { headers: { "Content-Type": "text/html;charset=utf-8" } });
+}
+
+
+// ============================================================
+// ADMIN: Question Bank Analytics
+// ============================================================
+if (is("/admin/analytics") && method === "GET") {
+  const fMod = url.searchParams.get("mod") || "";
+  const fType = url.searchParams.get("type") || "";
+
+  let where = "";
+  if (fMod) where += ` AND q.module = '${fMod}'`;
+  if (fType) where += ` AND q.type = '${fType}'`;
+
+  const stats = await env.DB.prepare(`
+    SELECT 
+      q.exercise_id, q.module, q.type, q.question_text,
+      COUNT(DISTINCT p.student_id) as total_students,
+      AVG(p.attempts) as avg_attempts
+    FROM questions_bank q
+    LEFT JOIN questions_bank_progress p ON q.exercise_id = p.exercise_id
+    WHERE 1=1 ${where}
+    GROUP BY q.exercise_id
+    ORDER BY avg_attempts DESC
+  `).all();
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><title>Analytics - Questions</title>
+  <style>
+    :root { --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --text: #f1f5f9; --bad: #ef4444; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 30px; margin: 0; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 15px; }
+    .filters { margin-bottom: 20px; display: flex; gap: 10px; }
+    select { background: #1e293b; color: white; border: 1px solid #334155; padding: 8px; border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 15px; text-align: left; border-bottom: 1px solid #334155; }
+    th { background: #334155; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; color: #94a3b8; }
+    .preview { font-size: 12px; color: #94a3b8; max-width: 350px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .effort-val { font-size: 18px; font-weight: 800; }
+    .critical { color: var(--bad); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📊 Question Effort Radar</h1>
+    <a href="/admin/analytics/students?t=${url.searchParams.get('t')}" style="color:var(--accent); text-decoration:none; font-weight:bold;">→ View Student Progress</a>
+  </div>
+
+  <div class="filters">
+    <select onchange="const u=new URL(window.location); u.searchParams.set('mod', this.value); window.location=u;">
+      <option value="">All Modules</option>
+      ${[1,2,3,4,5,6,7,8,9,10].map(m => `<option value="module${m}" ${fMod==='module'+m?'selected':''}>Module ${m}</option>`).join('')}
+    </select>
+    <select onchange="const u=new URL(window.location); u.searchParams.set('type', this.value); window.location=u;">
+      <option value="">All Types</option>
+      ${['tf','mcq','num','multia','long'].map(t => `<option value="${t}" ${fType===t?'selected':''}>${t.toUpperCase()}</option>`).join('')}
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID / Módulo</th>
+        <th>Question Preview</th>
+        <th>Students</th>
+        <th>Avg. Efforts (Attempts)</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${stats.results.map(r => {
+        const attempts = Number(r.avg_attempts || 0).toFixed(1);
+        const isCritical = attempts > 3.0;
+        return `
+          <tr>
+            <td><strong>${r.exercise_id}</strong><br><small style="color:#64748b">${r.type}</small></td>
+            <td><span class="preview" title="${r.question_text.replace(/"/g, '&quot;')}">${r.question_text}</span></td>
+            <td>${r.total_students || 0}</td>
+            <td class="effort-val ${isCritical ? 'critical' : ''}">${attempts} ${isCritical ? '⚠️' : ''}</td>
+          </tr>
+        `;
+      }).join('')}
+    </tbody>
+  </table>
+</body>
+</html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
+}
+
+
+if (is("/admin/analytics/students") && method === "GET") {
+  const studentData = await env.DB.prepare(`
+    SELECT 
+      s.name, s.student_id, q.module,
+      COUNT(DISTINCT p.exercise_id) as done,
+      (SELECT COUNT(*) FROM questions_bank WHERE module = q.module) as total
+    FROM questions_bank_progress p
+    JOIN questions_bank q ON p.exercise_id = q.exercise_id
+    JOIN t_students_dim s ON p.student_id = s.student_id
+    GROUP BY s.student_id, q.module
+    ORDER BY s.name ASC
+  `).all();
+
+  const studentMap = {};
+  studentData.results.forEach(row => {
+    if (!studentMap[row.student_id]) {
+      studentMap[row.student_id] = { name: row.name, mods: {} };
+    }
+    studentMap[row.student_id].mods[row.module] = Math.round((row.done / row.total) * 100);
+  });
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><title>Student Progress</title>
+  <style>
+    :root { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --accent: #38bdf8; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 30px; }
+    .header { margin-bottom: 30px; border-bottom: 1px solid #334155; padding-bottom: 15px; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; }
+    th, td { padding: 15px; text-align: left; border-bottom: 1px solid #334155; }
+    .mod-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; }
+    .mod-box { padding: 4px 0; text-align: center; border-radius: 4px; font-size: 10px; background: #334155; color: #94a3b8; font-weight: bold; }
+    .done-high { background: #059669; color: white; }
+    .done-mid { background: #d97706; color: white; }
+    .done-low { background: #dc2626; color: white; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>👥 Student Monitoring (Modules 1-10)</h1>
+    <a href="/admin/analytics?t=${url.searchParams.get('t')}" style="color:var(--accent); text-decoration:none; font-weight:bold;">← Back to Questions</a>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>ID</th>
+        <th>Progress by Module (1-10)</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${Object.entries(studentMap).map(([sid, data]) => `
+        <tr>
+          <td><strong>${data.name}</strong></td>
+          <td><small style="color:#64748b">${sid}</small></td>
+          <td>
+            <div class="mod-grid">
+              ${Array.from({length: 10}, (_, i) => {
+                const m = `module${i+1}`;
+                const pct = data.mods[m] || 0;
+                let cls = pct > 80 ? "done-high" : (pct > 30 ? "done-mid" : (pct > 0 ? "done-low" : ""));
+                return `<div class="mod-box ${cls}" title="Module ${i+1}">${pct}%</div>`;
+              }).join('')}
+            </div>
+          </td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>
+</body>
+</html>`;
+  return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
+}
+
+// ============================================================
+// Research
+// ============================================================
+if (path === "/research" || path === "/research/") {
+  const papersHtml = researchPapers.map(p => `
+    <div class="res-item">
+      <div class="res-year">${new Date(p.date).getFullYear()}</div>
+      <div class="res-body">
+        <div class="res-meta">${p.categories[1] || p.categories[0]} — ${p.journal}</div>
+        <h3 class="res-title">${p.title}</h3>
+        <p class="res-desc">${p.description}</p>
+        <div class="res-actions">
+          <a href="${p.doi}" target="_blank" class="btn-minimal">
+            <i class="bi bi-file-earmark-text"></i> DOI / Full Text
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research - ${profile.name}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    :root { 
+      --accent: #1e3a8a; 
+      --text: #1e293b; 
+      --muted: #64748b; 
+      --line: #e2e8f0;
+    }
+
+    body { font-family: 'Inter', sans-serif; margin: 0; background: #ffffff; color: var(--text); line-height: 1.6; }
+    
+    header { padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; text-decoration: none; color: var(--text); }
+    nav a { text-decoration: none; color: var(--muted); margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
+
+    .container { max-width: 900px; margin: 80px auto; padding: 0 40px; }
+    
+    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 50px; color: #0f172a; border-bottom: 4px solid var(--accent); display: inline-block; padding-bottom: 10px; }
+
+    /* Layout de Lista Minimalista */
+    .res-list { display: flex; flex-direction: column; gap: 40px; }
+    
+    .res-item { display: grid; grid-template-columns: 80px 1fr; gap: 30px; position: relative; }
+    
+    /* Ano na lateral */
+    .res-year { 
+      font-size: 1.1rem; font-weight: 800; color: var(--accent); 
+      padding-top: 5px; opacity: 0.8;
+    }
+    
+    .res-body { padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+    .res-item:last-child .res-body { border-bottom: none; }
+
+    .res-meta { font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+    .res-title { font-size: 1.4rem; margin: 0 0 15px; color: #0f172a; line-height: 1.3; font-weight: 700; }
+    .res-desc { font-size: 1rem; color: #475569; margin-bottom: 20px; }
+    
+    .btn-minimal { 
+      text-decoration: none; color: var(--accent); font-weight: 700; font-size: 0.9rem; 
+      display: inline-flex; align-items: center; gap: 6px; 
+      padding: 8px 16px; background: #eff6ff; border-radius: 6px; transition: 0.2s;
+    }
+    .btn-minimal:hover { background: var(--accent); color: white; }
+
+    @media (max-width: 768px) {
+      .res-item { grid-template-columns: 1fr; gap: 10px; }
+      .res-year { border-bottom: 2px solid var(--accent); display: inline-block; width: fit-content; margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="nav-brand">${profile.name}</a>
+    <nav>
+      <a href="/teaching">Teaching</a>
+      <a href="/research" style="color:var(--accent);">Research</a>
+      <a href="https://www.linkedin.com/in/henriquecastror/" target="_blank" style="text-decoration:none; color:#64748b;" title="Linkedin">
+      <i class="bi bi-linkedin"></i>
+    </a>    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Research</h1>
+    <div class="res-list">
+      ${papersHtml}
+    </div>
+  </div>
+</body>
+</html>`;
+
+  return new Response(html, { headers: { "Content-Type": "text/html;charset=UTF-8" } });
+}
+
+
+    // ============================================================
+    // DEFAULT: Assets fetch (Pages)
+    // ============================================================
+    return withCors(await env.ASSETS.fetch(req), origin);
+
+  }
+};
+
+
+
+
+
+
+
+// ============================================================
+// HELPERS
+// ============================================================
+
+function tsBRString(ms = Date.now()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  }).formatToParts(ms);
+
+  const get = (t) => parts.find((p) => p.type === t)?.value;
+  return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")}:${get("second")}`;
+}
+// Accepts "YYYY-MM-DD HH:MM:SS" or "YYYY-MM-DDTHH:MM:SS" or "YYYY-MM-DD"
+function normalizeBRLocal(s) {
+  const raw = String(s || "").trim();
+  if (!raw) return "";
+
+  // If it's already in "YYYY-MM-DD HH:MM:SS" (or without seconds), normalize seconds
+  const m1 = raw.match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2})(?::(\d{2}))?)?$/);
+  if (m1) {
+    const Y = m1[1], M = m1[2], D = m1[3];
+    const hh = m1[4] ?? "00";
+    const mm = m1[5] ?? "00";
+    const ss = m1[6] ?? "00";
+    return `${Y}-${M}-${D} ${hh}:${mm}:${ss}`;
+  }
+
+  // Try parsing as Date (ISO, etc.)
+  const d = new Date(raw);
+  if (Number.isNaN(d.getTime())) return "";
+
+  // Convert to Sao Paulo time string in the same format
+  return tsBRString(d.getTime());
+}
+
+// Comparable sortable key: "YYYYMMDDHHMMSS"
+function brKey(brDateTime) {
+  const s = String(brDateTime || "");
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2}):(\d{2})$/);
+  if (!m) return "";
+  return `${m[1]}${m[2]}${m[3]}${m[4]}${m[5]}${m[6]}`;
+}
+
+function cors(origin) {
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Vary": "Origin",
+    "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type,Authorization,x-admin-token,x-student-id",
+    "Access-Control-Max-Age": "86400"
+  };
+}
+function resolveOrigin(req, env) {
+  const reqOriginRaw = (req.headers.get("Origin") || "").trim();
+  if (reqOriginRaw.includes("localhost") || reqOriginRaw.includes("127.0.0.1")) {
+    return reqOriginRaw;
+  }
+  const allowRaw = String(env.ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  // Sem Origin (ex: curl / navegação direta) -> ok
+  if (!reqOriginRaw) return "*";
+
+  // Sem allowlist configurada -> ecoa Origin (DX)
+  if (allowRaw.length === 0) return reqOriginRaw;
+
+  // Helper: normaliza para .origin
+  const safeOrigin = (o) => {
+    try { return new URL(o).origin; } catch { return ""; }
+  };
+
+  const reqOrigin = safeOrigin(reqOriginRaw);
+  if (!reqOrigin) return allowRaw[0] || "*";
+
+  // allowlist com "*" -> libera qualquer origin real
+  if (allowRaw.includes("*")) return reqOrigin;
+
+  const allowSet = new Set(allowRaw.map(safeOrigin).filter(Boolean));
+
+  // match exato
+  if (allowSet.has(reqOrigin)) return reqOrigin;
+
+  // tolera www vs non-www
+  try {
+    const u = new URL(reqOrigin);
+    const altHost = u.hostname.startsWith("www.") ? u.hostname.slice(4) : "www." + u.hostname;
+    const altOrigin = `${u.protocol}//${altHost}`;
+    if (allowSet.has(altOrigin)) return reqOrigin;
+  } catch {}
+
+  // FAIL-OPEN para não quebrar front (ranking/chat/etc)
+  return "*";
+}
+
+
+function withCors(res, origin) {
+  const h = new Headers(res.headers);
+
+  // aplica seus headers cors
+  const c = cors(origin);
+  for (const [k, v] of Object.entries(c)) h.set(k, v);
+
+  return new Response(res.body, {
+    status: res.status,
+    statusText: res.statusText,
+    headers: h,
+  });
+}
+
+async function readJsonBody(req) {
+  try { return await req.clone().json(); } catch {}
+  try {
+    const fd = await req.clone().formData();
+    const p = fd.get("payload") || fd.get("data");
+    if (typeof p === "string" && p.trim()) {
+      try { return JSON.parse(p); } catch {}
+    }
+  } catch {}
+  try {
+    const raw = await req.text();
+    if (raw && raw.trim().startsWith("{")) return JSON.parse(raw);
+  } catch {}
+  return null;
+}
+async function fetchChatInteractionsFromD1(db, sid, limit = 200) {
+  const clean = (s) => String(s ?? "").trim();
+  const s = clean(sid).toLowerCase();
+  const lim = Math.max(1, Math.min(parseInt(limit, 10) || 200, 500));
+
+  if (!db) {
+    return { ok: false, total_interactions: 0, items: [], returned: 0, error: "missing CHAT_DB binding" };
+  }
+  if (!s) {
+    return { ok: false, total_interactions: 0, items: [], returned: 0, error: "missing sid" };
+  }
+
+  try {
+    const totalRow = await db
+      .prepare("SELECT COUNT(*) AS c FROM student_interactions WHERE student_id = ?")
+      .bind(s)
+      .first();
+
+    const rows = (
+      await db
+        .prepare(`
+          SELECT id, student_message, bot_response, created_at
+          FROM student_interactions
+          WHERE student_id = ?
+          ORDER BY datetime(created_at) DESC
+          LIMIT ?
+        `)
+        .bind(s, lim)
+        .all()
+    ).results || [];
+
+    return {
+      ok: true,
+      total_interactions: Number(totalRow?.c || 0),
+      items: rows.map((r) => ({
+        id: r.id,
+        student_message: r.student_message,
+        bot_response: r.bot_response,
+        created_at: r.created_at
+      })),
+      returned: rows.length
+    };
+  } catch (e) {
+    return { ok: false, total_interactions: 0, items: [], returned: 0, error: String(e?.message || e) };
+  }
+}
+
+
+function json(obj, origin, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "Content-Type": "application/json", ...cors(origin) }
+  });
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[m]));
+}
+
+// ensure indexes/rules (idempotent)
+async function ensureSchema(env) {
+  const stmts = [
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_likes ON likes(page, student_id);",
+    "CREATE UNIQUE INDEX IF NOT EXISTS ux_check_student_slide ON t_checkouts(student_id, slide_id);",
+    "CREATE INDEX IF NOT EXISTS ix_checkouts_student_time ON t_checkouts(student_id, timestamp_br);",
+    "CREATE INDEX IF NOT EXISTS ix_checkouts_slide_time ON t_checkouts(slide_id, timestamp_br);"
+  ];
+
+  for (const sql of stmts) {
+    try { await env.DB.prepare(sql).run(); } catch {}
+  }
+}
+
+
+// =============================
+// HELPERS (FORA do fetch)
+// =============================
+function parseQuestionBlock(raw) {
+  const text = String(raw || "");
+
+  // -------- Helpers --------
+  const stripTags = (s) =>
+    String(s || "")
+      .replace(/<script[\s\S]*?<\/script>/gi, "")
+      .replace(/<\/?[^>]+>/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+      // NOVO HELPER: Extrai o ID de dentro da chamada da função checkAnswer
+  const extractIdFromCheckAnswer = (s) => {
+  const m = s.match(/checkAnswer\(['"]([^'"]+)['"]\)/i);
+  return m ? m[1] : "";
+};
+
+  const extractFormId = (s) => {
+    // Procura especificamente o id dentro da tag <form
+    const m = s.match(/<form[^>]*\sid=["']([^"']+)["'][^>]*>/i);
+    return m ? m[1] : "";
+  };
+
+  const extractAnyId = (s) => {
+    // Procura IDs no texto, mas ignora propositalmente os que contêm "feedback"
+    const matches = s.matchAll(/id=["']([^"']+)["']/gi);
+    for (const match of matches) {
+      if (!match[1].toLowerCase().includes("feedback")) {
+        return match[1];
+      }
+    }
+    return "";
+  };
+
+  const extractCorrect = (s) => {
+    const m = s.match(/data-correct-answer=["']([^"']+)["']/i);
+    return m ? m[1].trim() : "";
+  };
+
+  const extractFeedback = (s) => {
+    const m = s.match(
+      /<div[^>]*class=["'][^"']*(?:feedback|feedback-box)[^"']*["'][^>]*>([\s\S]*?)<\/div>/i
+    );
+    if (!m) return "";
+    return stripTags(m[1]);
+  };
+
+  const extractQuestionGeneric = (s) => {
+    const m = s.match(/<strong[^>]*>([\s\S]*?)<\/strong>/i) || s.match(/<form[^>]*>([\s\S]*?)(?:<label|<input)/i);
+    if (!m) return "";
+    return stripTags(m[1]);
+  };
+
+  const extractOptionsFromLabels = (s) => {
+    const options = {};
+    // Regex melhorado: busca o value="A" e captura o texto que vem depois, 
+    // parando antes de encontrar a próxima tag <br> ou <label> ou </form>
+    const re = /value=["']([A-E])["'][^>]*>(?:\s*[A-E](?:[.)\:]))?\s*([^<]+)/gi;
+    
+    for (const mm of s.matchAll(re)) {
+      const letter = mm[1].toUpperCase();
+      const optText = String(mm[2] || "").trim();
+      if (optText) options[letter] = optText;
+    }
+    return options;
+  };
+
+  // -------- Parse core --------
+  // Tenta primeiro o ID do formulário, depois qualquer outro ID que não seja feedback
+let exercise_id = extractIdFromCheckAnswer(text) || extractFormId(text) || extractAnyId(text);
+  
+  if (!exercise_id) return { error: "could not parse exercise_id" };
+
+  const correct_raw = extractCorrect(text);
+  const feedback_text = extractFeedback(text);
+
+  // Divide o ID para encontrar o módulo (ex: module1_mcq_q1 -> module1)
+  const parts = exercise_id.split("_");
+  const module = parts[0] || "general";
+  const type = (parts[1] || "mcq").toLowerCase();
+
+  let question_text = extractQuestionGeneric(text);
+
+  let options = extractOptionsFromLabels(text);
+  let correct_answer = correct_raw;
+
+  // Normalização para questões de Verdadeiro ou Falso (TF)
+  if (type === "tf") {
+    options = { "A": "True", "B": "False" };
+    const c = String(correct_raw || "").trim().toUpperCase();
+    if (c === "T" || c === "TRUE" || c === "A") correct_answer = "A";
+    else if (c === "F" || c === "FALSE" || c === "B") correct_answer = "B";
+  }
+
+  return {
+    exercise_id,
+    module,
+    type,
+    question_text,
+    options_json: JSON.stringify(options || {}),
+    correct_answer,
+    feedback_text
+  };
+}
+
+async function upsertQuestionBank(env, tpl) {
+  return env.DB.prepare(`
+    INSERT INTO questions_bank (exercise_id, module, type, question_text, options_json, correct_answer, feedback_text)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(exercise_id) DO UPDATE SET
+      question_text = excluded.question_text,
+      options_json = excluded.options_json,
+      correct_answer = excluded.correct_answer,
+      feedback_text = excluded.feedback_text
+  `).bind(tpl.exercise_id, tpl.module, tpl.type, tpl.question_text, tpl.options_json, tpl.correct_answer, tpl.feedback_text).run();
+}
+
+ 
+
+// ============================================================
+// Export helpers
+// ============================================================
+function generateQMD(p) {
+  let opts = {};
+  try { opts = JSON.parse(p.options_json || "{}"); } catch {}
+
+  const cleanOpt = (text, letter) => {
+    if (!text) return "";
+    const prefix = letter + ". ";
+    return String(text).startsWith(prefix) ? String(text).replace(prefix, "") : String(text);
+  };
+
+  let optionsHtml = "";
+  ["A","B","C","D","E"].forEach((l) => {
+    if (opts[l]) {
+      const text = cleanOpt(opts[l], l);
+      optionsHtml += `<label><input type="radio" name="${escapeHtml(p.poll_id)}" value="${l}"> ${l}. ${escapeHtml(text)}</label><br>\n`;
+    }
+  });
+
+  return `::: {.question-block}
+<form onsubmit="event.preventDefault(); checkAnswer('${escapeHtml(p.poll_id)}')" data-correct-answer="${escapeHtml(p.correct_option)}">
+  <strong style="display: block;">${escapeHtml(p.question)}</strong>
+  ${optionsHtml}
+</form>
+<div id="feedback-${escapeHtml(p.poll_id)}" class="feedback" data-status="" style="display:none;">
+  ✅ Correct: ${escapeHtml(p.correct_option)}. ${escapeHtml(p.feedback_text || "")}
+</div>
+:::`;
+}
+
+function generateBrightspaceCSV(p) {
+  let opts = {};
+  try { opts = JSON.parse(p.options_json || "{}"); } catch {}
+
+  const q = String(p.question || "").replace(/"/g, '""');
+  let csv = `NewQuestion,MC,,,,\nID,${p.poll_id},,,,\nQuestionText,"${q}",,,,\n`;
+
+  ["A","B","C","D","E"].forEach((l) => {
+    if (opts[l]) {
+      const weight = (l === p.correct_option) ? "100" : "0";
+      const txt = String(opts[l]).replace(/"/g, '""');
+      csv += `Option,${weight},"${txt}",,,,\n`;
+    }
+  });
+  return csv;
+}
+
+async function buildReport(db, sid) {
+  // sid já deve vir normalizado (lower/trim) do seu fluxo
+  try {
+    const row = await db.prepare(REPORT_SQL).bind(sid).first();
+
+    // D1 pode retornar {report_json: "..."} ou nada
+    const payload = row?.report_json;
+
+    if (!payload) {
+      return {
+        student_id: sid,
+        generated_at: tsBRString(Date.now()),
+        ranking: null,
+        attendance: null,
+        attendance_history: [],
+        polls_history: [],
+        checkouts: [],
+        likes_count: 0,
+        _warning: "No data returned by REPORT_SQL (row empty)."
+      };
+    }
+
+    // REPORT_SQL já retorna JSON via json_object(...)
+    return JSON.parse(payload);
+  } catch (e) {
+    return {
+      student_id: sid,
+      generated_at: tsBRString(Date.now()),
+      ranking: null,
+      attendance: null,
+      attendance_history: [],
+      polls_history: [],
+      checkouts: [],
+      likes_count: 0,
+      _error: String(e && e.message ? e.message : e)
+    };
+  }
+}
+
+function reportToHTML(
+  r,
+  {
+    logoUrl = "",
+    courseName = "Financial Strategy (2026/01)",
+    instructorName = "Henrique C. Martins - henrique.martins@fgv.br"
+  } = {}
+) {
+  const esc = escapeHtml;
+  const n = (x) => Number.isFinite(+x) ? +x : 0;
+
+    // Chat rendering (safe defaults)
+    const chatTotal = n(r?.chat_interactions?.total_interactions || 0);
+    const chatOk = !!r?.chat_interactions?.ok;
+    const chatItems = Array.isArray(r?.chat_interactions?.items) ? r.chat_interactions.items : [];
+  
+    const chatHtml =
+      chatItems.map((it) => `
+        <div class="checkout-card">
+          <div class="checkout-header">
+            <span class="slide-tag">💬 Chat</span>
+            <span class="checkout-time">${esc(it.created_at || "")}</span>
+          </div>
+          <div class="checkout-body"><strong>Q:</strong> ${esc(it.student_message || "")}</div>
+          <div class="checkout-body" style="margin-top:8px;"><strong>A:</strong> ${esc(it.bot_response || "")}</div>
+        </div>
+      `).join("") || `<p class="empty-state">No chat interactions found.</p>`;
+
+      
+  const nowBR = new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "America/Sao_Paulo"
+  }).format(new Date());
+
+  const renderOptions = (optionsJson) => {
+    try {
+      const opts = JSON.parse(optionsJson);
+      if (!opts || Object.keys(opts).length === 0) return "";
+      return `<div class="options-container">
+        ${Object.entries(opts)
+          .filter(([_, val]) => val)
+          .map(([key, val]) => `<div class="option-pill"><strong>${esc(key)}:</strong> ${esc(val)}</div>`)
+          .join("")}
+      </div>`;
+    } catch {
+      return "";
+    }
+  };
+
+  const pollRows =
+    (r.polls_history || []).map((p) => `
+      <div class="card-item">
+        <div class="status-indicator ${p.is_correct ? "success" : "error"}"></div>
+        <div class="content">
+          <div class="activity-title"><strong>${esc(p.id)}</strong> — ${esc(p.question)}</div>
+          ${p.options_json ? renderOptions(p.options_json) : ""}
+          <div class="activity-result">
+            <span>Your Entry: <strong class="${p.is_correct ? "text-success" : "text-error"}">${esc(p.your_answer)}</strong></span>
+            ${!p.is_correct ? `<span class="correct-val"> / Correct: <strong>${esc(p.correct_answer)}</strong></span>` : ""}
+          </div>
+          <div class="timestamp">${esc(p.when)}</div>
+        </div>
+      </div>
+    `).join("") || `<p class="empty-state">No poll history available.</p>`;
+
+  const rk = r.ranking || { likes: 0, checkouts: 0, polls: 0, total: 0 };
+  const att = r.attendance || { attended: 0, total: 0, absences: 0, pct: 0 };
+
+  const attendanceHistoryHtml =
+    (r.attendance_history || []).map((a) => {
+      let colors = { bg: "#f0fff4", text: "#22543d", border: "#c6f6d5", badge: "#48bb78" };
+      if (a.status === "absent") colors = { bg: "#fff5f5", text: "#c53030", border: "#fed7d7", badge: "#f56565" };
+      else if (a.status === "partial") colors = { bg: "#fffaf0", text: "#9c4221", border: "#feebc8", badge: "#ed8936" };
+
+      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:${colors.bg};border:1px solid ${colors.border};border-radius:8px;margin-top:8px;font-size:13px;">
+        <span style="color:${colors.text};font-weight:600;">📅 ${esc(a.date)}</span>
+        <span style="background:${colors.badge};color:white;padding:2px 8px;border-radius:4px;font-weight:800;text-transform:uppercase;font-size:10px;">${esc(a.status)}</span>
+      </div>`;
+    }).join("") || `<p class="empty-state">No attendance records yet.</p>`;
+
+    const checkoutsHtml =
+    (r.checkouts || []).map((c) => {
+      const hasLikert = (c.likert_value !== null && c.likert_value !== undefined && String(c.likert_value).trim() !== "");
+      const q = (c.likert_question || "").trim();
+      const v = c.likert_value;
+  
+      return `
+        <div class="checkout-card">
+          <div class="checkout-header">
+            <span class="slide-tag">Slide ${esc(c.slide_id)}</span>
+            <span class="checkout-time">${esc(c.when)}</span>
+          </div>
+  
+          ${
+            hasLikert
+              ? `<div style="margin-bottom:8px; font-size:12px; color: #334155;">
+                   <span style="font-weight:800; color:#1e3a8a;">${esc(q || "Likert")}</span>
+                   <span style="margin-left:8px; display:inline-block; padding:2px 8px; border-radius:999px; background:#e0e7ff; color:#1e3a8a; font-weight:800;">
+                     ${esc(v)}
+                   </span>
+                 </div>`
+              : ``
+          }
+  
+          <div class="checkout-body">${esc(c.ticket)}</div>
+        </div>
+      `;
+    }).join("") || `<p class="empty-state">No checkouts found.</p>`;
+  
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Student Dashboard — ${esc(r.student_id)}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#1e3a8a; --bg:#f1f5f9; --card:#fff; --text:#1e293b; --muted:#64748b;
+      --border:#e2e8f0; --success:#10b981; --error:#ef4444;
+    }
+    @media print{
+      .no-print{display:none!important}
+      body{background:white!important;padding:0!important}
+      .container{max-width:100%!important;border:none!important}
+      .card{box-shadow:none!important;border:1px solid var(--border)!important;page-break-inside:avoid}
+    }
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:'Plus Jakarta Sans',sans-serif;padding:40px 20px;line-height:1.5
+    }
+    .container{max-width:850px;margin:0 auto}
+    header{
+      background:var(--card);padding:30px;border-radius:20px;
+      box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);
+      border:1px solid var(--border);
+      display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px
+    }
+    .header-details h1{margin:0 0 15px 0;font-size:24px;font-weight:800;color:var(--primary)}
+    .header-details{font-size:14px;line-height:1.6}
+    .today-tag{color:var(--muted);font-size:12px;margin-top:8px}
+    .actions{display:flex;justify-content:flex-end;margin-bottom:15px}
+    .btn-print{
+      background:var(--primary);color:white;border:none;padding:10px 20px;border-radius:10px;
+      font-weight:700;cursor:pointer;font-size:13px
+    }
+    .card{
+      background:var(--card);border-radius:20px;padding:24px;margin-bottom:24px;
+      box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);border:1px solid var(--border)
+    }
+    h2{
+      font-size:13px;font-weight:700;color:var(--muted);margin:0 0 20px;
+      text-transform:uppercase;letter-spacing:.05em
+    }
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .stat-card{
+      background:#f8fafc;padding:15px;border-radius:12px;border:1px solid var(--border);text-align:center
+    }
+    .stat-card.featured{background:#eff6ff;border-color:#bfdbfe}
+    .stat-val{font-size:22px;font-weight:800;color:var(--primary);display:block}
+    .stat-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase}
+    .att-summary{
+      display:flex;gap:40px;font-weight:600;font-size:15px;border-bottom:1px solid var(--border);
+      padding-bottom:15px
+    }
+    .att-summary span b{color:var(--primary)}
+    .card-item{display:flex;gap:15px;padding:15px 0;border-bottom:1px solid #f1f5f9}
+    .card-item:last-child{border-bottom:none}
+    .status-indicator{width:6px;border-radius:10px;flex-shrink:0}
+    .status-indicator.success{background:var(--success)}
+    .status-indicator.error{background:var(--error)}
+    .activity-title{font-size:14px;font-weight:600;margin-bottom:8px}
+    .options-container{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+    .option-pill{
+      background:#f1f5f9;padding:3px 8px;border-radius:6px;font-size:11px;color:var(--muted);
+      border:1px solid #e2e8f0
+    }
+    .activity-result{font-size:13px}
+    .text-success{color:var(--success)}
+    .text-error{color:var(--error)}
+    .timestamp{font-size:11px;color:var(--muted);margin-top:8px}
+    .checkout-card{
+      background:#f8fafc;border-radius:15px;padding:15px;margin-bottom:15px;border:1px solid var(--border)
+    }
+    .checkout-header{display:flex;justify-content:space-between;margin-bottom:8px;font-size:11px;font-weight:700}
+    .slide-tag{color:var(--primary);background:#e0e7ff;padding:2px 6px;border-radius:4px}
+    .checkout-body{font-size:13px;color:#334155;line-height:1.5}
+    .mono{font-family:ui-monospace,monospace;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="actions no-print">
+      <button class="btn-print" onclick="window.print()">Download PDF Report</button>
+    </div>
+
+    <header>
+      <div class="header-details">
+        <h1>Performance Dashboard</h1>
+        <div><strong>${esc(courseName)}</strong></div>
+        <div>Instructor: ${esc(instructorName)}</div>
+        <div>Student ID: <span class="mono">${esc(r.student_id)}</span></div>
+        <div class="today-tag">Today: ${esc(nowBR)}</div>
+      </div>
+      ${logoUrl ? `<img src="${esc(logoUrl)}" style="height:45px;">` : ""}
+    </header>
+
+    <div class="card">
+      <h2>Engagement Scoreboard</h2>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-label">Likes</span><span class="stat-val">${n(rk.likes)}</span></div>
+        <div class="stat-card"><span class="stat-label">Checkouts</span><span class="stat-val">${n(rk.checkouts)}</span></div>
+        <div class="stat-card"><span class="stat-label">Polls</span><span class="stat-val">${n(rk.polls)}</span></div>
+        <div class="stat-card featured"><span class="stat-label">Total Credits</span><span class="stat-val">${n(rk.total)}</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Attendance Tracking</h2>
+      <div class="att-summary">
+        <span>Days Attended: <b>${n(att.attended)} / ${n(att.total)}</b></span>
+        <span>Presence Rate: <b>${(n(att.pct) * 100).toFixed(1)}%</b></span>
+      </div>
+
+      <div style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-top: 15px;">
+        Full Attendance History
+      </div>
+
+      ${attendanceHistoryHtml}
+    </div>
+
+    <div class="card">
+      <h2>Activity History (Polls)</h2>
+      ${pollRows}
+    </div>
+
+    <div class="card">
+      <h2>Knowledge Checkouts</h2>
+      ${checkoutsHtml}
+    </div>
+
+    <div class="card">
+    <h2>Chat Interactions <span style="float:right;color:var(--muted);font-size:12px;font-weight:700;text-transform:none;">Total: ${chatTotal}</span></h2>
+    ${!chatOk ? `<p class="empty-state">Chat service unavailable for now.</p>` : chatHtml}
+  </div>
+
+  </div>
+</body>
+</html>`;
+}
+

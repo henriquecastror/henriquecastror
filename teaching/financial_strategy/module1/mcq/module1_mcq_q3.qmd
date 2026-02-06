@@ -1,6 +1,6 @@
 ::: {.question-block}
 
-<form onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q3')" data-correct-answer="B">
+<form id="module1_mcq_q3" onsubmit="event.preventDefault(); checkAnswer('module1_mcq_q3')" data-correct-answer="B">
   <strong style="display: block;">Why might a firm choose a rights offering over a cash offering in an SEO?</strong>
 
   <label><input type="radio" name="module1_mcq_q3" value="A"> A. To reduce underwriting fees to zero</label><br>

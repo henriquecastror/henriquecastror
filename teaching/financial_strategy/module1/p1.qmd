@@ -11,12 +11,11 @@ format:
   revealjs:
     body-attributes:
       data-module: mod1
-    include-in-header: ../login-start.html
+    include-in-header: ../html/login-start.html
     include-after-body:
-      - ../chat-widget.html
-      - ../ranking-widget2.html
-      - ../notices-on-login.html
-      - ../polls.html
+      - ../html/chat-widget.html
+      - ../html/ranking-widget2.html
+      - ../html/polls.html
     touch: true
     controls: true
     slide-number: true
@@ -60,7 +59,7 @@ include-after: |
 ---
 
 
- 
+  
 
 
 # Intro {visibility="hidden"}
@@ -83,7 +82,7 @@ Always cross-check the answers with the book, slides, readings, and feedback pro
 
 💡 *Use Virtual HCM as a **learning aid**, not as the sole source of truth.*
 
-{{< include ../like-button2.html >}}
+{{< include ../html/like-button2.html >}}
 
 :::
 
@@ -471,7 +470,7 @@ Key: *module1_slide2*
 
 
 <div style="text-align: right;">
-{{< include "../quiz-utils.html" >}}
+{{< include "../html/quiz-utils.html" >}}
 </div>
 
 
@@ -821,7 +820,7 @@ Key: *module1_question3*
 {{< include "num/module1_num_q7.qmd" >}}
 
 <div style="text-align: right;">
-{{< include "../quiz-utils.html" >}}
+{{< include "../html/quiz-utils.html" >}}
 </div>
 
 
@@ -891,7 +890,7 @@ Key: *module1_question3*
      data-close="2026-02-02 16:59">
 </div>
 
-{{< include ../checkout2.html >}}
+{{< include ../html/checkout2.html >}}
 
 
 
@@ -909,7 +908,7 @@ Key: *module1_question3*
      data-close="2026-02-04 16:59">
 </div>
 
-{{< include ../checkout2.html >}}
+{{< include ../html/checkout2.html >}}
 
 
 
